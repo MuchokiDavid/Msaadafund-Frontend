@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Msaada Mshinani - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the frontend repository for Msaada Mshinani, an automated donation platform dedicated to providing support and assistance to communities in need, with a focus on grassroots-level initiatives in Kenya.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+Msaada Mshinani aims to address challenges such as lack of access to essential resources, healthcare services, and educational opportunities faced by individuals and communities in Kenya. Through this platform, users can make donations, discover charitable organizations, and contribute to meaningful causes that make a difference in people's lives.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **User Authentication**: Allow users to sign up, log in, and manage their accounts securely.
+- **Donation Forms**: Enable users to make one-time or recurring donations to support specific causes or charitable organizations.
+- **Charity Listings**: Provide information about registered charities, their missions, and impact stories to inspire donors.
+- **Payment Integration**: Integrate with payment gateways (e.g., PayPal, Stripe) to process donations securely.
+- **Dashboard**: Offer a user-friendly dashboard where donors can track their donation history, manage recurring donations, and view impact reports.
+- **Responsive Design**: Ensure a seamless user experience across devices, including desktops, tablets, and mobile phones.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+To get started with the Msaada Mshinani frontend, follow these steps:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone this repository to your local machine:
 
-### `npm run build`
+   ```bash
+   git clone https://github.com/MuchokiDavid/MsaadaMashinani_Frontend.git
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install dependencies using npm:
+    ```bash
+    npm install
+    ```
+3. Start the development server:
+    ```bash
+    npm start
+    ```
+4. Open your browser and navigate to http://localhost:3000 to view the application.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React: Frontend JavaScript library for building user interfaces.
+- React Router: Library for handling routing in React applications.
+- Axios: Promise-based HTTP client for making API requests.
+- TailwindCSS: CSS styling framework for react.
+- FontAwesome/ReactIcons: Libraries for adding icons to the application.
 
-### `npm run eject`
+## Contributing
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+We welcome contributions from the community to help improve Msaada Mshinani. If you'd like to contribute, please follow these guidelines:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Fork the repository and create a new branch for your feature or bug fix.
+2. Make your changes and ensure that tests and linting pass.
+3. Submit a pull request with a clear description of your changes and the problem they solve.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## License
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
-## Learn More
+## Acknowledgements
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. [David Muchoki](https://github.com/MuchokiDavid)
+2. [Clement Macharia](https://github.com/clementmw)
+3. [Joseph Mang'ara](https://github.com/)
