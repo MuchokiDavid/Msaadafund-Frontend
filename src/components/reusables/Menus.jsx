@@ -16,7 +16,7 @@ function Menus() {
                         <li><a>Contact</a></li>
                     </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">🫴Msaada</a>
+                    <a className="btn btn-ghost text-xl">🫴Msaada Mashinani</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
