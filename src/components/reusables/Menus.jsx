@@ -1,4 +1,5 @@
 import React from 'react'
+import logo from '../../assets/msaadaLogo.png'
 
 function Menus() {
     return (
@@ -16,7 +17,7 @@ function Menus() {
                         <li><a>Contact</a></li>
                     </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">🫴Msaada Mashinani</a>
+                    <a className="btn btn-ghost text-xl"><img class="w-18 h-12 mr-2" src ={logo} alt="logo"/> </a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
