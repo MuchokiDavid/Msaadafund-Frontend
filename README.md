@@ -1,6 +1,6 @@
-# Msaada Mshinani - Frontend
+# Msaada Mashinani - Frontend
 
-Welcome to the frontend repository for Msaada Mshinani, an automated donation platform dedicated to providing support and assistance to communities in need, with a focus on grassroots-level initiatives in Kenya.
+Welcome to the frontend repository for Msaada Mashinani, an automated donation platform dedicated to providing support and assistance to communities in need, with a focus on grassroots-level initiatives in Kenya.
 
 ## Overview
 
@@ -59,4 +59,4 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 1. [David Muchoki](https://github.com/MuchokiDavid)
 2. [Clement Macharia](https://github.com/clementmw)
-3. [Joseph Mang'ara](https://github.com/)
+3. [Mike Korir](https://github.com/michaelkorir)
