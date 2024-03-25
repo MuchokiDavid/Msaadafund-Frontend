@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../../assets/msaadaLogo.png'
+import logo from '../../assets/msaadaBlacklogo.png'
 
 function Reset() {
   return (
