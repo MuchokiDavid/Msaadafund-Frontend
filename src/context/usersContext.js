@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const orgLogin = (email, password) => {
-    console.log(email)
+    // console.log(email)
     fetch("/api/v1.0/auth/organisation/login", {
       method: "POST",
       headers: {
