@@ -36,6 +36,9 @@ function Message() {
         alert("Email sent successfully!");
         showToastSuccessMessage()
         //, response.status, response.text
+        setRecipient("");
+        setSubject("");
+        setMessage("");
       })
       .catch((error) => {
         alert("Email failed to send!, please try again");
