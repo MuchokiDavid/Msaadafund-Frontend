@@ -2,6 +2,8 @@ import React from 'react'
 import { useAuth } from '../../context/usersContext'
 // import { useNavigate } from 'react-router-dom';
 import { useState } from 'react'
+import Menus from '../reusables/Menus';
+import Footer from '../reusables/Footer';
 
 function Login() {
   const {userLogin, loginMessage, isLoggedIn} = useAuth();
@@ -24,6 +26,7 @@ function Login() {
 
   return (
     <div>
+      <Menus/>
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             {/* <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
@@ -76,6 +79,7 @@ function Login() {
             </div>
         </div>
       </section>
+      <Footer/>
     </div>
   )
 }
