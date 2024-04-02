@@ -16,7 +16,7 @@ function Register() {
   const [userPassword, setUserPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/
-  const phonePattern = /^07\d{8}$/
+  const phonePattern = /^(07|01)\d{8}$/;
 
   const clearState = () => {
     setFirstName("")
