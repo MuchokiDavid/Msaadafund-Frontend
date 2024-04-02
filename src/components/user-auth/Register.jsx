@@ -29,6 +29,7 @@ function Register() {
     setUserPassword("")
     setConfirmPassword("")
     setMessage("")
+    setErrors("")
   }
 
   const handleNationalIdChange = (e) => {
@@ -76,7 +77,7 @@ function Register() {
               //add toast\
               notify()
               setTimeout(()=>{window.location.reload()},3000)
-              // window.location="/login"
+              // window.location="/login": Navigate
               clearState()
             }
             if (data.error) {
@@ -84,7 +85,7 @@ function Register() {
             } 
           });
       } else {
-        setMessage('Passwords does not match')
+        setErrors('Passwords does not match')
       }
     };
   }
