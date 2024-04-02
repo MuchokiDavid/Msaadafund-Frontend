@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
   const [errorMessage, setErrorMessage] = useState("");
  
   const userLogin = (username, password) => {
-    fetch("/auth/user/login", {
+    fetch("/api/v1.0/auth/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
 
   const orgLogin = (email, password) => {
     console.log(email)
-    fetch("auth/login/organisation", {
+    fetch("/api/v1.0/auth/organisation/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
     }).then((r) => {
       if (r.ok) {
         r.json().then((data) => {
-            console.log(data)
+            // console.log(data)
           setIsLoggedIn(true);
           setUser(data.organisation);
           setToken(data.tokens.access_token); 
