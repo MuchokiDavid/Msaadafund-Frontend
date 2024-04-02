@@ -40,7 +40,7 @@ function Login() {
                     {loginMessage && <p className='text-red-500'>{loginMessage}</p>} 
                     <form className="space-y-4 md:space-y-6" action="#" onSubmit={login}>
                         <div>
-                            <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
                             <input type="name" 
                             name="name" 
                             id="email" 
@@ -50,7 +50,7 @@ function Login() {
                             required/>
                         </div>
                         <div>
-                            <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                             <input type="password" 
                             name="password" 
                             id="password" 
