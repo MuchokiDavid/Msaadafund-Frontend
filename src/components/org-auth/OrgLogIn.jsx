@@ -15,9 +15,12 @@ function OrgLogIn() {
   }
 
   if (isLoggedIn) {
-    alert("I am now loged in")
-    // navigate('/dashboard')
+    setTimeout(() => {
+      alert("I am now loged in")
+      // navigate('/dashboard')
+    }, 2000);
   }
+  
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -30,6 +33,7 @@ function OrgLogIn() {
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Log in to your Organisation
                     </h1>
+                    {loginMessage && <p className='text-red-500'>{loginMessage}</p>} 
                     <form className="space-y-4 md:space-y-6" action="#" onSubmit={login}>
                         <div>
                             <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email</label>
