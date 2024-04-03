@@ -1,46 +1,19 @@
 import React, { useState } from 'react'
 import Menus from '../reusables/Menus'
 import Footer from '../reusables/Footer'
-import toast from 'react-hot-toast'
+import toast, { Toaster } from 'react-hot-toast'
 
 function Register() {
-  const [message, setMessage] = useState("")
   const [errors, setErrors] = useState("")
   const [userName, setUserName] = useState("")
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
-  const [nationalId, setNationalId] = useState()
   const [phoneNumber, setPhoneNumber] = useState("")
-  const [address, setAddress] = useState("")
   const [userPassword, setUserPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/
   const phonePattern = /^(07|01)\d{8}$/;
-
-  const clearState = () => {
-    setFirstName("")
-    setLastName("")
-    setUserName("")
-    setEmail("")
-    setPhoneNumber("")
-    setNationalId("")
-    setAddress("")
-    setUserPassword("")
-    setConfirmPassword("")
-    setMessage("")
-    setErrors("")
-  }
-
-  const handleNationalIdChange = (e) => {
-    const inputValue = e.target.value;
-    // Limit input length
-    if (inputValue.length <= 8) { // Set your desired maximum length
-      setNationalId(inputValue);
-    }
-  };
-
-  const notify = () => toast('Registered successifully.');
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -63,27 +36,22 @@ function Register() {
             lastName: lastName,
             username: userName,
             email: email,
-            nationalId: nationalId,
             phoneNumber: formattedPhoneNumber,
-            address: address,
             password: userPassword
           })
         }).then((res) => res.json())
-          .catch((err) => { console.log(err) })
           .then((data) => {
             // console.log(data.message);
             if(data.message){
-              setMessage(data.message)
-              //add toast\
-              notify()
-              setTimeout(()=>{window.location.reload()},3000)
+              toast.success("User registered successifully")
+
               // window.location="/login": Navigate
-              clearState()
             }
             if (data.error) {
               setErrors(data.error)
             } 
-          });
+          })
+          .catch((err) => { setErrors(err) });
       } else {
         setErrors('Passwords does not match')
       }
@@ -159,27 +127,6 @@ function Register() {
                     required="" />
                 </div>
                 <div>
-                  {/* <label for="nationalId" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">National Id</label> */}
-                  <input type="number"
-                    name="number"
-                    id="nationalId"
-                    value={nationalId}
-                    onChange={handleNationalIdChange}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="National Id"
-                    required="" />
-                </div>
-                <div>
-                  {/* <label for="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label> */}
-                  <input type="address"
-                    name="address"
-                    id="address"
-                    onChange={(e) => setAddress(e.target.value)}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Address"
-                    required="" />
-                </div>
-                <div>
                   {/* <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label> */}
                   <input type="password"
                     name="password" id="password"
@@ -206,6 +153,7 @@ function Register() {
             </div>
           </div>
         </div>
+        <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
       </section>
       <Footer />
     </div>

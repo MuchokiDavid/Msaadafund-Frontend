@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Menus from '../reusables/Menus'
 import Footer from '../reusables/Footer'
+import toast, { Toaster } from 'react-hot-toast'
 
 function OrgSignUp() {
   const [message, setMessage] = useState("")
@@ -54,8 +55,7 @@ function OrgSignUp() {
             // console.log(data.message);
             if(data.message){
               setMessage(data.message)
-              //add toast\
-              setTimeout(()=>{window.location.reload()},3000)
+              toast.success("Account created successifully")
               // window.location="/login"
               clearState()
             }
@@ -152,6 +152,7 @@ function OrgSignUp() {
             </div>
           </div>
         </div>
+        <Toaster toastOptions={{ duration: 2000, position: 'top-center' }} />
       </section>
       <Footer/>
     </div>
