@@ -15,9 +15,12 @@ function OrgLogIn() {
   }
 
   if (isLoggedIn) {
-    alert("I am now loged in")
-    // navigate('/dashboard')
+    setTimeout(() => {
+      alert("I am now loged in")
+      // navigate('/dashboard')
+    }, 2000);
   }
+
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -30,9 +33,10 @@ function OrgLogIn() {
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Log in to your Organisation
                     </h1>
+                    {loginMessage && <p className='text-red-500'>{loginMessage}</p>} 
                     <form className="space-y-4 md:space-y-6" action="#" onSubmit={login}>
                         <div>
-                            <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email</label>
+                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email</label>
                             <input type="email" 
                             name="email" 
                             id="email" 
@@ -42,7 +46,7 @@ function OrgLogIn() {
                             required/>
                         </div>
                         <div>
-                            <label for="password" 
+                            <label htmlFor="password" 
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                             <input type="password" 
                             name="password" 
@@ -58,7 +62,7 @@ function OrgLogIn() {
                                   <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required=""/>
                                 </div>
                                 <div className="ml-3 text-sm">
-                                  <label for="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
+                                  <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
                                 </div>
                             </div>
                             <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>

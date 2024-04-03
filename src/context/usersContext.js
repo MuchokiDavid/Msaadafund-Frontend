@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
         });
         
       } else {
-        setLoginMessage("Invalid credentials");
+        setLoginMessage("Invalid credentials!!!");
       }
     });
   };
@@ -58,7 +58,7 @@ export const AuthProvider = ({ children }) => {
         });
         
       } else {
-        setLoginMessage("Invalid credentials");
+        setLoginMessage("Invalid credentials!!!");
       }
     });
   };
