@@ -1,68 +1,64 @@
 import React from 'react'
 import { useState } from 'react';
-import emailjs from 'emailjs-com';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Toaster, toast } from 'react-hot-toast';
 
 function Message() {
-    const [recipient, setRecipient] = useState("");
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
-
-    const showToastSuccessMessage = () => {
-        toast.success("Sent successiful!", {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000
-        });
-      };
+    const[email,setEmail]=useState('');
+    const[name,setName]= useState("")
+    const[errors, setErrors]=useState("")
 
     //Fuction to handle form submit 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    emailjs
-      .send(
-        "service_x8jwl7w",
-        "msaada_form",
-        {
-          to_email: "msaadamashinani@gmail.com",
-          from_email: recipient,
-
+  const  sendEmail= (e) =>{
+      e.preventDefault();
+      fetch('/api/v1.0/contact_form', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name:name,
+          from_email: email,
           subject: subject,
-          message: message,
-        },
-        "E0VqdUh3xzWxApQg9"
-      )
-      .then((response) => {
-        alert("Email sent successfully!");
-        showToastSuccessMessage()
-        //, response.status, response.text
-        setRecipient("");
-        setSubject("");
-        setMessage("");
-      })
-      .catch((error) => {
-        alert("Email failed to send!, please try again");
-        //, error
-      });
+          message: message
+        })
+      }).then((res) => res.json())
+        .then((data) => {
+          // console.log(data.message);
+          if(data.message){
+            toast.success("Email sent successifully")
 
-    setRecipient("");
-    setSubject("");
-    setMessage("");
-  };
+            // window.location="/login": Navigate
+          }
+          if (data.error) {
+            setErrors(data.error)
+          } 
+        })
+        .catch((err) => { setErrors(err) });
+  }
 
   return (
     <section class="bg-white dark:bg-gray-900">
         <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
             <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Contact Us</h2>
             <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Got a technical issue? Want to send feedback about our feature? Need details about our Business plan? Let us know.</p>
-            <form action="#" class="space-y-8" onSubmit={handleSubmit}>
+            {errors && <p className='text-red-500'>{errors}</p>}
+            <form action="#" class="space-y-8" onSubmit={sendEmail}>
                 <div>
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
                     <input type="email" 
                     id="email" 
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" 
                     placeholder="name@example.com" 
-                    onChange={(event) => setRecipient(event.target.value)}
+                    onChange={(event) => setEmail(event.target.value)}
+                    required/>
+                </div>
+                <div>
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your name</label>
+                    <input type="name" 
+                    id="contact_name" 
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" 
+                    placeholder="eg. John Doe" 
+                    onChange={(event) => setName(event.target.value)}
                     required/>
                 </div>
                 <div>
@@ -86,6 +82,7 @@ function Message() {
                 <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Send message</button>
             </form>
         </div>
+        <Toaster position='top-center' reverseOrder= {false} />
     </section>
   )
 }
