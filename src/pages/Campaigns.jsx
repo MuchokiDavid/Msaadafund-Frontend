@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 const Campaigns = () => {
@@ -5,9 +6,10 @@ const Campaigns = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [categories, setCategories] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('/api/v1.0/campaigns')
+    fetch('/campaigns')
       .then(response => response.json())
       .then(data => {
         setCampaigns(data);
@@ -50,7 +52,9 @@ const Campaigns = () => {
       }
       return false;
     });
+  
   };
+
 
   const renderCampaignsByStatus = (status) => {
     const filteredCampaigns = filterCampaigns(status);
@@ -59,8 +63,8 @@ const Campaigns = () => {
       <div key={status} className="mb-8">
         <h2 className="text-2xl font-bold mb-2">{status}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {filteredCampaigns.map((campaign, index) => (
-            <div key={index} className="max-w-xs rounded overflow-hidden shadow-lg bg-white transition duration-300 flex flex-col">
+          {filteredCampaigns.map((campaign) => (
+            <div key={campaign.id} className="max-w-xs rounded overflow-hidden shadow-lg bg-white transition duration-300 flex flex-col">
               <img className="w-full" src={campaign.banner} alt={campaign.campaignName} />
               <div className="px-6 py-4 flex-grow">
                 <div className="text-primary text-3xl mb-2">{campaign.campaignName}</div>
@@ -69,6 +73,7 @@ const Campaigns = () => {
                 <p className="text-black text-base">Start Date: {campaign.startDate}</p>
                 <p className="text-black text-base">End Date: {campaign.endDate}</p>
                 <p className="text-black text-base">Target Amount: Ksh {campaign.targetAmount}</p>
+                <button onClick={()=> handleCampaign(campaign.id)}>More Details</button>
               </div>
               {status === 'Ongoing' && (
                 <div className="px-6 pb-4">
@@ -83,6 +88,11 @@ const Campaigns = () => {
       </div>
     );
   };
+  
+  const handleCampaign = (campaignId) => {
+    navigate(`/campaign/${campaignId}`); // Corrected the route path
+  };
+  
 
   return (
     <div className="container mx-auto">
