@@ -36,6 +36,23 @@ function Reset() {
       setMessage(error.response.data.error);
     }
   };
+
+  const handleGoToLogin = () => {
+    window.location.href = '/user/login'; 
+  };
+
+  const handlePrevStep = () => {
+    if (step === 1) {
+      handleGoToLogin(); 
+    } else {
+      setStep(step - 1); 
+    }
+  };
+
+  const handleNextStep = () => {
+    setStep(step + 1);
+  };
+
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -44,6 +61,16 @@ function Reset() {
             <img className="w-18 h-12 mr-2" src={logo} alt="logo" />
           </a>
           <div className="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
+            <div className="flex justify-between mb-4">
+              <button onClick={handlePrevStep}>
+                {step === 1 ? 'Back to Login' : 'Previous'}
+              </button>
+              {step < 2 && (
+                <button onClick={handleNextStep}>
+                  Next
+                </button>
+              )}
+            </div>
             <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               {step === 1 ? 'Enter Email' : 'Enter OTP and New Password'}
             </h2>
