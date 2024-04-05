@@ -31,7 +31,7 @@ function Reset() {
       setMessage('Password reset successfully');
       setTimeout(() => {
         window.location.href = '/user/login'; 
-      }); 
+      },2000); 
     } catch (error) {
       setMessage(error.response.data.error);
     }
