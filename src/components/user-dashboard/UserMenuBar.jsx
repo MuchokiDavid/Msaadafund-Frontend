@@ -9,7 +9,7 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import { useAuth } from '../../context/usersContext';
 import { IoMenu } from "react-icons/io5";
 
-function Usermenubar({ isOpen, toggleSidebar }) {
+function UserMenuBar({ isOpen, toggleSidebar }) {
   const { isLoggedIn, user } = useAuth();
 
   const handleLogout = () => {
@@ -48,4 +48,4 @@ function Usermenubar({ isOpen, toggleSidebar }) {
   );
 }
 
-export default Usermenubar;
+export default UserMenuBar;

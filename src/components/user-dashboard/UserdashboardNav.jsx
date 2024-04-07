@@ -4,10 +4,10 @@ import { MdOutlineAccountCircle } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
 
 
-function Userdashboard({toggleSidebar}) {
+function Userdashboard({toggleSide}) {
     // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
   const {isLoggedIn, user} = useAuth();
-  console.log(user)
+  // console.log(user)
 
   // const toggleSidebar = () => {
   //   setIsOpen(!isOpen);
@@ -30,7 +30,7 @@ function Userdashboard({toggleSidebar}) {
     <div>
         <nav className="bg-gray-800 text-white flex justify-between items-center p-4">
 
-            <button onClick={toggleSidebar} className="text-white focus:outline-none">
+            <button onClick={toggleSide} className="text-white focus:outline-none">
             <IoMenu className='w-8 h-8' />
 
             {/* <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

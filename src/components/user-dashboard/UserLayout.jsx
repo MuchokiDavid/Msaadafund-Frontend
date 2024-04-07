@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Userdashboard from './Userdashboard';
-import Usermenubar from './Usermenubar';
+import Userdashboard from './UserdashboardNav';
+
 import UserHome from './pages/UserHome';
 import ActiveDonations from './pages/ActiveDonations';
 import PreviousDonations from './pages/PreviousDonations';
 import UserProfile from './pages/UserProfile';
+import UserMenuBar from './UserMenuBar';
 
 function UserLayout() {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
@@ -33,9 +34,9 @@ function UserLayout() {
 
   return (
     <div>
-      <Userdashboard toggleSidebar={toggleSidebar} />
+      <Userdashboard toggleSide={toggleSidebar} />
       <div className="flex">
-        <Usermenubar isOpen={isSidebarOpen} />
+        <UserMenuBar isOpen={isSidebarOpen} />
         <main className="mt-3 mx-auto md:w-3/4 overflow-y-auto md:m-3 min-h-max h-1/6">
           <Routes>
             <Route path="/" element={<UserHome />} />
