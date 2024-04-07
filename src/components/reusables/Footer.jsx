@@ -15,25 +15,26 @@ function Footer() {
   return (
     <>
     <footer className="footer p-10 bg-emerald-800 text-base-content ">
-        <div className="join">
-            <input className="input input-bordered join-item bg-white" placeholder="Email"/>
-            <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Subscribe</button>
-        </div>
+        <form>
+            <div className="join">
+                <input className="input input-bordered join-item bg-white" placeholder="Email"/>
+                <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Subscribe</button>
+            </div>
+        </form>
+        
         <nav className='text-white'>
             <h6 className="footer-title">Quick links</h6> 
             <a href='/' className="link link-hover">Home</a>
             <a href='/campaign' className="link link-hover">Campaigns</a>
-            <a className="link link-hover">Donors</a>
+            <a href='/donors' className="link link-hover">Donors</a>
             <a href='/org/login' className="link link-hover">Organisations</a>
         </nav> 
-        {/* <div className='hidden md:flex '> */}
             <nav className='text-white'>
                 <h6 className="footer-title">Company</h6>
-                <a className="link link-hover">About us</a>
-                <a href='/contact' className="link link-hover">Contact</a>
-                <a className="link link-hover">Jobs</a>
+                <a href='/about' className="link link-hover">About us</a>
+                <a href='/contact' className="link link-hover">Contact us</a>
+                <a href='/careers' className="link link-hover">Careers</a>
             </nav> 
-        {/* </div> */}
         
         <nav className='text-white'>
             <h6 className="footer-title">Social</h6> 
