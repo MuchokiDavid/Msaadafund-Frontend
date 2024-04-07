@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import Menus from '../components/reusables/Menus';
+import Footer from '../components/reusables/Footer';
 
 const Campaigns = () => {
   const [campaigns, setCampaigns] = useState([]);
@@ -43,20 +45,25 @@ const Campaigns = () => {
       const categoryMatch = selectedCategory === 'All' || campaign.category.toLowerCase() === selectedCategory.toLowerCase();
       const searchMatch = campaign.campaignName.toLowerCase().includes(searchQuery.toLowerCase());
 
-      if (status === 'Upcoming' && currentDate < new Date(campaign.startDate)) {
+      if (status === 'Upcoming campaigns' && currentDate < new Date(campaign.startDate)) {
         return categoryMatch && searchMatch;
       }
-      if (status === 'Ongoing' && currentDate >= new Date(campaign.startDate) && currentDate <= new Date(campaign.endDate)) {
+      if (status === 'Ongoing campaigns' && currentDate >= new Date(campaign.startDate) && currentDate <= new Date(campaign.endDate)) {
         return categoryMatch && searchMatch;
       }
-      if (status === 'Completed' && currentDate > new Date(campaign.endDate)) {
+      if (status === 'Completed campaigns' && currentDate > new Date(campaign.endDate)) {
         return categoryMatch && searchMatch;
       }
       return false;
     });
-  
   };
 
+  const handleSearch = () => {
+    // Assuming you want to filter based on the current selected category
+    const filteredCampaigns = filterCampaigns(selectedCategory);
+    // Perform any action with the filtered campaigns
+    console.log(filteredCampaigns);
+  };
 
   const renderCampaignsByStatus = (status) => {
     const filteredCampaigns = filterCampaigns(status);
@@ -77,7 +84,7 @@ const Campaigns = () => {
                 <p className="text-black text-base">Target Amount: Ksh {campaign.targetAmount}</p>
                 <button onClick={()=> handleCampaign(campaign.id)}>More Details</button>
               </div>
-              {status === 'Ongoing' && (
+              {status === 'Ongoing campaigns' && (
                 <div className="px-6 pb-4">
                   <button className="bg-green-500 text-white font-bold py-2 px-4 rounded">
                     Donate
@@ -90,53 +97,79 @@ const Campaigns = () => {
       </div>
     );
   };
-  
+
   const handleCampaign = (campaignId) => {
-    navigate(`/campaign/${campaignId}`); // Corrected the route path
+    navigate(`/campaign/${campaignId}`);
   };
 
-
   return (
-    <div className="container mx-auto overflow-x-hidden">
-      <h1 className="text-4xl font-bold mb-4">Campaigns</h1>
-      <div className="mb-4 flex flex-col sm:flex-row items-center">
-        <label htmlFor="categoryFilter" className="mr-2 font-bold text-lg">Filter by Category:</label>
-        <select
-          id="categoryFilter"
-          onChange={handleCategoryChange}
-          value={selectedCategory}
-          className="border rounded-full px-4 py-2 h-10 mb-2 sm:mb-0 sm:mr-4 focus:ring focus:border-blue-100"
-          style={{ minWidth: '150px' }}
-        >
-          {categories.map(category => (
-            <option key={category} value={category}>{category}</option>
-          ))}
-        </select>
-        <div className="relative flex-grow">
-          <input
-            type="text"
-            placeholder="Search campaigns..."
-            className="px-4 py-2 pr-10 border rounded-full shadow focus:outline-none focus:ring focus:border-blue-100 w-full max-w-md"
-            onChange={handleSearchChange}
-          />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 absolute right-3 top-3 text-gray-500 pointer-events-none"
-            viewBox="0 0 20 20"
-            fill="currentColor"
+    <>
+    <Menus/>
+    <div className='flex items-center justify-center mt-6 p-4 shadow-lg'>
+        <div className="mb-4 flex flex-col sm:flex-row items-center">
+          {/* <label htmlFor="categoryFilter" className="mr-2 font-bold text-lg">Filter by Category:</label> */}
+          <select
+            id="categoryFilter"
+            onChange={handleCategoryChange}
+            value={selectedCategory}
+            className="border bg-slate-200 text-black rounded-md px-4 py-2 h-10 mb-2 sm:mb-0 sm:mr-4 focus:ring focus:border-blue-100"
+            style={{ minWidth: '150px' }}
           >
-            <path
-              fillRule="evenodd"
-              d="M12.447 11.789l3.85 3.85a1 1 0 01-1.415 1.415l-3.85-3.85a6.5 6.5 0 111.415-1.415zM6.5 11.5a5 5 0 100-10 5 5 0 000 10z"
-              clipRule="evenodd"
+            {categories.map(category => (
+              <option key={category} value={category}>{category}</option>
+            ))}
+          </select>
+          
+          <div class="relative flex" data-twe-input-wrapper-init data-twe-input-group-ref>
+            <input
+              type="search"
+              className="peer block min-h-[auto] w-full h-10 rounded border-1 bg-slate-200 px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-black dark:placeholder:text-gray-500 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
+              placeholder="Search campaign..."
+              onChange={handleSearchChange}
+              aria-label="Search campaign..."
+              id="exampleFormControlInput"
+              aria-describedby="basic-addon1"
             />
-          </svg>
+            <label
+              for="exampleFormControlInput"
+              className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary"
+              >Search
+            </label>
+            <button
+              className="relative z-[2] border bg-blue-600 -ms-0.5 flex items-center rounded-e bg-primary px-5  text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
+              type="button"
+              id="button-addon1"
+              onClick={handleSearch}
+              data-twe-ripple-init
+              data-twe-ripple-color="light"
+            >
+              <span class="[&>svg]:h-5 [&>svg]:w-5">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
-      {renderCampaignsByStatus('Upcoming')}
-      {renderCampaignsByStatus('Ongoing')}
-      {renderCampaignsByStatus('Completed')}
+    <div className="container mx-auto overflow-x-hidden mt-3">
+      {/* <h1 className="text-4xl font-bold mb-4 mt-4">Campaigns</h1> */}
+      {renderCampaignsByStatus('Upcoming campaigns')}
+      {renderCampaignsByStatus('Ongoing campaigns')}
+      {renderCampaignsByStatus('Completed campaigns')}
     </div>
+    <Footer/>
+    </>
   );
 }
 
