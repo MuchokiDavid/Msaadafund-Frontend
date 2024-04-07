@@ -11,7 +11,7 @@ function Reset() {
   const [message, setMessage] = useState('');
   const [step, setStep] = useState(1); 
 
-  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+  const passwordPattern = /^[A-Za-z0-9]{8,}$/;
 
 
   const handleSendOTP = async () => {
@@ -31,7 +31,7 @@ function Reset() {
         return;
       }
       if (!passwordPattern.test(newPassword)) {
-        setMessage('Please ensure your password has atleast one lowercase letter, one uppercase letter,one character(!,@,#,$,%,^,&,*), one digit, and a total length of at least 8 characters')
+        setMessage('Please ensure your password has atleast one letter, one digit, and a total length of at least 8 characters')
         return;
       }
 

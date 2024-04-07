@@ -12,14 +12,14 @@ function Register() {
   const [phoneNumber, setPhoneNumber] = useState("")
   const [userPassword, setUserPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/
+  const passwordPattern = /^[A-Za-z0-9]{8,}$/;
   const phonePattern = /^(07|01)\d{8}$/;
 
   function handleSubmit(e) {
     e.preventDefault();
     // const formData= 
     if (!userPassword.match(passwordPattern)) {
-      setErrors('Please ensure your password has atleast one lowercase letter, one uppercase letter,one character(!,@,#,$,%,^,&,*), one digit, and a total length of at least 8 characters')
+      setErrors('Please ensure your password has atleast one letter, one digit, and a total length of at least 8 characters')
     }
     else if (!phoneNumber.match(phonePattern)) {
       setErrors('Invalid Phone Number')
