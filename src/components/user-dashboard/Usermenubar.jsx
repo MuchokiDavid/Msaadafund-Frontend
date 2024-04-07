@@ -7,9 +7,8 @@ import { LiaTelegram } from "react-icons/lia";
 import { IoPersonCircle } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useAuth } from '../../context/usersContext';
-import { IoMenu } from "react-icons/io5";
 
-function Usermenubar({ isOpen, toggleSidebar }) {
+function Usermenubar({ isOpen }) {
   const { isLoggedIn, user } = useAuth();
 
   const handleLogout = () => {
@@ -18,12 +17,6 @@ function Usermenubar({ isOpen, toggleSidebar }) {
 
   return (
     <>
-      {/* Hamburger Menu for Small Screens */}
-      {!isOpen && (
-        <button onClick={toggleSidebar} className="text-white focus:outline-none md:hidden">
-          <IoMenu className='w-8 h-8' />
-        </button>
-      )}
 
       {/* Sidebar */}
       <Sidebar className={`text-black h-full dark:bg-gray-300 ${isOpen ? '' : 'hidden'} md:block`} style={{ zIndex: 1000, height: "100vh", backgroundColor: '#2D3748'}}>

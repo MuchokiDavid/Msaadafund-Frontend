@@ -19,7 +19,7 @@ function OrgLayout() {
     const handleResize = () => {
       const isScreenLarge = window.innerWidth >= 768;
       setIsLargeScreen(isScreenLarge);
-      setIsSidebarOpen(isScreenLarge); // Set sidebar state based on screen size
+      setIsSidebarOpen(isScreenLarge); 
       if (!isScreenLarge) {
         setIsSidebarOpen(false);
       }

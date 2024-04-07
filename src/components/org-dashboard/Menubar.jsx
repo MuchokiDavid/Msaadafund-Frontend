@@ -10,7 +10,7 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import { useAuth } from '../../context/usersContext';
 import { IoMenu } from "react-icons/io5";
 
-function Menubar({isOpen, toggleSidebar}) {
+function Menubar({isOpen}) {
   // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
   const {isLoggedIn, user} = useAuth();
   console.log(user)
@@ -22,11 +22,11 @@ function Menubar({isOpen, toggleSidebar}) {
   return (
     <>
     
-       {!isOpen && (
+       {/* {!isOpen && (
         <button onClick={toggleSidebar} className="text-white focus:outline-none md:hidden">
           <IoMenu className='w-8 h-8' />
         </button>
-      )}
+      )} */}
 
       <Sidebar className={`text-black h-full dark:bg-gray-300 ${isOpen ? '' : 'hidden'}`} style={{ zIndex: 1000, height: "100vh", backgroundColor: '#2D3748'}}>
         <Menu
