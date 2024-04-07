@@ -7,7 +7,6 @@ import Login from './components/user-auth/Login';
 import Register from './components/user-auth/Register';
 import Reset from './components/user-auth/Reset';
 import OrgLogIn from './components/org-auth/OrgLogIn';
-// import Message from './components/services/Message';
 import ContactUs from './pages/ContactUs';
 import OrgSignUp from './components/org-auth/OrgSignUp';
 import UserLayout from './components/user-dashboard/UserLayout';
@@ -30,10 +29,10 @@ function App() {
     <Route path = '/org/reset' element = {<ResetPass/>}/>
     <Route path = '/org/login' element = {<OrgLogIn/>}/>
     <Route path = '/org/signup' element = {<OrgSignUp/>}/>
-    <Route path = '/contactus' element = {<ContactUs/>}/>
+    <Route path = '/contact' element = {<ContactUs/>}/>
     <Route path = '/about' element = {<AboutUs/>}/>
     <Route path = '/user/dashboard/*' element = {<UserLayout/>}/>
-    <Route path = '/company/dashboard/*' element = {<OrgLayout/>}/>
+    <Route path = '/org/dashboard/*' element = {<OrgLayout/>}/>
     
     </Routes>
    
