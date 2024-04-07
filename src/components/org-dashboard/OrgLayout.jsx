@@ -7,8 +7,8 @@ import OrgHome from './pages/OrgHome';
 import DashboardNav from './DashboardNav';
 
 function OrgLayout() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
 
   // Toggle sidebar
   const toggleSidebar = () => {
@@ -17,8 +17,10 @@ function OrgLayout() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 1024);
-      if (!window.innerWidth >= 1024) {
+      const isScreenLarge = window.innerWidth >= 768;
+      setIsLargeScreen(isScreenLarge);
+      setIsSidebarOpen(isScreenLarge); // Set sidebar state based on screen size
+      if (!isScreenLarge) {
         setIsSidebarOpen(false);
       }
     };
@@ -34,7 +36,7 @@ function OrgLayout() {
     <div>
       <DashboardNav toggleSidebar={toggleSidebar} />
       <div className="flex">
-        <Menubar isOpen={isSidebarOpen} />
+        <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
         {/* {isLargeScreen && <Menubar isOpen={isSidebarOpen} />} */}
         <main className="mt-3 mx-auto md:w-3/4 overflow-y-auto md:m-3 min-h-max h-1/6">
           <Routes>
