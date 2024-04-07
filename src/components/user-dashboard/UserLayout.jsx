@@ -6,10 +6,12 @@ import UserHome from './pages/UserHome';
 import ActiveDonations from './pages/ActiveDonations';
 import PreviousDonations from './pages/PreviousDonations';
 import UserProfile from './pages/UserProfile';
+ 
+
 
 function UserLayout() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   // Toggle sidebar
   const toggleSidebar = () => {
@@ -18,8 +20,10 @@ function UserLayout() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 768);
-      if (!window.innerWidth >= 768) {
+      const isScreenLarge = window.innerWidth >= 768;
+      setIsLargeScreen(isScreenLarge);
+      setIsSidebarOpen(isScreenLarge); 
+      if (!isScreenLarge) {
         setIsSidebarOpen(false);
       }
     };
@@ -35,7 +39,7 @@ function UserLayout() {
     <div>
       <Userdashboard toggleSidebar={toggleSidebar} />
       <div className="flex">
-        <Usermenubar isOpen={isSidebarOpen} />
+      <Usermenubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <main className="mt-3 mx-auto md:w-3/4 overflow-y-auto md:m-3 min-h-max h-1/6">
           <Routes>
             <Route path="/" element={<UserHome />} />
