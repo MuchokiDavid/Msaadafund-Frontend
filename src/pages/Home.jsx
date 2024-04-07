@@ -1,8 +1,14 @@
 import React from 'react'
+import Menus from '../components/reusables/Menus'
+import Footer from '../components/reusables/Footer'
 
 function Home() {
   return (
-    <div>Home</div>
+    <div>
+      <Menus/>
+      Home
+      <Footer/>
+    </div>
   )
 }
 
