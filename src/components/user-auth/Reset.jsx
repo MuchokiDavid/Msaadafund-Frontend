@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import logo from '../../assets/msaadaBlacklogo.png';
+import toast, { Toaster } from 'react-hot-toast'
 
 function Reset() {
   const [email, setEmail] = useState('');
@@ -9,6 +10,9 @@ function Reset() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
   const [step, setStep] = useState(1); 
+
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+
 
   const handleSendOTP = async () => {
     try {
@@ -26,9 +30,14 @@ function Reset() {
         setMessage('Passwords do not match');
         return;
       }
+      if (!passwordPattern.test(newPassword)) {
+        setMessage('Please ensure your password has atleast one lowercase letter, one uppercase letter,one character(!,@,#,$,%,^,&,*), one digit, and a total length of at least 8 characters')
+        return;
+      }
 
       await axios.patch('/api/v1.0/reset_password', { email, otp, new_password: newPassword });
-      setMessage('Password reset successfully');
+      // setMessage('Password reset successfully');
+      toast.success("Password reset successfully");
       setTimeout(() => {
         window.location.href = '/user/login'; 
       },2000); 
@@ -85,7 +94,7 @@ function Reset() {
                   <label htmlFor="otp" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">OTP</label>
                   <input type="text" name="otp" id="otp" value={otp} onChange={(e) => setOtp(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter OTP" />
                   <label htmlFor="new-password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New Password</label>
-                  <input type="password" name="new-password" id="new-password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="••••••••" required="" />
+                  <input type="password" name="new-password" id="new-password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} pattern={passwordPattern} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="••••••••" required="" />
                   <label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
                   <input type="password" name="confirm-password" id="confirm-password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="••••••••" required="" />
                 </div>
@@ -97,6 +106,7 @@ function Reset() {
             <p className="mt-2 text-sm text-center text-gray-500 dark:text-gray-300">{message}</p>
           </div>
         </div>
+        <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
       </section>
     </div>
   );
