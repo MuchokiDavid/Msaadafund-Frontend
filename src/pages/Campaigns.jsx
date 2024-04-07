@@ -67,28 +67,41 @@ const Campaigns = () => {
 
   const renderCampaignsByStatus = (status) => {
     const filteredCampaigns = filterCampaigns(status);
+    
 
     return (
       <div key={status} className="mb-8">
         <h2 className="text-2xl font-bold mb-2">{status}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {filteredCampaigns.map((campaign) => (
-            <div key={campaign.id} className="max-w-xs rounded overflow-hidden shadow-lg bg-white transition duration-300 flex flex-col">
-              <img className="w-full" src={campaign.banner} alt={campaign.campaignName} />
+            <div key={campaign.id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <img className="w-full rounded-t-lg" src={campaign.banner} alt={campaign.campaignName} />
               <div className="px-6 py-4 flex-grow">
-                <div className="text-primary text-3xl mb-2">{campaign.campaignName}</div>
-                <p className="text-black text-base">{campaign.description}</p>
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{campaign.campaignName}</h5>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{campaign.description}</p>
                 <p className="text-black text-base">Category: {campaign.category}</p>
                 <p className="text-black text-base">Start Date: {campaign.startDate}</p>
                 <p className="text-black text-base">End Date: {campaign.endDate}</p>
                 <p className="text-black text-base">Target Amount: Ksh {campaign.targetAmount}</p>
-                <button onClick={()=> handleCampaign(campaign.id)}>More Details</button>
+                {/* <button onClick={()=> handleCampaign(campaign.id)}>More Details</button> */}
+                <button onClick={()=> handleCampaign(campaign.id)} class="inline-flex items-center mt-3 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Read more
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </button>
               </div>
               {status === 'Ongoing campaigns' && (
                 <div className="px-6 pb-4">
-                  <button className="bg-green-500 text-white font-bold py-2 px-4 rounded">
+                  {/* <button className="bg-green-500 text-white font-bold py-2 px-4 rounded">
                     Donate
-                  </button>
+                  </button> */}
+                  {/* <button onClick={()=> handleCampaign(campaign.id)} class="inline-flex items-center mt-3 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                      Donate now
+                      <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                      </svg>
+                  </button> */}
                 </div>
               )}
             </div>
@@ -103,7 +116,7 @@ const Campaigns = () => {
   };
 
   return (
-    <>
+    <div className='bg-white dark:bg-gray-900'>
     <Menus/>
     <div className='flex items-center justify-center mt-6 p-4 shadow-lg'>
         <div className="mb-4 flex flex-col sm:flex-row items-center">
@@ -169,7 +182,7 @@ const Campaigns = () => {
       {renderCampaignsByStatus('Completed campaigns')}
     </div>
     <Footer/>
-    </>
+    </div>
   );
 }
 
