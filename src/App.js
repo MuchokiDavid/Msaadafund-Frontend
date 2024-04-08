@@ -13,6 +13,7 @@ import UserLayout from './components/user-dashboard/UserLayout';
 import OrgLayout from './components/org-dashboard/OrgLayout';
 import ResetPass from './components/org-auth/ResetPass';
 import AboutUs from './pages/AboutUs';
+import CreateCampaign from './pages/CreateCampaign';
 import Careers from './pages/Careers';
 import Donors from './pages/Donors';
 
@@ -36,17 +37,12 @@ function App() {
     <Route path = '/careers' element = {<Careers/>}/>
     <Route path = '/donors' element = {<Donors/>}/>
     <Route path = '/user/dashboard/*' element = {<UserLayout/>}/>
+    <Route path = '/company/dashboard/*' element = {<OrgLayout/>}/>
+    <Route path='/createcampaign' element = {<CreateCampaign/>}/>
     <Route path = '/org/dashboard/*' element = {<OrgLayout/>}/>
     
     </Routes>
-   
-
-// <Route path = '/' element = {<Login />} />
-// <Route path='/signup' element={<Register/>}></Route>
-// <Route path='/resetpassword' element={<ResetPassword/>}></Route>
-// <Route path='/dashboard/*' element={<DashboardLayout/>}></Route>
-// <Route path='/verify' element={<EmailForm/>}></Route>
-  );
+     );
 }
 
 export default App;
