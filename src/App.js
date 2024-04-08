@@ -1,7 +1,7 @@
 import './App.css';
 import Campaigns from './pages/Campaigns';
 import { Route, Routes } from 'react-router-dom';
-// import CampainDetails from './pages/CampainDetails';
+import CampainDetails from './pages/CampainDetails';
 import Home from './pages/Home';
 import Login from './components/user-auth/Login';
 import Register from './components/user-auth/Register';
@@ -25,7 +25,7 @@ function App() {
     <Routes>
     <Route path = '/' element= {<Home/>}/>
     <Route path='/campaign' element={<Campaigns/>}/>
-    {/* <Route path={`campaign/:campaignId`} element={<CampainDetails/>} />  */}
+    <Route path={`campaign/:campaignId`} element={<CampainDetails/>} /> 
     <Route path = '/user/login' element = {<Login/>}/>
     <Route path = '/user/signup' element = {<Register/>}/>
     <Route path = '/user/reset' element = {<Reset/>}/>
