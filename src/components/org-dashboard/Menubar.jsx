@@ -9,15 +9,22 @@ import { IoPersonCircle } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useAuth } from '../../context/usersContext';
 import { IoMenu } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
 
 function Menubar({isOpen}) {
   // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
-  const {isLoggedIn, user} = useAuth();
-  console.log(user)
+  const {logout} = useAuth();
+  const token = localStorage.getItem('token');
+  const navigate= useNavigate()
 
   const handleLogout = () => {
-    // Handle logout
+    logout()
+    navigate('/org/login')
   };
+
+  if (!token){
+    handleLogout()
+  }
 
   return (
     <>
@@ -39,11 +46,11 @@ function Menubar({isOpen}) {
             },
           }}
         >
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/company/dashboard" />} icon={<FaHome />}> Home</MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/company/dashboard/campaign" />} icon={<CiBank />}> Campaign</MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/company/dashboard/donations" />} icon={<LiaTelegram />}>Donations</MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/company/dashboard/transaction" />} icon={<GrTransaction />}>Transactions </MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/company/dashboard/profile" />} icon={<IoPersonCircle />}>Profile </MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard" />} icon={<FaHome />}> Home</MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/createcampaign" />} icon={<CiBank />}> Campaign</MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/donations" />} icon={<LiaTelegram />}>Donations</MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/transaction" />} icon={<GrTransaction />}>Transactions </MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/profile" />} icon={<IoPersonCircle />}>Profile </MenuItem>
           <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' onClick={handleLogout} icon={<RiLogoutBoxLine />}>Logout </MenuItem>
         </Menu>
       </Sidebar>
