@@ -7,14 +7,12 @@ import OrgHome from './pages/OrgHome';
 import DashboardNav from './DashboardNav';
 import CreateCampaign from './pages/CreateCampaign';
 import { useAuth } from '../../context/usersContext';
-import { useNavigate } from 'react-router-dom';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
   const { user, isLoggedIn } = useAuth();
   const token=localStorage.getItem('token');
-  const navigate= useNavigate()
 
   // Toggle sidebar
   const toggleSidebar = () => {
@@ -39,7 +37,7 @@ function OrgLayout() {
   }, []);
 
   if  (!token){
-    navigate('/org/login')
+    window.location.replace("/org/login")
   }
 
   return (
