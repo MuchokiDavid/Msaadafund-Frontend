@@ -19,7 +19,7 @@ function Menubar({isOpen}) {
 
   const handleLogout = () => {
     logout()
-    navigate('/org/login')
+    window.location.replace("/org/login")
   };
 
   if (!token){

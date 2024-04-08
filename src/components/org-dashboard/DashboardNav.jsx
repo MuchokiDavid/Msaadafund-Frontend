@@ -2,17 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../context/usersContext';
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
-import { useNavigate } from 'react-router-dom';
 
 
 function DashboardNav({toggleSidebar}) {
     // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
   const {user} = useAuth();
   let token=localStorage.getItem("token");
-  const navigate= useNavigate()
   
   if(!token){
-      navigate("org/login")
+      window.location.replace("/org/login")
   }
 
   return (
