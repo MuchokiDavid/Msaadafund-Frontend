@@ -57,7 +57,7 @@ function CreateCampaign() {
         axios.post('/api/v1.0/setCampaign', formData, config)
             .then((res) => {
                 console.log(res);
-                toast.success('Campaign uploaded successfully!');
+                toast.success('Campaign created successfully!');
                 setError('');
                 setBanner('');
                 setDescription('');
@@ -83,12 +83,13 @@ function CreateCampaign() {
     };
 
     return (
-        <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 text-white">
+        <div className='flex items-center justify-center'>
+            <div className="mx-auto lg:max-w-screen-lg md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 text-white sm:w-screen">
          {/* <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"> */}
 
             {error && <p className="text-red-500 mt-4">{error}</p>}
             <div>
-            <h1 className="text-2xl font-semibold mb-6">Upload Your Campaign</h1>
+            <h1 className="text-2xl font-semibold mb-6">Create Campaign</h1>
             </div>
             <form onSubmit={handleUpload}>
                 <div className="mb-4 ">
@@ -155,7 +156,7 @@ function CreateCampaign() {
                         id="category"
                         type="text"
                         value={category}
-                        placeholder="Campaign Category (Water,Food,Education ...)"
+                        placeholder="Category (Health, Water,Food,Education ...)"
                         onChange={(e) => setCategory(e.target.value)}
                         className="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600"
                         required
@@ -181,9 +182,9 @@ function CreateCampaign() {
                         <span className="mr-2">{banner ? banner.name : ''}</span>
                             <label
                                 htmlFor="file-upload"
-                                className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                                className="relative cursor-pointer h-8 px-4 rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                             >
-                                <span>Upload Campaign</span>
+                                <span>Upload Banner</span>
                                 <input
                                     id="file-upload"
                                     name="file-upload"
@@ -204,12 +205,14 @@ function CreateCampaign() {
                         type="submit"
                         className="bg-primary-600 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     >
-                        Upload
+                        Create
                     </button>
                 </div>
             </form>
             <Toaster position="top-right" reverseOrder={false} />
              </div>
+        </div>
+        
     );
 }
 
