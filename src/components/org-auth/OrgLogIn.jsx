@@ -2,6 +2,8 @@ import React from 'react'
 import { useAuth } from '../../context/usersContext'
 // import { useNavigate } from 'react-router-dom';
 import { useState } from 'react'
+import Menus from '../reusables/Menus';
+import Footer from '../reusables/Footer';
 
 function OrgLogIn() {
   const {orgLogin, loginMessage, isLoggedIn} = useAuth();
@@ -23,6 +25,7 @@ function OrgLogIn() {
 
   return (
     <div>
+      <Menus/>
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             {/* <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
@@ -36,7 +39,7 @@ function OrgLogIn() {
                     {loginMessage && <p className='text-red-500'>{loginMessage}</p>} 
                     <form className="space-y-4 md:space-y-6" action="#" onSubmit={login}>
                         <div>
-                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email</label>
+                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Organisation Email</label>
                             <input type="email" 
                             name="email" 
                             id="email" 
@@ -65,17 +68,18 @@ function OrgLogIn() {
                                   <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
                                 </div>
                             </div>
-                            <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                            <a href="/org/reset" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                         </div>
                         <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
                         <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                            Don’t have an account yet? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
+                            Don’t have an account yet? <a href="/org/signup" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
                         </p>
                     </form>
                 </div>
             </div>
         </div>
       </section>
+      <Footer/>
     </div>
   )
 }
