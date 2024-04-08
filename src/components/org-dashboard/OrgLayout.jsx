@@ -5,10 +5,16 @@ import Transaction from './pages/Transactions';
 import { Routes, Route } from 'react-router-dom';
 import OrgHome from './pages/OrgHome';
 import DashboardNav from './DashboardNav';
+import CreateCampaign from './pages/CreateCampaign';
+import { useAuth } from '../../context/usersContext';
+import { useNavigate } from 'react-router-dom';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
+  const { user, isLoggedIn } = useAuth();
+  const token=localStorage.getItem('token');
+  const navigate= useNavigate()
 
   // Toggle sidebar
   const toggleSidebar = () => {
@@ -17,7 +23,7 @@ function OrgLayout() {
 
   useEffect(() => {
     const handleResize = () => {
-      const isScreenLarge = window.innerWidth >= 768;
+      const isScreenLarge = window.innerWidth >= 810;
       setIsLargeScreen(isScreenLarge);
       setIsSidebarOpen(isScreenLarge); 
       if (!isScreenLarge) {
@@ -32,6 +38,10 @@ function OrgLayout() {
     };
   }, []);
 
+  if  (!token){
+    navigate('/org/login')
+  }
+
   return (
     <div>
       <DashboardNav toggleSidebar={toggleSidebar} />
@@ -41,6 +51,7 @@ function OrgLayout() {
         <main className="mt-3 mx-auto md:w-3/4 overflow-y-auto md:m-3 min-h-max h-1/6">
           <Routes>
             <Route path="/" element={<OrgHome />} />
+            <Route path="/createcampaign" element={<CreateCampaign/>} />
             <Route path="/transaction" element={<Transaction />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>

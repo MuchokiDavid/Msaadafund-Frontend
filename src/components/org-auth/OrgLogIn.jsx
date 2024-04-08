@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAuth } from '../../context/usersContext'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react'
 import Menus from '../reusables/Menus';
 import Footer from '../reusables/Footer';
@@ -9,17 +9,17 @@ function OrgLogIn() {
   const {orgLogin, loginMessage, isLoggedIn} = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
+  const token=localStorage.getItem('token')
 
   const login = (e) =>{
     e.preventDefault();
     orgLogin(email, password);
   }
 
-  if (isLoggedIn) {
+  if (token) {
     setTimeout(() => {
-      alert("I am now loged in")
-      // navigate('/dashboard')
+      navigate('/org/dashboard')
     }, 2000);
   }
 
@@ -34,7 +34,7 @@ function OrgLogIn() {
             <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                        Log in to your Organisation
+                        Organisation Log in
                     </h1>
                     {loginMessage && <p className='text-red-500'>{loginMessage}</p>} 
                     <form className="space-y-4 md:space-y-6" action="#" onSubmit={login}>
