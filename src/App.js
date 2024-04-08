@@ -14,6 +14,7 @@ import UserLayout from './components/user-dashboard/UserLayout';
 import OrgLayout from './components/org-dashboard/OrgLayout';
 import ResetPass from './components/org-auth/ResetPass';
 import AboutUs from './pages/AboutUs';
+import CreateCampaign from './pages/CreateCampaign';
 
 
 
@@ -34,6 +35,7 @@ function App() {
     <Route path = '/about' element = {<AboutUs/>}/>
     <Route path = '/user/dashboard/*' element = {<UserLayout/>}/>
     <Route path = '/company/dashboard/*' element = {<OrgLayout/>}/>
+    <Route path='/createcampaign' element = {<CreateCampaign/>}/>
     
     </Routes>
    

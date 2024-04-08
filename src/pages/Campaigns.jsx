@@ -9,7 +9,7 @@ const Campaigns = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('/campaigns')
+    fetch('/api/v1.0/campaigns')
       .then(response => response.json())
       .then(data => {
         setCampaigns(data);
