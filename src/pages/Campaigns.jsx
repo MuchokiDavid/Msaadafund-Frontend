@@ -9,6 +9,8 @@ const Campaigns = () => {
   const [categories, setCategories] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
+  const [daysLeft, setDaysLeft] = useState(null);
+
 
   useEffect(() => {
     fetch('/api/v1.0/campaigns')
@@ -43,7 +45,12 @@ const Campaigns = () => {
     const currentDate = new Date();
     return campaigns.filter(campaign => {
       const categoryMatch = selectedCategory === 'All' || campaign.category.toLowerCase() === selectedCategory.toLowerCase();
-      const searchMatch = campaign.campaignName.toLowerCase().includes(searchQuery.toLowerCase());
+      // const searchMatch = campaign.campaignName.toLowerCase().includes(searchQuery.toLowerCase());
+      const searchMatch = (
+        campaign.campaignName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        campaign.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        campaign.category.toLowerCase().includes(searchQuery.toLowerCase())
+      );
 
       if (status === 'Upcoming campaigns' && currentDate < new Date(campaign.startDate)) {
         return categoryMatch && searchMatch;
@@ -58,12 +65,26 @@ const Campaigns = () => {
     });
   };
 
-  const handleSearch = () => {
-    // Assuming you want to filter based on the current selected category
-    const filteredCampaigns = filterCampaigns(selectedCategory);
-    // Perform any action with the filtered campaigns
-    console.log(filteredCampaigns);
-  };
+    const calculateDaysLeft = (endDate) => {
+      if (!endDate) return null;
+  
+      const endDateObject = new Date(endDate);
+      const currentDate = new Date();
+      const differenceInTime = endDateObject.getTime() - currentDate.getTime();
+      if  (differenceInTime <= 0) return 0;
+      else{
+        return Math.ceil(differenceInTime / (1000 * 3600 * 24));
+      }
+      
+    };
+  
+
+  // const handleSearch = () => {
+  //   // Assuming you want to filter based on the current selected category
+  //   const filteredCampaigns = filterCampaigns(selectedCategory);
+  //   // Perform any action with the filtered campaigns
+  //   console.log(filteredCampaigns);
+  // };
 
   const renderCampaignsByStatus = (status) => {
     const filteredCampaigns = filterCampaigns(status);
@@ -75,14 +96,23 @@ const Campaigns = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {filteredCampaigns.map((campaign) => (
             <div key={campaign.id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-              <img className="w-full rounded-t-lg" src={campaign.banner} alt={campaign.campaignName} />
+              <img className="w-full rounded-t-lg h-52" src={campaign.banner} alt={campaign.campaignName} />
               <div className="px-6 py-4 flex-grow">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{campaign.campaignName}</h5>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{campaign.description}</p>
-                <p className="text-black text-base">Category: {campaign.category}</p>
-                <p className="text-black text-base">Start Date: {campaign.startDate}</p>
-                <p className="text-black text-base">End Date: {campaign.endDate}</p>
-                <p className="text-black text-base">Target Amount: Ksh {campaign.targetAmount}</p>
+                <p className="mb-0 text-basemb-3 font-normal text-gray-700 dark:text-gray-400 ">Agenda: {campaign.category}</p>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-lg">{campaign.description}</p>
+                
+                <div className='grid grid-flow-col grid-col-2 divide-x divide-slate-500'>
+                  <div className=' px-2'>
+                  <h6 className='text-md'>Days left</h6>
+                    <p className="text-black text-base dark:text-white">{calculateDaysLeft(campaign.endDate) }</p>
+                  </div>
+                  <div className='px-2'>
+                    <h6 className='text-md'>Budget(Ksh)</h6>
+                     <p className="text-black text-base dark:text-white">{campaign.targetAmount}</p>
+                  </div>
+                </div>
+
                 {/* <button onClick={()=> handleCampaign(campaign.id)}>More Details</button> */}
                 <button onClick={()=> handleCampaign(campaign.id)} class="inline-flex items-center mt-3 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     Read more
@@ -96,12 +126,12 @@ const Campaigns = () => {
                   {/* <button className="bg-green-500 text-white font-bold py-2 px-4 rounded">
                     Donate
                   </button> */}
-                  {/* <button onClick={()=> handleCampaign(campaign.id)} class="inline-flex items-center mt-3 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  <button onClick={()=> handleCampaign(campaign.id)} class="inline-flex items-center mt-1 px-3 py-2 text-sm font-medium text-center text-white bg-emerald-700 rounded-lg hover:bg-emerald-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-emerald-700 dark:hover:bg-emerald-600 dark:focus:ring-emerald-800">
                       Donate now
                       <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                       </svg>
-                  </button> */}
+                  </button>
                 </div>
               )}
             </div>
@@ -119,59 +149,25 @@ const Campaigns = () => {
     <div className='bg-white dark:bg-gray-900'>
     <Menus/>
     <div className='flex items-center justify-center mt-6 p-4 shadow-lg'>
-        <div className="mb-4 flex flex-col sm:flex-row items-center">
+        <div className="mb-4 flex flex-col sm:flex-row items-center ">
           {/* <label htmlFor="categoryFilter" className="mr-2 font-bold text-lg">Filter by Category:</label> */}
           <select
             id="categoryFilter"
             onChange={handleCategoryChange}
             value={selectedCategory}
-            className="border bg-slate-200 text-black rounded-md px-4 py-2 h-10 mb-2 sm:mb-0 sm:mr-4 focus:ring focus:border-blue-100"
+            className="border text-black rounded-md px-4 py-2 h-12 mb-2 sm:mb-0 sm:mr-4 focus:ring focus:border-blue-100 dark:bg-gray-900 dark:border dark:text-white"
             style={{ minWidth: '150px' }}
           >
             {categories.map(category => (
-              <option key={category} value={category}>{category}</option>
+              <option className='text-lg' key={category} value={category}>{category}</option>
             ))}
           </select>
           
           <div class="relative flex" data-twe-input-wrapper-init data-twe-input-group-ref>
-            <input
-              type="search"
-              className="peer block min-h-[auto] w-full h-10 rounded border-1 bg-slate-200 px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-black dark:placeholder:text-gray-500 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-              placeholder="Search campaign..."
-              onChange={handleSearchChange}
-              aria-label="Search campaign..."
-              id="exampleFormControlInput"
-              aria-describedby="basic-addon1"
-            />
-            <label
-              for="exampleFormControlInput"
-              className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary"
-              >Search
+            <label className="input input-bordered flex items-center gap-2  dark:bg-gray-900 dark:border dark:border-gray-400">
+              <input type="text" className="grow" onChange={handleSearchChange} placeholder="Search..." />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" /></svg>
             </label>
-            <button
-              className="relative z-[2] border bg-blue-600 -ms-0.5 flex items-center rounded-e bg-primary px-5  text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-              type="button"
-              id="button-addon1"
-              onClick={handleSearch}
-              data-twe-ripple-init
-              data-twe-ripple-color="light"
-            >
-              <span class="[&>svg]:h-5 [&>svg]:w-5">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                  />
-                </svg>
-              </span>
-            </button>
           </div>
         </div>
       </div>
