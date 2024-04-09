@@ -15,7 +15,7 @@ function DashboardNav({toggleSidebar}) {
 
   return (
     <div>
-        <nav className="bg-gray-800 text-white flex justify-between items-center p-4">
+        <nav className="bg-gray-900 text-white flex justify-between items-center p-4">
 
             <button onClick={toggleSidebar} className="text-white focus:outline-none">
             <IoMenu className='w-8 h-8' />

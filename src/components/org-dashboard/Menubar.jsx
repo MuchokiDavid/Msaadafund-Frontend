@@ -9,6 +9,7 @@ import { IoPersonCircle } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useAuth } from '../../context/usersContext';
 import { BiMoneyWithdraw } from "react-icons/bi";
+import { MdOutlineViewCompactAlt } from "react-icons/md";
 
 function Menubar({isOpen}) {
   // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
@@ -45,7 +46,8 @@ function Menubar({isOpen}) {
           }}
         >
           <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard" />} icon={<FaHome />}> Home</MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/createcampaign" />} icon={<MdOutlineCampaign className='w-6 h-6'/>}> Campaign</MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/createcampaign" />} icon={<MdOutlineCampaign className='w-6 h-6'/>}>Create Campaign</MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/campaigns" />} icon={<MdOutlineViewCompactAlt className='w-6 h-6'/>}>View Campaigns</MenuItem>
           <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/donations" />} icon={<FaDonate />}>Donations</MenuItem>
           <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/transaction" />} icon={<GrTransaction />}>Transactions </MenuItem>
           <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/accounts" />} icon={<BiMoneyWithdraw />}>Accounts </MenuItem>
