@@ -17,7 +17,7 @@ function OrgLogIn() {
     orgLogin(email, password);
   }
 
-  if (token) {
+  if (isLoggedIn) {
     setTimeout(() => {
       navigate('/org/dashboard')
     }, 2000);
