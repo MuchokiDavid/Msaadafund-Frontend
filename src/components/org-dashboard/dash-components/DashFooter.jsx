@@ -12,7 +12,7 @@ function DashFooter() {
     }, [])
   return (
     <>
-        <footer className="bg-gray-900 text-gray-500 py-3">
+        <footer className="bg-gray-900 text-gray-400 py-3">
             <div className="container ml-4">
                 <div className="row">
                 <div className="col-md-4 mb-4">
