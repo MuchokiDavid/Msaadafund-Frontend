@@ -2,20 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { FaHome } from "react-icons/fa";
-import { CiBank } from "react-icons/ci";
-import { LiaTelegram } from "react-icons/lia";
+import { MdOutlineCampaign } from "react-icons/md";
+import { FaDonate } from "react-icons/fa";
 import { GrTransaction } from "react-icons/gr";
 import { IoPersonCircle } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useAuth } from '../../context/usersContext';
-import { IoMenu } from "react-icons/io5";
-import { useNavigate } from 'react-router-dom';
+import { BiMoneyWithdraw } from "react-icons/bi";
 
 function Menubar({isOpen}) {
   // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
   const {logout} = useAuth();
   const token = localStorage.getItem('token');
-  const navigate= useNavigate()
 
   const handleLogout = () => {
     logout()
@@ -35,7 +33,7 @@ function Menubar({isOpen}) {
         </button>
       )} */}
 
-      <Sidebar className={`text-black h-full dark:bg-gray-300 ${isOpen ? '' : 'hidden'}`} style={{ zIndex: 1000, height: "100vh", backgroundColor: '#2D3748'}}>
+      <Sidebar className={`text-slate-800 bg-slate-400 h-screen md:max-h-screen dark:bg-gray-400 ${isOpen ? 'absolute' : 'hidden'}`} style={{ zIndex: 1000}}>
         <Menu
           menuItemStyles={{
             button: {
@@ -47,9 +45,10 @@ function Menubar({isOpen}) {
           }}
         >
           <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard" />} icon={<FaHome />}> Home</MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/createcampaign" />} icon={<CiBank />}> Campaign</MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/donations" />} icon={<LiaTelegram />}>Donations</MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/createcampaign" />} icon={<MdOutlineCampaign className='w-6 h-6'/>}> Campaign</MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/donations" />} icon={<FaDonate />}>Donations</MenuItem>
           <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/transaction" />} icon={<GrTransaction />}>Transactions </MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/accounts" />} icon={<BiMoneyWithdraw />}>Accounts </MenuItem>
           <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/profile" />} icon={<IoPersonCircle />}>Profile </MenuItem>
           <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' onClick={handleLogout} icon={<RiLogoutBoxLine />}>Logout </MenuItem>
         </Menu>
