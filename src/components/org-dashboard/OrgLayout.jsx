@@ -8,6 +8,7 @@ import DashboardNav from './DashboardNav';
 import CreateCampaign from './pages/CreateCampaign';
 import { useAuth } from '../../context/usersContext';
 import DashFooter from './dash-components/DashFooter';
+import CampaignCard from './dash-components/CampaignCard';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
@@ -44,13 +45,14 @@ function OrgLayout() {
   return (
     <div>
       <DashboardNav toggleSidebar={toggleSidebar} />
-      <div className="flex">
+      <div className="flex dark:bg-gray-800">
         <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
         {/* {isLargeScreen && <Menubar isOpen={isSidebarOpen} />} */}
-        <main className="mt-3 mx-auto md:w-3/4 overflow-y-auto md:m-3 min-h-max h-1/6 h-screen">
+        <main className="mt-3 mx-auto md:w-3/4 overflow-y-auto md:m-3 min-h-max h-screen ">
           <Routes>
             <Route path="/" element={<OrgHome />} />
             <Route path="/createcampaign" element={<CreateCampaign/>} />
+            <Route path="/campaigns" element={<CampaignCard/>} />
             <Route path="/accounts" element={<CreateCampaign/>} />
             <Route path="/transaction" element={<Transaction />} />
             <Route path="/profile" element={<Profile />} />
