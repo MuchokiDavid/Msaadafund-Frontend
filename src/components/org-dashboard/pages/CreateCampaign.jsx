@@ -89,11 +89,11 @@ function CreateCampaign() {
 
             {error && <p className="text-red-500 mt-4">{error}</p>}
             <div>
-            <h1 className="text-2xl font-semibold mb-6">Create Campaign</h1>
+            <h1 className="text-2xl font-semibold mb-6 text-slate-600 dark:text-slate-300">Create Campaign</h1>
             </div>
             <form onSubmit={handleUpload}>
                 <div className="mb-4 ">
-                    <label htmlFor="campaignName" className="block mb-2 text-sm font-semibold">
+                    <label htmlFor="campaignName" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
                         Campaign Name
                     </label>
                     <input
@@ -102,13 +102,13 @@ function CreateCampaign() {
                         value={campaignName}
                         placeholder="Campaign Name"
                         onChange={(e) => setCampaignName(e.target.value)}
-                        className="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600"
+                        className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
                         required
                     />
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-4">
                     <div>
-                        <label htmlFor="startDate" className="block mb-2 text-sm font-semibold">
+                        <label htmlFor="startDate" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
                             Start Date
                         </label>
                         <input
@@ -116,12 +116,12 @@ function CreateCampaign() {
                             type="date"
                             value={startDate}
                             onChange={(e) => setStartDate(e.target.value)}
-                            className="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600"
+                            className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
                             required
                         />
                     </div>
                     <div>
-                        <label htmlFor="endDate" className="block mb-2 text-sm font-semibold">
+                        <label htmlFor="endDate" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
                             End Date
                         </label>
                         <input
@@ -129,13 +129,13 @@ function CreateCampaign() {
                             type="date"
                             value={endDate}
                             onChange={(e) => setEndDate(e.target.value)}
-                            className="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600"
+                            className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
                             required
                         />
                     </div>
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="targetAmount" className="block mb-2 text-sm font-semibold">
+                    <label htmlFor="targetAmount" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
                         Budget
                     </label>
                     <input
@@ -144,12 +144,12 @@ function CreateCampaign() {
                         value={targetAmount}
                         placeholder="Budget"
                         onChange={(e) => setTargetAmount(e.target.value)}
-                        className="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600"
+                        className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
                         required
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="category" className="block mb-2 text-sm font-semibold">
+                    <label htmlFor="category" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
                         Category
                     </label>
                     <input
@@ -158,12 +158,12 @@ function CreateCampaign() {
                         value={category}
                         placeholder="Category (Health, Water,Food,Education ...)"
                         onChange={(e) => setCategory(e.target.value)}
-                        className="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600"
+                        className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
                         required
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="description" className="block mb-2 text-sm font-semibold">
+                    <label htmlFor="description" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
                         Description
                     </label>
                     <textarea
@@ -171,7 +171,7 @@ function CreateCampaign() {
                         value={description}
                         placeholder="Describe the Campaign "
                         onChange={(e) => setDescription(e.target.value)}
-                        className="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600"
+                        className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
                         rows="3"
                         required
                     />
