@@ -102,7 +102,7 @@ function CreateCampaign() {
                         value={campaignName}
                         placeholder="Campaign Name"
                         onChange={(e) => setCampaignName(e.target.value)}
-                        className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
+                        className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
                         required
                     />
                 </div>
@@ -116,7 +116,7 @@ function CreateCampaign() {
                             type="date"
                             value={startDate}
                             onChange={(e) => setStartDate(e.target.value)}
-                            className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
+                            className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
                             required
                         />
                     </div>
@@ -129,7 +129,7 @@ function CreateCampaign() {
                             type="date"
                             value={endDate}
                             onChange={(e) => setEndDate(e.target.value)}
-                            className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
+                            className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
                             required
                         />
                     </div>
@@ -144,7 +144,7 @@ function CreateCampaign() {
                         value={targetAmount}
                         placeholder="Budget"
                         onChange={(e) => setTargetAmount(e.target.value)}
-                        className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
+                        className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
                         required
                     />
                 </div>
@@ -158,7 +158,7 @@ function CreateCampaign() {
                         value={category}
                         placeholder="Category (Health, Water,Food,Education ...)"
                         onChange={(e) => setCategory(e.target.value)}
-                        className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
+                        className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
                         required
                     />
                 </div>
@@ -171,7 +171,7 @@ function CreateCampaign() {
                         value={description}
                         placeholder="Describe the Campaign "
                         onChange={(e) => setDescription(e.target.value)}
-                        className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
+                        className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
                         rows="3"
                         required
                     />
