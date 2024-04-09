@@ -12,6 +12,9 @@ function CreateCampaign() {
     const [targetAmount, setTargetAmount] = useState('');
     const [category, setCategory] = useState('');
     const [error, setError] = useState('');
+    const[loading,setLoading]=useState(false)
+    const [otherCategory, setOtherCategory] = useState('');
+
 
     const handleFileUpload = (e) => {
         const file = e.target.files[0];
@@ -27,7 +30,7 @@ function CreateCampaign() {
 
     const handleUpload = (e) => {
         e.preventDefault();
-
+        setLoading(true)
         if (!banner) {
             setError('Please select a file.');
             return;
@@ -40,7 +43,13 @@ function CreateCampaign() {
         formData.append('startDate', formatDate(startDate)); // Format start date
         formData.append('endDate', formatDate(endDate)); // Format end date
         formData.append('targetAmount', targetAmount);
-        formData.append('category', category);
+        if(category==='Other'){
+          formData.append('category',otherCategory)  
+        }
+        else{
+            formData.append('category', category);
+        }
+        
 
         const accessToken = localStorage.getItem('token');
         const config = {
@@ -50,13 +59,12 @@ function CreateCampaign() {
         };
 
         if (!accessToken) {
-            console.error('Access token not found');
-            return;
+            window.location.replace('/org/login')
         }
 
         axios.post('/api/v1.0/setCampaign', formData, config)
             .then((res) => {
-                console.log(res);
+                setLoading(false)
                 toast.success('Campaign created successfully!');
                 setError('');
                 setBanner('');
@@ -81,7 +89,6 @@ function CreateCampaign() {
 
         return `${year}-${month}-${day}`;
     };
-
     return (
         <div className='flex items-center justify-center'>
             <div className="mx-auto lg:max-w-screen-lg md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 text-white sm:w-screen">
@@ -135,6 +142,45 @@ function CreateCampaign() {
                     </div>
                 </div>
                 <div className="mb-4">
+                    <label htmlFor="category" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                        Category
+                    </label>
+                    {/* <input
+                        id="category"
+                        type="text"
+                        value={category}
+                        placeholder="Category (Health, Water,Food,Education ...)"
+                        onChange={(e) => setCategory(e.target.value)}
+                        className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
+                        required
+                    /> */}
+                    <select 
+                    className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' 
+                    onChange={(e)=>setCategory(e.target.value)}>
+                    <option >Select a category</option>
+                    <option value="Education">Education</option>    
+                    <option value="Health">Health</option>
+                    <option value="Food">Food</option>
+                    <option value="Water">Water</option>
+                    <option value="Human Rights">Human Rights</option>
+                    <option value="Environment">Environment</option>
+                    <option value="Community Development">Community Development</option> 
+                    <option value="Animal Welfare">Animal Welfare</option> 
+                    <option value="Arts and Culture">Arts and Culture</option> 
+                    <option value="Disaster">Disaster</option> 
+                    <option value="Other">Other...</option> 
+                    </select>
+                    {category==='Other'? <input
+                        id="category"
+                        type="text"
+                        value={otherCategory}
+                        placeholder="Please specify..."
+                        onChange={(e) => setOtherCategory(e.target.value)}
+                        className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 mt-4"
+                        required
+                    /> : null }
+                </div>
+                <div className="mb-4">
                     <label htmlFor="targetAmount" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
                         Budget
                     </label>
@@ -148,20 +194,7 @@ function CreateCampaign() {
                         required
                     />
                 </div>
-                <div className="mb-4">
-                    <label htmlFor="category" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
-                        Category
-                    </label>
-                    <input
-                        id="category"
-                        type="text"
-                        value={category}
-                        placeholder="Category (Health, Water,Food,Education ...)"
-                        onChange={(e) => setCategory(e.target.value)}
-                        className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
-                        required
-                    />
-                </div>
+                
                 <div className="mb-4">
                     <label htmlFor="description" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
                         Description
@@ -205,7 +238,7 @@ function CreateCampaign() {
                         type="submit"
                         className="bg-primary-600 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     >
-                        Create
+                        {loading?'Loading...': 'Create'}
                     </button>
                 </div>
             </form>
