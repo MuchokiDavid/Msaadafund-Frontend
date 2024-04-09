@@ -145,17 +145,8 @@ function CreateCampaign() {
                     <label htmlFor="category" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
                         Category
                     </label>
-                    {/* <input
-                        id="category"
-                        type="text"
-                        value={category}
-                        placeholder="Category (Health, Water,Food,Education ...)"
-                        onChange={(e) => setCategory(e.target.value)}
-                        className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
-                        required
-                    /> */}
                     <select 
-                    className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' 
+                    className='block h-11 text-gray-700 dark:bg-stone-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' 
                     onChange={(e)=>setCategory(e.target.value)}>
                     <option >Select a category</option>
                     <option value="Education">Education</option>    
