@@ -176,7 +176,7 @@ function CreateCampaign() {
                         required
                     />
                 </div>
-                <div className="mt-2 flex justify-center rounded-lg border border-dashed border-white px-6 py-10">
+                <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-300 dark:border-gray-700 px-6 py-10">
                     <div className="text-center">
                         <div className="mt-4 flex text-sm leading-6">
                         <span className="mr-2">{banner ? banner.name : ''}</span>
@@ -184,19 +184,19 @@ function CreateCampaign() {
                                 htmlFor="file-upload"
                                 className="relative cursor-pointer h-8 px-4 rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                             >
-                                <span>Upload Banner</span>
+                                <span className='text-gray-800'>Upload Banner</span>
                                 <input
                                     id="file-upload"
                                     name="file-upload"
                                     type="file"
                                     accept="image/*"
-                                    className="sr-only"
+                                    className="sr-only py-6"
                                     onChange={(e) => handleFileUpload(e)}
                                     required
                                 />
                             </label>
                         </div>
-                        <p className="text-xs leading-5 ">PNG, JPG,JPEG up to 2MB</p>
+                        <p className="text-xs leading-5 text-gray-700 dark:text-gray-200">PNG, JPG,JPEG up to 2MB</p>
                     </div>
                 </div>
 
