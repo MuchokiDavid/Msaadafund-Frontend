@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useCallback } from 'react';
 import Menus from '../components/reusables/Menus';
 import Footer from '../components/reusables/Footer';
 import moment from 'moment';
@@ -9,20 +9,31 @@ const Campaigns = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [categories, setCategories] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const navigate = useNavigate();
-  const [daysLeft, setDaysLeft] = useState(null);
 
+  const fetchCampaigns = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/v1.0/campaigns?page=${currentPage}&category=${selectedCategory}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch campaigns');
+      }
+      const data = await response.json();
+      const mergedCategories = mergeCategories(data.map(campaign => campaign.category.toLowerCase()));
+      setCampaigns(data);
+      setCategories(['All', ...mergedCategories]);
+      const totalPagesFromHeader = Number(response.headers.get('X-Total-Pages'));
+      setTotalPages(totalPagesFromHeader);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }, [currentPage, selectedCategory]);
 
   useEffect(() => {
-    fetch('/api/v1.0/campaigns')
-      .then(response => response.json())
-      .then(data => {
-        const mergedCategories = mergeCategories(data.map(campaign => campaign.category.toLowerCase()));
-        setCampaigns(data);
-        setCategories(['All', ...mergedCategories]);
-      })
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
+    fetchCampaigns();
+  }, [currentPage, selectedCategory, fetchCampaigns]); // Include fetchCampaigns in the dependency array
+
 
   const mergeCategories = (categories) => {
     const uniqueCategories = new Map();
@@ -36,17 +47,23 @@ const Campaigns = () => {
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
+    setCurrentPage(1); // Reset currentPage when category changes
   };
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
+    setCurrentPage(1); // Reset currentPage when search query changes
   };
 
+  const goToPage = (page) => {
+    setCurrentPage(page);
+  };
+
+ 
   const filterCampaigns = (status) => {
     const currentDate = new Date();
     return campaigns.filter(campaign => {
       const categoryMatch = selectedCategory === 'All' || campaign.category.toLowerCase() === selectedCategory.toLowerCase();
-      // const searchMatch = campaign.campaignName.toLowerCase().includes(searchQuery.toLowerCase());
       const searchMatch = (
         campaign.campaignName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         campaign.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -66,30 +83,19 @@ const Campaigns = () => {
     });
   };
 
-    const calculateDaysLeft = (endDate) => {
-      if (!endDate) return null;
-  
-      const endDateObject = new Date(endDate);
-      const currentDate = new Date();
-      const differenceInTime = endDateObject.getTime() - currentDate.getTime();
-      if  (differenceInTime <= 0) return 0;
-      else{
-        return Math.ceil(differenceInTime / (1000 * 3600 * 24));
-      }
-      
-    };
-  
-
-  // const handleSearch = () => {
-  //   // Assuming you want to filter based on the current selected category
-  //   const filteredCampaigns = filterCampaigns(selectedCategory);
-  //   // Perform any action with the filtered campaigns
-  //   console.log(filteredCampaigns);
-  // };
+  const calculateDaysLeft = (endDate) => {
+    if (!endDate) return null;
+    const endDateObject = new Date(endDate);
+    const currentDate = new Date();
+    const differenceInTime = endDateObject.getTime() - currentDate.getTime();
+    if  (differenceInTime <= 0) return 0;
+    else{
+      return Math.ceil(differenceInTime / (1000 * 3600 * 24));
+    }
+  };
 
   const renderCampaignsByStatus = (status) => {
     const filteredCampaigns = filterCampaigns(status);
-    
 
     return (
       <div key={status} className="mb-8">
@@ -167,10 +173,9 @@ const Campaigns = () => {
 
   return (
     <div className='bg-white dark:bg-gray-900'>
-    <Menus/>
-    <div className='flex items-center justify-center mt-6 p-4 shadow-lg'>
+      <Menus/>
+      <div className='flex items-center justify-center mt-6 p-4 shadow-lg'>
         <div className="mb-4 flex flex-col sm:flex-row items-center ">
-          {/* <label htmlFor="categoryFilter" className="mr-2 font-bold text-lg">Filter by Category:</label> */}
           <select
             id="categoryFilter"
             onChange={handleCategoryChange}
@@ -182,7 +187,6 @@ const Campaigns = () => {
               <option className='text-lg' key={category} value={category}>{category}</option>
             ))}
           </select>
-          
           <div class="relative flex" data-twe-input-wrapper-init data-twe-input-group-ref>
             <label className="input input-bordered flex items-center gap-2  dark:bg-gray-900 dark:border dark:border-gray-400">
               <input type="text" className="grow" onChange={handleSearchChange} placeholder="Search..." />
@@ -191,13 +195,18 @@ const Campaigns = () => {
           </div>
         </div>
       </div>
-    <div className="container mx-auto overflow-x-hidden mt-3">
-      {/* <h1 className="text-4xl font-bold mb-4 mt-4">Campaigns</h1> */}
-      {renderCampaignsByStatus('Upcoming campaigns')}
-      {renderCampaignsByStatus('Ongoing campaigns')}
-      {renderCampaignsByStatus('Completed campaigns')}
-    </div>
-    <Footer/>
+      <div className="container mx-auto overflow-x-hidden mt-3">
+        {renderCampaignsByStatus('Upcoming campaigns')}
+        {renderCampaignsByStatus('Ongoing campaigns')}
+        {renderCampaignsByStatus('Completed campaigns')}
+      </div>
+      <div className=" flex justify-center mb-4 join grid-cols-2">
+        {/* Previous page button */}
+        <button className="join-item btn btn-outline" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
+        {/* Next page button */}
+        <button className="join-item btn btn-outline" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
+      </div>
+      <Footer/>
     </div>
   );
 }
