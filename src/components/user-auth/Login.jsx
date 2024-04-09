@@ -40,7 +40,7 @@ function Login() {
                     {loginMessage && <p className='text-red-500'>{loginMessage}</p>} 
                     <form className="space-y-4 md:space-y-6" action="#" onSubmit={login}>
                         <div>
-                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username or email address</label>
                             <input type="name" 
                             name="name" 
                             id="email" 
