@@ -1,40 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-function CampaignCard() {
-    const [campaigns, setCampaigns] = useState([]);
+function CampaignCard({allCampaigns, campaignError}) {
+    const [campaigns, setCampaigns] = useState(allCampaigns);
     const token = localStorage.getItem('token');
     const [walletDetails, setWalletDetails] = useState(null);
     const [loading, setLoading] = useState(true)
+    const [errors, setErrors] = useState(campaignError);
 
-    useEffect(() => {
-        const handleFetch = async () => {
-            try {
-                const response = await fetch('/api/v1.0/org_all_campaigns', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                });
-                const data = await response.json();
-                if (response.ok) {
-                    setLoading(false)
-                    console.log("Successful request to get campaigns");
-                    setCampaigns(data.campaigns);
-                } else {
-                    setLoading(true)
-                    throw new Error(data);
-                }
-            } catch (error) {
-                setLoading(true)
-                console.log('Error in fetching campaigns', error);
-            }
-        };
-
-        handleFetch();
-    }, [token]);
-
-    // console.log(campaigns)
 
     useEffect(() => {
         campaigns.forEach(item => handleWallet(item.id));
@@ -60,34 +32,37 @@ function CampaignCard() {
             
         } catch (error) {
             setLoading(true)
-            console.log('Error in fetching wallet details', error);
+            setErrors('Error in fetching wallet details', error);
         }
     };
+    // console.log(campaigns)
 
     if(loading){
-        <div class="flex items-center text-surface dark:text-white">
-            <strong>Loading...</strong>
-            <div
-                class="ms-auto inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
-                role="status">
-            </div>
-        </div>
+        <div><span className="loading loading-dots loading-lg"></span></div>
     }
 
     return (
         <div>
-            <h2 className="text-center text-xl mx-2">My Campaigns</h2>
+            <div className="text-md breadcrumbs ml-2">
+                <ul>
+                    <li><a href='/org/dashboard'>Home</a></li> 
+                    <li><a href='/org/dashboard/campaigns'>View Campaign</a></li> 
+                </ul>
+            </div>
+            <h2 className="mb-3 text-2xl font-bold leading-tight ">My Campaigns</h2>
+            <hr className='mb-4'/>
+            {errors&& <p className='text-red-700'>{errors}</p>}
             <div className="mx-4 grid grid-cols-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:max-w-full">
                 {campaigns && campaigns.map((item) =>{
                 return (
                     <div class="m-auto overflow-hidden rounded-lg shadow-lg cursor-pointer h-90 w-60 md:w-80">
                         <a href="#" class="block w-full h-full">
-                            <div class="w-full p-4 bg-white dark:bg-gray-800">
+                            <div class="w-full p-4 bg-gray-100 dark:bg-gray-800">
                                 <p class="font-medium text-indigo-500 text-md">
                                     Available balance
                                 </p>
                                 <p class="mb-2 text-2xl font-medium text-gray-800 dark:text-white">
-                                    {walletDetails && walletDetails[item.id]?.available_balance}
+                                    {walletDetails &&walletDetails[item.id]?.currency} {walletDetails &&walletDetails[item.id]?.available_balance}
                                 </p>
                                 {/* <p class="font-light text-gray-400 dark:text-gray-300 text-md">
                                     The new supercar is here, 543 cv and 140 000$. This is best racing GT about 7 years on...

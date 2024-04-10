@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useAuth } from '../../context/usersContext';
+import { useAuth } from '../../../context/usersContext';
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
+import logo from  '../../../assets/msaadaLogo.png';
 
 
 function DashboardNav({toggleSidebar}) {
@@ -15,11 +16,14 @@ function DashboardNav({toggleSidebar}) {
 
   return (
     <div>
-        <nav className="bg-gray-900 text-white flex justify-between items-center p-4">
-
-            <button onClick={toggleSidebar} className="text-white focus:outline-none">
-            <IoMenu className='w-8 h-8' />
-            </button>
+        <nav className="bg-slate-700 text-white flex justify-between items-center p-4">
+            <div>
+              <a href='/' className="btn btn-ghost text-xl"><img class="w-18 h-12 mr-5" src ={logo} alt="logo"/> </a>
+              <button onClick={toggleSidebar} className="text-white focus:outline-none xl:hidden">
+              <IoMenu className='w-8 h-8' />
+              </button>
+            </div>
+            
             <h1 className="text-xl">Dashboard</h1>
             <div>
             <h2><MdOutlineAccountCircle className='h-6 w-6'/>{user && user.orgName}</h2>

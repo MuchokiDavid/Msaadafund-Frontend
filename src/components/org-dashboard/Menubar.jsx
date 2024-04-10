@@ -34,12 +34,12 @@ function Menubar({isOpen}) {
         </button>
       )} */}
 
-      <Sidebar className={`text-slate-800 bg-slate-400 h-screen md:max-h-screen dark:bg-gray-400 ${isOpen ? 'absolute' : 'hidden'}`} style={{ zIndex: 1000}}>
+      <Sidebar className={`text-slate-800 dark:text-gray-100 bg-gray-50 h-screen md:max-h-screen dark:bg-gray-700 ${isOpen ? 'absolute' : 'hidden'}`} style={{ zIndex: 1000}}>
         <Menu
           menuItemStyles={{
             button: {
               [`&.active`]: {
-                backgroundColor: '#13395e',
+                // backgroundColor: '#13395e',
                 color: '#b6c8d9',
               },
             },
