@@ -9,6 +9,7 @@ import CreateCampaign from './pages/CreateCampaign';
 import { useAuth } from '../../context/usersContext';
 import DashFooter from './dash-components/DashFooter';
 import CampaignCard from './dash-components/CampaignCard';
+import Donations from './pages/Donations';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
@@ -53,6 +54,7 @@ function OrgLayout() {
             <Route path="/" element={<OrgHome />} />
             <Route path="/createcampaign" element={<CreateCampaign/>} />
             <Route path="/campaigns" element={<CampaignCard/>} />
+            <Route path="/donations" element={<Donations/>} />
             <Route path="/accounts" element={<CreateCampaign/>} />
             <Route path="/transaction" element={<Transaction />} />
             <Route path="/profile" element={<Profile />} />
