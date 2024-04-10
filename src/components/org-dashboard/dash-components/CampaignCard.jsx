@@ -1,41 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-function CampaignCard() {
-    const [campaigns, setCampaigns] = useState([]);
+function CampaignCard({allCampaigns, campaignError}) {
+    const [campaigns, setCampaigns] = useState(allCampaigns);
     const token = localStorage.getItem('token');
     const [walletDetails, setWalletDetails] = useState(null);
     const [loading, setLoading] = useState(true)
-    const [errors, setErrors] = useState();
+    const [errors, setErrors] = useState(campaignError);
 
-    useEffect(() => {
-        const handleFetch = async () => {
-            try {
-                const response = await fetch('/api/v1.0/org_all_campaigns', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                });
-                const data = await response.json();
-                if (response.ok) {
-                    setLoading(false)
-                    console.log("Successful request to get campaigns");
-                    setCampaigns(data.campaigns);
-                } else {
-                    setLoading(true)
-                    throw new Error(data);
-                }
-            } catch (error) {
-                setLoading(true)
-                setErrors('Error in fetching campaigns', error);
-            }
-        };
-
-        handleFetch();
-    }, [token]);
-
-    // console.log(campaigns)
 
     useEffect(() => {
         campaigns.forEach(item => handleWallet(item.id));
@@ -64,6 +35,7 @@ function CampaignCard() {
             setErrors('Error in fetching wallet details', error);
         }
     };
+    // console.log(campaigns)
 
     if(loading){
         <div><span className="loading loading-dots loading-lg"></span></div>
