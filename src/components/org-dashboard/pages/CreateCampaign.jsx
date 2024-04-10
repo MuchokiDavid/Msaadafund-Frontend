@@ -90,22 +90,25 @@ function CreateCampaign() {
         return `${year}-${month}-${day}`;
     };
     return (
-        <>
-            <div className="text-sm breadcrumbs ml-2">
+        <div className='flex-grow'>
+            <div className="text-md breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Home</a></li> 
                     <li><a href='/org/dashboard/createcampaign'>Create campaign</a></li> 
                 </ul>
             </div>
+            <h1 className="text-2xl font-semibold mb-3 text-slate-600 dark:text-slate-300">Create Campaign</h1>
+            <hr className='mb-0'/>
             <div className='flex items-center justify-center'>
-                <div className="mx-auto lg:max-w-screen-lg md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 text-white sm:w-screen">
+                <div className="mx-auto lg:max-w-screen-lg md:max-w-full sm:max-w-full p-6 bg-white rounded-lg bg-transparent text-white sm:w-screen">
             {/* <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"> */}
 
                 {error && <p className="text-red-500 mt-4">{error}</p>}
                 <div>
-                <h1 className="text-2xl font-semibold mb-6 text-slate-600 dark:text-slate-300">Create Campaign</h1>
+                
                 </div>
                 <form onSubmit={handleUpload}>
+                <h2 className="text-xl font-semibold mb-3 text-slate-600 dark:text-slate-300">Add Campaign</h2>
                     <div className="mb-4 ">
                         <label htmlFor="campaignName" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
                             Campaign Name
@@ -116,7 +119,7 @@ function CreateCampaign() {
                             value={campaignName}
                             placeholder="Campaign Name"
                             onChange={(e) => setCampaignName(e.target.value)}
-                            className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required
                         />
                     </div>
@@ -130,7 +133,7 @@ function CreateCampaign() {
                                 type="date"
                                 value={startDate}
                                 onChange={(e) => setStartDate(e.target.value)}
-                                className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required
                             />
                         </div>
@@ -143,7 +146,7 @@ function CreateCampaign() {
                                 type="date"
                                 value={endDate}
                                 onChange={(e) => setEndDate(e.target.value)}
-                                className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required
                             />
                         </div>
@@ -153,20 +156,20 @@ function CreateCampaign() {
                             Category
                         </label>
                         <select 
-                        className='block h-11 text-gray-700 dark:bg-stone-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' 
+                        className='bg-gray-50 border h-11 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' 
                         onChange={(e)=>setCategory(e.target.value)}>
-                        <option >Select a category</option>
-                        <option value="Education">Education</option>    
-                        <option value="Health">Health</option>
-                        <option value="Food">Food</option>
-                        <option value="Water">Water</option>
-                        <option value="Human Rights">Human Rights</option>
-                        <option value="Environment">Environment</option>
-                        <option value="Community Development">Community Development</option> 
-                        <option value="Animal Welfare">Animal Welfare</option> 
-                        <option value="Arts and Culture">Arts and Culture</option> 
-                        <option value="Disaster">Disaster</option> 
-                        <option value="Other">Other...</option> 
+                        <option className='text-lg' >Select a category</option>
+                        <option className='text-lg' value="Education">Education</option>    
+                        <option className='text-lg' value="Health">Health</option>
+                        <option className='text-lg' value="Food">Food</option>
+                        <option className='text-lg' value="Water">Water</option>
+                        <option className='text-lg' value="Human Rights">Human Rights</option>
+                        <option className='text-lg' value="Environment">Environment</option>
+                        <option className='text-lg' value="Community Development">Community Development</option> 
+                        <option className='text-lg' value="Animal Welfare">Animal Welfare</option> 
+                        <option className='text-lg' value="Arts and Culture">Arts and Culture</option> 
+                        <option className='text-lg' value="Disaster">Disaster</option> 
+                        <option className='text-lg' value="Other">Other...</option> 
                         </select>
                         {category==='Other'? <input
                             id="category"
@@ -174,7 +177,7 @@ function CreateCampaign() {
                             value={otherCategory}
                             placeholder="Please specify..."
                             onChange={(e) => setOtherCategory(e.target.value)}
-                            className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 mt-4"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-4"
                             required
                         /> : null }
                     </div>
@@ -188,7 +191,7 @@ function CreateCampaign() {
                             value={targetAmount}
                             placeholder="Budget"
                             onChange={(e) => setTargetAmount(e.target.value)}
-                            className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required
                         />
                     </div>
@@ -202,14 +205,14 @@ function CreateCampaign() {
                             value={description}
                             placeholder="Describe the Campaign "
                             onChange={(e) => setDescription(e.target.value)}
-                            className="block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             rows="3"
                             required
                         />
                     </div>
-                    <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-300 dark:border-gray-700 px-6 py-10">
+                    <div className="mt-2 flex justify-center border border-dashed border-gray-300 dark:border-gray-700 px-6 py-10 bg-gray-50 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <div className="text-center">
-                            <div className="mt-4 flex text-sm leading-6">
+                            <div className="mt-4 flex text-sm leading-6 ">
                             <span className="mr-2">{banner ? banner.name : ''}</span>
                                 <label
                                     htmlFor="file-upload"
@@ -221,7 +224,7 @@ function CreateCampaign() {
                                         name="file-upload"
                                         type="file"
                                         accept="image/*"
-                                        className="sr-only py-6"
+                                        className="sr-only"
                                         onChange={(e) => handleFileUpload(e)}
                                         required
                                     />
@@ -243,7 +246,7 @@ function CreateCampaign() {
                 <Toaster position="top-right" reverseOrder={false} />
                 </div>
             </div>
-        </>
+        </div>
         
         
     );
