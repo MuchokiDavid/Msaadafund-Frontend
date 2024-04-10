@@ -4,7 +4,7 @@ import Profile from './pages/OrgProfile';
 import Transaction from './pages/Transactions';
 import { Routes, Route } from 'react-router-dom';
 import OrgHome from './pages/OrgHome';
-import DashboardNav from './DashboardNav';
+import DashboardNav from './dash-components/DashboardNav';
 import CreateCampaign from './pages/CreateCampaign';
 import { useAuth } from '../../context/usersContext';
 import DashFooter from './dash-components/DashFooter';
