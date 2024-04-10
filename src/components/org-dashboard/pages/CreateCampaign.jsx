@@ -91,7 +91,7 @@ function CreateCampaign() {
     };
     return (
         <>
-            <div className="text-sm breadcrumbs ml-4">
+            <div className="text-sm breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Home</a></li> 
                     <li><a href='/org/dashboard/createcampaign'>Create campaign</a></li> 

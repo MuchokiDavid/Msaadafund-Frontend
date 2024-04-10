@@ -65,17 +65,17 @@ function CampaignCard() {
     };
 
     if(loading){
-        <div class="flex items-center text-surface dark:text-white">
-            <strong>Loading...</strong>
-            <div
-                class="ms-auto inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
-                role="status">
-            </div>
-        </div>
+        <span className="loading loading-dots loading-lg"></span>
     }
 
     return (
         <div>
+            <div className="text-sm breadcrumbs ml-2">
+                <ul>
+                    <li><a href='/org/dashboard'>Home</a></li> 
+                    <li><a href='/org/dashboard/campaigns'>View Campaign</a></li> 
+                </ul>
+            </div>
             <h2 className="text-center text-xl mx-2">My Campaigns</h2>
             <div className="mx-4 grid grid-cols-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:max-w-full">
                 {campaigns && campaigns.map((item) =>{
