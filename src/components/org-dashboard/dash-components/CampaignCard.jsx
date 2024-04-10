@@ -5,6 +5,7 @@ function CampaignCard() {
     const token = localStorage.getItem('token');
     const [walletDetails, setWalletDetails] = useState(null);
     const [loading, setLoading] = useState(true)
+    const [errors, setErrors] = useState();
 
     useEffect(() => {
         const handleFetch = async () => {
@@ -27,7 +28,7 @@ function CampaignCard() {
                 }
             } catch (error) {
                 setLoading(true)
-                console.log('Error in fetching campaigns', error);
+                setErrors('Error in fetching campaigns', error);
             }
         };
 
@@ -60,12 +61,12 @@ function CampaignCard() {
             
         } catch (error) {
             setLoading(true)
-            console.log('Error in fetching wallet details', error);
+            setErrors('Error in fetching wallet details', error);
         }
     };
 
     if(loading){
-        <span className="loading loading-dots loading-lg"></span>
+        <div><span className="loading loading-dots loading-lg"></span></div>
     }
 
     return (
@@ -76,7 +77,8 @@ function CampaignCard() {
                     <li><a href='/org/dashboard/campaigns'>View Campaign</a></li> 
                 </ul>
             </div>
-            <h2 className="text-center text-xl mx-2">My Campaigns</h2>
+            <h2 className="my-4 text-xl font-bold leading-tight ">My Campaigns</h2>
+            {errors&& <p className='text-red-700'>{errors}</p>}
             <div className="mx-4 grid grid-cols-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:max-w-full">
                 {campaigns && campaigns.map((item) =>{
                 return (
