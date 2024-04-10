@@ -80,7 +80,7 @@ function OrgLayout() {
       <div className="flex dark:bg-gray-900">
         <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
         {/* {isLargeScreen && <Menubar isOpen={isSidebarOpen} />} */}
-        <main className="mt-3 mx-auto w-5/6 overflow-y-auto md:m-3 min-h-max h-auto">
+        <main className="mt-3 mx-auto w-5/6 overflow-y-auto md:m-3 min-h-max sm:h-screen lg:h-auto justify-center">
           <Routes>
             <Route path="/" element={<OrgHome />} />
             <Route path="/createcampaign" element={<CreateCampaign/>} />
