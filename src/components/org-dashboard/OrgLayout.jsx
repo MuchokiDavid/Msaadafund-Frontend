@@ -15,6 +15,9 @@ function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
   const { user, isLoggedIn } = useAuth();
+  const[loading,setLoading]=useState(true)
+  const[campaigns,setCampaigns]=useState([])
+  const[errors,setErrors]=useState()
   const token=localStorage.getItem('token');
 
   // Toggle sidebar
@@ -39,6 +42,34 @@ function OrgLayout() {
     };
   }, []);
 
+  useEffect(() => {
+    const handleFetch = async () => {
+          try {
+              const response = await fetch('/api/v1.0/org_all_campaigns', {
+                  method: 'GET',
+                  headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': `Bearer ${token}`
+                  },
+              });
+              const data = await response.json();
+              if (response.ok) {
+                  setLoading(false)
+                  console.log("Successful request to get campaigns");
+                  setCampaigns(data.campaigns);
+              } else {
+                  setLoading(true)
+                  throw new Error(data);
+              }
+          } catch (error) {
+              setLoading(true)
+              setErrors('Error in fetching campaigns', error);
+          }
+      };
+
+      handleFetch();
+  }, [token]);
+
   if  (!token){
     window.location.replace("/org/login")
   }
@@ -53,8 +84,8 @@ function OrgLayout() {
           <Routes>
             <Route path="/" element={<OrgHome />} />
             <Route path="/createcampaign" element={<CreateCampaign/>} />
-            <Route path="/campaigns" element={<CampaignCard/>} />
-            <Route path="/donations" element={<Donations/>} />
+            <Route path="/campaigns" element={<CampaignCard allCampaigns={campaigns} campaignError={errors}/>} />
+            <Route path="/donations" element={<Donations allCampaigns={campaigns} campaignError={errors}/>} />
             <Route path="/accounts" element={<CreateCampaign/>} />
             <Route path="/transaction" element={<Transaction />} />
             <Route path="/profile" element={<Profile />} />
