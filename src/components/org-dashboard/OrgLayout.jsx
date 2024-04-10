@@ -46,7 +46,7 @@ function OrgLayout() {
   return (
     <div>
       <DashboardNav toggleSidebar={toggleSidebar} />
-      <div className="flex dark:bg-gray-800">
+      <div className="flex dark:bg-gray-900">
         <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
         {/* {isLargeScreen && <Menubar isOpen={isSidebarOpen} />} */}
         <main className="mt-3 mx-auto md:w-3/4 overflow-y-auto md:m-3 min-h-max h-screen ">

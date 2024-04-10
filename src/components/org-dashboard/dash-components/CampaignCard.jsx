@@ -71,13 +71,14 @@ function CampaignCard() {
 
     return (
         <div>
-            <div className="text-sm breadcrumbs ml-2">
+            <div className="text-md breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Home</a></li> 
                     <li><a href='/org/dashboard/campaigns'>View Campaign</a></li> 
                 </ul>
             </div>
-            <h2 className="my-4 text-xl font-bold leading-tight ">My Campaigns</h2>
+            <h2 className="mb-2 text-xl font-bold leading-tight ">My Campaigns</h2>
+            <hr className='mb-4'/>
             {errors&& <p className='text-red-700'>{errors}</p>}
             <div className="mx-4 grid grid-cols-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:max-w-full">
                 {campaigns && campaigns.map((item) =>{
@@ -89,7 +90,7 @@ function CampaignCard() {
                                     Available balance
                                 </p>
                                 <p class="mb-2 text-2xl font-medium text-gray-800 dark:text-white">
-                                    {walletDetails && walletDetails[item.id]?.available_balance}
+                                    {walletDetails &&walletDetails[item.id]?.currency} {walletDetails &&walletDetails[item.id]?.available_balance}
                                 </p>
                                 {/* <p class="font-light text-gray-400 dark:text-gray-300 text-md">
                                     The new supercar is here, 543 cv and 140 000$. This is best racing GT about 7 years on...
