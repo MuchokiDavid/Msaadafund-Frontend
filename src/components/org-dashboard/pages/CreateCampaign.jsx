@@ -97,18 +97,14 @@ function CreateCampaign() {
                     <li><a href='/org/dashboard/createcampaign'>Create campaign</a></li> 
                 </ul>
             </div>
-            <h1 className="text-2xl font-semibold mb-3 text-slate-600 dark:text-slate-300">Create Campaign</h1>
+            <h1 className="text-2xl font-semibold mb-3 text-slate-600 dark:text-slate-300">Create campaign</h1>
             <hr className='mb-0'/>
-            <div className='flex items-center justify-center'>
-                <div className="mx-auto lg:max-w-screen-lg md:max-w-full sm:max-w-full p-6 bg-white rounded-lg bg-transparent text-white sm:w-screen">
+            <div className='flex items-center justify-center w-full'>
+                <div className="mx-auto lg:max-w-screen-lg md:max-w-full sm:max-w-full p-6 rounded-lg bg-transparent text-white sm:w-screen">
             {/* <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"> */}
 
                 {error && <p className="text-red-500 mt-4">{error}</p>}
-                <div>
-                
-                </div>
                 <form onSubmit={handleUpload}>
-                <h2 className="text-xl font-semibold mb-3 text-slate-600 dark:text-slate-300">Add Campaign</h2>
                     <div className="mb-4 ">
                         <label htmlFor="campaignName" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
                             Campaign Name
