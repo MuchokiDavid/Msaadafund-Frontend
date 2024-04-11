@@ -43,32 +43,33 @@ function OrgLayout() {
   }, []);
 
   useEffect(() => {
-    const handleFetch = async () => {
-          try {
-              const response = await fetch('/api/v1.0/org_all_campaigns', {
-                  method: 'GET',
-                  headers: {
-                      'Content-Type': 'application/json',
-                      'Authorization': `Bearer ${token}`
-                  },
-              });
-              const data = await response.json();
-              if (response.ok) {
-                  setLoading(false)
-                  console.log("Successful request to get campaigns");
-                  setCampaigns(data.campaigns);
-              } else {
-                  setLoading(true)
-                  throw new Error(data);
-              }
-          } catch (error) {
-              setLoading(true)
-              setErrors('Error in fetching campaigns', error);
-          }
-      };
-
       handleFetch();
   }, [token]);
+  
+  const handleFetch = async () => {
+    try {
+        const response = await fetch('/api/v1.0/org_all_campaigns', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        });
+        const data = await response.json();
+        if (response.ok) {
+            setLoading(false)
+            console.log("Successful request to get campaigns");
+            setCampaigns(data.campaigns);
+        } else {
+            setLoading(true)
+            throw new Error(data);
+        }
+    } catch (error) {
+        setLoading(true)
+        setErrors('Error in fetching campaigns', error);
+    }
+};
+
 
   if  (!token){
     window.location.replace("/org/login")
@@ -80,10 +81,10 @@ function OrgLayout() {
       <div className="flex dark:bg-gray-900">
         <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
         {/* {isLargeScreen && <Menubar isOpen={isSidebarOpen} />} */}
-        <main className="mt-3 mx-auto w-5/6 overflow-y-auto md:m-3 min-h-max sm:h-screen lg:h-auto justify-center">
+        <main className="mt-3 mx-auto w-5/6 overflow-y-auto md:m-3 min-h-max sm:h-fit sm:w-screen lg:h-auto justify-center">
           <Routes>
             <Route path="/" element={<OrgHome />} />
-            <Route path="/createcampaign" element={<CreateCampaign/>} />
+            <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch}/>} />
             <Route path="/campaigns" element={<CampaignCard allCampaigns={campaigns} campaignError={errors}/>} />
             <Route path="/donations" element={<Donations allCampaigns={campaigns} campaignError={errors}/>} />
             <Route path="/accounts" element={<CreateCampaign/>} />
