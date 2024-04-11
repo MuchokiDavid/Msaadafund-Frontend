@@ -77,7 +77,9 @@ function CreateCampaign() {
             })
             .catch((err) => {
                 console.log(err);
-                setError('An error occurred during upload.');
+                const errorMsg = err.response?.data?.error || 'An error occurred';
+                setError(errorMsg);
+
             });
     };
 

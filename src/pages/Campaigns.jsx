@@ -93,14 +93,14 @@ const Campaigns = () => {
       return Math.ceil(differenceInTime / (1000 * 3600 * 24));
     }
   };
-
+// fetch organisation // display organisation name on the card
   const renderCampaignsByStatus = (status) => {
     const filteredCampaigns = filterCampaigns(status);
 
     return (
       <div key={status} className="mb-8">
         <h2 className="text-2xl font-bold mb-2">{status}</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
           {filteredCampaigns.map((campaign) => (
             <div key={campaign.id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
               <img className="w-full rounded-t-lg h-52" src={campaign.banner} alt={campaign.campaignName} />
