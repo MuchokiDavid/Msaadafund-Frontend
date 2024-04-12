@@ -6,6 +6,7 @@ import axios from 'axios'
 import {toast,Toaster} from 'react-hot-toast'
 import Menus from '../components/reusables/Menus';
 import Footer from '../components/reusables/Footer';
+import Featured from '../components/home/Featured';
 
 
 
@@ -14,9 +15,11 @@ function CampainDetails() {
     const { campaignId } = useParams();
     const [campaign, setCampaign] = useState(null);
     const [amount, setDonationAmount] = useState(0);
-    const [phoneNumber, setPhoneNumber] = useState("");
+    const [phoneNum, setPhoneNum] = useState("");
     const [donationForm, setDonationForm] = useState(false);
     const [submit, setSubmitMessage] = useState();
+    const [errors, setErrors] = useState();
+    const phonePattern = /^(07|01)\d{8}$/;
 
     useEffect(() => {
         // Fetch campaign details using campaignId
@@ -29,7 +32,7 @@ function CampainDetails() {
     }, [campaignId]);
 
     if (!campaign) {
-        return <div>Loading...</div>;
+        return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>;
     }
 
     const handleDonateButton = () => {
@@ -48,20 +51,26 @@ function CampainDetails() {
 
     const handleDonation = (e) => {
         e.preventDefault();
-        axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,campaignId:campaignId})
-        .then((res)=>{
-            console.log(res)
-            // toast.success(res.data.message)
-        setDonationAmount("");
-        setPhoneNumber("");
-        })
-        .catch ((err)=>{  
-            console.log(err)   
-            // get error message from err.response.data.message
-            toast.error("Donation failed, Try again!")
-
-
-        })
+        if (!phoneNum.match(phonePattern)) {
+            setErrors('Invalid Phone Number')
+        }
+        else{
+            let phoneNo = phoneNum.replace(/^0+/, '');
+            let phoneNumber = "254" + phoneNo;
+            axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,campaignId:campaignId})
+            .then((res)=>{
+                console.log(res)
+                // toast.success(res.data.message)
+            setDonationAmount("");
+            setPhoneNum("");
+            })
+            .catch ((err)=>{  
+                console.log(err)   
+                // get error message from err.response.data.message
+                toast.error("Donation failed, Try again!")
+            })
+        }
+        
         
     };
 
@@ -132,24 +141,26 @@ function CampainDetails() {
                                             <input
                                                 type="tel"
                                                 id="phoneNumber"
-                                                placeholder='Enter your PhoneNumber'
-                                                value={phoneNumber}
+                                                placeholder='PhoneNumber eg 07xxxx or 011xxxx'
+                                                maxLength={10}
+                                                value={phoneNum}
                                                 onChange={(e) => {
                                                     // Remove leading zeros
-                                                    let formattedNumber = e.target.value.replace(/^0+/, '');
+                                                    // let formattedNumber = e.target.value.replace(/^0+/, '');
                                                     // Check if the number starts with '254', if not, prepend it
-                                                    if (!formattedNumber.startsWith('254')) {
-                                                        formattedNumber = '254' + formattedNumber;
-                                                    }
-                                                    if (formattedNumber.length >= 12) {
-                                                        formattedNumber = formattedNumber.slice(0, 11);
-                                                    }
+                                                    // if (!formattedNumber.startsWith('254')) {
+                                                    //     formattedNumber = '254' + formattedNumber;
+                                                    // }
+                                                    // if (formattedNumber.length >= 12) {
+                                                    //     formattedNumber = formattedNumber.slice(0, 11);
+                                                    // }
                                                     // Update state with the formatted number
-                                                    setPhoneNumber(formattedNumber);
+                                                    setPhoneNum(e.target.value);
                                                 }}
                                                 className="block text-black dark:text-black w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
                                                 required
                                             />
+                                            {errors && <p className='text-red-600'>{errors}</p>}
                                         </div>
 
                                         <div>
@@ -189,6 +200,7 @@ function CampainDetails() {
             </div>
             <Toaster position = "top-center" reverseOrder={false} />
         </div>
+        <Featured/>
         <Footer/>
         </div>
 
