@@ -1,7 +1,11 @@
 import React from 'react'
 import logo from '../../assets/msaadaLogo.png'
+import { useAuth } from '../../context/usersContext'
 
 function Menus() {
+    const token=localStorage.getItem('token')
+    const {logout} = useAuth();
+
     return (
         <>
             <div className="navbar bg-slate-700">
@@ -28,11 +32,17 @@ function Menus() {
                     </ul>
                 </div>
                 <div className="navbar-end">
+                    {token ? 
+                    <button onClick={logout} className="btn text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Log out</button>
+                    :
                     <a href="/user/login" className="btn text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Log in</a>
+                    }
                 </div>
             </div>
         </>
     )
+    
+    
 }
 
 export default Menus
