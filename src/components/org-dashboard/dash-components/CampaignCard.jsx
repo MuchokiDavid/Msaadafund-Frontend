@@ -87,7 +87,7 @@ function CampaignCard({allCampaigns, campaignError}) {
                                 </div>
                             </div>
                         </a>
-            </div>
+                    </div>
                 )})}
             </div>
         </div>
