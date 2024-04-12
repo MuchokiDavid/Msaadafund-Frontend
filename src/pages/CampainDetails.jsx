@@ -5,6 +5,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import {toast,Toaster} from 'react-hot-toast'
 import Menus from '../components/reusables/Menus';
+import Footer from '../components/reusables/Footer';
+
 
 
 
@@ -14,6 +16,7 @@ function CampainDetails() {
     const [amount, setDonationAmount] = useState(0);
     const [phoneNumber, setPhoneNumber] = useState("");
     const [donationForm, setDonationForm] = useState(false);
+    const [submit, setSubmitMessage] = useState();
 
     useEffect(() => {
         // Fetch campaign details using campaignId
@@ -35,6 +38,7 @@ function CampainDetails() {
         const startDate = new Date(campaign.startDate);
         if (currentDate < startDate) {
             toast.error("Campaign has not yet started");
+            setSubmitMessage()
         } else {
             // return input field
             setDonationForm(true);
@@ -48,13 +52,12 @@ function CampainDetails() {
         .then((res)=>{
             console.log(res)
             // toast.success(res.data.message)
-            toast.success("Donation successful,Thankyou!")
         setDonationAmount("");
         setPhoneNumber("");
-        setDonationForm(false);
         })
         .catch ((err)=>{  
             console.log(err)   
+            // get error message from err.response.data.message
             toast.error("Donation failed, Try again!")
 
 
@@ -84,36 +87,40 @@ function CampainDetails() {
         <div>
             <Menus/>
         <div className='text-black dark:text-white'>
-            <div className="container mx-auto px-4 py-8">
+            <div className="container mx-auto p-4">
+            <div className="card card-side bg-base-100 shadow-xl w-auto">
+                <figure className="overflow-hidden"> <img className="w-80 h-80" src={campaign.banner} alt={campaign.campaignName} /></figure> 
+                <div className="p-4">
                 <h1 className="text-3xl font-bold mb-4">{campaign.campaignName.toUpperCase()}</h1>
-                <img className="w-80 h-80" src={campaign.banner} alt={campaign.campaignName} />
-                <div>
-                <div id='move' className='flex-row justify-center items-center'>
-                    <div className='mt-2'>
-                        <h1 className=' text-2xl'>Campaign Agenda</h1>
-                        <p className="">{campaign.category.toUpperCase()}</p>
+                    <div className='mt-4'>
+                        <h1 className=' text-lg font-semibold'>Campaign Agenda</h1>
+                        <p className="text-gray-600">{campaign.category.toUpperCase()}</p>
                      </div>
-                     <div className='mt-2'>
-                         <p className=" text-red-500 dark:text-red-500">{handleDays()} Days left</p>
+                     <div className='mt-4'>
+                         <p className=" text-red-500 dark:text-red-500 font-semibold">{handleDays()} Days left</p>
                      </div>
-                     <div className='mt-2'>
-                        <h1 className='text-2xl'>Budget:</h1>
-                        <p className="mb-4">Ksh {campaign.targetAmount}/=</p>
+                     <div className='mt-4'>
+                        <h1 className='text-lg font-semibold'>Budget:</h1>
+                        <p className="text-lg font-bold text-green-500 mb-4">Ksh {campaign.targetAmount}/=</p>
                      </div>
+                     <div className='mt-6'>
                     <button
                         onClick={handleDonateButton}
-                        className='bg-green-500 text-white font-bold py-2 px-4 rounded'
+                        className='bg-emerald-800 text-white font-bold py-2 px-4 rounded'
                     >
                         Donate
                     </button>
                     </div>
+                    </div>
+                    </div>
+
 
                     {/* <Popup open={donationForm} onClose={() => setDonationForm(false)} modal> */}
                         {/* style the modal content */}
                         <dialog open={donationForm} onClose={() => setDonationForm(false)} className='modal'>
 
                         {/* <div> */}
-                            <div className='modal-box bg-white '>
+                            <div className='modal-box bg-white'>
                                 <form onSubmit={handleDonation}>
                                 <div className='text-black dark:text-dark'>
                                     <h1 className="text-3xl font-bold mb-4">Donation Form</h1>
@@ -165,7 +172,7 @@ function CampainDetails() {
 
                                 <div>
                                     <button type="submit"
-                                        className='bg-green-500 text-white font-bold py-2 px-4 rounded mt-4 '>
+                                        className='bg-emerald-800 text-white font-bold py-2 px-4 rounded mt-4 '>
                                         Submit Donation
                                     </button>
                                 </div>
@@ -174,16 +181,16 @@ function CampainDetails() {
                         </div>
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => setDonationForm(false)}>✕</button>
                          </dialog>
+                        <div className='mt-8'>
+                        <h1 className="text-3xl font-bold mb-4 mt-2 underline underline-offset-8">Campaign Description</h1>
+                        <p className="mb-4 text-lg">{campaign.description}</p>
+                       </div>
 
-                    {/* </Popup> */}
-                </div>
-                <div>
-                    <h1 className="text-3xl font-bold mb-4 mt-2 underline underline-offset-4">Campaign Description</h1>
-                    <p className="mb-4">{campaign.description}</p>
-                </div>
+                    {/* </Popup> */}               
             </div>
             <Toaster position = "top-center" reverseOrder={false} />
         </div>
+        <Footer/>
         </div>
 
     );

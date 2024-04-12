@@ -14,7 +14,7 @@ function OrgProfile() {
   // State to manage organization details
    const [originalData, setOriginalData] = useState({});
 
-  // Fetch organization data on component mount
+  // Fetch organization data 
   useEffect(() => {
     const accessToken = localStorage.getItem('token');
     const config = {
@@ -61,7 +61,6 @@ function OrgProfile() {
     axios.patch('/api/v1.0/organisation', orgData, config)
     .then((res) => {
       console.log(res.data);
-      // You can also update the state with the new data if needed
       setOrgData(res.data.Data);
       setOriginalData(res.data.Data);
       toast.success(res.data.message)
@@ -137,7 +136,7 @@ function OrgProfile() {
         <div>
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-black font-semibold py-2 px-4 rounded"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
             disabled={!checkFormChanges()}
           >
             Update Organization Details
