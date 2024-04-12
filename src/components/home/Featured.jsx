@@ -34,7 +34,7 @@ function Featured() {
 
   return (
     <>
-    <h1 className="text-2xl font-bold my-4 text-center">Featured Campaigns</h1>
+    <h1 className="text-3xl font-bold my-4 text-center">Featured Campaigns</h1>
     <div className='my-4 mx-3 justify-center'>
         
         <div className="mx-4 grid grid-cols-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:max-w-full">
