@@ -21,7 +21,7 @@ function Menus() {
                         <li><a href='/contact'>Contact</a></li>
                     </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl"><img class="w-18 h-12 mr-2" src ={logo} alt="logo"/> </a>
+                    <a href='/' className="btn btn-ghost text-xl"><img class="w-18 h-12 mr-2" src ={logo} alt="logo"/> </a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 text-white">
