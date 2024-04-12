@@ -38,7 +38,7 @@ function CampaignCard({allCampaigns, campaignError}) {
     // console.log(campaigns)
 
     if(loading){
-        return <div><span className="loading loading-dots loading-lg"></span></div>
+        return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>
     }
 
     return (

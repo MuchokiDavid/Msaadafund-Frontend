@@ -99,7 +99,7 @@ function Donations({ allCampaigns, campaignError }) {
         window.location = '/org/login';
     }
     if (loading) {
-        return <div><span className="loading loading-dots loading-lg"></span></div>;
+        return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>;
     }
 
     return (
