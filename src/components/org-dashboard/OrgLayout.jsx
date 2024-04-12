@@ -9,6 +9,7 @@ import CreateCampaign from './pages/CreateCampaign';
 import { useAuth } from '../../context/usersContext';
 import DashFooter from './dash-components/DashFooter';
 import CampaignCard from './dash-components/CampaignCard';
+import Accounts from './pages/Accounts';
 import Donations from './pages/Donations';
 
 function OrgLayout() {
@@ -87,7 +88,7 @@ function OrgLayout() {
             <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch}/>} />
             <Route path="/campaigns" element={<CampaignCard allCampaigns={campaigns} campaignError={errors}/>} />
             <Route path="/donations" element={<Donations allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
-            <Route path="/accounts" element={<CreateCampaign/>} />
+            <Route path="/accounts" element={<Accounts/>} />
             <Route path="/transaction" element={<Transaction />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
