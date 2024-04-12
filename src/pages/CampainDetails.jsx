@@ -141,7 +141,7 @@ function CampainDetails() {
                                                     if (!formattedNumber.startsWith('254')) {
                                                         formattedNumber = '254' + formattedNumber;
                                                     }
-                                                    if (formattedNumber.length > 12) {
+                                                    if (formattedNumber.length >= 12) {
                                                         formattedNumber = formattedNumber.slice(0, 11);
                                                     }
                                                     // Update state with the formatted number
@@ -176,10 +176,9 @@ function CampainDetails() {
                                         Submit Donation
                                     </button>
                                 </div>
-
                             </form>
+                            <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black" onClick={() => setDonationForm(false)}>X</button>
                         </div>
-                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => setDonationForm(false)}>✕</button>
                          </dialog>
                         <div className='mt-8'>
                         <h1 className="text-3xl font-bold mb-4 mt-2 underline underline-offset-8">Campaign Description</h1>
