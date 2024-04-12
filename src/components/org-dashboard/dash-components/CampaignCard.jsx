@@ -38,11 +38,11 @@ function CampaignCard({allCampaigns, campaignError}) {
     // console.log(campaigns)
 
     if(loading){
-        return <div><span className="loading loading-dots loading-lg"></span></div>
+        return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>
     }
 
     return (
-        <div>
+        <div className='sm:h-screen ml-4'>
             <div className="text-md breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Home</a></li> 
@@ -87,7 +87,7 @@ function CampaignCard({allCampaigns, campaignError}) {
                                 </div>
                             </div>
                         </a>
-            </div>
+                    </div>
                 )})}
             </div>
         </div>

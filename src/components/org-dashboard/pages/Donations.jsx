@@ -99,11 +99,11 @@ function Donations({ allCampaigns, campaignError }) {
         window.location = '/org/login';
     }
     if (loading) {
-        return <div><span className="loading loading-dots loading-lg"></span></div>;
+        return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>;
     }
 
     return (
-        <div className='sm:h-screen'>
+        <div className='sm:h-screen ml-4'>
             <div className="text-md breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Home</a></li>
@@ -159,7 +159,7 @@ function Donations({ allCampaigns, campaignError }) {
                     Previous
                 </button>
 
-                <div className='border border-gray-400 w-8 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div>
+                <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div>
                 {/* Next page button */}
                 <button
                     className="btn btn-outline join-item"
