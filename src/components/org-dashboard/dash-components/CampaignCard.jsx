@@ -52,7 +52,7 @@ function CampaignCard({allCampaigns, campaignError}) {
             <h2 className="mb-3 text-2xl font-bold leading-tight ">My Campaigns</h2>
             <hr className='mb-4'/>
             {errors&& <p className='text-red-700'>{errors}</p>}
-            <div className="mx-4 grid grid-cols-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:max-w-full">
+            <div className="mx-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:max-w-full">
                 {campaigns && campaigns.map((item) =>{
                 return (
                     <div key={item.id} class="m-auto overflow-hidden rounded-lg shadow-lg cursor-pointer h-90 w-60 md:w-80">
