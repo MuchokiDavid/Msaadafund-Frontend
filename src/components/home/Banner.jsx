@@ -27,6 +27,27 @@ function Banner() {
         </div>
       </div>
       <Featured/>
+      
+      <div className="py-3 relative overflow-hidden bg-white">
+        <div className="grid grid-cols-2 max-w-screen-lg mx-auto">
+          <div className="w-full flex flex-col items-end pr-16">
+            <h2 className="text-[#64618C] font-bold text-2xl max-w-xs text-right mb-12 mt-10">Whether you need Assistance</h2>
+            <div className="h-full mt-auto overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1548102245-c79dbcfa9f92?q=80&w=1392&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/800/600" className="h-full w-full object-contain" alt=""/>
+            </div>
+          </div>
+          <div className="py-20 bg-slate-100 relative before:absolute before:h-full before:w-screen before:bg-sky-950 before:top-0 before:left-0">
+            <div className="relative z-20 pl-12">
+              <h2 className="text-[#f7d0b6] font-black text-5xl leading-snug mb-10">Msaada Mashinani: Empowering Change, One Donation at a Time</h2>
+              <p className="text-white text-sm">
+              Take the first step towards making a difference. Our platform offers you the opportunity to support various causes and organizations working tirelessly to bring about positive change. Start your journey with us today.
+              </p>
+              <a href='/user/signup'><button className="mt-8 text-white uppercase py-3 text-sm px-10 border border-white hover:bg-white hover:bg-opacity-10">Sign Up Now</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="py-3 relative overflow-hidden bg-white">
         <div className="grid grid-cols-2 max-w-screen-lg mx-auto">
           
@@ -51,34 +72,15 @@ function Banner() {
 
         </div>
       </div>
-      <div className="py-3 relative overflow-hidden bg-white">
+
+      <div className="py-2 relative overflow-hidden bg-white">
         <div className="grid grid-cols-2 max-w-screen-lg mx-auto">
           <div className="w-full flex flex-col items-end pr-16">
             <h2 className="text-[#64618C] font-bold text-2xl max-w-xs text-right mb-12 mt-10">Whether you need Assistance</h2>
             <div className="h-full mt-auto overflow-hidden relative">
-              <img src="https://images.unsplash.com/photo-1548102245-c79dbcfa9f92?q=80&w=1392&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/800/600" className="h-full w-full object-contain" alt=""/>
-            </div>
-          </div>
-          <div className="py-20 bg-slate-100 relative before:absolute before:h-full before:w-screen before:bg-sky-950 before:top-0 before:left-0">
-            <div className="relative z-20 pl-12">
-              <h2 className="text-[#f7d0b6] font-black text-5xl leading-snug mb-10">Msaada Mashinani: Empowering Change, One Donation at a Time</h2>
-              <p className="text-white text-sm">
-              Take the first step towards making a difference. Our platform offers you the opportunity to support various causes and organizations working tirelessly to bring about positive change. Start your journey with us today.
-              </p>
-              <a href='/user/signup'><button className="mt-8 text-white uppercase py-3 text-sm px-10 border border-white hover:bg-white hover:bg-opacity-10">Sign Up Now</button></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="py-2 relative overflow-hidden bg-white">
-        <div className="">
-          {/* <div className="w-full flex flex-col items-end pr-16">
-            <h2 className="text-[#64618C] font-bold text-2xl max-w-xs text-right mb-12 mt-10">Whether you need Assistance</h2>
-            <div className="h-full mt-auto overflow-hidden relative">
               <img src="https://picsum.photos/800/600" className="h-full w-full object-contain" alt=""/>
             </div>
-          </div> */}
+          </div>
 
           <div className="py-20 bg-slate-100 relative before:absolute before:h-full before:w-screen before:bg-sky-950 before:top-0 before:left-0">
             <div className="relative z-20 pl-12">

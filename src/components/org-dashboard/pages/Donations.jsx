@@ -4,8 +4,8 @@ function Donations({ allCampaigns, campaignError }) {
     const [allDonations, setAllDonations] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [loading, setLoading] = useState(true);
-    const [errors, setErrors] = useState(campaignError);
-    const [campaigns, setCampaigns] = useState(allCampaigns);
+    const [errors, setErrors] = useState();
+    const [campaigns, setCampaigns] = useState();
     const [donors, setDonors] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(10);
@@ -83,6 +83,10 @@ function Donations({ allCampaigns, campaignError }) {
         setCampaigns(allCampaigns);
     }, [allCampaigns]);
 
+    useEffect(() => {
+        setErrors(campaignError)
+    }, [token, campaignError])
+
 
     useEffect(() => {
         const filtered = allDonations.filter((donation) => {
@@ -159,7 +163,7 @@ function Donations({ allCampaigns, campaignError }) {
                     Previous
                 </button>
 
-                <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div>
+                {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
                 {/* Next page button */}
                 <button
                     className="btn btn-outline join-item"
