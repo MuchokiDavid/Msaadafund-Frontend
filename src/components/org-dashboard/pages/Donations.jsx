@@ -159,7 +159,7 @@ function Donations({ allCampaigns, campaignError }) {
                     Previous
                 </button>
 
-                <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div>
+                {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
                 {/* Next page button */}
                 <button
                     className="btn btn-outline join-item"
