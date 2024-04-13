@@ -89,7 +89,7 @@ function OrgLayout() {
             <Route path="/campaigns" element={<CampaignCard allCampaigns={campaigns} campaignError={errors}/>} />
             <Route path="/donations" element={<Donations allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
             <Route path="/accounts" element={<Accounts/>} />
-            <Route path="/transaction" element={<Transaction />} />
+            <Route path="/transaction" element={<Transaction allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
         </main>
