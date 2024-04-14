@@ -33,7 +33,7 @@ function Featured() {
       };
 
   return (
-    <>
+    <div className='lg:px-10'>
     <h1 className="text-3xl font-bold my-4 text-center">Featured Campaigns</h1>
     <div className='my-4 mx-3 justify-center'>
         
@@ -58,7 +58,7 @@ function Featured() {
         </div>
 
     </div>
-    </>
+    </div>
     
   )
 }
