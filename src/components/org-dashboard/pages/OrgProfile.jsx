@@ -84,10 +84,10 @@ function OrgProfile() {
 
     </ul>
 </div>
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto">
   
-      <h1 className="text-xl">Personalize your Organisation</h1>
-      <hr className='mb-4 mt-2'/>
+      <h1 className="mb-3 my-2 text-2xl font-bold leading-tight">Personalize your Organisation</h1>
+      <hr className='mb-2 mt-0'/>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-black font-medium">Organization Name</label>
