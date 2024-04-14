@@ -40,7 +40,8 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
       
       const filtered = transactions.filter(transaction => {
         return (
-            (transaction.running_balance && transaction.running_balance.toLowerCase().includes(searchTerm.toLowerCase())) || 
+            (transaction.running_balance && transaction.running_balance.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (transaction.value && transaction.value.toLowerCase().includes(searchTerm.toLowerCase())) || 
             (transaction.trans_type && transaction.trans_type.toLowerCase().includes(searchTerm.toLowerCase())) ||
             (transaction.invoice && transaction.invoice.account && transaction.invoice.account.toLowerCase().includes(searchTerm.toLowerCase()))
           );
@@ -62,7 +63,7 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
       if(token){
         let url = `/api/v1.0/filter_transactions/${id}`;
         try {
-          console.log(url)
+          // console.log(url)
             const response = await fetch(url, {
                 method: 'GET',
                 headers: {
@@ -100,7 +101,7 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
     
   // console.log(allCampaigns)
   // console.log(filter)
-  console.log(transactions)
+  // console.log(transactions)
   // console.log(searchTerm)
   return (
     <div>
