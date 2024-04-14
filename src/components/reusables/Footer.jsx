@@ -1,26 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import Copyright from './Copyright'
 
 function Footer() {
-    const[currentYear, setCurrentYear]= useState(0)
-
-    useEffect(() => {
-        function getYear(){
-            let year = new Date().getFullYear();
-            setCurrentYear(year);
-        }
-            getYear()
-    }, [])
     
     
   return (
     <>
     <footer className="footer p-10 bg-emerald-800 text-base-content lg:h-96">
-        <form>
+        {/* <form>
             <div className="join">
                 <input className="input input-bordered join-item bg-white" placeholder="Email"/>
                 <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Subscribe</button>
             </div>
-        </form>
+        </form> */}
         
         <nav className='text-white'>
             <h6 className="footer-title">Quick links</h6> 
@@ -44,10 +36,9 @@ function Footer() {
             <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="fill-current"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg></a>
             </div>
         </nav>
-        <div className='text-white text-center'>
-        © {currentYear} Msaada-Mashinani. All rights reserved.
-        </div>
+        
     </footer>
+    <Copyright/>
     </>
   )
 }
