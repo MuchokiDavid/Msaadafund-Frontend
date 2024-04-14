@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import moment from 'moment';
 
 function Donations({ allCampaigns, campaignError }) {
     const [allDonations, setAllDonations] = useState([]);
@@ -127,6 +128,9 @@ function Donations({ allCampaigns, campaignError }) {
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="px-3 py-2 border-gray-300 rounded-md mb-4 bg-gray-50 border h-11 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         />
+                        {paginatedDonations.length===0? (
+                            "You currently have no donations to display"
+                        ) :
                         <table className="min-w-full table-zebra">
                             {/* head */}
                             <thead>
@@ -140,7 +144,7 @@ function Donations({ allCampaigns, campaignError }) {
                             <tbody>
                                 {paginatedDonations.map((donation) => {
                                     const user = donors.find(user => user.id === donation.userId);
-                                    const donorName = user ? `${user.firstName} ${user.lastName}` : "";
+                                    const donorName = user ? `${user.firstName} ${user.lastName}` : "Anonymous";
                                     const campaign = campaigns.find(campaign => campaign.id === donation.campaignId);
                                     const campaignTitle = campaign ? campaign.campaignName : "";
                                     return (
@@ -148,12 +152,14 @@ function Donations({ allCampaigns, campaignError }) {
                                             <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 dark:border-gray-600'>{campaignTitle}</td>
                                             <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 dark:border-gray-600'>{donorName}</td>
                                             <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 dark:border-gray-600'>{donation.amount}</td>
-                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 dark:border-gray-600'>{donation.donationDate}</td>
+                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 dark:border-gray-600'>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
                                         </tr>
                                     );
                                 })}
                             </tbody>
                         </table>
+                        }
+                        
                     </div>
                 </div>
             </div>
