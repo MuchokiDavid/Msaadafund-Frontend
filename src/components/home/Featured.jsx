@@ -27,7 +27,7 @@ function Featured() {
             setErrors('Error in fetching wallet details', error);
         }
     }
-    console.log(featuredCampaign)
+    // console.log(featuredCampaign)
     const handleCampaign = (campaignId) => {
         navigate(`/campaign/${campaignId}`);
       };
