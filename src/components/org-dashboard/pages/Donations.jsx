@@ -126,17 +126,17 @@ function Donations({ allCampaigns, campaignError }) {
                             placeholder="Search by name or campaign"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="px-3 py-2 border-gray-300 rounded-md mb-4 bg-gray-50 border h-11 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="px-3 py-2 border-gray-300 rounded-md mb-4 bg-gray-50 border h-11 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/3 p-2.5"
                         />
                         <table className="min-w-full table-zebra">
                             {/* head */}
                             <thead>
                                 <tr>
                                 <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>ID</th>
-                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 dark:bg-slate-700 dark:text-slate-300'>Campaign</th>
-                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 dark:bg-slate-700 dark:text-slate-300'>Donor</th>
-                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 dark:bg-slate-700 dark:text-slate-300'>Amount</th>
-                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 dark:bg-slate-700 dark:text-slate-300'>Donation Date</th>                            
+                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>Campaign</th>
+                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>Donor</th>
+                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>Amount</th>
+                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>Donation Date</th>                            
                                 </tr>
                             </thead>
                             <tbody>
@@ -148,10 +148,10 @@ function Donations({ allCampaigns, campaignError }) {
                                     return (
                                         <tr key={donation._id}>
                                             <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.id}</td>
-                                            <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 dark:border-gray-600'>{campaignTitle}</td>
-                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 dark:border-gray-600'>{donorName}</td>
-                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 dark:border-gray-600'>{donation.amount}</td>
-                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 dark:border-gray-600'>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
+                                            <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{campaignTitle}</td>
+                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>
+                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.amount}</td>
+                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
                                         </tr>
                                     );
                                 })}
