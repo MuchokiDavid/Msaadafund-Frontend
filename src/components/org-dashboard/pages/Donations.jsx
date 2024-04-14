@@ -11,6 +11,7 @@ function Donations({ allCampaigns, campaignError }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(10);
     const [filteredDonations, setFilteredDonations] = useState([]);
+
     const token = localStorage.getItem('token');
 
     // Calculate total pages based on the number of items and items per page
@@ -97,8 +98,7 @@ function Donations({ allCampaigns, campaignError }) {
             return donorName.toLowerCase().includes(searchTerm.toLowerCase()) || campaignTitle.toLowerCase().includes(searchTerm.toLowerCase());
         });
         setFilteredDonations(filtered);
-    }, [allDonations, searchTerm, donors, campaigns]); 
-
+    }, [allDonations, searchTerm, donors, campaigns]);
 
     if (!token) {
         window.location = '/org/login';
@@ -108,7 +108,7 @@ function Donations({ allCampaigns, campaignError }) {
     }
 
     return (
-        <div className='sm:h-screen mx-4'>
+        <div className='sm:h-screen mx-3'>
             <div className="text-md breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Home</a></li>
@@ -121,27 +121,22 @@ function Donations({ allCampaigns, campaignError }) {
             <div className='flex flex-col mt-1'>
                 <div className='py-2 -my-2 overflow-x-auto sm:-mx-2 sm:px-6 lg:-mx-2 lg:px-6'>
                     <div className="my-5 inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
-                        <div class="flex items-center space-x-4">
                         <input
                             type="text"
                             placeholder="Search by name or campaign"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="px-3 py-2 border-gray-300 rounded-md mb-4 bg-gray-50 border h-10 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/3 p-2.5"
+                            className="px-3 py-2 border-gray-300 rounded-md mb-4 bg-gray-50 border h-11 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         />
-                        <button className='btn'>Generate Report</button></div>
-                        {paginatedDonations.length===0? (
-                            "You currently have no donations to display"
-                        ) :
                         <table className="min-w-full table-zebra">
                             {/* head */}
                             <thead>
                                 <tr>
-                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>ID</th>
-                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>Campaign</th>
-                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>Donor</th>
-                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>Amount</th>
-                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>Donation Date</th>                            
+                                <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>ID</th>
+                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 dark:bg-slate-700 dark:text-slate-300'>Campaign</th>
+                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 dark:bg-slate-700 dark:text-slate-300'>Donor</th>
+                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 dark:bg-slate-700 dark:text-slate-300'>Amount</th>
+                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 dark:bg-slate-700 dark:text-slate-300'>Donation Date</th>                            
                                 </tr>
                             </thead>
                             <tbody>
@@ -153,17 +148,15 @@ function Donations({ allCampaigns, campaignError }) {
                                     return (
                                         <tr key={donation._id}>
                                             <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.id}</td>
-                                            <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{campaignTitle}</td>
-                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>
-                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.amount}</td>
-                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
+                                            <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 dark:border-gray-600'>{campaignTitle}</td>
+                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 dark:border-gray-600'>{donorName}</td>
+                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 dark:border-gray-600'>{donation.amount}</td>
+                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 dark:border-gray-600'>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
                                         </tr>
                                     );
                                 })}
                             </tbody>
                         </table>
-                        }
-                        
                     </div>
                 </div>
             </div>
