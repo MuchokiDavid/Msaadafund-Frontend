@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import Copyright from '../../reusables/Copyright';
 
 function DashFooter() {
     const[currentYear, setCurrentYear] = useState(0);
 
-    useEffect(() => {
-        function getYear(){
-            let year = new Date().getFullYear();
-            setCurrentYear(year);
-        }
-            getYear()
-    }, [])
   return (
-    <>
+    <div>
         <footer className="bg-emerald-800 text-white py-3">
             <div className="container ml-4">
                 <div className="row">
@@ -21,12 +15,10 @@ function DashFooter() {
                     <p>Reach out to us through <a href='mailto:msaadacontact@gmail.com' className='text-md text-blue-300'>Msaada Team</a> for any questions or feedback.</p>
                 </div>
                 </div>
-                <div className="text-center mt-2">
-                <p>&copy; {currentYear} Msaada Mashinani. All rights reserved.</p>
-                </div>
             </div>
         </footer>
-    </>
+        <Copyright/>
+    </div>
     
   )
 }
