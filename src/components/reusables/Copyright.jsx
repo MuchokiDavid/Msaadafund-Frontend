@@ -11,7 +11,7 @@ function Copyright() {
             getYear()
     }, [])
   return (
-    <div className='text-white text-left bg-emerald-900 h-12'>
+    <div className='text-white text-left bg-emerald-900 h-12 p-3'>
       © {currentYear} Msaada-Mashinani. All rights reserved.
     </div>
   )
