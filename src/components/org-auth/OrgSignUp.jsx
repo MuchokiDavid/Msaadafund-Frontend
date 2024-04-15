@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Menus from '../reusables/Menus'
 import Footer from '../reusables/Footer'
 import toast, { Toaster } from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 function OrgSignUp() {
   const [message, setMessage] = useState("")
@@ -14,6 +15,7 @@ function OrgSignUp() {
   const [confirmPassword, setConfirmPassword] = useState("")
   const passwordPattern = /^(?=.*[a-zA-Z!@#$%^&*])(?=.*\d)[A-Za-z\d!@#$%^&*]{8}$/
   const phonePattern = /^(07|01)\d{8}$/;
+  const navigate= useNavigate()
 
   const clearState = () => {
     setUserName("")
@@ -57,7 +59,9 @@ function OrgSignUp() {
               setMessage(data.message)
               toast.success("Account created successifully")
               // window.location="/login"
-              clearState()
+              setTimeout(() => {
+                navigate('/org/login')
+              }, 2000);
             }
             if (data.error) {
               setErrors(data.error)
