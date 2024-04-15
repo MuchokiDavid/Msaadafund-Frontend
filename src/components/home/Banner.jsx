@@ -33,7 +33,7 @@ function Banner() {
           <div className="w-full flex flex-col items-end pr-16">
             <h2 className="text-[#64618C] font-bold text-2xl max-w-xs text-right mb-12 mt-10">Whether you need Assistance</h2>
             <div className="h-full mt-auto overflow-hidden relative">
-              <img src="https://images.unsplash.com/photo-1548102245-c79dbcfa9f92?q=80&w=1392&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/800/600" className="h-full w-full object-contain" alt=""/>
+              <img src="https://img.freepik.com/free-vector/computer-online-charity-donation_24877-54452.jpg?w=740&t=st=1712950950~exp=1712951550~hmac=ba081d24a1f69dd7a1f062eb668522865498adce912871ae865e4200f98620d9/800/600" className="h-full w-full object-contain" alt=""/>
             </div>
           </div>
           <div className="py-20 bg-slate-100 relative before:absolute before:h-full before:w-screen before:bg-sky-950 before:top-0 before:left-0">
@@ -66,7 +66,8 @@ function Banner() {
           <div className="w-full flex flex-col pl-16">
             <h2 className="text-[#64618C] font-bold text-2xl max-w-xs text-left mb-12 mt-10">Spread love to the community around you</h2>
             <div className="h-full mt-auto overflow-hidden relative">
-              <img src="https://img.freepik.com/free-vector/computer-online-charity-donation_24877-54452.jpg?w=740&t=st=1712950950~exp=1712951550~hmac=ba081d24a1f69dd7a1f062eb668522865498adce912871ae865e4200f98620d9/800/600" className="h-full w-full object-contain" alt=""/>
+            {/* <img src="https://images.unsplash.com/photo-1548102245-c79dbcfa9f92?q=80&w=1392&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/800/600" className="h-full w-full object-contain" alt=""/> */}
+              <img src="https://images.unsplash.com/photo-1548102245-c79dbcfa9f92?q=80&w=1392&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/800/600" className="h-full w-full object-contain" alt=""/>
             </div>
           </div>
 
