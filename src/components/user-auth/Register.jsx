@@ -45,7 +45,9 @@ function Register() {
             if(data.message){
               toast.success("User registered successifully")
 
-              // window.location="/login": Navigate
+              setTimeout(() => {
+                navigate('/user/login')
+              }, 2000);
             }
             if (data.error) {
               setErrors(data.error)
