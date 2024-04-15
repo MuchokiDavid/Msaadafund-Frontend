@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Menus from '../reusables/Menus'
 import Footer from '../reusables/Footer'
 import toast, { Toaster } from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 function Register() {
   const [errors, setErrors] = useState("")
@@ -14,6 +15,7 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("")
   const passwordPattern = /^[A-Za-z0-9]{8,}$/;
   const phonePattern = /^(07|01)\d{8}$/;
+  const navigate=useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
