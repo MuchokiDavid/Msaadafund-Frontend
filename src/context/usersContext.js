@@ -19,49 +19,52 @@ export const AuthProvider = ({ children }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, password }),
-    }).then((r) => {
-      if (r.ok) {
-        r.json().then((data) => {
-            // console.log(data)
-          setIsLoggedIn(true);
-          setUser(data.user);
-          setToken(data.tokens.access); 
-          localStorage.setItem('token', data.tokens.access);
-          setLoginMessage(data.message);
-          setErrorMessage(""); 
+    }).then((r) => r.json())
+      .catch((err)=>console.log(err))
+      .then((data) => {
+          if (data.message){
+            setIsLoggedIn(true);
+            setUser(data.user);
+            setToken(data.tokens.access); 
+            localStorage.setItem('token', data.tokens.access);
+            setLoginMessage(data.message);
+            setErrorMessage(""); 
+          }
+          if(data.error){
+            setLoginMessage(data.error)
+          }
+          
         });
-        
-      } else {
-        setLoginMessage("Invalid credentials!!!");
-      }
-    });
   };
 
-  const orgLogin = (email, password) => {
+  
+
+  const orgLogin = async(email, password) => {
     // console.log(email)
-    fetch("/api/v1.0/auth/organisation/login", {
+    await fetch("/api/v1.0/auth/organisation/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
-    }).then((r) => {
-      if (r.ok) {
-        r.json().then((data) => {
-            // console.log(data)
-          setIsLoggedIn(true);
-          setUser(data.organisation);
-          setToken(data.tokens.access_token); 
-          localStorage.setItem('token', data.tokens.access_token);
-          setLoginMessage(data.message);
-          setErrorMessage(""); 
+    }).then((r) => r.json())
+      .catch((err)=>console.log(err))
+      .then((data) => {
+          if (data.message){
+            setIsLoggedIn(true);
+            setUser(data.organisation);
+            setToken(data.tokens.access_token); 
+            localStorage.setItem('token', data.tokens.access_token);
+            setLoginMessage(data.message);
+            setErrorMessage(""); 
+          }
+          if(data.error){
+            setLoginMessage(data.error)
+          }
+          
         });
-        
-      } else {
-        setLoginMessage("Invalid credentials!!!");
-      }
-    });
-  };
+    } 
+
 
   const logout = () => {
     setIsLoggedIn(false);
