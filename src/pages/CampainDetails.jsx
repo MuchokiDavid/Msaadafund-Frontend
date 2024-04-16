@@ -229,7 +229,7 @@ function CampainDetails() {
                             
                             <div>
                                 <button type="submit"
-                                    className='bg-emerald-800 text-white font-bold py-2 px-4 rounded mt-4 '>
+                                    className='bg-emerald-800 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded mt-4 '>
                                         {loading ? "Loading..." : "Submit"}
                                 </button>
                             </div>

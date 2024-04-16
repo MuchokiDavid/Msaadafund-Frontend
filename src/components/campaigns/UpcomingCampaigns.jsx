@@ -34,6 +34,7 @@ function UpcomingCampaigns({allCampaigns}) {
   return (
     <div>
       <h1 className="text-center text-2xl font-bold my-4 bg-slate-300 h-10 p-1">Upcoming Campaigns</h1>
+      <div className='container mx-auto overflow-x-hidden pb-4'>
       {allCampaigns.length!=0 ? 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
           {filteredCampaigns.map((campaign) => {
@@ -74,6 +75,7 @@ function UpcomingCampaigns({allCampaigns}) {
         <div className="text-xl mx-4">No Upcoming campaigns</div>
       }
       <hr className='my-3'/>
+      </div>
       
     </div>
   )

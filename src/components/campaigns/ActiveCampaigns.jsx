@@ -36,6 +36,8 @@ function ActiveCampaigns() {
     
       useEffect(() => {
         fetchCampaigns();
+        const intervalId = setInterval(fetchCampaigns, 3000); // Poll every 5 seconds
+        return () => clearInterval(intervalId);
       }, [currentPage, selectedCategory, fetchCampaigns]); // Include fetchCampaigns in the dependency array
     
       const mergeCategories = (categories) => {
@@ -108,8 +110,8 @@ function ActiveCampaigns() {
   return (
     <>
     <Menus/>
-    <div className='flex items-center justify-center mt-4 p-4 shadow-sm'>
-        <div className="mb-2 flex flex-col sm:flex-row items-center ">
+    <div className='flex items-center justify-center p-4 bg-slate-50'>
+        <div className="mb-1 flex flex-col sm:flex-row items-center ">
           <select
             id="categoryFilter"
             onChange={handleCategoryChange}
@@ -129,10 +131,11 @@ function ActiveCampaigns() {
           </div>
         </div>
       </div>
+    <h1 className="text-center text-2xl font-bold mb-4 bg-slate-300 h-10 p-1">Active Campaigns</h1>  
     <div className='container mx-auto overflow-x-hidden pb-4'>
-        <h1 className="text-center text-2xl font-bold my-4 bg-slate-300 h-10 p-1">Active Campaigns</h1>
+        
         {activeCampaigns.length===0 ?
-        <div className="text-xl mx-4">No Upcoming campaigns</div>
+        <div className="text-xl mx-4">No Active campaigns</div>
         :
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
           {filterCampaigns().map((campaign) => {
@@ -174,8 +177,8 @@ function ActiveCampaigns() {
         {/* Next page button */}
         <button className="join-item btn btn-outline" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages || totalPages === 0}>Next</button>
       </div>
-      <InActiveCampaigns allCampaigns= {upcomingCampaigns}/>
     </div>
+     <InActiveCampaigns allCampaigns= {upcomingCampaigns}/>
     <Footer/>
     </>
   )
