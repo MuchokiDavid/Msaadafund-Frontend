@@ -26,6 +26,7 @@ function CampainDetails() {
     const [errors, setErrors] = useState();
     const phonePattern = /^(07|01)\d{8}$/;
     const  navigate = useNavigate();
+    const [loading, setLoading]= useState(false)
     // const currentlWebUrl= window.location.href
     const currentlWebUrl= `https://joker.vercel.app${window.location.pathname}`
 
@@ -59,6 +60,7 @@ function CampainDetails() {
 
     const handleDonation = (e) => {
         e.preventDefault();
+        setLoading(true)
         if (!phoneNum.match(phonePattern)) {
             setErrors('Invalid Phone Number')
         }
@@ -71,6 +73,8 @@ function CampainDetails() {
                 // toast.success(res.data.message)
             setDonationAmount("");
             setPhoneNum("");
+            setErrors("")
+            setLoading(false)
             })
             .catch ((err)=>{  
                 console.log(err)   
@@ -81,12 +85,6 @@ function CampainDetails() {
         
         
     };
-
-    const handleUserLogIn= () =>{
-        setTimeout(() => {
-            navigate('/user/login')
-        }, 2000);
-    }
 
     const handleDays = () => {
         // if current date < start date  return days remaining for campaingn to start
@@ -232,7 +230,7 @@ function CampainDetails() {
                             <div>
                                 <button type="submit"
                                     className='bg-emerald-800 text-white font-bold py-2 px-4 rounded mt-4 '>
-                                    Submit Donation
+                                        {loading ? "Loading..." : "Submit"}
                                 </button>
                             </div>
                             <div className='mt-3 flex justify-left'>
@@ -339,7 +337,7 @@ function CampainDetails() {
                         <h2 className="text-3xl font-bold mb-4 mt-2 underline underline-offset-8">About this campaign</h2>
                         <p className="mb-4 text-lg">{campaign.description}</p>
                         <div className='mt-0'>
-                                <p>Share your campaign link via</p>
+                                <p>Share this campaign</p>
                                 </div>
                                 <div className='mt-0 flex space-x-3'>
                                     <WhatsappShareButton
