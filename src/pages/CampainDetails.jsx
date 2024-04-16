@@ -9,6 +9,12 @@ import Footer from '../components/reusables/Footer';
 import Featured from '../components/home/Featured';
 import logos from  "../assets/mpesa.jpg";
 import { useNavigate } from 'react-router-dom';
+import { 
+FacebookShareButton,FacebookIcon, 
+WhatsappShareButton,WhatsappIcon,
+TwitterShareButton, TwitterIcon,
+TelegramShareButton,TelegramIcon
+} from 'react-share';
 
 function CampainDetails() {
     const { campaignId } = useParams();
@@ -20,6 +26,8 @@ function CampainDetails() {
     const [errors, setErrors] = useState();
     const phonePattern = /^(07|01)\d{8}$/;
     const  navigate = useNavigate();
+    // const currentlWebUrl= window.location.href
+    const currentlWebUrl= `https://joker.vercel.app${window.location.pathname}`
 
     useEffect(() => {
         // Fetch campaign details using campaignId
@@ -59,7 +67,7 @@ function CampainDetails() {
             let phoneNumber = "254" + phoneNo;
             axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,campaignId:campaignId})
             .then((res)=>{
-                console.log(res)
+                // console.log(res)
                 // toast.success(res.data.message)
             setDonationAmount("");
             setPhoneNum("");
@@ -97,7 +105,7 @@ function CampainDetails() {
             return days;
         }
     };
-    console.log(campaign)
+    // console.log(campaign)
 
     return (
         <div>
@@ -114,37 +122,58 @@ function CampainDetails() {
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
                     <div class="p-1">
                         {/* Campaign details */}
-                <div className="card card-side bg-base-100 w-auto grid grid-cols-1">
-                <figure className="overflow-hidden"> <img className="h-80 w-full" src={campaign.banner} alt={campaign.campaignName} /></figure> 
-                <div className="p-2">
-
-                <h1 className="text-2xl font-bold">{campaign.campaignName.toUpperCase()}</h1>
-                <div className='mt-2'>
-                        <h1 className=' text-lg font-semibold'>Organisation</h1>
-                        <a href='#'><p className="text-gray-600 hover:text-blue-900">{campaign.organisation.orgName.toUpperCase()}</p></a>{/*Put link to organisation here */}
-                     </div>
-                    <div className='mt-1'>
-                        <h1 className=' text-lg font-semibold'>Campaign Agenda</h1>
-                        <p className="text-gray-600">{campaign.category.toUpperCase()}</p>
-                     </div>
-                     <div className='mt-1'>
-                         <p className=" text-red-500 dark:text-red-500 font-semibold">{handleDays()} Days left</p>
-                     </div>
-                     <div className='mt-1'>
-                        <h1 className='text-lg font-semibold'>Budget:</h1>
-                        <p className="text-lg font-bold text-green-500 mb-4">Ksh {campaign.targetAmount}/=</p>
-                     </div>
-                     <div className='mt-2'>
-                    <button
-                        onClick={handleUserLogIn}
-                        className='bg-emerald-800 text-white font-bold py-2 px-4 rounded w-fit'
-                    >
-                        Subscribe
-                    </button>
-                    </div>
-                    </div>
-                    </div>
-
+                        <div className="card card-side bg-base-100 w-auto grid grid-cols-1">
+                            <figure className="overflow-hidden"> <img className="h-80 w-full" src={campaign.banner} alt={campaign.campaignName} /></figure> 
+                            <div className="p-2">
+                                <h1 className="text-2xl font-bold">{campaign.campaignName.toUpperCase()}</h1>
+                                <div className='mt-1'>
+                                    <h1 className=' text-lg font-semibold'>Organisation:</h1>
+                                    <a href='#'><p className="text-gray-600 hover:text-blue-900">{campaign.organisation.orgName.toUpperCase()}</p></a>{/*Put link to organisation here */}
+                                </div>
+                                <div className='mt-1'>
+                                    <h1 className=' text-lg font-semibold'>Agenda:</h1>
+                                    <p className="text-gray-600">{campaign.category.toUpperCase()}</p>
+                                </div>
+                                <div className='mt-1'>
+                                    <p className=" text-red-500 dark:text-red-500 font-semibold">{handleDays()} Days left</p>
+                                </div>
+                                <div className='mt-1'>
+                                    <h1 className='text-lg font-semibold'>Budget:</h1>
+                                    <p className="text-lg font-bold text-green-500 mb-1">KES {campaign.targetAmount}</p>
+                                </div>
+                                <div className='mt-0'>
+                                <p>Share your campaign link via</p>
+                                </div>
+                                <div className='mt-0 flex space-x-3'>
+                                    <WhatsappShareButton
+                                    url={currentlWebUrl}
+                                    title={`Join ${campaign.campaignName}'s campaign!\n\n\n By ${campaign.organisation.orgName}`}
+                                    >
+                                        <WhatsappIcon className='h-8 w-8'/>
+                                    </WhatsappShareButton>
+                                    <FacebookShareButton
+                                    url={currentlWebUrl}
+                                    quote={`Join ${campaign.campaignName}'s campaign!\n\n${campaign.description}\n\n\nBy ${campaign.organisation.orgName}`}
+                                    hashtag='#GiveForGood'
+                                    >
+                                        <FacebookIcon className='h-8 w-8'/>
+                                    </FacebookShareButton>
+                                    <TwitterShareButton
+                                    url={currentlWebUrl}
+                                    title={`Join ${campaign.campaignName}'s campaign!\n\n${campaign.description}\n\n\nBy ${campaign.organisation.orgName} `}
+                                    hashtags={['GiveForGood','msaadamashinani','ChangeForGood']}
+                                    >
+                                        <TwitterIcon className='h-8 w-8'/>
+                                    </TwitterShareButton>
+                                    <TelegramShareButton
+                                    url={currentlWebUrl}
+                                    title={`${campaign.campaignName}`}
+                                    >
+                                        <TelegramIcon className='h-8 w-8'/>
+                                    </TelegramShareButton>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="p-2">
                         {/* Donation Accordion */}
@@ -302,7 +331,7 @@ function CampainDetails() {
                         </div>
                          </dialog> */}
                         <div className='mt-6'>
-                        <h2 className="text-3xl font-bold mb-4 mt-2 underline underline-offset-8">Campaign Description</h2>
+                        <h2 className="text-3xl font-bold mb-4 mt-2 underline underline-offset-8">Description</h2>
                         <p className="mb-4 text-lg">{campaign.description}</p>
                        </div>
 
