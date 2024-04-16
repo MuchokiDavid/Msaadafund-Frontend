@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 
 function CampaignCard({allCampaigns, campaignError}) {
-    const [campaigns, setCampaigns] = useState(allCampaigns);
+    const [campaigns, setCampaigns] = useState();
     const token = localStorage.getItem('token');
     const [walletDetails, setWalletDetails] = useState(null);
     const [loading, setLoading] = useState(true)
     const [errors, setErrors] = useState(campaignError);
 
+    useEffect(() => {
+        setCampaigns(allCampaigns)    
+    }, [allCampaigns])
 
     useEffect(() => {
-        campaigns.forEach(item => handleWallet(item.id));
+        campaigns && campaigns.forEach(item => handleWallet(item.id));
     }, [campaigns, token]);
 
     const handleWallet = async (id) => {
