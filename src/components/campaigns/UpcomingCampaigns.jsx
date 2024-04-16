@@ -24,7 +24,7 @@ function UpcomingCampaigns({allCampaigns}) {
     } 
   }, [campaigns])
   
-  console.log(filteredCampaigns)
+  // console.log(filteredCampaigns)
   const handleCampaign = (campaignId) => {
     setTimeout(() => {
       navigate(`/campaign/${campaignId}`);
@@ -34,7 +34,7 @@ function UpcomingCampaigns({allCampaigns}) {
   return (
     <div>
       <h1 className="text-center text-2xl font-bold my-4 bg-slate-300 h-10 p-1">Upcoming Campaigns</h1>
-      {filteredCampaigns ? 
+      {allCampaigns.length!=0 ? 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
           {filteredCampaigns.map((campaign) => {
             // if(new Date(campaign.endDate).getTime()<currentDate.getTime()){
@@ -71,8 +71,9 @@ function UpcomingCampaigns({allCampaigns}) {
           })}
         </div>
         :
-        <div className="flex justify-center items-center w-screen h-screen bg-gray-200">No Upcoming campaigns</div>
+        <div className="text-xl">No Upcoming campaigns</div>
       }
+      <hr/>
       
     </div>
   )
