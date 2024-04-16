@@ -50,7 +50,7 @@ function Donations({ allCampaigns, campaignError }) {
             }
         }
         getDonations();
-        const intervalId = setInterval(getDonations, 5000);
+        const intervalId = setInterval(getDonations, 6000);
         return () => clearInterval(intervalId);
     }, [token]);
 

@@ -45,7 +45,7 @@ function OrgLayout() {
 
   useEffect(() => {
       handleFetch();
-      const intervalId = setInterval(handleFetch, 5000); // Poll every 5 seconds
+      const intervalId = setInterval(handleFetch, 7000); // Poll every 5 seconds
       return () => clearInterval(intervalId);
   }, [token]);
   
