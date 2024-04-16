@@ -110,39 +110,37 @@ function CampainDetails() {
     return (
         <div>
             <Menus/>
-        <div className='text-black dark:text-white'>
-            <div className="text-md breadcrumbs ml-4">
+        <div className='text-black bg-slate-100'>
+            <div className="text-md breadcrumbs ml-4 mt-16">
                 <ul>
                     <li><a href='/'>Home</a></li>
                     <li><a href='/campaign'>Campaigns</a></li>
                     <li><a>{campaign.campaignName}</a></li>
                 </ul>
             </div>
-            <div className="container mx-auto p-3">
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+            <div className="container mx-auto">
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
                     <div class="p-1">
                         {/* Campaign details */}
-                        <div className="card card-side bg-base-100 w-auto grid grid-cols-1">
+                        <div className="card card-side bg-base-100 w-full grid grid-cols-1 rounded-lg p-4">
+                            <h1 className="text-2xl font-bold mb-4">{campaign.campaignName.toUpperCase()}</h1>
                             <figure className="overflow-hidden"> <img className="h-80 w-full" src={campaign.banner} alt={campaign.campaignName} /></figure> 
                             <div className="p-2">
-                                <h1 className="text-2xl font-bold">{campaign.campaignName.toUpperCase()}</h1>
+                                
                                 <div className='mt-1'>
-                                    <h1 className=' text-lg font-semibold'>Organisation:</h1>
+                                    <h1 className=' text-lg font-semibold'>Organiser</h1>
                                     <a href='#'><p className="text-gray-600 hover:text-blue-900">{campaign.organisation.orgName.toUpperCase()}</p></a>{/*Put link to organisation here */}
                                 </div>
-                                <div className='mt-1'>
-                                    <h1 className=' text-lg font-semibold'>Agenda:</h1>
+                                <div className='mt-0'>
+                                    <h1 className=' text-lg font-semibold'>Agenda</h1>
                                     <p className="text-gray-600">{campaign.category.toUpperCase()}</p>
                                 </div>
                                 <div className='mt-1'>
                                     <p className=" text-red-500 dark:text-red-500 font-semibold">{handleDays()} Days left</p>
                                 </div>
-                                <div className='mt-1'>
-                                    <h1 className='text-lg font-semibold'>Budget:</h1>
-                                    <p className="text-lg font-bold text-green-500 mb-1">KES {campaign.targetAmount}</p>
-                                </div>
-                                <div className='mt-0'>
-                                <p>Share your campaign link via</p>
+                                
+                                <div className='mt-2'>
+                                <p>Share this campaign</p>
                                 </div>
                                 <div className='mt-0 flex space-x-3'>
                                     <WhatsappShareButton
@@ -177,15 +175,21 @@ function CampainDetails() {
                     </div>
                     <div class="p-2">
                         {/* Donation Accordion */}
-                    <div className="collapse collapse-arrow bg-base-200">
+                    {/* <div className="collapse collapse-arrow bg-base-200">
                         <input type="radio" name="my-accordion-2" defaultChecked /> 
                         <div className="collapse-title text-xl font-medium">
                             Donate via Mpesa
                         </div>
-                        <div className="collapse-content"> 
-                        <form onSubmit={handleDonation}>
-                            <div className='text-black dark:text-dark'>
+                        <div className="collapse-content">*/} 
+                        <div className='bg-base-100 h-full rounded-lg'> 
+                        
+                        <form onSubmit={handleDonation} className='p-4'>
+                            <div className='text-black'>
                                 {/* <h1 className="text-3xl font-bold mb-4">Donation Form</h1> */}
+                                <div className='m-4'>
+                                    <h1 className='text-xl font-semibold'>Goal</h1>
+                                    <p className="text-2xl font-bold text-green-500 mb-1">KES {campaign.targetAmount}</p>
+                                </div>
                                 <img class="w-18 h-16 mr-2" src ={logos} alt="logo"/>
                                 <p className="mb-4">Please fill in the form to donate to this campaign.</p>
                                 </div>
@@ -236,8 +240,9 @@ function CampainDetails() {
                             </div>
 
                             </form>
-                        </div>
-                        </div>
+                         </div>
+                       {/*</div> 
+                       </div>
                         <div className="collapse collapse-arrow bg-base-200">
                         <input type="radio" name="my-accordion-2" /> 
                         <div className="collapse-title text-xl font-medium">
@@ -255,10 +260,10 @@ function CampainDetails() {
                         <div className="collapse-content"> 
                             <p>Currently not available</p>
                         </div>
-                        </div>
+                        </div>*/}
 
                     </div>
-                </div>
+                </div> 
 
                     {/* <Popup open={donationForm} onClose={() => setDonationForm(false)} modal> */}
                         {/* style the modal content */}
@@ -330,15 +335,48 @@ function CampainDetails() {
                             <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black" onClick={() => setDonationForm(false)}>X</button>
                         </div>
                          </dialog> */}
-                        <div className='mt-6'>
-                        <h2 className="text-3xl font-bold mb-4 mt-2 underline underline-offset-8">Description</h2>
+                        <div className='mt-6 bg-base-100 p-4 rounded-lg'>
+                        <h2 className="text-3xl font-bold mb-4 mt-2 underline underline-offset-8">About this campaign</h2>
                         <p className="mb-4 text-lg">{campaign.description}</p>
+                        <div className='mt-0'>
+                                <p>Share your campaign link via</p>
+                                </div>
+                                <div className='mt-0 flex space-x-3'>
+                                    <WhatsappShareButton
+                                    url={currentlWebUrl}
+                                    title={`Join ${campaign.campaignName}'s campaign!\n\n\n By ${campaign.organisation.orgName}`}
+                                    >
+                                        <WhatsappIcon className='h-8 w-8'/>
+                                    </WhatsappShareButton>
+                                    <FacebookShareButton
+                                    url={currentlWebUrl}
+                                    quote={`Join ${campaign.campaignName}'s campaign!\n\n${campaign.description}\n\n\nBy ${campaign.organisation.orgName}`}
+                                    hashtag='#GiveForGood'
+                                    >
+                                        <FacebookIcon className='h-8 w-8'/>
+                                    </FacebookShareButton>
+                                    <TwitterShareButton
+                                    url={currentlWebUrl}
+                                    title={`Join ${campaign.campaignName}'s campaign!\n\n${campaign.description}\n\n\nBy ${campaign.organisation.orgName} `}
+                                    hashtags={['GiveForGood','msaadamashinani','ChangeForGood']}
+                                    >
+                                        <TwitterIcon className='h-8 w-8'/>
+                                    </TwitterShareButton>
+                                    <TelegramShareButton
+                                    url={currentlWebUrl}
+                                    title={`${campaign.campaignName}`}
+                                    >
+                                        <TelegramIcon className='h-8 w-8'/>
+                                    </TelegramShareButton>
+                                </div>
                        </div>
+                       
 
                     {/* </Popup> */}               
             </div>
             <Toaster position = "top-center" reverseOrder={false} />
-            <Featured/>
+            <div className="container"><Featured/></div>
+            
         </div>
        
         <Footer/>
