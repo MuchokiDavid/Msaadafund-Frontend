@@ -71,9 +71,9 @@ function UpcomingCampaigns({allCampaigns}) {
           })}
         </div>
         :
-        <div className="text-xl">No Upcoming campaigns</div>
+        <div className="text-xl mx-4">No Upcoming campaigns</div>
       }
-      <hr/>
+      <hr className='my-3'/>
       
     </div>
   )
