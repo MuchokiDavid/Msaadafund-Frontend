@@ -131,6 +131,9 @@ function ActiveCampaigns() {
       </div>
     <div className='container mx-auto overflow-x-hidden pb-4'>
         <h1 className="text-center text-2xl font-bold my-4 bg-slate-300 h-10 p-1">Active Campaigns</h1>
+        {activeCampaigns.length===0 ?
+        <div className="text-xl mx-4">No Upcoming campaigns</div>
+        :
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
           {filterCampaigns().map((campaign) => {
             return (
@@ -163,7 +166,7 @@ function ActiveCampaigns() {
             </div>
           )
           })}
-        </div>
+        </div>}
         
         <div className=" flex justify-center my-4 join grid-cols-2">
         {/* Previous page button */}
