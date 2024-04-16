@@ -121,7 +121,7 @@ function CampainDetails() {
                 <h1 className="text-2xl font-bold">{campaign.campaignName.toUpperCase()}</h1>
                 <div className='mt-2'>
                         <h1 className=' text-lg font-semibold'>Organisation</h1>
-                        <p className="text-gray-600">{campaign.organisation.orgName.toUpperCase()}</p>
+                        <a href='#'><p className="text-gray-600 hover:text-blue-900">{campaign.organisation.orgName.toUpperCase()}</p></a>{/*Put link to organisation here */}
                      </div>
                     <div className='mt-1'>
                         <h1 className=' text-lg font-semibold'>Campaign Agenda</h1>
@@ -155,56 +155,56 @@ function CampainDetails() {
                         </div>
                         <div className="collapse-content"> 
                         <form onSubmit={handleDonation}>
-                                <div className='text-black dark:text-dark'>
-                                    {/* <h1 className="text-3xl font-bold mb-4">Donation Form</h1> */}
-                                    <img class="w-18 h-16 mr-2" src ={logos} alt="logo"/>
-                                    <p className="mb-4">Please fill in the form to donate to this campaign.</p>
+                            <div className='text-black dark:text-dark'>
+                                {/* <h1 className="text-3xl font-bold mb-4">Donation Form</h1> */}
+                                <img class="w-18 h-16 mr-2" src ={logos} alt="logo"/>
+                                <p className="mb-4">Please fill in the form to donate to this campaign.</p>
+                                </div>
+                                <div className='flex-col justify-center items-center'>
+                                    <div className='mb-4'>
+                                        <label className=' text-black dark:text-black'>Phone Number:</label> 
+                                        <input
+                                            type="tel"
+                                            id="phoneNumber"
+                                            placeholder='eg 07xxxx or 011xxxx'
+                                            maxLength={10}
+                                            value={phoneNum}
+                                            onChange={(e) => {
+                                                setPhoneNum(e.target.value);
+                                            }}
+                                            className="block text-black dark:text-black w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                            required
+                                        />
+                                        {errors && <p className='text-red-600'>{errors}</p>}
                                     </div>
-                                    <div className='flex-col justify-center items-center'>
-                                        <div className='mb-4'>
-                                            <label className=' text-black dark:text-black'>Phone Number:</label> 
-                                            <input
-                                                type="tel"
-                                                id="phoneNumber"
-                                                placeholder='eg 07xxxx or 011xxxx'
-                                                maxLength={10}
-                                                value={phoneNum}
-                                                onChange={(e) => {
-                                                    setPhoneNum(e.target.value);
-                                                }}
-                                                className="block text-black dark:text-black w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
-                                                required
-                                            />
-                                            {errors && <p className='text-red-600'>{errors}</p>}
-                                        </div>
 
-                                        <div>
-                                            <label className=' text-black dark:text-black'>Donation Amount:</label>
-                                            <input
-                                                type="number"
-                                                id="donationAmount"
-                                                placeholder='Enter amount'
-                                                value={amount}
-                                                onChange={(e) => setDonationAmount(e.target.value)}
-                                                className="block text-black dark:text-black w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
-                                                required
-                                            />
-                                        </div>
-                                        </div>
-                                <div>
-                                    {/* shows total donation amount */}
-                                    <p>Total Donation: Ksh {amount}</p>
-                                </div>
-                                
-                                <div>
-                                    <button type="submit"
-                                        className='bg-emerald-800 text-white font-bold py-2 px-4 rounded mt-4 '>
-                                        Submit Donation
-                                    </button>
-                                </div>
-                                <div className='mt-3 flex justify-left'>
-                                    <p className='text-red-700'>After submitting please check your phone to authorize Mpesa charge. Enter PIN to complete transaction</p>
-                                </div>
+                                    <div>
+                                        <label className=' text-black dark:text-black'>Donation Amount:</label>
+                                        <input
+                                            type="number"
+                                            id="donationAmount"
+                                            placeholder='Enter amount'
+                                            value={amount}
+                                            onChange={(e) => setDonationAmount(e.target.value)}
+                                            className="block text-black dark:text-black w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                            required
+                                        />
+                                    </div>
+                                    </div>
+                            <div>
+                                {/* shows total donation amount */}
+                                <p>Total Donation: Ksh {amount}</p>
+                            </div>
+                            
+                            <div>
+                                <button type="submit"
+                                    className='bg-emerald-800 text-white font-bold py-2 px-4 rounded mt-4 '>
+                                    Submit Donation
+                                </button>
+                            </div>
+                            <div className='mt-3 flex justify-left'>
+                                <p className='text-red-700'>After submitting please check your phone to authorize Mpesa charge. Enter PIN to complete transaction</p>
+                            </div>
 
                             </form>
                         </div>
@@ -212,10 +212,10 @@ function CampainDetails() {
                         <div className="collapse collapse-arrow bg-base-200">
                         <input type="radio" name="my-accordion-2" /> 
                         <div className="collapse-title text-xl font-medium">
-                            Bank Transfer
+                            Paypal
                         </div>
                         <div className="collapse-content"> 
-                            <p>Coming soon</p>
+                            <p>Currently not available</p>
                         </div>
                         </div>
                         <div className="collapse collapse-arrow bg-base-200">
@@ -224,7 +224,7 @@ function CampainDetails() {
                             Card Payment (Online)
                         </div>
                         <div className="collapse-content"> 
-                            <p>Coming soon</p>
+                            <p>Currently not available</p>
                         </div>
                         </div>
 
