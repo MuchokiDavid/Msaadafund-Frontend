@@ -13,7 +13,6 @@ function ActiveCampaigns() {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const navigate = useNavigate();
-    const [filteredCampaigns, setFilteredCampaigns] = useState([]);
     const currentDate = new Date();
 
     const fetchCampaigns = useCallback(async () => {
@@ -27,7 +26,9 @@ function ActiveCampaigns() {
           setCampaigns(data);
           setCategories(['All', ...mergedCategories]);
           const totalPagesFromHeader = Number(response.headers.get('X-Total-Pages'));
-          setTotalPages(totalPagesFromHeader);
+          if (totalPagesFromHeader !== null && totalPagesFromHeader !== undefined) {
+            setTotalPages(Number(totalPagesFromHeader));
+          }
         } catch (error) {
           console.error('Error fetching data:', error);
         }
@@ -93,8 +94,7 @@ function ActiveCampaigns() {
         const endDate = new Date(campaign.endDate);
         return endDate < currentDate;
       });
-    
-      
+  
       const calculateDaysLeft = (endDate) => {
         if (!endDate) return null;
         const endDateObject = new Date(endDate);
@@ -169,7 +169,7 @@ function ActiveCampaigns() {
         {/* Previous page button */}
         <button className="join-item btn btn-outline" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
         {/* Next page button */}
-        <button className="join-item btn btn-outline" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
+        <button className="join-item btn btn-outline" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages || totalPages === 0}>Next</button>
       </div>
       <InActiveCampaigns allCampaigns= {upcomingCampaigns}/>
     </div>
