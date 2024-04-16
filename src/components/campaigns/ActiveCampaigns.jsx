@@ -36,7 +36,7 @@ function ActiveCampaigns() {
     
       useEffect(() => {
         fetchCampaigns();
-        const intervalId = setInterval(fetchCampaigns, 3000); // Poll every 5 seconds
+        const intervalId = setInterval(fetchCampaigns, 5000); // Poll every 5 seconds
         return () => clearInterval(intervalId);
       }, [currentPage, selectedCategory, fetchCampaigns]); // Include fetchCampaigns in the dependency array
     

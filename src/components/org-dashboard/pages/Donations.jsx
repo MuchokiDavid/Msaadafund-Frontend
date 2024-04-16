@@ -50,6 +50,8 @@ function Donations({ allCampaigns, campaignError }) {
             }
         }
         getDonations();
+        const intervalId = setInterval(getDonations, 5000);
+        return () => clearInterval(intervalId);
     }, [token]);
 
     useEffect(() => {
@@ -77,6 +79,8 @@ function Donations({ allCampaigns, campaignError }) {
             }
         }
         getDonors();
+        const intervalId = setInterval(getDonors, 5000);
+        return () => clearInterval(intervalId);
 
     }, [allDonations, token]);
 
