@@ -13,7 +13,6 @@ function ActiveCampaigns() {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const navigate = useNavigate();
-    const [filteredCampaigns, setFilteredCampaigns] = useState([]);
     const currentDate = new Date();
 
     const fetchCampaigns = useCallback(async () => {
@@ -27,7 +26,9 @@ function ActiveCampaigns() {
           setCampaigns(data);
           setCategories(['All', ...mergedCategories]);
           const totalPagesFromHeader = Number(response.headers.get('X-Total-Pages'));
-          setTotalPages(totalPagesFromHeader);
+          if (totalPagesFromHeader !== null && totalPagesFromHeader !== undefined) {
+            setTotalPages(Number(totalPagesFromHeader));
+          }
         } catch (error) {
           console.error('Error fetching data:', error);
         }
@@ -61,7 +62,7 @@ function ActiveCampaigns() {
         setCurrentPage(page);
       };
       const filterCampaigns = () => {
-        return campaigns.filter(campaign => {
+        return activeCampaigns.filter(campaign => {
           const categoryMatch = selectedCategory === 'All' || campaign.category.toLowerCase() === selectedCategory.toLowerCase();
           const searchMatch = (
             campaign.campaignName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -93,8 +94,7 @@ function ActiveCampaigns() {
         const endDate = new Date(campaign.endDate);
         return endDate < currentDate;
       });
-    
-      
+  
       const calculateDaysLeft = (endDate) => {
         if (!endDate) return null;
         const endDateObject = new Date(endDate);
@@ -131,6 +131,9 @@ function ActiveCampaigns() {
       </div>
     <div className='container mx-auto overflow-x-hidden pb-4'>
         <h1 className="text-center text-2xl font-bold my-4 bg-slate-300 h-10 p-1">Active Campaigns</h1>
+        {activeCampaigns.length===0 ?
+        <div className="text-xl mx-4">No Upcoming campaigns</div>
+        :
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
           {filterCampaigns().map((campaign) => {
             return (
@@ -147,14 +150,7 @@ function ActiveCampaigns() {
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                     </svg>
                 </button>
-               {/* {
-                  status === 'Upcoming campaigns' && <button onClick={()=> handleCampaign(campaign.id)} class="inline-flex items-center mt-0 mb-3 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                      Read more
-                      <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                      </svg>
-                  </button>
-                } */}
+               
                 <div className='grid grid-flow-col grid-col-2 divide-x divide-slate-500'>
                     <div className=' px-2'>
                         <p className="text-black text-base dark:text-white">{calculateDaysLeft(campaign.endDate) }</p>
@@ -165,33 +161,18 @@ function ActiveCampaigns() {
                         <p className="text-black ml-2 text-base dark:text-white">{campaign.targetAmount}</p>
                     </div>
                 </div>
-
-                {/* <button onClick={()=> handleCampaign(campaign.id)}>More Details</button> */}
                 
               </div>
-              {/* {status === 'Ongoing campaigns' && (
-                <div className="px-6 pb-4">
-                  {/* <button className="bg-green-500 text-white font-bold py-2 px-4 rounded">
-                    Donate
-                  </button> 
-                  <button onClick={()=> handleCampaign(campaign.id)} class="inline-flex items-center mt-1 px-3 py-2 text-sm font-medium text-center text-white bg-emerald-700 rounded-lg hover:bg-emerald-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-emerald-700 dark:hover:bg-emerald-600 dark:focus:ring-emerald-800">
-                      Donate now
-                      <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                      </svg>
-                  </button>
-                </div>
-              )} */}
             </div>
           )
           })}
-        </div>
+        </div>}
         
         <div className=" flex justify-center my-4 join grid-cols-2">
         {/* Previous page button */}
         <button className="join-item btn btn-outline" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
         {/* Next page button */}
-        <button className="join-item btn btn-outline" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
+        <button className="join-item btn btn-outline" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages || totalPages === 0}>Next</button>
       </div>
       <InActiveCampaigns allCampaigns= {upcomingCampaigns}/>
     </div>
