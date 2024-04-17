@@ -187,14 +187,14 @@ function CampainDetails() {
                         </div>
                         <div className="collapse-content">*/} 
                         <div className='bg-base-100 h-full rounded-lg'> 
-                        
-                        <form onSubmit={handleDonation} className='p-4'>
-                            <div className='text-black'>
-                                {/* <h1 className="text-3xl font-bold mb-4">Donation Form</h1> */}
-                                <div className='m-4'>
+                         <div className='px-6 pt-6'>
                                     <h1 className='text-xl font-semibold'>Goal</h1>
                                     <p className="text-2xl font-bold text-green-500 mb-1">KES {campaign.targetAmount}</p>
                                 </div>
+                        <form onSubmit={handleDonation} className='px-8'>
+                            <div className='text-black'>
+                                {/* <h1 className="text-3xl font-bold mb-4">Donation Form</h1> */}
+                               
                                 <img class="w-18 h-16 mr-2" src ={logos} alt="logo"/>
                                 <p className="mb-4">Please fill in the form to donate to this campaign.</p>
                                 </div>
@@ -282,9 +282,9 @@ function CampainDetails() {
                     <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
                         <div>
                             <p>Name</p>
-                            <p className='text-xl'>{campaign.organisation.orgName}</p><br/>
+                            <p className='text-xl mb-3'>{campaign.organisation.orgName}</p>
                             <p>Address</p>
-                            <p className='text-xl'>{campaign.organisation.orgAddress}</p><br/>
+                            <p className='text-xl mb-3'>{campaign.organisation.orgAddress}</p>
                             <p>About</p>
                             <p className='text-xl'>{campaign.organisation.orgDescription ? campaign.organisation.orgDescription : 'Currently not available'}</p>
                         </div>
