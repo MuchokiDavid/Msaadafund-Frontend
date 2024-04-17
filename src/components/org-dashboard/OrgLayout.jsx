@@ -141,7 +141,7 @@ function OrgLayout() {
       <div className="flex">
         <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
         {/* {isLargeScreen && <Menubar isOpen={isSidebarOpen} />} */}
-        <main className="mt-3 mx-auto w-5/6 overflow-y-auto md:m-3 min-h-max sm:h-fit sm:w-screen lg:h-auto justify-center">
+        <main className="mt-3 mx-auto w-5/6 overflow-y-auto md:m-3 min-h-max sm:h-fit sm:w-screen lg:h-auto justify-center" style={{ marginTop: '10px' }}>
           <Routes>
             <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors}/>} />
             <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch}/>} />
