@@ -85,7 +85,7 @@ function Donations({ allCampaigns, campaignError, allDonation, allDonors }) {
     }
 
     return (
-        <div className='sm:h-full mx-3'>
+        <div className='sm:h-full lg:h-fit mx-3'>
             <div className="text-md breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Home</a></li>
