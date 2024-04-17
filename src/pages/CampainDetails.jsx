@@ -103,7 +103,45 @@ function CampainDetails() {
             return days;
         }
     };
-    // console.log(campaign)
+
+    const socialShare = ()=>{
+        return (
+            <>
+            <div className='mt-2'>
+                <p>Share this campaign</p>
+            </div>
+            <div className='mt-0 flex space-x-3'>
+                <WhatsappShareButton
+                url={currentlWebUrl}
+                title={`Join ${campaign.campaignName}'s campaign!\n\n\n By ${campaign.organisation.orgName}`}
+                >
+                    <WhatsappIcon className='h-8 w-8'/>
+                </WhatsappShareButton>
+                <FacebookShareButton
+                url={currentlWebUrl}
+                quote={`Join ${campaign.campaignName}'s campaign!\n\n${campaign.description}\n\n\nBy ${campaign.organisation.orgName}`}
+                hashtag='#GiveForGood'
+                >
+                    <FacebookIcon className='h-8 w-8'/>
+                </FacebookShareButton>
+                <TwitterShareButton
+                url={currentlWebUrl}
+                title={`Join ${campaign.campaignName}'s campaign!\n\n${campaign.description}\n\n\nBy ${campaign.organisation.orgName} `}
+                hashtags={['GiveForGood','msaadamashinani','ChangeForGood']}
+                >
+                    <TwitterIcon className='h-8 w-8'/>
+                </TwitterShareButton>
+                <TelegramShareButton
+                url={currentlWebUrl}
+                title={`${campaign.campaignName}`}
+                >
+                    <TelegramIcon className='h-8 w-8'/>
+                </TelegramShareButton>
+            </div>
+            </>
+        )
+    }
+    console.log(campaign)
 
     return (
         <div>
@@ -120,15 +158,15 @@ function CampainDetails() {
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
                     <div class="p-1">
                         {/* Campaign details */}
-                        <div className="card card-side bg-base-100 w-full grid grid-cols-1 rounded-lg p-4">
+                        <div className="card card-side bg-base-100 grid grid-cols-1 rounded-lg p-4 h-full">
                             <h1 className="text-2xl font-bold mb-4">{campaign.campaignName.toUpperCase()}</h1>
-                            <figure className="overflow-hidden"> <img className="h-80 w-full" src={campaign.banner} alt={campaign.campaignName} /></figure> 
+                            <figure className="overflow-hidden"> <img className="h-80" src={campaign.banner} alt={campaign.campaignName} /></figure> 
                             <div className="p-2">
                                 
-                                <div className='mt-1'>
+                                {/* <div className='mt-1'>
                                     <h1 className=' text-lg font-semibold'>Organiser</h1>
-                                    <a href='#'><p className="text-gray-600 hover:text-blue-900">{campaign.organisation.orgName.toUpperCase()}</p></a>{/*Put link to organisation here */}
-                                </div>
+                                    <a href='#'><p className="text-gray-600 hover:text-blue-900">{campaign.organisation.orgName.toUpperCase()}</p></a>{/*Put link to organisation here
+                                </div> */}
                                 <div className='mt-0'>
                                     <h1 className=' text-lg font-semibold'>Agenda</h1>
                                     <p className="text-gray-600">{campaign.category.toUpperCase()}</p>
@@ -136,38 +174,7 @@ function CampainDetails() {
                                 <div className='mt-1'>
                                     <p className=" text-red-500 dark:text-red-500 font-semibold">{handleDays()} Days left</p>
                                 </div>
-                                
-                                <div className='mt-2'>
-                                <p>Share this campaign</p>
-                                </div>
-                                <div className='mt-0 flex space-x-3'>
-                                    <WhatsappShareButton
-                                    url={currentlWebUrl}
-                                    title={`Join ${campaign.campaignName}'s campaign!\n\n\n By ${campaign.organisation.orgName}`}
-                                    >
-                                        <WhatsappIcon className='h-8 w-8'/>
-                                    </WhatsappShareButton>
-                                    <FacebookShareButton
-                                    url={currentlWebUrl}
-                                    quote={`Join ${campaign.campaignName}'s campaign!\n\n${campaign.description}\n\n\nBy ${campaign.organisation.orgName}`}
-                                    hashtag='#GiveForGood'
-                                    >
-                                        <FacebookIcon className='h-8 w-8'/>
-                                    </FacebookShareButton>
-                                    <TwitterShareButton
-                                    url={currentlWebUrl}
-                                    title={`Join ${campaign.campaignName}'s campaign!\n\n${campaign.description}\n\n\nBy ${campaign.organisation.orgName} `}
-                                    hashtags={['GiveForGood','msaadamashinani','ChangeForGood']}
-                                    >
-                                        <TwitterIcon className='h-8 w-8'/>
-                                    </TwitterShareButton>
-                                    <TelegramShareButton
-                                    url={currentlWebUrl}
-                                    title={`${campaign.campaignName}`}
-                                    >
-                                        <TelegramIcon className='h-8 w-8'/>
-                                    </TelegramShareButton>
-                                </div>
+                                {socialShare()}
                             </div>
                         </div>
                     </div>
@@ -203,7 +210,7 @@ function CampainDetails() {
                                             onChange={(e) => {
                                                 setPhoneNum(e.target.value);
                                             }}
-                                            className="block text-black dark:text-black w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                            className="block text-black dark:text-black px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
                                             required
                                         />
                                         {errors && <p className='text-red-600'>{errors}</p>}
@@ -217,7 +224,7 @@ function CampainDetails() {
                                             placeholder='Enter amount'
                                             value={amount}
                                             onChange={(e) => setDonationAmount(e.target.value)}
-                                            className="block text-black dark:text-black w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                            className="block text-black dark:text-black px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
                                             required
                                         />
                                     </div>
@@ -263,6 +270,47 @@ function CampainDetails() {
                     </div>
                 </div> 
 
+                <div className='mt-6 bg-base-100 p-4 rounded-lg'>
+                <div role="tablist" className="tabs tabs-lifted tabs-lg">
+                    <input type="radio" name="my_tabs_2" role="tab" className="tab text-xl font-semibold w-fit" aria-label="Description" checked/>
+                    <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                        <p className="my-4 text-lg">{campaign.description}</p>
+                        {socialShare()}
+                    </div>
+
+                    <input type="radio" name="my_tabs_2" role="tab" className="tab text-xl font-semibold" aria-label="Organiser"/>
+                    <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                        <div>
+                            <p>Organiser</p>
+                            <p className='text-xl'>{campaign.organisation.orgName}</p><br/>
+                            <p>Address</p>
+                            <p className='text-xl'>{campaign.organisation.orgAddress}</p><br/>
+                            <p>About</p>
+                            <p className='text-xl'>{campaign.organisation.orgDescription ? campaign.organisation.orgDescription : 'Currently not available'}</p>
+                        </div>
+                    </div>
+                </div>
+                   
+                </div>
+                
+
+                    {/* </Popup> */}               
+            </div>
+            <Toaster position = "top-center" reverseOrder={false} />
+            <div className="container"><Featured/></div>
+            
+        </div>
+       
+        <Footer/>
+        </div>
+
+    );
+}
+
+export default CampainDetails;
+
+
+
                     {/* <Popup open={donationForm} onClose={() => setDonationForm(false)} modal> */}
                         {/* style the modal content */}
                         {/* <dialog open={donationForm} onClose={() => setDonationForm(false)} className='modal'>
@@ -296,7 +344,7 @@ function CampainDetails() {
                                                     // Update state with the formatted number
                                                     setPhoneNum(e.target.value);
                                                 }}
-                                                className="block text-black dark:text-black w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                className="block text-black dark:text-black px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
                                                 required
                                             />
                                             {errors && <p className='text-red-600'>{errors}</p>}
@@ -310,7 +358,7 @@ function CampainDetails() {
                                                 placeholder='Enter your donation amount'
                                                 value={amount}
                                                 onChange={(e) => setDonationAmount(e.target.value)}
-                                                className="block text-black dark:text-black w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                className="block text-black dark:text-black px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
                                                 required
                                             />
                                         </div>
@@ -333,54 +381,3 @@ function CampainDetails() {
                             <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black" onClick={() => setDonationForm(false)}>X</button>
                         </div>
                          </dialog> */}
-                        <div className='mt-6 bg-base-100 p-4 rounded-lg'>
-                        <h2 className="text-3xl font-bold mb-4 mt-2 underline underline-offset-8">About this campaign</h2>
-                        <p className="mb-4 text-lg">{campaign.description}</p>
-                        <div className='mt-0'>
-                                <p>Share this campaign</p>
-                                </div>
-                                <div className='mt-0 flex space-x-3'>
-                                    <WhatsappShareButton
-                                    url={currentlWebUrl}
-                                    title={`Join ${campaign.campaignName}'s campaign!\n\n\n By ${campaign.organisation.orgName}`}
-                                    >
-                                        <WhatsappIcon className='h-8 w-8'/>
-                                    </WhatsappShareButton>
-                                    <FacebookShareButton
-                                    url={currentlWebUrl}
-                                    quote={`Join ${campaign.campaignName}'s campaign!\n\n${campaign.description}\n\n\nBy ${campaign.organisation.orgName}`}
-                                    hashtag='#GiveForGood'
-                                    >
-                                        <FacebookIcon className='h-8 w-8'/>
-                                    </FacebookShareButton>
-                                    <TwitterShareButton
-                                    url={currentlWebUrl}
-                                    title={`Join ${campaign.campaignName}'s campaign!\n\n${campaign.description}\n\n\nBy ${campaign.organisation.orgName} `}
-                                    hashtags={['GiveForGood','msaadamashinani','ChangeForGood']}
-                                    >
-                                        <TwitterIcon className='h-8 w-8'/>
-                                    </TwitterShareButton>
-                                    <TelegramShareButton
-                                    url={currentlWebUrl}
-                                    title={`${campaign.campaignName}`}
-                                    >
-                                        <TelegramIcon className='h-8 w-8'/>
-                                    </TelegramShareButton>
-                                </div>
-                       </div>
-                       
-
-                    {/* </Popup> */}               
-            </div>
-            <Toaster position = "top-center" reverseOrder={false} />
-            <div className="container"><Featured/></div>
-            
-        </div>
-       
-        <Footer/>
-        </div>
-
-    );
-}
-
-export default CampainDetails;
