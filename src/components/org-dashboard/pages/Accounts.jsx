@@ -95,7 +95,7 @@ function Accounts() {
     };
 
     return (
-        <div className='main-page-container'>
+        <div className='main-page-container sm:h-screen lg:h-fit'>
             <div className='mx-auto lg:max-w-screen-lg md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 text-white sm:w-screen'>
                 <button onClick={() => setShowCreateAccount(true)} className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
                     Create Account
