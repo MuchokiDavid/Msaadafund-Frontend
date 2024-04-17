@@ -17,13 +17,13 @@ function HomeCards({allCampaigns, allDonations}) {
         }
         return totalAmount;
     }
-    let totalAmount=(getTotalAmount(donations))
-    
+    let totalAmount=(donations && getTotalAmount(donations))
+
   return (
     <div className='p-4'>
         <h1 className="text-left text-xl mt-5">Stats</h1>
-        <div className="grid grid-cols-1 gap-4 px-4 mt-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 sm:px-8">
-            <div className="flex items-center bg-white border rounded-sm overflow-hidden shadow">
+        <div className="grid grid-cols-1 gap-4 px-4 mt-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 sm:px-8">
+            <div className="flex items-center bg-white border rounded-sm overflow-auto shadow">
                 <div className="p-4 bg-emerald-400">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
@@ -34,11 +34,11 @@ function HomeCards({allCampaigns, allDonations}) {
                     <h3 className="text-xl tracking-wider">Total Donations</h3>
                     </div>
                     <div>
-                    <p className="text-3xl">KES {totalAmount}</p>
+                    <p className="text-2xl">KES {totalAmount}</p>
                     </div>
                 </div>
             </div>
-            <div className="flex items-center bg-white border rounded-sm overflow-hidden shadow">
+            <div className="flex items-center bg-white border rounded-sm overflow-auto shadow">
                 <div className="p-4 bg-blue-400">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path>
@@ -49,7 +49,7 @@ function HomeCards({allCampaigns, allDonations}) {
                     <h3 className="tracking-wider text-xl">Total Campaigns</h3>
                     </div>
                     <div>
-                    <p className="text-3xl">{allCampaigns && allCampaigns.length}</p>
+                    <p className="text-2xl">{allCampaigns && allCampaigns.length}</p>
                     </div>
                 </div>
             </div>
