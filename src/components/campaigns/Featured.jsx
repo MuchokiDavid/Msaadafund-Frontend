@@ -9,8 +9,6 @@ function Featured() {
 
     useEffect(() => {
         handleFeatured()
-        const intervalId = setInterval(handleFeatured, 15000); // Poll every 15 seconds
-        return () => clearInterval(intervalId);
     }, []);
 
     const handleFeatured = async (id) => {
