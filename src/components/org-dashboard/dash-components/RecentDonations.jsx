@@ -35,7 +35,7 @@ useEffect(() => {
 
 // console.log(allDonors)
 // console.log(slicedDonations)
-console.log(allCampaigns)
+// console.log(allCampaigns)
 
   return (
     <div className='p-4'>
