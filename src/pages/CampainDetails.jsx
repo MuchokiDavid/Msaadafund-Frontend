@@ -6,7 +6,7 @@ import axios from 'axios'
 import {toast,Toaster} from 'react-hot-toast'
 import Menus from '../components/reusables/Menus';
 import Footer from '../components/reusables/Footer';
-import Featured from '../components/home/Featured';
+import Featured from '../components/campaigns/Featured';
 import logos from  "../assets/mpesa.jpg";
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -297,7 +297,7 @@ function CampainDetails() {
                     {/* </Popup> */}               
             </div>
             <Toaster position = "top-center" reverseOrder={false} />
-            <div className="container"><Featured/></div>
+           <Featured/>
             
         </div>
        

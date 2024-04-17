@@ -1,6 +1,6 @@
 import React from 'react'
-import Featured from './Featured'
 import { useNavigate } from 'react-router-dom'
+import Featured from '../campaigns/Featured'
 
 function Banner() {
   const navigate = useNavigate()
