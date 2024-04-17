@@ -223,7 +223,7 @@ function CreateCampaign() {
                                         type="file"
                                         accept="image/*"
                                         className="sr-only"
-                                        onChange={(e) => handleFileUpload(e)}
+                                        onChange={handleFileUpload}
                                         required
                                     />
                                 </label>

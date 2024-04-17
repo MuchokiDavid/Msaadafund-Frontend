@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function CampaignCard({allCampaigns, campaignError}) {
     const [campaigns, setCampaigns] = useState();
     const token = localStorage.getItem('token');
     const [walletDetails, setWalletDetails] = useState(null);
-    const [loading, setLoading] = useState(true)
+    // const [loading, setLoading] = useState(true)
     const [errors, setErrors] = useState(campaignError);
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         setCampaigns(allCampaigns)    
@@ -26,7 +29,7 @@ function CampaignCard({allCampaigns, campaignError}) {
             });
             const data = await response.json();
             if (response.ok) {
-                setLoading(false)
+                // setLoading(false)
                 setWalletDetails(prevState => ({
                 ...prevState,
                 [id]: data.wallet_details
@@ -34,14 +37,20 @@ function CampaignCard({allCampaigns, campaignError}) {
             }
             
         } catch (error) {
-            setLoading(true)
+            // setLoading(true)
             setErrors('Error in fetching wallet details', error);
         }
     };
     // console.log(campaigns)
 
-    if(loading){
-        return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>
+    // if(loading){
+    //     return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>
+    // }
+
+    const handleEditButton = (campaignId)=>{
+        navigate(`/org/dashboard/campaigns/${campaignId}`)
+
+        console.log('edit button clicked')
     }
 
     return (
@@ -85,7 +94,7 @@ function CampaignCard({allCampaigns, campaignError}) {
                                         <button className='h-6'>Withdraw</button>
                                     </div>
                                     <div class="text-xs mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded-2xl">
-                                    <button className='h-6'>Transactions</button>
+                                    <button onClick={()=>handleEditButton(item.id) } className='h-6'>Edit Campaign</button>
                                     </div>
                                 </div>
                             </div>

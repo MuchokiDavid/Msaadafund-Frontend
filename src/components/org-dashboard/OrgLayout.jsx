@@ -11,6 +11,7 @@ import DashFooter from './dash-components/DashFooter';
 import CampaignCard from './dash-components/CampaignCard';
 import Accounts from './pages/Accounts';
 import Donations from './pages/Donations';
+import UpdateCampaign from './pages/UpdateCampaign';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
@@ -86,6 +87,8 @@ function OrgLayout() {
         {/* {isLargeScreen && <Menubar isOpen={isSidebarOpen} />} */}
         <main className="mt-3 mx-auto w-5/6 overflow-y-auto md:m-3 min-h-max sm:h-fit sm:w-screen lg:h-auto justify-center">
           <Routes>
+            {/* route to update campaign */}
+            <Route path="/campaigns/:campaignId" element={<UpdateCampaign/>} />
             <Route path="/" element={<OrgHome />} />
             <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch}/>} />
             <Route path="/campaigns" element={<CampaignCard allCampaigns={campaigns} campaignError={errors}/>} />
@@ -93,6 +96,8 @@ function OrgLayout() {
             <Route path="/accounts" element={<Accounts/>} />
             <Route path="/transaction" element={<Transaction allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
             <Route path="/profile" element={<Profile />} />
+         
+
           </Routes>
         </main>
       </div>
