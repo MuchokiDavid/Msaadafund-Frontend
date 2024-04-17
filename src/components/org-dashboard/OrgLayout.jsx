@@ -11,6 +11,7 @@ import DashFooter from './dash-components/DashFooter';
 import CampaignCard from './dash-components/CampaignCard';
 import Accounts from './pages/Accounts';
 import Donations from './pages/Donations';
+import UpdateCampaign from './pages/UpdateCampaign';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
@@ -144,12 +145,16 @@ function OrgLayout() {
         <main className="mt-3 mx-auto w-5/6 overflow-y-auto md:m-3 min-h-max sm:h-fit sm:w-screen lg:h-auto justify-center">
           <Routes>
             <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors}/>} />
+            {/* route to update campaign */}
+            <Route path="/campaigns/:campaignId" element={<UpdateCampaign/>} />
             <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch}/>} />
             <Route path="/campaigns" element={<CampaignCard allCampaigns={campaigns} campaignError={errors}/>} />
             <Route path="/donations" element={<Donations allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} allDonation={allDonations} allDonors={donors}/>} />
             <Route path="/accounts" element={<Accounts/>} />
             <Route path="/transaction" element={<Transaction allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
             <Route path="/profile" element={<Profile />} />
+         
+
           </Routes>
         </main>
       </div>

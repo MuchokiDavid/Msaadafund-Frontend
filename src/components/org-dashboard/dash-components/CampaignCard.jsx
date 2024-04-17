@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { MdDelete } from "react-icons/md";
+import axios from 'axios';
+import { Toaster, toast } from 'react-hot-toast';
+
 
 function CampaignCard({allCampaigns, campaignError}) {
     const [campaigns, setCampaigns] = useState();
     const token = localStorage.getItem('token');
     const [walletDetails, setWalletDetails] = useState(null);
-    const [loading, setLoading] = useState(true)
+    // const [loading, setLoading] = useState(true)
     const [errors, setErrors] = useState(campaignError);
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         setCampaigns(allCampaigns)    
@@ -26,7 +33,7 @@ function CampaignCard({allCampaigns, campaignError}) {
             });
             const data = await response.json();
             if (response.ok) {
-                setLoading(false)
+                // setLoading(false)
                 setWalletDetails(prevState => ({
                 ...prevState,
                 [id]: data.wallet_details
@@ -34,16 +41,43 @@ function CampaignCard({allCampaigns, campaignError}) {
             }
             
         } catch (error) {
-            setLoading(true)
+            // setLoading(true)
             setErrors('Error in fetching wallet details', error);
         }
     };
     // console.log(campaigns)
 
-    if(loading){
-        return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>
-    }
+    // if(loading){
+    //     return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>
+    // }
 
+    const handleEditButton = (campaignId)=>{
+        navigate(`/org/dashboard/campaigns/${campaignId}`)
+
+        console.log('edit button clicked')
+    }
+    const handleDeleteButton = async (campaignId)=>{
+        try{
+        const accessToken = localStorage.getItem('token');
+        const config = {
+           headers:{
+            Authorization: `Bearer ${accessToken}`
+           }
+        }
+        axios.delete(`/api/v1.0/deletecampaign/${campaignId}`, config)
+        .then((res)=>{{
+            console.log(res)
+            alert('Do you want to delete this campaign?', res)
+            toast.success('Campaign deleted successfully')
+        }})
+        .catch((err)=>{
+            console.log(err)
+        })
+        }
+        catch(err){
+            console.log(err)
+        }
+    }    
     return (
         <div className='sm:h-full ml-4'>
             <div className="text-md breadcrumbs ml-2">
@@ -70,7 +104,7 @@ function CampaignCard({allCampaigns, campaignError}) {
                                 {/* <p class="font-light text-gray-400 dark:text-gray-300 text-md">
                                     The new supercar is here, 543 cv and 140 000$. This is best racing GT about 7 years on...
                                 </p> */}
-                                <div className='grid grid-flow-col grid-col-2'>
+                                <div className='grid grid-flow-col grid-col-3'>
                                     <div>
                                         <h6 className='text-lg text-slate-700 dark:text-slate-200'>Campaign</h6>
                                         <p className='text-gray-900 dark:text-slate-400'>{item.campaignName.slice(0,25)}...</p>
@@ -85,7 +119,10 @@ function CampaignCard({allCampaigns, campaignError}) {
                                         <button className='h-6'>Withdraw</button>
                                     </div>
                                     <div class="text-xs mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded-2xl">
-                                    <button className='h-6'>Transactions</button>
+                                    <button onClick={()=>handleEditButton(item.id) } className='h-6'>Edit Campaign</button>
+                                    </div>
+                                    <div>
+                                        <button title='Delete Campaign' onClick={()=>handleDeleteButton(item.id)}><MdDelete style={{ color: 'red' }}/></button>
                                     </div>
                                 </div>
                             </div>
@@ -93,6 +130,7 @@ function CampaignCard({allCampaigns, campaignError}) {
                     </div>
                 )})}
             </div>
+            <Toaster position="top-right" reverseOrder= {false}/>
         </div>
     );
 }
