@@ -45,7 +45,7 @@ function Menubar({isOpen}) {
             },
           }}
         >
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard" />} icon={<FaHome />}> Home</MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard" />} icon={<FaHome />}> Dashboard</MenuItem>
           <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/createcampaign" />} icon={<MdOutlineCampaign className='w-6 h-6'/>}>Create Campaign</MenuItem>
           <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/campaigns" />} icon={<MdOutlineViewCompactAlt className='w-6 h-6'/>}>View Campaigns</MenuItem>
           <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/donations" />} icon={<FaDonate />}>Donations</MenuItem>
