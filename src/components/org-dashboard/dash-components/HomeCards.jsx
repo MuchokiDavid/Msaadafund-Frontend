@@ -1,6 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 function HomeCards({allCampaigns, allDonations}) {
+    const[donations, setDonations] = useState([])
+
+    useEffect(() => {
+        if(allDonations){
+        setDonations(allDonations)
+        }
+    }, [allDonations])
+    
+
+    function getTotalAmount(donationsArray) {
+        let totalAmount = 0;
+        for (let donation of donationsArray) {
+            totalAmount += donation.amount;
+        }
+        return totalAmount;
+    }
+    let totalAmount=(getTotalAmount(donations))
+    
   return (
     <div className='p-4'>
         <h1 className="text-left text-xl mt-5">Stats</h1>
@@ -16,7 +34,7 @@ function HomeCards({allCampaigns, allDonations}) {
                     <h3 className="text-xl tracking-wider">Total Donations</h3>
                     </div>
                     <div>
-                    <p className="text-3xl">{allDonations && allDonations.length}</p>
+                    <p className="text-3xl">KES {totalAmount}</p>
                     </div>
                 </div>
             </div>
