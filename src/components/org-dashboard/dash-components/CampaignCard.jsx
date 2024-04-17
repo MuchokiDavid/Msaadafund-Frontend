@@ -79,7 +79,7 @@ function CampaignCard({allCampaigns, campaignError}) {
         }
     }    
     return (
-        <div className='sm:h-full ml-4'>
+        <div className='sm:h-screen ml-4'>
             <div className="text-md breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Home</a></li> 
@@ -114,7 +114,7 @@ function CampaignCard({allCampaigns, campaignError}) {
                                         <p className='text-gray-900 dark:text-slate-400'>{item.targetAmount}</p>
                                     </div>
                                         </div>
-                                <div class="flex flex-wrap items-center mt-4 justify-starts">
+                                <div class="flex flex-wrap items-center mt-4 justify-between">
                                     <div class="text-xs mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded-2xl">
                                         <button className='h-6'>Withdraw</button>
                                     </div>
@@ -122,7 +122,7 @@ function CampaignCard({allCampaigns, campaignError}) {
                                     <button onClick={()=>handleEditButton(item.id) } className='h-6'>Edit Campaign</button>
                                     </div>
                                     <div>
-                                        <button title='Delete Campaign' onClick={()=>handleDeleteButton(item.id)}><MdDelete style={{ color: 'red' }}/></button>
+                                        <button title='Delete Campaign' onClick={()=>handleDeleteButton(item.id)}><MdDelete size={36}  style={{ color: 'red' }}/></button>
                                     </div>
                                 </div>
                             </div>
