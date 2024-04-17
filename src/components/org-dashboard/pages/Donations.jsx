@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 
-function Donations({ allCampaigns, campaignError }) {
+function Donations({ allCampaigns, campaignError, allDonation, allDonors }) {
     const [allDonations, setAllDonations] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState();
     const [campaigns, setCampaigns] = useState();
-    const [donors, setDonors] = useState([]);
+    const [donors, setDonors] = useState(allDonors);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(10);
     const [filteredDonations, setFilteredDonations] = useState([]);
@@ -24,6 +24,11 @@ function Donations({ allCampaigns, campaignError }) {
     const goToPage = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
+
+    useEffect(() => {
+      setDonors(allDonors)
+    }, [allDonors])
+    
 
     useEffect(() => {
         const getDonations = async () => {
@@ -50,39 +55,7 @@ function Donations({ allCampaigns, campaignError }) {
             }
         }
         getDonations();
-        const intervalId = setInterval(getDonations, 6000);
-        return () => clearInterval(intervalId);
-    }, [token]);
-
-    useEffect(() => {
-        const getDonors = async () => {
-            try {
-                const response = await fetch('/api/v1.0/users', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                });
-                const data = await response.json();
-                if (response.ok) {
-                    setLoading(false);
-                    console.log("Successful request to get campaigns");
-                    setDonors(data);
-                } else {
-                    setLoading(true);
-                    throw new Error(data);
-                }
-            }
-            catch {
-                setErrors("Error getting donation data");
-            }
-        }
-        getDonors();
-        const intervalId = setInterval(getDonors, 5000);
-        return () => clearInterval(intervalId);
-
-    }, [allDonations, token]);
+    }, [token, allCampaigns]);
 
     useEffect(() => {
         setCampaigns(allCampaigns);
@@ -112,7 +85,7 @@ function Donations({ allCampaigns, campaignError }) {
     }
 
     return (
-        <div className='sm:h-screen mx-3'>
+        <div className='sm:h-full mx-3'>
             <div className="text-md breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Home</a></li>
