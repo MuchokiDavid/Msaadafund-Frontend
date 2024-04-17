@@ -2,7 +2,8 @@ import React from 'react'
 
 function HomeCards({allCampaigns, allDonations}) {
   return (
-    <div>
+    <div className='p-4'>
+        <h1 className="text-left text-xl mt-5">Stats</h1>
         <div className="grid grid-cols-1 gap-4 px-4 mt-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 sm:px-8">
             <div className="flex items-center bg-white border rounded-sm overflow-hidden shadow">
                 <div className="p-4 bg-emerald-400">
