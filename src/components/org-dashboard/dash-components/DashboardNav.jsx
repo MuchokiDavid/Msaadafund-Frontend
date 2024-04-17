@@ -19,7 +19,7 @@ function DashboardNav({toggleSidebar}) {
         <nav className="bg-slate-700 text-white flex justify-between items-center p-4">
             <div>
               <a href='/' className="btn btn-ghost text-xl"><img class="w-18 h-12 mr-5" src ={logo} alt="logo"/> </a>
-              <button onClick={toggleSidebar} className="text-white focus:outline-none xl:hidden">
+              <button onClick={toggleSidebar} className="text-white focus:outline-none">
               <IoMenu className='w-8 h-8' />
               </button>
             </div>
