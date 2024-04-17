@@ -281,7 +281,7 @@ function CampainDetails() {
                     <input type="radio" name="my_tabs_2" role="tab" className="tab text-xl font-semibold" aria-label="Organiser"/>
                     <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
                         <div>
-                            <p>Organiser name</p>
+                            <p>Organiser</p>
                             <p className='text-xl'>{campaign.organisation.orgName}</p><br/>
                             <p>Address</p>
                             <p className='text-xl'>{campaign.organisation.orgAddress}</p><br/>
