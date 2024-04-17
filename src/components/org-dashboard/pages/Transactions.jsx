@@ -50,6 +50,35 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
       setFilteredTransactions(filtered);
   }, [searchTerm, transactions]);
 
+  //  Fetch data from server when with a given id
+  const handleFetchTransaction= async (id)=>{
+    if(token){
+      let url = `/api/v1.0/filter_transactions/${id}`;
+      try {
+        // console.log(url)
+          const response = await fetch(url, {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}`
+              },
+          });
+          const data = await response.json();
+          if (response.ok) {
+              setLoading(false);
+              console.log("Successful request to get transactions");
+              setTransactions(data);
+          } else {
+              setLoading(true);
+              throw new Error(data);
+          }
+      }
+      catch {
+          setErrors("Error getting donation data");
+      }
+    }
+  }
+
     useEffect(() => {
       if (!allCampaign || !allCampaign.length){return}
       allCampaign.forEach(campaign => {
@@ -59,33 +88,6 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
       });
     }, [token, filter, allCampaign]);
 
-    const handleFetchTransaction= async (id)=>{
-      if(token){
-        let url = `/api/v1.0/filter_transactions/${id}`;
-        try {
-          // console.log(url)
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-            });
-            const data = await response.json();
-            if (response.ok) {
-                setLoading(false);
-                console.log("Successful request to get transactions");
-                setTransactions(data);
-            } else {
-                setLoading(true);
-                throw new Error(data);
-            }
-        }
-        catch {
-            setErrors("Error getting donation data");
-        }
-      }
-    }
 
     //function to handle change in filter
     function handleFilterChange(e){
@@ -105,7 +107,7 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
   // console.log(searchTerm)
   return (
     <div>
-      <div className='sm:h-screen mx-3'>
+      <div className='sm:h-full mx-3'>
             <div className="text-md breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Home</a></li>
@@ -114,7 +116,7 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
             </div>
             <h1 className="mb-3 my-2 text-2xl font-bold leading-tight ">My Transactions</h1>
             <hr className='mb-0' />
-            {/* {errors && <p className='text-red-700'>{errors}</p>} */}
+            {errors && <p className='text-red-700'>{errors}</p>}
             <div className='mt-2 text-lg font-normal'>Select campaign to view transactions</div>
             <div className='flex flex-col'>
               <div className='py-2 -my-2 overflow-x-auto sm:-mx-2 sm:px-6 lg:-mx-2 lg:px-6'>
