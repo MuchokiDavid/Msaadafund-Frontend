@@ -19,7 +19,6 @@ function HomeCards({allCampaigns, allDonations}) {
     }
     let totalAmount=(getTotalAmount(donations))
     
-    console.log(allDonations)
   return (
     <div className='p-4'>
         <h1 className="text-left text-xl mt-5">Stats</h1>
