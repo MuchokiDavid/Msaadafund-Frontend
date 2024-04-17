@@ -19,7 +19,7 @@ const QuickLink = ({ icon, name, to }) => {
 
 function QuickLinks() {
     const quickLinksData = [
-        { icon: FaHome , name: 'Home' ,to:'/org/dashboard'},
+        { icon: FaHome , name: 'Home' ,to:'/'},
         { icon: MdOutlineCampaign, name: 'Create Campaign',to:'/org/dashboard/createcampaign' }, 
         { icon: MdOutlineViewCompactAlt, name: 'View Campaign',to:'/org/dashboard/campaigns' },
         { icon: FaDonate , name: 'Donations',to:'/org/dashboard/donations' },
