@@ -27,6 +27,7 @@ export const AuthProvider = ({ children }) => {
             setUser(data.user);
             setToken(data.tokens.access); 
             localStorage.setItem('token', data.tokens.access);
+            localStorage.setItem('user', data.user.username);
             setLoginMessage(data.message);
             setErrorMessage(""); 
           }
@@ -73,6 +74,7 @@ export const AuthProvider = ({ children }) => {
     setToken(null); 
     localStorage.removeItem('token'); 
     localStorage.removeItem('org'); 
+    localStorage.removeItem('user'); 
     setLoginMessage("")
   };
 
