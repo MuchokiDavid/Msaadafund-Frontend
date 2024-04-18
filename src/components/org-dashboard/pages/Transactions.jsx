@@ -128,9 +128,9 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
                         onChange={handleFilterChange}
                         value={filter}
                       >
-                        <option className='text-lg'>Select campaign</option>
+                        <option className='lg:text-lg sm:text-sm'>Select campaign</option>
                         {
-                          allCampaign.map((camp, i)=>(<option className='text-lg' key={i}>{camp.campaignName}</option>))
+                          allCampaign.map((camp, i)=>(<option className='lg:text-lg sm:text-sm' key={i}>{camp.campaignName}</option>))
                         }
                         
                       </select>
