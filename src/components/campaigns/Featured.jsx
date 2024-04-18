@@ -29,7 +29,9 @@ function Featured() {
     }
     // console.log(featuredCampaign)
     const handleCampaign = (campaignId) => {
-        navigate(`/campaign/${campaignId}`);
+        setTimeout(() => {
+          navigate(`/campaign/${campaignId}`);
+        }, 1000);
       };
 
   return (
