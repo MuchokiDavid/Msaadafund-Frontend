@@ -33,10 +33,10 @@ function Menus() {
                 </div>
                 <div className="navbar-end">
                     {token ? 
-                    <button onClick={logout} className="btn text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Log out</button>
+                    <button onClick={logout} className="btn text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log out</button>
                     :
                     <div className="dropdown dropdown-end absolute right-4 sm:z-20">
-                    <div tabIndex={0} role="button" className="btn m-1 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Log in</div>
+                    <div tabIndex={0} role="button" className="btn text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log in</div>
                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                       <li className='hover:bg-slate-300'><a href="/org/login">Organisation</a></li>
                       <li className='hover:bg-slate-300'><a href="/user/login">User</a></li>

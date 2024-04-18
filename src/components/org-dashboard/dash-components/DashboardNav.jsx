@@ -7,7 +7,7 @@ import logo from  '../../../assets/msaadaLogo.png';
 
 function DashboardNav({toggleSidebar}) {
     // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
-  let user= localStorage.getItem('user');
+  let user= localStorage.getItem('org');
   let token=localStorage.getItem("token");
   
   if(!token){

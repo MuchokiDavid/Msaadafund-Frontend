@@ -27,6 +27,7 @@ export const AuthProvider = ({ children }) => {
             setUser(data.user);
             setToken(data.tokens.access); 
             localStorage.setItem('token', data.tokens.access);
+            localStorage.setItem('user', data.user.username);
             setLoginMessage(data.message);
             setErrorMessage(""); 
           }
@@ -55,7 +56,7 @@ export const AuthProvider = ({ children }) => {
             setUser(data.organisation);
             setToken(data.tokens.access_token); 
             localStorage.setItem('token', data.tokens.access_token);
-            localStorage.setItem('user', data.organisation.orgName);
+            localStorage.setItem('org', data.organisation.orgName);
             setLoginMessage(data.message);
             setErrorMessage(""); 
           }
@@ -72,6 +73,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     setToken(null); 
     localStorage.removeItem('token'); 
+    localStorage.removeItem('org'); 
     localStorage.removeItem('user'); 
     setLoginMessage("")
   };
