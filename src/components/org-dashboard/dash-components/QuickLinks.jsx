@@ -11,7 +11,7 @@ const QuickLink = ({ icon, name, to }) => {
     const Icon = icon;
     return (
       <Link to={to} className="quick-link flex flex-col items-center justify-center">
-        <Icon className="text-6xl mb-1 text-blue-400 hover:outline hover:outline-2" />
+        <Icon className="text-6xl mb-1 text-blue-400 hover:outline hover:outline-2 h-10 w-10" />
         <p className="text-md">{name}</p>
       </Link>
     );
