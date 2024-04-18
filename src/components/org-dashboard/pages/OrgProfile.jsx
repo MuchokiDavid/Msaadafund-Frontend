@@ -75,7 +75,7 @@ function OrgProfile() {
     };
 
   return (
-    <div>
+    <div >
     <div className="text-md breadcrumbs ml-2">
     <ul>
       <li><a href='/org/dashboard'>Home</a></li> 
@@ -84,7 +84,7 @@ function OrgProfile() {
 
     </ul>
 </div>
-    <div className="container mx-auto">
+    <div className="container mx-auto xs:h-screen lg:h-fit lg:px-16">
   
       <h1 className="mb-3 my-2 text-2xl font-bold leading-tight">Personalize your Organisation</h1>
       <hr className='mb-2 mt-0'/>
