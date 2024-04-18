@@ -10,11 +10,16 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import { useAuth } from '../../context/usersContext';
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { MdOutlineViewCompactAlt } from "react-icons/md";
+import { useMediaQuery } from 'react-responsive';
 
-function Menubar({isOpen}) {
+function Menubar({isOpen, toggleSidebar}) {
   // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
   const {logout} = useAuth();
   const token = localStorage.getItem('token');
+
+   // Use react-responsive to get screen size
+   const isSmallScreen = useMediaQuery({ maxWidth: 767 });
+   const isMediumScreen = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
 
   const handleLogout = () => {
     logout()
@@ -24,6 +29,12 @@ function Menubar({isOpen}) {
   if (!token){
     handleLogout()
   }
+
+  const handleMenuItemClick = () => {
+    if (isOpen && (isSmallScreen || isMediumScreen)) {
+      toggleSidebar();
+    }
+  };
 
   return (
     <>
@@ -45,14 +56,14 @@ function Menubar({isOpen}) {
             },
           }}
         >
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard" />} icon={<FaHome />}> Dashboard</MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/createcampaign" />} icon={<MdOutlineCampaign className='w-6 h-6'/>}>Create Campaign</MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/campaigns" />} icon={<MdOutlineViewCompactAlt className='w-6 h-6'/>}>View Campaigns</MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/donations" />} icon={<FaDonate />}>Donations</MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/transaction" />} icon={<GrTransaction />}>Transactions </MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/accounts" />} icon={<BiMoneyWithdraw />}>Accounts </MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/profile" />} icon={<IoPersonCircle />}>Profile </MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' onClick={handleLogout} icon={<RiLogoutBoxLine />}>Logout </MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard" />} icon={<FaHome />} onClick={handleMenuItemClick}> Dashboard</MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/createcampaign" />} icon={<MdOutlineCampaign className='w-6 h-6'/>} onClick={handleMenuItemClick}>Create Campaign</MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/campaigns" />} icon={<MdOutlineViewCompactAlt className='w-6 h-6'/>} onClick={handleMenuItemClick}>View Campaigns</MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/donations" />} icon={<FaDonate />} onClick={handleMenuItemClick}>Donations</MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/transaction" />} icon={<GrTransaction />} onClick={handleMenuItemClick}>Transactions </MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/accounts" />} icon={<BiMoneyWithdraw />} onClick={handleMenuItemClick}>Accounts </MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' component={<Link to="/org/dashboard/profile" />} icon={<IoPersonCircle />} onClick={handleMenuItemClick}>Profile </MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-lg hover:underline shadow-md' onClick={() => { handleLogout(); handleMenuItemClick(); }} icon={<RiLogoutBoxLine />}>Logout </MenuItem>
         </Menu>
       </Sidebar>
     </>

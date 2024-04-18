@@ -107,7 +107,7 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
   // console.log(searchTerm)
   return (
     <div>
-      <div className='sm:h-full mx-3'>
+      <div className='h-screen mx-3'>
             <div className="text-md breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Home</a></li>
@@ -128,9 +128,9 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
                         onChange={handleFilterChange}
                         value={filter}
                       >
-                        <option className='text-lg'>Select campaign</option>
+                        <option className='lg:text-lg sm:text-sm'>Select campaign</option>
                         {
-                          allCampaign.map((camp, i)=>(<option className='text-lg' key={i}>{camp.campaignName}</option>))
+                          allCampaign.map((camp, i)=>(<option className='lg:text-lg sm:text-sm' key={i}>{camp.campaignName}</option>))
                         }
                         
                       </select>

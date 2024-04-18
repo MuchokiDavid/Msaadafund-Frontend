@@ -7,8 +7,9 @@ import logo from  '../../../assets/msaadaLogo.png';
 
 function DashboardNav({toggleSidebar}) {
     // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
-  let user= localStorage.getItem('org');
+  let current_org= localStorage.getItem('org');
   let token=localStorage.getItem("token");
+
   
   if(!token){
       window.location.replace("/org/login")
@@ -28,7 +29,7 @@ function DashboardNav({toggleSidebar}) {
           <div className="block ml-36">
               <h2 className="flex items-center">
                   <MdOutlineAccountCircle className="h-6 w-6 mr-2"/>
-                  {user && user}
+                  {current_org && current_org}
               </h2>
           </div>
         </nav>
