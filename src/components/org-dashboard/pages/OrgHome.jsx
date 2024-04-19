@@ -8,8 +8,8 @@ function OrgHome({allCampaigns,allDonations, allDonors}) {
     <div className='sm:h-fit'>
       <div className="text-md breadcrumbs ml-2">
           <ul>
-              <li><a href='/org/dashboard'>Home</a></li>
-              <li><a href='/org/dashboard/donations'>Donations</a></li>
+              <li><a href='/'>Home</a></li>
+              <li><a href='/org/dashboard'>Dashboard</a></li>
           </ul>
       </div>
       <h1 className="mb-3 my-2 text-2xl font-bold leading-tight ">Dashboard</h1>
