@@ -9,6 +9,7 @@ function ActiveCampaigns() {
     const [campaigns, setCampaigns] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true)
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -29,6 +30,7 @@ function ActiveCampaigns() {
           if (totalPagesFromHeader !== null && totalPagesFromHeader !== undefined) {
             setTotalPages(Number(totalPagesFromHeader));
           }
+          setLoading(false)
         } catch (error) {
           console.error('Error fetching data:', error);
         }
@@ -37,7 +39,7 @@ function ActiveCampaigns() {
       useEffect(() => {
         fetchCampaigns();
         //use polling  for real time updates
-        const intervalId = setInterval(fetchCampaigns, 10000);
+        const intervalId = setInterval(fetchCampaigns, 10000);//Polling done here to fetch campaign
         return () => clearInterval(intervalId);
       }, [currentPage, selectedCategory, fetchCampaigns]); // Include fetchCampaigns in the dependency array
     
@@ -97,6 +99,10 @@ function ActiveCampaigns() {
         const endDate = new Date(campaign.endDate);
         return endDate < currentDate;
       });
+
+      if(loading){
+        return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
+      }
   
       const calculateDaysLeft = (endDate) => {
         if (!endDate) return null;
