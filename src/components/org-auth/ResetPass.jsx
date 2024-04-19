@@ -73,15 +73,15 @@ const handleNextStep = () => {
       <section className="bg-gray-50 h-screen flex justify-center items-center">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a href="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 ">
-            <img className="w-18 h-12 mr-2" src={logo} alt="logo" />
+            {/* <img className="w-18 h-12 mr-2" src={logo} alt="logo" /> */}
           </a>
           <div className="w-full p-6 bg-white rounded-lg shadow md:mt-0 sm:max-w-md sm:p-8">
             <div className="flex justify-between mb-4">
-              <button onClick={handlePrevStep}>
+              <button onClick={handlePrevStep} className='hover:underline'>
                 {step === 1 ? 'Back to Login' : 'Previous'}
               </button>
               {step < 2 && (
-                <button onClick={handleNextStep}>
+                <button onClick={handleNextStep} className='hover:underline'>
                   Next
                 </button>
               )}
