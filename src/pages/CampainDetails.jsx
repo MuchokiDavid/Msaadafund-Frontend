@@ -25,7 +25,7 @@ function CampainDetails() {
     const [submit, setSubmitMessage] = useState();
     const [errors, setErrors] = useState();
     const phonePattern = /^(07|01)\d{8}$/;
-    const  navigate = useNavigate();
+    // const  navigate = useNavigate();
     const [loading, setLoading]= useState(false)
     // const currentlWebUrl= window.location.href
     const currentlWebUrl= `https://joker.vercel.app${window.location.pathname}`
@@ -44,7 +44,8 @@ function CampainDetails() {
         return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>;
     }
 
-    const handleDonateButton = () => {
+    const handleDonateButton = (e) => {
+        e.preventDefault();
         // if start date  is less than current date disable button 
         const currentDate = new Date();
         const startDate = new Date(campaign.startDate);
@@ -52,39 +53,59 @@ function CampainDetails() {
             toast.error("Campaign has not yet started");
             setSubmitMessage()
         } else {
-            // return input field
-            setDonationForm(true);
-            // console.log("can donate");
+            let phoneNo = phoneNum.replace(/^0+/, '');
+            let phoneNumber = "254" + phoneNo;
+            if (!phoneNum.match(phonePattern)) {
+                setErrors('Invalid Phone Number')
+            }
+            else {
+                axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,campaignId:campaignId})
+                .then((res)=>{
+                    // console.log(res)
+                    toast.success(res.data.message)
+                setDonationAmount("");
+                setPhoneNum("");
+                setErrors("")
+                setLoading(false)
+                })
+                .catch ((err)=>{  
+                    console.log(err)   
+                    // get error message from err.response.data.message
+                    toast.error("Donation failed, Try again!")
+                })    
+
+            }
+           
         }
     };
 
-    const handleDonation = (e) => {
-        e.preventDefault();
-        setLoading(true)
-        if (!phoneNum.match(phonePattern)) {
-            setErrors('Invalid Phone Number')
-        }
-        else{
-            let phoneNo = phoneNum.replace(/^0+/, '');
-            let phoneNumber = "254" + phoneNo;
-            axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,campaignId:campaignId})
-            .then((res)=>{
-                // console.log(res)
-                // toast.success(res.data.message)
-            setDonationAmount("");
-            setPhoneNum("");
-            setErrors("")
-            setLoading(false)
-            })
-            .catch ((err)=>{  
-                console.log(err)   
-                // get error message from err.response.data.message
-                toast.error("Donation failed, Try again!")
-            })
-        }
+    // const handleDonation = (e) => {
+    //     e.preventDefault();
+    //     setLoading(true)
+    //     if (!phoneNum.match(phonePattern)) {
+    //         setErrors('Invalid Phone Number')
+    //     }
+    //     else{
+    //         let phoneNo = phoneNum.replace(/^0+/, '');
+    //         let phoneNumber = "254" + phoneNo;
+    //         axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,campaignId:campaignId})
+    //         .then((res)=>{
+    //             // console.log(res)
+    //             // toast.success(res.data.message)
+    //         setDonationAmount("");
+    //         setPhoneNum("");
+    //         setErrors("")
+    //         setLoading(false)
+    //         })
+    //         .catch ((err)=>{  
+    //             console.log(err)   
+    //             // get error message from err.response.data.message
+    //             toast.error("Donation failed, Try again!")
+    //         })
+    //     }
         
         
-    };
+    // };
 
     const handleDays = () => {
         // if current date < start date  return days remaining for campaingn to start
@@ -191,7 +212,7 @@ function CampainDetails() {
                                     <h1 className='text-xl font-semibold'>Goal</h1>
                                     <p className="text-2xl font-bold text-green-500 mb-1">KES {campaign.targetAmount}</p>
                                 </div>
-                        <form onSubmit={handleDonation} className='px-8'>
+                        <form onSubmit={handleDonateButton} className='px-8'>
                             <div className='text-black'>
                                 {/* <h1 className="text-3xl font-bold mb-4">Donation Form</h1> */}
                                
