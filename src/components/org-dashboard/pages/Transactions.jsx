@@ -98,7 +98,7 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
         setSearchTerm(e.target.value);
     }
     if (loading) {
-        return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>;
+      return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
     }
     
   // console.log(allCampaigns)
@@ -143,19 +143,19 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
                         />
                       </div>                 
                   
-                  <div className="overflow-x-auto rounded-lg">
+                  <div className="overflow-x-auto">
                     <table className="table table-md table-pin-rows table-pin-cols table-auto">
                       <thead>
                         <tr>
-                          <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50'>ID</th>
-                          <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50'>AMOUNT</th>
-                          <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50'>STATUS</th>
-                          <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50'>RUNNING BALANCE</th>
-                          {/* <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50'>NARRATIVE</th> */}
-                          <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50'>TRANSACTION TYPE</th>
-                          <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50'>INVOICE ACCOUNT</th>
-                          <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50'>UPDATED AT</th>
-                          <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50'></th>
+                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
+                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>AMOUNT</th>
+                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>STATUS</th>
+                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>RUNNING BALANCE</th>
+                          {/* <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>NARRATIVE</th> */}
+                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>TRANSACTION TYPE</th>
+                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>INVOICE ACCOUNT</th>
+                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>UPDATED AT</th>
+                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'></th>
                         </tr>
                       </thead>
                       <tbody>

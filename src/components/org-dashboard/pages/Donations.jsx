@@ -81,7 +81,7 @@ function Donations({ allCampaigns, campaignError, allDonation, allDonors }) {
         window.location = '/org/login';
     }
     if (loading) {
-        return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>;
+        return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
     }
 
     return (
@@ -105,15 +105,15 @@ function Donations({ allCampaigns, campaignError, allDonation, allDonors }) {
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="px-3 py-2 border-gray-300 rounded-md mb-4 bg-gray-50 border h-11 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/3 p-2.5"
                         />
-                        <table className="min-w-full table-zebra">
+                        <table className="min-w-full table-zebra ">
                             {/* head */}
                             <thead>
                                 <tr>
-                                <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>ID</th>
-                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>Campaign</th>
-                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>Donor</th>
-                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>Amount</th>
-                                    <th className='px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-700 uppercase border-b border-gray-200 bg-gray-50 '>Donation Date</th>                            
+                                <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
+                                    <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Campaign</th>
+                                    <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donor</th>
+                                    <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Amount</th>
+                                    <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donation Date</th>                            
                                 </tr>
                             </thead>
                             <tbody>
