@@ -20,8 +20,8 @@ const QuickLink = ({ icon, name, to }) => {
 function QuickLinks() {
     const quickLinksData = [
         { icon: FaHome , name: 'Home' ,to:'/'},
-        { icon: MdOutlineCampaign, name: 'Create Campaign',to:'/org/dashboard/createcampaign' }, 
-        { icon: MdOutlineViewCompactAlt, name: 'View Campaign',to:'/org/dashboard/campaigns' },
+        { icon: MdOutlineCampaign, name: 'Add Campaign',to:'/org/dashboard/createcampaign' }, 
+        { icon: MdOutlineViewCompactAlt, name: 'My Campaign',to:'/org/dashboard/campaigns' },
         { icon: FaDonate , name: 'Donations',to:'/org/dashboard/donations' },
         { icon: GrTransaction , name: 'Transactions',to:'/org/dashboard/transaction' },
         { icon: BiMoneyWithdraw , name: 'Accounts' ,to:'/org/dashboard/accounts'},
