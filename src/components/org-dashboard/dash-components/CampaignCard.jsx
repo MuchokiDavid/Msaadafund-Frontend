@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { MdDelete } from "react-icons/md";
 import axios from 'axios';
 import { Toaster, toast } from 'react-hot-toast';
+import { Routes, Route } from 'react-router-dom';
 
 
 function CampaignCard({allCampaigns, campaignError}) {
@@ -50,11 +51,10 @@ function CampaignCard({allCampaigns, campaignError}) {
     // if(loading){
     //     return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>
     // }
+    
 
     const handleEditButton = (campaignId)=>{
         navigate(`/org/dashboard/campaigns/${campaignId}`)
-
-        console.log('edit button clicked')
     }
     const handleDeleteButton = async (campaignId)=>{
         try{
@@ -115,10 +115,11 @@ function CampaignCard({allCampaigns, campaignError}) {
                                     </div>
                                         </div>
                                 <div class="flex flex-wrap items-center mt-4 justify-between">
-                                    <div class="text-xs mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded-2xl">
-                                        <button className='h-6'>Withdraw</button>
+                                    <div class="text-sm mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded font-bold">
+                                        <button
+                                        className='h-6'>Transact</button>
                                     </div>
-                                    <div class="text-xs mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded-2xl">
+                                    <div class="text-sm mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded font-bold">
                                     <button onClick={()=>handleEditButton(item.id) } className='h-6'>Edit Campaign</button>
                                     </div>
                                     <div>
