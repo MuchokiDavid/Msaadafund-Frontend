@@ -9,7 +9,7 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
     const [transactions, setTransactions] = useState([])
     const [filter, setFilter] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(10);
+    const [itemsPerPage] = useState(15);
     const [filteredTransactions, setFilteredTransactions] = useState([]);
 
      // Calculate total pages based on the number of items and items per page
