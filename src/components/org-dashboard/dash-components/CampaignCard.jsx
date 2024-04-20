@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { MdDelete } from "react-icons/md";
 import axios from 'axios';
 import { Toaster, toast } from 'react-hot-toast';
+import { Routes, Route } from 'react-router-dom';
 
 
 function CampaignCard({allCampaigns, campaignError}) {
@@ -50,11 +51,10 @@ function CampaignCard({allCampaigns, campaignError}) {
     // if(loading){
     //     return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>
     // }
+    
 
     const handleEditButton = (campaignId)=>{
         navigate(`/org/dashboard/campaigns/${campaignId}`)
-
-        console.log('edit button clicked')
     }
     const handleDeleteButton = async (campaignId)=>{
         try{
@@ -82,14 +82,15 @@ function CampaignCard({allCampaigns, campaignError}) {
         <div className='sm:h-screen ml-4'>
             <div className="text-md breadcrumbs ml-2">
                 <ul>
-                    <li><a href='/org/dashboard'>Home</a></li> 
+                    <li><a href='/org/dashboard'>Dashboard</a></li> 
                     <li><a href='/org/dashboard/campaigns'>View Campaign</a></li> 
                 </ul>
             </div>
             <h2 className="mb-3 text-2xl font-bold leading-tight ">My Campaigns</h2>
             <hr className='mb-4'/>
             {errors&& <p className='text-red-700'>{errors}</p>}
-            <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:max-w-full">
+            <a href='/org/dashboard/createcampaign' className='text-blue-700 mb-4 text-lg hover:underline'>Add campaign+</a>
+            <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:max-w-full">
                 {campaigns && campaigns.map((item) =>{
                 return (
                     <div key={item.id} class="m-auto overflow-hidden rounded-lg shadow-lg cursor-pointer h-90 md:w-80 w-full">
@@ -115,10 +116,11 @@ function CampaignCard({allCampaigns, campaignError}) {
                                     </div>
                                         </div>
                                 <div class="flex flex-wrap items-center mt-4 justify-between">
-                                    <div class="text-xs mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded-2xl">
-                                        <button className='h-6'>Withdraw</button>
+                                    <div class="text-sm mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded font-bold">
+                                        <button
+                                        className='h-6'>Transact</button>
                                     </div>
-                                    <div class="text-xs mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded-2xl">
+                                    <div class="text-sm mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded font-bold">
                                     <button onClick={()=>handleEditButton(item.id) } className='h-6'>Edit Campaign</button>
                                     </div>
                                     <div>
