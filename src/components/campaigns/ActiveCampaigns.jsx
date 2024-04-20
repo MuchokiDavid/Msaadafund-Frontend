@@ -119,6 +119,13 @@ function ActiveCampaigns() {
     <Menus/>
     <div className='flex items-center justify-center p-4 bg-slate-50'>
         <div className="mb-1 flex flex-col sm:flex-row items-center ">
+          <div className="relative flex" data-twe-input-wrapper-init data-twe-input-group-ref>
+            <label className="input input-bordered flex items-center gap-2  dark:bg-gray-900 dark:border dark:border-gray-400">
+              <input type="text" className="grow" onChange={handleSearchChange} placeholder="Search active campaign..." />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" /></svg>
+            </label>
+          </div>
+
           <select
             id="categoryFilter"
             onChange={handleCategoryChange}
@@ -127,15 +134,10 @@ function ActiveCampaigns() {
             style={{ minWidth: '150px' }}
           >
             {categories.map(category => (
-              <option className='text-lg' key={category} value={category}>{category}</option>
+              <option className='text-xs lg:text-lg xs:w-full' key={category} value={category}>{category}</option>
             ))}
           </select>
-          <div className="relative flex" data-twe-input-wrapper-init data-twe-input-group-ref>
-            <label className="input input-bordered flex items-center gap-2  dark:bg-gray-900 dark:border dark:border-gray-400">
-              <input type="text" className="grow" onChange={handleSearchChange} placeholder="Search active campaign..." />
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" /></svg>
-            </label>
-          </div>
+
         </div>
       </div>
     <h1 className="text-center text-2xl font-bold mb-4 bg-slate-300 h-10 p-1">Active Campaigns</h1>  
@@ -150,9 +152,10 @@ function ActiveCampaigns() {
             <div key={campaign.id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden hover:cursor-pointer" onClick={()=> handleCampaign(campaign.id)}>
               <img className="w-full rounded-t-lg h-52" src={campaign.banner} alt={campaign.campaignName} />
               <div className="py-4 flex-grow px-2">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{campaign.campaignName.slice(0,20)}</h5>
-                <a href=''><p className="mb-0 text-lg font-semibold text-basemb-3 text-blue-800 hover:underline">{campaign.organisation.orgName}</p></a>
+                <h5 className="mb-2 text-xl tracking-tight text-gray-900">{campaign.campaignName.slice(0,20)}</h5>
+                <a href=''><p className="mb-0 text-lg text-basemb-3 text-blue-800 hover:underline">{campaign.organisation.orgName}</p></a>
                 <p className="mb-3 font-normal text-gray-700 text-lg">{campaign.description.slice(0,25)}...</p>
+                <p className='text-blue-800 hover:underline'><a onClick={()=> handleCampaign(campaign.id)}>Show more</a></p>
                 
                  {/* <button onClick={()=> handleCampaign(campaign.id)} class="inline-flex items-center mt-0 mb-3 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                     Donate now

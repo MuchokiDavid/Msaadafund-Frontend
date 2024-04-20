@@ -36,7 +36,7 @@ function Featured() {
 
   return (
     <div className='container mx-auto h-full bg-gray-50 rounded-lg'>
-    <h1 className="text-3xl font-bold my-4 text-center">Featured Campaigns</h1>
+    <h1 className="text-xl lg:text-3xl font-bold my-4 text-center">Featured Campaigns</h1>
     <div className='my-4 mx-3 justify-center'>
         
         <div className="mx-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:max-w-full">
@@ -45,9 +45,10 @@ function Featured() {
             <div key={campaign.id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow" onClick={()=> handleCampaign(campaign.id)}>
               <img className="w-full rounded-t-lg h-52" src={campaign.banner} alt={campaign.campaignName} />
               <div className="px-6 py-4 flex-grow">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 overflow-hidden">{campaign.campaignName.slice(0,20)}</h5>
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 overflow-hidden whitespace-nowrap">{campaign.campaignName}</h5>
                 <p className="mb-0 text-lg font-semibold text-basemb-3 text-blue-800 hover:underline">{campaign.organisation.orgName}</p>
-                <p className="mb-3 font-normal text-gray-700 lg:text-lg overflow-hidden">{campaign.description.slice(0,20)}...</p>
+                <p className="mb-3 font-normal text-gray-700 lg:text-lg overflow-hidden">{campaign.description.slice(0,25)}...</p>
+                <p className='text-blue-800 hover:underline'><a onClick={()=> handleCampaign(campaign.id)}>Show more</a></p>
                </div> 
                {/* <button onClick={()=> handleCampaign(campaign.id)} class="inline-flex items-center mt-0 mx-5 mb-3 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
                       Read more
@@ -55,6 +56,7 @@ function Featured() {
                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                       </svg>
                   </button> */}
+                  
             </div>
           ))}
         </div>
