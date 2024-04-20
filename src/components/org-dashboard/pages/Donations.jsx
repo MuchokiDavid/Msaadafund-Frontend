@@ -9,7 +9,7 @@ function Donations({ allCampaigns, campaignError, allDonation, allDonors }) {
     const [campaigns, setCampaigns] = useState();
     const [donors, setDonors] = useState(allDonors);
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(10);
+    const [itemsPerPage] = useState(15);
     const [filteredDonations, setFilteredDonations] = useState([]);
 
     const token = localStorage.getItem('token');
@@ -85,7 +85,7 @@ function Donations({ allCampaigns, campaignError, allDonation, allDonors }) {
     }
 
     return (
-        <div className='sm:h-full lg:h-fit mx-3'>
+        <div className='sm:h-screen lg:h-fit mx-3'>
             <div className="text-md breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Home</a></li>
