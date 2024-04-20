@@ -12,7 +12,7 @@ function OrgHome({allCampaigns,allDonations, allDonors}) {
               <li><a href='/org/dashboard'>Dashboard</a></li>
           </ul>
       </div>
-      <h1 className="mb-3 my-2 text-2xl font-bold leading-tight ">Dashboard</h1>
+      <h1 className="mb-3 my-2 mx-3 text-2xl font-bold leading-tight ">Dashboard</h1>
       <hr className='mb-0' />
       <QuickLinks/>
       <HomeCards allCampaigns={allCampaigns} allDonations= {allDonations}/>
