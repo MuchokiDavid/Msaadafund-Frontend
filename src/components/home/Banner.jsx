@@ -1,99 +1,503 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Featured from '../campaigns/Featured'
+import { prettyNumber } from '@based/pretty-number'
 
 function Banner() {
   const navigate = useNavigate()
+  const[allDonations,setAllDonations]= useState([])
+  const [allOrganisations, setAllOrganisations] = useState([])
+  const [allCampaign,setAllCampaign] = useState([])
+  const[loading, setLoading] = useState(true)
+  const[errors, setErrors] = useState()
+
+  useEffect(() => {
+    const getDonations = async () => {
+      try {
+          const response = await fetch('/api/v1.0/all_donations', {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+          });
+          const data = await response.json();
+          if (response.ok) {
+              setLoading(true);
+              // console.log("Successful request to get donors");
+              setAllDonations(data.message);
+              setLoading(false);
+          } else {
+              throw new Error(data);
+          }
+      }
+      catch {
+          setErrors("Error getting donation data");
+      }
+  }
+  getDonations();
+  }, [])
+
+  useEffect(() => {
+    const getOrganisation = async () => {
+      try {
+          const response = await fetch('/api/v1.0/organisations', {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+          });
+          const data = await response.json();
+          if (response.ok) {
+              setLoading(true);
+              // console.log("Successful request to get donors");
+              setAllOrganisations(data);
+              setLoading(false);
+          } else {
+              throw new Error(data);
+          }
+      }
+      catch {
+          setErrors("Error getting donation data");
+      }
+  }
+  getOrganisation();
+  }, [])
+
+  useEffect(() => {
+    const getCampaigns = async () => {
+      try {
+          const response = await fetch('/api/v1.0/get_all_campaigns', {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+          });
+          const data = await response.json();
+          if (response.ok) {
+              setLoading(true);
+              // console.log("Successful request to get donors");
+              setAllCampaign(data);
+              setLoading(false);
+          } else {
+              throw new Error(data);
+          }
+      }
+      catch {
+          setErrors("Error getting donation data");
+      }
+  }
+  getCampaigns();
+  }, [])
+  
+  function getTotalAmount(donationsArray) {
+    let totalAmount = 0;
+    for (let donation of donationsArray) {
+        totalAmount += donation.amount;
+    }
+    return totalAmount;
+}
+let totalAmount=(allDonations && getTotalAmount(allDonations))
 
   return (
     <div>
-        <div class="relative h-screen w-full">
-          <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/1900/850" alt="Background Image" class="object-cover object-center w-full h-full" />
-          {/* <img src="" alt="Background Image" class="absolute inset-0 w-full h-full object-cover filter blur-sm"> */}
-          <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-          <div class="absolute inset-0 flex flex-col items-center justify-center align-middle">
-              <h1 class="text-5xl text-white font-bold">Welcome to Our Community of Changemakers!</h1>
-              <p class="text-xl text-white mt-4 text-center">Join us in our mission to create a better world for all. Together, we can make a positive impact on the lives of those in need.<br/> Explore our platform and discover how you can contribute to meaningful causes today.</p>
-              <a href='/campaign'><button className="sm:my-6 md:mt-8 text-white uppercase py-4 text-base font-light px-10 border border-white hover:bg-white hover:bg-opacity-10">Get started</button></a>
+        <div className="relative h-screen w-full">
+          <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/1900/850" alt="Background Image" className="object-cover object-center w-full h-full" loading='lazy' />
+          {/* <img src="" alt="Background Image" className="absolute inset-0 w-full h-full object-cover filter blur-sm"> */}
+          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+          <div className="absolute inset-0 flex flex-col items-center justify-center align-middle px-4">
+              <h1 className="text-2xl lg:text-5xl text-white font-bold text-center">Welcome to Our Community of Changemakers!</h1>
+              <p className="text-lg lg:text-xl text-white mt-4 text-center">Join us in our mission to create a better world for all. Together, we can make a positive impact on the lives of those in need.<br/> Explore our platform and discover how you can contribute to meaningful causes today.</p>
+              <a href='/campaign'><button className="sm:my-6 rounded-lg md:mt-8 text-white uppercase py-4 text-base font-light px-10 border border-blue-600 hover:bg-blue-600 hover:bg-opacity-9">Get started</button></a>
           </div>
       </div>
-      <div className="bg-sky-950 py-20">
-        <div className="max-w-screen-lg mx-auto flex justify-between items-center">
-          <div className="max-w-xl">
+      <div className="bg-sky-950 py-20 px-4">
+        <div className="max-w-screen-lg mx-auto flex flex-col lg:flex-row justify-between items-center">
+          <div className="max-w-xl mb-8 lg:mb-0 lg:mr-8">
             <h2 className="font-black text-white text-3xl mb-4">Be Part of Something Bigger!</h2>
-            <p className="text-base text-white">Join a community dedicated to driving social change and improving lives. Whether you're passionate about education, healthcare, environmental conservation, or humanitarian aid, there's a place for you here. Start your impact journey today.</p>
+            <p className="text-base text-white">
+              Join a community dedicated to driving social change and improving lives. Whether
+              you're passionate about education, healthcare, environmental conservation, or
+              humanitarian aid, there's a place for you here. Start your impact journey today.
+            </p>
           </div>
-          <button className="text-white uppercase py-3 text-base px-10 border border-gray-300 hover:bg-sky-500 hover:bg-opacity-10">How it works</button>
+          <button className="text-white rounded-lg uppercase py-3 text-base px-10 border border-blue-600 hover:bg-blue-600 hover:bg-opacity-4">
+            How it works
+          </button>
         </div>
       </div>
       <Featured/>
-      
-      <div className="py-3 relative overflow-hidden bg-white">
-        <div className="grid grid-cols-2 max-w-screen-lg mx-auto">
-          <div className="w-full flex flex-col items-end pr-16">
-            <h2 className="text-[#64618C] font-bold text-2xl max-w-xs text-right mb-12 mt-10">Whether you need Assistance</h2>
-            <div className="h-full mt-auto overflow-hidden relative">
-              <img src="https://img.freepik.com/free-vector/computer-online-charity-donation_24877-54452.jpg?w=740&t=st=1712950950~exp=1712951550~hmac=ba081d24a1f69dd7a1f062eb668522865498adce912871ae865e4200f98620d9/800/600" className="h-full w-full object-contain" alt=""/>
+
+      <section>
+        <div className="mx-auto max-w-screen-xl px-4 py-4 sm:px-6 sm:py-4 lg:px-8 lg:py-4 sm:text-center">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+            <div className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full">
+              <img
+                alt=""
+                src='https://loremflickr.com/g/600/400/kenya'
+                // src="https://img.freepik.com/free-vector/computer-online-charity-donation_24877-54452.jpg?w=740&t=st=1712950950~exp=1712951550~hmac=ba081d24a1f69dd7a1f062eb668522865498adce912871ae865e4200f98620d9"
+                className="absolute inset-0 h-full w-full object-cover"
+                loading='lazy'
+              />
             </div>
-          </div>
-          <div className="py-20 bg-slate-100 relative before:absolute before:h-full before:w-screen before:bg-sky-950 before:top-0 before:left-0">
-            <div className="relative z-20 pl-12">
-              <h2 className="text-[#f7d0b6] font-black text-5xl leading-snug mb-10">Msaada Mashinani: Empowering Change, One Donation at a Time</h2>
-              <p className="text-white text-sm">
-              Take the first step towards making a difference. Our platform offers you the opportunity to support various causes and organizations working tirelessly to bring about positive change. Start your journey with us today.
+
+            <div className="lg:py-24">
+              <h2 className="text-3xl font-bold sm:text-4xl">Join Us and Make a Difference</h2>
+
+              <p className="mt-4 text-gray-600">
+              Welcome to Msaada – your gateway to making a difference! Discover a seamless platform where you can effortlessly support diverse campaigns by various organizations. 
+              Whether it's lending a helping hand, spreading awareness, or contributing resources, Msaada empowers you to be a catalyst for positive change. 
+              Join us in creating a better tomorrow, one campaign at a time.
               </p>
-              <a href='/user/signup'><button className="mt-8 text-white uppercase py-3 text-sm px-10 border border-white hover:bg-white hover:bg-opacity-10">Sign Up Now</button></a>
+              {/* <div class="flex justify-center"> */}
+                <a
+                href="/campaign"
+                className="mt-8 inline-block rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-gray-900 focus:outline-none focus:ring focus:ring-blue-400"
+              >
+                Get Started Today
+              </a>
+              
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="py-3 relative overflow-hidden bg-white">
-        <div className="grid grid-cols-2 max-w-screen-lg mx-auto">
+      <section className="bg-sky-950 text-white">
+        <div className="mx-auto px-4 py-16 lg:flex h-fit lg:items-center">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1
+              className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-4xl"
+            >
+              Empower change
+            </h1>
+
+            <p className="mx-2 mt-4 sm:text-md/relaxed">
+            Discover the power of collective action. 
+            At Msaada, we believe in the strength of community and the impact we can create together. 
+            Join us in our mission to empower change, support worthy causes, and make a positive difference in the world. 
+            Together, we can achieve remarkable things.
+            </p>
+
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <a
+                className="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+                href="/campaign"
+              >
+                Get Started
+              </a>
+
+              <a
+                className="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
+                href="#"
+              >
+                Learn More
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="mx-auto max-w-screen-xl px-6 py-4 sm:px-6 sm:py-2 sm:mb-4 lg:px-8">
           
-
-          <div className="py-20 bg-slate-100 relative before:absolute before:h-full before:w-screen before:bg-emerald-700 before:top-0 before:right-0">
-            <div className="relative z-20 pl-12">
-              <h2 className="text-white font-black text-5xl leading-snug mb-10">Join Us and Make a Difference</h2>
-              <p className="text-white text-lg">
-              Become part of our community and make a positive impact. Sign up now to start receiving donations and support for your cause.
-              </p>
-              <button onClick={()=> navigate('/org/signup')} className=" mt-8 text-white uppercase py-3 text-base px-10 border border-gray-300 hover:bg-sky-500 hover:bg-opacity-10"> 
-              Get Involved
-              </button>
+          <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+            <div className="relative h-64 overflow-hidden sm:h-80 lg:h-full">
+              <img
+                alt=""
+                src="https://loremflickr.com/g/600/400/africa"
+                className="absolute inset-0 h-full w-full object-cover"
+                loading='lazy'
+              />
             </div>
-          </div>
-          <div className="w-full flex flex-col pl-16">
-            <h2 className="text-[#64618C] font-bold text-2xl max-w-xs text-left mb-12 mt-10">Spread love to the community around you</h2>
-            <div className="h-full mt-auto overflow-hidden relative">
-            {/* <img src="https://images.unsplash.com/photo-1548102245-c79dbcfa9f92?q=80&w=1392&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/800/600" className="h-full w-full object-contain" alt=""/> */}
-              <img src="https://images.unsplash.com/photo-1548102245-c79dbcfa9f92?q=80&w=1392&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/800/600" className="h-full w-full object-contain" alt=""/>
-            </div>
-          </div>
 
-        </div>
-      </div>
-
-      <div className="py-2 relative overflow-hidden bg-white">
-        <div className="grid grid-cols-2 max-w-screen-lg mx-auto">
-          <div className="w-full flex flex-col items-end pr-16">
-            <h2 className="text-[#64618C] font-bold text-2xl max-w-xs text-right mb-12 mt-10">Whether you need Assistance</h2>
-            <div className="h-full mt-auto overflow-hidden relative">
-              <img src="https://picsum.photos/800/600" className="h-full w-full object-contain" alt=""/>
-            </div>
-          </div>
-
-          <div className="py-20 bg-slate-100 relative before:absolute before:h-full before:w-screen before:bg-sky-950 before:top-0 before:left-0">
-            <div className="relative z-20 pl-12">
-              <h2 className="text-[#f7d0b6] font-black text-5xl leading-snug mb-10">Msaada mashinani is here <br/>to help you</h2>
-              <p className="text-white text-md">
-              Join us in our mission to create a better world for all. Msaada Mashinani is your platform to make a real difference in the lives of those in need.<br/> With our easy-to-use interface and secure payment options, donating has never been more accessible. Start your journey with us today and be a part of something truly impactful.
-              </p>
-              <button onClick={()=> navigate('/campaign')} className="mt-8 text-white uppercase py-3 text-sm px-10 border border-white hover:bg-white hover:bg-opacity-10">Donate now</button>
+            <div className="lg:py-16">
+              <article className="space-y-4 text-gray-600 sm:text-center">
+              <div className="max-w-3xl">
+                <h2 className="text-3xl font-bold sm:text-3xl">
+                Empower Your Campaigns with Msaada.
+                </h2>
+              </div>
+                <p>
+                Unlock new possibilities for your campaigns with Msaada! Our platform offers a streamlined solution to amplify your reach and impact. 
+                By joining Msaada, you gain access to a vibrant community of volunteers and supporters, allowing you to expand your network and achieve your goals more effectively. 
+                Sign up today to elevate your campaigns and make a lasting difference with Msaada!
+                </p>
+                <p className="mb-8 mt-4 px-4 leading-relaxed">Oh, and the best bit...
+                      <span className="text-sky-600 font-bold">It's free!</span></p>
+                      <div>
+                      <a className="inline-block py-4 px-8 leading-none text-white border border-blue-600 bg-blue-600 hover:bg-transparent hover:text-gray-900 rounded shadow text-sm font-bold"
+                          href="/org/signup">Sign-up for free</a>
+                  </div>
+              </article>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section className="bg-white">
+        <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Trusted by many</h2>
+
+            <p className="mt-4 text-gray-500 sm:text-xl">
+            Become part of our community and make a positive impact. 
+            Sign up now to start receiving donations and support for your cause.
+            </p>
+          </div>
+
+          <div className="mt-8 sm:mt-12">
+            <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <div className="flex flex-col rounded-lg border border-gray-200 px-4 py-8 text-center">
+                <dt className="order-last text-lg font-medium text-gray-400">Total Contributions</dt>
+
+                <dd className="text-4xl font-extrabold text-sky-800 md:text-5xl">{prettyNumber(totalAmount, 'number-short')}</dd>
+              </div>
+
+              <div className="flex flex-col rounded-lg border border-gray-200 px-4 py-8 text-center">
+                <dt className="order-last text-lg font-medium text-gray-500">Total Organisations</dt>
+
+                <dd className="text-4xl font-extrabold text-sky-800 md:text-5xl">{prettyNumber(allOrganisations.length, 'number-short')}</dd>
+              </div>
+
+              <div className="flex flex-col rounded-lg border border-gray-200 px-4 py-8 text-center">
+                <dt className="order-last text-lg font-medium text-gray-500">Total Campaigns</dt>
+
+                <dd className="text-4xl font-extrabold text-sky-800 md:text-5xl">{prettyNumber(allCampaign.length,'number-short')}</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white">
+        <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+            What people say about us
+          </h2>
+
+          <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
+            <blockquote className="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8">
+              <div className="flex items-center gap-4">
+                <img
+                  alt=""
+                  src="https://w7.pngwing.com/pngs/524/676/png-transparent-computer-icons-user-my-account-icon-cdr-eps-rim-thumbnail.png"
+                  className="size-14 rounded-full object-cover"
+                />
+
+                <div>
+                  <div className="flex justify-center gap-0.5 text-green-500">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                  </div>
+
+                  <p className="mt-0.5 text-lg font-medium text-gray-900">Jane</p>
+                </div>
+              </div>
+
+              <p className="mt-4 text-gray-700">
+              Using Msaada Donation App has made giving back to my community so much easier. 
+              I love how simple it is to find causes I care about and make a difference with just a few taps on my phone. 
+              Thank you for creating such a user-friendly platform!
+              </p>
+            </blockquote>
+
+            <blockquote className="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8">
+              <div className="flex items-center gap-4">
+                <img
+                  alt=""
+                  src="https://w7.pngwing.com/pngs/524/676/png-transparent-computer-icons-user-my-account-icon-cdr-eps-rim-thumbnail.png"
+                  className="size-14 rounded-full object-cover"
+                />
+
+                <div>
+                  <div className="flex justify-center gap-0.5 text-green-500">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                  </div>
+
+                  <p className="mt-0.5 text-lg font-medium text-gray-900">David</p>
+                </div>
+              </div>
+
+              <p className="mt-4 text-gray-700">
+              Msaada Donation App has become an integral part of my charitable giving. 
+              The ability to track my donations, receive updates on impact, and discover new causes to support has made my philanthropic efforts more meaningful and impactful. 
+              I highly recommend it to anyone looking to make a difference.
+              </p>
+            </blockquote>
+
+            <blockquote className="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8">
+              <div className="flex items-center gap-4">
+                <img
+                  alt=""
+                  src="https://w7.pngwing.com/pngs/524/676/png-transparent-computer-icons-user-my-account-icon-cdr-eps-rim-thumbnail.png"
+                  className="size-14 rounded-full object-cover"
+                />
+
+                <div>
+                  <div className="flex justify-center gap-0.5 text-green-500">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                  </div>
+
+                  <p className="mt-0.5 text-lg font-medium text-gray-900">Kelvin</p>
+                </div>
+              </div>
+
+              <p className="mt-4 text-gray-700">
+              I've tried several donation apps in the past, but none compare to Msaada. 
+              The interface is intuitive, the selection of charities is vast, and the transparency in how my donations are utilized is commendable. 
+              It's reassuring to know that my contributions are truly making a difference.
+              </p>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      
     </div>
   )
 }
