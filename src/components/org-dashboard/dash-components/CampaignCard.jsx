@@ -89,6 +89,7 @@ function CampaignCard({allCampaigns, campaignError}) {
             <h2 className="mb-3 text-2xl font-bold leading-tight ">My Campaigns</h2>
             <hr className='mb-4'/>
             {errors&& <p className='text-red-700'>{errors}</p>}
+            <a href='/org/dashboard/createcampaign' className='text-blue-700 mb-4 text-lg hover:underline'>Add campaign+</a>
             <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:max-w-full">
                 {campaigns && campaigns.map((item) =>{
                 return (
