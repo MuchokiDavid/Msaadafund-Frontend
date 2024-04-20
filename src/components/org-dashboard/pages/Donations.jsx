@@ -88,7 +88,7 @@ function Donations({ allCampaigns, campaignError, allDonation, allDonors }) {
         <div className='sm:h-screen lg:h-fit mx-3'>
             <div className="text-md breadcrumbs ml-2">
                 <ul>
-                    <li><a href='/org/dashboard'>Home</a></li>
+                    <li><a href='/org/dashboard'>Dashboard</a></li>
                     <li><a href='/org/dashboard/donations'>Donations</a></li>
                 </ul>
             </div>

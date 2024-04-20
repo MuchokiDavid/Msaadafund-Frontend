@@ -82,7 +82,7 @@ function CampaignCard({allCampaigns, campaignError}) {
         <div className='sm:h-screen ml-4'>
             <div className="text-md breadcrumbs ml-2">
                 <ul>
-                    <li><a href='/org/dashboard'>Home</a></li> 
+                    <li><a href='/org/dashboard'>Dashboard</a></li> 
                     <li><a href='/org/dashboard/campaigns'>View Campaign</a></li> 
                 </ul>
             </div>
@@ -90,7 +90,7 @@ function CampaignCard({allCampaigns, campaignError}) {
             <hr className='mb-4'/>
             {errors&& <p className='text-red-700'>{errors}</p>}
             <a href='/org/dashboard/createcampaign' className='text-blue-700 mb-4 text-lg hover:underline'>Add campaign+</a>
-            <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:max-w-full">
+            <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:max-w-full">
                 {campaigns && campaigns.map((item) =>{
                 return (
                     <div key={item.id} class="m-auto overflow-hidden rounded-lg shadow-lg cursor-pointer h-90 md:w-80 w-full">

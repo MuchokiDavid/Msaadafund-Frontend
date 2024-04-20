@@ -78,7 +78,7 @@ function OrgProfile() {
     <div >
     <div className="text-md breadcrumbs ml-2">
     <ul>
-      <li><a href='/org/dashboard'>Home</a></li> 
+      <li><a href='/org/dashboard'>Dashboard</a></li> 
       <li><a href='/org/dashboard/profile'>Profile</a></li> 
       {/* <li><a href='/org/dashboard/profile'>Password Reset</a></li>  */}
 

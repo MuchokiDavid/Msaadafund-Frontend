@@ -110,7 +110,7 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
       <div className='h-screen mx-3'>
             <div className="text-md breadcrumbs ml-2">
                 <ul>
-                    <li><a href='/org/dashboard'>Home</a></li>
+                    <li><a href='/org/dashboard'>Dashboard</a></li>
                     <li><a href='/org/dashboard/transaction'>Transactions</a></li>
                 </ul>
             </div>

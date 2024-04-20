@@ -98,7 +98,7 @@ function Accounts() {
         <div className='main-page-container h-screen lg:h-fit'>
                <div className="text-md breadcrumbs mb-4">
                 <ul>
-                    <li><a href='/org/dashboard'>Home</a></li>
+                    <li><a href='/org/dashboard'>Dashboard</a></li>
                     <li><a href='/org/dashboard/accounts'>Accounts</a></li>
                 </ul>
             </div>

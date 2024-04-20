@@ -153,7 +153,7 @@ function UpdateCampaign() {
         <div className="p-8">
             <div className="text-md breadcrumbs mb-4">
                 <ul>
-                    <li><a href='/org/dashboard'>Home</a></li>
+                    <li><a href='/org/dashboard'>Dashboard</a></li>
                     <li><a href='/org/dashboard/campaigns'>View Campaign</a></li>
                     <li><a>{campaignData.campaignName}</a></li>
                 </ul>
