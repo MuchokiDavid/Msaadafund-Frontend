@@ -177,11 +177,11 @@ function ActiveCampaigns() {
                       <div>
                         <dt className="sr-only">Name</dt>
 
-                        <dd className="font-medium overflow-hidden text-lg">{campaign.campaignName}</dd>
+                        <dd className="font-medium overflow-hidden text-lg whitespace-nowrap">{campaign.campaignName}</dd>
                       </div>
                       <div>
                         <dt className="sr-only">Organiser</dt>
-                        <dd><a href='#' className='text-blue-700 hover:underline'>{campaign.organisation.orgName}</a></dd>
+                        <dd><a href='#' className='text-blue-700 hover:underline whitespace-nowrap'>{campaign.organisation.orgName}</a></dd>
                         {/* <a href='#' className='text-blue-700 hover:underline text-base overflow-hidden'><dd>{campaign.organisation.orgName}</dd></a> */}
                       </div>
                     </dl>
