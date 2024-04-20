@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect,useCallback } from 'react';
 import Menus from '../reusables/Menus';
 import Footer from '../reusables/Footer';
-import moment from 'moment';
 import InActiveCampaigns from './UpcomingCampaigns';
+import { prettyNumber } from '@based/pretty-number'
 
 function ActiveCampaigns() {
     const [campaigns, setCampaigns] = useState([]);
@@ -113,6 +113,15 @@ function ActiveCampaigns() {
           return Math.ceil(differenceInTime / (1000 * 3600 * 24));
         }
       };
+
+      function getTotalAmount(donationsArray) {
+        let totalAmount = 0;
+        for (let donation of donationsArray) {
+            totalAmount += donation.amount;
+        }
+        return totalAmount;
+    }
+
     // console.log(campaigns)
   return (
     <>
@@ -141,42 +150,112 @@ function ActiveCampaigns() {
         </div>
       </div>
     <h1 className="text-center text-2xl font-bold mb-4 bg-slate-300 h-10 p-1">Active Campaigns</h1>  
-    <div className='container mx-auto overflow-x-hidden pb-4'>
+    <div className='mx-auto overflow-x-hidden pb-4'>
         
         {activeCampaigns.length===0 ?
         <div className="text-xl mx-4">No Active campaigns</div>
         :
-        <div className="mx-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:max-w-full">
+        <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:max-w-full">
           {filterCampaigns().map((campaign) => {
             return (
-            <div key={campaign.id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden hover:cursor-pointer" onClick={()=> handleCampaign(campaign.id)}>
-              <img className="w-full rounded-t-lg h-52" src={campaign.banner} alt={campaign.campaignName} />
-              <div className="py-4 flex-grow px-2">
-                <h5 className="mb-2 text-xl tracking-tight text-gray-900">{campaign.campaignName.slice(0,20)}</h5>
-                <a href=''><p className="mb-0 text-lg text-basemb-3 text-blue-800 hover:underline">{campaign.organisation.orgName}</p></a>
-                <p className="mb-3 font-normal text-gray-700 text-lg">{campaign.description.slice(0,25)}...</p>
-                <p className='text-blue-800 hover:underline'><a onClick={()=> handleCampaign(campaign.id)}>Show more</a></p>
-                
-                 {/* <button onClick={()=> handleCampaign(campaign.id)} class="inline-flex items-center mt-0 mb-3 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                    Donate now
-                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                    </svg>
-                </button> */}
-               
-                <div className='grid grid-flow-col grid-col-2 divide-x divide-slate-500'>
-                    <div className=' px-2'>
-                        <p className="text-black text-base">{calculateDaysLeft(campaign.endDate) }</p>
-                        <h6 className='text-md'>Days left</h6>
+              <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden hover:cursor-pointer'>
+                <a onClick={()=>handleCampaign(campaign.id)} className="block rounded-lg shadow-sm shadow-indigo-100">
+                  <img
+                    alt="banner"
+                    src= {campaign.banner}
+                    className="h-56 w-full rounded-t-md object-cover"
+                  />
+
+                  <div className="mt-2 px-4">
+                    <dl>
+                      <div>
+                        <dt className="sr-only">Budget</dt>
+
+                        <dd className="text-sm text-gray-500">Budget: KES {campaign.targetAmount}</dd>
+                      </div>
+
+                      <div>
+                        <dt className="sr-only">Name</dt>
+
+                        <dd className="font-medium overflow-hidden text-lg">{campaign.campaignName}</dd>
+                      </div>
+                      <div>
+                        <dt className="sr-only">Organiser</dt>
+                        <dd><a href='#' className='text-blue-700 hover:underline'>{campaign.organisation.orgName}</a></dd>
+                        {/* <a href='#' className='text-blue-700 hover:underline text-base overflow-hidden'><dd>{campaign.organisation.orgName}</dd></a> */}
+                      </div>
+                    </dl>
+
+                    <div className="mt-3 flex items-center gap-8 text-xs pb-3">
+                      <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-1">
+                        <svg
+                        className="size-4 text-sky-700"
+                        viewBox="0 0 21 21"
+                        fill="currentColor"
+                        height="1.5em"
+                        width="1.5em"
+                      >
+                        <g fill="none" fillRule="evenodd">
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M4.5 2.5h12a2 2 0 012 2v12a2 2 0 01-2 2h-12a2 2 0 01-2-2v-12a2 2 0 012-2zM2.5 6.5h16"
+                          />
+                          <g fill="currentColor" transform="translate(2 2)">
+                            <path d="M9.5 8.5 A1 1 0 0 1 8.5 9.5 A1 1 0 0 1 7.5 8.5 A1 1 0 0 1 9.5 8.5 z" />
+                            <path d="M5.5 8.5 A1 1 0 0 1 4.5 9.5 A1 1 0 0 1 3.5 8.5 A1 1 0 0 1 5.5 8.5 z" />
+                            <path d="M5.5 12.5 A1 1 0 0 1 4.5 13.5 A1 1 0 0 1 3.5 12.5 A1 1 0 0 1 5.5 12.5 z" />
+                          </g>
+                        </g>
+                      </svg>
+
+                        <div className="mt-1.5 sm:mt-0">
+                          <p className="text-gray-500">Days Left</p>
+
+                          <p className="font-medium">{calculateDaysLeft(campaign.endDate)} days</p>
+                        </div>
+                      </div>
+
+                      <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-1">
+                        <svg
+                          className="size-4 text-sky-700"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          height="2em"
+                          width="2em"
+                        >
+                          <path d="M10 3H4a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1V4a1 1 0 00-1-1zM9 9H5V5h4v4zm11-6h-6a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1V4a1 1 0 00-1-1zm-1 6h-4V5h4v4zm-9 4H4a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1v-6a1 1 0 00-1-1zm-1 6H5v-4h4v4zm8-6c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zm0 6c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2z" />
+                        </svg>
+
+                        <div className="mt-1.5 sm:mt-0">
+                          <p className="text-gray-500">Category</p>
+
+                          <p className="font-medium">{campaign.category}</p>
+                        </div>
+                      </div>
+
+                      <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-1">
+                        <svg
+                          viewBox="0 0 640 512"
+                          fill="currentColor"
+                          className="size-4 text-sky-700"
+                          height="2em"
+                          width="2em"
+                        >
+                          <path d="M535 41c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l64 64c4.5 4.5 7 10.6 7 17s-2.5 12.5-7 17l-64 64c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l23-23-174-.2c-13.3 0-24-10.7-24-24s10.7-24 24-24h174.1L535 41zM105 377l-23 23h174c13.3 0 24 10.7 24 24s-10.7 24-24 24H81.9l23 23c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L7 441c-4.5-4.5-7-10.6-7-17s2.5-12.5 7-17l64-64c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9zM96 64h241.9c-3.7 7.2-5.9 15.3-5.9 24 0 28.7 23.3 52 52 52h117.4c-4 17 .6 35.5 13.8 48.8 20.3 20.3 53.2 20.3 73.5 0l19.3-19.3V384c0 35.3-28.7 64-64 64H302.1c3.7-7.2 5.9-15.3 5.9-24 0-28.7-23.3-52-52-52H138.6c4-17-.6-35.5-13.8-48.8-20.3-20.3-53.2-20.3-73.5 0L32 342.5V128c0-35.3 28.7-64 64-64zm64 64H96v64c35.3 0 64-28.7 64-64zm384 192c-35.3 0-64 28.7-64 64h64v-64zm-224 32c53 0 96-43 96-96s-43-96-96-96-96 43-96 96 43 96 96 96z" />
+                        </svg>
+
+                        <div className="mt-1.5 sm:mt-0">
+                          <p className="text-gray-500">Raised</p>
+
+                          <p className="font-medium">Kes {prettyNumber(getTotalAmount(campaign.donations), 'number-short')}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className='px-2'>
-                    <h6 className='text-md ml-2'>Budget(Ksh)</h6>
-                        <p className="text-black ml-2 text-base">{campaign.targetAmount}</p>
-                    </div>
-                </div>
-                
+                  </div>
+                </a>
               </div>
-            </div>
           )
           })}
         </div>}
