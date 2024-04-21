@@ -5,26 +5,27 @@ import ResetPin from './PinResetForm';
 
 function Accounts() {
     const [accounts, setAccounts] = useState([]);
-    const [providers, setProviders] = useState('');
-    const [accountNumber, setAccountNumber] = useState('');
+    const [providers, setProviders] = useState('M-Pesa');
+    const [accountNumbers, setAccountNumber] = useState('');
     const [pin, setPin] = useState('');
     const [confirmPin, setConfirmPin] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [showCreateAccount, setShowCreateAccount] = useState(false);
     const [showResetPin, setShowResetPin] = useState(false); 
-    const [resetPinEmail, setResetPinEmail] = useState(''); 
+    const [resetPinEmail, setResetPinEmail] = useState('');
+    const phonePattern = /^(07|01)\d{8}$/; 
 
     useEffect(() => {
         fetchAccounts();
     }, []);
 
+   
     const fetchAccounts = async () => {
         try {
             const accessToken = localStorage.getItem('token');
             if (!accessToken) {
-                console.error('Access token not found. Please log in.');
-                return;
+                window.location.replace('/org/login')
             }
 
             const response = await axios.get('/api/v1.0/accounts', {
@@ -44,14 +45,21 @@ function Accounts() {
             setError('PINs do not match.');
             return;
         }
+        if (!accountNumbers.match(phonePattern)) {
+            setError('Invalid Account Number')
+            return;
+        }
+    
         setLoading(true);
         try {
             const accessToken = localStorage.getItem('token');
             if (!accessToken) {
-                toast.error('Access token not found. Please log in.');
+                window.location.replace('/org/login')
                 setLoading(false);
                 return;
             }
+            let phoneNo = accountNumbers.replace(/^0+/, '');
+            let accountNumber = "254" + phoneNo;
     
             const response = await axios.post('/api/v1.0/accounts', {
                 providers,
@@ -95,7 +103,7 @@ function Accounts() {
     };
 
     return (
-        <div className='main-page-container h-screen lg:h-fit'>
+        <div className='main-page-container h-screen lg:h-fit px-5'>
                <div className="text-md breadcrumbs mb-4">
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li>
@@ -108,6 +116,7 @@ function Accounts() {
                 <button onClick={() => setShowCreateAccount(true)} className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
                     Create Account
                 </button>
+                {error && <p className='text-red-500 mt-4'>{error}</p>}
                 <div className="accounts-list-section w-3/4">
                     <h1 className='text-2xl font-semibold mb-4 text-slate-600 dark:text-slate-300 '>Your Accounts</h1>
                     <table className='w-full border-collapse border border-gray-300'>
@@ -145,21 +154,22 @@ function Accounts() {
                             <h1 className='text-2xl font-semibold mb-4 text-slate-600 dark:text-slate-300'>Create Account</h1>
                             <div className='mb-6 flex items-center justify-center'>
                                 <form onSubmit={handleSubmit} className='w-full'>
+                                {error && <p className='text-red-500 mt-4'>{error}</p>}
                                     <div className='mb-4'>
                                         <label htmlFor='providers' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>Providers</label>
-                                        <input type='text' value={providers} onChange={(e) => setProviders(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' required />
+                                        <input type='text' value={providers} disabled onChange={(e) => setProviders(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' required />
                                     </div>
                                     <div className='mb-4'>
                                         <label htmlFor='accountNumber' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>Account Number</label>
-                                        <input type='text' value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' required />
+                                        <input type='text' value={accountNumbers} onChange={(e) => setAccountNumber(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' placeholder='Phone number eg 07xxx or 01xxx' maxLength={10} required />
                                     </div>
                                     <div className='mb-4'>
                                         <label htmlFor='pin' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>PIN</label>
-                                        <input type='password' value={pin} onChange={(e) => setPin(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' required />
+                                        <input type='password' value={pin} onChange={(e) => setPin(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' placeholder='pin' maxLength={4} required />
                                     </div>
                                     <div className='mb-4'>
                                         <label htmlFor='confirmPin' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>Confirm PIN</label>
-                                        <input type='password' value={confirmPin} onChange={(e) => setConfirmPin(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' required />
+                                        <input type='password' value={confirmPin} onChange={(e) => setConfirmPin(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' placeholder='confirm pin' maxLength={4} required />
                                     </div>
                                     <div>
                                         <button type='submit' className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
@@ -168,7 +178,6 @@ function Accounts() {
                                         <button onClick={handleClosePopup} className='bg-gray-700 hover:bg-gray-800 text-white font-bold ml-28 py-2 px-4 rounded focus:outline-none focus:shadow-outline'>Close</button>
                                     </div>
                                 </form>
-                                {error && <p className='text-red-500 mt-4'>{error}</p>}
                             </div>
                         </div>
                     </div>

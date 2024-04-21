@@ -59,7 +59,7 @@ useEffect(() => {
                         const campaign = campaigns && campaigns.find(campaign => campaign.id === donation.campaignId);
                         const campaignTitle = campaign ? campaign.campaignName : "";
                         return (
-                            <tr key={donation._id}>
+                            <tr key={donation.id}>
                                 {/* <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.id}</td> */}
                                 <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{campaignTitle}</td>
                                 <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>

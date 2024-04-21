@@ -55,7 +55,7 @@ function Menus() {
                     </div>)
                     :token && user?
                     (<div className="dropdown dropdown-end absolute right-4 sm:z-20">
-                        <div tabIndex={0} role="button" className="text-white bg-sky-950 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log out</div>
+                        <div tabIndex={0} role="button" className="text-white border border-blue-600 bg-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log out</div>
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                         <li className='hover:bg-slate-300'><a href="/user/dashboard">Go to dashboard</a></li>
                         <li className='hover:bg-slate-300' onClick={logout}><a href='/user/login'>Log out</a></li>
@@ -63,7 +63,7 @@ function Menus() {
                     </div>)
                     :
                     (<div className="dropdown dropdown-end absolute right-4 sm:z-20">
-                    <div tabIndex={0} role="button" className="text-white bg-sky-950 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log in</div>
+                    <div tabIndex={0} role="button" className="text-white border border-blue-600 bg-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log in</div>
                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                       <li className='hover:bg-slate-300'><a href="/org/login">Organisation</a></li>
                       <li className='hover:bg-slate-300'><a href="/user/login">User</a></li>
