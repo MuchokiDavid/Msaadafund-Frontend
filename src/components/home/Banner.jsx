@@ -375,7 +375,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             <div className="relative h-64 overflow-hidden sm:h-80 lg:h-full">
               <img
                 alt=""
-                src="https://loremflickr.com/g/600/400/africa"
+                src="https://loremflickr.com/g/600/400/nairobi"
                 className="absolute inset-0 h-full w-full object-cover"
                 loading='lazy'
               />
