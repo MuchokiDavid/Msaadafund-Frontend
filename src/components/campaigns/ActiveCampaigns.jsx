@@ -150,12 +150,12 @@ function ActiveCampaigns() {
         </div>
       </div>
     <h1 className="text-center text-2xl font-bold mb-4 bg-slate-300 h-10 p-1">Active Campaigns</h1>  
-    <div className='mx-auto overflow-x-hidden pb-4'>
+    <div className='mx-auto overflow-x-hidden pb-4 px-6 sm:px-2 md:px-4'>
         
         {activeCampaigns.length===0 ?
         <div className="text-xl mx-4">No Active campaigns</div>
         :
-        <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:max-w-full">
+        <div className="mx-4 sm:mx-2 lg:mx-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
           {filterCampaigns().map((campaign) => {
             return (
               <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden hover:cursor-pointer'>
@@ -166,7 +166,7 @@ function ActiveCampaigns() {
                     className="h-56 w-full rounded-t-md object-cover"
                   />
 
-                  <div className="mt-2 px-4">
+                  <div className="mt-2 px-2">
                     <dl>
                       <div>
                         <dt className="sr-only">Budget</dt>
@@ -186,7 +186,7 @@ function ActiveCampaigns() {
                       </div>
                     </dl>
 
-                    <div className="mt-3 flex items-center gap-8 text-xs pb-3">
+                    <div className="mt-3 flex items-center gap-6 text-xs pb-3">
                       <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-1">
                         <svg
                         className="size-4 text-sky-700"
@@ -211,9 +211,9 @@ function ActiveCampaigns() {
                       </svg>
 
                         <div className="mt-1.5 sm:mt-0">
-                          <p className="text-gray-500">Days Left</p>
+                          <p className="text-gray-500">Days</p>
 
-                          <p className="font-medium">{calculateDaysLeft(campaign.endDate)} days</p>
+                          <p className="font-medium whitespace-nowrap">{calculateDaysLeft(campaign.endDate)} days</p>
                         </div>
                       </div>
 
@@ -249,7 +249,7 @@ function ActiveCampaigns() {
                         <div className="mt-1.5 sm:mt-0">
                           <p className="text-gray-500">Raised</p>
 
-                          <p className="font-medium">Kes {prettyNumber(getTotalAmount(campaign.donations), 'number-short')}</p>
+                          <p className="font-medium">kes{prettyNumber(getTotalAmount(campaign.donations), 'number-short')}</p>
                         </div>
                       </div>
                     </div>
