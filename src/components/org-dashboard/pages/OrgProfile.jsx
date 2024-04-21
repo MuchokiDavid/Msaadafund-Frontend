@@ -75,15 +75,15 @@ function OrgProfile() {
     };
 
   return (
-    <div >
+    <div className='px-5'>
     <div className="text-md breadcrumbs ml-2">
-    <ul>
-      <li><a href='/org/dashboard'>Dashboard</a></li> 
-      <li><a href='/org/dashboard/profile'>Profile</a></li> 
-      {/* <li><a href='/org/dashboard/profile'>Password Reset</a></li>  */}
+      <ul>
+        <li><a href='/org/dashboard'>Dashboard</a></li> 
+        <li><a href='/org/dashboard/profile'>Profile</a></li> 
+        {/* <li><a href='/org/dashboard/profile'>Password Reset</a></li>  */}
 
-    </ul>
-</div>
+      </ul>
+    </div>
     <div className="container mx-auto h-screen lg:h-fit lg:px-16">
   
       <h1 className="mb-3 my-2 text-2xl font-bold leading-tight">Personalize your Organisation</h1>
