@@ -10,6 +10,7 @@ function Banner() {
   const [allCampaign,setAllCampaign] = useState([])
   const[loading, setLoading] = useState(true)
   const[errors, setErrors] = useState()
+  const [buttonClicked, setButtonClicked] = useState(false);//state listen to button event change 
 
   useEffect(() => {
     const getDonations = async () => {
@@ -88,6 +89,17 @@ function Banner() {
   }
   getCampaigns();
   }, [])
+
+// Scroll to the section with id 'howItWorksSection' when button is clicked
+  useEffect(() => {
+    if (buttonClicked) {
+      const targetSection = document.getElementById('howItWorksSection');
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    setButtonClicked(false)
+  }, [buttonClicked]);
   
   function getTotalAmount(donationsArray) {
     let totalAmount = 0;
@@ -120,7 +132,9 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
               humanitarian aid, there's a place for you here. Start your impact journey today.
             </p>
           </div>
-          <button className="text-white rounded-lg uppercase py-3 text-base px-10 border border-blue-600 hover:bg-blue-600 hover:bg-opacity-4">
+          <button
+          onClick={() => setButtonClicked(true)} 
+          className="text-white rounded-lg uppercase py-3 text-base px-10 border border-blue-600 hover:bg-blue-600 hover:bg-opacity-4">
             How it works
           </button>
         </div>
@@ -161,6 +175,213 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
         </div>
       </section>
 
+      <section className="bg-sky-950 text-white" id="howItWorksSection">
+        <div className="px-4 py-6 sm:px-6 sm:py-8 lg:px-16 lg:py-12">
+          <div className="max-w-xl">
+            <h2 className="text-3xl font-bold sm:text-4xl">How it works</h2>
+
+            <p className="mt-4 text-gray-300">
+            Welcome to Msaada, your go-to platform for making a difference in the world! Our platform connects passionate individuals with impactful organizations to drive positive change in communities across the globe. 
+            Here’s how it works:
+            </p>
+          </div>
+
+          <div className="mt-8 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:gap-12 lg:grid-cols-3">
+            <div className="flex items-start gap-4">
+              <span className="shrink-0 rounded-lg bg-gray-800 p-4">
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                  <path
+                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                  ></path>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                  ></path>
+                </svg>
+              </span>
+
+              <div>
+                <h2 className="text-lg font-bold">Discover Campaigns.</h2>
+
+                <p className="mt-1 text-sm text-gray-300">
+                Browse through a wide range of campaigns created by various organizations. 
+                From humanitarian aid to environmental conservation, there’s a cause for everyone to support.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <span className="shrink-0 rounded-lg bg-gray-800 p-4">
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                  <path
+                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                  ></path>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                  ></path>
+                </svg>
+              </span>
+
+              <div>
+                <h2 className="text-lg font-bold">Contribute</h2>
+
+                <p className="mt-1 text-sm text-gray-300">
+                Once you find a campaign that resonates with you, contribute by making a donation. 
+                Every contribution, no matter how big or small, makes a difference and helps bring the campaign closer to its goal.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <span className="shrink-0 rounded-lg bg-gray-800 p-4">
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                  <path
+                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                  ></path>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                  ></path>
+                </svg>
+              </span>
+
+              <div>
+                <h2 className="text-lg font-bold">Stay Updated.</h2>
+
+                <p className="mt-1 text-sm text-gray-300">
+                Keep track of the progress of the campaigns you’ve supported. 
+                View updates on milestones reached, funds raised, and the impact your contribution is making in the lives of others.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <span className="shrink-0 rounded-lg bg-gray-800 p-4">
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                  <path
+                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                  ></path>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                  ></path>
+                </svg>
+              </span>
+
+              <div>
+                <h2 className="text-lg font-bold">Share and Inspire.</h2>
+
+                <p className="mt-1 text-sm text-gray-300">
+                Spread the word about campaigns you care about with your friends, family, and social networks. 
+                Your enthusiasm can inspire others to join the cause and amplify the impact of the campaign.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <span className="shrink-0 rounded-lg bg-gray-800 p-4">
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                  <path
+                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                  ></path>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                  ></path>
+                </svg>
+              </span>
+
+              <div>
+                <h2 className="text-lg font-bold">Create Your Own Campaign.</h2>
+
+                <p className="mt-1 text-sm text-gray-300">
+                Are you passionate about a particular cause? Create your own campaign and rally support from the community. 
+                Whether it’s raising funds for a local charity or organizing a volunteer event, Msaada provides you with the tools to make your vision a reality.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <span className="shrink-0 rounded-lg bg-gray-800 p-4">
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                  <path
+                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                  ></path>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                  ></path>
+                </svg>
+              </span>
+
+              <div>
+                <h2 className="text-lg font-bold">Connect with Organizations.</h2>
+
+                <p className="mt-1 text-sm text-gray-300">
+                Organizations play a crucial role in driving change. 
+                Connect with reputable organizations, learn about their initiatives, and explore partnership opportunities to collaborate on impactful projects.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+{/* 
       <section className="bg-sky-950 text-white">
         <div className="mx-auto px-4 py-16 lg:flex h-fit lg:items-center">
           <div className="mx-auto max-w-3xl text-center">
@@ -194,7 +415,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section>
         <div className="mx-auto max-w-screen-xl px-6 py-4 sm:px-6 sm:py-2 sm:mb-4 lg:px-8">
