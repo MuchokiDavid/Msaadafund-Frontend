@@ -149,7 +149,7 @@ function Accounts() {
                                 {error && <p className='text-red-500 mt-4'>{error}</p>}
                                     <div className='mb-4'>
                                         <label htmlFor='providers' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>Providers</label>
-                                        <input type='text' value={providers} onChange={(e) => setProviders(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' required />
+                                        <input type='text' value={providers} disabled onChange={(e) => setProviders(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' required />
                                     </div>
                                     <div className='mb-4'>
                                         <label htmlFor='accountNumber' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>Account Number</label>
