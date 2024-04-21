@@ -137,12 +137,12 @@ function OrgLayout() {
   }
 
   return (
-    <div>
+    <div className='overflow-hidden'>
       <DashboardNav toggleSidebar={toggleSidebar} />
       <div className="flex">
         <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
         {/* {isLargeScreen && <Menubar isOpen={isSidebarOpen} />} */}
-        <main className="mt-3 mx-auto w-full overflow-y-auto md:m-3 min-h-max sm:h-fit sm:w-full lg:h-auto justify-center lg:px-20" style={{ marginTop: '10px' }}>
+        <main className="mt-3 mx-auto w-full overflow-hidden overflow-y-auto md:m-3 min-h-max sm:h-fit sm:w-full lg:h-auto justify-center lg:px-20" style={{ marginTop: '10px' }}>
           <Routes>
             <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors}/>} />
             {/* route to update campaign */}

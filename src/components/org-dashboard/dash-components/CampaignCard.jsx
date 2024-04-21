@@ -93,7 +93,7 @@ function CampaignCard({allCampaigns, campaignError}) {
             <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:max-w-full">
                 {campaigns && campaigns.map((item) =>{
                 return (
-                    <div key={item.id} class="m-auto overflow-hidden rounded-lg shadow-lg cursor-pointer h-90 md:w-80 w-full">
+                    <div key={item.id} class="m-auto overflow-hidden rounded-lg shadow cursor-pointer h-90 md:w-80 w-full">
                         <a href="#" class="block w-full h-full">
                             <div class="w-full p-4 bg-gray-100 dark:bg-gray-800">
                                 <p class="font-medium text-indigo-500 text-md">

@@ -16,8 +16,8 @@ function DashboardNav({toggleSidebar}) {
   }
 
   return (
-    <div className='w-full'>
-        <nav className="bg-slate-700 text-white flex justify-between items-center py-4 px-1 w-full">
+    <div className='w-screen'>
+        <nav className="bg-slate-700 text-white flex justify-between items-center py-4 w-full">
           <div className="flex items-center">
               <a href='/' className="btn btn-ghost text-xl">
                   <img className="w-18 h-12" src={logo} alt="logo"/>
@@ -29,7 +29,7 @@ function DashboardNav({toggleSidebar}) {
           <div className="block ml-36">
               <h2 className="flex items-center">
                   <MdOutlineAccountCircle className="h-6 w-6 mr-2"/>
-                  {current_org && current_org}
+                  <p className='text-md sm:text-sm'>{current_org && current_org}</p>
               </h2>
           </div>
         </nav>
