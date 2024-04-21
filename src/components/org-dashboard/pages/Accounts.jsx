@@ -6,25 +6,26 @@ import ResetPin from './PinResetForm';
 function Accounts() {
     const [accounts, setAccounts] = useState([]);
     const [providers, setProviders] = useState('M-Pesa');
-    const [accountNumber, setAccountNumber] = useState('');
+    const [accountNumbers, setAccountNumber] = useState('');
     const [pin, setPin] = useState('');
     const [confirmPin, setConfirmPin] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [showCreateAccount, setShowCreateAccount] = useState(false);
     const [showResetPin, setShowResetPin] = useState(false); 
-    const [resetPinEmail, setResetPinEmail] = useState(''); 
+    const [resetPinEmail, setResetPinEmail] = useState('');
+    const phonePattern = /^(07|01)\d{8}$/; 
 
     useEffect(() => {
         fetchAccounts();
     }, []);
 
+   
     const fetchAccounts = async () => {
         try {
             const accessToken = localStorage.getItem('token');
             if (!accessToken) {
-                console.error('Access token not found. Please log in.');
-                return;
+                window.location.replace('/org/login')
             }
 
             const response = await axios.get('/api/v1.0/accounts', {
@@ -44,14 +45,21 @@ function Accounts() {
             setError('PINs do not match.');
             return;
         }
+        if (!accountNumbers.match(phonePattern)) {
+            setError('Invalid Account Number')
+            return;
+        }
+    
         setLoading(true);
         try {
             const accessToken = localStorage.getItem('token');
             if (!accessToken) {
-                toast.error('Access token not found. Please log in.');
+                window.location.replace('/org/login')
                 setLoading(false);
                 return;
             }
+            let phoneNo = accountNumbers.replace(/^0+/, '');
+            let accountNumber = "254" + phoneNo;
     
             const response = await axios.post('/api/v1.0/accounts', {
                 providers,
@@ -153,7 +161,7 @@ function Accounts() {
                                     </div>
                                     <div className='mb-4'>
                                         <label htmlFor='accountNumber' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>Account Number</label>
-                                        <input type='text' value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' placeholder='Phone number eg 07xxx or 01xxx' maxLength={10} required />
+                                        <input type='text' value={accountNumbers} onChange={(e) => setAccountNumber(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' placeholder='Phone number eg 07xxx or 01xxx' maxLength={10} required />
                                     </div>
                                     <div className='mb-4'>
                                         <label htmlFor='pin' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>PIN</label>
