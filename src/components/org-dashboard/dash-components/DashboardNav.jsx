@@ -26,10 +26,10 @@ function DashboardNav({toggleSidebar}) {
                   <IoMenu className="w-8 h-8"/>
               </button>
           </div>
-          <div className="block ml-36">
+          <div className="block ml-36 w-32 overflow-hidden">
               <h2 className="flex items-center">
-                  <MdOutlineAccountCircle className="h-6 w-6 mr-2"/>
-                  <p className='text-md sm:text-sm'>{current_org && current_org}</p>
+                  <MdOutlineAccountCircle className="h-8 w-8 mr-2"/>
+                  <p className='text-lg sm:text-sm overflow-hidden'>{current_org && current_org}</p>
               </h2>
           </div>
         </nav>
