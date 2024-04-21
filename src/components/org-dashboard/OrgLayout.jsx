@@ -12,6 +12,8 @@ import CampaignCard from './dash-components/CampaignCard';
 import Accounts from './pages/Accounts';
 import Donations from './pages/Donations';
 import UpdateCampaign from './pages/UpdateCampaign';
+import Withdraw from './pages/Withdraw';
+import BuyAirtime from './pages/BuyAirtime';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
@@ -150,11 +152,11 @@ function OrgLayout() {
             <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch}/>} />
             <Route path="/campaigns" element={<CampaignCard allCampaigns={campaigns} campaignError={errors}/>} />
             <Route path="/donations" element={<Donations allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} allDonation={allDonations} allDonors={donors}/>} />
+            <Route path="/transact/withdraw" element={<Withdraw allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
+            <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
             <Route path="/accounts" element={<Accounts/>} />
             <Route path="/transaction" element={<Transaction allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
             <Route path="/profile" element={<Profile />} />
-         
-
           </Routes>
         </main>
       </div>
