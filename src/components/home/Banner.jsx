@@ -188,24 +188,16 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
 
           <div className="mt-8 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:gap-12 lg:grid-cols-3">
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-gray-800 p-4">
+              <span className="shrink-0 rounded-lg bg-emerald-800 p-4">
                 <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  className="h-5 w-5"
+                  height="1em"
+                  width="1em"
                 >
-                  <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                  <path
-                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                  ></path>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                  ></path>
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 100-16 8 8 0 000 16zm-5-8.5L16 8l-3.5 9.002L11 13l-4-1.5z" />
                 </svg>
               </span>
 
@@ -220,24 +212,15 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-gray-800 p-4">
+              <span className="shrink-0 rounded-lg bg-emerald-800 p-4">
                 <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  height="1em"
+                  width="1em"
+                  className="h-5 w-5"
                 >
-                  <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                  <path
-                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                  ></path>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                  ></path>
+                  <path d="M4 21h9.62a3.995 3.995 0 003.037-1.397l5.102-5.952a1 1 0 00-.442-1.6l-1.968-.656a3.043 3.043 0 00-2.823.503l-3.185 2.547-.617-1.235A3.98 3.98 0 009.146 11H4c-1.103 0-2 .897-2 2v6c0 1.103.897 2 2 2zm0-8h5.146c.763 0 1.448.423 1.789 1.105l.447.895H7v2h6.014a.996.996 0 00.442-.11l.003-.001.004-.002h.003l.002-.001h.004l.001-.001c.009.003.003-.001.003-.001.01 0 .002-.001.002-.001h.001l.002-.001.003-.001.002-.001.002-.001.003-.001.002-.001c.003 0 .001-.001.002-.001l.003-.002.002-.001.002-.001.003-.001.002-.001h.001l.002-.001h.001l.002-.001.002-.001c.009-.001.003-.001.003-.001l.002-.001a.915.915 0 00.11-.078l4.146-3.317c.262-.208.623-.273.94-.167l.557.186-4.133 4.823a2.029 2.029 0 01-1.52.688H4v-6zM16 2h-.017c-.163.002-1.006.039-1.983.705-.951-.648-1.774-.7-1.968-.704L12.002 2h-.004c-.801 0-1.555.313-2.119.878C9.313 3.445 9 4.198 9 5s.313 1.555.861 2.104l3.414 3.586a1.006 1.006 0 001.45-.001l3.396-3.568C18.688 6.555 19 5.802 19 5s-.313-1.555-.878-2.121A2.978 2.978 0 0016.002 2H16zm1 3c0 .267-.104.518-.311.725L14 8.55l-2.707-2.843C11.104 5.518 11 5.267 11 5s.104-.518.294-.708A.977.977 0 0111.979 4c.025.001.502.032 1.067.485.081.065.163.139.247.222l.707.707.707-.707c.084-.083.166-.157.247-.222.529-.425.976-.478 1.052-.484a.987.987 0 01.701.292c.189.189.293.44.293.707z" />
                 </svg>
               </span>
 
@@ -252,24 +235,15 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-gray-800 p-4">
+              <span className="shrink-0 rounded-lg bg-emerald-800 p-4">
                 <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="currentColor"
+                  height="1em"
+                  width="1em"
                 >
-                  <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                  <path
-                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                  ></path>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                  ></path>
+                  <path d="M21 10.12h-6.78l2.74-2.82c-2.73-2.7-7.15-2.8-9.88-.1a6.887 6.887 0 000 9.8c2.73 2.7 7.15 2.7 9.88 0 1.36-1.35 2.04-2.92 2.04-4.9h2c0 1.98-.88 4.55-2.64 6.29-3.51 3.48-9.21 3.48-12.72 0-3.5-3.47-3.53-9.11-.02-12.58a8.987 8.987 0 0112.65 0L21 3v7.12M12.5 8v4.25l3.5 2.08-.72 1.21L11 13V8h1.5z" />
                 </svg>
               </span>
 
@@ -284,24 +258,15 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-gray-800 p-4">
+              <span className="shrink-0 rounded-lg bg-emerald-800 p-4">
                 <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="currentColor"
+                  height="1em"
+                  width="1em"
                 >
-                  <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                  <path
-                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                  ></path>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                  ></path>
+                  <path d="M11 9V5l7 7-7 7v-4.1c-5 0-8.5 1.6-11 5.1 1-5 4-10 11-11m6-1V5l7 7-7 7v-3l4-4-4-4z" />
                 </svg>
               </span>
 
@@ -316,24 +281,16 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-gray-800 p-4">
+              <span className="shrink-0 rounded-lg bg-emerald-800 p-4">
                 <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
+                  data-name="Layer 1"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="currentColor"
+                  height="1em"
+                  width="1em"
                 >
-                  <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                  <path
-                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                  ></path>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                  ></path>
+                  <path d="M10 13H4a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1v-6a1 1 0 00-1-1zm-1 6H5v-4h4zM20 3h-6a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1V4a1 1 0 00-1-1zm-1 6h-4V5h4zm1 7h-2v-2a1 1 0 00-2 0v2h-2a1 1 0 000 2h2v2a1 1 0 002 0v-2h2a1 1 0 000-2zM10 3H4a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1V4a1 1 0 00-1-1zM9 9H5V5h4z" />
                 </svg>
               </span>
 
@@ -348,24 +305,18 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-gray-800 p-4">
+              <span className="shrink-0 rounded-lg bg-emerald-800 p-4">
                 <svg
-                  className="h-5 w-5"
                   fill="none"
                   stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
                 >
-                  <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                  <path
-                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                  ></path>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                  ></path>
+                  <path stroke="none" d="M0 0h24v24H0z" />
+                  <path d="M7 12l5 5-1.5 1.5a3.536 3.536 0 11-5-5L7 12zM17 12l-5-5 1.5-1.5a3.536 3.536 0 115 5L17 12zM3 21l2.5-2.5M18.5 5.5L21 3M10 11l-2 2M13 14l-2 2" />
                 </svg>
               </span>
 
