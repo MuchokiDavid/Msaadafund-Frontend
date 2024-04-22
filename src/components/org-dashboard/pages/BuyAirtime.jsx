@@ -155,10 +155,10 @@ function BuyAirtime({allCampaigns,campaignError}) {
                     <div className="bg-white p-10 rounded">
                         <h2 className="font-bold text-2xl">Instructions</h2>
                         <ul className="list-disc mt-4 list-inside text-lg">
-                            <li>Ensure that the phone number provided is registered to your M-Pesa account.</li>
-                            <li>Double-check the amount you wish to withdraw to avoid errors.</li>
-                            <li>Once you submit the withdrawal request, the funds will be transferred to your M-Pesa account within the hour.</li>
-                            <li>If you encounter any issues during the withdrawal process, please contact our support team for assistance.</li>
+                            <li>Ensure that the phone number provided is a valid phone number.</li>
+                            <li>Double-check the amount you wish to purchase and make sure it is not less than 5 to avoid errors.</li>
+                            <li>Once you submit the purchase request, the airtime will be transferred to your phone number within the hour.</li>
+                            <li>If you encounter any issues during the purchase process, please contact our support team for assistance.</li>
                         </ul>
                     </div>
                 </aside>
