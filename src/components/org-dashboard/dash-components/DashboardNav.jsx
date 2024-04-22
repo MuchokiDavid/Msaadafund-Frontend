@@ -18,13 +18,14 @@ function DashboardNav({toggleSidebar}) {
   return (
     <div className='w-screen'>
         <nav className="bg-slate-700 text-white flex justify-between items-center py-4 w-full">
-          <div className="flex items-center">
-              <a href='/' className="btn btn-ghost text-xl">
-                  <img className="w-18 h-12" src={logo} alt="logo"/>
-              </a>
-              <button onClick={toggleSidebar} className="text-white focus:outline-none">
-                  <IoMenu className="w-8 h-8"/>
-              </button>
+          <div className="flex items-center ml-3">
+            <button onClick={toggleSidebar} className="text-white focus:outline-none font-bold">
+                <IoMenu className="w-8 h-8"/>
+            </button>
+            <a href='/' className="btn btn-ghost">
+                <img className="w-18 h-12" src={logo} alt="logo"/>
+            </a>
+              
           </div>
           <div className="block ml-36 w-32 overflow-hidden">
               <h2 className="flex items-center">
