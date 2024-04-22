@@ -4,13 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react'
 import Menus from '../reusables/Menus';
 import Footer from '../reusables/Footer';
+import { FaEyeSlash } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
+
+
 
 function OrgLogIn() {
   const {orgLogin, loginMessage, isLoggedIn} = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate()
   const token=localStorage.getItem('token')
+  
 
   const login = (e) =>{
     e.preventDefault();
@@ -22,6 +28,13 @@ function OrgLogIn() {
       navigate('/org/dashboard')
     }, 2000);
   }
+
+  const togglePasswordVisibility = (e) => {
+    e.preventDefault();
+    setShowPassword(!showPassword)
+  }
+
+
 
   return (
     <div>
@@ -48,16 +61,17 @@ function OrgLogIn() {
                             onChange={(e)=>{setEmail(e.target.value)}}
                             required/>
                         </div>
-                        <div>
+                        <div className="relative">
                             <label htmlFor="password" 
                             className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
-                            <input type="password" 
+                            <input type={showPassword ? "text":"password" }
                             name="password" 
                             id="password" 
                             placeholder="password" 
                             onChange={(e)=>{setPassword(e.target.value)}}
                             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" 
                             required/>
+                            <button title='show password' onClick={togglePasswordVisibility} className="absolute inset-y-0 right-2 flex items-center mt-6">{showPassword?<FaEye/>:<FaEyeSlash/>}</button>
                         </div>
                         <div className="flex items-center justify-between">
                             <div className="flex items-start">
@@ -75,6 +89,8 @@ function OrgLogIn() {
                             Don’t have an account yet? <a href="/org/signup" className="font-medium text-primary-600 hover:underline ">Sign up</a>
                         </p>
                     </form>
+                    {/* <FaEye/>
+                    <FaEyeSlash/> */}
                 </div>
             </div>
         </div>

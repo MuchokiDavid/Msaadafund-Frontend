@@ -2,65 +2,85 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import logo from '../../assets/msaadaBlacklogo.png';
 import toast, { Toaster } from 'react-hot-toast'
+import { FaEyeSlash } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 
 function Reset() {
-  const [email, setEmail] = useState('');
-  const [otp, setOtp] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [message, setMessage] = useState('');
-  const [step, setStep] = useState(1); 
+const [email, setEmail] = useState('');
+const [otp, setOtp] = useState('');
+const [newPassword, setNewPassword] = useState('');
+const [confirmPassword, setConfirmPassword] = useState('');
+const [message, setMessage] = useState('');
+const [step, setStep] = useState(1); 
+const [showPassword,setShowPassword]=useState(false)
+const [password,setPasswordConfirm ] = useState(false)
 
-  const passwordPattern = /^[A-Za-z0-9]{8,}$/;
+const passwordPattern = /^[A-Za-z0-9]{8,}$/;
 
 
-  const handleSendOTP = async () => {
-    try {
-      await axios.post('/api/v1.0/forgot_password', { email });
-      setMessage('OTP sent to your email');
-      setStep(2);
-    } catch (error) {
-      setMessage(error.response.data.error);
+const handleSendOTP = async () => {
+  try {
+    await axios.post('/api/v1.0/forgot_password', { email });
+    setMessage('OTP sent to your email');
+    setStep(2);
+  } catch (error) {
+    setMessage(error.response.data.error);
+  }
+};
+
+const handleResetPassword = async () => {
+  try {
+    // if the otp input field is empty, show an error message
+    if (!otp) {
+      setMessage('Please enter OTP ');
+      return;
     }
-  };
-
-  const handleResetPassword = async () => {
-    try {
-      if (newPassword !== confirmPassword) {
-        setMessage('Passwords do not match');
-        return;
-      }
-      if (!passwordPattern.test(newPassword)) {
-        setMessage('Please ensure your password has atleast one letter, one digit, and a total length of at least 8 characters')
-        return;
-      }
-
-      await axios.patch('/api/v1.0/reset_password', { email, otp, new_password: newPassword });
-      // setMessage('Password reset successfully');
-      toast.success("Password reset successfully");
-      setTimeout(() => {
-        window.location.href = '/user/login'; 
-      },2000); 
-    } catch (error) {
-      setMessage(error.response.data.error);
+    if (newPassword !== confirmPassword) {
+      setMessage('Passwords do not match');
+      return;
     }
-  };
-
-  const handleGoToLogin = () => {
-    window.location.href = '/user/login'; 
-  };
-
-  const handlePrevStep = () => {
-    if (step === 1) {
-      handleGoToLogin(); 
-    } else {
-      setStep(step - 1); 
+    if (!passwordPattern.test(newPassword)) {
+      setMessage('Please ensure your password has atleast one letter, one digit, and a total length of at least 8 characters')
+      return;
     }
-  };
 
-  const handleNextStep = () => {
-    setStep(step + 1);
-  };
+    await axios.patch('/api/v1.0/reset_password', { email, otp, new_password: newPassword });
+    // setMessage('Password reset successfully');
+    toast.success("Password reset successfully");
+    setTimeout(() => {
+      window.location.href = '/user/login'; 
+    },2000); 
+  } catch (error) {
+    setMessage(error.response.data.error);
+  }
+};
+
+const handleGoToLogin = () => {
+  window.location.href = '/user/login'; 
+};
+
+const handlePrevStep = () => {
+  if (step === 1) {
+    handleGoToLogin(); 
+  } else {
+    setStep(step - 1); 
+  }
+};
+
+const handleNextStep = () => {
+  setStep(step + 1);
+};
+
+  // for set password field
+const togglePassword = (e)=>{
+  e.preventDefault()
+  setShowPassword(!showPassword)
+}
+// for confirm input field
+const togglePasswordVisibility=(e)=>{
+  e.preventDefault()
+  setPasswordConfirm(!password)
+}
 
   return (
     <div>
@@ -91,12 +111,36 @@ function Reset() {
                 </div>
               ) : (
                 <div>
+                  <div>
                   <label htmlFor="otp" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">OTP</label>
                   <input type="text" name="otp" id="otp" value={otp} onChange={(e) => setOtp(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter OTP" />
+                  </div>
+
+                  <div className='relative'>
                   <label htmlFor="new-password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New Password</label>
-                  <input type="password" name="new-password" id="new-password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} pattern={passwordPattern} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="••••••••" required="" />
+                  <input type={showPassword ? "text" : "password" }
+                    name="new-password" id="new-password" 
+                    value={newPassword} 
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    pattern={passwordPattern} 
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                    placeholder="••••••••"
+                    required/>
+                    <button title='show password' onClick={togglePassword} className="absolute inset-y-0 right-2 flex items-center mt-6 ">{showPassword ? <FaEye/> : <FaEyeSlash/>}</button>
+                  </div>
+
+                  <div className='relative'>
                   <label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
-                  <input type="password" name="confirm-password" id="confirm-password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="••••••••" required="" />
+                  <input type={password ? "text" : "password" }
+                  name="confirm-password" 
+                  id="confirm-password" 
+                  value={confirmPassword} 
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                  placeholder="••••••••"
+                  required/>
+                  <button title='show password' onClick={togglePasswordVisibility} className="absolute inset-y-0 right-2 flex items-center mt-6 ">{password ? <FaEye/> : <FaEyeSlash/>}</button>
+                </div>
                 </div>
               )}
               <button type="button" onClick={step === 1 ? handleSendOTP : handleResetPassword} className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">

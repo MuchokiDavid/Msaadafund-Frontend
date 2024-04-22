@@ -3,6 +3,8 @@ import Menus from '../reusables/Menus'
 import Footer from '../reusables/Footer'
 import toast, { Toaster } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import { FaEyeSlash } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 
 function Register() {
   const [errors, setErrors] = useState("")
@@ -16,6 +18,8 @@ function Register() {
   const passwordPattern = /^[A-Za-z0-9]{8,}$/;
   const phonePattern = /^(07|01)\d{8}$/;
   const navigate=useNavigate();
+  const [showPassword,setShowPassword]=useState(false)
+  const [password,setPasswordConfirm ] = useState(false)
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -61,6 +65,16 @@ function Register() {
       }
     };
   }
+// for set password field
+  const togglePassword = (e)=>{
+    e.preventDefault()
+    setShowPassword(!showPassword)
+  }
+// for confirm input field
+  const togglePasswordVisibility=(e)=>{
+    e.preventDefault()
+    setPasswordConfirm(!password)
+  }
 
   return (
     <div>
@@ -86,7 +100,7 @@ function Register() {
                       onChange={(e) => { setFirstName(e.target.value) }}
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="First Name"
-                      required="" />
+                      required/>
                   </div>
                   <div>
                     {/* <label for="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label> */}
@@ -96,7 +110,7 @@ function Register() {
                       onChange={(e) => { setLastName(e.target.value) }}
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Last Name"
-                      required="" />
+                      required/>
                   </div>
                 </div>
                 <div>
@@ -107,7 +121,7 @@ function Register() {
                     onChange={(e) => setUserName(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Username"
-                    required="" />
+                    required/>
                 </div>
                 <div>
                   {/* <label for="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label> */}
@@ -118,7 +132,7 @@ function Register() {
                     maxLength={10}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Phone Number e.g 07xxxx"
-                    required="" />
+                    required/>
                 </div>
                 <div>
                   {/* <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label> */}
@@ -128,26 +142,28 @@ function Register() {
                     onChange={(e) => setEmail(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="E-mail e.g name@example.com"
-                    required="" />
+                    required/>
                 </div>
-                <div>
+                <div className='relative'>
                   {/* <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label> */}
-                  <input type="password"
+                  <input type={showPassword ? "text": "password"}
                     name="password" id="password"
                     placeholder="Password"
                     onChange={(e) => setUserPassword(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required="" />
+                    required/>
+                    <button title='show password' onClick={togglePassword} className="absolute inset-y-0 right-2 flex items-center">{showPassword?<FaEye/>:<FaEyeSlash/>}</button>
                 </div>
-                <div>
+                <div className='relative'>
                   {/* <label for="confirm-password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label> */}
-                  <input type="password"
+                  <input type={password ? "text": "password"}
                     name="confirm_password"
                     id="confirm_password"
                     placeholder="Confirm Password"
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required="" />
+                    required/>
+                    <button title='show password' onClick={togglePasswordVisibility} className="absolute inset-y-0 right-2 flex items-center">{password?<FaEye/>:<FaEyeSlash/>}</button>
                 </div>
                 <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create an account</button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
