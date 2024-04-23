@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Toaster, toast } from 'react-hot-toast';
 
-function BuyAirtime({allCampaigns,campaignError}) {
+function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
   const [phone, setPhone] = useState("");
   const [campaigns, setCampaigns] = useState([]);
   const [amount, setAmount] = useState();
@@ -10,12 +10,43 @@ function BuyAirtime({allCampaigns,campaignError}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(""); 
   const phonePattern = /^(07|01)\d{8}$/;
+  const[walletDetails,setWalletDetails]=useState()
+  const[transactionResponse,setTransactionResponse]=useState([])
 
   const token=localStorage.getItem("token")
+  const formRef = useRef(null);
   
   useEffect(() => {
     setCampaigns(allCampaigns)
   }, [allCampaigns, token])
+
+  useEffect(() => {
+    if(campaignError){
+        setError(campaignError)
+    }
+    
+  }, [campaignError,token])
+
+  //Get waallet details from a function in the main as a prop
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (campaign === '') {
+          setError('Please select a campaign');
+        } else {
+            setError(null);
+            const walletDetail = await handleWallet(campaign);
+            setWalletDetails(walletDetail);
+        }
+      } catch (error) {
+        console.error('Error fetching wallet details:', error);
+        setError('Error in fetching wallet details');
+      }
+    };
+
+    fetchData();
+
+  }, [campaign, campaigns, handleWallet]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,8 +57,8 @@ function BuyAirtime({allCampaigns,campaignError}) {
         setIsSubmitting(false)
         return
     }
-    else if(amount < 5) {
-        setError("Amount must be greater than 5")
+    else if(parseInt(amount) < 10) {
+        setError("Amount must be greater than 10")
         setIsSubmitting(false)
         return
     }
@@ -61,10 +92,15 @@ function BuyAirtime({allCampaigns,campaignError}) {
         } 
         if(data && data.message) {
           toast('Buy airtime request received successifully')
+          setTransactionResponse(data.message)
           setPhone("");
           setAmount("");
           setName("")
           setError(""); 
+          formRef.current.reset();
+        }
+        if(data && data.error){
+          setError(data.error)
         }
       })
       .catch((error) => {
@@ -76,6 +112,9 @@ function BuyAirtime({allCampaigns,campaignError}) {
     }
     
   };
+  // console.log(walletDetails)
+  // console.log(transactionResponse)
+
   return (
     <div className='mx-3'>
         <div className="text-md breadcrumbs ml-2">
@@ -86,14 +125,24 @@ function BuyAirtime({allCampaigns,campaignError}) {
         </div>
         <div>
             <h1 className="font-extrabold text-2xl">Buy Airtime</h1>
-            <hr className='mb-4'/>
+            <hr className='mb-2'/>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <form>
-                    {error && <p className='text-red-600 text-base pb-4'>{error}</p>}
+                <form ref={formRef}>
+                    {error && <p className='text-red-600 text-base'>{error}</p>}
+                    {transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
+                    {walletDetails? 
+                        <div className="stats border">
+                            <div className="stat">
+                                <div className="stat-title">Campaign Balance</div>
+                                <div className="stat-value">{walletDetails&&walletDetails.currency} {walletDetails && walletDetails.available_balance}</div>
+                            </div>
+                        </div>
+                        : null
+                    }
                     <div>
                         <label className="block font-semibold" htmlFor="name">Campaign</label>
                         <select 
-                        onChange={(e) => setCampaign(e.target.value)}
+                        onChange={(e) => {setWalletDetails('');setError(''); setCampaign(e.target.value)}}
                         className='w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base sm:text-sm md:text-base lg:text-lg p-4 border-none block mt-1' 
                         required>
                             <option value="">Select campaign</option>
@@ -126,7 +175,7 @@ function BuyAirtime({allCampaigns,campaignError}) {
                         <input 
                         className="w-full shadow-inner bg-gray-100 rounded-lg placeholder-gray-400 text-lg p-4 border-none block mt-1" 
                         id="name" 
-                        type="text" 
+                        type="phone" 
                         placeholder='e.g. 07xxxxxxxx'
                         maxLength={10}
                         value={phone}
@@ -155,10 +204,10 @@ function BuyAirtime({allCampaigns,campaignError}) {
                     <div className="bg-white p-10 rounded">
                         <h2 className="font-bold text-2xl">Instructions</h2>
                         <ul className="list-disc mt-4 list-inside text-lg">
-                            <li>Ensure that the phone number provided is registered to your M-Pesa account.</li>
-                            <li>Double-check the amount you wish to withdraw to avoid errors.</li>
-                            <li>Once you submit the withdrawal request, the funds will be transferred to your M-Pesa account within the hour.</li>
-                            <li>If you encounter any issues during the withdrawal process, please contact our support team for assistance.</li>
+                            <li>Ensure that the phone number provided is a valid phone number.</li>
+                            <li>Double-check the amount you wish to purchase and make sure it is not less than 5 to avoid errors.</li>
+                            <li>Once you submit the purchase request, the airtime will be transferred to your phone number within the hour.</li>
+                            <li>If you encounter any issues during the purchase process, please contact our support team for assistance.</li>
                         </ul>
                     </div>
                 </aside>

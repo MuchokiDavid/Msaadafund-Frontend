@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 
-function Withdraw({allCampaigns,campaignError}) {
+function Withdraw({allCampaigns,campaignError,handleWallet}) {
     const[accountNumbers,setAccountNumbers]=useState([])
     const[campaigns,setCampaigns]=useState([])
     const[errors,setErrors]=useState(null)
@@ -8,11 +8,15 @@ function Withdraw({allCampaigns,campaignError}) {
     const token=localStorage.getItem('token')
 
     const[providers,setProviders]=useState('M-Pesa')
-    const[amount,setAmount]=useState(5)
+    const[amount,setAmount]=useState()
     const[accountNumber,setAccountNumber]=useState('')
     const[campaign,setCampaign]=useState('')
     const[pin,setPin]=useState('')
     const[withdrawForm,setWithdrawForm]=useState(false)
+    const[walletDetails,setWalletDetails]=useState()
+    const[transactionResponse,setTransactionResponse]=useState([])
+
+    const formRef = useRef(null);
 
     useEffect(() => {
       setCampaigns(allCampaigns)
@@ -46,16 +50,45 @@ function Withdraw({allCampaigns,campaignError}) {
         handleFetch()
       }, [token])
 
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            if (campaign === '') {
+              setErrors('Please select a campaign');
+            } else {
+                setErrors(null);
+                const walletDetail = await handleWallet(campaign);
+                setWalletDetails(walletDetail);
+            }
+          } catch (error) {
+            console.error('Error fetching wallet details:', error);
+            setErrors('Error in fetching wallet details');
+          }
+        };
+    
+        fetchData();
+    
+      }, [campaign, campaigns, handleWallet]);
+      
+
+      useEffect(() => {
+        if(campaignError){
+            setErrors(campaignError)
+        }
+        
+      }, [campaignError,token])
+      
+
       const handleSubmit = (e) => {
         e.preventDefault()
         if(campaign===''){
             setErrors('Please select a campaign')
         }
-        else if(amount===''){
-            setErrors('Please enter an amount')
+        else if(parseInt(amount)<10){
+            setErrors('Amount should be greater than Sh.10')
         }
         else if(accountNumber===''){
-            setErrors('Please enter an account number')
+            setErrors('Please select an account number')
         }
         else{
             setWithdrawForm(true)
@@ -84,7 +117,10 @@ function Withdraw({allCampaigns,campaignError}) {
             const data = await response.json();
             if (response.ok) {
                 setLoading(false)
-                console.log(data)
+                // console.log(data)
+                setTransactionResponse(data)
+                // window.location.reload()
+                formRef.current.reset();
                 setAccountNumber('')
                 setAmount('')
                 setCampaign('')
@@ -106,6 +142,9 @@ function Withdraw({allCampaigns,campaignError}) {
     if (loading) {
         return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
     }
+    // console.log(walletDetails)
+    // console.log(campaigns)
+    // console.log(transactionResponse)
 
   return (
     <div className='mx-3'>
@@ -119,12 +158,25 @@ function Withdraw({allCampaigns,campaignError}) {
             <h1 className="font-extrabold text-2xl">Withdraw</h1>
             <hr className='mb-6'/>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <form>
-                    {errors && <p className='text-red-800 text-base'>{errors}</p>}
+                <form ref={formRef}>  
+                {errors && <p className='text-red-800 text-base'>{errors}</p>}
+                    {walletDetails? 
+                        <div className="stats border">
+                            <div className="stat">
+                                <div className="stat-title">Campaign Balance</div>
+                                <div className="stat-value">{walletDetails&&walletDetails.currency} {walletDetails && walletDetails.available_balance}</div>
+                            </div>
+                        </div>
+                        : null
+                    }
                     <div>
                         <label className="block font-semibold" htmlFor="name">Campaign</label>
                         <select 
-                        onChange={(e) => setCampaign(e.target.value)}
+                        onChange={(e) => {
+                            setWalletDetails('')
+                            setErrors('')
+                            setCampaign(e.target.value)
+                        }}
                         className='w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base sm:text-sm md:text-base lg:text-lg p-4 border-none block mt-1' 
                         required>
                             <option value="">Select campaign</option>
@@ -142,7 +194,7 @@ function Withdraw({allCampaigns,campaignError}) {
                     <div className='mt-4'>
                         <label className="block font-semibold" htmlFor="name">Provider</label>
                         <input 
-                        className="w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-lg p-4 border-none block mt-1" 
+                        className="w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-lg p-2.5 border-none block mt-1" 
                         id="name" 
                         type="text" 
                         name="name"
@@ -156,7 +208,9 @@ function Withdraw({allCampaigns,campaignError}) {
                     <div className="mt-4">
                         <label className="block font-semibold" htmlFor="name">Account Number</label>
                         <select 
-                        onChange={(e) => setAccountNumber(e.target.value)}
+                        onChange={(e) => {
+                            setAccountNumber(e.target.value)
+                        }}
                         className='w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base sm:text-sm md:text-base lg:text-lg p-4 border-none block mt-1' 
                         required>
                             <option value="">Select account</option>
@@ -176,8 +230,9 @@ function Withdraw({allCampaigns,campaignError}) {
                         <input
                         onChange={(e) => setAmount(e.target.value)}
                         value={amount} 
-                        className="w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-lg p-4 border-none block mt-1" 
+                        className="w-full shadow-inner bg-gray-100 rounded-lg placeholder-gray-400 text-lg p-2.5 border-none block mt-1" 
                         id="amount" 
+                        placeholder='Ksh.10 and above'
                         type="number" 
                         name="amount" 
                         required/>
@@ -192,6 +247,7 @@ function Withdraw({allCampaigns,campaignError}) {
                     <div className="modal-box">
                         <h3 className="font-bold text-lg">Please Enter Your Pin</h3>
                         {/* <div className="modal-action"> */}
+                        {transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
                             <form onSubmit={handleWithdraw}>
                                 <div className='flex-col justify-center items-center pl-4 pr-8'>
                                     <div className='my-4'>
@@ -220,8 +276,9 @@ function Withdraw({allCampaigns,campaignError}) {
                                         <button type='submit' className="btn my-4">Withdraw</button>
                                     </div>
                                 </div>
-                                <button onClick={()=>setWithdrawForm(false)} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                            </form>
+                                </form>
+                                <button onClick={()=>{setWithdrawForm(false); setTransactionResponse(''); setWalletDetails('')}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            
                         {/* </div> */}
                     </div>
                 </dialog>
@@ -231,7 +288,7 @@ function Withdraw({allCampaigns,campaignError}) {
                         <h2 className="font-bold text-2xl">Instructions</h2>
                         <ul className="list-disc mt-4 list-inside">
                             <li>Ensure that the phone number provided is registered to your M-Pesa account.</li>
-                            <li>Double-check the amount you wish to withdraw to avoid errors.</li>
+                            <li>Double-check the amount you wish to withdraw and make sure it is more that sh.10 to avoid errors.</li>
                             <li>Once you submit the withdrawal request, the funds will be transferred to your M-Pesa account within the hour.</li>
                             <li>If you encounter any issues during the withdrawal process, please contact our support team for assistance.</li>
                         </ul>

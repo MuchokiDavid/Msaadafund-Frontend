@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { prettyNumber } from '@based/pretty-number'
 
 function HomeCards({allCampaigns, allDonations}) {
     const[donations, setDonations] = useState([])
@@ -34,7 +35,7 @@ function HomeCards({allCampaigns, allDonations}) {
                     <h3 className="lg:text-xl tracking-wider">Total Donations</h3>
                     </div>
                     <div>
-                    <p className="lg:text-2xl">KES {totalAmount}</p>
+                    <p className="lg:text-2xl">KES {prettyNumber(totalAmount , 'number-short')}</p>
                     </div>
                 </div>
             </div>
@@ -49,7 +50,7 @@ function HomeCards({allCampaigns, allDonations}) {
                     <h3 className="tracking-wider lg:text-xl">Total Campaigns</h3>
                     </div>
                     <div>
-                    <p className="lg:text-2xl">{allCampaigns && allCampaigns.length}</p>
+                    <p className="lg:text-2xl">{prettyNumber(allCampaigns && allCampaigns.length , 'number-short')}</p>
                     </div>
                 </div>
             </div>
