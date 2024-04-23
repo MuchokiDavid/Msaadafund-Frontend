@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { MdDelete } from "react-icons/md";
 import axios from 'axios';
 import { Toaster, toast } from 'react-hot-toast';
-import { Routes, Route } from 'react-router-dom';
 
 
 function CampaignCard({allCampaigns, campaignError}) {
     const [campaigns, setCampaigns] = useState();
     const token = localStorage.getItem('token');
     const [walletDetails, setWalletDetails] = useState(null);
-    // const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState(campaignError);
 
     const navigate = useNavigate()
@@ -48,9 +47,9 @@ function CampaignCard({allCampaigns, campaignError}) {
     };
     // console.log(campaigns)
 
-    // if(loading){
-    //     return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>
-    // }
+    if(loading){
+        return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>
+    }
     
 
     const handleEditButton = (campaignId)=>{
