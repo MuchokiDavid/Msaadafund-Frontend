@@ -6,7 +6,6 @@ import { Routes, Route } from 'react-router-dom';
 import OrgHome from './pages/OrgHome';
 import DashboardNav from './dash-components/DashboardNav';
 import CreateCampaign from './pages/CreateCampaign';
-import { useAuth } from '../../context/usersContext';
 import DashFooter from './dash-components/DashFooter';
 import CampaignCard from './dash-components/CampaignCard';
 import Accounts from './pages/Accounts';
@@ -17,7 +16,8 @@ import BuyAirtime from './pages/BuyAirtime';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
-  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
+  // const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const[loading,setLoading]=useState(true)
   const[campaigns,setCampaigns]=useState([])
   const[allDonations,setAllDonations]=useState()
@@ -30,23 +30,45 @@ function OrgLayout() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      const isScreenLarge = window.innerWidth >= 810;
-      setIsLargeScreen(isScreenLarge);
-      setIsSidebarOpen(isScreenLarge); 
-      if (!isScreenLarge) {
-        setIsSidebarOpen(false);
+  // Function to update isSmallScreen state based on window width
+const handleWindowSizeChange = () => {
+  setIsSmallScreen(window.innerWidth <= 640); // Adjust the width threshold as needed
+};
+
+// Listen to window resize events
+useEffect(() => {
+  window.addEventListener('resize', handleWindowSizeChange);
+  // Call it initially
+  handleWindowSizeChange();
+  return () => {
+    window.removeEventListener('resize', handleWindowSizeChange);
+  };
+}, []);
+
+const handleWallet = async (id) => {
+  try {
+      const response = await fetch(`/api/v1.0/campaign_wallet/${id}`, {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+          },
+      });
+      const data = await response.json();
+      if (response.ok) {
+          // setLoading(false)
+          return data.wallet_details;          
       }
-    };
+      
+  } catch (error) {
+      // setLoading(true)
+      setErrors('Error in fetching wallet details', error);
+  }
+};
+// console.log(wallet)
 
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 //Get all donations to a logged in organisation
+
   useEffect(() => {
       const getDonations = async () => {
           try {
@@ -141,10 +163,10 @@ function OrgLayout() {
   return (
     <div className='overflow-hidden'>
       <DashboardNav toggleSidebar={toggleSidebar} />
-      <div className="flex">
-        <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
-        {/* {isLargeScreen && <Menubar isOpen={isSidebarOpen} />} */}
-        <main className="mt-3 mx-auto w-full overflow-hidden overflow-y-auto md:m-3 min-h-max sm:h-fit sm:w-full lg:h-auto justify-center lg:px-20" style={{ marginTop: '10px' }}>
+      <div className="flex relative">
+        {/* <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/> */}
+        {isSidebarOpen && <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />}
+        <main className={`mt-3 mx-auto w-full overflow-hidden overflow-y-auto md:m-3 min-h-max sm:h-fit sm:w-full lg:h-auto justify-center lg:px-20 ${isSmallScreen && isSidebarOpen ? 'blur' : ''}`} style={{ marginTop: '10px' }}>
           <Routes>
             <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors}/>} />
             {/* route to update campaign */}
@@ -152,8 +174,8 @@ function OrgLayout() {
             <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch}/>} />
             <Route path="/campaigns" element={<CampaignCard allCampaigns={campaigns} campaignError={errors}/>} />
             <Route path="/donations" element={<Donations allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} allDonation={allDonations} allDonors={donors}/>} />
-            <Route path="/transact/withdraw" element={<Withdraw allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
-            <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
+            <Route path="/transact/withdraw" element={<Withdraw allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
+            <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
             <Route path="/accounts" element={<Accounts/>} />
             <Route path="/transaction" element={<Transaction allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
             <Route path="/profile" element={<Profile />} />
