@@ -10,7 +10,6 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(""); 
   const phonePattern = /^(07|01)\d{8}$/;
-  const[errors,setErrors]=useState(null)
   const[walletDetails,setWalletDetails]=useState()
   const[transactionResponse,setTransactionResponse]=useState([])
 
@@ -23,7 +22,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
 
   useEffect(() => {
     if(campaignError){
-        setErrors(campaignError)
+        setError(campaignError)
     }
     
   }, [campaignError,token])
@@ -33,15 +32,15 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
     const fetchData = async () => {
       try {
         if (campaign === '') {
-          setErrors('Please select a campaign');
+          setError('Please select a campaign');
         } else {
-            setErrors(null);
+            setError(null);
             const walletDetail = await handleWallet(campaign);
             setWalletDetails(walletDetail);
         }
       } catch (error) {
         console.error('Error fetching wallet details:', error);
-        setErrors('Error in fetching wallet details');
+        setError('Error in fetching wallet details');
       }
     };
 
@@ -114,7 +113,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
     
   };
   // console.log(walletDetails)
-  console.log(transactionResponse)
+  // console.log(transactionResponse)
 
   return (
     <div className='mx-3'>
@@ -130,6 +129,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <form ref={formRef}>
                     {error && <p className='text-red-600 text-base'>{error}</p>}
+                    {transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
                     {walletDetails? 
                         <div className="stats border">
                             <div className="stat">
@@ -175,7 +175,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                         <input 
                         className="w-full shadow-inner bg-gray-100 rounded-lg placeholder-gray-400 text-lg p-4 border-none block mt-1" 
                         id="name" 
-                        type="text" 
+                        type="phone" 
                         placeholder='e.g. 07xxxxxxxx'
                         maxLength={10}
                         value={phone}
