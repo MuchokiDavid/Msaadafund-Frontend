@@ -162,7 +162,7 @@ function CampainDetails() {
             </>
         )
     }
-    console.log(campaign)
+    // console.log(campaign)
 
     return (
         <div>
