@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { toast, Toaster } from 'react-hot-toast';
 import ResetPin from './PinResetForm';
 
 function Accounts() {
     const [accounts, setAccounts] = useState([]);
-    const [providers, setProviders] = useState('M-Pesa');
+    const [providers, setProviders] = useState('');
     const [accountNumbers, setAccountNumber] = useState('');
+    const [accountName, setAccountName] = useState('');
     const [pin, setPin] = useState('');
     const [confirmPin, setConfirmPin] = useState('');
     const [loading, setLoading] = useState(false);
@@ -15,6 +16,7 @@ function Accounts() {
     const [showResetPin, setShowResetPin] = useState(false); 
     const [resetPinEmail, setResetPinEmail] = useState('');
     const phonePattern = /^(07|01)\d{8}$/; 
+    const formRef = useRef(null);
 
     useEffect(() => {
         fetchAccounts();
@@ -41,11 +43,12 @@ function Accounts() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        let accountNumber //variable to hold formatted account number
         if (pin !== confirmPin) {
             setError('PINs do not match.');
             return;
         }
-        if (!accountNumbers.match(phonePattern)) {
+        if (providers==='M-Pesa' && !accountNumbers.match(phonePattern)) {
             setError('Invalid Account Number')
             return;
         }
@@ -58,11 +61,17 @@ function Accounts() {
                 setLoading(false);
                 return;
             }
-            let phoneNo = accountNumbers.replace(/^0+/, '');
-            let accountNumber = "254" + phoneNo;
-    
+            if(providers==='M-Pesa'){
+                let phoneNo = accountNumbers.replace(/^0+/, '');
+                accountNumber = "254" + phoneNo;
+            }
+            else if(providers==='Bank'){
+                accountNumber = accountNumbers;
+            }
+            
             const response = await axios.post('/api/v1.0/accounts', {
                 providers,
+                accountName,
                 accountNumber,
                 pin,
             }, {
@@ -79,6 +88,7 @@ function Accounts() {
             setError('');
             setShowCreateAccount(false);
             fetchAccounts();
+            formRef.current.reset()
         } catch (error) {
             console.error('Error creating account:', error);
             setError('An error occurred while creating the account.');
@@ -123,6 +133,7 @@ function Accounts() {
                     <thead>
                         <tr className='bg-gray-100 dark:bg-gray-700'>
                             <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Providers</th>
+                            <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Account Name</th>
                             <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Account Number</th>
                             <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Actions</th>
                         </tr>
@@ -131,6 +142,7 @@ function Accounts() {
                             {accounts.map((account) => (
                                 <tr key={account.id}>
                                     <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>{account.providers}</td>
+                                    <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>{account.accountName}</td>
                                     <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>{account.accountNumber}</td>
                                     <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>
                                     <button onClick={() => handleShowResetPin(account.email)} className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-2 w-full sm:w-auto'>
@@ -153,15 +165,24 @@ function Accounts() {
                         <div className='mx-auto lg:max-w-md md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 text-white'>
                             <h1 className='text-2xl font-semibold mb-4 text-slate-600 dark:text-slate-300'>Create Account</h1>
                             <div className='mb-6 flex items-center justify-center'>
-                                <form onSubmit={handleSubmit} className='w-full'>
+                                <form onSubmit={handleSubmit} className='w-full' ref={formRef}>
                                 {error && <p className='text-red-500 mt-4'>{error}</p>}
                                     <div className='mb-4'>
                                         <label htmlFor='providers' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>Providers</label>
-                                        <input type='text' value={providers} disabled onChange={(e) => setProviders(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' required />
+                                        <select value={providers} onChange={(e) => setProviders(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' required>
+                                            <option value=''>Select Provider</option>
+                                            <option value='M-Pesa'>M-Pesa</option>
+                                            <option value='Bank'>Bank</option>
+                                        </select>
+                                        {/* <input type='text' value={providers} disabled onChange={(e) => setProviders(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' required /> */}
+                                    </div>
+                                    <div className='mb-4'>
+                                        <label htmlFor='accountName' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>Account Name</label>
+                                        <input type='text' value={accountName} onChange={(e) => setAccountName(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' placeholder='eg John Doe, KCB account' required />
                                     </div>
                                     <div className='mb-4'>
                                         <label htmlFor='accountNumber' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>Account Number</label>
-                                        <input type='text' value={accountNumbers} onChange={(e) => setAccountNumber(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' placeholder='Phone number eg 07xxx or 01xxx' maxLength={10} required />
+                                        <input type='text' value={accountNumbers} onChange={(e) => setAccountNumber(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' placeholder='eg 07xxx, 01xxx, 124......' required />
                                     </div>
                                     <div className='mb-4'>
                                         <label htmlFor='pin' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>PIN</label>
@@ -175,7 +196,7 @@ function Accounts() {
                                         <button type='submit' className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
                                             {loading ? 'Creating...' : 'Create'}
                                         </button>
-                                        <button onClick={handleClosePopup} className='bg-gray-700 hover:bg-gray-800 text-white font-bold ml-28 py-2 px-4 rounded focus:outline-none focus:shadow-outline'>Close</button>
+                                        <button onClick={handleClosePopup}  className='bg-gray-700 hover:bg-gray-800 text-white font-bold ml-28 py-2 px-4 rounded focus:outline-none focus:shadow-outline'>Close</button>
                                     </div>
                                 </form>
                             </div>

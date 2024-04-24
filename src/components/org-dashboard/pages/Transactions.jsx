@@ -24,6 +24,7 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
      };
 
     useEffect(() => {
+      setErrors('')
       setAllCampaign(allCampaigns)
     }, [token, allCampaigns])
 
