@@ -4,7 +4,10 @@ import { FaDonate, FaHome } from 'react-icons/fa';
 import { GrTransaction } from 'react-icons/gr';
 import { IoPersonCircle } from 'react-icons/io5';
 import { MdOutlineCampaign, MdOutlineViewCompactAlt } from 'react-icons/md';
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
+import { FaPhone } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+
 
 // Use the icon component dynamically
 const QuickLink = ({ icon, name, to }) => {
@@ -23,6 +26,8 @@ function QuickLinks() {
         { icon: MdOutlineCampaign, name: 'Add Campaign',to:'/org/dashboard/createcampaign' }, 
         { icon: MdOutlineViewCompactAlt, name: 'My Campaign',to:'/org/dashboard/campaigns' },
         { icon: FaDonate , name: 'Donations',to:'/org/dashboard/donations' },
+        { icon: FaMoneyBillTrendUp , name: 'Withdraw' ,to:'/org/dashboard/transact/withdraw'},
+        { icon: FaPhone , name: 'Buy Airtime' ,to:'/org/dashboard/transact/buyairtime'},
         { icon: GrTransaction , name: 'Transactions',to:'/org/dashboard/transaction' },
         { icon: BiMoneyWithdraw , name: 'Accounts' ,to:'/org/dashboard/accounts'},
         { icon: IoPersonCircle , name: 'Profile' ,to:'/org/dashboard/profile'}
