@@ -4,6 +4,22 @@ import QuickLinks from '../dash-components/QuickLinks'
 import RecentDonations from '../dash-components/RecentDonations'
 
 function OrgHome({allCampaigns,allDonations, allDonors}) {
+  // to get token for organisation
+  const token = localStorage.getItem('token')
+  const user = localStorage.getItem('user')
+  const org = localStorage.getItem('org')
+
+  if (!token) {
+    window.location.replace("/org/login")
+  }
+  if (user) {
+    window.location.replace("/user/dashboard")
+  }
+  if (org) {
+    window.location.replace("/org/dashboard")
+  }
+  
+
   return (
     <div className='sm:h-fit'>
       <div className="text-md breadcrumbs ml-2">
