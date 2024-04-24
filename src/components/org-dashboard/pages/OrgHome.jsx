@@ -2,23 +2,30 @@ import React from 'react'
 import HomeCards from '../dash-components/HomeCards'
 import QuickLinks from '../dash-components/QuickLinks'
 import RecentDonations from '../dash-components/RecentDonations'
+// import { useNavigate } from 'react-router-dom'
 
 function OrgHome({allCampaigns,allDonations, allDonors}) {
   // to get token for organisation
   const token = localStorage.getItem('token')
   const user = localStorage.getItem('user')
-  const org = localStorage.getItem('org')
+  // const org = localStorage.getItem('org')
+
+  // const navigate = useNavigate()
 
   if (!token) {
     window.location.replace("/org/login")
   }
-  if (user) {
-    window.location.replace("/user/dashboard")
+  if (user){
+    window.location.replace("/unauthorized")
+    return null
+    
+
+
   }
-  if (org) {
-    window.location.replace("/org/dashboard")
-  }
-  
+  // if (org && user === null  && token) {
+  //   window.location.replace("/org/dashboard")
+  // }
+
 
   return (
     <div className='sm:h-fit'>
