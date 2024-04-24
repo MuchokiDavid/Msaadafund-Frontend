@@ -1,27 +1,58 @@
 import React, { useEffect, useState, useRef } from 'react'
+import { Toaster, toast } from 'react-hot-toast';
 
-function Withdraw({allCampaigns,campaignError,handleWallet}) {
-    const[accountNumbers,setAccountNumbers]=useState([])
-    const[campaigns,setCampaigns]=useState([])
-    const[errors,setErrors]=useState(null)
-    const[loading,setLoading]=useState(false)
-    const token=localStorage.getItem('token')
+function Withdraw({ allCampaigns, campaignError, handleWallet }) {
+    const [accountNumbers, setAccountNumbers] = useState([])
+    const [campaigns, setCampaigns] = useState([])
+    const [errors, setErrors] = useState(null)
+    const [loading, setLoading] = useState(false)
+    const token = localStorage.getItem('token')
 
-    const[providers,setProviders]=useState('M-Pesa')
-    const[amount,setAmount]=useState()
-    const[accountNumber,setAccountNumber]=useState('')
-    const[campaign,setCampaign]=useState('')
-    const[pin,setPin]=useState('')
-    const[withdrawForm,setWithdrawForm]=useState(false)
-    const[walletDetails,setWalletDetails]=useState()
-    const[transactionResponse,setTransactionResponse]=useState([])
+    const [providers, setProviders] = useState('')
+    const [amount, setAmount] = useState()
+    const [accountNumber, setAccountNumber] = useState('')
+    const [campaign, setCampaign] = useState('')
+    const [pin, setPin] = useState('')
+    const [withdrawForm, setWithdrawForm] = useState(false)
+    const [walletDetails, setWalletDetails] = useState()
+    const [transactionResponse, setTransactionResponse] = useState([])
+    const [allBanks, setAllBanks] = useState([])
+    const [bank, setBank] = useState('')
+    const [popupErrors, setPopupErrors] = useState(null)
 
     const formRef = useRef(null);
+    const phoneRegex = /^254\d{9}$/
 
     useEffect(() => {
-      setCampaigns(allCampaigns)
+        setCampaigns(allCampaigns)
     }, [allCampaigns, token])
-    
+
+    useEffect(() => {
+        const fetchBanks = async () => {
+            try {
+                const response = await fetch('/api/v1.0/all_banks', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    setLoading(false)
+                    setAllBanks(data);
+                } else {
+                    setLoading(true)
+                    throw new Error(data);
+                }
+            } catch (error) {
+                setLoading(true)
+                setErrors('Error in fetching accounts', error);
+            }
+        }
+        fetchBanks()
+    }, [providers])
+
 
     const handleFetch = async () => {
         try {
@@ -44,110 +75,140 @@ function Withdraw({allCampaigns,campaignError,handleWallet}) {
             setLoading(true)
             setErrors('Error in fetching accounts', error);
         }
-      };
+    };
 
-      useEffect(() => {
+    useEffect(() => {
         handleFetch()
-      }, [token])
+    }, [token])
 
-      useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
-          try {
-            if (campaign === '') {
-              setErrors('Please select a campaign');
-            } else {
-                setErrors(null);
-                const walletDetail = await handleWallet(campaign);
-                setWalletDetails(walletDetail);
+            try {
+                if (campaign === '') {
+                    setErrors('Please select a campaign');
+                } else {
+                    setErrors(null);
+                    const walletDetail = await handleWallet(campaign);
+                    setWalletDetails(walletDetail);
+                }
+            } catch (error) {
+                console.error('Error fetching wallet details:', error);
+                setErrors('Error in fetching wallet details');
             }
-          } catch (error) {
-            console.error('Error fetching wallet details:', error);
-            setErrors('Error in fetching wallet details');
-          }
         };
-    
-        fetchData();
-    
-      }, [campaign, campaigns, handleWallet]);
-      
 
-      useEffect(() => {
-        if(campaignError){
+        fetchData();
+
+    }, [campaign,providers]);
+
+
+    useEffect(() => {
+        if (campaignError) {
             setErrors(campaignError)
         }
-        
-      }, [campaignError,token])
-      
+    }, [campaignError, token])
 
-      const handleSubmit = (e) => {
+    const handleClearStates = () => {
+        setAccountNumber('')
+        setAmount('')
+        setProviders('')
+        setCampaign('')
+        setPin('')
+        setWithdrawForm(false)
+        setTransactionResponse([])
+        setErrors(null)
+        setLoading(false)
+        formRef.current.reset();
+        setAccountNumber('')
+    }
+
+    const handleSubmit = (e) => {
         e.preventDefault()
-        if(campaign===''){
+        if (campaign === '') {
             setErrors('Please select a campaign')
         }
-        else if(parseInt(amount)<10){
+        else if (providers == "M-Pesa" && parseInt(amount) < 10) {
             setErrors('Amount should be greater than Sh.10')
         }
-        else if(accountNumber===''){
+        else if (providers == "Bank" && parseInt(amount) < 100) {
+            setErrors('Amount should be greater than Sh.100')
+        }
+        else if (accountNumber === '') {
             setErrors('Please select an account number')
         }
-        else{
+        else if (providers === 'Bank' && bank === '') {
+            setErrors('Please select a bank')
+        }
+        else if (providers === 'M-Pesa' && !accountNumber.match(phoneRegex)) {
+            setErrors('Please select a valid account')
+        }
+        else {
+            setPin('')
+            setPopupErrors('')
             setWithdrawForm(true)
         }
-        
-      }
 
-      const handleWithdraw = async (e) => {
-        e.preventDefault()
-        setWithdrawForm(true)
-        try {
-            const response = await fetch('/api/v1.0/withdraw', {
-                method: 'POST',
+    }
+
+    function handleWithdraw(e) {
+        e.preventDefault();
+        try{
+            fetch('/api/v1.0/withdraw', {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({
                     campaign: campaign,
                     amount: amount,
                     accountNumber: accountNumber,
                     providers: providers,
-                    pin: pin
+                    pin: pin,
+                    bank_code: bank
                 })
+            }).then((res) => res.json())
+            .catch((err) => { console.log(err) })
+            .then((data) => {
+                if(data.message){
+                    setTransactionResponse(data.message)
+                    toast.success("Transaction initiated successifully")
+                }
+                if (data.error) {
+                    setPopupErrors(data.error)
+                } 
             });
-            const data = await response.json();
-            if (response.ok) {
-                setLoading(false)
-                // console.log(data)
-                setTransactionResponse(data)
-                // window.location.reload()
-                formRef.current.reset();
-                setAccountNumber('')
-                setAmount('')
-                setCampaign('')
-                setPin('')
-            } else {
-                // setLoading(true)
-                throw new Error(data);
-            }
-        } catch (error) {
+        }
+        catch(error){
             // setLoading(true)
             setErrors('Error in withdrawing funds', error);
         }
+        finally{
+            setLoading(false)
+            formRef.current.reset();
+            setAccountNumber('')
+            setAmount('')
+            setCampaign('')
+            setPin('')
+        }
       }
-    
-    if  (!token){
+
+if (!token) {
     window.location.replace("/org/login")
-    }
+}
 
-    if (loading) {
-        return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
-    }
-    // console.log(walletDetails)
-    // console.log(campaigns)
-    // console.log(transactionResponse)
+// if (loading) {
+//     return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
+// }
+// console.log(walletDetails)
+// console.log(campaigns)
+// console.log(transactionResponse)
+// console.log(accountNumber)
+// console.log(accountNumbers)
+// console.log(bank)
 
-  return (
-    <div className='mx-3'>
+return (
+    <div className='mx-3 h-fit sm:h-screen'>
         <div className="text-md breadcrumbs ml-2">
             <ul>
                 <li><a href='/org/dashboard'>Dashboard</a></li>
@@ -156,35 +217,33 @@ function Withdraw({allCampaigns,campaignError,handleWallet}) {
         </div>
         <div>
             <h1 className="font-extrabold text-2xl">Withdraw</h1>
-            <hr className='mb-6'/>
+            <hr className='mb-6' />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <form ref={formRef}>  
-                {errors && <p className='text-red-800 text-base'>{errors}</p>}
-                    {walletDetails? 
+                <form ref={formRef}>
+                    {errors && <p className='text-red-700 text-base'>{errors}</p>}
+                    {walletDetails ?
                         <div className="stats border">
                             <div className="stat">
                                 <div className="stat-title">Campaign Balance</div>
-                                <div className="stat-value">{walletDetails&&walletDetails.currency} {walletDetails && walletDetails.available_balance}</div>
+                                <div className="stat-value">{walletDetails && walletDetails.currency} {walletDetails && walletDetails.available_balance}</div>
                             </div>
                         </div>
                         : null
                     }
                     <div>
                         <label className="block font-semibold" htmlFor="name">Campaign</label>
-                        <select 
-                        onChange={(e) => {
-                            setWalletDetails('')
-                            setErrors('')
-                            setCampaign(e.target.value)
-                        }}
-                        className='w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base sm:text-sm md:text-base lg:text-lg p-4 border-none block mt-1' 
-                        required>
+                        <select
+                            onChange={(e) => {
+                                setCampaign(e.target.value)
+                            }}
+                            className='w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base sm:text-sm md:text-base lg:text-lg p-4 border-none block mt-1'
+                            required>
                             <option value="">Select campaign</option>
                             {campaigns.map((campaign, index) => {
-                                return(
-                                    <option 
-                                    value={campaign.id} 
-                                    key={index}>{campaign.campaignName}
+                                return (
+                                    <option
+                                        value={campaign.id}
+                                        key={index}>{campaign.campaignName}
                                     </option>
                                 )
                             })}
@@ -193,32 +252,53 @@ function Withdraw({allCampaigns,campaignError,handleWallet}) {
 
                     <div className='mt-4'>
                         <label className="block font-semibold" htmlFor="name">Provider</label>
-                        <input 
-                        className="w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-lg p-2.5 border-none block mt-1" 
-                        id="name" 
-                        type="text" 
-                        name="name"
-                        value={providers}
-                        onChange={(e)=>setProviders(e.target.value)} 
-                        required 
-                        autofocus="autofocus" 
-                        disabled/>
+                        <select className="w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-lg p-4 border-none block mt-1"
+                            id="name"
+                            type="text"
+                            name="name"
+                            value={providers}
+                            onChange={(e) => { setProviders(e.target.value); setBank('') }}
+                            required>
+                            <option value="">Select provider</option>
+                            <option value="M-Pesa">M-Pesa</option>
+                            <option value="Bank">Bank</option>
+                        </select>
+                        <div className='mt-4'>
+                            {providers === 'Bank' ?
+                                <select
+                                    onChange={(e) => {
+                                        setBank(e.target.value)
+                                    }}
+                                    className='w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base sm:text-sm md:text-base lg:text-lg p-4 border-none block mt-1'
+                                    required>
+                                    <option value="">Select Bank</option>
+                                    {allBanks.map((bank, index) => {
+                                        return (
+                                            <option
+                                                className='text-md'
+                                                value={bank.bank_code}
+                                                key={index}>{bank.bank_name}
+                                            </option>
+                                        )
+                                    })}
+                                </select>
+                                : null}</div>
                     </div>
 
                     <div className="mt-4">
-                        <label className="block font-semibold" htmlFor="name">Account Number</label>
-                        <select 
-                        onChange={(e) => {
-                            setAccountNumber(e.target.value)
-                        }}
-                        className='w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base sm:text-sm md:text-base lg:text-lg p-4 border-none block mt-1' 
-                        required>
+                        <label className="block font-semibold" htmlFor="name">Account</label>
+                        <select
+                            onChange={(e) => {
+                                setAccountNumber(e.target.value)
+                            }}
+                            className='w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base sm:text-sm md:text-base lg:text-lg p-4 border-none block mt-1'
+                            required>
                             <option value="">Select account</option>
                             {accountNumbers.map((accountNo, index) => {
-                                return(
-                                    <option 
-                                    value={accountNo.accountNumber} 
-                                    key={index}>{accountNo.accountNumber}
+                                return (
+                                    <option
+                                        value={accountNo.accountNumber}
+                                        key={index}>{accountNo.accountName}
                                     </option>
                                 )
                             })}
@@ -228,57 +308,58 @@ function Withdraw({allCampaigns,campaignError,handleWallet}) {
                     <div className="mt-4">
                         <label className="block font-semibold" htmlFor="number">Amount</label>
                         <input
-                        onChange={(e) => setAmount(e.target.value)}
-                        value={amount} 
-                        className="w-full shadow-inner bg-gray-100 rounded-lg placeholder-gray-400 text-lg p-2.5 border-none block mt-1" 
-                        id="amount" 
-                        placeholder='Ksh.10 and above'
-                        type="number" 
-                        name="amount" 
-                        required/>
+                            onChange={(e) => setAmount(e.target.value)}
+                            value={amount}
+                            className="w-full shadow-inner bg-gray-100 rounded-lg placeholder-gray-400 text-lg p-2.5 border-none block mt-1"
+                            id="amount"
+                            placeholder='Above Ksh.10 for M-Pesa, Above Ksh.100 for Bank'
+                            type="number"
+                            name="amount"
+                            required />
                     </div>
 
                     <div className="flex items-center justify-between mt-8">
-                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-3 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-4 md:text-lg md:px-10">Withdraw</button>                        
+                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-3 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-4 md:text-lg md:px-10">Withdraw</button>
                     </div>
                 </form>
 
-                <dialog open={withdrawForm} onClose={()=>setWithdrawForm(false)} className="modal flex-row justify-center items-center text-center">
+                <dialog open={withdrawForm} onClose={() => setWithdrawForm(false)} className="modal flex-row justify-center items-center text-center">
                     <div className="modal-box">
                         <h3 className="font-bold text-lg">Please Enter Your Pin</h3>
                         {/* <div className="modal-action"> */}
                         {transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
-                            <form onSubmit={handleWithdraw}>
-                                <div className='flex-col justify-center items-center pl-4 pr-8'>
-                                    <div className='my-4'>
-                                       <label className="font-semibold my-3" htmlFor="password">Amount</label>
-                                        <input
+                        {popupErrors && <p className='text-red-700'>{popupErrors}</p>}
+                        <form onSubmit={handleWithdraw}>
+                            <div className='flex-col justify-center items-center pl-4 pr-8'>
+                                <div className='my-4'>
+                                    <label className="font-semibold my-3" htmlFor="password">Amount</label>
+                                    <input
                                         className="shadow-inner bg-gray-50 rounded-lg placeholder-gray-400 text-lg p-4 border-none block"
                                         value={amount}
                                         disabled
-                                        /> 
-                                    </div>
-                                    <div>
-                                        <label className="font-semibold mb-4" htmlFor="password">Enter Pin</label>
-                                        <input
+                                    />
+                                </div>
+                                <div>
+                                    <label className="font-semibold mb-4" htmlFor="password">Enter Pin</label>
+                                    <input
                                         onChange={(e) => setPin(e.target.value)}
-                                        value={pin} 
-                                        className="shadow-inner bg-gray-50 rounded-lg placeholder-gray-400 text-lg p-4 border-none block" 
-                                        id="pin" 
-                                        type="password" 
+                                        value={pin}
+                                        className="shadow-inner bg-gray-50 rounded-lg placeholder-gray-400 text-lg p-4 border-none block"
+                                        id="pin"
+                                        type="password"
                                         placeholder='pin'
                                         maxLength={4}
-                                        name="pin" 
+                                        name="pin"
                                         required
-                                        />
-                                    </div>
-                                    <div>
-                                        <button type='submit' className="btn my-4">Withdraw</button>
-                                    </div>
+                                    />
                                 </div>
-                                </form>
-                                <button onClick={()=>{setWithdrawForm(false); setTransactionResponse(''); setWalletDetails('')}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                            
+                                <div>
+                                    <button type='submit' className="btn my-4">Withdraw</button>
+                                </div>
+                            </div>
+                        </form>
+                        <button onClick={() => { setWithdrawForm(false); setTransactionResponse(''); setWalletDetails(''); formRef.current.reset(); setPopupErrors('')}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+
                         {/* </div> */}
                     </div>
                 </dialog>
@@ -288,7 +369,8 @@ function Withdraw({allCampaigns,campaignError,handleWallet}) {
                         <h2 className="font-bold text-2xl">Instructions</h2>
                         <ul className="list-disc mt-4 list-inside">
                             <li>Ensure that the phone number provided is registered to your M-Pesa account.</li>
-                            <li>Double-check the amount you wish to withdraw and make sure it is more that sh.10 to avoid errors.</li>
+                            <li>Double-check the amount you wish to withdraw and make sure it is more that sh.10 for M-Pesa and sh.100 for Bank.</li>
+                            <li>Ensure that the bank account provided is valid and registered to avoid errors.</li>
                             <li>Once you submit the withdrawal request, the funds will be transferred to your M-Pesa account within the hour.</li>
                             <li>If you encounter any issues during the withdrawal process, please contact our support team for assistance.</li>
                         </ul>
@@ -296,9 +378,10 @@ function Withdraw({allCampaigns,campaignError,handleWallet}) {
                 </aside>
 
             </div>
+            <Toaster position="top-right" reverseOrder= {false}/>
         </div>
     </div>
-  )
+)
 }
 
 export default Withdraw
