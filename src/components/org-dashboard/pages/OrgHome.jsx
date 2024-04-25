@@ -15,11 +15,9 @@ function OrgHome({allCampaigns,allDonations, allDonors}) {
   if (!token) {
     window.location.replace("/org/login")
   }
-  if (user){    window.location.replace("/unauthorized")
+  if (user){   
+    window.location.replace("/unauthorized")
     return null
-    
-
-
   }
   // if (org && user === null  && token) {
   //   window.location.replace("/org/dashboard")

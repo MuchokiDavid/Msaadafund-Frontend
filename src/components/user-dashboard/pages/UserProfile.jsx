@@ -22,6 +22,18 @@ const [originalData, setOriginalData] = useState({});
 const [error,setError]= useState('');
 const [showConfirmation, setShowConfirmation] = useState(false);  
 
+  // to get token for organisation
+  const token = localStorage.getItem('token')
+  // const userToken = localStorage.getItem('user')
+  const org = localStorage.getItem('org')
+
+  // const navigate = useNavigate()
+
+
+
+
+// fetch usersdata
+useEffect(()=>{
 
   // handle authorization 
   const accessToken = localStorage.getItem('token')
@@ -34,9 +46,6 @@ const [showConfirmation, setShowConfirmation] = useState(false);
   if (!accessToken) {
     console.log("Access token not found");
 }
-
-// fetch usersdata
-useEffect(()=>{
   axios.get('/api/v1.0/usersdata',config)
   .then ((res)=>{
     setUser(res.data)
@@ -51,6 +60,17 @@ useEffect(()=>{
 
 const handleSubmit = (e)=>{
     e.preventDefault()
+
+    const accessToken = localStorage.getItem('token')
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      }
+    }
+    if (!accessToken) {
+      console.log("Access token not found");
+  }
 
     axios.patch('/api/v1.0/usersdata', user, config)
     .then((res)=>{
@@ -84,6 +104,16 @@ const handleSubmit = (e)=>{
   };
 
   const handleConfirmDisable = (confirmation) => {
+    const accessToken = localStorage.getItem('token')
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      }
+    }
+    if (!accessToken) {
+      console.log("Access token not found");
+  }
     setShowConfirmation(false);
     if (confirmation === 'yes') {
       axios.patch('/api/v1.0/usersdata', { disabled: true }, config)
@@ -97,6 +127,14 @@ const handleSubmit = (e)=>{
         });
     }
   };
+
+  if (!token) {
+    window.location.replace("/org/login")
+  }
+  if (org){   
+    window.location.replace("/unauthorized")
+    return null
+  }
 
 
 
