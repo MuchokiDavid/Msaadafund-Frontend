@@ -15,6 +15,7 @@ import ResetPass from './components/org-auth/ResetPass';
 import AboutUs from './pages/AboutUs';
 import Careers from './pages/Careers';
 import Donors from './pages/Donors';
+import Unauthorized from './components/reusables/Unauthorized';
 
 
 
@@ -37,6 +38,7 @@ function App() {
     <Route path = '/donors' element = {<Donors/>}/>
     <Route path = '/user/dashboard/*' element = {<UserLayout/>}/>
     <Route path = '/org/dashboard/*' element = {<OrgLayout/>}/>
+    <Route path = "/unauthorized" element = {<Unauthorized/>}/>
     
     </Routes>
      );

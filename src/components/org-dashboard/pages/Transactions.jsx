@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { FaFilePdf } from "react-icons/fa";
+
 
 function Transactions({allCampaigns, campaignError, handleFetching}) {
     const [allCampaign, setAllCampaign] = useState([]);
@@ -101,11 +103,54 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
     if (loading) {
       return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
     }
+      // handle pdf route
+    // get route from backend
+    const downloadDonationsPDF=(id)=> {
+      const token = localStorage.getItem('token');
+      const url = `/api/v1.0/transactions_pdf/${id}`;
+  
+      fetch(url, {
+          method: 'GET',
+          headers: {
+              'Authorization': `Bearer ${token}`,
+              'Accept': 'application/pdf',  // Specify that we expect a PDF file in the response
+          }
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Failed to download PDF');
+          }
+  
+          // Convert the response to a Blob (binary data) for the PDF file
+          return response.blob();
+      })
+      .then(blob => {
+          // Create a URL for the blob data
+          const blobUrl = URL.createObjectURL(blob);
+  
+          // Create an anchor element for downloading the file
+          const link = document.createElement('a');
+          link.href = blobUrl;
+          link.download = 'transactions.pdf';  // Specify the filename for the downloaded file
+  
+          // Append the link to the document body
+          document.body.appendChild(link);
+  
+          // Programmatically trigger a click on the link to start the download
+          link.click();
+  
+          // Remove the link from the DOM after the download
+          document.body.removeChild(link);
+  
+          // Revoke the blob URL to release memory
+          URL.revokeObjectURL(blobUrl);
+      })
+      .catch(error => {
+          setErrors('Error downloading PDF, Please try again later');
+      });
+  }
     
-  // console.log(allCampaigns)
-  // console.log(filter)
-  // console.log(transactions)
-  // console.log(searchTerm)
+
   return (
     <div>
       <div className='h-screen mx-3'>
@@ -119,7 +164,8 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
             <hr className='mb-0' />
             {errors && <p className='text-red-700'>{errors}</p>}
             <div className='mt-2 text-lg font-normal'>Select campaign to view transactions</div>
-            <div className='flex flex-col'>
+           
+            <div className='flex flex-col col-span-3'>
               <div className='py-2 -my-2 overflow-x-auto sm:-mx-2 sm:px-6 lg:-mx-2 lg:px-6'>
                 <div className="my-5 inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
                     <div class="flex items-center space-x-4">
@@ -141,8 +187,13 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
                             value={searchTerm}
                             onChange={handleSearchTermChange}
                             className="px-3 py-2 border-gray-300 rounded-md mb-4 bg-gray-50 border h-10 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/4 p-2.5 "
-                        />
-                      </div>                 
+                        />                        
+                        <div className='mb-2'>                      
+                        <button title='Download Pdf ' onClick={downloadDonationsPDF}>PDF<FaFilePdf size = {34} style={{ color: 'red' }}/></button>
+                      </div> 
+                      </div> 
+                   
+                                  
                   
                   <div className="overflow-x-auto">
                     <table className="table table-md table-pin-rows table-pin-cols table-auto">
