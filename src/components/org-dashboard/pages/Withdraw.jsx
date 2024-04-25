@@ -51,35 +51,35 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
             }
         }
         fetchBanks()
-    }, [providers])
+    }, [providers, token])
 
-
-    const handleFetch = async () => {
-        try {
-            const response = await fetch('/api/v1.0/accounts', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-            });
-            const data = await response.json();
-            if (response.ok) {
-                setLoading(false)
-                setAccountNumbers(data);
-            } else {
-                setLoading(true)
-                throw new Error(data);
-            }
-        } catch (error) {
-            setLoading(true)
-            setErrors('Error in fetching accounts', error);
-        }
-    };
 
     useEffect(() => {
+        const handleFetch = async () => {
+            try {
+                const response = await fetch('/api/v1.0/accounts', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    setLoading(false)
+                    setAccountNumbers(data);
+                } else {
+                    setLoading(true)
+                    throw new Error(data);
+                }
+            } catch (error) {
+                setLoading(true)
+                setErrors('Error in fetching accounts', error);
+            }
+        };
+
         handleFetch()
-    }, [token])
+    }, [token, handleWallet])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -99,7 +99,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
 
         fetchData();
 
-    }, [campaign,providers]);
+    }, [campaign,providers,handleWallet]);
 
 
     useEffect(() => {
@@ -127,10 +127,10 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
         if (campaign === '') {
             setErrors('Please select a campaign')
         }
-        else if (providers == "M-Pesa" && parseInt(amount) < 10) {
+        else if (providers === "M-Pesa" && parseInt(amount) < 10) {
             setErrors('Amount should be greater than Sh.10')
         }
-        else if (providers == "Bank" && parseInt(amount) < 100) {
+        else if (providers === "Bank" && parseInt(amount) < 100) {
             setErrors('Amount should be greater than Sh.100')
         }
         else if (accountNumber === '') {
@@ -234,6 +234,8 @@ return (
                         <label className="block font-semibold" htmlFor="name">Campaign</label>
                         <select
                             onChange={(e) => {
+                                setWalletDetails('');
+                                setErrors('');
                                 setCampaign(e.target.value)
                             }}
                             className='w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base sm:text-sm md:text-base lg:text-lg p-4 border-none block mt-1'
@@ -358,7 +360,7 @@ return (
                                 </div>
                             </div>
                         </form>
-                        <button onClick={() => { setWithdrawForm(false); setTransactionResponse(''); setWalletDetails(''); formRef.current.reset(); setPopupErrors('')}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        <button onClick={() => { setWithdrawForm(false); setTransactionResponse(''); formRef.current.reset(); setPopupErrors(''); setCampaign(''); setWalletDetails('')}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 
                         {/* </div> */}
                     </div>
