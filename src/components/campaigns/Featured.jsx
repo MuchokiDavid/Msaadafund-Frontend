@@ -89,7 +89,7 @@ function Featured() {
                       </div>
                     </dl>
 
-                    <div className="mt-3 flex items-center gap-4 sm:gap-6 lg:gap-16 text-xs pb-3">
+                    <div className="mt-3 flex items-center gap-4 sm:gap-6 lg:gap-12 text-xs pb-3">
                       <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-1 lg:mx-4">
                         <svg
                         className="size-4 text-sky-700"
