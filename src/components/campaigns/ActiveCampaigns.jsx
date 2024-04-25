@@ -39,7 +39,7 @@ function ActiveCampaigns() {
       useEffect(() => {
         fetchCampaigns();
         //use polling  for real time updates
-        const intervalId = setInterval(fetchCampaigns, 10000);//Polling done here to fetch campaign
+        const intervalId = setInterval(fetchCampaigns, 20000);//Polling done here to fetch campaign
         return () => clearInterval(intervalId);
       }, [currentPage, selectedCategory, fetchCampaigns]); // Include fetchCampaigns in the dependency array
     
@@ -143,12 +143,17 @@ function ActiveCampaigns() {
             style={{ minWidth: '150px' }}
           >
             {categories.map(category => (
-              <option className='text-xs lg:text-lg xs:w-full' key={category} value={category}>{category}</option>
+              <option className='text-xs lg:text-lg xs:w-full' key={category.id} value={category}>{category}</option>
             ))}
           </select>
 
         </div>
       </div>
+      {upcomingCampaigns && upcomingCampaigns.length>0?
+        <InActiveCampaigns allCampaigns= {upcomingCampaigns}/>
+        :
+        null
+      }
     <h1 className="text-center text-2xl font-bold mb-4 bg-slate-300 h-10 p-1">Active Campaigns</h1>  
     <div className='mx-auto overflow-x-hidden pb-4 px-6 sm:px-2 md:px-4'>
         
@@ -176,7 +181,6 @@ function ActiveCampaigns() {
 
                       <div>
                         <dt className="sr-only">Name</dt>
-
                         <dd className="font-medium overflow-hidden text-lg whitespace-nowrap">{campaign.campaignName}</dd>
                       </div>
                       <div>
@@ -267,7 +271,6 @@ function ActiveCampaigns() {
         <button className="join-item btn btn-outline" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages || totalPages === 0}>Next</button>
       </div>
     </div>
-     <InActiveCampaigns allCampaigns= {upcomingCampaigns}/>
     <Footer/>
     </>
   )
