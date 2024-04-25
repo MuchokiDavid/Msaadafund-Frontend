@@ -34,41 +34,91 @@ function UpcomingCampaigns({allCampaigns}) {
   return (
     <div>
       <h1 className="text-center text-2xl font-bold my-4 bg-slate-300 h-10 p-1">Upcoming Campaigns</h1>
-      <div className='container mx-auto overflow-x-hidden pb-4'>
+      <div className='mx-auto overflow-x-hidden pb-4 px-6 sm:px-2 md:px-4'>
       {allCampaigns.length!=0 ? 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+        <div className="mx-4 sm:mx-2 lg:mx-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
           {filteredCampaigns.map((campaign) => {
-            // if(new Date(campaign.endDate).getTime()<currentDate.getTime()){
               return (
-            <div key={campaign.id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-              <img className="w-full rounded-t-lg h-52" src={campaign.banner} alt={campaign.campaignName} />
-              <div className="px-6 py-4 flex-grow">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{campaign.campaignName}</h5>
-                <a href=''><p className="mb-0 text-lg font-semibold text-basemb-3 text-blue-800 hover:underline">{campaign.organisation.orgName}</p></a>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-lg">{campaign.description.slice(0,80)}...</p>
-                
-                 <button onClick={()=> handleCampaign(campaign.id)} class="inline-flex items-center mt-0 mb-3 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Read more
-                    <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                    </svg>
-                </button>
-                <div className='grid grid-flow-col grid-col-2 divide-x divide-slate-500'>
-                    <div className=' px-2'>
-                    <h6 className='text-md'>Start date</h6>
-                      <p className="text-black text-base dark:text-white">{moment(campaign.startDate).format('MMMM Do YYYY')}</p>
+                <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden hover:cursor-pointer'>
+                  <a onClick={()=>handleCampaign(campaign.id)} className="block rounded-lg shadow-sm shadow-indigo-100">
+                    <img
+                      alt="banner"
+                      src= {campaign.banner}
+                      className="h-56 w-full rounded-t-md object-cover"
+                    />
+  
+                    <div className="mt-2 px-2">
+                      <dl>
+                        <div>
+                          <dt className="sr-only">Budget</dt>
+  
+                          <dd className="text-sm text-gray-500">Budget: KES {campaign.targetAmount}</dd>
+                        </div>
+  
+                        <div>
+                          <dt className="sr-only">Name</dt>
+                          <dd className="font-medium overflow-hidden text-lg whitespace-nowrap">{campaign.campaignName}</dd>
+                        </div>
+                        <div>
+                          <dt className="sr-only">Organiser</dt>
+                          <dd><a href='#' className='text-blue-700 hover:underline whitespace-nowrap'>{campaign.organisation.orgName}</a></dd>
+                          
+                        </div>
+                      </dl>
+  
+                      <div className="mt-3 flex items-center gap-4 sm:gap-6 lg:gap-16 text-xs pb-3">
+                        <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-1 lg:mx-4">
+                          <svg
+                          className="size-4 text-sky-700"
+                          viewBox="0 0 21 21"
+                          fill="currentColor"
+                          height="1.5em"
+                          width="1.5em"
+                        >
+                          <g fill="none" fillRule="evenodd">
+                            <path
+                              stroke="currentColor"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M4.5 2.5h12a2 2 0 012 2v12a2 2 0 01-2 2h-12a2 2 0 01-2-2v-12a2 2 0 012-2zM2.5 6.5h16"
+                            />
+                            <g fill="currentColor" transform="translate(2 2)">
+                              <path d="M9.5 8.5 A1 1 0 0 1 8.5 9.5 A1 1 0 0 1 7.5 8.5 A1 1 0 0 1 9.5 8.5 z" />
+                              <path d="M5.5 8.5 A1 1 0 0 1 4.5 9.5 A1 1 0 0 1 3.5 8.5 A1 1 0 0 1 5.5 8.5 z" />
+                              <path d="M5.5 12.5 A1 1 0 0 1 4.5 13.5 A1 1 0 0 1 3.5 12.5 A1 1 0 0 1 5.5 12.5 z" />
+                            </g>
+                          </g>
+                        </svg>
+  
+                          <div className="mt-1.5 sm:mt-0">
+                            <p className="text-gray-500">Starts on</p>
+  
+                            <p className="font-medium">{moment(campaign.startDate).format('MMMM Do YYYY')}</p>
+                          </div>
+                        </div>
+  
+                        <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-1">
+                          <svg
+                            className="size-4 text-sky-700"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            height="2em"
+                            width="2em"
+                          >
+                            <path d="M10 3H4a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1V4a1 1 0 00-1-1zM9 9H5V5h4v4zm11-6h-6a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1V4a1 1 0 00-1-1zm-1 6h-4V5h4v4zm-9 4H4a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1v-6a1 1 0 00-1-1zm-1 6H5v-4h4v4zm8-6c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zm0 6c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2z" />
+                          </svg>
+  
+                          <div className="mt-1.5 sm:mt-0">
+                            <p className="text-gray-500">Category</p>
+  
+                            <p className="font-medium">{campaign.category}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className='px-2'>
-                    <h6 className='text-md ml-2'>Budget(Ksh)</h6>
-                        <p className="text-black ml-2 text-base dark:text-white">{campaign.targetAmount}</p>
-                    </div>
+                  </a>
                 </div>
-
-                {/* <button onClick={()=> handleCampaign(campaign.id)}>More Details</button> */}
-                
-              </div>
-            </div>
-          )
+            )
           })}
         </div>
         :
