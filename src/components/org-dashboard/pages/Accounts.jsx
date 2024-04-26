@@ -18,10 +18,21 @@ function Accounts() {
     const phonePattern = /^(07|01)\d{8}$/; 
     const formRef = useRef(null);
 
-    // const otp = localStorage.getItem('otp')
-    // if (otp) {
+    useEffect(() => {
+        const otp = localStorage.getItem('otp');
+        if (!otp) {
+            window.location.replace('/org/dashboard/accounts');
+        } else {
+            const timer = setTimeout(() => {
+                localStorage.removeItem('otp');
+                window.location.replace('/org/dashboard/accounts');
+            }, 5 * 60 * 1000); // 5 minutes
+            return () => clearTimeout(timer);
+        }
+    }, []);
 
-    // }
+
+
     
 
     useEffect(() => {
