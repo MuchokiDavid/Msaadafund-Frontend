@@ -37,7 +37,7 @@ function AccountAuth() {
         axios.post('/api/v1.0/account_pin',{email},config)
         .then ((res)=>{
             setStep(2)
-            localStorage.setItem('otp', res.data.otp); // Store OTP in local storage            toast.success('OTP sent successfully,Please check Your Email')
+            toast.success('OTP sent successfully,Please check Your Email')
             console.log(res)
             setError('')
         })
@@ -72,6 +72,7 @@ function AccountAuth() {
         .then ((res)=>{
             setMessage('OTP confirmed successfully')
             window.location.replace('/org/dashboard/accountset')
+            localStorage.setItem('otp', res.data.otp);
             console.log(res)
             setError('')
         })
@@ -108,6 +109,8 @@ function AccountAuth() {
                 <li><a href='/org/dashboard'>Dashboard</a></li>
                 <li><a href='/org/dashboard/accounts'>AccountAuth</a></li>
             </ul>
+            <h2 className="mt-3 text-2xl font-bold leading-tight ">Accounts Authentication</h2>
+            <hr className='mb-4'/>
             <div className="container mx-auto h-screen lg:h-fit lg:px-16">
                 {message && <div className='text-green-500'>{message}</div>}
                 {error && <div className="text-red-500">{error}</div>}
