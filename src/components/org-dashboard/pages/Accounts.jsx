@@ -18,6 +18,12 @@ function Accounts() {
     const phonePattern = /^(07|01)\d{8}$/; 
     const formRef = useRef(null);
 
+    // const otp = localStorage.getItem('otp')
+    // if (otp) {
+
+    // }
+    
+
     useEffect(() => {
         fetchAccounts();
     }, []);
@@ -111,13 +117,14 @@ function Accounts() {
         setShowResetPin(false); // Resetting the showResetPin state
         setResetPinEmail(''); 
     };
-
+ 
     return (
         <div className='main-page-container h-screen lg:h-fit px-5'>
                <div className="text-md breadcrumbs mb-4">
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li>
-                    <li><a href='/org/dashboard/accounts'>Accounts</a></li>
+                    <li><a href='/org/dashboard/accounts'>AccountAuth</a></li>
+                    <li><a href='/org/dashboard/accountset'>Accounts</a></li>
                 </ul>
             </div>
             <h2 className="mb-3 text-2xl font-bold leading-tight ">Accounts</h2>
