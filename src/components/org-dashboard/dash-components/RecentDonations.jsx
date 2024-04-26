@@ -40,8 +40,8 @@ useEffect(() => {
   return (
     <div className='p-4'>
         <h2 className="text-left text-xl mt-5">Recently Donated</h2>
-        <div>
-            <table className="min-w-full table-zebra rounded overflow-scroll">
+        <div className='overflow-scroll'>
+            <table className="min-w-full table-zebra rounded overflow-x-auto">
                 {/* head */}
                 <thead>
                     <tr>
