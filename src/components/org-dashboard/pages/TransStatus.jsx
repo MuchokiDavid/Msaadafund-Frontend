@@ -76,39 +76,39 @@ function TransStatus() {
                 <dl className="-my-3 divide-y divide-gray-100 text-sm">
                     <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
                     <dt className="font-medium text-gray-900">Tracking Id</dt>
-                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse ? statusResponse.tracking_id : <p>Please search...</p>}</dd>
+                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse ? statusResponse.tracking_id : <p>Tracking Id here.....</p>}</dd>
                     </div>
                     <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
                     <dt className="font-medium text-gray-900">Transaction Id</dt>
-                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse.transactions ? statusResponse.transactions[0].transaction_id: <p>Please search...</p>}</dd>
+                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse.transactions ? statusResponse.transactions[0].transaction_id: <p>Transaction id here.....</p>}</dd>
                     </div>
 
                     <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
                     <dt className="font-medium text-gray-900">Transaction status</dt>
-                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse.transactions ? statusResponse.transactions[0].status: <p>Please search...</p>}</dd>
+                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse.transactions ? statusResponse.transactions[0].status: <p>Transaction status here.....</p>}</dd>
                     </div>
 
                     <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
                     <dt className="font-medium text-gray-900">Provider</dt>
-                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse.transactions ? statusResponse.transactions[0].provider: <p>Please search...</p>}</dd>
+                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse.transactions ? statusResponse.transactions[0].provider: <p>Provider here.....</p>}</dd>
                     </div>
 
                     <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
                     <dt className="font-medium text-gray-900">Name</dt>
-                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse.transactions ? statusResponse.transactions[0].name: <p>Please search...</p>}</dd>
+                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse.transactions ? statusResponse.transactions[0].name: <p>Name here......</p>}</dd>
                     </div>
 
                     <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
                     <dt className="font-medium text-gray-900">Amount</dt>
-                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse.transactions ? statusResponse.transactions[0].amount: <p>Please search...</p>}</dd>
+                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse.transactions ? statusResponse.transactions[0].amount: <p>Amount here......</p>}</dd>
                     </div>
                     <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
                     <dt className="font-medium text-gray-900">Account</dt>
-                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse.transactions ? statusResponse.transactions[0].account: <p>Please search...</p>}</dd>
+                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse.transactions ? statusResponse.transactions[0].account: <p>Account here......</p>}</dd>
                     </div>
                     <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
                     <dt className="font-medium text-gray-900">Batch Status</dt>
-                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse ? statusResponse.status : <p>Please search...</p>}</dd>
+                    <dd className="text-gray-700 sm:col-span-2">{statusResponse && statusResponse ? statusResponse.status : <p>Batch Status here......</p>}</dd>
                     </div>
                 </dl>
             </div>
