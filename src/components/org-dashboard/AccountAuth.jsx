@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import {toast,Toaster} from 'react-hot-toast'
 
@@ -37,7 +37,7 @@ function AccountAuth() {
         axios.post('/api/v1.0/account_pin',{email},config)
         .then ((res)=>{
             setStep(2)
-            toast.success('OTP sent successfully,Please check Your Email')
+            localStorage.setItem('otp', res.data.otp); // Store OTP in local storage            toast.success('OTP sent successfully,Please check Your Email')
             console.log(res)
             setError('')
         })
@@ -92,6 +92,15 @@ function AccountAuth() {
         setStep(step + 1);
       };
 
+        // useEffect to delete OTP from local storage after 5 minutes
+    useEffect(() => {
+        const deleteOtpAfterTime = setTimeout(() => {
+        localStorage.removeItem('otp');
+        }, 5 * 60 * 1000); // 5 minutes
+
+        return () => clearTimeout(deleteOtpAfterTime);
+    }, []);
+
   return (
     <div>
         <div className="text-md breadcrumbs mb-4">
@@ -102,12 +111,12 @@ function AccountAuth() {
             <div className="container mx-auto h-screen lg:h-fit lg:px-16">
                 {message && <div className='text-green-500'>{message}</div>}
                 {error && <div className="text-red-500">{error}</div>}
-            <div className='w-1/2 flex justify-between text-black mt-4'>
-              <button  onClick={handlePrevStep}>
-                {step === 1 ? 'Org Email' : 'Previous'}
+            <div className='w-1/2 flex justify-between mt-4'>
+              <button className='text-black' onClick={handlePrevStep}>
+                {step === 1 ? '' : 'Previous'}
               </button>
               {step < 2 && (
-                <button onClick={handleNextStep}>
+                <button className='bg-blue-600 px-5 py-3 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring' onClick={handleNextStep}>
                   Next
                 </button>
               )}
@@ -148,7 +157,7 @@ function AccountAuth() {
                     </div> 
                     }
                     <button onClick={step === 1 ? handleSendOtp : handleConfirmOtp}
-                    className="mt-6 inline-block rounded bg-blue-600 px-5 py-3 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring"
+                    className="mt-6 inline-block rounded bg-blue-600 px-5 py-3 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring"
                     >
                     {step === 1 ? 'Send Otp' : 'Confirm Otp'}
                     </button>
