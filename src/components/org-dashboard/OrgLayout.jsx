@@ -14,6 +14,8 @@ import UpdateCampaign from './pages/UpdateCampaign';
 import Withdraw from './pages/Withdraw';
 import BuyAirtime from './pages/BuyAirtime';
 import AccountAuth from './AccountAuth';
+import TransStatus from './pages/TransStatus';
+import Withdrawals from './pages/Withdrawals';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
@@ -167,7 +169,7 @@ const handleWallet = async (id) => {
       <div className="flex relative">
         {/* <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/> */}
         {isSidebarOpen && <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />}
-        <main className={`mt-3 mx-auto w-full overflow-hidden overflow-y-auto md:m-3 min-h-max sm:h-fit sm:w-full lg:h-auto justify-center px-4 lg:px-20 ${isSmallScreen && isSidebarOpen ? 'blur' : ''}`} style={{ marginTop: '10px' }}>
+        <main className={`mt-3 mx-auto w-full overflow-hidden overflow-y-auto md:m-3 min-h-screen sm:w-full justify-center px-4 lg:px-20 ${isSmallScreen && isSidebarOpen ? 'blur' : ''}`} style={{ marginTop: '10px' }}>
           <Routes>
             <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors}/>} />
             {/* route to update campaign */}
@@ -179,6 +181,8 @@ const handleWallet = async (id) => {
             <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
             <Route path="/accounts" element={<AccountAuth/>} />
             <Route path="/accountset" element={<Accounts/>} />
+            <Route path="/transact/transactionstatus" element={<TransStatus />} />
+            <Route path="/transact/withdrawals" element={<Withdrawals/>} />
             <Route path="/transaction" element={<Transaction allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
             <Route path="/profile" element={<Profile />} />
           </Routes>

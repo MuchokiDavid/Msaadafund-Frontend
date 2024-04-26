@@ -238,7 +238,7 @@ return (
                                 setErrors('');
                                 setCampaign(e.target.value)
                             }}
-                            className='w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base sm:text-sm md:text-base lg:text-lg p-4 border-none block mt-1'
+                            className='input input-bordered w-full bg-gray-100'
                             required>
                             <option value="">Select campaign</option>
                             {campaigns.map((campaign, index) => {
@@ -254,7 +254,7 @@ return (
 
                     <div className='mt-4'>
                         <label className="block font-semibold" htmlFor="name">Provider</label>
-                        <select className="w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-lg p-4 border-none block mt-1"
+                        <select className="input input-bordered w-full placeholder-gray-400 bg-gray-100"
                             id="name"
                             type="text"
                             name="name"
@@ -271,7 +271,7 @@ return (
                                     onChange={(e) => {
                                         setBank(e.target.value)
                                     }}
-                                    className='w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base sm:text-sm md:text-base lg:text-lg p-4 border-none block mt-1'
+                                    className='input input-bordered w-full'
                                     required>
                                     <option value="">Select Bank</option>
                                     {allBanks.map((bank, index) => {
@@ -293,7 +293,7 @@ return (
                             onChange={(e) => {
                                 setAccountNumber(e.target.value)
                             }}
-                            className='w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base sm:text-sm md:text-base lg:text-lg p-4 border-none block mt-1'
+                            className='input input-bordered w-full placeholder:bg-slate-400 bg-gray-100'
                             required>
                             <option value="">Select account</option>
                             {accountNumbers.map((accountNo, index) => {
@@ -312,7 +312,7 @@ return (
                         <input
                             onChange={(e) => setAmount(e.target.value)}
                             value={amount}
-                            className="w-full shadow-inner bg-gray-100 rounded-lg placeholder-gray-400 text-lg p-2.5 border-none block mt-1"
+                            className="input input-bordered w-full"
                             id="amount"
                             placeholder='Above Ksh.10 for M-Pesa, Above Ksh.100 for Bank'
                             type="number"
@@ -320,8 +320,8 @@ return (
                             required />
                     </div>
 
-                    <div className="flex items-center justify-between mt-8">
-                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-3 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-4 md:text-lg md:px-10">Withdraw</button>
+                    <div className="flex items-center justify-between mt-4">
+                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-2 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-4 md:text-lg md:px-10">Withdraw</button>
                     </div>
                 </form>
 
