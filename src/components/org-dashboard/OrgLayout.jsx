@@ -13,6 +13,7 @@ import Donations from './pages/Donations';
 import UpdateCampaign from './pages/UpdateCampaign';
 import Withdraw from './pages/Withdraw';
 import BuyAirtime from './pages/BuyAirtime';
+import AccountAuth from './AccountAuth';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
@@ -176,7 +177,8 @@ const handleWallet = async (id) => {
             <Route path="/donations" element={<Donations allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} allDonation={allDonations} allDonors={donors}/>} />
             <Route path="/transact/withdraw" element={<Withdraw allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
             <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
-            <Route path="/accounts" element={<Accounts/>} />
+            <Route path="/accounts" element={<AccountAuth/>} />
+            <Route path="/accountset" element={<Accounts/>} />
             <Route path="/transaction" element={<Transaction allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
