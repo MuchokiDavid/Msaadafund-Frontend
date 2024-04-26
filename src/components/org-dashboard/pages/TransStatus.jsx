@@ -59,7 +59,7 @@ function TransStatus() {
                 <div className="flex items-center justify-between mt-2">
                     <button className="flex items-center justify-center px-6 py-2 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900" onClick={handleFetch}>Check Status</button>
                 </div>
-                {errors && <p className='text-red-600 text-base'>{errors}</p>}
+                {errors && <p className='text-red-600 text-base mt-1'>{errors}</p>}
             </div>
             <div>
                 <h2 className="font-bold text-xl">Instructions</h2>
