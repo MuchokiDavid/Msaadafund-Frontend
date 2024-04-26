@@ -49,7 +49,8 @@ useEffect(() => {
                         <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400 '>Campaign</th>
                         <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donor</th>
                         <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Amount</th>
-                        <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donation Date</th>                            
+                        <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donation Date</th>
+                        <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Status</th>                            
                     </tr>
                 </thead>
                 <tbody>
@@ -65,6 +66,7 @@ useEffect(() => {
                                 <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>
                                 <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.amount}</td>
                                 <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
+                                <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.status}</td>
                             </tr>
                         );
                     })}
