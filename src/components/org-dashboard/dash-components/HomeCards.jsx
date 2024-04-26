@@ -21,9 +21,9 @@ function HomeCards({allCampaigns, allDonations}) {
     let totalAmount=(donations && getTotalAmount(donations))
 
   return (
-    <div className='p-4'>
-        <h1 className="text-left text-xl mt-5">Statistics</h1>
-        <div className="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 sm:px-8">
+    <div className='px-4 pb-4'>
+        <h1 className="text-left text-xl mt-2">Statistics</h1>
+        <div className="grid grid-cols-1 gap-4 mt-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 sm:px-8">
             <div className="flex items-center bg-transparent border rounded-sm overflow-auto">
                 <div className="p-4 bg-emerald-400">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
