@@ -143,7 +143,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                         <label className="block font-semibold" htmlFor="name">Campaign</label>
                         <select 
                         onChange={(e) => {setWalletDetails('');setError(''); setCampaign(e.target.value)}}
-                        className='w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base sm:text-sm md:text-base lg:text-lg p-4 border-none block mt-1' 
+                        className='input input-bordered w-full placeholder:bg-slate-400 bg-gray-100' 
                         required>
                             <option value="">Select campaign</option>
                             {campaigns.map((campaign, index) => {
@@ -160,7 +160,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                     <div className='mt-4'>
                         <label className="block font-semibold" htmlFor="name">Name</label>
                         <input 
-                        className="w-full shadow-inner bg-gray-100 rounded-lg placeholder-gray-400 text-lg p-4 border-none block mt-1" 
+                        className="input input-bordered w-full" 
                         id="name" 
                         type="text" 
                         placeholder='e.g. John Doe'
@@ -173,7 +173,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                     <div className="mt-4">
                         <label className="block font-semibold" htmlFor="name">Phone Number</label>
                         <input 
-                        className="w-full shadow-inner bg-gray-100 rounded-lg placeholder-gray-400 text-lg p-4 border-none block mt-1" 
+                        className="input input-bordered w-full" 
                         id="name" 
                         type="phone" 
                         placeholder='e.g. 07xxxxxxxx'
@@ -188,7 +188,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                         <input
                         onChange={(e) => setAmount(e.target.value)}
                         value={amount} 
-                        className="w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-lg p-4 border-none block mt-1" 
+                        className="input input-bordered w-full" 
                         id="amount" 
                         type="number" 
                         name="amount" 

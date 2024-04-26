@@ -15,7 +15,7 @@ const QuickLink = ({ icon, name, to }) => {
     return (
       <Link to={to} className="quick-link flex flex-col items-center justify-center">
         <Icon className="text-6xl mb-1 text-white bg-blue-400 h-10 w-10 rounded-xl p-1 hover:bg-blue-600" />
-        <p className="text-md">{name}</p>
+        <p className="text-sm">{name}</p>
       </Link>
     );
   };
@@ -23,8 +23,8 @@ const QuickLink = ({ icon, name, to }) => {
 function QuickLinks() {
     const quickLinksData = [
         { icon: FaHome , name: 'Home' ,to:'/'},
-        { icon: MdOutlineCampaign, name: 'Add Campaign',to:'/org/dashboard/createcampaign' }, 
-        { icon: MdOutlineViewCompactAlt, name: 'My Campaign',to:'/org/dashboard/campaigns' },
+        { icon: MdOutlineCampaign, name: 'Add',to:'/org/dashboard/createcampaign' }, 
+        { icon: MdOutlineViewCompactAlt, name: 'Campaigns',to:'/org/dashboard/campaigns' },
         { icon: FaDonate , name: 'Donations',to:'/org/dashboard/donations' },
         { icon: FaMoneyBillTrendUp , name: 'Withdraw' ,to:'/org/dashboard/transact/withdraw'},
         { icon: FaPhone , name: 'Buy Airtime' ,to:'/org/dashboard/transact/buyairtime'},
