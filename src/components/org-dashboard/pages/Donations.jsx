@@ -168,12 +168,12 @@ function Donations({ allCampaigns, campaignError, allDonation, allDonors }) {
                             {/* head */}
                             <thead>
                                 <tr>
-                                <th className='px-6 py-2 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
-                                    <th className='px-6 py-2 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Campaign</th>
-                                    <th className='px-6 py-2 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donor</th>
-                                    <th className='px-6 py-2 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Amount</th>
-                                    <th className='px-6 py-2 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donation Date</th>   
-                                    <th className='px-6 py-2 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Status</th>                           
+                                <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
+                                    <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Campaign</th>
+                                    <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donor</th>
+                                    <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Amount</th>
+                                    <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donation Date</th>   
+                                    <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Status</th>                           
                                 </tr>
                             </thead>
                             <tbody>
@@ -184,12 +184,12 @@ function Donations({ allCampaigns, campaignError, allDonation, allDonors }) {
                                     const campaignTitle = campaign ? campaign.campaignName : "";
                                     return (
                                         <tr key={donation._id}>
-                                            <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.id}</td>
-                                            <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{campaignTitle}</td>
-                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>
-                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.amount}</td>
-                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
-                                            <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.status}</td>
+                                            <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '>{donation.id}</td>
+                                            <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '>{campaignTitle}</td>
+                                            <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>
+                                            <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200'>{donation.amount}</td>
+                                            <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
+                                            <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200'>{donation.status}</td>
                                         </tr>
                                     );
                                 })}
