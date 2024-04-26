@@ -78,7 +78,7 @@ function CampaignCard({allCampaigns, campaignError}) {
         }
     }    
     return (
-        <div className='sm:h-screen ml-4'>
+        <div className='h-screen lg:h-fit'>
             <div className="text-md breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li> 
