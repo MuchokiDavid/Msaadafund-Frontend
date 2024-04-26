@@ -99,12 +99,12 @@ function AccountAuth() {
                 <li><a href='/org/dashboard'>Dashboard</a></li>
                 <li><a href='/org/dashboard/accounts'>AccountAuth</a></li>
             </ul>
-            <div>
+            <div className="container mx-auto h-screen lg:h-fit lg:px-16">
                 {message && <div className='text-green-500'>{message}</div>}
                 {error && <div className="text-red-500">{error}</div>}
-            <div className="mt-4">
-              <button onClick={handlePrevStep}>
-                {step === 1 ? 'Enter Org Email' : 'Previous'}
+            <div className='w-1/2 flex justify-between text-black mt-4'>
+              <button  onClick={handlePrevStep}>
+                {step === 1 ? 'Org Email' : 'Previous'}
               </button>
               {step < 2 && (
                 <button onClick={handleNextStep}>
@@ -112,43 +112,43 @@ function AccountAuth() {
                 </button>
               )}
             </div>
-                <form className="mt-4 bg-white"  onSubmit={(e) => e.preventDefault()}>
+                <form className="mt-4"  onSubmit={(e) => e.preventDefault()}>
                     {step === 1 ? (
                     <div>
-                        <label>Email Address</label>
+                        <label className="block text-black  font-medium">Email Address</label>
                         <input 
                         type='email' 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder=' Enter Organisation Email Address' 
-                        className=" block mb-2 text-sm font-medium text-gray-900 dark:text-white " 
+                        className="w-1/2 mt-1 p-2 border border-gray-300 rounded-md"
                         />
                     </div>
                     ):
                     <div>
                         <div>
-                            <label>Email Address</label>
+                        <label className="block text-black  font-medium">Email Address</label>
                             <input
                             type='email' 
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder=' Enter Organisation Email Address' 
-                            className=" block mb-2 text-sm font-medium text-gray-900 dark:text-white " 
+                            className="w-1/2 mt-1 p-2 border border-gray-300 rounded-md"
                             />
                         </div>
-                        <div>
-                            <label>OTP</label>
+                        <div className='mt-4'>
+                        <label className="block text-black  font-medium">OTP</label>
                             <input type="text" 
                             name="otp" id="otp" 
                             value={otp} 
                             onChange={(e) => setOtp(e.target.value)}
-                            className=" block mb-2 text-sm font-medium text-gray-900 dark:text-white "
+                            className="w-1/2 mt-1 p-2 border border-gray-300 rounded-md"
                             />                  
                             </div>
                     </div> 
                     }
                     <button onClick={step === 1 ? handleSendOtp : handleConfirmOtp}
-                    className="mt-6 inline-block rounded bg-indigo-600 px-5 py-3 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring"
+                    className="mt-6 inline-block rounded bg-blue-600 px-5 py-3 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring"
                     >
                     {step === 1 ? 'Send Otp' : 'Confirm Otp'}
                     </button>
