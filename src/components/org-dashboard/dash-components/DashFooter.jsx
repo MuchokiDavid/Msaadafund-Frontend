@@ -6,8 +6,8 @@ function DashFooter() {
 
   return (
     <div>
-        <footer className="bg-emerald-800 text-white py-3">
-            <div className="container ml-4">
+        <footer className="bg-emerald-800 text-white py-2 text-sm">
+            <div className="ml-4">
                 <div className="row">
                 <div className="col-md-4 mb-4">
                     <h5 className='text-xl mb-1'>About Us</h5>

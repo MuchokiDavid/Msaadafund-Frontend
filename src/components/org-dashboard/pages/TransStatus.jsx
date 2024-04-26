@@ -33,7 +33,7 @@ function TransStatus() {
             console.log(error)
         }
     }
-    console.log(statusResponse)
+    // console.log(statusResponse)
 
   return (
     <div>

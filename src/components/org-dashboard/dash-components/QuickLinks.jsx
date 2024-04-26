@@ -34,7 +34,7 @@ function QuickLinks() {
         // { icon: IconName3, name: 'Log out' },
       ];
   return (
-    <div className='p-3 shadow bg-slate-50'>
+    <div className='p-3 bg-transaparent'>
         <h2 className="text-xl mb-4">Quick Links</h2>
         <div className="grid lg:grid-cols-7 grid-cols-3 sm:grid-cols-4 gap-8 py-2">
         {quickLinksData.map((link, index) => (

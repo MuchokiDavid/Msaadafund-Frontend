@@ -321,7 +321,7 @@ return (
                     </div>
 
                     <div className="flex items-center justify-between mt-4">
-                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-2 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-4 md:text-lg md:px-10">Withdraw</button>
+                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-2 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-2 md:text-lg md:px-4">Withdraw</button>
                     </div>
                 </form>
 

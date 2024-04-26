@@ -11,6 +11,51 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [loginMessage, setLoginMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  // Store the token in localStorage
+  const storeToken = (token) => {
+    localStorage.setItem('token', token);
+  };
+
+  // Retrieve the token from localStorage
+  const getToken = () => {
+    return localStorage.getItem('token');
+  };
+
+  // Remove the token from localStorage
+  const removeToken = () => {
+    localStorage.removeItem('token');
+  };
+
+  // Check if the token is expired
+  const isTokenExpired = (token) => {
+    if (!token) return true;
+
+    const tokenData = JSON.parse(atob(token.split('.')[1]));
+    const expirationTime = tokenData.exp * 1000; // Convert to milliseconds
+
+    return Date.now() > expirationTime;
+  };
+
+  // Function to handle token expiration
+  const handleTokenExpiration = () => {
+    const token = getToken();
+
+    if (isTokenExpired(token)) {
+        removeToken();
+    }
+  };
+
+  // Set up a timer to check for token expiration periodically
+  const startTokenExpirationCheck = () => {
+    setInterval(handleTokenExpiration, 60000); // Check every minute
+  };
+
+  // Call this function when you receive a new token
+  const onReceiveToken = (token) => {
+    storeToken(token);
+    startTokenExpirationCheck();
+  };
  
   const userLogin = (username, password) => {
     fetch("/api/v1.0/auth/user/login", {
@@ -26,7 +71,8 @@ export const AuthProvider = ({ children }) => {
             setIsLoggedIn(true);
             setUser(data.user);
             setToken(data.tokens.access); 
-            localStorage.setItem('token', data.tokens.access);
+            onReceiveToken(data.tokens.access);
+            // localStorage.setItem('token', data.tokens.access);
             localStorage.setItem('user', data.user.username);
             setLoginMessage(data.message);
             setErrorMessage(""); 
@@ -55,7 +101,8 @@ export const AuthProvider = ({ children }) => {
             setIsLoggedIn(true);
             setUser(data.organisation);
             setToken(data.tokens.access_token); 
-            localStorage.setItem('token', data.tokens.access_token);
+            onReceiveToken(data.tokens.access_token);
+            // localStorage.setItem('token', data.tokens.access_token);
             localStorage.setItem('org', data.organisation.orgName);
             setLoginMessage(data.message);
             setErrorMessage(""); 
