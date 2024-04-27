@@ -6,6 +6,26 @@ function Withdrawals() {
     const[allWithdrawals, setAllWithdrawals]=useState([])
     const token=localStorage.getItem('token')
     const[errors,setErrors]= useState(null)
+    const[search,setSearch]=useState('')
+    const[filtered,setFiltered]=useState([])
+    const[currentPage,setCurrentPage]=useState(1)
+    const[itemsPerPage,setItemsPerPage]=useState(10)
+
+    //useefect to filter all withdrawals with the search term in the search input
+    useEffect(() => {
+        const filteredWithdrawals = allWithdrawals.filter(withdrawal => {
+            return (
+                (withdrawal.running_balance && withdrawal.running_balance.toLowerCase().includes(search.toLowerCase())) ||
+                (withdrawal.org_name && withdrawal.org_name.toLowerCase().includes(search.toLowerCase())) ||
+                (withdrawal.campaign_name && withdrawal.campaign_name.toLowerCase().includes(search.toLowerCase())) || 
+                (withdrawal.trans_type && withdrawal.trans_type.toLowerCase().includes(search.toLowerCase())) ||
+                (withdrawal.transaction_account_no && withdrawal.transaction_account_no.toLowerCase().includes(search.toLowerCase()))
+            );
+        });
+        setFiltered(filteredWithdrawals);
+      
+    }, [search,allWithdrawals])
+    
 
     useEffect(()=>{
         const handleFetch= async()=>{
@@ -28,7 +48,26 @@ function Withdrawals() {
         }
         handleFetch()        
     },[token, ])
-    console.log(allWithdrawals)
+
+    if(!token){
+        window.location.href='/'
+    }
+
+    //Pagination
+    const indexOfLastItem=currentPage*itemsPerPage
+    const indexOfFirstItem=indexOfLastItem-itemsPerPage
+    const currentItems=filtered.slice(indexOfFirstItem,indexOfLastItem)
+    const totalItems=filtered.length
+    const totalPages=Math.ceil(totalItems/itemsPerPage)
+    const paginate=(pageNumber)=>{
+        setCurrentPage(pageNumber)
+    }
+    //Pagination handlers
+    const goToPage=(pageNumber)=>{
+        setCurrentPage(pageNumber)
+    }
+
+    // console.log(allWithdrawals)
 
   return (
     <div>
@@ -45,7 +84,11 @@ function Withdrawals() {
         {/* div with a search input to help search data in the table and also export to pdf button on the same column*/}
         <div className='flex justify-between'>
             <div className='flex'>
-                <input type="text" placeholder='Search' className='input input-bordered w-full max-w-xs'/>
+                <input type="text" 
+                value={search}
+                onChange={(e)=>setSearch(e.target.value)} 
+                placeholder='Search...' 
+                className='input input-bordered w-full max-w-xs'/>
             </div>
             {/* pdf button */}
             <button title='Download Pdf '>PDF<FaFilePdf size = {25} style={{ color: 'red' }}/></button>
@@ -67,7 +110,7 @@ function Withdrawals() {
                     </tr>
                 </thead>
                 <tbody>
-                    {allWithdrawals.map((withdrawal,index)=>(
+                    {currentItems.map((withdrawal,index)=>(
                         <tr key={index}>
                             <td>{index+1}</td>
                             <td>{withdrawal.tracking_id}</td>
@@ -82,6 +125,22 @@ function Withdrawals() {
                     ))}
                 </tbody>
             </table>
+        </div>
+        <div className="flex justify-center mb-4 join grid-cols-2">
+            {/* Previous page button */}
+            <button className="btn btn-outline join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
+                Previous
+            </button>
+
+            {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
+            {/* Next page button */}
+            <button
+                className="btn btn-outline join-item"
+                onClick={() => goToPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
+            >
+                Next
+            </button>
         </div>
     </div>
   )
