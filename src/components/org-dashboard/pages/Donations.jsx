@@ -136,7 +136,7 @@ function Donations({ allCampaigns, campaignError, allDonation, allDonors }) {
 
     return (
         <div className='min-h-screen mx-3'>
-            <div className="text-md breadcrumbs ml-2">
+            <div className="text-sm breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li>
                     <li><a href='/org/dashboard/donations'>Donations</a></li>

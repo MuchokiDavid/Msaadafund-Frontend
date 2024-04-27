@@ -26,7 +26,7 @@ function OrgHome({allCampaigns,allDonations, allDonors}) {
 
   return (
     <div className='sm:h-fit'>
-      <div className="text-md breadcrumbs ml-2">
+      <div className="text-sm breadcrumbs ml-2">
           <ul>
               <li><a href='/'>Home</a></li>
               <li><a href='/org/dashboard'>Dashboard</a></li>

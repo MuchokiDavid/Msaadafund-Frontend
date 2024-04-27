@@ -114,7 +114,7 @@ function Accounts() {
 
     return (
         <div className='main-page-container h-screen lg:h-fit px-5'>
-               <div className="text-md breadcrumbs mb-4">
+               <div className="text-sm breadcrumbs mb-4">
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li>
                     <li><a href='/org/dashboard/accounts'>Accounts</a></li>
