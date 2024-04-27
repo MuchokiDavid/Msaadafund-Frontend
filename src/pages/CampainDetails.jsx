@@ -215,13 +215,13 @@ function CampainDetails() {
                         <form onSubmit={handleDonateButton} className='px-8'>
                             <div className='text-black'>
                                 {/* <h1 className="text-3xl font-bold mb-4">Donation Form</h1> */}
-                               
-                                <img class="w-18 h-16 mr-2" src ={logos} alt="logo"/>
+                            
                                 <p className="mb-4">Please fill in the form to donate to this campaign.</p>
                                 </div>
                                 <div className='flex-col justify-center items-center'>
+                               
                                     <div className='mb-4'>
-                                        <label className=' text-black dark:text-black'>Phone Number:</label> 
+                                        <label className=' text-black dark:text-black'>Phone Number</label> 
                                         <input
                                             type="tel"
                                             id="phoneNumber"
@@ -234,11 +234,10 @@ function CampainDetails() {
                                             className="block text-black dark:text-black px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
                                             required
                                         />
-                                        {errors && <p className='text-red-600'>{errors}</p>}
                                     </div>
 
                                     <div>
-                                        <label className=' text-black dark:text-black'>Donation Amount:</label>
+                                        <label className=' text-black dark:text-black'>Donation Amount</label>
                                         <input
                                             type="number"
                                             id="donationAmount"
@@ -254,12 +253,19 @@ function CampainDetails() {
                                 {/* shows total donation amount */}
                                 <p>Total Donation: Ksh {amount}</p>
                             </div>
+                            {errors && <p className='text-red-600 my-1'>{errors}</p>}
                             
-                            <div>
-                                <button type="submit"
-                                    className='bg-emerald-800 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded mt-4 '>
-                                        {loading ? "Loading..." : "Submit"}
-                                </button>
+                            <div className='flex justify-between'>
+                                <div>
+                                    <button type="submit"
+                                        className='bg-emerald-800 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded mt-4 '>
+                                            {loading ? "Loading..." : "Submit"}
+                                    </button>
+                                </div>
+                                <div>
+                                    <img class="w-18 h-16 mr-2" src ={logos} alt="logo"/>
+                                </div>
+                                
                             </div>
                             <div className='mt-3 flex justify-left'>
                                 <p className='text-red-700'>After submitting please check your phone to authorize Mpesa charge. Enter PIN to complete transaction</p>
