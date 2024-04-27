@@ -64,7 +64,7 @@ function TransStatus() {
             <div>
                 <h2 className="font-bold text-xl">Instructions</h2>
                 <ul className="list-disc list-inside text-sm">
-                    <li>Ensure that the tracking id is valid, you can get the id from the withdraw history.</li>
+                    <li>Ensure that the tracking id is valid, you can get the id from withdrawals.</li>
                     <li>Double-check the tracking you wish to check status and make sure it is valid</li>
                 </ul>
             </div>
