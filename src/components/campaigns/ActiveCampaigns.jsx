@@ -126,10 +126,10 @@ function ActiveCampaigns() {
   return (
     <>
     <Menus/>
-    <div className='flex items-center justify-center p-4 bg-slate-50'>
+    <div className='flex items-center justify-center p-3'>
         <div className="mb-1 flex flex-col sm:flex-row items-center ">
           <div className="relative flex" data-twe-input-wrapper-init data-twe-input-group-ref>
-            <label className="input input-bordered flex items-center gap-2  dark:bg-gray-900 dark:border dark:border-gray-400">
+            <label className="input input-bordered flex items-center gap-2 ">
               <input type="text" className="grow" onChange={handleSearchChange} placeholder="Search active campaign..." />
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" /></svg>
             </label>
@@ -139,7 +139,7 @@ function ActiveCampaigns() {
             id="categoryFilter"
             onChange={handleCategoryChange}
             value={selectedCategory}
-            className="border text-black rounded-md px-4 py-2 h-12 mb-2 sm:mb-0 sm:mr-4 focus:ring focus:border-blue-100 dark:bg-gray-900 dark:border dark:text-white"
+            className="border text-black rounded-md px-4 py-2 h-12 mb-2 sm:mb-0 sm:mr-4 focus:ring focus:border-blue-100"
             style={{ minWidth: '150px' }}
           >
             {categories.map(category => (
@@ -154,13 +154,13 @@ function ActiveCampaigns() {
         :
         null
       }
-    <h1 className="text-center text-2xl font-bold mb-4 bg-slate-300 h-10 p-1">Active Campaigns</h1>  
+    <h1 className="text-center text-xl font-bold mb-4 h-6 p-1">Active Campaigns</h1>  
     <div className='mx-auto overflow-x-hidden pb-4 px-6 sm:px-2 md:px-4'>
         
         {activeCampaigns.length===0 ?
         <div className="text-xl mx-4">No Active campaigns</div>
         :
-        <div className="mx-4 sm:mx-2 lg:mx-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
+        <div className="mx-2 sm:mx-1 lg:mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
           {filterCampaigns().map((campaign) => {
             return (
               <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden hover:cursor-pointer'>
@@ -190,8 +190,8 @@ function ActiveCampaigns() {
                       </div>
                     </dl>
 
-                    <div className="mt-3 flex items-center gap-4 sm:gap-6 lg:gap-16 text-xs pb-3">
-                      <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-1 lg:mx-4">
+                    <div className="mt-3 flex items-center gap-10 sm:gap-8 lg:gap-16 text-xs pb-3">
+                      <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-1 px-4">
                         <svg
                         className="size-4 text-sky-700"
                         viewBox="0 0 21 21"
