@@ -180,7 +180,7 @@ const handleWallet = async (id) => {
             <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
             <Route path="/transact/transactionstatus" element={<TransStatus />} />
             <Route path="/transact/withdrawals" element={<Withdrawals/>} />
-            <Route path="/accounts" element={<Accounts/>} />
+            <Route path="/transact/accounts" element={<Accounts/>} />
             <Route path="/transaction" element={<Transaction allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
