@@ -127,32 +127,35 @@ function Accounts() {
                     Create Account
                 </button>
                 {error && <p className='text-red-500 mt-4'>{error}</p>}
-                <div className="accounts-list-section w-3/4">
+                <div className="accounts-list-section w-full">
                     <h1 className='text-2xl font-semibold mb-4 text-slate-600 dark:text-slate-300 '>Your Accounts</h1>
-                    <table className='w-full border-collapse border border-gray-300'>
-                    <thead>
-                        <tr className='bg-gray-100 dark:bg-gray-700'>
-                            <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Providers</th>
-                            <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Account Name</th>
-                            <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Account Number</th>
-                            <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Actions</th>
-                        </tr>
-                    </thead>
-                        <tbody>
-                            {accounts.map((account) => (
-                                <tr key={account.id}>
-                                    <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>{account.providers}</td>
-                                    <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>{account.accountName}</td>
-                                    <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>{account.accountNumber}</td>
-                                    <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>
-                                    <button onClick={() => handleShowResetPin(account.email)} className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-2 w-full sm:w-auto'>
-                                        Reset PIN
-                                    </button>
-                                    </td>
+                    <div className='overflow-scroll'>
+                        <table className='w-full border-collapse border border-gray-300'>
+                            <thead>
+                                <tr className='bg-gray-100 dark:bg-gray-700'>
+                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Providers</th>
+                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Account Name</th>
+                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Account Number</th>
+                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Actions</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {accounts.map((account) => (
+                                    <tr key={account.id}>
+                                        <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>{account.providers}</td>
+                                        <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>{account.accountName}</td>
+                                        <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>{account.accountNumber}</td>
+                                        <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>
+                                        <button onClick={() => handleShowResetPin(account.email)} className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-2 w-full sm:w-auto'>
+                                            Reset PIN
+                                        </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    
                 </div>
                 {showResetPin && (
                     <div className="reset-pin-popup fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
