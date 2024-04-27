@@ -171,7 +171,7 @@ function ActiveCampaigns() {
                     className="h-56 w-full rounded-t-md object-cover"
                   />
 
-                  <div className="mt-2 px-2">
+                  <div className="mt-2 px-2 pb-4">
                     <dl>
                       <div>
                         <dt className="sr-only">Budget</dt>
@@ -190,8 +190,8 @@ function ActiveCampaigns() {
                       </div>
                     </dl>
 
-                    <div className="mt-3 flex items-center gap-10 sm:gap-8 lg:gap-16 text-xs pb-3">
-                      <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-1 px-4">
+                    <div className="mt-4 flex items-center gap-3 text-xs">
+                      <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
                         <svg
                         className="size-4 text-sky-700"
                         viewBox="0 0 21 21"
@@ -221,7 +221,7 @@ function ActiveCampaigns() {
                         </div>
                       </div>
 
-                      <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-1">
+                      <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
                         <svg
                           className="size-4 text-sky-700"
                           viewBox="0 0 24 24"
@@ -239,7 +239,7 @@ function ActiveCampaigns() {
                         </div>
                       </div>
 
-                      <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-1">
+                      <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
                         <svg
                           viewBox="0 0 640 512"
                           fill="currentColor"

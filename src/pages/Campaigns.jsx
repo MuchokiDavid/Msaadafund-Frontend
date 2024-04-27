@@ -3,7 +3,7 @@ import ActiveCampaigns from '../components/campaigns/ActiveCampaigns'
 
 function Campaigns() {
   return (
-    <div className='bg-slate-100'>
+    <div id='campaigns'>
       <div className="text-md breadcrumbs ml-4 mt-16 bg-gray-50">
                 <ul>
                     <li><a href='/'>Home</a></li>

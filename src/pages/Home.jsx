@@ -7,7 +7,7 @@ function Home() {
   return (
     <>
       <Menus/>
-      <div className="mx-auto overflow-x-hidden mt-3 h-auto">
+      <div className="mx-auto overflow-x-hidden mt-3 h-auto" id='home'>
         <Banner/>
         {/* <DonorGetStarted/> */}
       </div>      
