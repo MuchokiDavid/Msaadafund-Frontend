@@ -42,7 +42,7 @@ function Menubar({isOpen, toggleSidebar}) {
   };
 
   return (
-    <div className='bg-emerald-500'>
+    <div className='bg-emerald-500 min-h-screen'>
     
        {/* {!isOpen && (
         <button onClick={toggleSidebar} className="text-white focus:outline-none md:hidden">
