@@ -37,7 +37,7 @@ function DashboardNav({toggleSidebar}) {
               <div className="flex items-center">
                     <div className="dropdown dropdown-end absolute right-4 sm:z-20 hover:border">
                         <div tabIndex={0} role="button" className="text-xs">
-                            <div className='flex items-center h-10'>
+                            <div className='flex items-center h-10 bg-sky-900 rounded-lg'>
                               <MdOutlineAccountCircle className="h-6 w-6 mr-2"/>
                               <p className='text-wrap '>{current_org && current_org}</p>
                             </div>
