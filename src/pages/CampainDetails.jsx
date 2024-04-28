@@ -177,16 +177,20 @@ function CampainDetails() {
                     <div class="p-2">
                         <div className='bg-base-100 h-full rounded-lg'> 
                         <div className='flex justify-between mx-4'>
-                            <div className='px-6 pt-6'>
+                            {/* <div className='px-6 pt-6'>
                                 <h1 className='font-medium'>Total Donations</h1>
+                                <p className="font-medium mb-1 text-info">KES {getTotalAmount(campaign.donations)}</p>
+                            </div> */}
+                            <div className='px-6 pt-6'>
+                                <h1 className='font-medium'>Total Funds Raised</h1>
                                 <p className="font-medium mb-1 text-info">KES {getTotalAmount(campaign.donations)}</p>
                             </div>
                             <div className='px-6 pt-6'>
                                 <h1 className='font-medium'>Goal</h1>
-                                <p className="font-medium mb-1 text-success">KES {campaign.targetAmount}</p>
+                                <p className="font-medium mb-1 text-info">KES {campaign.targetAmount}</p>
                             </div>
                         </div>
-                            
+                        
                         <form onSubmit={handleDonateButton} className='px-8'>
                             <div className='text-black'>
                                 <h1 className="text-xl font-medium my-2">Donation Form</h1>
