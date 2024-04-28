@@ -153,7 +153,7 @@ const handleWallet = async (id) => {
         }
     } catch (error) {
         setLoading(true)
-        setErrors('Error in fetching campaigns', error);
+        console.log('Error in fetching campaigns', error);
     }
   };
 
