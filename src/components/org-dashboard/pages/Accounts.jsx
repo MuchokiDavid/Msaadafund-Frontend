@@ -19,6 +19,23 @@ function Accounts() {
     const formRef = useRef(null);
 
     useEffect(() => {
+        const otp = localStorage.getItem('otp');
+        if (!otp) {
+            window.location.replace('/org/dashboard/accounts');
+        } else {
+            const timer = setTimeout(() => {
+                localStorage.removeItem('otp');
+                window.location.replace('/org/dashboard/accounts');
+            }, 5 * 60 * 1000); // 5 minutes
+            return () => clearTimeout(timer);
+        }
+    }, []);
+
+
+
+    
+
+    useEffect(() => {
         fetchAccounts();
     }, []);
 
@@ -111,13 +128,14 @@ function Accounts() {
         setShowResetPin(false); // Resetting the showResetPin state
         setResetPinEmail(''); 
     };
-
+ 
     return (
         <div className='main-page-container h-screen lg:h-fit px-5'>
                <div className="text-sm breadcrumbs mb-4">
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li>
-                    <li><a href='/org/dashboard/accounts'>Accounts</a></li>
+                    <li><a href='/org/dashboard/accounts'>AccountAuth</a></li>
+                    <li><a href='/org/dashboard/accountset'>Accounts</a></li>
                 </ul>
             </div>
             <h2 className="mb-3 text-2xl font-bold leading-tight ">Withdraw Accounts</h2>
