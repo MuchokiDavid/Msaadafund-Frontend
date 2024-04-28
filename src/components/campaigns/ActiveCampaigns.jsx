@@ -87,7 +87,7 @@ function ActiveCampaigns() {
       const activeCampaigns = campaigns.filter(campaign => {
         const startDate = new Date(campaign.startDate);
         const endDate = new Date(campaign.endDate);
-        return startDate <= currentDate && endDate >= currentDate;
+        return startDate <= currentDate && endDate >= currentDate || endDate.toDateString() === currentDate.toDateString();
       });
     //Upcoming campaigns
       const upcomingCampaigns = campaigns.filter(campaign => {
