@@ -52,13 +52,14 @@ function CreateCampaign() {
         
 
         const accessToken = localStorage.getItem('token');
+        const orgName = localStorage.getItem('org');
         const config = {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
         };
 
-        if (!accessToken) {
+        if (!accessToken && !orgName) {
             window.location.replace('/org/login')
         }
 
