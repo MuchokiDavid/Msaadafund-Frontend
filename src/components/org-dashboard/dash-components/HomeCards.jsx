@@ -32,10 +32,10 @@ function HomeCards({allCampaigns, allDonations}) {
                 </div>
                 <div className="px-2 text-gray-700 justify-between items-center">
                     <div>
-                    <h3 className="text-base lg:text-2xl tracking-wider">Contributions</h3>
+                    <h3 className="text-base lg:text-xl tracking-wider">Contributions</h3>
                     </div>
                     <div>
-                    <p className="text-base lg:text-2xl">KES {prettyNumber(totalAmount , 'number-short')}</p>
+                    <p className="text-sm lg:text-base">KES {prettyNumber(totalAmount , 'number-short')}</p>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@ function HomeCards({allCampaigns, allDonations}) {
                     <h3 className="tracking-wider text-base lg:text-xl">Campaigns</h3>
                     </div>
                     <div>
-                    <p className="text-base lg:text-xl">{prettyNumber(allCampaigns && allCampaigns.length , 'number-short')}</p>
+                    <p className="text-sm lg:text-base">{prettyNumber(allCampaigns && allCampaigns.length , 'number-short')}</p>
                     </div>
                 </div>
             </div>
