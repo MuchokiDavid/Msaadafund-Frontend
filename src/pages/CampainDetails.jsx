@@ -32,12 +32,18 @@ function CampainDetails() {
 
     useEffect(() => {
         // Fetch campaign details using campaignId
-        fetch(`/campaign/${campaignId}`)
+        const fetchCampaign= ()=>{
+            fetch(`/campaign/${campaignId}`)
             .then(response => response.json())
             .then(data => {
                 setCampaign(data);
             })
             .catch(error => console.error('Error fetching campaign details:', error));
+        }
+
+        const intervalId = setInterval(fetchCampaign, 15000);//Polling done here to fetch campaign
+        return () => clearInterval(intervalId);
+
     }, [campaignId]);
 
     if (!campaign) {
@@ -190,10 +196,12 @@ function CampainDetails() {
                                 <p className="font-medium mb-1 text-info">KES {campaign.targetAmount}</p>
                             </div>
                         </div>
-                        
+                        <div className='w-full flex justify-center'>
+                            <progress className="progress progress-info w-3/4" value={getTotalAmount(campaign.donations)} max={campaign.targetAmount}></progress>
+                        </div>
                         <form onSubmit={handleDonateButton} className='px-8'>
                             <div className='text-black'>
-                                <h1 className="text-xl font-medium my-2">Donation Form</h1>
+                                <h1 className="text-xl font-medium mt-3">Donation Form</h1>
                             
                                 <p className="mb-4">Please fill in the form to donate to this campaign.</p>
                                 </div>
