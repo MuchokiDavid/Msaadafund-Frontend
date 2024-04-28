@@ -209,7 +209,7 @@ if (!token) {
 
 return (
     <div className='mx-3 h-fit sm:h-screen'>
-        <div className="text-md breadcrumbs ml-2">
+        <div className="text-sm breadcrumbs ml-2">
             <ul>
                 <li><a href='/org/dashboard'>Dashboard</a></li>
                 <li><a>Withdraw</a></li>
@@ -367,9 +367,10 @@ return (
                 </dialog>
 
                 <aside className="">
-                    <div className="bg-white p-10 rounded">
+                    <div className="bg-white px-6 py-2 rounded">
                         <h2 className="font-bold text-2xl">Instructions</h2>
-                        <ul className="list-disc mt-4 list-inside">
+                        <ul className="list-disc mt-2 list-inside text-base">
+                            <li>Ensure that the account you wish to withdraw to is registered.</li>
                             <li>Ensure that the phone number provided is registered to your M-Pesa account.</li>
                             <li>Double-check the amount you wish to withdraw and make sure it is more that sh.10 for M-Pesa and sh.100 for Bank.</li>
                             <li>Ensure that the bank account provided is valid and registered to avoid errors.</li>

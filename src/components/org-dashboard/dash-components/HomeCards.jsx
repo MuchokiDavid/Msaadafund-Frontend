@@ -30,12 +30,12 @@ function HomeCards({allCampaigns, allDonations}) {
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
                     </svg>
                 </div>
-                <div className="flex-grow px-2 text-gray-700 flex justify-between items-center">
+                <div className="px-2 text-gray-700 justify-between items-center">
                     <div>
-                    <h3 className="lg:text-xl tracking-wider">Contributions</h3>
+                    <h3 className="text-base lg:text-xl tracking-wider">Contributions</h3>
                     </div>
                     <div>
-                    <p className="lg:text-2xl">KES {prettyNumber(totalAmount , 'number-short')}</p>
+                    <p className="text-sm lg:text-base">KES {prettyNumber(totalAmount , 'number-short')}</p>
                     </div>
                 </div>
             </div>
@@ -45,12 +45,12 @@ function HomeCards({allCampaigns, allDonations}) {
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path>
                     </svg>
                 </div>
-                <div className="flex-grow px-2 text-gray-700 flex justify-between items-center">
+                <div className="px-2 text-gray-700">
                     <div>
-                    <h3 className="tracking-wider lg:text-xl">Campaigns</h3>
+                    <h3 className="tracking-wider text-base lg:text-xl">Campaigns</h3>
                     </div>
                     <div>
-                    <p className="lg:text-2xl">{prettyNumber(allCampaigns && allCampaigns.length , 'number-short')}</p>
+                    <p className="text-sm lg:text-base">{prettyNumber(allCampaigns && allCampaigns.length , 'number-short')}</p>
                     </div>
                 </div>
             </div>

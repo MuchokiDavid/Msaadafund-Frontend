@@ -154,7 +154,7 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
   return (
     <div>
       <div className='h-screen mx-3'>
-            <div className="text-md breadcrumbs ml-2">
+            <div className="text-sm breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li>
                     <li><a href='/org/dashboard/transaction'>Transactions</a></li>

@@ -26,6 +26,7 @@ function OrgLayout() {
   const[allDonations,setAllDonations]=useState()
   const[errors,setErrors]=useState()
   const token=localStorage.getItem('token');
+  const orgName=localStorage.getItem('org')
   const[donors,setDonors]=useState([])
 
   // Toggle sidebar
@@ -65,7 +66,7 @@ const handleWallet = async (id) => {
       
   } catch (error) {
       // setLoading(true)
-      setErrors('Error in fetching wallet details', error);
+      console.log('Error in fetching wallet details', error);
   }
 };
 // console.log(wallet)
@@ -159,7 +160,7 @@ const handleWallet = async (id) => {
   };
 
 
-  if  (!token){
+  if  (!token && !orgName){
     window.location.replace("/org/login")
   }
 
@@ -169,7 +170,7 @@ const handleWallet = async (id) => {
       <div className="flex relative">
         {/* <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/> */}
         {isSidebarOpen && <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />}
-        <main className={`mt-3 mx-auto w-full overflow-hidden overflow-y-auto md:m-3 min-h-screen sm:w-full justify-center px-4 lg:px-6 ${isSmallScreen && isSidebarOpen ? 'blur' : ''}`} style={{ marginTop: '10px' }} id='dashboard'>
+        <main className={`mt-3 mx-auto w-full overflow-hidden overflow-y-auto md:m-3 min-h-screen lg:h-fit sm:w-full justify-center px-2 lg:px-6 ${isSmallScreen && isSidebarOpen ? 'blur' : ''}`} style={{ marginTop: '10px' }} id='dashboard'>
           <Routes>
             <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors}/>} />
             {/* route to update campaign */}
@@ -179,8 +180,8 @@ const handleWallet = async (id) => {
             <Route path="/donations" element={<Donations allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} allDonation={allDonations} allDonors={donors}/>} />
             <Route path="/transact/withdraw" element={<Withdraw allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
             <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
-            <Route path="/accounts" element={<AccountAuth/>} />
-            <Route path="/accountset" element={<Accounts/>} />
+            <Route path="/transact/accounts" element={<AccountAuth/>} />
+            <Route path="/transact/accountset" element={<Accounts/>} />
             <Route path="/transact/transactionstatus" element={<TransStatus />} />
             <Route path="/transact/withdrawals" element={<Withdrawals/>} />
             <Route path="/transaction" element={<Transaction allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />

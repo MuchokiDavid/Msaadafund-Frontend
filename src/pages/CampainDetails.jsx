@@ -79,34 +79,6 @@ function CampainDetails() {
         }
     };
 
-    // const handleDonation = (e) => {
-    //     e.preventDefault();
-    //     setLoading(true)
-    //     if (!phoneNum.match(phonePattern)) {
-    //         setErrors('Invalid Phone Number')
-    //     }
-    //     else{
-    //         let phoneNo = phoneNum.replace(/^0+/, '');
-    //         let phoneNumber = "254" + phoneNo;
-    //         axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,campaignId:campaignId})
-    //         .then((res)=>{
-    //             // console.log(res)
-    //             // toast.success(res.data.message)
-    //         setDonationAmount("");
-    //         setPhoneNum("");
-    //         setErrors("")
-    //         setLoading(false)
-    //         })
-    //         .catch ((err)=>{  
-    //             console.log(err)   
-    //             // get error message from err.response.data.message
-    //             toast.error("Donation failed, Try again!")
-    //         })
-    //     }
-        
-        
-    // };
-
     const handleDays = () => {
         // if current date < start date  return days remaining for campaingn to start
         const currentDate = new Date();
@@ -162,12 +134,19 @@ function CampainDetails() {
             </>
         )
     }
+    function getTotalAmount(donationsArray) {
+        let totalAmount = 0;
+        for (let donation of donationsArray) {
+            totalAmount += donation.amount;
+        }
+        return totalAmount;
+    }
     // console.log(campaign)
 
     return (
         <div>
             <Menus/>
-        <div className='text-black bg-slate-100'>
+        <div className='text-black' id='campaign_dets'>
             <div className="text-md breadcrumbs ml-4 mt-16">
                 <ul>
                     <li><a href='/'>Home</a></li>
@@ -184,10 +163,6 @@ function CampainDetails() {
                             <figure className="overflow-hidden"> <img className="h-80" src={campaign.banner} alt={campaign.campaignName} /></figure> 
                             <div className="p-2">
                                 
-                                {/* <div className='mt-1'>
-                                    <h1 className=' text-lg font-semibold'>Organiser</h1>
-                                    <a href='#'><p className="text-gray-600 hover:text-blue-900">{campaign.organisation.orgName.toUpperCase()}</p></a>{/*Put link to organisation here
-                                </div> */}
                                 <div className='mt-0'>
                                     <h1 className=' text-lg font-semibold'>Agenda</h1>
                                     <p className="text-gray-600">{campaign.category.toUpperCase()}</p>
@@ -200,28 +175,28 @@ function CampainDetails() {
                         </div>
                     </div>
                     <div class="p-2">
-                        {/* Donation Accordion */}
-                    {/* <div className="collapse collapse-arrow bg-base-200">
-                        <input type="radio" name="my-accordion-2" defaultChecked /> 
-                        <div className="collapse-title text-xl font-medium">
-                            Donate via Mpesa
-                        </div>
-                        <div className="collapse-content">*/} 
                         <div className='bg-base-100 h-full rounded-lg'> 
-                         <div className='px-6 pt-6'>
-                                    <h1 className='text-xl font-semibold'>Goal</h1>
-                                    <p className="text-2xl font-bold text-green-500 mb-1">KES {campaign.targetAmount}</p>
-                                </div>
+                        <div className='flex justify-between mx-4'>
+                            <div className='px-6 pt-6'>
+                                <h1 className='font-medium'>Total Donations</h1>
+                                <p className="font-medium mb-1 text-info">KES {getTotalAmount(campaign.donations)}</p>
+                            </div>
+                            <div className='px-6 pt-6'>
+                                <h1 className='font-medium'>Goal</h1>
+                                <p className="font-medium mb-1 text-success">KES {campaign.targetAmount}</p>
+                            </div>
+                        </div>
+                            
                         <form onSubmit={handleDonateButton} className='px-8'>
                             <div className='text-black'>
-                                {/* <h1 className="text-3xl font-bold mb-4">Donation Form</h1> */}
-                               
-                                <img class="w-18 h-16 mr-2" src ={logos} alt="logo"/>
+                                <h1 className="text-xl font-medium my-2">Donation Form</h1>
+                            
                                 <p className="mb-4">Please fill in the form to donate to this campaign.</p>
                                 </div>
                                 <div className='flex-col justify-center items-center'>
+                               
                                     <div className='mb-4'>
-                                        <label className=' text-black dark:text-black'>Phone Number:</label> 
+                                        <label className=' text-black dark:text-black'>Phone Number</label> 
                                         <input
                                             type="tel"
                                             id="phoneNumber"
@@ -234,11 +209,10 @@ function CampainDetails() {
                                             className="block text-black dark:text-black px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
                                             required
                                         />
-                                        {errors && <p className='text-red-600'>{errors}</p>}
                                     </div>
 
                                     <div>
-                                        <label className=' text-black dark:text-black'>Donation Amount:</label>
+                                        <label className=' text-black dark:text-black'>Donation Amount</label>
                                         <input
                                             type="number"
                                             id="donationAmount"
@@ -254,12 +228,19 @@ function CampainDetails() {
                                 {/* shows total donation amount */}
                                 <p>Total Donation: Ksh {amount}</p>
                             </div>
+                            {errors && <p className='text-red-600 my-1'>{errors}</p>}
                             
-                            <div>
-                                <button type="submit"
-                                    className='bg-emerald-800 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded mt-4 '>
-                                        {loading ? "Loading..." : "Submit"}
-                                </button>
+                            <div className='flex justify-between'>
+                                <div>
+                                    <button type="submit"
+                                        className='bg-emerald-800 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded mt-4 '>
+                                            {loading ? "Loading..." : "Submit"}
+                                    </button>
+                                </div>
+                                <div>
+                                    <img class="w-18 h-16 mr-2" src ={logos} alt="logo"/>
+                                </div>
+                                
                             </div>
                             <div className='mt-3 flex justify-left'>
                                 <p className='text-red-700'>After submitting please check your phone to authorize Mpesa charge. Enter PIN to complete transaction</p>
@@ -267,26 +248,6 @@ function CampainDetails() {
 
                             </form>
                          </div>
-                       {/*</div> 
-                       </div>
-                        <div className="collapse collapse-arrow bg-base-200">
-                        <input type="radio" name="my-accordion-2" /> 
-                        <div className="collapse-title text-xl font-medium">
-                            Paypal
-                        </div>
-                        <div className="collapse-content"> 
-                            <p>Currently not available</p>
-                        </div>
-                        </div>
-                        <div className="collapse collapse-arrow bg-base-200">
-                        <input type="radio" name="my-accordion-2" /> 
-                        <div className="collapse-title text-xl font-medium">
-                            Card Payment (Online)
-                        </div>
-                        <div className="collapse-content"> 
-                            <p>Currently not available</p>
-                        </div>
-                        </div>*/}
 
                     </div>
                 </div> 
@@ -329,76 +290,3 @@ function CampainDetails() {
 }
 
 export default CampainDetails;
-
-
-
-                    {/* <Popup open={donationForm} onClose={() => setDonationForm(false)} modal> */}
-                        {/* style the modal content */}
-                        {/* <dialog open={donationForm} onClose={() => setDonationForm(false)} className='modal'>
-
-                            <div className='modal-box bg-white'>
-                                <form onSubmit={handleDonation}>
-                                <div className='text-black dark:text-dark'>
-                                    <h1 className="text-3xl font-bold mb-4">Donation Form</h1>
-                                    <img class="w-18 h-16 mr-2" src ={logos} alt="logo"/>
-                                    <p className="mb-4">Please fill in the form to donate to this campaign.</p>
-                                    </div>
-                                    <div className='flex-col justify-center items-center'>
-                                        <div className='mb-4'>
-                                            <label className=' text-black dark:text-black'>Phone Number:</label> 
-                                            <input
-                                                type="tel"
-                                                id="phoneNumber"
-                                                placeholder='PhoneNumber eg 07xxxx or 011xxxx'
-                                                maxLength={10}
-                                                value={phoneNum}
-                                                onChange={(e) => {
-                                                    // Remove leading zeros
-                                                    // let formattedNumber = e.target.value.replace(/^0+/, '');
-                                                    // Check if the number starts with '254', if not, prepend it
-                                                    // if (!formattedNumber.startsWith('254')) {
-                                                    //     formattedNumber = '254' + formattedNumber;
-                                                    // }
-                                                    // if (formattedNumber.length >= 12) {
-                                                    //     formattedNumber = formattedNumber.slice(0, 11);
-                                                    // }
-                                                    // Update state with the formatted number
-                                                    setPhoneNum(e.target.value);
-                                                }}
-                                                className="block text-black dark:text-black px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
-                                                required
-                                            />
-                                            {errors && <p className='text-red-600'>{errors}</p>}
-                                        </div>
-
-                                        <div>
-                                            <label className=' text-black dark:text-black'>Donation Amount:</label>
-                                            <input
-                                                type="number"
-                                                id="donationAmount"
-                                                placeholder='Enter your donation amount'
-                                                value={amount}
-                                                onChange={(e) => setDonationAmount(e.target.value)}
-                                                className="block text-black dark:text-black px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
-                                                required
-                                            />
-                                        </div>
-                                        </div>
-                                <div>
-                                    {/* shows total donation amount
-                                    <p>Total Donation: Ksh {amount}</p>
-                                </div>
-                                <div>
-                                    <p></p>
-                                </div>
-
-                                <div>
-                                    <button type="submit"
-                                        className='bg-emerald-800 text-white font-bold py-2 px-4 rounded mt-4 '>
-                                        Submit Donation
-                                    </button>
-                                </div>
-                            </form>
-                            <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black" onClick={() => setDonationForm(false)}>X</button>
-                        </div>
-                         </dialog> */}

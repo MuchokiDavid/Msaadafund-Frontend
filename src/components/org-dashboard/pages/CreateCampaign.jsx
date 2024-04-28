@@ -52,13 +52,14 @@ function CreateCampaign() {
         
 
         const accessToken = localStorage.getItem('token');
+        const orgName = localStorage.getItem('org');
         const config = {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
         };
 
-        if (!accessToken) {
+        if (!accessToken && !orgName) {
             window.location.replace('/org/login')
         }
 
@@ -93,7 +94,7 @@ function CreateCampaign() {
     };
     return (
         <div className='flex-grow'>
-            <div className="text-md breadcrumbs ml-2">
+            <div className="text-sm breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li> 
                     <li><a href='/org/dashboard/createcampaign'>Create campaign</a></li> 

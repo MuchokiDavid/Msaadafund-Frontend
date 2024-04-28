@@ -79,7 +79,7 @@ function CampaignCard({allCampaigns, campaignError}) {
     }    
     return (
         <div className='h-screen lg:h-fit'>
-            <div className="text-md breadcrumbs ml-2">
+            <div className="text-sm breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li> 
                     <li><a href='/org/dashboard/campaigns'>View Campaign</a></li> 
@@ -115,10 +115,6 @@ function CampaignCard({allCampaigns, campaignError}) {
                                     </div>
                                         </div>
                                 <div class="flex flex-wrap items-center mt-4 justify-between">
-                                    <div class="text-sm mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded font-bold">
-                                        <button
-                                        className='h-6'>Transact</button>
-                                    </div>
                                     <div class="text-sm mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded font-bold">
                                     <button onClick={()=>handleEditButton(item.id) } className='h-6'>Edit Campaign</button>
                                     </div>
