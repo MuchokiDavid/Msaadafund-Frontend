@@ -64,7 +64,7 @@ const handleWallet = async (id) => {
       
   } catch (error) {
       // setLoading(true)
-      setErrors('Error in fetching wallet details', error);
+      console.log('Error in fetching wallet details', error);
   }
 };
 // console.log(wallet)
