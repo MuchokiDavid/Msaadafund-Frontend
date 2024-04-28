@@ -8,6 +8,7 @@ import { Toaster, toast } from 'react-hot-toast';
 function CampaignCard({allCampaigns, campaignError}) {
     const [campaigns, setCampaigns] = useState();
     const token = localStorage.getItem('token');
+    const orgUser = localStorage.getItem('org')
     const [walletDetails, setWalletDetails] = useState(null);
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState(campaignError);
@@ -17,6 +18,10 @@ function CampaignCard({allCampaigns, campaignError}) {
     useEffect(() => {
         setCampaigns(allCampaigns)    
     }, [allCampaigns])
+
+    useEffect(() => {
+        setErrors(campaignError)
+    }, [campaignError])
 
     useEffect(() => {
         campaigns && campaigns.forEach(item => handleWallet(item.id));
@@ -42,7 +47,7 @@ function CampaignCard({allCampaigns, campaignError}) {
             
         } catch (error) {
             // setLoading(true)
-            setErrors('Error in fetching wallet details', error);
+            console.log('Error in fetching wallet details', error);
         }
     };
     // console.log(campaigns)
@@ -50,7 +55,10 @@ function CampaignCard({allCampaigns, campaignError}) {
     if(loading){
         return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>
     }
-    
+    //Check token and org in localstorage and redirect to login page if not present
+    if(!token && !orgUser){
+        window.location.replace("/org/login")
+    }
 
     const handleEditButton = (campaignId)=>{
         navigate(`/org/dashboard/campaigns/${campaignId}`)
@@ -87,23 +95,20 @@ function CampaignCard({allCampaigns, campaignError}) {
             </div>
             <h2 className="mb-3 text-2xl font-bold leading-tight ">My Campaigns</h2>
             <hr className='mb-4'/>
-            {errors&& <p className='text-red-700'>{errors}</p>}
+            {/* {errors&& <p className='text-red-700'>{errors}</p>} */}
             <a href='/org/dashboard/createcampaign' className='text-blue-700 mb-4 text-lg hover:underline'>Add campaign+</a>
             <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:max-w-full">
                 {campaigns && campaigns.map((item) =>{
                 return (
-                    <div key={item.id} class="m-auto overflow-hidden rounded-lg shadow cursor-pointer h-90 md:w-80 w-full">
-                        <a href="#" class="block w-full h-full">
-                            <div class="w-full p-4 bg-gray-100 dark:bg-gray-800">
-                                <p class="font-medium text-indigo-500 text-md">
+                    <div key={item.id} className="m-auto overflow-hidden rounded-lg shadow cursor-pointer h-90 md:w-80 w-full">
+                        <a href="#" className="block w-full h-full">
+                            <div className="w-full p-4 bg-gray-100 dark:bg-gray-800">
+                                <p className="font-medium text-indigo-500 text-md">
                                     Available balance
                                 </p>
-                                <p class="mb-2 text-2xl font-medium text-gray-800 dark:text-white">
+                                <p className="mb-2 text-2xl font-medium text-gray-800 dark:text-white">
                                     {walletDetails &&walletDetails[item.id]?.currency} {walletDetails &&walletDetails[item.id]?.available_balance}
                                 </p>
-                                {/* <p class="font-light text-gray-400 dark:text-gray-300 text-md">
-                                    The new supercar is here, 543 cv and 140 000$. This is best racing GT about 7 years on...
-                                </p> */}
                                 <div className='grid grid-flow-col grid-col-3'>
                                     <div>
                                         <h6 className='text-lg text-slate-700 dark:text-slate-200'>Campaign</h6>
@@ -114,8 +119,8 @@ function CampaignCard({allCampaigns, campaignError}) {
                                         <p className='text-gray-900 dark:text-slate-400'>{item.targetAmount}</p>
                                     </div>
                                         </div>
-                                <div class="flex flex-wrap items-center mt-4 justify-between">
-                                    <div class="text-sm mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded font-bold">
+                                <div className="flex flex-wrap items-center mt-4 justify-between">
+                                    <div className="text-sm mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded font-bold">
                                     <button onClick={()=>handleEditButton(item.id) } className='h-6'>Edit Campaign</button>
                                     </div>
                                     <div>
