@@ -16,6 +16,7 @@ import BuyAirtime from './pages/BuyAirtime';
 import AccountAuth from './AccountAuth';
 import TransStatus from './pages/TransStatus';
 import Withdrawals from './pages/Withdrawals';
+import { useMediaQuery } from 'react-responsive';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
@@ -29,6 +30,9 @@ function OrgLayout() {
   const orgName=localStorage.getItem('org')
   const[donors,setDonors]=useState([])
 
+    // Use react-responsive to get screen size
+    const isMediumScreen = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
+
   // Toggle sidebar
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -36,7 +40,7 @@ function OrgLayout() {
 
   // Function to update isSmallScreen state based on window width
 const handleWindowSizeChange = () => {
-  setIsSmallScreen(window.innerWidth <= 640); // Adjust the width threshold as needed
+  setIsSmallScreen(window.innerWidth <= 768); // Adjust the width threshold as needed
 };
 
 // Listen to window resize events
@@ -159,7 +163,14 @@ const handleWallet = async (id) => {
     }
   };
 
+  //Fuction to close the sidebar when menuitem clicked
+  const handleMenuItemClick = () => {
+    if (isSidebarOpen && (isSmallScreen || isMediumScreen)) {
+      toggleSidebar();
+    }
+  };
 
+//Check if user is logged in
   if  (!token && !orgName){
     window.location.replace("/org/login")
   }
@@ -169,10 +180,10 @@ const handleWallet = async (id) => {
       <DashboardNav toggleSidebar={toggleSidebar} />
       <div className="flex relative">
         {/* <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/> */}
-        {isSidebarOpen && <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />}
-        <main className={`mt-3 mx-auto w-full overflow-hidden overflow-y-auto md:m-3 min-h-screen lg:h-fit sm:w-full justify-center px-2 lg:px-6 ${isSmallScreen && isSidebarOpen ? 'blur' : ''}`} style={{ marginTop: '10px' }} id='dashboard'>
+        {isSidebarOpen && <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} handleMenuItemClick={handleMenuItemClick}/>}
+        <main className={`mt-3 mx-auto w-full sm:w-screen overflow-hidden overflow-y-auto md:m-3 min-h-screen lg:h-full justify-center px-2 lg:px-6 ${isSmallScreen && isSidebarOpen ? 'blur' : ''}`} style={{ marginTop: '10px' }} id='dashboard'>
           <Routes>
-            <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors}/>} />
+            <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors} handleMenuItemClick= {handleMenuItemClick}/>} />
             {/* route to update campaign */}
             <Route path="/campaigns/:campaignId" element={<UpdateCampaign/>} />
             <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch}/>} />
