@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import {toast,Toaster} from 'react-hot-toast'
@@ -11,7 +10,6 @@ function AccountAuth() {
     const [message,setMessage] = useState('')
     const [error,setError] = useState('')
 
-    const navigate = useNavigate();
 
     // handle receiving otp
     const handleSendOtp = ()=>{
@@ -126,14 +124,14 @@ function AccountAuth() {
             </div>
                 <form className="mt-4"  onSubmit={(e) => e.preventDefault()}>
                     {step === 1 ? (
-                    <div>
+                    <div >
                         <label className="block text-black  font-medium">Email Address</label>
                         <input 
                         type='email' 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder=' Enter Organisation Email Address' 
-                        className="w-1/2 mt-1 p-2 border border-gray-300 rounded-md"
+                        className="w-1/2 mt-1 p-2 border bg-white text-black border-gray-300 rounded-md"
                         />
                     </div>
                     ):
@@ -145,7 +143,7 @@ function AccountAuth() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder=' Enter Organisation Email Address' 
-                            className="w-1/2 mt-1 p-2 border border-gray-300 rounded-md"
+                            className="w-1/2 mt-1 p-2 border bg-white text-black border-gray-300 rounded-md"
                             />
                         </div>
                         <div className='mt-4'>
@@ -154,7 +152,7 @@ function AccountAuth() {
                             name="otp" id="otp" 
                             value={otp} 
                             onChange={(e) => setOtp(e.target.value)}
-                            className="w-1/2 mt-1 p-2 border border-gray-300 rounded-md"
+                            className="w-1/2 mt-1 p-2 border bg-white text-black border-gray-300 rounded-md"
                             />                  
                             </div>
                     </div> 

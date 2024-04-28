@@ -11,8 +11,27 @@ function CampaignCard({allCampaigns, campaignError}) {
     const [walletDetails, setWalletDetails] = useState(null);
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState(campaignError);
+    const [inActiveCampaign, setInactiveCampaign] = useState([])
 
     const navigate = useNavigate()
+
+    useEffect(()=>{
+        const accessToken = localStorage.getItem('token');
+        const config = {
+            headers:{
+            Authorization: `Bearer ${accessToken}`
+            }
+        }
+        axios.get ("/api/v1.0/get_inactive",config)
+        .then((res)=>{
+            setInactiveCampaign(res.data)   
+        })
+        .catch ((err)=>{
+            const errorMsg = err.response?.data?.error || 'An error occurred';
+            setErrors(errorMsg); 
+        })
+    },[])
+
 
     useEffect(() => {
         setCampaigns(allCampaigns)    
@@ -68,15 +87,47 @@ function CampaignCard({allCampaigns, campaignError}) {
             console.log(res)
             alert('Do you want to delete this campaign?', res)
             toast.success('Campaign deleted successfully')
+            window.location.reload();
         }})
         .catch((err)=>{
-            console.log(err)
+            const errorMsg = err.response?.data?.error || 'An error occurred';
+            setErrors(errorMsg); 
         })
         }
         catch(err){
             console.log(err)
         }
-    }    
+    }
+
+
+    const activateCampaign = async (campaignId)=>{
+        try{
+            const accessToken = localStorage.getItem('token');
+            const config = {
+               headers:{
+                Authorization: `Bearer ${accessToken}`
+               }
+            }
+            if (!accessToken){
+                alert("access token not found")
+            }
+            axios.patch(`/api/v1.0/activate/campaign/${campaignId}`,{}, config)
+            .then((res)=>{{
+                console.log(res)
+                toast.success('Campaign activated successfully')
+                window.location.reload();
+            }})
+            .catch((err)=>{
+                const errorMsg = err.response?.data?.error || 'An error occurred';
+                setErrors(errorMsg);
+            })
+
+        }
+        catch(err){
+            console.log(err)
+        }
+       
+    }   
     return (
         <div className='h-screen lg:h-fit'>
             <div className="text-md breadcrumbs ml-2">
@@ -93,12 +144,12 @@ function CampaignCard({allCampaigns, campaignError}) {
                 {campaigns && campaigns.map((item) =>{
                 return (
                     <div key={item.id} class="m-auto overflow-hidden rounded-lg shadow cursor-pointer h-90 md:w-80 w-full">
-                        <a href="#" class="block w-full h-full">
-                            <div class="w-full p-4 bg-gray-100 dark:bg-gray-800">
+                        <div class="block w-full h-full">
+                            <div class="w-full p-4 bg-gray-100">
                                 <p class="font-medium text-indigo-500 text-md">
                                     Available balance
                                 </p>
-                                <p class="mb-2 text-2xl font-medium text-gray-800 dark:text-white">
+                                <p class="mb-2 text-2xl font-medium text-gray-800">
                                     {walletDetails &&walletDetails[item.id]?.currency} {walletDetails &&walletDetails[item.id]?.available_balance}
                                 </p>
                                 {/* <p class="font-light text-gray-400 dark:text-gray-300 text-md">
@@ -106,12 +157,12 @@ function CampaignCard({allCampaigns, campaignError}) {
                                 </p> */}
                                 <div className='grid grid-flow-col grid-col-3'>
                                     <div>
-                                        <h6 className='text-lg text-slate-700 dark:text-slate-200'>Campaign</h6>
-                                        <p className='text-gray-900 dark:text-slate-400'>{item.campaignName.slice(0,25)}...</p>
+                                        <h6 className='text-lg text-black'>Campaign</h6>
+                                        <p className='text-black'>{item.campaignName.slice(0,25)}...</p>
                                         </div>
                                         <div>
-                                            <h6 className='text-lg text-slate-700 dark:text-slate-200'>Budget</h6>
-                                        <p className='text-gray-900 dark:text-slate-400'>{item.targetAmount}</p>
+                                            <h6 className='text-lg text-black'>Budget</h6>
+                                        <p className='text-gray-900'>{item.targetAmount}</p>
                                     </div>
                                         </div>
                                 <div class="flex flex-wrap items-center mt-4 justify-between">
@@ -127,9 +178,47 @@ function CampaignCard({allCampaigns, campaignError}) {
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </div>
+                       
                     </div>
                 )})}
+                 
+            </div>
+            <div className='mt-4'>
+                <h1 className='text-2xl'>INACTIVE CAMPAIGNS</h1>
+                <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:max-w-full">
+                {inActiveCampaign && inActiveCampaign.map((item)=>{
+                    return(
+                        <div key={item.id} className="m-auto overflow-hidden rounded-lg shadow cursor-pointer h-90 md:w-80 w-full">
+                            <div className='w-full p-4 bg-gray-400'>
+                            <p class="font-medium text-indigo-500 text-md">
+                                    Available balance
+                                </p>
+                                <p class="mb-2 text-2xl font-medium text-gray-800 dark:text-white">
+                                    {walletDetails &&walletDetails[item.id]?.currency} {walletDetails &&walletDetails[item.id]?.available_balance}
+                                </p>
+                                <div className='grid grid-flow-col grid-col-3'>
+                                    <div>
+                                        <h6 className='text-lg text-black'>Campaign</h6>
+                                        <p className='text-black'>{item.campaignName.slice(0,25)}...</p>
+                                        </div>
+                                        <div>
+                                            <h6 className='text-lg text-black'>Budget</h6>
+                                        <p className='text-gray-900'>{item.targetAmount}</p>
+                                    </div>
+                                        </div>
+                            <div class="flex flex-wrap items-center mt-4 justify-between">
+                                <div class="text-sm mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded font-bold">
+                                    <button onClick={()=>activateCampaign(item.id)}
+                                    className='h-6'>ReActivate
+                                    </button>
+                                </div>
+                             </div>
+                             </div>
+                        </div>
+                    )
+                })}
+            </div>
             </div>
             <Toaster position="top-right" reverseOrder= {false}/>
         </div>
