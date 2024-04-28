@@ -116,10 +116,6 @@ function CampaignCard({allCampaigns, campaignError}) {
                                         </div>
                                 <div class="flex flex-wrap items-center mt-4 justify-between">
                                     <div class="text-sm mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded font-bold">
-                                        <button
-                                        className='h-6'>Transact</button>
-                                    </div>
-                                    <div class="text-sm mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded font-bold">
                                     <button onClick={()=>handleEditButton(item.id) } className='h-6'>Edit Campaign</button>
                                     </div>
                                     <div>
