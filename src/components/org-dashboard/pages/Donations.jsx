@@ -136,7 +136,7 @@ function Donations({ allCampaigns, campaignError, allDonation, allDonors }) {
 
     return (
         <div className='min-h-screen mx-3'>
-            <div className="text-md breadcrumbs ml-2">
+            <div className="text-sm breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li>
                     <li><a href='/org/dashboard/donations'>Donations</a></li>
@@ -147,28 +147,26 @@ function Donations({ allCampaigns, campaignError, allDonation, allDonors }) {
             {errors && <p className='text-red-700'>{errors}</p>}
            
             <div className='flex flex-col mt-1'>
-                <div className='py-2 -my-2 overflow-x-auto sm:-mx-2 sm:px-6 lg:-mx-2 lg:px-6'>
-                    <div className="my-3 inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 sm:rounded-lg">
-                        <div className='flex justify-between mb-2'>
-                            <div>
-                                <input
-                                    type="text"
-                                    placeholder="Search by name or campaign"
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="border-gray-300 rounded-md bg-gray-50 border h-11 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                />
-                            </div>
-                            <div className='justify-end'>
-                                <button title='Download Pdf ' onClick={downloadDonationsPDF}>PDF<FaFilePdf size = {25} style={{ color: 'red' }}/></button>
-                            </div>
+                    <div className='flex justify-between py-3'>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="Search by name or campaign"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="border-gray-300 rounded-md bg-gray-50 border h-11 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                            />
                         </div>
-                        
+                        <div>
+                            <button title='Download Pdf ' onClick={downloadDonationsPDF}>PDF<FaFilePdf size = {25} style={{ color: 'red' }}/></button>
+                        </div>
+                    </div>
+                    <div className="my-3 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 sm:rounded-lg">
                         <table className="min-w-full table-zebra text-xs">
                             {/* head */}
                             <thead>
                                 <tr>
-                                <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
+                                <   th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
                                     <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Campaign</th>
                                     <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donor</th>
                                     <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Amount</th>
@@ -196,7 +194,6 @@ function Donations({ allCampaigns, campaignError, allDonation, allDonors }) {
                             </tbody>
                         </table>
                     </div>
-                </div>
             </div>
             <div className="flex justify-center mb-4 join grid-cols-2">
                 {/* Previous page button */}

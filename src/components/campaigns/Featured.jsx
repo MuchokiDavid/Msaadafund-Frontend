@@ -55,10 +55,10 @@ function Featured() {
 
   return (
     <div className='container mx-auto h-full bg-gray-50 rounded-lg'>
-    <h1 className="text-xl lg:text-3xl font-bold my-4 text-center">Featured Campaigns</h1>
-    <div className='my-4 mx-3 justify-center'>
+    <h1 className="text-lg lg:text-2xl font-bold my-4 text-center">Featured Campaigns</h1>
+    <div className='my-4 justify-center'>
         
-        <div className="mx-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:max-w-full">
+        <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:max-w-full">
         {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"> */}
           {featuredCampaign && featuredCampaign.map((campaign) => {
             return (
@@ -70,7 +70,7 @@ function Featured() {
                     className="h-56 w-full rounded-t-md object-cover"
                   />
 
-                  <div className="mt-2 px-2">
+                  <div className="mt-2 px-2 pb-4">
                     <dl>
                       <div>
                         <dt className="sr-only">Budget</dt>
@@ -89,8 +89,8 @@ function Featured() {
                       </div>
                     </dl>
 
-                    <div className="mt-3 flex items-center gap-4 sm:gap-6 lg:gap-12 text-xs pb-3">
-                      <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-1 lg:mx-4">
+                    <div className="mt-4 flex items-center gap-3 text-xs">
+                      <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
                         <svg
                         className="size-4 text-sky-700"
                         viewBox="0 0 21 21"

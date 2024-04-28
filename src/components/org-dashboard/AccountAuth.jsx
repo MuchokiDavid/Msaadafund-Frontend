@@ -69,7 +69,7 @@ function AccountAuth() {
         axios.patch('/api/v1.0/confirm_account_pin', {otp,email}, config)
         .then ((res)=>{
             setMessage('OTP confirmed successfully')
-            window.location.replace('/org/dashboard/accountset')
+            window.location.replace('/org/dashboard/transact/accountset')
             localStorage.setItem('otp', res.data.otp);
             console.log(res)
             setError('')
@@ -105,7 +105,7 @@ function AccountAuth() {
         <div className="text-md breadcrumbs mb-4">
             <ul>
                 <li><a href='/org/dashboard'>Dashboard</a></li>
-                <li><a href='/org/dashboard/accounts'>AccountAuth</a></li>
+                <li><a>AccountAuth</a></li>
             </ul>
             <h2 className="mt-3 text-2xl font-bold leading-tight ">Accounts Authentication</h2>
             <hr className='mb-4'/>

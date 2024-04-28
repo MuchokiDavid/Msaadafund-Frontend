@@ -117,7 +117,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
 
   return (
     <div className='mx-3'>
-        <div className="text-md breadcrumbs ml-2">
+        <div className="text-sm breadcrumbs ml-2">
             <ul>
                 <li><a href='/org/dashboard'>Dashboard</a></li>
                 <li><a>Buy Airtime</a></li>
@@ -174,8 +174,8 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                         <label className="block font-semibold" htmlFor="name">Phone Number</label>
                         <input 
                         className="input input-bordered w-full" 
-                        id="name" 
-                        type="phone" 
+                        id="phoneNumber" 
+                        type="tel" 
                         placeholder='e.g. 07xxxxxxxx'
                         maxLength={10}
                         value={phone}
@@ -195,8 +195,8 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                         required/>
                     </div>
 
-                    <div className="flex items-center justify-between mt-8">
-                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-3 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-4 md:text-lg md:px-10">Buy</button>                        
+                    <div className="flex items-center justify-between mt-4">
+                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-3 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-2 md:text-lg md:px-8">Buy</button>                        
                     </div>
                 </form>
 
