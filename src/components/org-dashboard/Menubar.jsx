@@ -10,36 +10,28 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import { useAuth } from '../../context/usersContext';
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { MdOutlineViewCompactAlt } from "react-icons/md";
-import { useMediaQuery } from 'react-responsive';
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { FaPhone } from "react-icons/fa6";
 import { GrInProgress } from "react-icons/gr";
 
 
-function Menubar({isOpen, toggleSidebar}) {
+function Menubar({isOpen, toggleSidebar, handleMenuItemClick}) {
   // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
   const {logout} = useAuth();
   const token = localStorage.getItem('token');
+  const orgName = localStorage.getItem('org');
 
-   // Use react-responsive to get screen size
-   const isSmallScreen = useMediaQuery({ maxWidth: 767 });
-   const isMediumScreen = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
 
   const handleLogout = () => {
     logout()
     window.location.replace("/org/login")
   };
 
-  if (!token){
+  if (!token && !orgName){
     handleLogout()
   }
 
-  const handleMenuItemClick = () => {
-    if (isOpen && (isSmallScreen || isMediumScreen)) {
-      toggleSidebar();
-    }
-  };
 
   return (
     <div className='bg-emerald-500 min-h-screen'>
