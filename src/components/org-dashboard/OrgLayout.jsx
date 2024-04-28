@@ -25,6 +25,7 @@ function OrgLayout() {
   const[allDonations,setAllDonations]=useState()
   const[errors,setErrors]=useState()
   const token=localStorage.getItem('token');
+  const orgName=localStorage.getItem('org')
   const[donors,setDonors]=useState([])
 
   // Toggle sidebar
@@ -158,7 +159,7 @@ const handleWallet = async (id) => {
   };
 
 
-  if  (!token){
+  if  (!token && !orgName){
     window.location.replace("/org/login")
   }
 
