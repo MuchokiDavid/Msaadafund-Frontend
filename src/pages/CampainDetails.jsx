@@ -32,12 +32,18 @@ function CampainDetails() {
 
     useEffect(() => {
         // Fetch campaign details using campaignId
-        fetch(`/campaign/${campaignId}`)
+        const fetchCampaign= ()=>{
+            fetch(`/campaign/${campaignId}`)
             .then(response => response.json())
             .then(data => {
                 setCampaign(data);
             })
             .catch(error => console.error('Error fetching campaign details:', error));
+        }
+
+        const intervalId = setInterval(fetchCampaign, 15000);//Polling done here to fetch campaign
+        return () => clearInterval(intervalId);
+
     }, [campaignId]);
 
     if (!campaign) {
@@ -156,7 +162,7 @@ function CampainDetails() {
             </div>
             <div className="container mx-auto">
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
-                    <div class="p-1">
+                    <div class="lg:p-1">
                         {/* Campaign details */}
                         <div className="card card-side bg-base-100 grid grid-cols-1 rounded-lg p-4 h-full">
                             <h1 className="text-2xl font-bold mb-4">{campaign.campaignName.toUpperCase()}</h1>
@@ -174,83 +180,84 @@ function CampainDetails() {
                             </div>
                         </div>
                     </div>
-                    <div class="p-2">
-                        <div className='bg-base-100 h-full rounded-lg'> 
-                        <div className='flex justify-between mx-4'>
-                            {/* <div className='px-6 pt-6'>
-                                <h1 className='font-medium'>Total Donations</h1>
-                                <p className="font-medium mb-1 text-info">KES {getTotalAmount(campaign.donations)}</p>
-                            </div> */}
-                            <div className='px-6 pt-6'>
-                                <h1 className='font-medium'>Total Funds Raised</h1>
-                                <p className="font-medium mb-1 text-info">KES {getTotalAmount(campaign.donations)}</p>
-                            </div>
-                            <div className='px-6 pt-6'>
-                                <h1 className='font-medium'>Goal</h1>
-                                <p className="font-medium mb-1 text-info">KES {campaign.targetAmount}</p>
-                            </div>
-                        </div>
-                        
-                        <form onSubmit={handleDonateButton} className='px-8'>
-                            <div className='text-black'>
-                                <h1 className="text-xl font-medium my-2">Donation Form</h1>
-                            
-                                <p className="mb-4">Please fill in the form to donate to this campaign.</p>
-                                </div>
-                                <div className='flex-col justify-center items-center'>
-                               
-                                    <div className='mb-4'>
-                                        <label className=' text-black dark:text-black'>Phone Number</label> 
-                                        <input
-                                            type="tel"
-                                            id="phoneNumber"
-                                            placeholder='eg 07xxxx or 011xxxx'
-                                            maxLength={10}
-                                            value={phoneNum}
-                                            onChange={(e) => {
-                                                setPhoneNum(e.target.value);
-                                            }}
-                                            className="block text-black dark:text-black px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
-                                            required
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label className=' text-black dark:text-black'>Donation Amount</label>
-                                        <input
-                                            type="number"
-                                            id="donationAmount"
-                                            placeholder='Enter amount'
-                                            value={amount}
-                                            onChange={(e) => setDonationAmount(e.target.value)}
-                                            className="block text-black dark:text-black px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
-                                            required
-                                        />
-                                    </div>
-                                    </div>
-                            <div>
-                                {/* shows total donation amount */}
-                                <p>Total Donation: Ksh {amount}</p>
-                            </div>
-                            {errors && <p className='text-red-600 my-1'>{errors}</p>}
-                            
-                            <div className='flex justify-between'>
-                                <div>
-                                    <button type="submit"
-                                        className='bg-emerald-800 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded mt-4 '>
-                                            {loading ? "Loading..." : "Submit"}
-                                    </button>
-                                </div>
-                                <div>
-                                    <img class="w-18 h-16 mr-2" src ={logos} alt="logo"/>
-                                </div>
+                    <div class="lg:p-2">
+                        <div className='bg-base-100 h-full rounded-lg lg:py-3'> 
+                            <form onSubmit={handleDonateButton} className='px-8'>
+                                <div className='text-black'>
+                                    <h1 className="text-xl font-medium mt-3">Donation Form</h1>
                                 
-                            </div>
-                            <div className='mt-3 flex justify-left'>
-                                <p className='text-red-700'>After submitting please check your phone to authorize Mpesa charge. Enter PIN to complete transaction</p>
-                            </div>
+                                    <p className="mb-4">Please fill in the form to donate to this campaign.</p>
+                                    </div>
+                                    <div className='flex-col justify-center items-center'>
+                                
+                                        <div className='mb-4'>
+                                            <label className=' text-black dark:text-black'>Phone Number</label> 
+                                            <input
+                                                type="tel"
+                                                id="phoneNumber"
+                                                placeholder='eg 07xxxx or 011xxxx'
+                                                maxLength={10}
+                                                value={phoneNum}
+                                                onChange={(e) => {
+                                                    setPhoneNum(e.target.value);
+                                                }}
+                                                className="block text-black dark:text-black px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                required
+                                            />
+                                        </div>
 
+                                        <div>
+                                            <label className=' text-black dark:text-black'>Donation Amount</label>
+                                            <input
+                                                type="number"
+                                                id="donationAmount"
+                                                placeholder='Enter amount'
+                                                value={amount}
+                                                onChange={(e) => setDonationAmount(e.target.value)}
+                                                className="block text-black dark:text-black px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                required
+                                            />
+                                        </div>
+                                        </div>
+                                <div>
+                                    {/* shows total donation amount */}
+                                    <p>Total Donation: Ksh {amount}</p>
+                                </div>
+                                {errors && <p className='text-red-600 my-1'>{errors}</p>}
+                                
+                                <div className='flex justify-between'>
+                                    <div>
+                                        <button type="submit"
+                                            className='bg-emerald-800 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded mt-4 '>
+                                                {loading ? "Loading..." : "Submit"}
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <img class="w-18 h-16 mr-2" src ={logos} alt="logo"/>
+                                    </div>
+                                    
+                                </div>
+                                <div className='mt-3 flex justify-left'>
+                                    <p className='text-red-700'>After submitting please check your phone to authorize Mpesa charge. Enter PIN to complete transaction</p>
+                                </div>
                             </form>
+                            <div className='flex justify-between mx-4'>
+                                {/* <div className='px-6 pt-6'>
+                                    <h1 className='font-medium'>Total Donations</h1>
+                                    <p className="font-medium mb-1 text-info">KES {getTotalAmount(campaign.donations)}</p>
+                                </div> */}
+                                <div className='px-6 pt-6'>
+                                    <h1 className='font-medium'>Total Funds Raised</h1>
+                                    <p className="font-medium mb-1 text-info">KES {getTotalAmount(campaign.donations)}</p>
+                                </div>
+                                <div className='px-6 pt-6'>
+                                    <h1 className='font-medium'>Goal</h1>
+                                    <p className="font-medium mb-1 text-info">KES {campaign.targetAmount}</p>
+                                </div>
+                            </div>
+                            <div className='w-full flex justify-center'>
+                                <progress className="progress progress-info w-3/4" value={getTotalAmount(campaign.donations)} max={campaign.targetAmount}></progress>
+                            </div>
                          </div>
 
                     </div>
