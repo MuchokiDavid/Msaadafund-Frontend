@@ -54,9 +54,9 @@ function Featured() {
     };
 
   return (
-    <div className='mx-auto h-full bg-gray-50 rounded-lg'>
+    <div className='container mx-auto h-full bg-gray-50 rounded-lg'>
     <h1 className="text-lg lg:text-2xl font-bold my-4 text-center">Featured Campaigns</h1>
-    <div className='my-4 mx-3 justify-center'>
+    <div className='my-4 justify-center'>
         
         <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:max-w-full">
         {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"> */}
