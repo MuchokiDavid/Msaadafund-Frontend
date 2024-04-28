@@ -174,8 +174,8 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                         <label className="block font-semibold" htmlFor="name">Phone Number</label>
                         <input 
                         className="input input-bordered w-full" 
-                        id="name" 
-                        type="phone" 
+                        id="phoneNumber" 
+                        type="tel" 
                         placeholder='e.g. 07xxxxxxxx'
                         maxLength={10}
                         value={phone}
