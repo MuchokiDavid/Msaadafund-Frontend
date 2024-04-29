@@ -121,6 +121,8 @@ function AccountAuth() {
                 </button>
               )}
             </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
                 <form className="mt-4"  onSubmit={(e) => e.preventDefault()}>
                     {step === 1 ? (
                     <div >
@@ -163,9 +165,22 @@ function AccountAuth() {
                     </button>
 
                     </form>
-                    
-                <Toaster position='top-right' reverseOrder={false}/>
+                    </div>
+
+                    <aside className="">
+                    <div className="bg-white px-6 py-2 rounded">
+                        <h2 className="font-bold text-2xl">Instructions</h2>
+                        <ul className="list-disc mt-2 list-inside text-base">
+                            <li>Please ensure you input of your Organization Email address.</li>
+                            <li>Upon submission, a One-Time Password (OTP) will be sent to your registered email address.</li>
+                            <li>Kindly input the OTP to authenticate your identity, thereby enabling the secure setup of your account.</li>
+                            <li>If you encounter any issues during the process, please contact our support team for assistance.</li>
+                        </ul>
+                    </div>
+                    </aside>      
             </div>
+            </div>
+            <Toaster position='top-right' reverseOrder={false}/>
         </div>
     </div>
   )
