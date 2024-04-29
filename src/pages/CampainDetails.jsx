@@ -192,7 +192,7 @@ function CampainDetails() {
                                     </div>
                                     <div className='flex-col justify-center items-center'>
                                 
-                                        <div className='mb-4'>
+                                        <div>
                                             <label className=' text-black dark:text-black'>Phone Number</label> 
                                             <input
                                                 type="tel"
@@ -206,6 +206,11 @@ function CampainDetails() {
                                                 className="block text-black dark:text-black px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
                                                 required
                                             />
+                                        </div>
+                                        <div className='flex justify-start items-center my-3'>
+                                            <button onClick={()=>setDonationAmount(300)} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>300</button>
+                                            <button onClick={()=>setDonationAmount(500)} className='p-2 rounded-xl border border-blue-600 mx-3 hover:text-white hover:bg-blue-600'>500</button>
+                                            <button onClick={()=>setDonationAmount(1000)} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>1000</button>
                                         </div>
 
                                         <div>

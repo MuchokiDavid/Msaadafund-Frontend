@@ -150,18 +150,17 @@ function UpdateCampaign() {
     }
 
     return (
-        <div className="p-8">
+        <div className="min-h-screen mx-3">
             <div className="text-sm breadcrumbs mb-4">
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li>
-                    <li><a href='/org/dashboard/campaigns'>View Campaign</a></li>
+                    <li><a href='/org/dashboard/mycampaigns/active'>View Campaign</a></li>
                     <li><a>{campaignData.campaignName}</a></li>
                 </ul>
             </div>
-
-            <div className="container mx-auto">
-                <h1 className="text-2xl font-bold mb-6">Update Your Campaign</h1>
-                
+            <h1 className="mb-1 my-2 text-2xl font-bold leading-tight ">Update Campaign</h1>
+            <hr/>
+            <div className="mx-auto">                
                 {error && <p className="text-red-500 mb-4">{error}</p>}
                 
                 <form onSubmit={patchCampaign} className="space-y-4">
