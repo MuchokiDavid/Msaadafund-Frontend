@@ -147,7 +147,7 @@ function Donations({ allCampaigns, campaignError, allDonation, allDonors }) {
             {errors && <p className='text-red-700'>{errors}</p>}
            
             <div className='flex flex-col mt-1'>
-                    <div className='flex justify-between py-3'>
+                    <div className='flex justify-between py-1'>
                         <div>
                             <input
                                 type="text"
@@ -161,8 +161,8 @@ function Donations({ allCampaigns, campaignError, allDonation, allDonors }) {
                             <button title='Download Pdf ' onClick={downloadDonationsPDF}>PDF<FaFilePdf size = {25} style={{ color: 'red' }}/></button>
                         </div>
                     </div>
-                    <div className="my-3 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 sm:rounded-lg">
-                        <table className="min-w-full table-zebra text-xs">
+                    <div className="my-1 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 sm:rounded-lg">
+                        <table className="min-w-full table-zebra text-xs overflow-x-auto">
                             {/* head */}
                             <thead>
                                 <tr>
