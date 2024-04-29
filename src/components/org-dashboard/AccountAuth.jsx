@@ -96,7 +96,6 @@ function AccountAuth() {
         const deleteOtpAfterTime = setTimeout(() => {
         localStorage.removeItem('otp');
         }, 5 * 60 * 1000); // 5 minutes
-
         return () => clearTimeout(deleteOtpAfterTime);
     }, []);
 

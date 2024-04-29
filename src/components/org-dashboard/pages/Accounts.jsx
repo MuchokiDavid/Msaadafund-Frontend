@@ -21,11 +21,11 @@ function Accounts() {
     useEffect(() => {
         const otp = localStorage.getItem('otp');
         if (!otp) {
-            window.location.replace('/org/dashboard/accounts');
+            window.location.replace('/org/dashboard/transact/accounts');
         } else {
             const timer = setTimeout(() => {
                 localStorage.removeItem('otp');
-                window.location.replace('/org/dashboard/accounts');
+                window.location.replace('/org/dashboard/transact/accounts');
             }, 5 * 60 * 1000); // 5 minutes
             return () => clearTimeout(timer);
         }
