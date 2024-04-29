@@ -59,6 +59,7 @@ function Withdrawals() {
     const currentItems=filtered.slice(indexOfFirstItem,indexOfLastItem)
     const totalItems=filtered.length
     const totalPages=Math.ceil(totalItems/itemsPerPage)
+    
     const paginate=(pageNumber)=>{
         setCurrentPage(pageNumber)
     }
@@ -66,8 +67,53 @@ function Withdrawals() {
     const goToPage=(pageNumber)=>{
         setCurrentPage(pageNumber)
     }
+// handle pdf route
+    // get route from backend
+    const downloadTransactionPDF=(id)=> {
+        const token = localStorage.getItem('token');
+        const url = `/api/v1.0/withdraw_pdf`;
+    
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/pdf',  // Specify that we expect a PDF file in the response
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to download PDF');
+            }
+    
+            // Convert the response to a Blob (binary data) for the PDF file
+            return response.blob();
+        })
+        .then(blob => {
+            // Create a URL for the blob data
+            const blobUrl = URL.createObjectURL(blob);
+    
+            // Create an anchor element for downloading the file
+            const link = document.createElement('a');
+            link.href = blobUrl;
+            link.download = 'transactions.pdf';  // Specify the filename for the downloaded file
+    
+            // Append the link to the document body
+            document.body.appendChild(link);
+    
+            // Programmatically trigger a click on the link to start the download
+            link.click();
+    
+            // Remove the link from the DOM after the download
+            document.body.removeChild(link);
+    
+            // Revoke the blob URL to release memory
+            URL.revokeObjectURL(blobUrl);
+        })
+        .catch(error => {
+            setErrors('Error downloading PDF, Please try again later');
+        });
+    }
 
-    // console.log(allWithdrawals)
 
   return (
     <div>
@@ -91,7 +137,7 @@ function Withdrawals() {
                 className='input input-bordered w-full max-w-xs'/>
             </div>
             {/* pdf button */}
-            <button title='Download Pdf '>PDF<FaFilePdf size = {25} style={{ color: 'red' }}/></button>
+            <button title='Download Pdf' onClick={downloadTransactionPDF}>PDF<FaFilePdf size = {25} style={{ color: 'red' }}/></button>
         </div>
         <div className='text-sm text-red-500'>{errors}</div>
         <div className='overflow-scroll my-4'>
