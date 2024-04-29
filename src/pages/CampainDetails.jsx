@@ -41,8 +41,10 @@ function CampainDetails() {
             .catch(error => console.error('Error fetching campaign details:', error));
         }
 
-        const intervalId = setInterval(fetchCampaign, 15000);//Polling done here to fetch campaign
-        return () => clearInterval(intervalId);
+        fetchCampaign();
+
+        // const intervalId = setInterval(fetchCampaign, 15000);//Polling done here to fetch campaign
+        // return () => clearInterval(intervalId);
 
     }, [campaignId]);
 

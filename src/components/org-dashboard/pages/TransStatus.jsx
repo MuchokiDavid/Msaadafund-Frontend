@@ -63,8 +63,8 @@ function TransStatus() {
             </div>
             <div>
                 <h2 className="font-bold text-xl">Instructions</h2>
-                <ul className="list-disc list-inside text-sm">
-                    <li>Ensure that the tracking id is valid, you can get the id from withdrawals.</li>
+                <ul className="list-disc list-inside text-base">
+                    <li>Ensure that the tracking id is valid, you can get the id from <a href='/org/dashboard/transact/withdrawals' className='text-blue-800 font-medium hover:underline'>here</a>.</li>
                     <li>Double-check the tracking you wish to check status and make sure it is valid</li>
                 </ul>
             </div>
