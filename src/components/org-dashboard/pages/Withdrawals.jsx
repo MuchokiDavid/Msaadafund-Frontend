@@ -1,4 +1,3 @@
-import { all } from 'axios'
 import React, { useState, useEffect } from 'react'
 import { FaFilePdf } from "react-icons/fa";
 
@@ -60,9 +59,6 @@ function Withdrawals() {
     const totalItems=filtered.length
     const totalPages=Math.ceil(totalItems/itemsPerPage)
     
-    const paginate=(pageNumber)=>{
-        setCurrentPage(pageNumber)
-    }
     //Pagination handlers
     const goToPage=(pageNumber)=>{
         setCurrentPage(pageNumber)
