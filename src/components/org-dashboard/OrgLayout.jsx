@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Menubar from './Menubar';
+import Menubar from './dash-components/Menubar';
 import Profile from './pages/OrgProfile';
 import Transaction from './pages/Transactions';
 import { Routes, Route } from 'react-router-dom';
