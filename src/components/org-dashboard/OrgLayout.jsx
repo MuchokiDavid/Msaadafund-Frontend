@@ -7,7 +7,6 @@ import OrgHome from './pages/OrgHome';
 import DashboardNav from './dash-components/DashboardNav';
 import CreateCampaign from './pages/CreateCampaign';
 import DashFooter from './dash-components/DashFooter';
-import CampaignCard from './dash-components/CampaignCard';
 import Accounts from './pages/Accounts';
 import Donations from './pages/Donations';
 import UpdateCampaign from './pages/UpdateCampaign';
