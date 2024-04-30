@@ -12,7 +12,7 @@ import Donations from './pages/Donations';
 import UpdateCampaign from './pages/UpdateCampaign';
 import Withdraw from './pages/Withdraw';
 import BuyAirtime from './pages/BuyAirtime';
-import AccountAuth from './pages/AccountAuth';
+import AccountAuth from './AccountAuth';
 import TransStatus from './pages/TransStatus';
 import Withdrawals from './pages/Withdrawals';
 import { useMediaQuery } from 'react-responsive';
