@@ -61,7 +61,7 @@ function Menubar({isOpen, toggleSidebar, handleMenuItemClick}) {
           <SubMenu className='hover:text-emerald-800 text-sm shadow' label="Campaigns" icon={<MdOutlineViewCompactAlt />}>
               <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/createcampaign" />} icon={<GrAddCircle className='w-5 h-5'/>} onClick={handleMenuItemClick}>Add Campaign</MenuItem>
               <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/mycampaigns/active" />} icon={<MdOutlineCampaign className='w-6 h-6'/>} onClick={handleMenuItemClick}>Active Campaigns</MenuItem>
-              <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/campaigns" />} icon={<GiSpeakerOff className='w-6 h-6'/>} onClick={handleMenuItemClick}>Inactive Campaigns</MenuItem>
+              <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/mycampaigns/inactive" />} icon={<GiSpeakerOff className='w-6 h-6'/>} onClick={handleMenuItemClick}>Inactive Campaigns</MenuItem>
               <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transaction" />} icon={<GrTransaction />} onClick={handleMenuItemClick}>Transactions </MenuItem>
           </SubMenu>
           <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/donations" />} icon={<FaDonate />} onClick={handleMenuItemClick}>Donations</MenuItem>
