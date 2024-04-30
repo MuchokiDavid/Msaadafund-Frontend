@@ -218,38 +218,6 @@ function DashActiveCampaigns({allCampaigns, campaignError}) {
                                 <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '><button onClick={()=>handleEditButton(item.id)} className='text-white p-1.5 bg-blue-600 rounded border hover:border-blue-600 hover:bg-transparent hover:text-black'>Edit</button></td>
                                 <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '><button onClick={()=>handleDeleteButton(item.id)} className='text-white p-1.5 bg-blue-600 rounded border hover:border-blue-600 hover:bg-transparent hover:text-black'>Deactivate</button></td>
                             </tr>
-                            // <div key={item.id} class="m-auto overflow-hidden rounded-lg shadow cursor-pointer h-90 md:w-80 w-full">
-                            //     <div class="block w-full h-full">
-                            //         <div class="w-full p-4 bg-gray-100">
-                            //             <p class="font-medium text-indigo-500 text-md">
-                            //                 Available balance
-                            //             </p>
-                            //             <p class="mb-2 text-2xl font-medium text-gray-800">
-                        
-                            //                 {walletDetails &&walletDetails[item.id]?.currency} {walletDetails &&walletDetails[item.id]?.available_balance}
-                            //             </p>
-                            //             <div className='grid grid-flow-col grid-col-3'>
-                            //                 <div>
-                            //                     <h6 className='text-lg text-black'>Campaign</h6>
-                            //                     <p className='text-black'>{item.campaignName.slice(0,25)}...</p>
-                            //                     </div>
-                            //                     <div>
-                            //                         <h6 className='text-lg text-black'>Budget</h6>
-                            //                     <p className='text-gray-900'>{item.targetAmount}</p>
-                            //                 </div>
-                            //                     </div>
-                            //             <div className="flex flex-wrap items-center mt-4 justify-between">
-                            //                 <div className="text-sm mr-2 py-1.5 px-4 text-gray-200 bg-blue-700 rounded font-bold">
-                            //                 <button onClick={()=>handleEditButton(item.id) } className='h-6'>Edit Campaign</button>
-                            //                 </div>
-                            //                 <div>
-                            //                     <button title='Delete Campaign' onClick={()=>handleDeleteButton(item.id)}><MdDelete size={36}  style={{ color: 'red' }}/></button>
-                            //                 </div>
-                            //             </div>
-                            //         </div>
-                            //     </div>
-                            
-                            // </div>
                         )})}
                     </tbody>
                 </table>
