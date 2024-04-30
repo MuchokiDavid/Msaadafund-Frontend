@@ -26,8 +26,8 @@ function DashActiveCampaigns({allCampaigns, campaignError}) {
                 (campaign.campaignName && campaign.campaignName.toLowerCase().includes(searchTerm.toLowerCase())) ||
                 (campaign.category && campaign.category.toLowerCase().includes(searchTerm.toLowerCase())) ||
                 (campaign.targetAmount && campaign.targetAmount.toString().includes(searchTerm)) ||
-                (campaign.description && campaign.description.toString().includes(searchTerm)) ||
-                (campaign.amountRemaining && campaign.amountRemaining.toString().includes(searchTerm))
+                (campaign.description && campaign.description.toString().includes(searchTerm)) 
+                // (campaign.amountRemaining && campaign.amountRemaining.toString().includes(searchTerm))
 
             )
         });
@@ -161,7 +161,7 @@ function DashActiveCampaigns({allCampaigns, campaignError}) {
                     <li><a href='/org/dashboard/mycampaigns/active'>View Campaign</a></li> 
                 </ul>
             </div>
-            <h2 className="mb-3 text-2xl font-bold leading-tight ">My Campaigns</h2>
+            <h2 className="mb-3 text-2xl font-bold leading-tight ">Active Campaigns</h2>
             <hr className='mb-4'/>
             {/* {errors&& <p className='text-red-700'>{errors}</p>} */}
             
