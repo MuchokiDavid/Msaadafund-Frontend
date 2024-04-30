@@ -187,27 +187,24 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
                             value={searchTerm}
                             onChange={handleSearchTermChange}
                             className="px-3 py-2 border-gray-300 rounded-md mb-4 bg-gray-50 border h-10 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/4 p-2.5 "
-                        />                        
-                        <div className='mb-2'>                      
-                        <button title='Download Pdf ' onClick={downloadDonationsPDF}>PDF<FaFilePdf size = {34} style={{ color: 'red' }}/></button>
-                      </div> 
+                        /> 
                       </div> 
                    
                                   
                   
                   <div className="overflow-x-auto">
-                    <table className="table table-md table-pin-rows table-pin-cols table-auto">
+                    <table className="table table-md table-pin-rows table-pin-cols table-auto text-xs lg:text-sm">
                       <thead>
                         <tr>
-                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
-                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>AMOUNT</th>
-                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>STATUS</th>
-                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>RUNNING BALANCE</th>
-                          {/* <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>NARRATIVE</th> */}
-                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>TRANSACTION TYPE</th>
-                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>INVOICE ACCOUNT</th>
-                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>UPDATED AT</th>
-                          <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'></th>
+                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
+                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>AMOUNT</th>
+                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>STATUS</th>
+                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>RUNNING BALANCE</th>
+                          {/* <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>NARRATIVE</th> */}
+                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>TRANSACTION TYPE</th>
+                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>INVOICE ACCOUNT</th>
+                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>UPDATED AT</th>
+                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'></th>
                         </tr>
                       </thead>
                       <tbody>

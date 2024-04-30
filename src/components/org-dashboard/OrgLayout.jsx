@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Menubar from './Menubar';
+import Menubar from './dash-components/Menubar';
 import Profile from './pages/OrgProfile';
 import Transaction from './pages/Transactions';
 import { Routes, Route } from 'react-router-dom';
@@ -12,7 +12,7 @@ import Donations from './pages/Donations';
 import UpdateCampaign from './pages/UpdateCampaign';
 import Withdraw from './pages/Withdraw';
 import BuyAirtime from './pages/BuyAirtime';
-import AccountAuth from './AccountAuth';
+import AccountAuth from './pages/AccountAuth';
 import TransStatus from './pages/TransStatus';
 import Withdrawals from './pages/Withdrawals';
 import { useMediaQuery } from 'react-responsive';
