@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
 import logo from  '../../../assets/msaadaLogo.png';
@@ -44,7 +44,7 @@ function DashboardNav({toggleSidebar}) {
                         </div>
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-slate-800 rounded-box w-36">
                         <li className='hover:bg-slate-700'><a href="/org/dashboard/profile">Profile</a></li>
-                        <li className='hover:bg-slate-700' onClick={logout}><a href='/org/login'>Log out</a></li>
+                        <li className='hover:bg-slate-700' onClick={handleLogout}><a href='/org/login'>Log out</a></li>
                         </ul>
                     </div>
               </div>
