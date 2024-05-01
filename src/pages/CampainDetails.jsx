@@ -178,7 +178,7 @@ function CampainDetails() {
                                     <p className="text-gray-600">{campaign.category.toUpperCase()}</p>
                                 </div>
                                 <div className='mt-1'>
-                                    <p className=" text-red-500 dark:text-red-500 font-semibold">{handleDays()} Days left</p>
+                                    <p className=" text-red-500 font-semibold">{handleDays()} Days left</p>
                                 </div>
                                 {socialShare()}
                             </div>
@@ -195,7 +195,7 @@ function CampainDetails() {
                                     <div className='flex-col justify-center items-center'>
                                 
                                         <div>
-                                            <label className=' text-black dark:text-black'>Phone Number</label> 
+                                            <label className=' text-black'>Phone Number</label> 
                                             <input
                                                 type="tel"
                                                 id="phoneNumber"
@@ -205,7 +205,7 @@ function CampainDetails() {
                                                 onChange={(e) => {
                                                     setPhoneNum(e.target.value);
                                                 }}
-                                                className="block text-black dark:text-black px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
                                                 required
                                             />
                                         </div>
@@ -217,14 +217,14 @@ function CampainDetails() {
                                         </div>
 
                                         <div>
-                                            <label className=' text-black dark:text-black'>Donation Amount</label>
+                                            <label className=' text-black'>Donation Amount</label>
                                             <input
                                                 type="number"
                                                 id="donationAmount"
                                                 placeholder='Enter amount'
                                                 value={amount}
                                                 onChange={(e) => setDonationAmount(e.target.value)}
-                                                className="block text-black dark:text-black px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
                                                 required
                                             />
                                         </div>
