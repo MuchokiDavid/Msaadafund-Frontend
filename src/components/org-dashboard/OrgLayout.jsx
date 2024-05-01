@@ -26,7 +26,7 @@ function OrgLayout() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const[loading,setLoading]=useState(true)
   const[campaigns,setCampaigns]=useState([])
-  const[allDonations,setAllDonations]=useState()
+  const[allDonations,setAllDonations]=useState([])
   const[errors,setErrors]=useState()
   const token=localStorage.getItem('token');
   const orgName=localStorage.getItem('org')
@@ -93,7 +93,7 @@ const handleWallet = async (id) => {
               if (response.ok) {
                   setLoading(true);
                   // console.log("Successful request to get donors");
-                  setAllDonations(data);
+                  setAllDonations(data.message);
                   setLoading(false);
               } else {
                   throw new Error(data);
