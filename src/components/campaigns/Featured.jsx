@@ -5,7 +5,7 @@ import { prettyNumber } from '@based/pretty-number'
 function Featured() {
     const [featuredCampaign, setFeaturedCampaign] = useState(null)
     const [errors, setErrors] = useState()
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const currentDate = new Date();
 
@@ -20,12 +20,12 @@ function Featured() {
             });
             const data = await response.json();
             if (response.ok) {
-                setLoading(false)
+                setLoading(true)
                 setFeaturedCampaign(data)
             }
             
         } catch (error) {
-            setLoading(true)
+            setLoading(false)
             setErrors('Error in fetching wallet details', error);
         }
     }
