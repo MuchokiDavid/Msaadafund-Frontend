@@ -1,6 +1,12 @@
 import React from 'react'
 
 function HelpCenter() {
+    const token=localStorage.getItem('token')
+    const org=localStorage.getItem('org')
+    if(!token && !org){
+        window.location.href='/org/login'
+    }
+
   return (
     <div>
         <div className="text-sm breadcrumbs ml-2">
