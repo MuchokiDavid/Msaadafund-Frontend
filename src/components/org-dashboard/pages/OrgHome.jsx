@@ -2,6 +2,7 @@ import React from 'react'
 import HomeCards from '../dash-components/HomeCards'
 import QuickLinks from '../dash-components/QuickLinks'
 import RecentDonations from '../dash-components/RecentDonations'
+import CallToAction from '../dash-components/CallToAction'
 // import { useNavigate } from 'react-router-dom'
 
 function OrgHome({allCampaigns,allDonations, allDonors}) {
@@ -34,6 +35,7 @@ function OrgHome({allCampaigns,allDonations, allDonors}) {
       </div>
       <h1 className="mb-3 my-2 mx-3 text-2xl font-bold leading-tight ">Dashboard</h1>
       <hr className='mb-0' />
+      <CallToAction/>
       <QuickLinks/>
       <HomeCards allCampaigns={allCampaigns} allDonations= {allDonations}/>
       <RecentDonations allDonations= {allDonations} allDonors={allDonors} allCampaigns={allCampaigns} />
