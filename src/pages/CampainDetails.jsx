@@ -33,9 +33,11 @@ function CampainDetails() {
     useEffect(() => {
         // Fetch campaign details using campaignId
         const fetchCampaign= ()=>{
-            fetch(`api/v1.0/campaign/${campaignId}`)
+            setLoading(true)
+            fetch(`/api/v1.0/campaign/${campaignId}`)
             .then(response => response.json())
             .then(data => {
+                setLoading(false)
                 setCampaign(data);
             })
             .catch(error => console.error('Error fetching campaign details:', error));

@@ -77,7 +77,7 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
                 if (result.isConfirmed) {
                     axios.patch(`/api/v1.0/activate/campaign/${campaignId}`,{}, config)
                     .then((res)=>{{
-                        console.log(res)
+                        // console.log(res)
                         if(res.status===200){
                             Swal.fire(
                                 'Activated!',
@@ -130,8 +130,8 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
                 {/* <div className='flex justify-between py-1'> */}
                     <div className='grid grid-cols-1 md:grid-cols-2 my-3'>
                         <div>
-                            <a href='/org/dashboard/createcampaign'><button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
-                                Create Campaign
+                            <a href='/org/dashboard/mycampaigns/active'><button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
+                                Active Campaign
                             </button></a>
                         </div>
                         <div>

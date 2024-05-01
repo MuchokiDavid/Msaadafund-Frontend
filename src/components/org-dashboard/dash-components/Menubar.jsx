@@ -16,8 +16,7 @@ import { FaPhone } from "react-icons/fa6";
 import { GrInProgress } from "react-icons/gr";
 import { GiSpeakerOff } from "react-icons/gi";
 import { GrAddCircle } from "react-icons/gr";
-
-
+import { IoMdHelpCircle } from "react-icons/io";
 
 
 function Menubar({isOpen, toggleSidebar, handleMenuItemClick}) {
@@ -57,24 +56,25 @@ function Menubar({isOpen, toggleSidebar, handleMenuItemClick}) {
             },
           }}
         >
-          <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard" />} icon={<FaHome />} onClick={handleMenuItemClick}> Dashboard</MenuItem>
-          <SubMenu className='hover:text-emerald-800 text-sm shadow' label="Campaigns" icon={<MdOutlineViewCompactAlt />}>
+          <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard" />} icon={<FaHome className='w-5 h-5' />} onClick={handleMenuItemClick}> Dashboard</MenuItem>
+          <SubMenu className='hover:text-emerald-800 text-sm shadow' label="Campaigns" icon={<MdOutlineViewCompactAlt className='w-5 h-5' />}>
               <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/createcampaign" />} icon={<GrAddCircle className='w-5 h-5'/>} onClick={handleMenuItemClick}>Add Campaign</MenuItem>
-              <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/mycampaigns/active" />} icon={<MdOutlineCampaign className='w-6 h-6'/>} onClick={handleMenuItemClick}>Active Campaigns</MenuItem>
-              <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/mycampaigns/inactive" />} icon={<GiSpeakerOff className='w-6 h-6'/>} onClick={handleMenuItemClick}>Inactive Campaigns</MenuItem>
-              <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transaction" />} icon={<GrTransaction />} onClick={handleMenuItemClick}>Transactions </MenuItem>
+              <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/mycampaigns/active" />} icon={<MdOutlineCampaign className='w-5 h-5'/>} onClick={handleMenuItemClick}>Active Campaigns</MenuItem>
+              <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/mycampaigns/inactive" />} icon={<GiSpeakerOff className='w-5 h-5'/>} onClick={handleMenuItemClick}>Inactive Campaigns</MenuItem>
+              <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transaction" />} icon={<GrTransaction className='w-5 h-5' />} onClick={handleMenuItemClick}>Campaign Transactions </MenuItem>
           </SubMenu>
-          <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/donations" />} icon={<FaDonate />} onClick={handleMenuItemClick}>Donations</MenuItem>
-          <SubMenu className='hover:text-emerald-800 text-sm shadow' label="Transact" icon={<FaMoneyBillTransfer />}>
-            <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transact/accounts" />} icon={<BiMoneyWithdraw />} onClick={handleMenuItemClick}>Accounts </MenuItem>
-            <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transact/withdraw" />} icon={<FaMoneyBillTrendUp />} onClick={handleMenuItemClick}>Withdraw</MenuItem>
-            <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transact/buyairtime" />} icon={<FaPhone />} onClick={handleMenuItemClick}>Buy Airtime</MenuItem>
-            <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transact/withdrawals" />} icon={<GrTransaction />} onClick={handleMenuItemClick}>Withdrawals</MenuItem>
-            <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transact/transactionstatus" />} icon={<GrInProgress />} onClick={handleMenuItemClick}>Check Status</MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/donations" />} icon={<FaDonate className='w-5 h-5' />} onClick={handleMenuItemClick}>Donations</MenuItem>
+          <SubMenu className='hover:text-emerald-800 text-sm shadow' label="Transact" icon={<FaMoneyBillTransfer className='w-5 h-5' />}>
+            <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transact/accounts" />} icon={<BiMoneyWithdraw className='w-5 h-5' />} onClick={handleMenuItemClick}>Accounts </MenuItem>
+            <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transact/withdraw" />} icon={<FaMoneyBillTrendUp className='w-5 h-5' />} onClick={handleMenuItemClick}>Withdraw</MenuItem>
+            <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transact/buyairtime" />} icon={<FaPhone className='w-5 h-5' />} onClick={handleMenuItemClick}>Buy Airtime</MenuItem>
+            <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transact/withdrawals" />} icon={<GrTransaction className='w-5 h-5' />} onClick={handleMenuItemClick}>Withdrawals</MenuItem>
+            <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transact/transactionstatus" />} icon={<GrInProgress className='w-5 h-5' />} onClick={handleMenuItemClick}>Check Status</MenuItem>
           </SubMenu>
           {/* <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/accounts" />} icon={<BiMoneyWithdraw />} onClick={handleMenuItemClick}>Accounts </MenuItem> */}
-          <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/profile" />} icon={<IoPersonCircle />} onClick={handleMenuItemClick}>Profile </MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' onClick={() => { handleLogout(); handleMenuItemClick(); }} icon={<RiLogoutBoxLine />}>Logout </MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/helpcenter" />} icon={<IoMdHelpCircle className='w-5 h-5' />} onClick={handleMenuItemClick}>Help Center </MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/profile" />} icon={<IoPersonCircle className='w-5 h-5' />} onClick={handleMenuItemClick}>Profile </MenuItem>
+          <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' onClick={() => { handleLogout(); handleMenuItemClick(); }} icon={<RiLogoutBoxLine className='w-5 h-5' />}>Logout </MenuItem>
         </Menu>
       </Sidebar>
     </div>
