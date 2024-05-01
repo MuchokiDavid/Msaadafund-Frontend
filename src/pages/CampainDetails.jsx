@@ -33,7 +33,7 @@ function CampainDetails() {
     useEffect(() => {
         // Fetch campaign details using campaignId
         const fetchCampaign= ()=>{
-            fetch(`/campaign/${campaignId}`)
+            fetch(`api/v1.0/campaign/${campaignId}`)
             .then(response => response.json())
             .then(data => {
                 setCampaign(data);
