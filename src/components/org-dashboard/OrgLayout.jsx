@@ -18,6 +18,7 @@ import Withdrawals from './pages/Withdrawals';
 import { useMediaQuery } from 'react-responsive';
 import DashActiveCampaigns from './pages/DashActiveCampaigns';
 import DashInactiveCampaigns from './pages/DashInactiveCampaigns';
+import HelpCenter from './pages/HelpCenter';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
@@ -190,7 +191,7 @@ const handleWallet = async (id) => {
             <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch}/>} />
             <Route path="/mycampaigns/active" element={<DashActiveCampaigns allCampaigns={campaigns} campaignError={errors}/>} />
             <Route path="/mycampaigns/inactive" element={<DashInactiveCampaigns allCampaigns={campaigns} campaignError={errors}/>} />
-            <Route path="/donations" element={<Donations allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} allDonation={allDonations} allDonors={donors}/>} />
+            <Route path="/donations" element={<Donations loadingState={loading} allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} allDonation={allDonations} allDonors={donors}/>} />
             <Route path="/transact/withdraw" element={<Withdraw allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
             <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
             <Route path="/transact/accounts" element={<AccountAuth/>} />
@@ -199,6 +200,7 @@ const handleWallet = async (id) => {
             <Route path="/transact/withdrawals" element={<Withdrawals/>} />
             <Route path="/transaction" element={<Transaction allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/helpcenter" element={<HelpCenter />} />
           </Routes>
         </main>
       </div>
