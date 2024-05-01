@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import moment from 'moment';
 
 function RecentDonations({allDonations, allCampaigns, allDonors}) {
-    const[donations, setDonations] = useState(allDonations);
+    const[donations, setDonations] = useState([]);
     const[slicedDonations, setSlicedDonations] = useState([])
     const [campaigns, setCampaigns] = useState();
     const [donors, setDonors] = useState(allDonors)
@@ -40,7 +40,7 @@ useEffect(() => {
   return (
     <div className='px-2 mb-6'>
         <h2 className="text-left text-xl mt-1">Recently Donated</h2>
-        {slicedDonations && slicedDonations.length != 0 
+        {slicedDonations && slicedDonations.length > 0 
           ? 
           (
             <div className='overflow-scroll'>
