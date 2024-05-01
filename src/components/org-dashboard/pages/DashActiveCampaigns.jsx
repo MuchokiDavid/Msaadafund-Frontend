@@ -168,11 +168,19 @@ function DashActiveCampaigns({allCampaigns, campaignError}) {
             {/* <a href='/org/dashboard/createcampaign' className='text-blue-700 mb-4 text-lg hover:underline'>Add campaign+</a> */}
                 {/* <div className='flex justify-between py-1'> */}
                     <div className='grid grid-cols-1 md:grid-cols-2 my-3'>
-                        <div>
-                            <a href='/org/dashboard/createcampaign'><button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
-                                Create Campaign
-                            </button></a>
+                        <div className='flex justify-start gap-3'>
+                            <div>
+                                <a href='/org/dashboard/createcampaign'><button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
+                                    Create Campaign
+                                </button></a>
+                            </div>
+                            <div>
+                                <a href='/org/dashboard/mycampaigns/inactive'><button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
+                                    Inactive Campaign
+                                </button></a>
+                            </div>
                         </div>
+                        
                         <div>
                             <input
                                 type="text"
@@ -188,8 +196,8 @@ function DashActiveCampaigns({allCampaigns, campaignError}) {
                     </div> */}
                 {/* </div> */}
             {/* <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:max-w-full"> */}
-            <div className="my-1 inline-block min-w-full overflow-x-auto align-middle border-b border-gray-200 sm:rounded-lg">
-                <table className="min-w-full table-zebra text-xs lg:text-sm overflow-scroll">
+            <div className="my-1 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 sm:rounded-lg">
+                <table className="min-w-full table-zebra text-xs lg:text-sm">
                     {/* head */}
                     <thead>
                         <tr>
