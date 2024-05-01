@@ -191,7 +191,7 @@ const handleWallet = async (id) => {
             <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch}/>} />
             <Route path="/mycampaigns/active" element={<DashActiveCampaigns allCampaigns={campaigns} campaignError={errors}/>} />
             <Route path="/mycampaigns/inactive" element={<DashInactiveCampaigns allCampaigns={campaigns} campaignError={errors}/>} />
-            <Route path="/donations" element={<Donations loadingState={loading} allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} allDonation={allDonations} allDonors={donors}/>} />
+            <Route path="/donations" element={<Donations loadingState={loading} allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} allDonors={donors}/>} />
             <Route path="/transact/withdraw" element={<Withdraw allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
             <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
             <Route path="/transact/accounts" element={<AccountAuth/>} />
