@@ -24,12 +24,12 @@ function QuickLinks() {
     const quickLinksData = [
         { icon: FaHome , name: 'Home' ,to:'/'},
         { icon: MdOutlineCampaign, name: 'Add',to:'/org/dashboard/createcampaign' }, 
-        { icon: MdOutlineViewCompactAlt, name: 'Campaigns',to:'/org/dashboard/campaigns' },
+        { icon: MdOutlineViewCompactAlt, name: 'Campaigns',to:'/org/dashboard/mycampaigns/active' },
         { icon: FaDonate , name: 'Donations',to:'/org/dashboard/donations' },
         { icon: FaMoneyBillTrendUp , name: 'Withdraw' ,to:'/org/dashboard/transact/withdraw'},
         { icon: FaPhone , name: 'Buy Airtime' ,to:'/org/dashboard/transact/buyairtime'},
         { icon: GrTransaction , name: 'Transactions',to:'/org/dashboard/transaction' },
-        { icon: BiMoneyWithdraw , name: 'Accounts' ,to:'/org/dashboard/accounts'},
+        { icon: BiMoneyWithdraw , name: 'Accounts' ,to:'/org/dashboard/transact/accounts'},
         { icon: IoPersonCircle , name: 'Profile' ,to:'/org/dashboard/profile'}
         // { icon: IconName3, name: 'Log out' },
       ];

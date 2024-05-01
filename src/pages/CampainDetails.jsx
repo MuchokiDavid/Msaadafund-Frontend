@@ -210,10 +210,10 @@ function CampainDetails() {
                                             />
                                         </div>
                                         <div className='flex justify-start items-center my-3'>
-                                            <button onClick={()=>setDonationAmount(100)} className='p-2 rounded-xl border border-blue-600 mr-3 hover:text-white hover:bg-blue-600'>100</button>
-                                            <button onClick={()=>setDonationAmount(300)} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>300</button>
-                                            <button onClick={()=>setDonationAmount(500)} className='p-2 rounded-xl border border-blue-600 mx-3 hover:text-white hover:bg-blue-600'>500</button>
-                                            <button onClick={()=>setDonationAmount(1000)} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>1000</button>
+                                            <button onClick={(e)=>{ e.preventDefault(); setDonationAmount(100)}} className='p-2 rounded-xl border border-blue-600 mr-3 hover:text-white hover:bg-blue-600'>100</button>
+                                            <button onClick={(e)=>{e.preventDefault(); setDonationAmount(300)}} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>300</button>
+                                            <button onClick={(e)=> {e.preventDefault(); setDonationAmount(500)}} className='p-2 rounded-xl border border-blue-600 mx-3 hover:text-white hover:bg-blue-600'>500</button>
+                                            <button onClick={(e)=> {e.preventDefault(); setDonationAmount(1000)}} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>1000</button>
                                         </div>
 
                                         <div>

@@ -224,7 +224,7 @@ function DashActiveCampaigns({allCampaigns, campaignError}) {
                                 <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.targetAmount}</td>
                                 <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200'>{walletDetails &&walletDetails[item.id]?.available_balance}</td>
                                 <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '><button onClick={()=>handleEditButton(item.id)} className='text-white p-1.5 bg-blue-600 rounded border hover:border-blue-600 hover:bg-transparent hover:text-black'>Edit</button></td>
-                                <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '><button onClick={()=>handleDeleteButton(item.id)} className='text-white p-1.5 bg-blue-600 rounded border hover:border-blue-600 hover:bg-transparent hover:text-black'>Deactivate</button></td>
+                                <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '><button onClick={()=>handleDeleteButton(item.id)} className='text-white p-1.5 bg-red-500 rounded border hover:bg-red-600'>Deactivate</button></td>
                             </tr>
                         )})}
                     </tbody>

@@ -67,12 +67,12 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
             }
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You will be able to activate this campaign!",
+                text: "Activate this campaign!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, activate!'
+                confirmButtonText: 'Activate!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     axios.patch(`/api/v1.0/activate/campaign/${campaignId}`,{}, config)

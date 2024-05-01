@@ -6,7 +6,7 @@ import toast, { Toaster } from 'react-hot-toast';
 function UpdateCampaign() {
     const { campaignId } = useParams();
     const [originalData, setOriginalData] = useState({});
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [campaignData, setCampaignData] = useState({
         campaignName: '',
         category: '',
@@ -23,27 +23,11 @@ function UpdateCampaign() {
     useEffect(() => {
         const fetchCampaignDetails = async () => {
             try {
-                const response = await fetch(`/campaign/${campaignId}`);
+                const response = await fetch(`/api/v1.0/campaign/${campaignId}`);
                 const data = await response.json();
                 if (response.ok) {
-                    setOriginalData({
-                        campaignName: data.campaignName,
-                        category: data.category,
-                        targetAmount: data.targetAmount,
-                        startDate: data.startDate,
-                        endDate: data.endDate,
-                        description: data.description,
-                        banner: null,
-                    });
-                    setCampaignData({
-                        campaignName: data.campaignName,
-                        category: data.category,
-                        targetAmount: data.targetAmount,
-                        startDate: data.startDate,
-                        endDate: data.endDate,
-                        description: data.description,
-                        banner: null,
-                    });
+                    setOriginalData(data);
+                    setCampaignData(data);
                 } else {
                     setError(`Error: ${data.error}`);
                 }
@@ -92,27 +76,11 @@ function UpdateCampaign() {
     const patchCampaign = async (e) => {
         e.preventDefault();
         
-        // Check for form changes and do not submit if there are no changes
-        if (!checkFormChanges()) {
-            alert('No changes to submit.');
-            return;
-        }
-
-        const accessToken = localStorage.getItem('token');
-        const config = {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        };
-
-        if (!accessToken) {
-            window.location.replace('/org/login');
-            return;
-        }
-
         // Create a FormData object for handling file uploads and text data
         const formData = new FormData();
         formData.append('description', campaignData.description);
+        formData.append('startDate', campaignData.startDate);
+        formData.append('endDate', campaignData.endDate);
 
         // Append the banner file if provided
         if (campaignData.banner) {
@@ -120,21 +88,26 @@ function UpdateCampaign() {
         }
 
         try {
-            const response = await axios.patch(`/campaign/${campaignId}`, formData, config);
+            const accessToken = localStorage.getItem('token');
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            };
+
+            if (!accessToken) {
+                throw new Error('User not authenticated');
+            }
+
+            const response = await axios.patch(`/api/v1.0/campaign/${campaignId}`, formData, config);
             
             if (response.status === 200) {
-                setOriginalData({
-                    ...originalData,
-                    description: response.data.description,
-                    banner: response.data.banner,
-                    
-                });
+                setOriginalData(response.data);
                 toast.success('Campaign updated successfully');
-                setTimeout(()=>{
-                    navigate('/org/dashboard/campaigns')
-                },2000)
-               
-
+                setTimeout(() => {
+                    navigate('/org/dashboard/mycampaigns/active');
+                }, 2000);
             }
         } catch (err) {
             console.log('Error:', err.response?.data || err.message);
@@ -181,9 +154,11 @@ function UpdateCampaign() {
                                 Start Date
                             </label>
                             <input
+                                name='startDate'
+                                type='date'
                                 value={campaignData.startDate}
+                                onChange={handleInputChange}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                disabled
                             />
                         </div>
 
@@ -192,8 +167,10 @@ function UpdateCampaign() {
                                 End Date
                             </label>
                             <input
+                                name='endDate'
+                                type='date'
                                 value={campaignData.endDate}
-                                disabled
+                                onChange={handleInputChange}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             />
                         </div>
@@ -232,7 +209,6 @@ function UpdateCampaign() {
                                 name="banner"
                                 accept={allowedTypes.join(',')}
                                 onChange={handleInputChange}
-                                // className="sr-only"
                             />
                         </label>
                     </div>
