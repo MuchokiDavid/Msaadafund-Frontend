@@ -18,11 +18,24 @@ function HelpCenter() {
         <h1 className="font-extrabold text-2xl">Help Center</h1>
         <hr className='mb-4' />
         <div>
+        <section class="py-6 bg-gradient-to-r from-fuchsia-600 to-blue-600 sm:py-8">
+            <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+                <div class="grid grid-cols-1 text-center sm:text-left">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">Welcome to the Help Center.</h2>
+                    </div>
+                    <div>
+                        <p className='text-white'> 
+                        Below, you'll find useful information and guidance on how to navigate and utilize the various features available to you.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
 
         </div>
         <div>
-            <p>Welcome to the Help Center for the Organization Dashboard. 
-            Below, you'll find useful information and guidance on how to navigate and utilize the various features available to you.</p>
+            
 
             <div role="tablist" className="tabs tabs-lifted mt-2">
                 <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Campaigns" checked/>
