@@ -183,7 +183,7 @@ const handleWallet = async (id) => {
       <div className="flex relative">
         {/* <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/> */}
         {isSidebarOpen && <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} handleMenuItemClick={handleMenuItemClick}/>}
-        <main className={`mt-3 mx-auto w-full sm:w-screen overflow-hidden overflow-y-auto md:m-3 min-h-screen lg:h-full justify-center px-2 lg:px-6 ${isSmallScreen && isSidebarOpen ? 'blur' : ''}`} style={{ marginTop: '10px' }} id='dashboard'>
+        <main className={`mt-3 mx-auto w-full sm:w-screen overflow-hidden overflow-y-auto md:m-3 min-h-screen lg:h-full justify-center px-2 lg:px-6`} style={{ marginTop: '10px' }} id='dashboard'>
           <Routes>
             <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors} handleMenuItemClick= {handleMenuItemClick}/>} />
             {/* route to update campaign */}
@@ -203,6 +203,7 @@ const handleWallet = async (id) => {
             <Route path="/helpcenter" element={<HelpCenter />} />
           </Routes>
         </main>
+        
       </div>
       <DashFooter/>
     </div>
