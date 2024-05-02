@@ -5,7 +5,7 @@ function CallToAction() {
     const orgName= localStorage.getItem("org")
   return (
     <div>
-         <div class="px-4 py-4 bg-gradient-to-r from-fuchsia-600 to-blue-600 sm:py-6 rounded-lg  md:py-8 md:px-8 lg:py-10 lg:px-10 xl:flex xl:items-center">
+         <div class="px-4 py-4 bg-gradient-to-r to-fuchsia-600 from-blue-600 sm:py-6 rounded-lg  md:py-8 md:px-8 lg:py-10 lg:px-10 xl:flex xl:items-center">
             <div class="xl:w-0 xl:flex-1">
                 <h2 class="text-2xl font-extrabold leading-8 tracking-tight text-white sm:text-3xl sm:leading-9">
                     Welcome back {orgName}!
@@ -18,7 +18,7 @@ function CallToAction() {
             </div>
             <div class="mt-6 sm:w-full sm:max-w-md xl:mt-0 xl:ml-8">
                 <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                    <a  href={token ? "/org/dashboard/mycampaigns/active" : "/org/login"}><button class="flex items-center justify-center w-full px-5 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-purple-500 border border-transparent rounded-md hover:bg-purple-400 focus:outline-none focus:bg-purple-400">
+                    <a  href={token ? "/org/dashboard/mycampaigns/active" : "/org/login"}><button class="flex items-center justify-center w-full px-5 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-blue-600 border border-blue-600 hover:border-blue rounded-md hover:bg-blue-500 focus:outline-none focus:bg-purple-400">
                         View Campaigns
                     </button></a>
                 </div>

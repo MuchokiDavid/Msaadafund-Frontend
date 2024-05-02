@@ -6,7 +6,7 @@ function Footer() {
     
   return (
     <>
-    <footer className="footer p-10 bg-emerald-800 text-base-content">
+    <footer className="footer p-14 bg-sky-950 text-base-content shadow">
         {/* <form>
             <div className="join">
                 <input className="input input-bordered join-item bg-white" placeholder="Email"/>
