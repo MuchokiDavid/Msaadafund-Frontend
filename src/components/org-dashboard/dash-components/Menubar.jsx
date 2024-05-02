@@ -134,7 +134,7 @@ function Menubar({isOpen, toggleSidebar, handleMenuItemClick}) {
                     
                     <BsBoxArrowDown className='w-4 h-4'/>
 
-                    <span class="mx-2 text-sm font-medium">Withdrawals</span>
+                    <span class="mx-2 text-sm font-medium">Money out</span>
                 </a>
 
                 <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
