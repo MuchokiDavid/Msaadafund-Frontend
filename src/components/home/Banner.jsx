@@ -188,7 +188,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
 
           <div className="mt-8 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:gap-12 lg:grid-cols-3">
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-emerald-800 p-4">
+              <span className="shrink-0 rounded-lg bg-blue-600 p-4">
                 <svg
                   viewBox="0 0 24 24"
                   fill="currentColor"
@@ -212,7 +212,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-emerald-800 p-4">
+              <span className="shrink-0 rounded-lg bg-blue-600 p-4">
                 <svg
                   viewBox="0 0 24 24"
                   fill="currentColor"
@@ -235,7 +235,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-emerald-800 p-4">
+              <span className="shrink-0 rounded-lg bg-blue-600 p-4">
                 <svg
                   viewBox="0 0 24 24"
                   className="h-5 w-5"
@@ -258,7 +258,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-emerald-800 p-4">
+              <span className="shrink-0 rounded-lg bg-blue-600 p-4">
                 <svg
                   viewBox="0 0 24 24"
                   className="h-5 w-5"
@@ -281,7 +281,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-emerald-800 p-4">
+              <span className="shrink-0 rounded-lg bg-blue-600 p-4">
                 <svg
                   data-name="Layer 1"
                   viewBox="0 0 24 24"
@@ -305,7 +305,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-emerald-800 p-4">
+              <span className="shrink-0 rounded-lg bg-blue-600 p-4">
                 <svg
                   fill="none"
                   stroke="currentColor"
@@ -438,6 +438,21 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             </dl>
           </div>
         </div>
+      </section>
+
+      <section className="py-12 bg-gray-100 sm:py-16 lg:py-20">
+          <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+              <div className="xl:flex xl:items-center xl:justify-between">
+                  <h2 className="text-xl font-bold text-center text-gray-400 xl:text-left font-pj">Our partner brands</h2>
+
+                  <div className="grid items-center grid-cols-1 mt-10 gap-y-6 xl:mt-0 sm:grid-cols-2 sm:gap-y-8 lg:grid-cols-4 lg:gap-x-8">
+                      <img className="object-contain w-auto mx-auto h-9" src="https://cdn.rareblocks.xyz/collection/clarity/images/brands/1/logo-vertex.svg" alt="" />
+                      <img className="object-contain w-auto mx-auto h-9" src="https://cdn.rareblocks.xyz/collection/clarity/images/brands/1/logo-squarestone.svg" alt="" />
+                      <img className="object-contain w-auto mx-auto h-9" src="https://cdn.rareblocks.xyz/collection/clarity/images/brands/1/logo-martino.svg" alt="" />
+                      <img className="object-contain w-auto mx-auto h-9" src="https://cdn.rareblocks.xyz/collection/clarity/images/brands/1/logo-waverio.svg" alt="" />
+                  </div>
+              </div>
+          </div>
       </section>
 
       <section className="bg-white">

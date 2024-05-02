@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Copyright from '../../reusables/Copyright';
 
 function DashFooter() {
-    const[currentYear, setCurrentYear] = useState(0);
 
   return (
     <div>
-        <footer className="bg-emerald-800 text-white py-2 text-sm">
+        <footer className="bg-sky-950 text-white py-2 text-sm shadow mt-4">
             <div className="ml-4">
                 <div className="row">
                 <div className="col-md-4 mb-4">

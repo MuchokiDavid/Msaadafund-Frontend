@@ -1,22 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import { FaHome } from "react-icons/fa";
-import { MdOutlineCampaign } from "react-icons/md";
-import { FaDonate } from "react-icons/fa";
-import { GrTransaction } from "react-icons/gr";
 import { IoPersonCircle } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useAuth } from '../../../context/usersContext';
 import { BiMoneyWithdraw } from "react-icons/bi";
-import { MdOutlineViewCompactAlt } from "react-icons/md";
-import { FaMoneyBillTransfer } from "react-icons/fa6";
-import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { FaPhone } from "react-icons/fa6";
-import { GrInProgress } from "react-icons/gr";
-import { GiSpeakerOff } from "react-icons/gi";
 import { GrAddCircle } from "react-icons/gr";
 import { IoMdHelpCircle } from "react-icons/io";
+import { MdOutlineCancel } from "react-icons/md";
+import { VscVmActive } from "react-icons/vsc";
+import { GrAtm } from "react-icons/gr";
+import { HiOutlineStatusOnline } from "react-icons/hi";
+import { BsBoxArrowDown } from "react-icons/bs";
+
+
 
 
 function Menubar({isOpen, toggleSidebar, handleMenuItemClick}) {
@@ -35,50 +31,156 @@ function Menubar({isOpen, toggleSidebar, handleMenuItemClick}) {
     handleLogout()
   }
 
+  return(
+  <aside class="flex flex-col min-w-64 min-h-screen px-5 py-2 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l">
+    <div class="flex flex-col justify-between flex-1 mt-6">
+        <nav class="-mx-3 space-y-6 ">
+            <div class="space-y-3 ">
+                <label class="px-3 text-xs text-gray-500 uppercase">analytics</label>
 
-  return (
-    <div className='bg-emerald-500 min-h-screen'>
-    
-       {/* {!isOpen && (
-        <button onClick={toggleSidebar} className="text-white focus:outline-none md:hidden">
-          <IoMenu className='w-8 h-8' />
-        </button>
-      )} */}
+                <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
+                    </svg>
 
-      <Sidebar className={`text-slate-800 bg-transparent h-full ${isOpen ? 'absolute' : 'hidden'}`} style={{ zIndex: 1000}}>
-        <Menu
-          menuItemStyles={{
-            button: {
-              [`&.active`]: {
-                // backgroundColor: '#13395e',
-                color: '#b6c8d9',
-              },
-            },
-          }}
-        >
-          <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard" />} icon={<FaHome className='w-5 h-5' />} onClick={handleMenuItemClick}> Dashboard</MenuItem>
-          <SubMenu className='hover:text-emerald-800 text-sm shadow' label="Campaigns" icon={<MdOutlineViewCompactAlt className='w-5 h-5' />}>
-              <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/createcampaign" />} icon={<GrAddCircle className='w-5 h-5'/>} onClick={handleMenuItemClick}>Add Campaign</MenuItem>
-              <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/mycampaigns/active" />} icon={<MdOutlineCampaign className='w-5 h-5'/>} onClick={handleMenuItemClick}>Active Campaigns</MenuItem>
-              <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/mycampaigns/inactive" />} icon={<GiSpeakerOff className='w-5 h-5'/>} onClick={handleMenuItemClick}>Inactive Campaigns</MenuItem>
-              <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transaction" />} icon={<GrTransaction className='w-5 h-5' />} onClick={handleMenuItemClick}>Campaign Transactions </MenuItem>
-          </SubMenu>
-          <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/donations" />} icon={<FaDonate className='w-5 h-5' />} onClick={handleMenuItemClick}>Donations</MenuItem>
-          <SubMenu className='hover:text-emerald-800 text-sm shadow' label="Transact" icon={<FaMoneyBillTransfer className='w-5 h-5' />}>
-            <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transact/accounts" />} icon={<BiMoneyWithdraw className='w-5 h-5' />} onClick={handleMenuItemClick}>Accounts </MenuItem>
-            <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transact/withdraw" />} icon={<FaMoneyBillTrendUp className='w-5 h-5' />} onClick={handleMenuItemClick}>Withdraw</MenuItem>
-            <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transact/buyairtime" />} icon={<FaPhone className='w-5 h-5' />} onClick={handleMenuItemClick}>Buy Airtime</MenuItem>
-            <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transact/withdrawals" />} icon={<GrTransaction className='w-5 h-5' />} onClick={handleMenuItemClick}>Withdrawals</MenuItem>
-            <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/transact/transactionstatus" />} icon={<GrInProgress className='w-5 h-5' />} onClick={handleMenuItemClick}>Check Status</MenuItem>
-          </SubMenu>
-          {/* <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/accounts" />} icon={<BiMoneyWithdraw />} onClick={handleMenuItemClick}>Accounts </MenuItem> */}
-          <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/helpcenter" />} icon={<IoMdHelpCircle className='w-5 h-5' />} onClick={handleMenuItemClick}>Help Center </MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' component={<Link to="/org/dashboard/profile" />} icon={<IoPersonCircle className='w-5 h-5' />} onClick={handleMenuItemClick}>Profile </MenuItem>
-          <MenuItem className='hover:text-emerald-800 text-sm hover:underline shadow' onClick={() => { handleLogout(); handleMenuItemClick(); }} icon={<RiLogoutBoxLine className='w-5 h-5' />}>Logout </MenuItem>
-        </Menu>
-      </Sidebar>
+                    <span class="mx-2 text-sm font-medium">Dashboard</span>
+                </a>
+
+                {/* <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+                    </svg>
+
+                    <span class="mx-2 text-sm font-medium">Preformance</span>
+                </a> */}
+            </div>
+
+            <div class="space-y-3 ">
+                <label class="px-3 text-xs text-gray-500 uppercase">Campaign</label>
+
+                <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/createcampaign">
+                    <GrAddCircle className='h-5 w-5'/>
+
+                    <span class="mx-2 text-sm font-medium">Create</span>
+                </a>
+
+                <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/mycampaigns/active">
+                    
+                    <VscVmActive className='w-5 h-5'/>
+
+                    <span class="mx-2 text-sm font-medium">Active</span>
+                </a>
+
+                <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/mycampaigns/inactive">
+                    <MdOutlineCancel className='h-5 w-5'/>
+
+                    <span class="mx-2 text-sm font-medium">Inactive</span>
+                </a>
+
+            </div>
+
+
+            <div class="space-y-3 ">
+                <label class="px-3 text-xs text-gray-500 uppercase">Finances</label>
+
+                <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/transact/accounts">
+                    
+                    <BiMoneyWithdraw className='w-5 h-5' />
+
+                    <span class="mx-2 text-sm font-medium">Accounts</span>
+                </a>
+
+                <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/transaction">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+                    </svg>
+
+                    <span class="mx-2 text-sm font-medium">Transactions</span>
+                </a>
+
+                <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/transact/withdraw">
+                  
+                    <GrAtm className='w-5 h-5' />
+
+                    <span class="mx-2 text-sm font-medium">Withdraw</span>
+                </a>
+
+                <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/transact/buyairtime">
+                    
+                    <FaPhone className='w-4 h-4' />
+
+                    <span class="mx-2 text-sm font-medium">Buy Airtime</span>
+                </a>
+
+                <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/transact/withdrawals">
+                    
+                    <BsBoxArrowDown className='w-4 h-4'/>
+
+                    <span class="mx-2 text-sm font-medium">Money out</span>
+                </a>
+
+                <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/transact/transactionstatus">
+                    
+                    <HiOutlineStatusOnline className='w-4 h-4'/>
+
+                    <span class="mx-2 text-sm font-medium">Status</span>
+                </a>
+            </div>
+
+
+            <div class="space-y-3 ">
+                <label class="px-3 text-xs text-gray-500 uppercase">Customization</label>
+
+                <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/profile">
+                    
+                    <IoPersonCircle className='w-5 h-5' />
+
+                    <span class="mx-2 text-sm font-medium">Profile</span>
+                </a>
+
+                <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/helpcenter">
+                    
+                    <IoMdHelpCircle className='w-5 h-5' />
+
+                    <span class="mx-2 text-sm font-medium">Help</span>
+                </a>
+                <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                onClick={() => { handleLogout(); handleMenuItemClick(); }}
+                >
+                   
+                    <RiLogoutBoxLine className='w-5 h-5' />
+
+                    <span class="mx-2 text-sm font-medium">Log out</span>
+                </a>
+            </div>
+        </nav>
     </div>
-  );
+</aside>
+  )
 }
 
 export default Menubar;
