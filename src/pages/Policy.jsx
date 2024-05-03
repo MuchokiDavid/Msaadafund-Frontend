@@ -133,11 +133,10 @@ function Policy() {
                 We may update this Privacy Policy from time to time. Any changes will be posted on this page. We encourage you to review this Privacy Policy periodically for changes.
             </p>
 
-            <h2 className="text-2xl font-bold mb-2">Contact us</h2>
-
-            <p className="mb-4">
-            If you have any questions or concerns about this Privacy Policy or our privacy practices, you may contact us.
-            </p>
+            <h3 className="text-2xl font-bold mb-2">8. Contact Us</h3>
+            <p className="mb-4">If you have any questions or concerns about these terms and conditions, please contact us at <a className='text-blue-600 hover:underline' href="mailto:contact@msaada.com">msaadacontact@gmail.com</a>.</p>
+            
+            <p className="mb-4 text-sm">Last Updated: May 3, 2024</p>
         </div>
     </div>
     <Footer/>
