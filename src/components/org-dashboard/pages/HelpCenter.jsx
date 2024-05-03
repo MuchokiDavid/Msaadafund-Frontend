@@ -12,17 +12,17 @@ function HelpCenter() {
         <div className="text-sm breadcrumbs ml-2">
             <ul>
                 <li><a href='/org/dashboard'>Dashboard</a></li>
-                <li><a>Help Center</a></li>
+                <li>Help Center</li>
             </ul>
         </div>
         <h1 className="font-extrabold text-2xl">Help Center</h1>
         <hr className='mb-4' />
         <div>
-        <section class="py-6 bg-gradient-to-r from-fuchsia-600 to-blue-600 sm:py-8">
-            <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-                <div class="grid grid-cols-1 text-center sm:text-left">
+        <section className="py-6 sm:py-8" id='termBanner'>
+            <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+                <div className="grid grid-cols-1 text-center sm:text-left">
                     <div>
-                        <h2 class="text-2xl font-bold text-white">Welcome to the Help Center.</h2>
+                        <h2 className="text-2xl font-bold text-white">Welcome to the Help Center.</h2>
                     </div>
                     <div>
                         <p className='text-white'> 
@@ -102,7 +102,7 @@ function HelpCenter() {
                     </div>
                 </div>
 
-                <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Donations" />
+                <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Contributions" />
                 <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
                 <div className="collapse collapse-open bg-base-100">
                         <input type="radio" name="my-accordion-3" defaultChecked /> 

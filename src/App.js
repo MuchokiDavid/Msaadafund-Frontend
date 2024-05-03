@@ -16,6 +16,8 @@ import AboutUs from './pages/AboutUs';
 import Careers from './pages/Careers';
 import Donors from './pages/Donors';
 import Unauthorized from './components/reusables/Unauthorized';
+import Policy from './pages/Policy';
+import Terms from './pages/Terms';
 
 
 
@@ -38,6 +40,8 @@ function App() {
     <Route path = '/donors' element = {<Donors/>}/>
     <Route path = '/user/dashboard/*' element = {<UserLayout/>}/>
     <Route path = '/org/dashboard/*' element = {<OrgLayout/>}/>
+    <Route path = '/privacy' element = {<Policy/>}/>
+    <Route path = '/terms' element = {<Terms/>}/>
     <Route path = "/unauthorized" element = {<Unauthorized/>}/>
     
     </Routes>

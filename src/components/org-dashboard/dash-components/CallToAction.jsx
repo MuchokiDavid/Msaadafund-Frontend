@@ -5,7 +5,7 @@ function CallToAction() {
     const orgName= localStorage.getItem("org")
   return (
     <div>
-         <div className="px-4 py-4 bg-gradient-to-r to-fuchsia-600 from-blue-600 sm:py-4 rounded-lg  md:py-6 md:px-6 lg:py-8 lg:px-8 xl:flex xl:items-center">
+         <div id='termBanner' className="px-4 py-4 bg-gradient-to-r sm:py-4 rounded-lg  md:py-6 md:px-6 lg:py-8 lg:px-8 xl:flex xl:items-center">
             <div className="xl:w-0 xl:flex-1">
                 <h2 className="text-2xl font-extrabold leading-8 tracking-tight text-white sm:text-3xl sm:leading-9">
                     Welcome back {orgName}!

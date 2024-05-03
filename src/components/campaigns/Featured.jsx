@@ -54,7 +54,7 @@ function Featured() {
     };
 
   return (
-    <div className='container mx-auto h-full bg-gray-50 rounded-lg'>
+    <div className='container mx-auto h-full bg-white rounded-lg'>
     <h1 className="text-lg lg:text-2xl font-bold my-4 text-center">Featured Campaigns</h1>
     <div className='my-4 justify-center'>
         
