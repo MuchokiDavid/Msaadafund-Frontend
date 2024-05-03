@@ -23,9 +23,10 @@ function Policy() {
             </p>
 
             <ul className="list-disc list-inside mb-4">
-                <li>Your name and contact information</li>
+                <li><span className='font-semibold'>Personal Information: </span>We may collect personal information such as your name, email address, and phone number when you voluntarily provide it to us.</li>
+                <li><span className='font-semibold'>Usage Information: </span>We may collect information about your use of the App, such as the features you use, the pages you visit, and the actions you take within the App.</li>
                 <li>Demographic information</li>
-                <li>Other information relevant to customer surveys and/or offers</li>
+                <li><span className='font-semibold'>Device Information:</span> We may collect information about your device, including its hardware model, operating system version, unique device identifiers, and mobile network information.</li>
             </ul>
 
             <h2 className="text-2xl font-bold mb-2">How We Use the Information</h2>
@@ -39,7 +40,7 @@ function Policy() {
 
             <ul className="list-disc list-inside mb-4">
                 <li>Internal record keeping</li>
-                <li>Improving our products and services</li>
+                <li>To provide, maintain, and improve the App.</li>
                 <li>Sending promotional emails about new products, special offers, or other information which we think you
                     may
                     find
@@ -48,6 +49,7 @@ function Policy() {
                     contact
                     you by email, phone, or mail. We may use the information to customize the website according to your
                     interests.</li>
+                    <li>To detect, prevent, and address technical issues and security vulnerabilities.</li>
             </ul>
 
             <h2 className="text-2xl font-bold mb-2">Security</h2>
@@ -108,7 +110,7 @@ function Policy() {
             <ul className="list-disc list-inside mb-4">
                 <li>If you have previously agreed to us using your personal information for direct marketing purposes, you
                     may
-                    change your mind at any time by writing to or emailing us at [email protected]</li>
+                    change your mind at any time by writing to or emailing us at msaadacontact@gmail.com</li>
                 <li>We will not sell, distribute, or lease your personal information to third parties unless we have your
                     permission
                     or are required by law to do so. We may use your personal information to send you promotional
@@ -125,8 +127,16 @@ function Policy() {
                 </li>
             </ul>
 
+            <h2 className="text-2xl font-bold mb-2">Changes to This Privacy Policy</h2>
+
             <p className="mb-4">
-                This privacy policy is subject to change without notice.
+                We may update this Privacy Policy from time to time. Any changes will be posted on this page. We encourage you to review this Privacy Policy periodically for changes.
+            </p>
+
+            <h2 className="text-2xl font-bold mb-2">Contact us</h2>
+
+            <p className="mb-4">
+            If you have any questions or concerns about this Privacy Policy or our privacy practices, you may contact us.
             </p>
         </div>
     </div>
