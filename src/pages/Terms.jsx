@@ -6,10 +6,13 @@ function Terms() {
   return (
     <>
     <Menus/>
+    <div class="relative flex-1 px-3 py-10 lg:px-8" id='termBanner'>
+      <div class="mx-auto text-center">
+        <h2 class="text-center text-3xl font-bold leading-tight text-white md:text-4xl">Terms and Conditions</h2>
+        <p className="mt-4 text-white">Welcome to Msaada! These terms and conditions outline the rules and regulations for the use of Msaada's website and donation platform (hereinafter referred to as "Msaada"). By accessing or using Msaada in any manner, including but not limited to visiting or browsing the website, you agree to be bound by these terms and conditions.</p>
+      </div>
+    </div>
     <div className="container mx-auto px-4 py-8 bg-white">
-      <h2 className="text-3xl font-bold mb-4">Terms and Conditions</h2>
-      <p className="mb-4">Welcome to Msaada! These terms and conditions outline the rules and regulations for the use of Msaada's website and donation platform (hereinafter referred to as "Msaada"). By accessing or using Msaada in any manner, including but not limited to visiting or browsing the website, you agree to be bound by these terms and conditions.</p>
-      
       <h3 className="text-2xl font-bold mb-2">1. Acceptance of Terms</h3>
       <p className="mb-4">By accessing this website and using our donation platform, you acknowledge that you have read, understood, and agree to be bound by these terms and conditions. If you do not agree with any of these terms, you are prohibited from using or accessing this site.</p>
       

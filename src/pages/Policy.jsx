@@ -6,16 +6,17 @@ function Policy() {
   return (
     <div>
       <Menus/>
+      <div class="relative flex-1 px-3 py-10 lg:px-8" id='termBanner'>
+      <div class="mx-auto text-center">
+        <h2 class="text-center text-3xl font-bold leading-tight text-white md:text-4xl">Privacy Policy</h2>
+        <p className="mt-4 text-white">This privacy policy sets out how our website uses and protects any information that you give us when you use
+                this
+                website.</p>
+      </div>
+    </div>
       <div className="bg-white">
         <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
-
-            <p className="mb-4">
-                This privacy policy sets out how our website uses and protects any information that you give us when you use
-                this
-                website.
-            </p>
-
+            
             <h2 className="text-2xl font-bold mb-2">Information We Collect</h2>
 
             <p className="mb-4">
