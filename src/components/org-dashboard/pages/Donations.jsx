@@ -30,6 +30,10 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
     useEffect(() => {
       setDonors(allDonors)
     }, [allDonors])
+
+    useEffect(()=>{
+        setErrors(campaignError)
+    }, [campaignError])
     
 
     useEffect(() => {
@@ -144,10 +148,10 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
             <div className="text-sm breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li>
-                    <li><a href='/org/dashboard/donations'>Donations</a></li>
+                    <li><a href='/org/dashboard/donations'>Contributions</a></li>
                 </ul>
             </div>
-            <h1 className="mb-1 my-2 text-2xl font-bold leading-tight ">My Donations</h1>
+            <h1 className="mb-1 my-2 text-2xl font-bold leading-tight ">Contributions</h1>
             <hr/>
             {errors && <p className='text-red-700'>{errors}</p>}
            {allDonations && allDonations.length>0
@@ -176,9 +180,9 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                                     <tr>
                                     <   th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
                                         <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Campaign</th>
-                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donor</th>
+                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Contributor</th>
                                         <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Amount</th>
-                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donation Date</th>   
+                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Date</th>   
                                         <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Status</th>                           
                                     </tr>
                                 </thead>
@@ -223,9 +227,16 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
             )
             :
             (
-                <div className='flex justify-center'>
-                    <p className='text-xl'>No donations yet</p>
-                </div>
+                <div className='grid grid-cols-1 gap-4 mt-3 px-4'>
+              <div>
+                <p className='text-red-500'>No contributions to display. Create campaign to start receiving contributions</p> 
+              </div>
+              <div>
+                <a href='/org/dashboard/createcampaign'><button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
+                    Create Campaign
+                </button></a>
+              </div>
+            </div>
             )
            }
         </div>

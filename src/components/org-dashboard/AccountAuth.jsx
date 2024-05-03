@@ -104,9 +104,9 @@ function AccountAuth() {
         <div className="text-md breadcrumbs mb-4">
             <ul>
                 <li><a href='/org/dashboard'>Dashboard</a></li>
-                <li><a>AccountAuth</a></li>
+                <li><a>Account</a></li>
             </ul>
-            <h2 className="mt-3 text-2xl font-bold leading-tight ">Accounts Authentication</h2>
+            <h2 className="mt-3 text-2xl font-bold leading-tight ">Create withdrawal Account</h2>
             <hr className='mb-4'/>
             <div className="container mx-auto h-screen lg:h-fit lg:px-16">
                 {message && <div className='text-green-500'>{message}</div>}

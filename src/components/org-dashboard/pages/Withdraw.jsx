@@ -7,6 +7,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
     const [errors, setErrors] = useState(null)
     const [loading, setLoading] = useState(false)
     const token = localStorage.getItem('token')
+    const org= localStorage.getItem('org')
 
     const [providers, setProviders] = useState('')
     const [amount, setAmount] = useState()
@@ -74,7 +75,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
                 }
             } catch (error) {
                 setLoading(true)
-                setErrors('Error in fetching accounts', error);
+                setErrors('Accounts not found, ensure you have created account', error);
             }
         };
 
@@ -153,6 +154,8 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
     function handleWithdraw(e) {
         e.preventDefault();
         try{
+            setLoading(true)
+            setErrors(null)
             fetch('/api/v1.0/withdraw', {
                 method: "POST",
                 headers: {
@@ -180,7 +183,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
             });
         }
         catch(error){
-            // setLoading(true)
+            setLoading(false)
             setErrors('Error in withdrawing funds', error);
         }
         finally{
@@ -193,7 +196,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
         }
       }
 
-if (!token) {
+if (!token && !org) {
     window.location.replace("/org/login")
 }
 
@@ -254,7 +257,7 @@ return (
 
                     <div className='mt-4'>
                         <label className="block font-semibold" htmlFor="name">Provider</label>
-                        <select className="input input-bordered w-full placeholder-gray-400 bg-gray-100"
+                        <select className="input input-bordered w-full placeholder-gray-400 bg-gray-100 text-sm"
                             id="name"
                             type="text"
                             name="name"
@@ -262,8 +265,8 @@ return (
                             onChange={(e) => { setProviders(e.target.value); setBank('') }}
                             required>
                             <option value="">Select provider</option>
-                            <option value="M-Pesa">M-Pesa</option>
-                            <option value="Bank">Bank</option>
+                            <option className='text-sm' value="M-Pesa">M-Pesa</option>
+                            <option className='text-sm' value="Bank">Bank</option>
                         </select>
                         <div className='mt-4'>
                             {providers === 'Bank' ?

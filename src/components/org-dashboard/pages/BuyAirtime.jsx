@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Toaster, toast } from 'react-hot-toast';
+import Swal from 'sweetalert2';
 
 function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
   const [phone, setPhone] = useState("");
@@ -21,10 +22,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
   }, [allCampaigns, token])
 
   useEffect(() => {
-    if(campaignError){
-        setError(campaignError)
-    }
-    
+    setError(campaignError)
   }, [campaignError,token])
 
   //Get waallet details from a function in the main as a prop
@@ -68,6 +66,8 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
         return
     }
     else{
+      setError(null);
+      setIsSubmitting(true);
       let phoneNo = phone.replace(/^0+/, '');
       let formattedPhoneNumber = "254" + phoneNo;
       fetch(`/api/v1.0/buy_airtime`, {
@@ -127,8 +127,8 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
             <h1 className="font-extrabold text-2xl">Buy Airtime</h1>
             <hr className='mb-2'/>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <form ref={formRef}>
-                    {error && <p className='text-red-600 text-base'>{error}</p>}
+              {error && <p className='text-red-600 text-base'>{error}</p>}
+                <form ref={formRef}>                    
                     {transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
                     {walletDetails? 
                         <div className="stats border">
