@@ -136,54 +136,76 @@ function Withdrawals() {
             <button title='Download Pdf' onClick={downloadTransactionPDF}>PDF<FaFilePdf size = {25} style={{ color: 'red' }}/></button>
         </div>
         <div className='text-sm text-red-500'>{errors}</div>
-        <div className='overflow-scroll my-4'>
-            <table className='table w-full min-w-full table-zebra text-xs overflow-x-auto'>
-                <thead>
-                    <tr>
-                        <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>S/N</th>
-                        <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Tracking id</th>
-                        <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Name</th>
-                        <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Campaign</th>
-                        <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Account Number</th>
-                        <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Transaction Type</th>
-                        <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Amount</th>
-                        <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Transaction Status</th>
-                        <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Transaction date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentItems.map((withdrawal,index)=>(
-                        <tr key={index}>
-                            <td>{index+1}</td>
-                            <td>{withdrawal.tracking_id}</td>
-                            <td>{withdrawal.org_name}</td>
-                            <td>{withdrawal.campaign_name}</td>
-                            <td>{withdrawal.transaction_account_no}</td>
-                            <td>{withdrawal.trans_type}</td>
-                            <td>{withdrawal.amount}</td>
-                            <td>{withdrawal.trans_status}</td>
-                            <td>{withdrawal.transaction_date}</td>
+        {allWithdrawals && allWithdrawals.length>0 && filtered.length>0 && currentItems.length>0 && totalPages>0
+        ?
+        (
+        <div>
+            <div className='overflow-scroll my-4'>
+                <table className='table w-full min-w-full table-zebra text-xs overflow-x-auto'>
+                    <thead>
+                        <tr>
+                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>S/N</th>
+                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Tracking id</th>
+                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Name</th>
+                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Campaign</th>
+                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Account Number</th>
+                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Transaction Type</th>
+                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Amount</th>
+                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Transaction Status</th>
+                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Transaction date</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-        <div className="flex justify-center mb-4 join grid-cols-2">
-            {/* Previous page button */}
-            <button className="btn btn-outline join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
-                Previous
-            </button>
+                    </thead>
+                    <tbody>
+                        {currentItems.map((withdrawal,index)=>(
+                            <tr key={index}>
+                                <td>{index+1}</td>
+                                <td>{withdrawal.tracking_id}</td>
+                                <td>{withdrawal.org_name}</td>
+                                <td>{withdrawal.campaign_name}</td>
+                                <td>{withdrawal.transaction_account_no}</td>
+                                <td>{withdrawal.trans_type}</td>
+                                <td>{withdrawal.amount}</td>
+                                <td>{withdrawal.trans_status}</td>
+                                <td>{withdrawal.transaction_date}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <div className="flex justify-center mb-4 join grid-cols-2">
+                {/* Previous page button */}
+                <button className="btn btn-outline join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
+                    Previous
+                </button>
 
-            {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
-            {/* Next page button */}
-            <button
-                className="btn btn-outline join-item"
-                onClick={() => goToPage(currentPage + 1)}
-                disabled={currentPage === totalPages}
-            >
-                Next
-            </button>
+                {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
+                {/* Next page button */}
+                <button
+                    className="btn btn-outline join-item"
+                    onClick={() => goToPage(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                >
+                    Next
+                </button>
+            </div>
         </div>
+        )
+        :
+        (
+            <div className='grid grid-cols-1 gap-4 mt-3 px-4'>
+              <div>
+                <p className='text-red-500'>No withdrawals to display. Create campaign to start receiving contributions</p> 
+              </div>
+              <div>
+                <a href='/org/dashboard/createcampaign'><button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
+                    Create Campaign
+                </button></a>
+              </div>
+            </div>
+        )
+        }
+        
+        
     </div>
   )
 }

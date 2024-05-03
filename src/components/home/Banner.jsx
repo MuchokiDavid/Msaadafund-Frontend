@@ -440,7 +440,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
         </div>
       </section>
 
-      <section className="py-12 bg-gray-100 sm:py-16 lg:py-20">
+      <section className="py-8 bg-gray-50 sm:py-14 lg:py-18">
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
               <div className="xl:flex xl:items-center xl:justify-between">
                   <h2 className="text-xl font-bold text-center text-gray-400 xl:text-left font-pj">Our partner brands</h2>

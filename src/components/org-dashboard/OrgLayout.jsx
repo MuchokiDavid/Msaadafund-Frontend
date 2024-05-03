@@ -24,10 +24,11 @@ function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
   // const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const[loading,setLoading]=useState(true)
+  const[loading,setLoading]=useState(false)
   const[campaigns,setCampaigns]=useState([])
   const[allDonations,setAllDonations]=useState([])
   const[errors,setErrors]=useState()
+  const[donationErrors,setDonationErrors]=useState()
   const token=localStorage.getItem('token');
   const orgName=localStorage.getItem('org')
   const[donors,setDonors]=useState([])
@@ -91,16 +92,25 @@ const handleWallet = async (id) => {
               });
               const data = await response.json();
               if (response.ok) {
-                  setLoading(true);
+                // console.log(data)
+                if(data.message){
+                  setDonationErrors('')
+                  setLoading(false);
                   // console.log("Successful request to get donors");
                   setAllDonations(data.message);
                   setLoading(false);
+                }
+                else if(data.error){
+                  setDonationErrors(data.error)
+                  setLoading(false)
+                }
+                  
               } else {
                   throw new Error(data);
               }
           }
           catch {
-              setErrors("Error getting donation data");
+            console.error("Error getting donation data");
           }
       }
       getDonations();
@@ -128,7 +138,7 @@ const handleWallet = async (id) => {
             }
         }
         catch {
-            setErrors("Error getting donation data");
+            console.error("Error getting donors data");
         }
     }
     getDonors();
@@ -152,16 +162,25 @@ const handleWallet = async (id) => {
         });
         const data = await response.json();
         if (response.ok) {
+          // console.log(data)
+          if(data.campaigns){
             setLoading(false)
             // console.log("Successful request to get campaigns");
             setCampaigns(data.campaigns);
+          }
+          else if(data.error){
+            // console.log(data)
+            setLoading(false)
+            setErrors(data.error)
+          }
+            
         } else {
             setLoading(true)
             throw new Error(data);
         }
     } catch (error) {
         setLoading(true)
-        setErrors('Error in fetching campaigns', error);
+        console.error('Error in fetching campaigns, ensure you have created campaign', error);
     }
   };
 
@@ -191,7 +210,7 @@ const handleWallet = async (id) => {
             <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch}/>} />
             <Route path="/mycampaigns/active" element={<DashActiveCampaigns allCampaigns={campaigns} campaignError={errors}/>} />
             <Route path="/mycampaigns/inactive" element={<DashInactiveCampaigns allCampaigns={campaigns} campaignError={errors}/>} />
-            <Route path="/donations" element={<Donations loadingState={loading} allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} allDonors={donors}/>} />
+            <Route path="/donations" element={<Donations loadingState={loading} allCampaigns={campaigns} handleFetching={handleFetch} campaignError={donationErrors} allDonors={donors}/>} />
             <Route path="/transact/withdraw" element={<Withdraw allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
             <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
             <Route path="/transact/accounts" element={<AccountAuth/>} />

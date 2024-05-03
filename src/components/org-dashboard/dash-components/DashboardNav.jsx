@@ -43,7 +43,7 @@ function DashboardNav({toggleSidebar}) {
                             </div>
                         </div>
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-slate-800 rounded-box w-36">
-                        <li className='hover:bg-slate-700'><a href="/org/dashboard/helpcenter">Help center</a></li>
+                        <li className='hover:bg-slate-700'><a href="/org/dashboard/helpcenter">Help</a></li>
                         <li className='hover:bg-slate-700'><a href="/org/dashboard/profile">Profile</a></li>
                         <li className='hover:bg-slate-700' onClick={handleLogout}><a href='/org/login'>Log out</a></li>
                         </ul>

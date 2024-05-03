@@ -119,7 +119,7 @@ function DashActiveCampaigns({allCampaigns, campaignError}) {
             if (result.isConfirmed) {
                 axios.delete(`/api/v1.0/deletecampaign/${campaignId}`, config)
                 .then((res)=>{{
-                    console.log(res)
+                    // console.log(res)
                     if(res.status===200){
                         Swal.fire(
                             'Deactivated!',
@@ -158,7 +158,7 @@ function DashActiveCampaigns({allCampaigns, campaignError}) {
             <div className="text-sm breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li> 
-                    <li><a href='/org/dashboard/mycampaigns/active'>View Campaign</a></li> 
+                    <li><a href='/org/dashboard/mycampaigns/active'>Active Campaign</a></li> 
                 </ul>
             </div>
             <h2 className="mb-3 text-2xl font-bold leading-tight ">Active Campaigns</h2>
@@ -194,58 +194,71 @@ function DashActiveCampaigns({allCampaigns, campaignError}) {
                     {/* <div>
                         <button title='Download Pdf ' onClick={downloadDonationsPDF}>PDF<FaFilePdf size = {25} style={{ color: 'red' }}/></button>
                     </div> */}
-                {/* </div> */}
-            {/* <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:max-w-full"> */}
-            <div className="my-1 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 sm:rounded-lg">
-                <table className="min-w-full table-zebra text-xs lg:text-sm">
-                    {/* head */}
-                    <thead>
-                        <tr>
-                            <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
-                            <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Campaign Name</th>
-                            <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Category</th>
-                            <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Start Date</th>
-                            <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>End Date</th>   
-                            <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Budget</th> 
-                            <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Balance</th>    
-                            <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Edit</th>   
-                            <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Action</th>                       
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {paginatedCampaigns && paginatedCampaigns.map((item) =>{
-                        return (
-                            <tr key={item.id}>
-                                <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.id}</td>
-                                <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.campaignName}</td>
-                                <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.category}</td>
-                                <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200'>{item.startDate}</td>
-                                <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.endDate}</td>
-                                <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.targetAmount}</td>
-                                <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200'>{walletDetails &&walletDetails[item.id]?.available_balance}</td>
-                                <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '><button onClick={()=>handleEditButton(item.id)} className='text-white p-1.5 bg-blue-600 rounded border hover:border-blue-600 hover:bg-transparent hover:text-black'>Edit</button></td>
-                                <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '><button onClick={()=>handleDeleteButton(item.id)} className='text-white p-1.5 bg-red-500 rounded border hover:bg-red-600'>Deactivate</button></td>
-                            </tr>
-                        )})}
-                    </tbody>
-                </table>
-            </div>
-            <div className="flex justify-center mb-4 join grid-cols-2">
-                {/* Previous page button */}
-                <button className="btn btn-outline join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
-                    Previous
-                </button>
+                    {allCampaigns.length>0 && paginatedCampaigns.length>0
+                    ?
+                    (<>
+                        <div className="my-1 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 sm:rounded-lg">
+                            <table className="min-w-full table-zebra text-xs lg:text-sm">
+                                {/* head */}
+                                <thead>
+                                    <tr>
+                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
+                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Campaign Name</th>
+                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Category</th>
+                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Start Date</th>
+                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>End Date</th>   
+                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Budget</th> 
+                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Balance</th>    
+                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Edit</th>   
+                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Action</th>                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {paginatedCampaigns && paginatedCampaigns.map((item) =>{
+                                    return (
+                                        <tr key={item.id}>
+                                            <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.id}</td>
+                                            <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.campaignName}</td>
+                                            <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.category}</td>
+                                            <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200'>{item.startDate}</td>
+                                            <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.endDate}</td>
+                                            <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.targetAmount}</td>
+                                            <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200'>{walletDetails &&walletDetails[item.id]?.available_balance}</td>
+                                            <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '><button onClick={()=>handleEditButton(item.id)} className='text-white p-1.5 bg-blue-600 rounded border hover:border-blue-600 hover:bg-transparent hover:text-black'>Edit</button></td>
+                                            <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '><button onClick={()=>handleDeleteButton(item.id)} className='text-white p-1.5 bg-red-500 rounded border hover:bg-red-600'>Deactivate</button></td>
+                                        </tr>
+                                    )})}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="flex justify-center mb-4 join grid-cols-2">
+                            {/* Previous page button */}
+                            <button className="btn btn-outline join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
+                                Previous
+                            </button>
 
-                {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
-                {/* Next page button */}
-                <button
-                    className="btn btn-outline join-item"
-                    onClick={() => goToPage(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                >
-                    Next
-                </button>
-            </div>
+                            {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
+                            {/* Next page button */}
+                            <button
+                                className="btn btn-outline join-item"
+                                onClick={() => goToPage(currentPage + 1)}
+                                disabled={currentPage === totalPages}
+                            >
+                                Next
+                            </button>
+                        </div>
+                    </>)
+                    :
+                    (
+                        <div className='grid grid-cols-1 gap-4 mt-3 px-1'>
+                            <div>
+                                <p className='text-red-500'>No active campaigns to display. Create campaign to start receiving contributions</p> 
+                            </div>
+                        </div>
+                    )
+                    }
+            {/* <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:max-w-full"> */}
+            
             
             <Toaster position="top-right" reverseOrder= {false}/>
         </div>

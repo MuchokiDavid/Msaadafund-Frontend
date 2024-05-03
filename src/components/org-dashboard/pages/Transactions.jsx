@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { FaFilePdf } from "react-icons/fa";
+// import { FaFilePdf } from "react-icons/fa";
 
 
-function Transactions({allCampaigns, campaignError, handleFetching}) {
+function Transactions({allCampaigns, campaignError}) {
     const [allCampaign, setAllCampaign] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [loading, setLoading] = useState(false);
-    const [errors, setErrors] = useState();
+    const [errors, setErrors] = useState(null);
     const token = localStorage.getItem('token');
+    const org= localStorage.getItem('org')
     const [transactions, setTransactions] = useState([])
     const [filter, setFilter] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
@@ -77,7 +78,7 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
           }
       }
       catch {
-          setErrors("Error getting donation data");
+          setErrors("Error getting transactions data");
       }
     }
   }
@@ -91,6 +92,12 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
       });
     }, [token, filter, allCampaign]);
 
+    useEffect(() => {
+      if (!allCampaign && allCampaign.length===0){
+        setErrors(null)
+      }
+    }, [allCampaign])
+    
 
     //function to handle change in filter
     function handleFilterChange(e){
@@ -100,55 +107,60 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
     function handleSearchTermChange(e) {
         setSearchTerm(e.target.value);
     }
+
+    if(!token && !org){
+      window.location.href('/org/login')
+    }
+
     if (loading) {
       return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
     }
       // handle pdf route
     // get route from backend
-    const downloadDonationsPDF=(id)=> {
-      const token = localStorage.getItem('token');
-      const url = `/api/v1.0/transactions_pdf/${id}`;
+  //   const downloadDonationsPDF=(id)=> {
+  //     const token = localStorage.getItem('token');
+  //     const url = `/api/v1.0/transactions_pdf/${id}`;
   
-      fetch(url, {
-          method: 'GET',
-          headers: {
-              'Authorization': `Bearer ${token}`,
-              'Accept': 'application/pdf',  // Specify that we expect a PDF file in the response
-          }
-      })
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Failed to download PDF');
-          }
+  //     fetch(url, {
+  //         method: 'GET',
+  //         headers: {
+  //             'Authorization': `Bearer ${token}`,
+  //             'Accept': 'application/pdf',  // Specify that we expect a PDF file in the response
+  //         }
+  //     })
+  //     .then(response => {
+  //         if (!response.ok) {
+  //             throw new Error('Failed to download PDF');
+  //         }
   
-          // Convert the response to a Blob (binary data) for the PDF file
-          return response.blob();
-      })
-      .then(blob => {
-          // Create a URL for the blob data
-          const blobUrl = URL.createObjectURL(blob);
+  //         // Convert the response to a Blob (binary data) for the PDF file
+  //         return response.blob();
+  //     })
+  //     .then(blob => {
+  //         // Create a URL for the blob data
+  //         const blobUrl = URL.createObjectURL(blob);
   
-          // Create an anchor element for downloading the file
-          const link = document.createElement('a');
-          link.href = blobUrl;
-          link.download = 'transactions.pdf';  // Specify the filename for the downloaded file
+  //         // Create an anchor element for downloading the file
+  //         const link = document.createElement('a');
+  //         link.href = blobUrl;
+  //         link.download = 'transactions.pdf';  // Specify the filename for the downloaded file
   
-          // Append the link to the document body
-          document.body.appendChild(link);
+  //         // Append the link to the document body
+  //         document.body.appendChild(link);
   
-          // Programmatically trigger a click on the link to start the download
-          link.click();
+  //         // Programmatically trigger a click on the link to start the download
+  //         link.click();
   
-          // Remove the link from the DOM after the download
-          document.body.removeChild(link);
+  //         // Remove the link from the DOM after the download
+  //         document.body.removeChild(link);
   
-          // Revoke the blob URL to release memory
-          URL.revokeObjectURL(blobUrl);
-      })
-      .catch(error => {
-          setErrors('Error downloading PDF, Please try again later');
-      });
-  }
+  //         // Revoke the blob URL to release memory
+  //         URL.revokeObjectURL(blobUrl);
+  //     })
+  //     .catch(error => {
+  //         setErrors('Error downloading PDF, Please try again later');
+  //     });
+  // }
     
 
   return (
@@ -163,88 +175,107 @@ function Transactions({allCampaigns, campaignError, handleFetching}) {
             <h1 className="mb-3 my-2 text-2xl font-bold leading-tight ">My Transactions</h1>
             <hr className='mb-0' />
             {errors && <p className='text-red-700'>{errors}</p>}
-            <div className='mt-2 text-lg font-normal'>Select campaign to view transactions</div>
-           
+            {allCampaign && allCampaign.length > 0 && !errors ? 
+            (<div className='mt-2 text-lg font-normal'>Select campaign to view transactions</div>)
+            :
+            (null)
+            }
             <div className='flex flex-col col-span-3'>
               <div className='py-2 -my-2 overflow-x-auto sm:-mx-2 sm:px-6 lg:-mx-2 lg:px-6'>
-                <div className="my-5 inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
-                    <div class="flex items-center space-x-4">
-                      <select
-                        className="mb-3 h-10 px-3 py-2 border-gray-300 rounded-md bg-gray-50 border text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/6 p-2.5 "
-                        placeholder="transaction type"
-                        onChange={handleFilterChange}
-                        value={filter}
-                      >
-                        <option className='lg:text-lg sm:text-sm'>Select campaign</option>
-                        {
-                          allCampaign.map((camp, i)=>(<option className='lg:text-lg sm:text-sm' key={i}>{camp.campaignName}</option>))
-                        }
-                        
-                      </select>
-                      <input
-                            type="text"
-                            placeholder="Search... eg. Trans-type,amount & invoice acc.no."
-                            value={searchTerm}
-                            onChange={handleSearchTermChange}
-                            className="px-3 py-2 border-gray-300 rounded-md mb-4 bg-gray-50 border h-10 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/4 p-2.5 "
-                        /> 
-                      </div> 
-                   
-                                  
-                  
-                  <div className="overflow-x-auto">
-                    <table className="table table-md table-pin-rows table-pin-cols table-auto text-xs lg:text-sm">
-                      <thead>
-                        <tr>
-                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
-                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>AMOUNT</th>
-                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>STATUS</th>
-                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>RUNNING BALANCE</th>
-                          {/* <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>NARRATIVE</th> */}
-                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>TRANSACTION TYPE</th>
-                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>INVOICE ACCOUNT</th>
-                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>UPDATED AT</th>
-                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {paginatedTransactions && paginatedTransactions.map((item) => (
-                          <tr key={item.transaction_id}>
-                            <td>{item.transaction_id}</td>
-                            <td>{item.value}</td>
-                            <td>{item.status}</td>
-                            <td>{item.running_balance}</td>
-                            {/* <td>{item.narrative}</td> */}
-                            <td>{item.trans_type}</td>
-                            <td>{item.invoice ? item.invoice.account : null}</td>
-                            <td>{new Date(item.updated_at).toLocaleString()}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                </div>
-              </div>
-            </div>
-            
-            </div>
+               
+                    {allCampaign && allCampaign.length > 0 && !errors ?
+                    (
+                      <>
+                       <div className="my-5 inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
+                        <div class="flex items-center space-x-4">
+                        <select
+                          className="mb-3 h-10 px-3 py-2 border-gray-300 rounded-md bg-gray-50 border text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/6 p-2.5 "
+                          placeholder="transaction type"
+                          onChange={handleFilterChange}
+                          value={filter}
+                        >
+                          <option className='lg:text-lg sm:text-sm'>Select campaign</option>
+                          {
+                            allCampaign.map((camp, i)=>(<option className='lg:text-lg sm:text-sm' key={i}>{camp.campaignName}</option>))
+                          }
+                          
+                        </select>
+                        <input
+                              type="text"
+                              placeholder="Search... eg. Trans-type,amount & invoice acc.no."
+                              value={searchTerm}
+                              onChange={handleSearchTermChange}
+                              className="px-3 py-2 border-gray-300 rounded-md mb-4 bg-gray-50 border h-10 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/4 p-2.5 "
+                          /> 
+                        </div> 
+                        <div className="overflow-x-auto">
+                            <table className="table table-md table-pin-rows table-pin-cols table-auto text-xs lg:text-sm">
+                              <thead>
+                                <tr>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>AMOUNT</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>STATUS</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>RUNNING BALANCE</th>
+                                  {/* <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>NARRATIVE</th> */}
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>TRANSACTION TYPE</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>INVOICE ACCOUNT</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>UPDATED AT</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {paginatedTransactions && paginatedTransactions.map((item) => (
+                                  <tr key={item.transaction_id}>
+                                    <td>{item.transaction_id}</td>
+                                    <td>{item.value}</td>
+                                    <td>{item.status}</td>
+                                    <td>{item.running_balance}</td>
+                                    {/* <td>{item.narrative}</td> */}
+                                    <td>{item.trans_type}</td>
+                                    <td>{item.invoice ? item.invoice.account : null}</td>
+                                    <td>{new Date(item.updated_at).toLocaleString()}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                        </div>
 
-            <div className="flex justify-center mb-4 join grid-cols-2">
-                {/* Previous page button */}
-                <button className="btn btn-outline join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
-                    Previous
-                </button>
+                        <div className="flex justify-center mb-4 join grid-cols-2">
+                            {/* Previous page button */}
+                            <button className="btn btn-outline join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
+                                Previous
+                            </button>
 
-                {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
-                {/* Next page button */}
-                <button
-                    className="btn btn-outline join-item"
-                    onClick={() => goToPage(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                >
-                    Next
-                </button>
+                            {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
+                            {/* Next page button */}
+                            <button
+                                className="btn btn-outline join-item"
+                                onClick={() => goToPage(currentPage + 1)}
+                                disabled={currentPage === totalPages}
+                            >
+                                Next
+                            </button>
+                        </div>
+                      </div>
+                      </>   
+                    )
+                    :
+                    (
+                      <div className='grid grid-cols-1 gap-4 mt-3 px-1'>
+                        <div>
+                            <p className='text-red-500'>No campaign found. Create campaign to start receiving donations</p> 
+                        </div>
+                        <div>
+                            <a href='/org/dashboard/createcampaign'><button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
+                                Create Campaign
+                            </button></a>
+                        </div>
+                    </div>
+                    )
+                    }
+                    
             </div>
-            
+            </div>            
         </div>
     </div>
   )
