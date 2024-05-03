@@ -79,12 +79,15 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
                     .then((res)=>{{
                         // console.log(res)
                         if(res.status===200){
-                            Swal.fire(
-                                'Activated!',
-                                `${res.data.campaignName} activated successfully`,
-                                'success'
-                            )
-                            window.location.reload();
+                            Swal.fire({
+                                title: "Activated!",
+                                text: `${res.data.campaignName} activated successfully`,
+                                icon: "success"
+                              }).then((result)=>{
+                                if(result.isConfirmed){
+                                    window.location.reload();
+                                }
+                              }); 
                         }
                         else{
                             Swal.fire(
@@ -94,7 +97,6 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
                             )
                         }
                         
-                        // window.location.reload();
                     }})
                     .catch((err)=>{
                         const errorMsg = err.response?.data?.error || 'An error occurred';
@@ -111,7 +113,7 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
     }   
 
     if(!token && !orgUser){
-        window.location.replace("/org/login")
+        window.location.href("/org/login")
     }
 
     return (
@@ -151,8 +153,8 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
                ?
                (
                 <>
-                    <div className="my-1 inline-block min-w-full overflow-x-auto align-middle border-b border-gray-200 sm:rounded-lg">
-                        <table className="min-w-full table-zebra text-xs lg:text-sm overflow-scroll">
+                    <div className="my-1 inline-block w-full overflow-x-auto align-middle border-b border-gray-200 sm:rounded-lg">
+                        <table className="w-full table-zebra text-xs lg:text-sm overflow-scroll">
                             {/* head */}
                             <thead>
                                 <tr>
@@ -207,12 +209,12 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
             (
             <div className='grid grid-cols-1 gap-4 mt-3 px-1'>
                 <div>
-                    <p className='text-red-500'>No Inactive campaigns to display. Create campaign to start receiving contributions</p> 
+                    <p className='text-red-500'>No Inactive campaigns to display at the moment.</p> 
                 </div>
                 <div>
-                    <a href='/org/dashboard/createcampaign'><button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
+                    {/* <a href='/org/dashboard/createcampaign'><button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
                         Create Campaign
-                    </button></a>
+                    </button></a> */}
                 </div>
             </div>
             )

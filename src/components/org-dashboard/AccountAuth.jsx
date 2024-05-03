@@ -126,19 +126,19 @@ function AccountAuth() {
                 <form className="mt-4"  onSubmit={(e) => e.preventDefault()}>
                     {step === 1 ? (
                     <div >
-                        <label className="block text-black  font-medium">Email Address</label>
+                        <label className="block text-black  font-medium"><span className='text-red-500'>*</span>Email Address</label>
                         <input 
                         type='email' 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder=' Enter Organisation Email Address' 
-                        className="w-1/2 mt-1 p-2 border bg-white text-black border-gray-300 rounded-md"
+                        className="w-full mt-1 p-2 border bg-white text-black border-gray-300 rounded-md"
                         />
                     </div>
                     ):
                     <div>
                         <div>
-                        <label className="block text-black  font-medium">Email Address</label>
+                        <label className="block text-black  font-medium"><span className='text-red-500'>*</span>Email Address</label>
                             <input
                             type='email' 
                             value={email}

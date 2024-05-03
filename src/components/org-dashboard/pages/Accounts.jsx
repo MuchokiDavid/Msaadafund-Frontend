@@ -140,30 +140,30 @@ function Accounts() {
             </div>
             <h2 className="mb-3 text-2xl font-bold leading-tight ">Withdraw Accounts</h2>
             <hr className='mb-4'/>
-            <div className='mx-auto lg:max-w-screen-lg md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 text-white sm:w-screen'>
+            <div className='mx-auto lg:max-w-screen-lg md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md  text-white sm:w-screen'>
                 <button onClick={() => setShowCreateAccount(true)} className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
                     Create Account
                 </button>
                 {error && <p className='text-red-500 mt-4'>{error}</p>}
                 <div className="accounts-list-section w-full">
-                    <h1 className='text-2xl font-semibold mb-4 text-slate-600 dark:text-slate-300 '>Your Accounts</h1>
+                    <h1 className='text-2xl font-semibold mb-4 text-slate-600 '>Your Accounts</h1>
                     <div className='overflow-scroll'>
                         <table className='w-full border-collapse border border-gray-300'>
                             <thead>
-                                <tr className='bg-gray-100 dark:bg-gray-700'>
-                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Providers</th>
-                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Account Name</th>
-                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Account Number</th>
-                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300 text-sm'>Actions</th>
+                                <tr className='bg-gray-100'>
+                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 text-sm'>Providers</th>
+                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 text-sm'>Account Name</th>
+                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 text-sm'>Account Number</th>
+                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 text-sm'>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {accounts.map((account) => (
                                     <tr key={account.id}>
-                                        <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>{account.providers}</td>
-                                        <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>{account.accountName}</td>
-                                        <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>{account.accountNumber}</td>
-                                        <td className='border border-gray-300 px-2 py-1 text-gray-700 dark:text-slate-300'>
+                                        <td className='border border-gray-300 px-2 py-1 text-gray-700 '>{account.providers}</td>
+                                        <td className='border border-gray-300 px-2 py-1 text-gray-700 '>{account.accountName}</td>
+                                        <td className='border border-gray-300 px-2 py-1 text-gray-700 '>{account.accountNumber}</td>
+                                        <td className='border border-gray-300 px-2 py-1 text-gray-700 '>
                                         <button onClick={() => handleShowResetPin(account.email)} className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-2 w-full sm:w-auto'>
                                             Reset PIN
                                         </button>
@@ -183,35 +183,35 @@ function Accounts() {
                 {showCreateAccount && (
                     // Create Account Popup JSX
                     <div className="create-account-popup fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
-                        <div className='mx-auto lg:max-w-md md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 text-white'>
-                            <h1 className='text-2xl font-semibold mb-4 text-slate-600 dark:text-slate-300'>Create Account</h1>
+                        <div className='mx-auto lg:max-w-md md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md  text-white'>
+                            <h1 className='text-2xl font-semibold mb-4 text-slate-600 '>Create Account</h1>
                             <div className='mb-6 flex items-center justify-center'>
                                 <form onSubmit={handleSubmit} className='w-full' ref={formRef}>
                                 {error && <p className='text-red-500 mt-4'>{error}</p>}
                                     <div className='mb-4'>
-                                        <label htmlFor='providers' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>Providers</label>
-                                        <select value={providers} onChange={(e) => setProviders(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' required>
+                                        <label htmlFor='providers' className='block mb-2 text-sm font-semibold text-slate-600 '><span className='text-red-500'>*</span>Providers</label>
+                                        <select value={providers} onChange={(e) => setProviders(e.target.value)} className='block text-gray-700 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600' required>
                                             <option value=''>Select Provider</option>
                                             <option value='M-Pesa'>M-Pesa</option>
                                             <option value='Bank'>Bank</option>
                                         </select>
-                                        {/* <input type='text' value={providers} disabled onChange={(e) => setProviders(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' required /> */}
+                                        {/* <input type='text' value={providers} disabled onChange={(e) => setProviders(e.target.value)} className='block text-gray-700 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600' required /> */}
                                     </div>
                                     <div className='mb-4'>
-                                        <label htmlFor='accountName' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>Account Name</label>
-                                        <input type='text' value={accountName} onChange={(e) => setAccountName(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' placeholder='eg John Doe, KCB account' required />
+                                        <label htmlFor='accountName' className='block mb-2 text-sm font-semibold text-slate-600 '><span className='text-red-500'>*</span>Account Name</label>
+                                        <input type='text' value={accountName} onChange={(e) => setAccountName(e.target.value)} className='block text-gray-700 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600' placeholder='eg John Doe, KCB account' required />
                                     </div>
                                     <div className='mb-4'>
-                                        <label htmlFor='accountNumber' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>Account Number</label>
-                                        <input type='text' value={accountNumbers} onChange={(e) => setAccountNumber(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' placeholder='eg 07xxx, 01xxx, 124......' required />
+                                        <label htmlFor='accountNumber' className='block mb-2 text-sm font-semibold text-slate-600 '><span className='text-red-500'>*</span>Account Number</label>
+                                        <input type='text' value={accountNumbers} onChange={(e) => setAccountNumber(e.target.value)} className='block text-gray-700 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600' placeholder='eg 07xxx, 01xxx, 124......' required />
                                     </div>
                                     <div className='mb-4'>
-                                        <label htmlFor='pin' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>PIN</label>
-                                        <input type='password' value={pin} onChange={(e) => setPin(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' placeholder='pin' maxLength={4} required />
+                                        <label htmlFor='pin' className='block mb-2 text-sm font-semibold text-slate-600 '><span className='text-red-500'>*</span>PIN</label>
+                                        <input type='password' value={pin} onChange={(e) => setPin(e.target.value)} className='block text-gray-700 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600' placeholder='pin' maxLength={4} required />
                                     </div>
                                     <div className='mb-4'>
-                                        <label htmlFor='confirmPin' className='block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300'>Confirm PIN</label>
-                                        <input type='password' value={confirmPin} onChange={(e) => setConfirmPin(e.target.value)} className='block text-gray-700 dark:text-slate-200 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary-600' placeholder='confirm pin' maxLength={4} required />
+                                        <label htmlFor='confirmPin' className='block mb-2 text-sm font-semibold text-slate-600 '><span className='text-red-500'>*</span>Confirm PIN</label>
+                                        <input type='password' value={confirmPin} onChange={(e) => setConfirmPin(e.target.value)} className='block text-gray-700 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600' placeholder='confirm pin' maxLength={4} required />
                                     </div>
                                     <div>
                                         <button type='submit' className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>

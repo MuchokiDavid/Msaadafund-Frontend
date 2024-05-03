@@ -121,12 +121,15 @@ function DashActiveCampaigns({allCampaigns, campaignError}) {
                 .then((res)=>{{
                     // console.log(res)
                     if(res.status===200){
-                        Swal.fire(
-                            'Deactivated!',
-                            res.data.message,
-                            'success'
-                        )
-                        window.location.reload();
+                        Swal.fire({
+                            title: "Deactivated!",
+                            text: res.data.message,
+                            icon: "success"
+                          }).then((result)=>{
+                            if(result.isConfirmed){
+                                window.location.reload();
+                            }
+                          });  
                     }
                     else{
                         Swal.fire(
@@ -197,8 +200,8 @@ function DashActiveCampaigns({allCampaigns, campaignError}) {
                     {allCampaigns.length>0 && paginatedCampaigns.length>0
                     ?
                     (<>
-                        <div className="my-1 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 sm:rounded-lg">
-                            <table className="min-w-full table-zebra text-xs lg:text-sm">
+                        <div className="my-1 inline-block w-full overflow-scroll align-middle border-b border-gray-200 sm:rounded-lg">
+                            <table className="w-full table-zebra text-xs lg:text-sm">
                                 {/* head */}
                                 <thead>
                                     <tr>

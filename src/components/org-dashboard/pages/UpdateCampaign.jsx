@@ -139,7 +139,7 @@ function UpdateCampaign() {
                 <form onSubmit={patchCampaign} className="space-y-4">
                     <div className="mb-2">
                         <label htmlFor="campaignName" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
-                            Campaign Name
+                        <span className='text-red-500'>*</span> Campaign Name
                         </label>
                         <input
                             value={campaignData.campaignName}
@@ -151,7 +151,7 @@ function UpdateCampaign() {
                     <div className="grid grid-cols-2 gap-4 mb-2">
                         <div>
                             <label htmlFor="startDate" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
-                                Start Date
+                            <span className='text-red-500'>*</span>Start Date
                             </label>
                             <input
                                 name='startDate'
@@ -164,7 +164,7 @@ function UpdateCampaign() {
 
                         <div>
                             <label htmlFor="endDate" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
-                                End Date
+                            <span className='text-red-500'>*</span> End Date
                             </label>
                             <input
                                 name='endDate'
@@ -178,7 +178,7 @@ function UpdateCampaign() {
 
                     <div className="mb-2">
                         <label htmlFor="category" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
-                            Category
+                        <span className='text-red-500'>*</span> Category
                         </label>
                         <input
                             value={campaignData.category}
@@ -189,7 +189,7 @@ function UpdateCampaign() {
 
                     <div className="mb-4">
                         <label htmlFor="description" className="block font-medium text-gray-700">
-                            Description:
+                        <span className='text-red-500'>*</span> Description:
                         </label>
                         <textarea
                             name="description"

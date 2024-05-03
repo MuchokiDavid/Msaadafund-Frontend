@@ -165,7 +165,6 @@ function Transactions({allCampaigns, campaignError}) {
 
   return (
     <div>
-      <div>
             <div className="text-sm breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li>
@@ -194,7 +193,7 @@ function Transactions({allCampaigns, campaignError}) {
                           onChange={handleFilterChange}
                           value={filter}
                         >
-                          <option className='lg:text-lg sm:text-sm'>Select campaign</option>
+                          <option className='lg:text-lg sm:text-sm'><span className='text-red-500'>*</span>Select campaign</option>
                           {
                             allCampaign.map((camp, i)=>(<option className='lg:text-lg sm:text-sm' key={i}>{camp.campaignName}</option>))
                           }
@@ -275,8 +274,7 @@ function Transactions({allCampaigns, campaignError}) {
                     }
                     
             </div>
-            </div>            
-        </div>
+            </div>     
     </div>
   )
 }

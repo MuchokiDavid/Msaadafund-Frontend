@@ -38,7 +38,7 @@ function HelpCenter() {
             
 
             <div role="tablist" className="tabs tabs-lifted mt-2">
-                <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Campaigns" checked/>
+                <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Campaigns" />
                 <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
                     <div className="collapse collapse-open bg-base-100">
                         <input type="radio" name="my-accordion-3" defaultChecked /> 

@@ -211,7 +211,7 @@ if (!token && !org) {
 // console.log(bank)
 
 return (
-    <div className='mx-3 h-fit sm:h-screen'>
+    <div>
         <div className="text-sm breadcrumbs ml-2">
             <ul>
                 <li><a href='/org/dashboard'>Dashboard</a></li>
@@ -234,7 +234,7 @@ return (
                         : null
                     }
                     <div>
-                        <label className="block font-semibold" htmlFor="name">Campaign</label>
+                        <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Campaign</label>
                         <select
                             onChange={(e) => {
                                 setWalletDetails('');
@@ -256,7 +256,7 @@ return (
                     </div>
 
                     <div className='mt-4'>
-                        <label className="block font-semibold" htmlFor="name">Provider</label>
+                        <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Provider</label>
                         <select className="input input-bordered w-full placeholder-gray-400 bg-gray-100 text-sm"
                             id="name"
                             type="text"
@@ -291,7 +291,7 @@ return (
                     </div>
 
                     <div className="mt-4">
-                        <label className="block font-semibold" htmlFor="name">Account</label>
+                        <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Account</label>
                         <select
                             onChange={(e) => {
                                 setAccountNumber(e.target.value)
@@ -311,7 +311,7 @@ return (
                     </div>
 
                     <div className="mt-4">
-                        <label className="block font-semibold" htmlFor="number">Amount</label>
+                        <label className="block font-semibold" htmlFor="number"><span className='text-red-500'>*</span>Amount</label>
                         <input
                             onChange={(e) => setAmount(e.target.value)}
                             value={amount}
@@ -334,22 +334,22 @@ return (
                         {/* <div className="modal-action"> */}
                         {transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
                         {popupErrors && <p className='text-red-700'>{popupErrors}</p>}
-                        <form onSubmit={handleWithdraw}>
+                        <form className='flex justify-center items-center' onSubmit={handleWithdraw}>
                             <div className='flex-col justify-center items-center pl-4 pr-8'>
                                 <div className='my-4'>
                                     <label className="font-semibold my-3" htmlFor="password">Amount</label>
                                     <input
-                                        className="shadow-inner bg-gray-50 rounded-lg placeholder-gray-400 text-lg p-4 border-none block"
+                                        className="input input-bordered w-full placeholder:bg-slate-400 bg-gray-100"
                                         value={amount}
                                         disabled
                                     />
                                 </div>
                                 <div>
-                                    <label className="font-semibold mb-4" htmlFor="password">Enter Pin</label>
+                                    <label className="font-semibold mb-4" htmlFor="password"><span className='text-red-500'>*</span>Enter Pin</label>
                                     <input
                                         onChange={(e) => setPin(e.target.value)}
                                         value={pin}
-                                        className="shadow-inner bg-gray-50 rounded-lg placeholder-gray-400 text-lg p-4 border-none block"
+                                        className="input input-bordered w-full"
                                         id="pin"
                                         type="password"
                                         placeholder='pin'

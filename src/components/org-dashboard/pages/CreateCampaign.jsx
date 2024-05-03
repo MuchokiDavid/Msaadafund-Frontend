@@ -100,16 +100,16 @@ function CreateCampaign() {
                     <li><a href='/org/dashboard/createcampaign'>Create campaign</a></li> 
                 </ul>
             </div>
-            <h1 className="text-2xl font-semibold mb-3 text-slate-600 dark:text-slate-300">Create campaign</h1>
+            <h1 className="text-2xl font-semibold mb-3 text-slate-600 ">Create campaign</h1>
             <hr className='mb-0'/>
             <div className='flex items-center justify-center w-full'>
                 <div className="mx-auto lg:max-w-screen-lg md:max-w-full sm:max-w-full p-6 rounded-lg bg-transparent text-white sm:w-screen">
-            {/* <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"> */}
+            {/* <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0"> */}
 
                 {error && <p className="text-red-500 mt-4">{error}</p>}
                 <form onSubmit={handleUpload}>
                     <div className="mb-4 ">
-                        <label htmlFor="campaignName" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                        <label htmlFor="campaignName" className="block mb-2 text-sm font-semibold text-slate-600 ">
                             Campaign Name
                         </label>
                         <input
@@ -118,13 +118,13 @@ function CreateCampaign() {
                             value={campaignName}
                             placeholder="Campaign Name"
                             onChange={(e) => setCampaignName(e.target.value)}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             required
                         />
                     </div>
                     <div className="grid grid-cols-2 gap-4 mb-4">
                         <div>
-                            <label htmlFor="startDate" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                            <label htmlFor="startDate" className="block mb-2 text-sm font-semibold text-slate-600 ">
                                 Start Date
                             </label>
                             <input
@@ -132,12 +132,12 @@ function CreateCampaign() {
                                 type="date"
                                 value={startDate}
                                 onChange={(e) => setStartDate(e.target.value)}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 required
                             />
                         </div>
                         <div>
-                            <label htmlFor="endDate" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                            <label htmlFor="endDate" className="block mb-2 text-sm font-semibold text-slate-600 ">
                                 End Date
                             </label>
                             <input
@@ -145,17 +145,17 @@ function CreateCampaign() {
                                 type="date"
                                 value={endDate}
                                 onChange={(e) => setEndDate(e.target.value)}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 required
                             />
                         </div>
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="category" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                        <label htmlFor="category" className="block mb-2 text-sm font-semibold text-slate-600 ">
                             Category
                         </label>
                         <select 
-                        className='bg-gray-50 border h-11 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' 
+                        className='bg-gray-50 border h-11 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5' 
                         onChange={(e)=>setCategory(e.target.value)}>
                         <option className='text-lg' >Select a category</option>
                         <option className='text-lg' value="Education">Education</option>    
@@ -176,12 +176,12 @@ function CreateCampaign() {
                             value={otherCategory}
                             placeholder="Please specify..."
                             onChange={(e) => setOtherCategory(e.target.value)}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-4"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mt-4"
                             required
                         /> : null }
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="targetAmount" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                        <label htmlFor="targetAmount" className="block mb-2 text-sm font-semibold text-slate-600 ">
                             Budget
                         </label>
                         <input
@@ -190,13 +190,13 @@ function CreateCampaign() {
                             value={targetAmount}
                             placeholder="Budget"
                             onChange={(e) => setTargetAmount(e.target.value)}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             required
                         />
                     </div>
                     
                     <div className="mb-4">
-                        <label htmlFor="description" className="block mb-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                        <label htmlFor="description" className="block mb-2 text-sm font-semibold text-slate-600 ">
                             Description
                         </label>
                         <textarea
@@ -204,12 +204,12 @@ function CreateCampaign() {
                             value={description}
                             placeholder="Describe the Campaign "
                             onChange={(e) => setDescription(e.target.value)}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             rows="3"
                             required
                         />
                     </div>
-                    <div className="mt-2 flex justify-center border border-dashed border-gray-300 dark:border-gray-700 px-6 py-10 bg-gray-50 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <div className="mt-2 flex justify-center border border-dashed border-gray-300 px-6 py-10 bg-gray-50 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full p-2.5">
                         <div className="text-center">
                             <div className="mt-4 flex text-sm leading-6 ">
                             <span className="mr-2">{banner ? banner.name : ''}</span>

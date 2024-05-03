@@ -90,7 +90,7 @@ function OrgProfile() {
       <hr className='mb-2 mt-0'/>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-black font-medium">Organization Name</label>
+          <label className="block text-black font-medium"><span className='text-red-500'>*</span>Organization Name</label>
           <input
             name="orgName"
             value={orgData.orgName}
@@ -99,7 +99,7 @@ function OrgProfile() {
           />
         </div>
         <div>
-          <label className="block text-black font-medium">Email Address</label>
+          <label className="block text-black font-medium"><span className='text-red-500'>*</span>Email Address</label>
           <input
             value={orgData.orgEmail}
             disabled
@@ -107,7 +107,7 @@ function OrgProfile() {
           />
         </div>
         <div>
-          <label className="block text-black font-medium">Phone Number</label>
+          <label className="block text-black font-medium"><span className='text-red-500'>*</span>Phone Number</label>
           <input
             name="orgPhoneNumber"
             value={orgData.orgPhoneNumber}
@@ -116,7 +116,7 @@ function OrgProfile() {
           />
         </div>
         <div>
-          <label className="block text-black font-medium">Address</label>
+          <label className="block text-black font-medium"><span className='text-red-500'>*</span>Address</label>
           <input
             name="orgAddress"
             value={orgData.orgAddress}

@@ -44,7 +44,7 @@ function Message() {
             {errors && <p className='text-red-500'>{errors}</p>}
             <form action="#" class="space-y-8" onSubmit={sendEmail}>
                 <div>
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 "><span className='text-red-500'>*</span>Your email</label>
                     <input type="email" 
                     id="email" 
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" 
@@ -53,7 +53,7 @@ function Message() {
                     required/>
                 </div>
                 <div>
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Your name</label>
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900"><span className='text-red-500'>*</span>Your name</label>
                     <input type="name" 
                     id="contact_name" 
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
@@ -62,7 +62,7 @@ function Message() {
                     required/>
                 </div>
                 <div>
-                    <label for="subject" class="block mb-2 text-sm font-medium text-gray-900">Subject</label>
+                    <label for="subject" class="block mb-2 text-sm font-medium text-gray-900"><span className='text-red-500'>*</span>Subject</label>
                     <input type="text" 
                     id="subject" 
                     class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500" 
