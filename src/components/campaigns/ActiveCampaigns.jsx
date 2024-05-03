@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect,useCallback } from 'react';
-import Menus from '../reusables/Menus';
 import Footer from '../reusables/Footer';
 import InActiveCampaigns from './UpcomingCampaigns';
 import { prettyNumber } from '@based/pretty-number'
@@ -125,7 +124,6 @@ function ActiveCampaigns() {
     // console.log(campaigns)
   return (
     <>
-    <Menus/>
     <div className='flex items-center justify-center p-3'>
         <div className="mb-1 flex flex-col sm:flex-row items-center ">
           <div className="relative flex" data-twe-input-wrapper-init data-twe-input-group-ref>
