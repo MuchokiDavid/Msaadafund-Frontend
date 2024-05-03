@@ -1,6 +1,7 @@
 import React from 'react'
 import ActiveCampaigns from '../components/campaigns/ActiveCampaigns'
 import Menus from '../components/reusables/Menus'
+import Footer from '../components/reusables/Footer'
 
 function Campaigns() {
   return (
@@ -13,6 +14,7 @@ function Campaigns() {
           </ul>
       </div>
       <ActiveCampaigns/>
+      <Footer/>
     </div>
   )
 }

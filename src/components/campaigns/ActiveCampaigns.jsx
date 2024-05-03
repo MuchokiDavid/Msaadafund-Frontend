@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect,useCallback } from 'react';
-import Footer from '../reusables/Footer';
 import InActiveCampaigns from './UpcomingCampaigns';
 import { prettyNumber } from '@based/pretty-number'
 
@@ -124,8 +123,8 @@ function ActiveCampaigns() {
     // console.log(campaigns)
   return (
     <>
-    <div className='flex items-center justify-center p-3'>
-        <div className="mb-1 flex flex-col sm:flex-row items-center ">
+    <div className='flex items-center justify-center p-3 bg-slate-50'>
+        <div className="mb-1 flex flex-col sm:flex-row items-center bg-slate-50">
           <div className="relative flex" data-twe-input-wrapper-init data-twe-input-group-ref>
             <label className="input input-bordered flex items-center gap-2 ">
               <input type="text" className="grow" onChange={handleSearchChange} placeholder="Search active campaign..." />
@@ -137,7 +136,7 @@ function ActiveCampaigns() {
             id="categoryFilter"
             onChange={handleCategoryChange}
             value={selectedCategory}
-            className="border text-black rounded-md px-4 py-2 h-12 mb-2 sm:mb-0 sm:mr-4 focus:ring focus:border-blue-100"
+            className="border text-black rounded-md px-4 py-2 h-12 mb-2 sm:mb-0 sm:mr-4 focus:ring focus:border-slate-100"
             style={{ minWidth: '150px' }}
           >
             {categories.map(category => (
@@ -269,7 +268,6 @@ function ActiveCampaigns() {
         <button className="join-item btn btn-outline" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages || totalPages === 0}>Next</button>
       </div>
     </div>
-    <Footer/>
     </>
   )
 }
