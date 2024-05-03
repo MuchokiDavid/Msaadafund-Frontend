@@ -156,7 +156,7 @@ function CampainDetails() {
     return (
         <div>
             <Menus/>
-        <div className='text-black' id='campaign_dets'>
+        <div className='text-black bg-white' id='campaign_dets'>
             <div className="text-md breadcrumbs ml-4">
                 <ul>
                     <li><a href='/'>Home</a></li>

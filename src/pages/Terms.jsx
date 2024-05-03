@@ -6,7 +6,7 @@ function Terms() {
   return (
     <>
     <Menus/>
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 bg-white">
       <h2 className="text-3xl font-bold mb-4">Terms and Conditions</h2>
       <p className="mb-4">Welcome to Msaada! These terms and conditions outline the rules and regulations for the use of Msaada's website and donation platform (hereinafter referred to as "Msaada"). By accessing or using Msaada in any manner, including but not limited to visiting or browsing the website, you agree to be bound by these terms and conditions.</p>
       

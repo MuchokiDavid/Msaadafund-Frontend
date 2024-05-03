@@ -123,8 +123,8 @@ function ActiveCampaigns() {
     // console.log(campaigns)
   return (
     <>
-    <div className='flex items-center justify-center p-3 bg-slate-50'>
-        <div className="mb-1 flex flex-col sm:flex-row items-center bg-slate-50">
+    <div className='flex items-center justify-center p-3 bg-white'>
+        <div className="mb-1 flex flex-col sm:flex-row items-center bg-white">
           <div className="relative flex" data-twe-input-wrapper-init data-twe-input-group-ref>
             <label className="input input-bordered flex items-center gap-2 ">
               <input type="text" className="grow" onChange={handleSearchChange} placeholder="Search active campaign..." />
