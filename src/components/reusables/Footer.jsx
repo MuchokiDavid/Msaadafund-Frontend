@@ -37,6 +37,12 @@ function Footer() {
             </div>
         </nav>
         
+        <nav className='text-white'>
+            <h6 className="footer-title">Legal</h6>
+            <a href='/privacy' className="link link-hover">Privacy policy</a>
+            <a href='/terms' className="link link-hover">Terms of service</a>
+        </nav>
+
     </footer>
     <Copyright/>
     </>
