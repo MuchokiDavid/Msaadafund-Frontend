@@ -7,14 +7,13 @@ import {toast,Toaster} from 'react-hot-toast'
 import Menus from '../components/reusables/Menus';
 import Footer from '../components/reusables/Footer';
 import Featured from '../components/campaigns/Featured';
-import logos from  "../assets/mpesa.jpg";
-import { useNavigate } from 'react-router-dom';
 import { 
 FacebookShareButton,FacebookIcon, 
 WhatsappShareButton,WhatsappIcon,
 TwitterShareButton, TwitterIcon,
 TelegramShareButton,TelegramIcon
 } from 'react-share';
+import Swal from 'sweetalert2';
 
 function CampainDetails() {
     const { campaignId } = useParams();
@@ -69,20 +68,62 @@ function CampainDetails() {
                 setErrors('Invalid Phone Number')
             }
             else {
-                axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,campaignId:campaignId})
-                .then((res)=>{
-                    // console.log(res)
-                    toast.success(res.data.message)
-                setDonationAmount("");
-                setPhoneNum("");
-                setErrors("")
-                setLoading(false)
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: `You are about to send Kes ${amount}!`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Send!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,campaignId:campaignId})
+                        .then((res)=>{{
+                            // console.log(res)
+                            if(res.status===200){    
+                                Swal.fire({
+                                    title: "Check your phone and enter M-pesa pin!",
+                                    text: res.data.message,
+                                    icon: "success"
+                                  }).then((result)=>{
+                                    if(result.isConfirmed){
+                                        window.location.reload();
+                                    }
+                                  });                                                           
+                            }
+                            else{
+                                Swal.fire(
+                                    'Error!',
+                                    'The donation was not successiful. Try again',
+                                    'error'
+                                )
+                            }
+                            
+                            // window.location.reload();
+                        }})
+                        .catch((err)=>{
+                            const errorMsg = err.response?.data?.error || 'An error occurred';
+                            setErrors(errorMsg);
+                        })
+                        
+                    }
                 })
-                .catch ((err)=>{  
-                    console.log(err)   
-                    // get error message from err.response.data.message
-                    toast.error("Donation failed, Try again!")
-                })    
+                
+                // axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,campaignId:campaignId})
+                // .then((res)=>{
+                //     // console.log(res)
+                //     toast.success(res.data.message)
+                // setDonationAmount("");
+                // setPhoneNum("");
+                // setErrors("")
+                // setLoading(false)
+                // })
+                // .catch ((err)=>{  
+                //     console.log(err)   
+                //     // get error message from err.response.data.message
+                //     toast.error("Donation failed, Try again!")
+                // })    
 
             }
            

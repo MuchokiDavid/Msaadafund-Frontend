@@ -25,7 +25,7 @@ function QuickLinks() {
         { icon: FaHome , name: 'Home' ,to:'/'},
         { icon: MdOutlineCampaign, name: 'Add',to:'/org/dashboard/createcampaign' }, 
         { icon: MdOutlineViewCompactAlt, name: 'Campaigns',to:'/org/dashboard/mycampaigns/active' },
-        { icon: FaDonate , name: 'Donations',to:'/org/dashboard/donations' },
+        { icon: FaDonate , name: 'Contributions',to:'/org/dashboard/donations' },
         { icon: FaMoneyBillTrendUp , name: 'Withdraw' ,to:'/org/dashboard/transact/withdraw'},
         { icon: FaPhone , name: 'Buy Airtime' ,to:'/org/dashboard/transact/buyairtime'},
         { icon: GrTransaction , name: 'Transactions',to:'/org/dashboard/transaction' },

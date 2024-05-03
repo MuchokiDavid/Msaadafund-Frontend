@@ -126,8 +126,8 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
         <div>
             <h1 className="font-extrabold text-2xl">Buy Airtime</h1>
             <hr className='mb-2'/>
+            {error && <p className='text-red-600 text-base'>{error}</p>}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {error && <p className='text-red-600 text-base'>{error}</p>}
                 <form ref={formRef}>                    
                     {transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
                     {walletDetails? 
@@ -140,7 +140,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                         : null
                     }
                     <div>
-                        <label className="block font-semibold" htmlFor="name">Campaign</label>
+                        <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Campaign</label>
                         <select 
                         onChange={(e) => {setWalletDetails('');setError(''); setCampaign(e.target.value)}}
                         className='input input-bordered w-full placeholder:bg-slate-400 bg-gray-100' 
@@ -158,7 +158,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                     </div>
 
                     <div className='mt-4'>
-                        <label className="block font-semibold" htmlFor="name">Name</label>
+                        <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Name</label>
                         <input 
                         className="input input-bordered w-full" 
                         id="name" 
@@ -171,7 +171,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                     </div>
 
                     <div className="mt-4">
-                        <label className="block font-semibold" htmlFor="name">Phone Number</label>
+                        <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Phone Number</label>
                         <input 
                         className="input input-bordered w-full" 
                         id="phoneNumber" 
@@ -184,7 +184,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                     </div>
 
                     <div className="mt-4">
-                        <label className="block font-semibold" htmlFor="number">Amount</label>
+                        <label className="block font-semibold" htmlFor="number"><span className='text-red-500'>*</span>Amount</label>
                         <input
                         onChange={(e) => setAmount(e.target.value)}
                         value={amount} 

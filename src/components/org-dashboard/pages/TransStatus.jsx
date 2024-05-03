@@ -40,7 +40,7 @@ function TransStatus() {
         <div className="text-sm breadcrumbs ml-2">
             <ul>
                 <li><a href='/org/dashboard'>Dashboard</a></li>
-                <li><a>Transaction Status</a></li>
+                <li>Transaction Status</li>
             </ul>
         </div>
         <h1 className="font-extrabold text-2xl">Transaction Status</h1>
