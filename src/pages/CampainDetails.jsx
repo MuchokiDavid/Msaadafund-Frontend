@@ -235,15 +235,15 @@ function CampainDetails() {
                                 </div>
                                 {errors && <p className='text-red-600 my-1'>{errors}</p>}
                                 
-                                <div className='flex justify-between'>
+                                <div className='flex justify-start'>
                                     <div>
                                         <button type="submit"
-                                            className='bg-emerald-800 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded mt-4 '>
+                                            className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 '>
                                                 {loading ? "Loading..." : "Submit"}
                                         </button>
                                     </div>
                                     <div>
-                                        <img class="w-18 h-16 mr-2" src ={logos} alt="logo"/>
+                                        <img class="w-18 h-16 ml-12" src ="https://upload.wikimedia.org/wikipedia/commons/1/15/M-PESA_LOGO-01.svg" alt="logo"/>
                                     </div>
                                     
                                 </div>
