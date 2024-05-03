@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from '../../assets/msaadaLogo.png'
 import { useAuth } from '../../context/usersContext'
+import { MdOutlineAccountCircle } from 'react-icons/md'
 
 function Menus() {
     const token=localStorage.getItem('token')
@@ -47,7 +48,13 @@ function Menus() {
                     } */}
                     {token && org? 
                     (<div className="dropdown dropdown-end absolute right-4 sm:z-20">
-                        <div tabIndex={0} role="button" className="text-white border border-blue-600 bg-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log out</div>
+                        {/* <div tabIndex={0} role="button" className="text-white border border-blue-600 bg-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log out</div> */}
+                        <div tabIndex={0} role="button" className="text-xs">
+                            <div className='flex items-center h-10 bg-blue-600 text-white border border-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-xs px-1 py-2.5 text-center'>
+                              <p className='text-wrap '>{org && org}</p>
+                              <MdOutlineAccountCircle className="h-6 w-6 ml-2"/>
+                            </div>
+                        </div>
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                         <li className='hover:bg-slate-300'><a href="/org/dashboard">Go to dashboard</a></li>
                         <li className='hover:bg-slate-300' onClick={logout}><a href='/org/login'>Log out</a></li>
