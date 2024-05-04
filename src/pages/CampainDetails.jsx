@@ -84,8 +84,8 @@ function CampainDetails() {
                             // console.log(res)
                             if(res.status===200){    
                                 Swal.fire({
-                                    title: "Check your phone and enter M-pesa pin!",
-                                    text: res.data.message,
+                                    title: res.data.message,
+                                    text: "Check your phone and enter M-pesa pin!",
                                     icon: "success"
                                   }).then((result)=>{
                                     if(result.isConfirmed){

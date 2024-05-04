@@ -189,7 +189,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                                 <tbody>
                                     {paginatedDonations.map((donation) => {
                                         const user = donors.find(user => user.id === donation.userId);
-                                        const donorName = user ? `${user.firstName} ${user.lastName}` : "Anonymous";
+                                        const donorName = user ? `${user.firstName} ${user.lastName}` : `${donation.donor_name}`;
                                         const campaign = campaigns.find(campaign => campaign.id === donation.campaignId);
                                         const campaignTitle = campaign ? campaign.campaignName : "";
                                         return (

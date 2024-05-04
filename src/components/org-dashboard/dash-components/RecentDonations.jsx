@@ -59,7 +59,7 @@ useEffect(() => {
                   <tbody>
                       {slicedDonations && slicedDonations.map((donation) => {
                           const user = donors && donors.find(user => user.id === donation.userId);
-                          const donorName = user ? `${user.firstName} ${user.lastName}` : "Anonymous";
+                          const donorName = user ? `${user.firstName} ${user.lastName}` : `${donation.donor_name}`;
                           const campaign = campaigns && campaigns.find(campaign => campaign.id === donation.campaignId);
                           const campaignTitle = campaign ? campaign.campaignName : "";
                           return (
