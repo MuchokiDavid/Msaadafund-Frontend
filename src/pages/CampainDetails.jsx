@@ -19,9 +19,8 @@ function CampainDetails() {
     const { campaignId } = useParams();
     const [campaign, setCampaign] = useState(null);
     const [amount, setDonationAmount] = useState(5);
+    const [name, setName]=useState("")
     const [phoneNum, setPhoneNum] = useState("");
-    const [donationForm, setDonationForm] = useState(false);
-    const [submit, setSubmitMessage] = useState();
     const [errors, setErrors] = useState();
     const phonePattern = /^(07|01)\d{8}$/;
     // const  navigate = useNavigate();
@@ -60,8 +59,10 @@ function CampainDetails() {
         const startDate = new Date(campaign.startDate);
         if (currentDate < startDate) {
             toast.error("Campaign has not yet started");
-            setSubmitMessage()
         } else {
+            let orgsnt= campaign.organisation.orgName
+            let donorName= name ? name: "Anonymous"
+            console.log(donorName)
             let phoneNo = phoneNum.replace(/^0+/, '');
             let phoneNumber = "254" + phoneNo;
             if (!phoneNum.match(phonePattern)) {
@@ -70,7 +71,7 @@ function CampainDetails() {
             else {
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: `You are about to send Kes ${amount}!`,
+                    text: `You are about to send Kes ${amount} to ${orgsnt}!`,
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -78,7 +79,7 @@ function CampainDetails() {
                     confirmButtonText: 'Yes, Send!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,campaignId:campaignId})
+                        axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,donorName,campaignId:campaignId})
                         .then((res)=>{{
                             // console.log(res)
                             if(res.status===200){    
@@ -234,9 +235,21 @@ function CampainDetails() {
                                     <p className="mb-4">Please fill in the form to donate to this campaign.</p>
                                     </div>
                                     <div className='flex-col justify-center items-center'>
+                                        <div>
+                                            <label className=' text-black'>Name</label>
+                                            <input
+                                                type="text"
+                                                id="donor"
+                                                placeholder='eg Stehen maina'
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
+                                                className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                // required
+                                            />
+                                        </div>
                                 
                                         <div>
-                                            <label className=' text-black'>Phone Number</label> 
+                                            <label className=' text-black'><span className='text-red-500'>*</span>Phone Number</label> 
                                             <input
                                                 type="tel"
                                                 id="phoneNumber"
@@ -258,7 +271,7 @@ function CampainDetails() {
                                         </div>
 
                                         <div>
-                                            <label className=' text-black'>Donation Amount</label>
+                                            <label className=' text-black'><span className='text-red-500'>*</span>Donation Amount</label>
                                             <input
                                                 type="number"
                                                 id="donationAmount"
@@ -289,7 +302,7 @@ function CampainDetails() {
                                     
                                 </div>
                                 <div className='mt-3 flex justify-left'>
-                                    <p className='text-red-700'>After submitting please check your phone to authorize Mpesa charge. Enter PIN to complete transaction</p>
+                                    <p className='text-success'>Money contributed is sent directly to the creator of the campaign</p>
                                 </div>
                             </form>
                             <div className='flex justify-between mx-4'>
