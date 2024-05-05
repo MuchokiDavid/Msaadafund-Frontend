@@ -9,10 +9,11 @@ function DashboardNav({toggleSidebar}) {
     // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
   let current_org= localStorage.getItem('org');
   let token=localStorage.getItem("token");
+  let org= localStorage.getItem("org");
   const {logout} = useAuth();
 
   
-  if(!token){
+  if(!token && !org){
       window.location.replace("/org/login")
   }
 
@@ -22,7 +23,7 @@ function DashboardNav({toggleSidebar}) {
   };
 
   return (
-    <div className='w-screen'>
+    <div className='w-full'>
         <nav className="bg-slate-700 text-white flex justify-between items-center py-2 w-full">
           <div className="flex items-center ml-3">
             <button onClick={toggleSidebar} className="text-white focus:outline-none font-bold">
