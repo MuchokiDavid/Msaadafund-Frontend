@@ -27,9 +27,14 @@ function CampainDetails() {
     const [loading, setLoading]= useState(false)
     // const currentlWebUrl= window.location.href
     const currentlWebUrl= `https://joker.vercel.app${window.location.pathname}`
+    const [subscribe, setSubscribe] = useState(false)
+    const [org_id, setOrg_id] = useState(null)
+
+// to check the subscription state
+   
 
     useEffect(() => {
-        // Fetch campaign details using campaignId
+      
         const fetchCampaign= ()=>{
             setLoading(true)
             fetch(`/api/v1.0/campaign/${campaignId}`)
@@ -37,6 +42,10 @@ function CampainDetails() {
             .then(data => {
                 setLoading(false)
                 setCampaign(data);
+                const org_id = data.organisation.id
+                setOrg_id(org_id)
+                 // get user details
+               
             })
             .catch(error => console.error('Error fetching campaign details:', error));
         }
@@ -48,9 +57,101 @@ function CampainDetails() {
 
     }, [campaignId]);
 
+    useEffect(() => {
+        const accessToken = localStorage.getItem('token');
+        if (!accessToken) {
+            console.log('Token not found');
+            return;
+        }
+    
+        const fetchSubscription = async () => {
+            try {
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`
+                    }
+                };
+                const response = await axios.get(`/api/v1.0/subscription/${org_id}`, config);
+                console.log(response.data);
+                setSubscribe(true);
+            } catch (error) {
+                const errorMsg = error.response?.data?.error || 'An error occurred';
+                console.error(errorMsg);
+                setSubscribe(false);
+            }
+        };
+    
+        fetchSubscription();
+    }, [org_id]);
+    
+    const handleSubscribe = async (e) => {
+        e.preventDefault();
+        try {
+            const users = localStorage.getItem('user');
+            if (!users) {
+                setTimeout(() => {
+                    toast.error("Login to subscribe");
+                    window.location.replace('/user/login');
+                }, 1000);
+                return;
+            }
+            
+            const accessToken = localStorage.getItem('token');
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            };
+            const response = await axios.post(`/api/v1.0/subscription/${org_id}`, {}, config);
+            if(response.status===200){    
+                Swal.fire({
+                    title: "Subscription Successful",
+                    text: `You have successfully subscribed to receive updates from ${campaign.organisation.orgName}. Stay tuned for the latest news and updates from our organization. Thank you for your subscription!`,
+                    icon: "success"
+                  }).then((result)=>{
+                    if(result.isConfirmed){
+                        window.location.reload();
+                    }
+                  });                                                           
+            }
+           
+        } catch (error) {
+            const errorMsg = error.response?.data?.error || 'An error occurred';
+            setErrors(errorMsg);
+            // setSubscribe(false);
+        }
+    };
+    
+    const handleUnsubscribe = async (e) => {
+        e.preventDefault();
+        try {
+            const accessToken = localStorage.getItem('token');
+            if (!accessToken) {
+                console.log('Token not found');
+                return;
+            }
+    
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            };
+            const response = await axios.delete(`/api/v1.0/subscription/${org_id}`, config);
+            console.log(response.data);
+            toast.success('Successfully unsubscribed');
+            setSubscribe(false);
+        } catch (error) {
+            const errorMsg = error.response?.data?.error || 'An error occurred';
+            console.error(errorMsg);
+            setSubscribe(false);
+        }
+    };
+    
+
     if (!campaign) {
         return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>;
     }
+
 
     const handleDonateButton = (e) => {
         e.preventDefault();
@@ -110,7 +211,8 @@ function CampainDetails() {
                         
                     }
                 })
-                
+
+            
                 // axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,campaignId:campaignId})
                 // .then((res)=>{
                 //     // console.log(res)
@@ -194,7 +296,11 @@ function CampainDetails() {
         }
         return totalAmount;
     }
-    // console.log(campaign)
+
+
+
+  
+       
 
     return (
         <div>
@@ -346,8 +452,21 @@ function CampainDetails() {
                             <p>About</p>
                             <p className='text-xl'>{campaign.organisation.orgDescription ? campaign.organisation.orgDescription : 'Currently not available'}</p>
                         </div>
+                        <div>
+                        {/* subscribe button */}
+                        <div>
+                {/* Render subscribe/unsubscribe button based on subscription status */}
+                            {subscribe ? (
+                                <button className='btn btn-warning' onClick={handleUnsubscribe}>Unsubscribe</button>
+                            ) : (
+                                <button className='btn btn-success' onClick={handleSubscribe}>Subscribe</button>
+                            )}
+                        </div>
+
+                         </div>
                     </div>
                 </div>
+               
                    
                 </div>
                 
