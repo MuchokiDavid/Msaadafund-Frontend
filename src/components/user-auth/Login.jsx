@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAuth } from '../../context/usersContext'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react'
 import Menus from '../reusables/Menus';
 import Footer from '../reusables/Footer';
@@ -12,7 +12,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const login = (e) =>{
     e.preventDefault();
@@ -21,8 +21,7 @@ function Login() {
 
   if (isLoggedIn) {
     setTimeout(() => {
-      alert("I am now loged in")
-      // navigate('/dashboard')
+      navigate('/user/dashboard')
     }, 2000);
     
   }

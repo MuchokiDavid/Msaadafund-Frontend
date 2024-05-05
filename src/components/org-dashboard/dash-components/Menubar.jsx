@@ -15,7 +15,7 @@ import { FaDonate } from "react-icons/fa";
 
 
 
-function Menubar({isOpen, toggleSidebar, handleMenuItemClick}) {
+function Menubar({handleMenuItemClick}) {
   // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
   const {logout} = useAuth();
   const token = localStorage.getItem('token');
