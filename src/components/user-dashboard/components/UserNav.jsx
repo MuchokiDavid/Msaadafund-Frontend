@@ -17,7 +17,7 @@ function UserNav({toggleSidebar}) {
 
     const handleLogout = () => {
         logout()
-        navigate("/user/login")
+        window.location.replace("/user/login")
     }
   return (
     <div className='w-full'>
