@@ -11,7 +11,7 @@ import { MdOutlineSubscriptions } from "react-icons/md";
 import { IoMdHelpCircle } from 'react-icons/io';
 
 
-function Usermenubar({ handleMenuItemClick }) {
+function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
   const { logout } = useAuth();
   const token= localStorage.getItem('token')
   const user= localStorage.getItem('user')
