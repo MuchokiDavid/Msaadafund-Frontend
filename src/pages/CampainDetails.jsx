@@ -92,7 +92,7 @@ function CampainDetails() {
                 setTimeout(() => {
                     toast.error("Login to subscribe");
                     window.location.replace('/user/login');
-                }, 1000);
+                }, 2000);
                 return;
             }
             
@@ -115,12 +115,12 @@ function CampainDetails() {
                   });                                                           
             }
            
-        } catch (error) {
-            const errorMsg = error.response?.data?.error || 'An error occurred';
-            setErrors(errorMsg);
-            // setSubscribe(false);
-        }
-    };
+                } catch (error) {
+                    const errorMsg = error.response?.data?.error || 'An error occurred';
+                    setErrors(errorMsg);
+                    // setSubscribe(false);
+                }
+            };
     
     const handleUnsubscribe = async (e) => {
         e.preventDefault();
@@ -137,8 +137,17 @@ function CampainDetails() {
                 }
             };
             const response = await axios.delete(`/api/v1.0/subscription/${org_id}`, config);
-            console.log(response.data);
-            toast.success('Successfully unsubscribed');
+            if(response.status===200){    
+                Swal.fire({
+                    title: `Unsubscribed from ${campaign.organisation.orgName} Updates`,
+                    text: `You have successfully unsubscribed from updates from ${campaign.organisation.orgName}. If you change your mind, you can always subscribe later. Thank you for your support.`,
+                    icon: "success"
+                  }).then((result)=>{
+                    if(result.isConfirmed){
+                        window.location.reload();
+                    }
+                  });                                                           
+            }
             setSubscribe(false);
         } catch (error) {
             const errorMsg = error.response?.data?.error || 'An error occurred';
@@ -315,7 +324,7 @@ function CampainDetails() {
             </div>
             <div className="container mx-auto">
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
-                    <div class="lg:p-1">
+                    <div className="lg:p-1">
                         {/* Campaign details */}
                         <div className="card card-side bg-base-100 grid grid-cols-1 rounded-lg p-4 h-full">
                             <h1 className="text-2xl font-bold mb-4">{campaign.campaignName.toUpperCase()}</h1>
@@ -333,7 +342,7 @@ function CampainDetails() {
                             </div>
                         </div>
                     </div>
-                    <div class="lg:p-2">
+                    <div className="lg:p-2">
                         <div className='bg-base-100 h-full rounded-lg lg:py-3'> 
                             <form onSubmit={handleDonateButton} className='px-8'>
                                 <div className='text-black'>
@@ -404,7 +413,7 @@ function CampainDetails() {
                                         </button>
                                     </div>
                                     <div>
-                                        <img class="w-18 h-16 ml-12" src ="https://upload.wikimedia.org/wikipedia/commons/1/15/M-PESA_LOGO-01.svg" alt="logo"/>
+                                        <img className="w-18 h-16 ml-12" src ="https://upload.wikimedia.org/wikipedia/commons/1/15/M-PESA_LOGO-01.svg" alt="logo"/>
                                     </div>
                                     
                                 </div>
@@ -457,7 +466,7 @@ function CampainDetails() {
                         <div>
                 {/* Render subscribe/unsubscribe button based on subscription status */}
                             {subscribe ? (
-                                <button className='btn btn-warning' onClick={handleUnsubscribe}>Unsubscribe</button>
+                                <button className='btn btn-warning' onClick={handleUnsubscribe}>UnSubscribe</button>
                             ) : (
                                 <button className='btn btn-success' onClick={handleSubscribe}>Subscribe</button>
                             )}
