@@ -7,6 +7,7 @@ import {toast,Toaster} from 'react-hot-toast'
 import Menus from '../components/reusables/Menus';
 import Footer from '../components/reusables/Footer';
 import Featured from '../components/campaigns/Featured';
+
 import { 
 FacebookShareButton,FacebookIcon, 
 WhatsappShareButton,WhatsappIcon,
@@ -14,6 +15,7 @@ TwitterShareButton, TwitterIcon,
 TelegramShareButton,TelegramIcon
 } from 'react-share';
 import Swal from 'sweetalert2';
+import { useAuth } from '../context/usersContext';
 
 function CampainDetails() {
     const { campaignId } = useParams();
@@ -23,12 +25,20 @@ function CampainDetails() {
     const [phoneNum, setPhoneNum] = useState("");
     const [errors, setErrors] = useState();
     const phonePattern = /^(07|01)\d{8}$/;
+    const [username, setUserName]= useState("")
+    const [password, setPassword]= useState("")
+    const {userLogin, loginMessage, logout} = useAuth();
+    const [showModal, setShowModal] = useState(false);
+
     // const  navigate = useNavigate();
     const [loading, setLoading]= useState(false)
     // const currentlWebUrl= window.location.href
     const currentlWebUrl= `https://joker.vercel.app${window.location.pathname}`
     const [subscribe, setSubscribe] = useState(false)
     const [org_id, setOrg_id] = useState(null)
+    const users = localStorage.getItem('user');
+    const accessToken = localStorage.getItem('token');
+    const org=  localStorage.getItem('org')
 
 // to check the subscription state
    
@@ -58,12 +68,6 @@ function CampainDetails() {
     }, [campaignId]);
 
     useEffect(() => {
-        const accessToken = localStorage.getItem('token');
-        if (!accessToken) {
-            console.log('Token not found');
-            return;
-        }
-    
         const fetchSubscription = async () => {
             try {
                 const config = {
@@ -72,7 +76,7 @@ function CampainDetails() {
                     }
                 };
                 const response = await axios.get(`/api/v1.0/subscription/${org_id}`, config);
-                console.log(response.data);
+                // console.log(response.data);
                 setSubscribe(true);
             } catch (error) {
                 const errorMsg = error.response?.data?.error || 'An error occurred';
@@ -82,79 +86,159 @@ function CampainDetails() {
         };
     
         fetchSubscription();
-    }, [org_id]);
+    }, [org_id, accessToken, users]);
+
+    // if (!accessToken && !users) {
+    //     console.log('Token not found');
+    //     window.location.replace('/user/login')
+    //     return;
+    // }
+
+    //Login user in order to subscribe
+    const handleLogin = async (e) =>{
+        e.preventDefault();
+        await userLogin(username, password);
+        if (loginMessage.slice(0,6)==="Welcome") {
+            handleSubscribe()
+        }
+    }
+    //Set unsubscribed if org is logged in
+    useEffect(() => {
+        if (org && accessToken) {
+            setSubscribe(false);            
+        }
+    }, [])
+
     
     const handleSubscribe = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         try {
-            const users = localStorage.getItem('user');
-            if (!users) {
+
+            if(org && accessToken){
+                logout()
+                setShowModal(true)
+                // window.location.reload()
+            }
+            
+            
+            if (!users && !accessToken) {
                 setTimeout(() => {
-                    toast.error("Login to subscribe");
-                    window.location.replace('/user/login');
+                    // toast.error("Login to subscribe");
+                    // window.location.replace('/user/login');
+                    setShowModal(true);
                 }, 2000);
                 return;
             }
-            
-            const accessToken = localStorage.getItem('token');
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`
-                }
-            };
-            const response = await axios.post(`/api/v1.0/subscription/${org_id}`, {}, config);
-            if(response.status===200){    
-                Swal.fire({
-                    title: "Subscription Successful",
-                    text: `You have successfully subscribed to receive updates from ${campaign.organisation.orgName}. Stay tuned for the latest news and updates from our organization. Thank you for your subscription!`,
-                    icon: "success"
-                  }).then((result)=>{
-                    if(result.isConfirmed){
-                        window.location.reload();
+            if (accessToken && users){
+                setShowModal(false)
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`
                     }
-                  });                                                           
-            }
+                };
+                const response = await axios.post(`/api/v1.0/subscription/${org_id}`, {}, config);
+                if(response.status===200){    
+                    Swal.fire({
+                        title: "Subscription Successful",
+                        text: `You have successfully subscribed to receive updates from ${campaign.organisation.orgName}.Thank you for your subscription!`,
+                        icon: "success"
+                    }).then((result)=>{
+                        if(result.isConfirmed){
+                            window.location.reload();
+                        }
+                    });                                                           
+                }
            
-                } catch (error) {
+            }        
+            } catch (error) {
                     const errorMsg = error.response?.data?.error || 'An error occurred';
                     setErrors(errorMsg);
                     // setSubscribe(false);
                 }
             };
-    
-    const handleUnsubscribe = async (e) => {
-        e.preventDefault();
-        try {
-            const accessToken = localStorage.getItem('token');
-            if (!accessToken) {
-                console.log('Token not found');
-                return;
-            }
-    
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`
-                }
-            };
-            const response = await axios.delete(`/api/v1.0/subscription/${org_id}`, config);
-            if(response.status===200){    
+
+            const handleUnsubscribe = async (e) => {
+                e.preventDefault();
+                const orgsnt = campaign.organisation.orgName
                 Swal.fire({
-                    title: `Unsubscribed from ${campaign.organisation.orgName} Updates`,
-                    text: `You have successfully unsubscribed from updates from ${campaign.organisation.orgName}. If you change your mind, you can always subscribe later. Thank you for your support.`,
-                    icon: "success"
-                  }).then((result)=>{
-                    if(result.isConfirmed){
-                        window.location.reload();
+                    title: 'Are you sure?',
+                    text: `You are about to unsudscribe from ${orgsnt}!`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Send!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        try {
+                            // const accessToken = localStorage.getItem('token');
+                            if (!accessToken && !users) {
+                                // console.log('Token not found')
+                                return;
+                            }
+                    
+                            const config = {
+                                headers: {
+                                    Authorization: `Bearer ${accessToken}`
+                                }
+                            };
+                            const response = axios.delete(`/api/v1.0/subscription/${org_id}`, config);
+                            if(response.status===200){   
+                                Swal.fire({
+                                    title: `Unsubscribed from ${campaign.organisation.orgName} Updates`,
+                                    text: `You have successfully unsubscribed from updates from ${campaign.organisation.orgName}. If you change your mind, you can always subscribe later. Thank you for your support.`,
+                                    icon: "success"
+                                }).then((result)=>{
+                                    if(result.isConfirmed){
+                                        window.location.reload();
+                                    }
+                                });                                                           
+                            }
+                            setSubscribe(false);
+                        } catch (error) {
+                            const errorMsg = error.response?.data?.error || 'An error occurred';
+                            console.error(errorMsg);
+                            setSubscribe(false);
+                        }
                     }
-                  });                                                           
-            }
-            setSubscribe(false);
-        } catch (error) {
-            const errorMsg = error.response?.data?.error || 'An error occurred';
-            console.error(errorMsg);
-            setSubscribe(false);
-        }
-    };
+                });
+            };
+            
+    
+    // const handleUnsubscribe = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         // const accessToken = localStorage.getItem('token');
+    //         if (!accessToken && !users) {
+    //             // console.log('Token not found')
+    //             return;
+    //         }
+    
+    //         const config = {
+    //             headers: {
+    //                 Authorization: `Bearer ${accessToken}`
+    //             }
+    //         };
+    //         const response = await axios.delete(`/api/v1.0/subscription/${org_id}`, config);
+    //         if(response.status===200){   
+                 
+    //             Swal.fire({
+    //                 title: `Unsubscribed from ${campaign.organisation.orgName} Updates`,
+    //                 text: `You have successfully unsubscribed from updates from ${campaign.organisation.orgName}. If you change your mind, you can always subscribe later. Thank you for your support.`,
+    //                 icon: "success"
+    //               }).then((result)=>{
+    //                 if(result.isConfirmed){
+    //                     window.location.reload();
+    //                 }
+    //               });                                                           
+    //         }
+    //         setSubscribe(false);
+    //     } catch (error) {
+    //         const errorMsg = error.response?.data?.error || 'An error occurred';
+    //         console.error(errorMsg);
+    //         setSubscribe(false);
+    //     }
+    // };
     
 
     if (!campaign) {
@@ -221,24 +305,8 @@ function CampainDetails() {
                     }
                 })
 
-            
-                // axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,campaignId:campaignId})
-                // .then((res)=>{
-                //     // console.log(res)
-                //     toast.success(res.data.message)
-                // setDonationAmount("");
-                // setPhoneNum("");
-                // setErrors("")
-                // setLoading(false)
-                // })
-                // .catch ((err)=>{  
-                //     console.log(err)   
-                //     // get error message from err.response.data.message
-                //     toast.error("Donation failed, Try again!")
-                // })    
 
-            }
-           
+            }           
         }
     };
 
@@ -314,7 +382,7 @@ function CampainDetails() {
     return (
         <div>
             <Menus/>
-        <div className='text-black bg-white' id='campaign_dets'>
+        <div className='text-black bg-white min-h-screen' id='campaign_dets'>
             <div className="text-md breadcrumbs ml-4">
                 <ul>
                     <li><a href='/'>Home</a></li>
@@ -323,17 +391,33 @@ function CampainDetails() {
                 </ul>
             </div>
             <div className="container mx-auto">
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
+                {/* <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'> */}
+                <div className=''>
                     <div className="lg:p-1">
                         {/* Campaign details */}
                         <div className="card card-side bg-base-100 grid grid-cols-1 rounded-lg p-4 h-full">
                             <h1 className="text-2xl font-bold mb-4">{campaign.campaignName.toUpperCase()}</h1>
-                            <figure className="overflow-hidden"> <img className="h-80" src={campaign.banner} alt={campaign.campaignName} /></figure> 
+                            <figure className="overflow-hidden w-5/6"> <img className="h-96" src={campaign.banner} alt={campaign.campaignName} /></figure> 
                             <div className="p-2">
-                                
-                                <div className='mt-0'>
-                                    <h1 className=' text-lg font-semibold'>Agenda</h1>
-                                    <p className="text-gray-600">{campaign.category.toUpperCase()}</p>
+                                <div className='my-2'>
+                                    {/* <h1 className=' text-lg font-semibold'>Agenda</h1> */}
+                                    <p className="text-blue-600">{campaign.category.toUpperCase()}</p>
+                                </div>
+                                <div className='my-2'>
+                                    <div className='flex justify-start items-center'>
+                                        <div>
+                                            <p className='text-xl'><span className='font-light'>Organised by </span>{campaign.organisation.orgName}</p>
+                                        </div>
+                                        <div className='ml-4'>
+
+                                            {subscribe ? (
+                                                <button className='bg-blue-600 border hover:bg-transparent hover:border-blue-600 border-blue-600 hover:text-black text-white font-bold py-2 px-4 rounded' onClick={handleUnsubscribe}>Subscribed</button>
+                                            ) : (
+                                                <button className='bg-blue-600 border hover:bg-transparent hover:border-blue-600 border-blue-600 hover:text-black text-white font-bold py-2 px-4 rounded' onClick={handleSubscribe}>Subscribe</button>
+                                            )}
+
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className='mt-1'>
                                     <p className=" text-red-500 font-semibold">{handleDays()} Days left</p>
@@ -344,27 +428,27 @@ function CampainDetails() {
                     </div>
                     <div className="lg:p-2">
                         <div className='bg-base-100 h-full rounded-lg lg:py-3'> 
-                            <form onSubmit={handleDonateButton} className='px-8'>
+                            <form onSubmit={handleDonateButton} className='px-8 bg-slate-50 py-3'>
                                 <div className='text-black'>
                                     <h1 className="text-xl font-medium mt-3">Donation Form</h1>
                                 
-                                    <p className="mb-4">Please fill in the form to donate to this campaign.</p>
+                                    <p className="mb-2">Please fill in the form to donate to this campaign.</p>
                                     </div>
                                     <div className='flex-col justify-center items-center'>
                                         <div>
-                                            <label className=' text-black'>Name</label>
+                                            <label className=' text-black'>Personal Details</label>
                                             <input
                                                 type="text"
                                                 id="donor"
-                                                placeholder='eg Stehen maina'
+                                                placeholder='Your Name (Optional)'
                                                 value={name}
                                                 onChange={(e) => setName(e.target.value)}
-                                                className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white w-3/4"
                                                 // required
                                             />
                                         </div>
                                 
-                                        <div>
+                                        <div className='my-3'>
                                             <label className=' text-black'><span className='text-red-500'>*</span>Phone Number</label> 
                                             <input
                                                 type="tel"
@@ -375,18 +459,18 @@ function CampainDetails() {
                                                 onChange={(e) => {
                                                     setPhoneNum(e.target.value);
                                                 }}
-                                                className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                className="block w-3/4 text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
                                                 required
                                             />
                                         </div>
-                                        <div className='flex justify-start items-center my-3'>
+                                        <div className='flex justify-start items-center'>
                                             <button onClick={(e)=>{ e.preventDefault(); setDonationAmount(100)}} className='p-2 rounded-xl border border-blue-600 mr-3 hover:text-white hover:bg-blue-600'>100</button>
                                             <button onClick={(e)=>{e.preventDefault(); setDonationAmount(300)}} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>300</button>
                                             <button onClick={(e)=> {e.preventDefault(); setDonationAmount(500)}} className='p-2 rounded-xl border border-blue-600 mx-3 hover:text-white hover:bg-blue-600'>500</button>
                                             <button onClick={(e)=> {e.preventDefault(); setDonationAmount(1000)}} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>1000</button>
                                         </div>
 
-                                        <div>
+                                        <div className='my-3'>
                                             <label className=' text-black'><span className='text-red-500'>*</span>Donation Amount</label>
                                             <input
                                                 type="number"
@@ -394,7 +478,7 @@ function CampainDetails() {
                                                 placeholder='Enter amount'
                                                 value={amount}
                                                 onChange={(e) => setDonationAmount(e.target.value)}
-                                                className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                className="block w-3/4 text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
                                                 required
                                             />
                                         </div>
@@ -408,8 +492,8 @@ function CampainDetails() {
                                 <div className='flex justify-start'>
                                     <div>
                                         <button type="submit"
-                                            className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 '>
-                                                {loading ? "Loading..." : "Submit"}
+                                            className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 w-48 h-12 rounded mt-4 '>
+                                                {loading ? "Submitting..." : "Submit"}
                                         </button>
                                     </div>
                                     <div>
@@ -417,9 +501,9 @@ function CampainDetails() {
                                     </div>
                                     
                                 </div>
-                                <div className='mt-3 flex justify-left'>
-                                    <p className='text-success'>Money contributed is sent directly to the creator of the campaign</p>
-                                </div>
+                                {/* <div className='mt-3 flex justify-left'>
+                                    <p className='text-success'>Contributions are sent directly to the creator of the campaign</p>
+                                </div> */}
                             </form>
                             <div className='flex justify-between mx-4'>
                                 {/* <div className='px-6 pt-6'>
@@ -442,8 +526,14 @@ function CampainDetails() {
 
                     </div>
                 </div> 
+                
+                <div className='my-4'>
+                    <h1 className='text-xl font-bold'>Campaign Details</h1>
+                    <p className='text-gray-600'>{campaign.description}</p>
+                </div>
+                
 
-                <div className='mt-6 bg-base-100 p-4 rounded-lg'>
+                {/* <div className='mt-6 bg-base-100 p-4 rounded-lg'>
                 <div role="tablist" className="tabs tabs-lifted tabs-lg">
                     <input type="radio" name="my_tabs_2" role="tab" className="tab text-xl font-semibold w-fit" aria-label="Description" checked/>
                     <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
@@ -454,30 +544,33 @@ function CampainDetails() {
                     <input type="radio" name="my_tabs_2" role="tab" className="tab text-xl font-semibold" aria-label="Organiser"/>
                     <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
                         <div>
-                            <p>Name</p>
-                            <p className='text-xl mb-3'>{campaign.organisation.orgName}</p>
+                            <div className='flex justify-start'>
+                                <div>
+                                    <p>Organiser</p>
+                                    <p className='text-xl mb-3'>{campaign.organisation.orgName}</p>
+                                </div>
+                                
+                                
+                                <div className='ml-8'>
+                               
+                                    {subscribe ? (
+                                        <button className='btn btn-success' onClick={handleUnsubscribe}>Subscribed</button>
+                                    ) : (
+                                        <button className='btn btn-primary btn-outline h-3' onClick={handleSubscribe}>Subscribe</button>
+                                    )}
+                                </div>
+                            </div>
                             <p>Address</p>
                             <p className='text-xl mb-3'>{campaign.organisation.orgAddress}</p>
                             <p>About</p>
                             <p className='text-xl'>{campaign.organisation.orgDescription ? campaign.organisation.orgDescription : 'Currently not available'}</p>
                         </div>
-                        <div>
-                        {/* subscribe button */}
-                        <div>
-                {/* Render subscribe/unsubscribe button based on subscription status */}
-                            {subscribe ? (
-                                <button className='btn btn-warning' onClick={handleUnsubscribe}>UnSubscribe</button>
-                            ) : (
-                                <button className='btn btn-success' onClick={handleSubscribe}>Subscribe</button>
-                            )}
-                        </div>
-
-                         </div>
+                        
                     </div>
                 </div>
                
                    
-                </div>
+                </div> */}
                 
 
                     {/* </Popup> */}               
@@ -486,7 +579,45 @@ function CampainDetails() {
            <Featured/>
             
         </div>
-       
+        <dialog open={showModal} onClose={() => setShowModal(false)} className="modal flex-row justify-center items-center text-center">
+                    <div className="modal-box">
+                        <h3 className="font-bold text-lg">Please Log in</h3>
+                        {/* <div className="modal-action"> */}
+                        {loginMessage&& <p className='text-red-500'>{loginMessage}</p>}
+                        <form className='flex justify-center items-center' onSubmit={handleLogin}>
+                            <div className='flex-col justify-center items-center pl-4 pr-8'>
+                                <div className='my-4'>
+                                    <label className="font-semibold my-3" htmlFor="password">Username or E-Mail</label>
+                                    <input
+                                        className="input input-bordered w-full placeholder:bg-slate-400 bg-gray-100"
+                                        onChange={(e) => setUserName(e.target.value)}
+                                        value={username}
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label className="font-semibold mb-4" htmlFor="password"><span className='text-red-500'>*</span>Enter Pin</label>
+                                    <input
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        value={password}
+                                        className="input input-bordered w-full"
+                                        id="pin"
+                                        type="password"
+                                        placeholder='password'
+                                        name="pin"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <button type='submit' className="btn my-4">Log in</button>
+                                </div>
+                            </div>
+                        </form>
+                        <button onClick={() => { setShowModal(false)}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+
+                        {/* </div> */}
+                    </div>
+                </dialog>
         <Footer/>
         </div>
 
