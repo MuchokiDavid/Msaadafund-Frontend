@@ -14,6 +14,7 @@ function CreateCampaign() {
     const [error, setError] = useState('');
     const[loading,setLoading]=useState(false)
     const [otherCategory, setOtherCategory] = useState('');
+    const [youtubeLink,setYoutubeLink]=useState('')
 
 
     const handleFileUpload = (e) => {
@@ -43,6 +44,7 @@ function CreateCampaign() {
         formData.append('startDate', formatDate(startDate)); // Format start date
         formData.append('endDate', formatDate(endDate)); // Format end date
         formData.append('targetAmount', targetAmount);
+        formData.append('youtubeLink', youtubeLink);
         if(category==='Other'){
           formData.append('category',otherCategory)  
         }
@@ -75,6 +77,7 @@ function CreateCampaign() {
                 setEndDate('');
                 setTargetAmount('');
                 setCategory('');
+                setYoutubeLink('')
             })
             .catch((err) => {
                 console.log(err);
@@ -107,10 +110,11 @@ function CreateCampaign() {
             {/* <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0"> */}
 
                 {error && <p className="text-red-500 mt-4">{error}</p>}
+                <p className='text-gray-600'>Inputs with <span className='text-red-500'>*</span> are compulsory</p>
                 <form onSubmit={handleUpload}>
-                    <div className="mb-4 ">
+                    <div className="mb-4 mt-3">
                         <label htmlFor="campaignName" className="block mb-2 text-sm font-semibold text-slate-600 ">
-                            Campaign Name
+                           <span className='text-red-500'>*</span> Campaign Name
                         </label>
                         <input
                             // id="campaignName"
@@ -125,7 +129,7 @@ function CreateCampaign() {
                     <div className="grid grid-cols-2 gap-4 mb-4">
                         <div>
                             <label htmlFor="startDate" className="block mb-2 text-sm font-semibold text-slate-600 ">
-                                Start Date
+                            <span className='text-red-500'>*</span>Start Date
                             </label>
                             <input
                                 id="startDate"
@@ -138,7 +142,7 @@ function CreateCampaign() {
                         </div>
                         <div>
                             <label htmlFor="endDate" className="block mb-2 text-sm font-semibold text-slate-600 ">
-                                End Date
+                            <span className='text-red-500'>*</span>End Date
                             </label>
                             <input
                                 id="endDate"
@@ -152,7 +156,7 @@ function CreateCampaign() {
                     </div>
                     <div className="mb-4">
                         <label htmlFor="category" className="block mb-2 text-sm font-semibold text-slate-600 ">
-                            Category
+                        <span className='text-red-500'>*</span> Category
                         </label>
                         <select 
                         className='bg-gray-50 border h-11 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5' 
@@ -182,7 +186,7 @@ function CreateCampaign() {
                     </div>
                     <div className="mb-4">
                         <label htmlFor="targetAmount" className="block mb-2 text-sm font-semibold text-slate-600 ">
-                            Budget
+                        <span className='text-red-500'>*</span> Budget
                         </label>
                         <input
                             id="targetAmount"
@@ -194,10 +198,25 @@ function CreateCampaign() {
                             required
                         />
                     </div>
+
+                    <div className="mb-4">
+                        <label htmlFor="targetAmount" className="block mb-2 text-sm font-semibold text-slate-600 ">
+                            Vedio link
+                        </label>
+                        <input
+                            id="youtube"
+                            type="text"
+                            value={youtubeLink}
+                            placeholder="https://youtu.be/JHGUszJv3NI"
+                            onChange={(e) => setYoutubeLink(e.target.value)}
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                            // required
+                        />
+                    </div>
                     
                     <div className="mb-4">
                         <label htmlFor="description" className="block mb-2 text-sm font-semibold text-slate-600 ">
-                            Description
+                        <span className='text-red-500'>*</span> Description
                         </label>
                         <textarea
                             id="description"
@@ -209,6 +228,7 @@ function CreateCampaign() {
                             required
                         />
                     </div>
+
                     <div className="mt-2 flex justify-center border border-dashed border-gray-300 px-6 py-10 bg-gray-50 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full p-2.5">
                         <div className="text-center">
                             <div className="mt-4 flex text-sm leading-6 ">
@@ -217,7 +237,7 @@ function CreateCampaign() {
                                     htmlFor="file-upload"
                                     className="relative cursor-pointer h-8 px-4 rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                                 >
-                                    <span className='text-gray-800'>Upload Banner</span>
+                                    <span className='text-red-500'>*</span><span className='text-gray-800'>Upload Banner</span>
                                     <input
                                         id="file-upload"
                                         name="file-upload"
