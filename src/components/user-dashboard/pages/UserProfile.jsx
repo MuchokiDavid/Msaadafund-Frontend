@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import {toast,Toaster} from 'react-hot-toast'
+import Swal from 'sweetalert2';
+import { useAuth } from '../../../context/usersContext';
+
 // import { IoPencilOutline } from "react-icons/io5";
 
 
@@ -20,7 +23,7 @@ function UserProfile() {
 // compare previous data with new data
 const [originalData, setOriginalData] = useState({});
 const [error,setError]= useState('');
-const [showConfirmation, setShowConfirmation] = useState(false);  
+const {logout} = useAuth();
 
   // to get token for organisation
   const token = localStorage.getItem('token')
@@ -98,12 +101,8 @@ const handleSubmit = (e)=>{
     return JSON.stringify(user) !== JSON.stringify(originalData)
   }
 
-  // handle disable account
-  const handleDisable = () => {
-    setShowConfirmation(true);
-  };
 
-  const handleConfirmDisable = (confirmation) => {
+  const handleConfirmDisable = () => {
     const accessToken = localStorage.getItem('token')
     const config = {
       headers: {
@@ -114,22 +113,42 @@ const handleSubmit = (e)=>{
     if (!accessToken) {
       console.log("Access token not found");
   }
-    setShowConfirmation(false);
-    if (confirmation === 'yes') {
-      axios.patch('/api/v1.0/usersdata', { disabled: true }, config)
-        .then(() => {
-          toast.success('Account Disabled');
-          // Redirect or perform any necessary actions after disabling the account'
-          window.location.href = '/user/login';
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, disable it!'
+    }).then((result)=>{
+      if(result.isConfirmed){
+        axios.delete('/api/v1.0/usersdata', config)
+        .then((res)=>{
+          if (res.status === 200){
+            Swal.fire(
+              'Disabled!',
+              'Your account has been disabled.',
+              'success'
+            ).then((result)=>{
+              if (result.isConfirmed){
+                logout()
+                window.location.reload()
+              
+              }
+            })
+          }
         })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+
+      }
+
+
+    })
+     
   };
 
   if (!token) {
-    window.location.replace("/org/login")
+    window.location.replace("/user/login")
   }
   if (org){   
     window.location.replace("/unauthorized")
@@ -149,15 +168,15 @@ const handleSubmit = (e)=>{
             <li><a href='/user/dashboard/profile'>Profile</a></li> 
           </ul>
         </div>
-      <div className="container mx-auto h-screen lg:h-fit lg:px-16">
+        <div className="container mx-auto h-screen lg:h-fit lg:px-16 sm:px-16">
 
         <h1 className="mb-3 my-2 text-2xl font-bold leading-tight">Personalize your Profile</h1>
         <hr className='mb-2 mt-0'/>
-      <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="space-y-4">
         {error && <p className="text-red-500 mt-4">{error}</p>}
         <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
-         <label>First Name</label>
+         <label className='block text-black font-medium'>First Name</label>
          <input
          type='text'
          name='firstName'
@@ -167,7 +186,7 @@ const handleSubmit = (e)=>{
          />
       </div>
       <div>
-         <label>Last Name</label>
+         <label className='block text-black font-medium'>Last Name</label>
          <input
          type='text'
          name='lastName'
@@ -178,7 +197,7 @@ const handleSubmit = (e)=>{
       </div>
       </div>
       <div>
-        <label>Username</label>
+        <label className='block text-black font-medium'>Username</label>
           <input 
            type="text"
            name="username" 
@@ -188,7 +207,7 @@ const handleSubmit = (e)=>{
           />
       </div>
       <div>
-         <label>Email</label>
+         <label className='block text-black font-medium'>Email</label>
          <input
          type='text'
          name='email'
@@ -198,7 +217,7 @@ const handleSubmit = (e)=>{
          />
       </div>
     
-      <div>
+      <div className='block text-black font-medium'>
          <label>Address</label>
          <input
          type='text'
@@ -208,18 +227,18 @@ const handleSubmit = (e)=>{
          className="w-full mt-1 p-2 border border-gray-300 rounded"
          />
       </div>
-      <div>
-         <label>National ID:</label>
+      <div >
+         <label className='block text-black font-medium'>National ID:</label>
         <input
          type='text'
-         name='nationalId'
+         name='national_id'
          value={user.nationalId}
          onChange={handleInputChange}
          className="w-full mt-1 p-2 border border-gray-300 rounded" 
          />
       </div>
       <div>
-      <label>PhoneNumber</label>
+      <label className='block text-black font-medium'>PhoneNumber</label>
       <input
       type='text'
       name='phoneNumber'
@@ -235,16 +254,9 @@ const handleSubmit = (e)=>{
         >Update</button>
       </div>
       </form>
-      <div className="mt-4">
-          <button onClick={handleDisable} className="bg-red-500 py-2 px-4 rounded-md">Disable Account</button>
-        </div>
-        {showConfirmation && (
-          <div>
-            <p>Are you sure you want to disable your profile?</p>
-            <button onClick={() => handleConfirmDisable('yes')}>Yes</button>
-            <button onClick={() => setShowConfirmation(false)}>No</button>
-          </div>
-        )}
+      <div className="mt-4 flex justify-end">
+          <button onClick={handleConfirmDisable} className="bg-red-500 py-2 px-4 rounded-md">Disable Account</button>
+      </div>
     </div>
       <Toaster position="top-right" reverseOrder={false} />
       </div>

@@ -201,7 +201,7 @@ function CreateCampaign() {
 
                     <div className="mb-4">
                         <label htmlFor="targetAmount" className="block mb-2 text-sm font-semibold text-slate-600 ">
-                            Vedio link
+                            Video link
                         </label>
                         <input
                             id="youtube"

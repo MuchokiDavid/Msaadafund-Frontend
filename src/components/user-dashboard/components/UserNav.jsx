@@ -38,6 +38,8 @@ function UserNav({toggleSidebar}) {
                             <div className='flex items-center h-10 bg-blue-600 text-white border border-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-xs px-1 py-2.5 text-center'>
                               <p className='text-wrap '>{current_user && current_user.slice(0,5)}...</p>
                               <MdOutlineAccountCircle className="h-6 w-6 ml-2"/>
+                              <span className="absolute top-0.5 right-0.5 h-2 w-2 rounded-full bg-green-500"></span>
+
                             </div>
                         </div>
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-slate-800 rounded-box w-36">

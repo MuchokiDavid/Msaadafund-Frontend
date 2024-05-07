@@ -105,14 +105,15 @@ function UpdateCampaign() {
             
             if (response.status === 200) {
                 setOriginalData(response.data);
+                setError('')
                 toast.success('Campaign updated successfully');
                 setTimeout(() => {
                     navigate('/org/dashboard/mycampaigns/active');
                 }, 2000);
             }
         } catch (err) {
-            console.log('Error:', err.response?.data || err.message);
-        }
+            const errorMsg = err.response?.data?.error || 'An error occurred';
+            setError(errorMsg);        }
     };
 
     if (loading) {
@@ -135,7 +136,7 @@ function UpdateCampaign() {
             <h1 className="mb-1 my-2 text-2xl font-bold leading-tight ">Update Campaign</h1>
             <hr/>
             <div className="mx-auto">                
-                {error && <p className="text-red-500 mb-4">{error}</p>}
+                {error && <p className="text-red-500 mb-4">Error : {error}</p>}
                 
                 <form onSubmit={patchCampaign} className="space-y-4">
                     <div className="mb-2">
@@ -190,7 +191,7 @@ function UpdateCampaign() {
 
                     <div className="mb-4">
                         <label htmlFor="targetAmount" className="block mb-2 text-sm font-semibold text-slate-600 ">
-                            Vedio link
+                            Video link
                         </label>
                         <input
                             id="youtube"
