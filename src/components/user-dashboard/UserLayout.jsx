@@ -18,6 +18,7 @@ function UserLayout() {
   const [loading,setLoading]=useState(false)
   const [campaigns,setCampaigns]=useState([])
   const [errors,setErrors]= useState(null)
+  const [allDonations, setAllDonations] = useState([]);
 
   const token= localStorage.getItem('token')
   const userName=localStorage.getItem('user')
@@ -103,7 +104,45 @@ function UserLayout() {
         console.error('Error in fetching campaigns, ensure you have created campaign', error);
     }
   };
+
+  useEffect(() => {
+    const getDonations = async () => {
+        // setLoading(true)
+        try {
+            const response = await fetch('/api/v1.0/user/donations', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+            });
+            const data = await response.json();
+            if (response.ok) {
+                if(data){
+                  console.log(data)
+                   console.log("Successful request to get user donations");
+                    setAllDonations(data);
+                    setLoading(false); 
+                }
+                if(data.error){
+                    setLoading(false);
+                    console.log(data.error)
+                    setErrors(data.error);
+                }
+                
+            }
+        }
+        catch {
+            setErrors("No donations found")
+        }
+    }
+    getDonations();
+  }, [token, userName]);
   // console.log(campaigns)
+
+  if(!token && !userName){
+    window.location.replace('/user/login')
+  }
 
 
   return (
@@ -114,8 +153,8 @@ function UserLayout() {
         {/* <main className="mt-3 mx-auto md:w-3/4 overflow-y-auto md:m-3 min-h-max h-1/6"> */}
         <main className={`mt-3 mx-auto w-full sm:w-screen overflow-hidden overflow-y-auto md:m-3 min-h-screen lg:h-full justify-center px-2 lg:px-6`} style={{ marginTop: '10px' }} id='userdashboard'>
           <Routes>
-            <Route path="/" element={<UserHome />} />
-            <Route path="/contributions" element={<Donations />} />
+            <Route path="/" element={<UserHome allDonations={allDonations}/>} />
+            <Route path="/contributions" element={<Donations allDonation={allDonations}/>} />
             <Route path="/subscriptions" element={<Subscriptions />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/help" element={<Help />} />
