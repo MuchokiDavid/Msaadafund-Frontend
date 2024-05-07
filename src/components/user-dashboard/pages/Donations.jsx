@@ -97,7 +97,7 @@ function Donations() {
               <li>Contributions</li>
           </ul>
       </div>
-      <h1 className="mb-1 my-2 text-2xl font-bold leading-tight ">Contributions</h1>
+      <h1 className="mb-1 my-2 text-xl font-bold leading-tight ">Contributions</h1>
       <hr/>
       {errors && <p className='text-red-700'>{errors}</p>}
       {allDonations && allDonations.length>0
@@ -109,10 +109,10 @@ function Donations() {
                       <div>
                           <input
                               type="text"
-                              placeholder="Search by organisation, category or campaign"
+                              placeholder="Search by organisation,campaign or category "
                               value={searchTerm}
                               onChange={(e) => setSearchTerm(e.target.value)}
-                              className="border-gray-300 rounded-md bg-gray-50 border h-11 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                              className="border-gray-300 rounded-md bg-gray-50 border h-10 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                           />
                       </div>
                   </div>
@@ -121,48 +121,47 @@ function Donations() {
                           {/* head */}
                           <thead>
                               <tr>
-                                  <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
-                                  <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Invoice Id</th>
-                                  <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Amount</th>  
-                                  <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Campaign</th>
-                                  <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Category</th>
-                                  <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Start Date</th>   
-                                  <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>End Date</th>  
-                                  <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Organisations</th>
-                                  <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donation Date</th>
-                                  <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Invoice Id</th>                        
+                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
+                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Invoice Id</th>
+                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Amount</th>  
+                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Campaign</th>
+                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Category</th>
+                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Start Date</th>   
+                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>End Date</th>  
+                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Organisations</th>
+                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donation Date</th>                    
                               </tr>
                           </thead>
                           <tbody>
                               {paginatedDonations.map((donation, index) => {
                                   return (
                                       <tr key={donation._id}>
-                                          <td className='px-6 py-4 whitespace-nowrap border-b border-gray-200'>
-                                              <div className='text-sm text-gray-900'>{index + 1}</div>
+                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
+                                              <div className='text-gray-900'>{index + 1}</div>
                                           </td>
-                                          <td className='px-6 py-4 whitespace-nowrap border-b border-gray-200'>
-                                              <div className='text-sm text-gray-900'>{donation.invoice_id}</div>
+                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
+                                              <div className='text-gray-900'>{donation.invoice_id}</div>
                                           </td>
-                                          <td className='px-6 py-4 whitespace-nowrap border-b border-gray-200'>
-                                              <div className='text-sm text-gray-900'>{donation.amount}</div>
+                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
+                                              <div className='text-gray-900'>{donation.amount}</div>
                                           </td>
-                                          <td className='px-6 py-4 whitespace-nowrap border-b border-gray-200'>
-                                              <div className='text-sm text-gray-900'>{donation.campaign ? donation.campaign.campaignName : ""}</div>
+                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
+                                              <div className='text-gray-900'>{donation.campaign ? donation.campaign.campaignName : ""}</div>
                                           </td>
-                                          <td className='px-6 py-4 whitespace-nowrap border-b border-gray-200'>
-                                              <div className='text-sm text-gray-900'>{donation.campaign ? donation.campaign.category : ""}</div>
+                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
+                                              <div className='text-gray-900'>{donation.campaign ? donation.campaign.category : ""}</div>
                                           </td>
-                                          <td className='px-6 py-4 whitespace-nowrap border-b border-gray-200'>
-                                              <div className='text-sm text-gray-900'>{donation.campaign ? donation.campaign.startDate : ""}</div>
+                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
+                                              <div className='text-gray-900'>{donation.campaign ? donation.campaign.startDate : ""}</div>
                                           </td>
-                                          <td className='px-6 py-4 whitespace-nowrap border-b border-gray-200'>
-                                              <div className='text-sm text-gray-900'>{donation.campaign ? donation.campaign.endDate : ""}</div>
+                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
+                                              <div className='text-gray-900'>{donation.campaign ? donation.campaign.endDate : ""}</div>
                                           </td>
-                                          <td className='px-6 py-4 whitespace-nowrap border-b border-gray-200'>
-                                              <div className='text-sm text-gray-900'>{donation.campaign ? donation.campaign.organisation.orgName : ""}</div>
+                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
+                                              <div className='text-gray-900'>{donation.campaign ? donation.campaign.organisation.orgName : ""}</div>
                                           </td>
                                           <td>
-                                              <div className='text-sm text-gray-900'>{donation.donationDate}</div>
+                                              <div className='text-gray-900'>{donation.donationDate}</div>
                                           </td>
                                       </tr>
                                   );
