@@ -1,8 +1,13 @@
 import React from 'react'
+import DashboardBanner from '../components/DashboardBanner'
+import RecentDonation from '../components/RecentDonation'
 
-function UserHome() {
+function UserHome({allDonations}) {
   return (
-    <div>UserHome</div>
+    <div>
+      <DashboardBanner/>
+      <RecentDonation allDonations= {allDonations}/>
+    </div>
   )
 }
 
