@@ -15,6 +15,13 @@ function UserLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const isMediumScreen = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
+  const [loading,setLoading]=useState(false)
+  const [campaigns,setCampaigns]=useState([])
+  const [errors,setErrors]= useState(null)
+
+  const token= localStorage.getItem('token')
+  const userName=localStorage.getItem('user')
+
 
 
   // Toggle sidebar
@@ -60,12 +67,52 @@ function UserLayout() {
     }
   };
 
+  useEffect(() => {
+    handleFetch();
+  }, []);
+
+  //Fetch all campaigns
+  const handleFetch = async () => {
+    try {
+        const response = await fetch('/api/v1.0/get_all_campaigns', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        const data = await response.json();
+        if (response.ok) {
+          // console.log(data)
+          if(data){
+            setLoading(false)
+            // console.log("Successful request to get campaigns");
+            setCampaigns(data);
+          }
+          else if(data.error){
+            // console.log(data)
+            setLoading(false)
+            setErrors(data.error)
+          }
+            
+        } else {
+            setLoading(true)
+            throw new Error(data);
+        }
+    } catch (error) {
+        setLoading(true)
+        console.error('Error in fetching campaigns, ensure you have created campaign', error);
+    }
+  };
+  console.log(campaigns)
+
+
   return (
     <div>
       <UserNav toggleSidebar={toggleSidebar} />
       <div className="flex">
       {isSidebarOpen && <Usermenubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} handleMenuItemClick= {handleMenuItemClick}/>}
-        <main className="mt-3 mx-auto md:w-3/4 overflow-y-auto md:m-3 min-h-max h-1/6">
+        {/* <main className="mt-3 mx-auto md:w-3/4 overflow-y-auto md:m-3 min-h-max h-1/6"> */}
+        <main className={`mt-3 mx-auto w-full sm:w-screen overflow-hidden overflow-y-auto md:m-3 min-h-screen lg:h-full justify-center px-2 lg:px-6`} style={{ marginTop: '10px' }} id='userdashboard'>
           <Routes>
             <Route path="/" element={<UserHome />} />
             <Route path="/contributions" element={<Donations />} />
