@@ -313,7 +313,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
                   stroke="currentColor"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={2}
+                  stroke-width={2}
                   viewBox="0 0 24 24"
                   className="h-5 w-5"
                 >
