@@ -27,9 +27,7 @@ function UserLayout() {
 
 
   // Toggle sidebar
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+
 
   // useEffect(() => {
   //   const handleResize = () => {
@@ -56,7 +54,43 @@ function UserLayout() {
       window.removeEventListener('resize', handleWindowSizeChange);
     };
   }, []);
+  useEffect(() => {
+    const getDonations = async () => {
+        // setLoading(true)
+        try {
+            const response = await fetch('/api/v1.0/user/donations', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+            });
+            const data = await response.json();
+            if (response.ok) {
+                if(data){
+                  console.log(data)
+                   console.log("Successful request to get user donations");
+                    setAllDonations(data);
+                    setLoading(false); 
+                }
+                if(data.error){
+                    setLoading(false);
+                    console.log(data.error)
+                    setErrors(data.error);
+                }
+                
+            }
+        }
+        catch {
+            setErrors("No donations found")
+        }
+    }
+    getDonations();
+  }, [token, userName]);
 
+  useEffect(() => {
+    handleFetch();
+  }, []);
   // Function to update isSmallScreen state based on window width
   const handleWindowSizeChange = () => {
     setIsSmallScreen(window.innerWidth <= 768); // Adjust the width threshold as needed
@@ -68,14 +102,17 @@ function UserLayout() {
       toggleSidebar();
     }
   };
+  
   if (org){   
     window.location.replace("/unauthorized")
     return null
   }
 
-  useEffect(() => {
-    handleFetch();
-  }, []);
+
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   //Fetch all campaigns
   const handleFetch = async () => {
@@ -110,39 +147,7 @@ function UserLayout() {
     }
   };
 
-  useEffect(() => {
-    const getDonations = async () => {
-        // setLoading(true)
-        try {
-            const response = await fetch('/api/v1.0/user/donations', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-            });
-            const data = await response.json();
-            if (response.ok) {
-                if(data){
-                  console.log(data)
-                   console.log("Successful request to get user donations");
-                    setAllDonations(data);
-                    setLoading(false); 
-                }
-                if(data.error){
-                    setLoading(false);
-                    console.log(data.error)
-                    setErrors(data.error);
-                }
-                
-            }
-        }
-        catch {
-            setErrors("No donations found")
-        }
-    }
-    getDonations();
-  }, [token, userName]);
+  
   // console.log(campaigns)
 
   if(!token && !userName){
