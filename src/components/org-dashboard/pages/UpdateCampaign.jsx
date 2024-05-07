@@ -13,7 +13,7 @@ function UpdateCampaign() {
         targetAmount: '',
         startDate: '',
         endDate: '',
-        youtubeLink:'',
+        youtube_link:'',
         description: '',
         banner: null,
     });
@@ -82,6 +82,7 @@ function UpdateCampaign() {
         formData.append('description', campaignData.description);
         formData.append('startDate', campaignData.startDate);
         formData.append('endDate', campaignData.endDate);
+        formData.append('youtube_link', campaignData.youtube_link)
 
         // Append the banner file if provided
         if (campaignData.banner) {
@@ -196,7 +197,8 @@ function UpdateCampaign() {
                         <input
                             id="youtube"
                             type="text"
-                            value={campaignData.youtubeLink}
+                            name='youtube_link'
+                            value={campaignData.youtube_link}
                             placeholder="https://youtu.be/JHGUszJv3NI"
                             onChange={handleInputChange}
                             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
