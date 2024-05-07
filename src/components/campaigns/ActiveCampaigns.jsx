@@ -165,6 +165,7 @@ function ActiveCampaigns() {
                   <img
                     alt="banner"
                     src= {campaign.banner}
+                    loading='lazy'
                     className="h-56 w-full rounded-t-md object-cover"
                   />
 
