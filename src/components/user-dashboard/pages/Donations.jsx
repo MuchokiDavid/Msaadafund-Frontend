@@ -87,7 +87,7 @@ function Donations() {
     window.location.href = '/user/login';
   }
 
-console.log(allDonations)
+// console.log(allDonations)
 
   return (
     <div>

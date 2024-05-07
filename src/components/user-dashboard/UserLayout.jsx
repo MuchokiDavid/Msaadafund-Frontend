@@ -103,7 +103,7 @@ function UserLayout() {
         console.error('Error in fetching campaigns, ensure you have created campaign', error);
     }
   };
-  console.log(campaigns)
+  // console.log(campaigns)
 
 
   return (
