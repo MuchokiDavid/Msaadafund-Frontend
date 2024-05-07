@@ -15,6 +15,7 @@ function UserLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const isMediumScreen = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
+  const org = localStorage.getItem('org')
 
 
   // Toggle sidebar
@@ -59,6 +60,10 @@ function UserLayout() {
       toggleSidebar();
     }
   };
+  if (org){   
+    window.location.replace("/unauthorized")
+    return null
+  }
 
   return (
     <div>
