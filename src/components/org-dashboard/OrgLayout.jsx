@@ -32,6 +32,10 @@ function OrgLayout() {
   const token=localStorage.getItem('token');
   const orgName=localStorage.getItem('org')
   const[donors,setDonors]=useState([])
+  const user = localStorage.getItem('user')
+  
+
+ 
 
     // Use react-responsive to get screen size
     const isMediumScreen = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
@@ -194,6 +198,10 @@ const handleWallet = async (id) => {
 //Check if user is logged in
   if  (!token && !orgName){
     window.location.replace("/org/login")
+  }
+  if (user){   
+    window.location.replace("/unauthorized")
+    return null
   }
 
   return (
