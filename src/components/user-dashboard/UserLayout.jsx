@@ -20,30 +20,10 @@ function UserLayout() {
   const [campaigns,setCampaigns]=useState([])
   const [errors,setErrors]= useState(null)
   const [allDonations, setAllDonations] = useState([]);
+  const [allSubscriptions, setAllSubscriptions] = useState([]);
 
   const token= localStorage.getItem('token')
   const userName=localStorage.getItem('user')
-
-
-
-  // Toggle sidebar
-
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     const isScreenLarge = window.innerWidth >= 768;
-  //     setIsLargeScreen(isScreenLarge);
-  //     setIsSidebarOpen(isScreenLarge); 
-  //     if (!isScreenLarge) {
-  //       setIsSidebarOpen(false);
-  //     }
-  //   };
-  //   window.addEventListener('resize', handleResize);
-
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //   };
-  // }, []);
 
   // Listen to window resize events
   useEffect(() => {
@@ -68,7 +48,7 @@ function UserLayout() {
             const data = await response.json();
             if (response.ok) {
                 if(data){
-                  console.log(data)
+                  // console.log(data)
                    console.log("Successful request to get user donations");
                     setAllDonations(data);
                     setLoading(false); 
@@ -91,6 +71,39 @@ function UserLayout() {
   useEffect(() => {
     handleFetch();
   }, []);
+
+  //UseEffect to fetch subscriptions
+   useEffect(() => {
+    const fetchSubscriptions = async () => {
+      try {
+        const response = await fetch('/api/v1.0/subscription/1', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+        });
+        const data = await response.json();
+        if (response.ok) {
+          if(data){
+            console.log("Successful request to get user subscriptions");
+            setAllSubscriptions(data);
+            setLoading(false);
+          }
+          if(data.error){
+            setLoading(false);
+            console.log(data.error)
+            setErrors(data.error);
+          }
+
+        }
+      } catch (error) {
+        setErrors("No subscriptions found")
+      }
+    };
+    fetchSubscriptions();
+   },[])
+
   // Function to update isSmallScreen state based on window width
   const handleWindowSizeChange = () => {
     setIsSmallScreen(window.innerWidth <= 768); // Adjust the width threshold as needed
@@ -149,6 +162,7 @@ function UserLayout() {
 
   
   // console.log(campaigns)
+  // console.log(allSubscriptions)
 
   if(!token && !userName){
     window.location.replace('/user/login')
@@ -163,9 +177,9 @@ function UserLayout() {
         {/* <main className="mt-3 mx-auto md:w-3/4 overflow-y-auto md:m-3 min-h-max h-1/6"> */}
         <main className={`mt-3 mx-auto w-full sm:w-screen overflow-hidden overflow-y-auto md:m-3 min-h-screen lg:h-full justify-center px-2 lg:px-6`} style={{ marginTop: '10px' }} id='userdashboard'>
           <Routes>
-            <Route path="/" element={<UserHome allDonations={allDonations}/>} />
+            <Route path="/" element={<UserHome allDonations={allDonations} allSubscriptions= {allSubscriptions}/>} />
             <Route path="/contributions" element={<Donations allDonation={allDonations}/>} />
-            <Route path="/subscriptions" element={<Subscriptions />} />
+            <Route path="/subscriptions" element={<Subscriptions allSubscriptions= {allSubscriptions}/>} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/help" element={<Help />} />
           </Routes>
