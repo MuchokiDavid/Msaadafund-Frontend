@@ -168,7 +168,7 @@ function Donations({allDonation}) {
       (
           <div className='grid grid-cols-1 gap-4 mt-3 px-4'>
         <div>
-          <p className='text-red-500'>No contributions to display. Make contributions to view the contributions</p> 
+          <p className='text-red-500 text-xl'>No contributions to display. Make contributions to view the contributions</p> 
         </div>
       </div>
       )
