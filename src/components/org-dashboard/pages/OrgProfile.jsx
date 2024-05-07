@@ -13,8 +13,8 @@ function OrgProfile() {
 
   // State to manage organization details
    const [originalData, setOriginalData] = useState({});
-
-  // Fetch organization data 
+   const user = localStorage.getItem('user')
+   // Fetch organization data 
   useEffect(() => {
     const accessToken = localStorage.getItem('token');
     const config = {
@@ -73,6 +73,11 @@ function OrgProfile() {
     const checkFormChanges = () => {
       return JSON.stringify(orgData) !== JSON.stringify(originalData);
     };
+
+    if (user){   
+      window.location.replace("/unauthorized")
+      return null
+    }
 
   return (
     <div className='px-5'>
