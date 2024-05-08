@@ -76,7 +76,7 @@ function UserLayout() {
    useEffect(() => {
     const fetchSubscriptions = async () => {
       try {
-        const response = await fetch('/api/v1.0/subscription/1', {
+        const response = await fetch('/api/v1.0/subscription_status', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
