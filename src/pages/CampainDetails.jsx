@@ -105,52 +105,40 @@ function CampainDetails() {
     
     const handleSubscribe = async () => {
         try {
-            // Check if the user is logged in
-            if (!users || !accessToken) {
+            if(org){
+                logout()
+                setShowModal(true)
+            }
+         
+            if (!users && !accessToken) {                 
                 setShowModal(true);
                 return;
             }
-    
-            // Display a loading indicator
-            Swal.fire({
-                title: 'Subscribing...',
-                text: `Please wait while we process your subscription request.`,
-                icon: 'info',
-                showConfirmButton: false, // Hide the confirm button
-                allowOutsideClick: false, // Disable outside click to dismiss
-                allowEscapeKey: false // Disable escape key to dismiss
-            });
-    
+            
             const config = {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
             };
-    
-            // Make the subscription request
-            const response = await axios.post(`/api/v1.0/subscription/${org_id}`, {}, config);
-    
-            // Close the loading indicator
-            Swal.close();
-    
-            // Handle successful subscription
-            if (response.status === 200) {
-                // Show success message
-                Swal.fire({
-                    title: "Subscription Successful",
-                    text: `You have successfully subscribed to receive updates from ${campaign.organisation.orgName}. Thank you for your subscription!`,
-                    icon: "success"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.reload(); 
-                    }
-                });
-            }
-        } catch (error) {
-            const errorMsg = error.response?.data?.error || 'An error occurred';
-            setErrors(errorMsg);
-        }
-    };
+            
+                const response = await axios.post(`/api/v1.0/subscription/${org_id}`, {}, config);
+                if(response.status===200){    
+                    Swal.fire({
+                        title: "Subscription Successful",
+                        text: `You have successfully subscribed to receive updates from ${campaign.organisation.orgName}.Thank you for your subscription!`,
+                        icon: "success"
+                    }).then((result)=>{
+                        if(result.isConfirmed){
+                            window.location.reload();
+                        }
+                    });                                                           
+                }       
+            } catch (error) {
+                    const errorMsg = error.response?.data?.error || 'An error occurred';
+                    setErrors(errorMsg);
+                    // setSubscribe(false);
+                }
+            };
     
 
             const handleUnsubscribe = async (e) => {
