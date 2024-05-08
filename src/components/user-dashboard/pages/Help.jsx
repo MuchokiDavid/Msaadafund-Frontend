@@ -52,7 +52,7 @@ function Help() {
         <li>You will be able to search for a specific organization.</li>
         <li>You will be able to manage your subscription preferences.</li>
     </ul>
-    <p>If you have any questions or need assistance with your subscription, please feel free to reach out to us.</p>
+    {/* <p>If you have any questions or need assistance with your subscription, please feel free to reach out to us.</p> */}
 </div>
 
 
