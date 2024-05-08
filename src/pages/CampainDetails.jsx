@@ -67,132 +67,122 @@ function CampainDetails() {
 
     }, [campaignId]);
 
+
     useEffect(() => {
-        const fetchSubscription = async () => {
+        if (users && accessToken && org_id) {
+          const fetchSubscription = async () => {
             try {
-                const config = {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`
-                    }
-                };
-                const response = await axios.get(`/api/v1.0/subscription/${org_id}`, config);
-                // console.log(response.data);
+              const config = {
+                headers: {
+                  Authorization: `Bearer ${accessToken}`
+                }
+              };
+              const response = await axios.get(`/api/v1.0/subscription/${org_id}`, config);
+              if (response.status === 200) { // Check response status
                 setSubscribe(true);
+              }
+              // Note: If response status is not 200, then there are no subscriptions found.
             } catch (error) {
-                const errorMsg = error.response?.data?.error || 'An error occurred';
-                console.error(errorMsg);
-                setSubscribe(false);
+              const errorMsg = error.response?.data?.error || 'An error occurred';
+              console.error(errorMsg);
+              setSubscribe(false);
             }
-        };
+          };
     
-        fetchSubscription();
-    }, [org_id, accessToken, users]);
+          fetchSubscription();
+        }
+      }, [org_id, users, accessToken]);
 
-    // if (!accessToken && !users) {
-    //     console.log('Token not found');
-    //     window.location.replace('/user/login')
-    //     return;
-    // }
 
-    //Login user in order to subscribe
+   //Login user in order to subscribe
     const handleLogin = async (e) =>{
         e.preventDefault();
         await userLogin(username, password);
         if (loginMessage.slice(0,6)==="Welcome") {
-            handleSubscribe()
         }
     }
-    //Set unsubscribed if org is logged in
-    useEffect(() => {
-        if (org && accessToken) {
-            setSubscribe(false);            
-        }
-    }, [])
-
+ 
     
-    const handleSubscribe = async (e) => {
-        // e.preventDefault();
+    const handleSubscribe = async () => {
         try {
-
-            if(org && accessToken){
-                logout()
-                setShowModal(true)
-                // window.location.reload()
-            }
-            
-            
-            if (!users && !accessToken) {
-                setTimeout(() => {
-                    // toast.error("Login to subscribe");
-                    // window.location.replace('/user/login');
-                    setShowModal(true);
-                }, 2000);
+            // Check if the user is logged in
+            if (!users || !accessToken) {
+                setShowModal(true);
                 return;
             }
-            if (accessToken && users){
-                setShowModal(false)
-                const config = {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`
-                    }
-                };
-                const response = await axios.post(`/api/v1.0/subscription/${org_id}`, {}, config);
-                if(response.status===200){    
-                    Swal.fire({
-                        title: "Subscription Successful",
-                        text: `You have successfully subscribed to receive updates from ${campaign.organisation.orgName}.Thank you for your subscription!`,
-                        icon: "success"
-                    }).then((result)=>{
-                        if(result.isConfirmed){
-                            window.location.reload();
-                        }
-                    });                                                           
-                }
-           
-            }        
-            } catch (error) {
-                    const errorMsg = error.response?.data?.error || 'An error occurred';
-                    setErrors(errorMsg);
-                    // setSubscribe(false);
+    
+            // Display a loading indicator
+            Swal.fire({
+                title: 'Subscribing...',
+                text: `Please wait while we process your subscription request.`,
+                icon: 'info',
+                showConfirmButton: false, // Hide the confirm button
+                allowOutsideClick: false, // Disable outside click to dismiss
+                allowEscapeKey: false // Disable escape key to dismiss
+            });
+    
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
                 }
             };
+    
+            // Make the subscription request
+            const response = await axios.post(`/api/v1.0/subscription/${org_id}`, {}, config);
+    
+            // Close the loading indicator
+            Swal.close();
+    
+            // Handle successful subscription
+            if (response.status === 200) {
+                // Show success message
+                Swal.fire({
+                    title: "Subscription Successful",
+                    text: `You have successfully subscribed to receive updates from ${campaign.organisation.orgName}. Thank you for your subscription!`,
+                    icon: "success"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload(); 
+                    }
+                });
+            }
+        } catch (error) {
+            const errorMsg = error.response?.data?.error || 'An error occurred';
+            setErrors(errorMsg);
+        }
+    };
+    
 
             const handleUnsubscribe = async (e) => {
                 e.preventDefault();
-                const orgsnt = campaign.organisation.orgName
+                const orgsnt = campaign.organisation.orgName;
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: `You are about to unsudscribe from ${orgsnt}!`,
+                    title: 'Unsubscribe?',
+                    text: `Are you sure you want to unsubscribe from ${orgsnt}?`,
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, Send!'
-                }).then((result) => {
+                    confirmButtonText: 'Yes'
+                }).then(async (result) => {
                     if (result.isConfirmed) {
                         try {
-                            // const accessToken = localStorage.getItem('token');
-                            if (!accessToken && !users) {
-                                // console.log('Token not found')
-                                return;
-                            }
-                    
                             const config = {
                                 headers: {
                                     Authorization: `Bearer ${accessToken}`
                                 }
                             };
-                            const response = axios.delete(`/api/v1.0/subscription/${org_id}`, config);
-                            if(response.status===200){   
-                                Swal.fire({
+                            // Await the axios.delete call
+                            const response = await axios.delete(`/api/v1.0/subscription/${org_id}`, config);
+                            if (response.status === 200) {
+                                // Show success message
+                                await Swal.fire({
                                     title: `Unsubscribed from ${campaign.organisation.orgName} Updates`,
                                     text: `You have successfully unsubscribed from updates from ${campaign.organisation.orgName}. If you change your mind, you can always subscribe later. Thank you for your support.`,
                                     icon: "success"
-                                }).then((result)=>{
-                                    if(result.isConfirmed){
-                                        window.location.reload();
-                                    }
-                                });                                                           
+                                });
+                                // Reload the page or perform any other necessary action
+                                window.location.reload();
                             }
                             setSubscribe(false);
                         } catch (error) {
@@ -205,40 +195,6 @@ function CampainDetails() {
             };
             
     
-    // const handleUnsubscribe = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         // const accessToken = localStorage.getItem('token');
-    //         if (!accessToken && !users) {
-    //             // console.log('Token not found')
-    //             return;
-    //         }
-    
-    //         const config = {
-    //             headers: {
-    //                 Authorization: `Bearer ${accessToken}`
-    //             }
-    //         };
-    //         const response = await axios.delete(`/api/v1.0/subscription/${org_id}`, config);
-    //         if(response.status===200){   
-                 
-    //             Swal.fire({
-    //                 title: `Unsubscribed from ${campaign.organisation.orgName} Updates`,
-    //                 text: `You have successfully unsubscribed from updates from ${campaign.organisation.orgName}. If you change your mind, you can always subscribe later. Thank you for your support.`,
-    //                 icon: "success"
-    //               }).then((result)=>{
-    //                 if(result.isConfirmed){
-    //                     window.location.reload();
-    //                 }
-    //               });                                                           
-    //         }
-    //         setSubscribe(false);
-    //     } catch (error) {
-    //         const errorMsg = error.response?.data?.error || 'An error occurred';
-    //         console.error(errorMsg);
-    //         setSubscribe(false);
-    //     }
-    // };
     
 
     if (!campaign) {
@@ -589,14 +545,14 @@ function CampainDetails() {
                                 <div className='my-4'>
                                     <label className="font-semibold my-3" htmlFor="password">Username or E-Mail</label>
                                     <input
-                                        className="input input-bordered w-full placeholder:bg-slate-400 bg-gray-100"
+                                        className="input input-bordered w-full"
                                         onChange={(e) => setUserName(e.target.value)}
                                         value={username}
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label className="font-semibold mb-4" htmlFor="password"><span className='text-red-500'>*</span>Enter Pin</label>
+                                    <label className="font-semibold mb-4" htmlFor="password"><span className='text-red-500'>*</span>Enter Password</label>
                                     <input
                                         onChange={(e) => setPassword(e.target.value)}
                                         value={password}
