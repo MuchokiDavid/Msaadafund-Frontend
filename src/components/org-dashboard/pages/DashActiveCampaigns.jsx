@@ -5,7 +5,7 @@ import { Toaster, toast } from 'react-hot-toast';
 import Swal from 'sweetalert2'
 
 function DashActiveCampaigns({allCampaigns, campaignError}) {
-    const [campaigns, setCampaigns] = useState([]);
+    const [campaigns, setCampaigns] = useState(allCampaigns);
     const token = localStorage.getItem('token');
     const orgUser = localStorage.getItem('org')
     const [walletDetails, setWalletDetails] = useState(null);
