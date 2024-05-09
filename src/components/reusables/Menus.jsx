@@ -19,7 +19,8 @@ function Menus() {
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-700 rounded-box w-52 text-white">
                         <li><a href='/'>Home</a></li>
-                        <li><a href='/campaign'>Campaigns</a></li>
+                        <li><a href='/campaign'>Fundraisers</a></li>
+                        <li><a href='/organisations'>Organisations</a></li>
                         <li><a href='/about'>About us</a></li>
                         <li><a href='/contact'>Contact</a></li>
                     </ul>
@@ -29,7 +30,8 @@ function Menus() {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal text-white">
                         <li><a href='/'>Home</a></li>
-                        <li><a href='/campaign'>Campaigns</a></li>
+                        <li><a href='/campaign'>Fundraisers</a></li>
+                        <li><a href='/organisations'>Organisations</a></li>
                         <li><a href='/about'>About us</a></li>
                         <li><a href='/contact'>Contact</a></li>
                     </ul>
