@@ -18,6 +18,7 @@ import Donors from './pages/Donors';
 import Unauthorized from './components/reusables/Unauthorized';
 import Policy from './pages/Policy';
 import Terms from './pages/Terms';
+import ThankYou from './components/reusables/ThankYou';
 
 
 
@@ -43,7 +44,7 @@ function App() {
     <Route path = '/privacy' element = {<Policy/>}/>
     <Route path = '/terms' element = {<Terms/>}/>
     <Route path = "/unauthorized" element = {<Unauthorized/>}/>
-    
+    <Route path = "/thank-you" element = {<ThankYou/>}/>
     </Routes>
      );
 }
