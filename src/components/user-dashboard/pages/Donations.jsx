@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import moment from 'moment';
 
 function Donations({allDonation}) {
-  const [allDonations, setAllDonations] = useState([]);
+  const [allDonations, setAllDonations] = useState(allDonation);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState();

@@ -3,8 +3,8 @@ import React from 'react'
 import { prettyNumber } from '@based/pretty-number'
 
 function DashCards({allSubscriptions, allDonations}) {
-    const [allSubscription, setAllSubscription]= useState([])
-    const [allDonation, setAllDonation]= useState([])
+    const [allSubscription, setAllSubscription]= useState(allSubscriptions)
+    const [allDonation, setAllDonation]= useState(allDonations)
 
     useEffect(() => {
       setAllSubscription(allSubscriptions)

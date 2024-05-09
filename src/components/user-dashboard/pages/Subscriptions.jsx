@@ -3,25 +3,13 @@ import Swal from 'sweetalert2'
 import axios from 'axios'
 
 function Subscriptions({allSubscriptions}) {
-    const[subscriptions,setSubscriptions]=useState([])
+    const[subscriptions,setSubscriptions]=useState(allSubscriptions)
     const token=localStorage.getItem('token')
     const user=localStorage.getItem('user')
     const [searchTerm, setSearchTerm] = useState("");
     const [filteredData, setFilteredData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(15);
-
-     // Calculate total pages based on the number of items and items per page
-      const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-
-      // Get paginated subset of donation items
-      const paginatedSubscriptions = filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
-      
-      // Pagination handlers
-      const goToPage = (pageNumber) => {
-          setCurrentPage(pageNumber);
-      };
-
 
     useEffect(() => {
       setSubscriptions(allSubscriptions)
@@ -62,6 +50,7 @@ function Subscriptions({allSubscriptions}) {
                       }
                   };
                   const response = axios.delete(`/api/v1.0/subscription/${id}`, config);
+                  console.log(response)
                   if(response.status===200){   
                       Swal.fire({
                           title: `Unsubscribed from orgname Updates`,
@@ -82,6 +71,18 @@ function Subscriptions({allSubscriptions}) {
           }
       });
     }
+
+    // Calculate total pages based on the number of items and items per page
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+    // Get paginated subset of donation items
+    const paginatedSubscriptions = filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+    
+    // Pagination handlers
+    const goToPage = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
     // console.log(subscriptions)
 
   return (
@@ -142,7 +143,7 @@ function Subscriptions({allSubscriptions}) {
                                                     {subscription.organisation.orgAddress}
                                                 </td>
                                                 <td className="text-sm text-gray-900 font-light px-4 py-2 whitespace-nowrap">
-                                                    <button onClick={()=>unsubscribe(subscription._id)} className='bg-red-500 px-3 py-1 rounded-md text-white'>Unsubscribe</button>
+                                                    <button onClick={()=>unsubscribe(subscription.id)} className='bg-red-500 px-3 py-1 rounded-md text-white'>Unsubscribe</button>
                                                 </td>
                                             </tr>
                                         )
