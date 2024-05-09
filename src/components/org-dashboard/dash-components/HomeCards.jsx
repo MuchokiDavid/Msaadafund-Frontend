@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { prettyNumber } from '@based/pretty-number'
 
 function HomeCards({allCampaigns, allDonations}) {
-    const[donations, setDonations] = useState([])
+    const[donations, setDonations] = useState(allDonations)
 
     useEffect(() => {
         if(allDonations){

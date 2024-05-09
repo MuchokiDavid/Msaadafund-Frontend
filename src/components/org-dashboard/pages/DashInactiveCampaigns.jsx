@@ -5,7 +5,7 @@ import axios from 'axios';
 
 function DashInactiveCampaigns({allCampaigns, campaignError}) {
     const [errors, setErrors] = useState(campaignError);
-    const [inActiveCampaign, setInactiveCampaign] = useState([])
+    const [inActiveCampaign, setInactiveCampaign] = useState(allCampaigns)
     const [filteredCampaigns, setFilteredCampaigns] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const token= localStorage.getItem('token');

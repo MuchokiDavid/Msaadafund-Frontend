@@ -3,7 +3,7 @@ import { Toaster, toast } from 'react-hot-toast';
 
 function Withdraw({ allCampaigns, campaignError, handleWallet }) {
     const [accountNumbers, setAccountNumbers] = useState([])
-    const [campaigns, setCampaigns] = useState([])
+    const [campaigns, setCampaigns] = useState(allCampaigns)
     const [errors, setErrors] = useState(null)
     const [loading, setLoading] = useState(false)
     const token = localStorage.getItem('token')

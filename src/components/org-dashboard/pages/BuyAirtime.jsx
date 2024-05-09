@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
   const [phone, setPhone] = useState("");
-  const [campaigns, setCampaigns] = useState([]);
+  const [campaigns, setCampaigns] = useState(allCampaigns);
   const [amount, setAmount] = useState();
   const [name, setName] = useState("")
   const [campaign, setCampaign] = useState()

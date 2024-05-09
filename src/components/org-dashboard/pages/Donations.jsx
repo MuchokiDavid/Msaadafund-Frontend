@@ -6,8 +6,8 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
     const [allDonations, setAllDonations] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [loading, setLoading] = useState(false);
-    const [errors, setErrors] = useState();
-    const [campaigns, setCampaigns] = useState();
+    const [errors, setErrors] = useState(campaignError);
+    const [campaigns, setCampaigns] = useState(allCampaigns);
     const [donors, setDonors] = useState(allDonors);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(15);

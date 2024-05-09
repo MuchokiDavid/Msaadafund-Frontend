@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react'
 
 
 function Transactions({allCampaigns, campaignError}) {
-    const [allCampaign, setAllCampaign] = useState([]);
+    const [allCampaign, setAllCampaign] = useState(allCampaigns);
     const [searchTerm, setSearchTerm] = useState("");
     const [loading, setLoading] = useState(false);
-    const [errors, setErrors] = useState(null);
+    const [errors, setErrors] = useState(campaignError);
     const token = localStorage.getItem('token');
     const org= localStorage.getItem('org')
     const [transactions, setTransactions] = useState([])
