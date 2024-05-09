@@ -8,7 +8,7 @@ const UserAuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('token'));
   const [loginMessage, setLoginMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -27,40 +27,6 @@ export const AuthProvider = ({ children }) => {
   const storeToken = (token) => {
     localStorage.setItem('token', token);
   };
-
-  // Retrieve the token from localStorage
-  // const getToken = () => {
-  //   return localStorage.getItem('token');
-  // };
-
-  // // Remove the token from localStorage
-  // const removeToken = () => {
-  //   localStorage.removeItem('token');
-  // };
-
-  // // Check if the token is expired
-  // const isTokenExpired = (token) => {
-  //   if (!token) return true;
-
-  //   const tokenData = JSON.parse(atob(token.split('.')[1]));
-  //   const expirationTime = tokenData.exp * 1000; // Convert to milliseconds
-
-  //   return Date.now() > expirationTime;
-  // };
-
-  // // Function to handle token expiration
-  // const handleTokenExpiration = () => {
-  //   const token = getToken();
-
-  //   if (isTokenExpired(token)) {
-  //       removeToken();
-  //   }
-  // };
-
-  // Set up a timer to check for token expiration periodically
-  // const startTokenExpirationCheck = () => {
-  //   setInterval(handleTokenExpiration, 60000); // Check every minute
-  // };
 
   // Call this function when you receive a new token
   const onReceiveToken = (token) => {
