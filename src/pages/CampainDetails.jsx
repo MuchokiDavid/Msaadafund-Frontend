@@ -105,40 +105,48 @@ function CampainDetails() {
     
     const handleSubscribe = async () => {
         try {
-            if(org){
-                logout()
-                setShowModal(true)
+            if (org) {
+                logout();
+                setShowModal(true);
             }
-         
-            if (!users && !accessToken) {                 
+    
+            if (!users && !accessToken) {
                 setShowModal(true);
                 return;
             }
-            
+    
             const config = {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
             };
-            
-                const response = await axios.post(`/api/v1.0/subscription/${org_id}`, {}, config);
-                if(response.status===200){    
+    
+            const response = await axios.post(`/api/v1.0/subscription/${org_id}`, {}, config);
+            if (response.status === 200) {
+                Swal.fire({
+                    title: 'Subscribing...',
+                    text: 'Please wait while we subscribe you to updates.',
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    timer: 2000
+                }).then(() => {
                     Swal.fire({
                         title: "Subscription Successful",
-                        text: `You have successfully subscribed to receive updates from ${campaign.organisation.orgName}.Thank you for your subscription!`,
+                        text: `You have successfully subscribed to receive updates from ${campaign.organisation.orgName}. Thank you for your subscription!`,
                         icon: "success"
-                    }).then((result)=>{
-                        if(result.isConfirmed){
+                    }).then((result) => {
+                        if (result.isConfirmed) {
                             window.location.reload();
                         }
-                    });                                                           
-                }       
-            } catch (error) {
-                    const errorMsg = error.response?.data?.error || 'An error occurred';
-                    setErrors(errorMsg);
-                    // setSubscribe(false);
-                }
-            };
+                    });
+                });
+            }
+        } catch (error) {
+            const errorMsg = error.response?.data?.error || 'An error occurred';
+            setErrors(errorMsg);
+            // setSubscribe(false);
+        }
+    };
     
 
             const handleUnsubscribe = async (e) => {
