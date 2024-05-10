@@ -12,15 +12,23 @@ export const AuthProvider = ({ children }) => {
   const [loginMessage, setLoginMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const users=localStorage.getItem('user')
+  const org = localStorage.getItem('org') 
 
-
-  // useEffect to delete token from local storage after 1 hr 
   useEffect(() => {
-    const deleteTokenAfterTime = setTimeout(() => {
-    logout();
-    }, 1 * 60 * 60 * 1000); // 1 hr
-    return () => clearTimeout(deleteTokenAfterTime);
-}, []);
+    if (token && users) {
+      const deleteTokenAfterTime = setTimeout(() => {
+        logout(); 
+      }, 23 * 60 * 60 * 1000); // 24hr
+      return () => clearTimeout(deleteTokenAfterTime);
+    } else if (token && org) {
+      const deleteTokenAfterTime = setTimeout(() => {
+        logout(); // Logout after 1 hour
+      }, 1 * 60 * 60 * 1000); // 1 hour
+      return () => clearTimeout(deleteTokenAfterTime);
+    }
+  }, [token,users,org]);
+  
 
 
   // Store the token in localStorage
