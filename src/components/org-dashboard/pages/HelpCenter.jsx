@@ -38,7 +38,7 @@ function HelpCenter() {
             
 
             <div role="tablist" className="tabs tabs-lifted mt-2">
-                <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Campaigns" />
+                <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Campaigns" checked/>
                 <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
                     <div className="collapse collapse-open bg-base-100">
                         <input type="radio" name="my-accordion-3" defaultChecked /> 
@@ -102,7 +102,7 @@ function HelpCenter() {
                     </div>
                 </div>
 
-                <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Contributions" />
+                <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Contributions" checked/>
                 <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
                 <div className="collapse collapse-open bg-base-100">
                         <input type="radio" name="my-accordion-3" defaultChecked /> 
@@ -120,7 +120,7 @@ function HelpCenter() {
                         </div>
                     </div>
                 </div>
-                <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Transact" />
+                <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Transact" checked/>
                 <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
                 <div className="collapse collapse-open bg-base-100">
                         <input type="radio" name="my-accordion-3" defaultChecked />
@@ -208,7 +208,7 @@ function HelpCenter() {
                         </div>
                     </div>
                 </div>
-                <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Profile" />
+                <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Profile"/>
                 <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
                     <div className="collapse collapse-open bg-base-100">
                         <input type="radio" name="my-accordion-4" />
