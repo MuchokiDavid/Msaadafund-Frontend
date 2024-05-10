@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Toaster, toast } from 'react-hot-toast';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 
 function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
   const [phone, setPhone] = useState("");
