@@ -40,6 +40,10 @@ function CampainDetails() {
     const accessToken = localStorage.getItem('token');
     const org=  localStorage.getItem('org')
 
+    useEffect(() => {
+     setName(users)
+    }, [users,accessToken])
+    
 // to check the subscription state
    
 
@@ -200,6 +204,11 @@ function CampainDetails() {
 
     const handleDonateButton = (e) => {
         e.preventDefault();
+        const config = {
+            headers: {
+              Authorization: `Bearer ${accessToken}`
+            }
+          };
         // if start date  is less than current date disable button 
         const currentDate = new Date();
         const startDate = new Date(campaign.startDate);
@@ -208,7 +217,6 @@ function CampainDetails() {
         } else {
             let orgsnt= campaign.organisation.orgName
             let donorName= name ? name: "Anonymous"
-            console.log(donorName)
             let phoneNo = phoneNum.replace(/^0+/, '');
             let phoneNumber = "254" + phoneNo;
             if (!phoneNum.match(phonePattern)) {
@@ -225,34 +233,62 @@ function CampainDetails() {
                     confirmButtonText: 'Yes, Send!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,donorName,campaignId:campaignId})
-                        .then((res)=>{{
-                            // console.log(res)
-                            if(res.status===200){    
-                                Swal.fire({
-                                    title: res.data.message,
-                                    text: "Check your phone and enter M-pesa pin!",
-                                    icon: "success"
-                                  }).then((result)=>{
-                                    if(result.isConfirmed){
-                                        window.location.reload();
-                                    }
-                                  });                                                           
-                            }
-                            else{
-                                Swal.fire(
-                                    'Error!',
-                                    'The donation was not successiful. Try again',
-                                    'error'
-                                )
-                            }
+                        if (users && accessToken){
+                            axios.post('/api/v1.0/user/donations',{donorName:name,amount,campaignId:campaignId,phoneNumber},config)
+                            .then((res)=>{
+                                if(res.status===200){
+                                    Swal.fire({
+                                        title: res.data.message,
+                                        text: "Check your phoneNumbers and and enter M-pesa pin!",
+                                        icon: "success"
+                                      }).then((result)=>{
+                                        if(result.isConfirmed){
+                                            window.location.reload();
+                                        }
+                                      });
+                                }
+                                else{
+                                    Swal.fire(
+                                        'Error!',
+                                        'The donation was not successiful. Try again',
+                                        'error'
+                                    )
+                                }
+                            })
+
+                        }
+                        else{
+                            axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,donorName,campaignId:campaignId})
+                            .then((res)=>{{
+                                // console.log(res)
+                                if(res.status===200){    
+                                    Swal.fire({
+                                        title: res.data.message,
+                                        text: "Check your phone and enter M-pesa pin!",
+                                        icon: "success"
+                                      }).then((result)=>{
+                                        if(result.isConfirmed){
+                                            window.location.reload();
+                                        }
+                                      });                                                           
+                                }
+                                else{
+                                    Swal.fire(
+                                        'Error!',
+                                        'The donation was not successiful. Try again',
+                                        'error'
+                                    )
+                                }
+                                
+                                // window.location.reload();
+                            }})
+                            .catch((err)=>{
+                                const errorMsg = err.response?.data?.error || 'An error occurred';
+                                setErrors(errorMsg);
+                            })
                             
-                            // window.location.reload();
-                        }})
-                        .catch((err)=>{
-                            const errorMsg = err.response?.data?.error || 'An error occurred';
-                            setErrors(errorMsg);
-                        })
+                        }
+                   
                         
                     }
                 })
@@ -394,7 +430,7 @@ function CampainDetails() {
                                                 id="donor"
                                                 placeholder='Your Name (Optional)'
                                                 value={name}
-                                                onChange={(e) => setName(e.target.value)}
+                                                onChange={(e) =>setName(e.target.value)}
                                                 className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white w-3/4"
                                                 // required
                                             />
