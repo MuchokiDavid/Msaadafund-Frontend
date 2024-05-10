@@ -5,7 +5,7 @@ function Help() {
     <div>
     <div className="text-sm breadcrumbs ml-2">
         <ul>
-            <li><a href='/org/dashboard'>Dashboard</a></li>
+            <li><a href='/user/dashboard'>Dashboard</a></li>
             <li>Help Center</li>
         </ul>
     </div>
