@@ -18,8 +18,8 @@ function Footer() {
             <h6 className="footer-title">Quick links</h6> 
             <a href='/' className="link link-hover">Home</a>
             <a href='/campaign' className="link link-hover">Campaigns</a>
-            <a href='/donors' className="link link-hover">Donors</a>
-            <a href='/org/login' className="link link-hover">Organisations</a>
+            {/* <a href='/donors' className="link link-hover">Donor Lo</a> */}
+            <a href='/organisations' className="link link-hover">Organisations</a>
         </nav> 
             <nav className='text-white'>
                 <h6 className="footer-title">Company</h6>
