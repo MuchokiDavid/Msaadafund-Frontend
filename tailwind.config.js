@@ -28,6 +28,9 @@ module.exports = {
       // => @media (min-width: 1536px) { ... }
     }
   },
-  plugins: [require("daisyui","flowbite/plugin")],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+    require("daisyui"),
+  ],
 }
 

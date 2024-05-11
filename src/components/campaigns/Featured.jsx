@@ -14,13 +14,14 @@ function Featured() {
     }, []);
 
     const handleFeatured = async (id) => {
+      setLoading(true)
         try {
             const response = await fetch('/api/v1.0/featured', {
                 method: 'GET',
             });
             const data = await response.json();
             if (response.ok) {
-                setLoading(true)
+                setLoading(false)
                 setFeaturedCampaign(data)
             }
             
@@ -31,8 +32,10 @@ function Featured() {
     }
     // console.log(featuredCampaign)
     const handleCampaign = (campaignId) => {
+        setLoading(true)
         setTimeout(() => {
           navigate(`/campaign/${campaignId}`);
+          setLoading(false)
         }, 1000);
       };
 
@@ -43,6 +46,32 @@ function Featured() {
         }
         return totalAmount;
     }
+
+    if(loading){
+      // return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
+      return (
+        <div aria-label="Loading..." role="status" className="flex justify-center items-center space-x-2  min-h-screen">
+          <svg className="h-20 w-20 animate-spin stroke-gray-500" viewBox="0 0 256 256">
+              <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+              <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="24"></line>
+              <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              </line>
+              <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="24"></line>
+              <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              </line>
+              <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="24"></line>
+              <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+              <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              </line>
+          </svg>
+          <span className="text-4xl font-medium text-gray-500">Loading...</span>
+      </div>
+      )
+    }
+
     const calculateDaysLeft = (endDate) => {
       if (!endDate) return null;
       const endDateObject = new Date(endDate);
@@ -64,7 +93,7 @@ function Featured() {
               {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"> */}
                 {featuredCampaign && featuredCampaign.map((campaign) => {
                   return (
-                    <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden hover:cursor-pointer'>
+                    <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden'>
                       <a onClick={()=>handleCampaign(campaign.id)} className="block rounded-lg shadow-sm shadow-indigo-100">
                         <img
                           alt="banner"
@@ -82,7 +111,7 @@ function Featured() {
 
                             <div>
                               <dt className="sr-only">Name</dt>
-                              <dd className="font-medium overflow-hidden text-lg whitespace-nowrap">{campaign.campaignName}</dd>
+                              <dd className="font-medium overflow-hidden text-lg whitespace-nowrap hover:text-blue-600 hover:cursor-pointer"><p onClick={()=>handleCampaign(campaign.id)}>{campaign.campaignName}</p></dd>
                             </div>
                             <div>
                               <dt className="sr-only">Organiser</dt>

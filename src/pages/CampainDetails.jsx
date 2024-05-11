@@ -5,7 +5,7 @@ import {toast,Toaster} from 'react-hot-toast'
 import Menus from '../components/reusables/Menus';
 import Footer from '../components/reusables/Footer';
 import Featured from '../components/campaigns/Featured';
-import { useNavigate } from 'react-router-dom';
+import Slider from "react-slick";
 
 import { 
 FacebookShareButton,FacebookIcon, 
@@ -40,7 +40,6 @@ function CampainDetails() {
     const users = localStorage.getItem('user');
     const accessToken = localStorage.getItem('token');
     const org=  localStorage.getItem('org')
-    const navigate= useNavigate()
 
     useEffect(() => {
      setName(users)
@@ -473,6 +472,44 @@ function CampainDetails() {
         }
         return totalAmount;
     }  
+    //Slider settings(Carosel)
+    function SampleNextArrow(props) {
+        const { className, style, onClick } = props;
+        return (
+          <div
+            className={className}
+            style={{ ...style, display: "block", background: "blue" }}
+            onClick={onClick}
+          />
+        );
+      }
+      
+      function SamplePrevArrow(props) {
+        const { className, style, onClick } = props;
+        return (
+          <div
+            className={className}
+            style={{ ...style, display: "block", background: "green" }}
+            onClick={onClick}
+          />
+        );
+      }
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />
+    };
+
+    //Slicing youtube link for embend
+    const youtubeLink = campaign.youtube_link && campaign.youtube_link;
+    const youtubeLinkParts = youtubeLink && youtubeLink.split('/');
+    const youtubeId = youtubeLinkParts && youtubeLinkParts[youtubeLinkParts.length - 1];
+    const embedUrl = `https://www.youtube.com/embed/${youtubeId}`;
     //    console.log(campaign)
 
     return (
@@ -488,14 +525,39 @@ function CampainDetails() {
             </div>
             <div className="container mx-auto">
                 {/* <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'> */}
-                <div class="flex flex-col lg:flex-row gap-3">
-                    <div class="h-full lg:w-2/3 ">
-                        <div class="relative rounded-lg">
+                <div className="flex flex-col lg:flex-row gap-3">
+                    <div className="h-full lg:w-2/3 ">
+                        <div className="relative rounded-lg">
                             {/* banner */}
-                            <img className="h-96 min-w-full" src={campaign.banner} alt={campaign.campaignName} /> 
+                            
+                            <Slider {...settings}>
+                                <div>
+                                    <img className="min-w-full" src={campaign.banner} alt={campaign.campaignName} /> 
+                                </div>
+                                <div>
+                                    {campaign.youtube_link ? (
+                                        <div className="aspect-w-16 aspect-h-9">
+                                            <iframe
+                                                className="w-full h-full"
+                                                src={embedUrl}
+                                                title="YouTube video player"
+                                                frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen
+                                            ></iframe>
+                                        </div>
+                                    ) : (
+                                        <img
+                                            src={campaign.banner}
+                                            alt={campaign.campaignName}
+                                            className="w-full h-auto rounded-lg"
+                                        />
+                                    )}
+                                </div>
+                            </Slider>
                         </div>
                     </div>
-                    <div class="h-full lg:w-1/3">
+                    <div className="h-full lg:w-1/3">
                         <Card 
                         orgDetails={campaign.organisation} 
                         raisedAmount= {getTotalAmount(campaign.donations)} 
@@ -511,7 +573,7 @@ function CampainDetails() {
                     <div className="lg:p-1">
                         {/* Campaign details */}
                         <div className="card card-side bg-base-100 grid grid-cols-1 rounded-lg px-4 h-full">
-                        <div class="flex">
+                        <div className="flex">
                         </div>
                             {/* <figure className="overflow-hidden w-full"> <img className="h-96" src={campaign.banner} alt={campaign.campaignName} /></figure>  */}
                             <div className="px-2 pt-4">
@@ -622,7 +684,7 @@ function CampainDetails() {
                             </div>
                         </div>
 
-                        <input type="radio" name="my_tabs_2" role="tab" className="tab font-semibold" aria-label="Other" checked/>
+                        <input type="radio" name="my_tabs_2" role="tab" className="tab font-semibold" aria-label="OTHER" checked/>
                         <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
                             {/* Tab content 2 */}
                             <div>
