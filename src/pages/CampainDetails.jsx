@@ -1,7 +1,5 @@
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-// import Popup from 'reactjs-popup';
-// import 'reactjs-popup/dist/index.css';
 import axios from 'axios'
 import {toast,Toaster} from 'react-hot-toast'
 import Menus from '../components/reusables/Menus';
@@ -204,22 +202,22 @@ function CampainDetails() {
     if (!campaign) {
         return (
             <div aria-label="Loading..." role="status" className="flex justify-center items-center space-x-2  min-h-screen">
-            <svg className="h-20 w-20 animate-spin stroke-gray-500" viewBox="0 0 256 256">
-                <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
-                <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="24"></line>
-                <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
-                </line>
-                <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="24"></line>
-                <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
-                </line>
-                <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="24"></line>
-                <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
-                <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
-                </line>
-            </svg>
+                <svg className="h-20 w-20 animate-spin stroke-gray-500" viewBox="0 0 256 256">
+                    <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+                    <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="24"></line>
+                    <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+                    </line>
+                    <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="24"></line>
+                    <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+                    </line>
+                    <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="24"></line>
+                    <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+                    <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+                    </line>
+                </svg>
             <span className="text-4xl font-medium text-gray-500">Loading...</span>
         </div>
         )
@@ -475,7 +473,7 @@ function CampainDetails() {
         }
         return totalAmount;
     }  
-       console.log(campaign)
+    //    console.log(campaign)
 
     return (
         <div>
@@ -492,7 +490,7 @@ function CampainDetails() {
                 {/* <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'> */}
                 <div class="flex flex-col lg:flex-row gap-3">
                     <div class="h-full lg:w-2/3 ">
-                        <div class="relative">
+                        <div class="relative rounded-lg">
                             {/* banner */}
                             <img className="h-96 min-w-full" src={campaign.banner} alt={campaign.campaignName} /> 
                         </div>
@@ -516,7 +514,7 @@ function CampainDetails() {
                         <div class="flex">
                         </div>
                             {/* <figure className="overflow-hidden w-full"> <img className="h-96" src={campaign.banner} alt={campaign.campaignName} /></figure>  */}
-                            <div className="px-2">
+                            <div className="px-2 pt-4">
                                 <div className=''>
                                     {/* <h1 className=' text-lg font-semibold'>Agenda</h1> */}
                                     <p className="text-blue-600">{campaign.category.toUpperCase()}</p>
@@ -631,7 +629,7 @@ function CampainDetails() {
                                 <div className='h-full rounded-lg'> 
                                     <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
                                         <div className='text-black'>
-                                            <h1 className="text-xl font-medium mt-0">Card Donation Form</h1>
+                                            <h1 className="text-xl font-medium mt-0">Card/M-Pesa Donation Form</h1>
                                         
                                             <p className="my-2">Please fill all field with <span className='text-red-500'>*</span> in the form to donate to this campaign.</p>
                                             </div>                                           
@@ -648,21 +646,6 @@ function CampainDetails() {
                                                         // required
                                                     />
                                                 </div>
-
-                                                {/* <div className='my-3'>
-                                                    <label className=' text-black'>Email</label> 
-                                                    <input
-                                                        type="email"
-                                                        id='cardEmail'
-                                                        placeholder='mail@example.com(Optional)'
-                                                        value={email}
-                                                        onChange={(e) => {
-                                                            setEmail(e.target.value);
-                                                        }}
-                                                        className="block w-full text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
-                                                        // required
-                                                    />
-                                                </div> */}
                                         
                                                 <div className='my-3'>
                                                     <label className=' text-black'><span className='text-red-500'>*</span>Phone Number</label> 
