@@ -56,13 +56,13 @@ function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, han
                     <div className="flex gap-2 px-2 my-3">  
 
                     {subscribe ? (
-                        <button className='flex-1 rounded-full bg-blue-600 text-white font-bold hover:bg-blue-800 px-4 py-2' onClick={handleUnsubscribe}>Subscribed</button>
+                        <button className='flex-1 rounded bg-blue-600 text-white font-bold hover:bg-blue-800 px-4 py-2' onClick={handleUnsubscribe}>Subscribed</button>
                     ) : (
-                        <button className='flex-1 rounded-full bg-blue-600 text-white font-bold hover:bg-blue-800 px-4 py-2' onClick={handleSubscribe}>Subscribe</button>
+                        <button className='flex-1 rounded bg-blue-600 text-white font-bold hover:bg-blue-800 px-4 py-2' onClick={handleSubscribe}>Subscribe</button>
                     )}
 
                     <button
-                        className="flex-1 rounded-full border-2 border-blue-600 font-semibold text-black px-4 py-2">
+                        className="flex-1 rounded border-2 border-blue-600 font-semibold text-black px-4 py-2 hover:bg-blue-600 hover:text-white">
                         More Info
                     </button>
                 </div>
