@@ -52,8 +52,8 @@ function Menus() {
                     (<div className="dropdown dropdown-end absolute right-4 sm:z-20">
                         {/* <div tabIndex={0} role="button" className="text-white border border-blue-600 bg-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log out</div> */}
                         <div tabIndex={0} role="button" className="text-xs">
-                            <div className='flex items-center h-10 bg-blue-600 text-white border border-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-xs px-1 py-2.5 text-center'>
-                              <p className='text-wrap '>{org && org.slice(0,5)}...</p>
+                            <div className='flex items-center h-10 bg-transparent text-white border border-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-xs px-1 py-2.5 text-center'>
+                              <p className='text-wrap '>{org && org}</p>
                               <MdOutlineAccountCircle className="h-6 w-6 ml-2"/>
                             </div>
                         </div>
@@ -66,7 +66,7 @@ function Menus() {
                     (<div className="dropdown dropdown-end absolute right-4 sm:z-20">
                         <div tabIndex={0} role="button" className="text-xs">
                             <div className='flex items-center h-10 bg-blue-600 text-white border border-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-xs px-1 py-2.5 text-center'>
-                              <p className='text-wrap '>{user && user.slice(0,5)}...</p>
+                              <p className='text-wrap '>{user && user}</p>
                               <MdOutlineAccountCircle className="h-6 w-6 ml-2"/>
                             </div>
                         </div>

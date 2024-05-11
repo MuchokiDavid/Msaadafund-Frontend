@@ -7,6 +7,7 @@ import {toast,Toaster} from 'react-hot-toast'
 import Menus from '../components/reusables/Menus';
 import Footer from '../components/reusables/Footer';
 import Featured from '../components/campaigns/Featured';
+import { useNavigate } from 'react-router-dom';
 
 import { 
 FacebookShareButton,FacebookIcon, 
@@ -16,6 +17,7 @@ TelegramShareButton,TelegramIcon
 } from 'react-share';
 import Swal from 'sweetalert2';
 import { useAuth } from '../context/usersContext';
+import Card from './Card';
 
 function CampainDetails() {
     const { campaignId } = useParams();
@@ -27,9 +29,10 @@ function CampainDetails() {
     const phonePattern = /^(07|01)\d{8}$/;
     const [username, setUserName]= useState("")
     const [password, setPassword]= useState("")
+    const [email,setEmail]= useState("")
     const {userLogin, loginMessage, logout} = useAuth();
     const [showModal, setShowModal] = useState(false);
-
+    
     // const  navigate = useNavigate();
     const [loading, setLoading]= useState(false)
     // const currentlWebUrl= window.location.href
@@ -39,6 +42,7 @@ function CampainDetails() {
     const users = localStorage.getItem('user');
     const accessToken = localStorage.getItem('token');
     const org=  localStorage.getItem('org')
+    const navigate= useNavigate()
 
     useEffect(() => {
      setName(users)
@@ -198,12 +202,33 @@ function CampainDetails() {
     
 
     if (!campaign) {
-        return <div className='sm:h-screen'><span className="loading loading-dots loading-lg"></span></div>;
+        return (
+            <div aria-label="Loading..." role="status" className="flex justify-center items-center space-x-2  min-h-screen">
+            <svg className="h-20 w-20 animate-spin stroke-gray-500" viewBox="0 0 256 256">
+                <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+                <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="24"></line>
+                <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+                </line>
+                <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="24"></line>
+                <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+                </line>
+                <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="24"></line>
+                <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+                <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+                </line>
+            </svg>
+            <span className="text-4xl font-medium text-gray-500">Loading...</span>
+        </div>
+        )
     }
 
 
     const handleDonateButton = (e) => {
         e.preventDefault();
+        setErrors('')
         const config = {
             headers: {
               Authorization: `Bearer ${accessToken}`
@@ -298,6 +323,95 @@ function CampainDetails() {
         }
     };
 
+    //axios to post data for donations via card
+    const handleDonateCard = (e) => {
+        e.preventDefault();
+        setErrors('')
+        const config = {
+            headers: {
+              Authorization: `Bearer ${accessToken}`
+            }
+          };
+        // if start date  is less than current date disable button 
+        const currentDate = new Date();
+        const startDate = new Date(campaign.startDate);
+        if (currentDate < startDate) {
+            toast.error("Campaign has not yet started");
+        } else {
+            let orgsnt= campaign.organisation.orgName
+            let donorName= name ? name: "Anonymous"
+            const international_phone_pattern= /^\d{1,4}?\d{3,14}$/
+            if (!phoneNum.match(international_phone_pattern)) {
+                setErrors('Invalid Phone Number')
+            }
+            else {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: `You are about to send Kes ${amount} to ${orgsnt}!`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Send!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // if (users && accessToken){
+                        //     axios.post('/api/v1.0/user/donations',{donorName:name,amount,campaignId:campaignId,phoneNumber:phoneNum},config)
+                        //     .then((res)=>{
+                        //         if(res.status===200){
+
+                        //             Swal.fire({
+                        //                 title: res.data.message,
+                        //                 text: "Check your phoneNumbers and and enter M-pesa pin!",
+                        //                 icon: "success"
+                        //               }).then((result)=>{
+                        //                 if(result.isConfirmed){
+                        //                     window.location.reload();
+                        //                 }
+                        //               });
+                        //         }
+                        //         else{
+                        //             Swal.fire(
+                        //                 'Error!',
+                        //                 'The donation was not successiful. Try again',
+                        //                 'error'
+                        //             )
+                        //         }
+                        //     })
+
+                        // }
+                        // else{
+                            axios.post ("/api/v1.0/donate_card",{phoneNumber:phoneNum,email:email,amount,campaignId:campaignId})
+                            .then((res)=>{{
+                                // console.log(res)
+                                if(res.status===200){  
+                                    window.location.replace(res.data.url)                                                         
+                                }
+                                else{
+                                    Swal.fire(
+                                        'Error!',
+                                        'The request was not successiful. Try again',
+                                        'error'
+                                    )
+                                }
+                                
+                                // window.location.reload();
+                            }})
+                            .catch((err)=>{
+                                const errorMsg = err.response?.data?.error || 'An error occurred';
+                                setErrors(errorMsg);
+                            })
+                            
+                        // }                   
+                        
+                    }
+                })
+
+
+            }           
+        }
+    }
+
     
     const handleDays = () => {
         // if current date < start date  return days remaining for campaingn to start
@@ -320,7 +434,7 @@ function CampainDetails() {
     const socialShare = ()=>{
         return (
             <>
-            <div className='mt-2'>
+            <div className='my-2'>
                 <p>Share this campaign</p>
             </div>
             <div className='mt-0 flex space-x-3'>
@@ -360,17 +474,13 @@ function CampainDetails() {
             totalAmount += donation.amount;
         }
         return totalAmount;
-    }
-
-
-
-  
-       
+    }  
+       console.log(campaign)
 
     return (
         <div>
-            <Menus/>
-        <div className='text-black bg-white min-h-screen' id='campaign_dets'>
+        <Menus/>
+        <div className='text-black bg-slate-50 min-h-screen' id='campaign_dets'>
             <div className="text-md breadcrumbs ml-4">
                 <ul>
                     <li><a href='/'>Home</a></li>
@@ -380,188 +490,242 @@ function CampainDetails() {
             </div>
             <div className="container mx-auto">
                 {/* <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'> */}
+                <div class="flex flex-col lg:flex-row gap-3">
+                    <div class="h-full lg:w-2/3 ">
+                        <div class="relative">
+                            {/* banner */}
+                            <img className="h-96 min-w-full" src={campaign.banner} alt={campaign.campaignName} /> 
+                        </div>
+                    </div>
+                    <div class="h-full lg:w-1/3">
+                        <Card 
+                        orgDetails={campaign.organisation} 
+                        raisedAmount= {getTotalAmount(campaign.donations)} 
+                        budget= {campaign.targetAmount}
+                        subscribe= {subscribe}
+                        handleSubscribe={handleSubscribe}
+                        handleUnsubscribe={handleUnsubscribe}
+                        />
+                    </div>
+                </div>
+                
                 <div className=''>
                     <div className="lg:p-1">
                         {/* Campaign details */}
-                        <div className="card card-side bg-base-100 grid grid-cols-1 rounded-lg p-4 h-full">
-                            <h1 className="text-2xl font-bold mb-4">{campaign.campaignName.toUpperCase()}</h1>
-                            <figure className="overflow-hidden w-5/6"> <img className="h-96" src={campaign.banner} alt={campaign.campaignName} /></figure> 
-                            <div className="p-2">
-                                <div className='my-2'>
+                        <div className="card card-side bg-base-100 grid grid-cols-1 rounded-lg px-4 h-full">
+                        <div class="flex">
+                        </div>
+                            {/* <figure className="overflow-hidden w-full"> <img className="h-96" src={campaign.banner} alt={campaign.campaignName} /></figure>  */}
+                            <div className="px-2">
+                                <div className=''>
                                     {/* <h1 className=' text-lg font-semibold'>Agenda</h1> */}
                                     <p className="text-blue-600">{campaign.category.toUpperCase()}</p>
                                 </div>
-                                <div className='my-2'>
-                                    <div className='flex justify-start items-center'>
-                                        <div>
-                                            <p className='text-xl'><span className='font-light'>Organised by </span>{campaign.organisation.orgName}</p>
-                                        </div>
-                                        <div className='ml-4'>
-
-                                            {subscribe ? (
-                                                <button className='bg-blue-600 border hover:bg-transparent hover:border-blue-600 border-blue-600 hover:text-black text-white font-bold py-2 px-4 rounded' onClick={handleUnsubscribe}>Subscribed</button>
-                                            ) : (
-                                                <button className='bg-blue-600 border hover:bg-transparent hover:border-blue-600 border-blue-600 hover:text-black text-white font-bold py-2 px-4 rounded' onClick={handleSubscribe}>Subscribe</button>
-                                            )}
-
-                                        </div>
-                                    </div>
+                                <div>
+                                    <h1 className="text-xl font-semibold mb-2">{campaign.campaignName.toUpperCase()}</h1>
                                 </div>
-                                <div className='mt-1'>
+                                <div>
                                     <p className=" text-red-500 font-semibold">{handleDays()} Days left</p>
                                 </div>
-                                {socialShare()}
+
+                                <div className='my-2'>
+                                    <p className='text-gray-600'>{campaign.description}</p>
+                                </div>
+                                <div className='mb-4'>
+                                    {socialShare()}
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
-                    <div className="lg:p-2">
-                        <div className='bg-base-100 h-full rounded-lg lg:py-3'> 
-                            <form onSubmit={handleDonateButton} className='px-8 bg-slate-50 py-3'>
-                                <div className='text-black'>
-                                    <h1 className="text-xl font-medium mt-3">Donation Form</h1>
-                                
-                                    <p className="mb-2">Please fill in the form to donate to this campaign.</p>
-                                    </div>
-                                    <div className='flex-col justify-center items-center'>
+
+                    <div role="tablist" className="tabs tabs-lifted my-4">
+                        <input type="radio" name="my_tabs_2" role="tab" className="tab font-semibold" aria-label="M_PESA" checked/>
+                        <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                        {/* Mpesa form tab */}
+                            <div>
+                                <div className='h-full rounded-lg'> 
+                                    <form onSubmit={handleDonateButton} className='w-full rounded-xl'>
+                                        <div className='text-black'>
+                                            <h1 className="text-xl font-medium mt-0">M-Pesa Donation Form</h1>
+                                        
+                                            <p className="my-2">Please fill all field with <span className='text-red-500'>*</span> in the form to donate to this campaign.</p>
+                                            </div>
+                                            <div className='flex-col justify-center items-center'>
+                                                <div>
+                                                    <label className=' text-black'>Personal Details</label>
+                                                    <input
+                                                        type="text"
+                                                        id="donor"
+                                                        placeholder='Your Name (Optional)'
+                                                        value={name}
+                                                        onChange={(e) =>setName(e.target.value)}
+                                                        className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white w-full"
+                                                        // required
+                                                    />
+                                                </div>
+                                        
+                                                <div className='my-3'>
+                                                    <label className=' text-black'><span className='text-red-500'>*</span>Phone Number</label> 
+                                                    <input
+                                                        type="tel"
+                                                        id="phoneNumber"
+                                                        placeholder='eg 07xxxx or 011xxxx'
+                                                        maxLength={10}
+                                                        value={phoneNum}
+                                                        onChange={(e) => {
+                                                            setPhoneNum(e.target.value);
+                                                        }}
+                                                        className="block w-full text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                        required
+                                                    />
+                                                </div>
+                                                <div className='flex justify-start items-center'>
+                                                    <button onClick={(e)=>{ e.preventDefault(); setDonationAmount(100)}} className='p-2 rounded-xl border border-blue-600 mr-3 hover:text-white hover:bg-blue-600'>100</button>
+                                                    <button onClick={(e)=>{e.preventDefault(); setDonationAmount(300)}} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>300</button>
+                                                    <button onClick={(e)=> {e.preventDefault(); setDonationAmount(500)}} className='p-2 rounded-xl border border-blue-600 mx-3 hover:text-white hover:bg-blue-600'>500</button>
+                                                    <button onClick={(e)=> {e.preventDefault(); setDonationAmount(1000)}} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>1000</button>
+                                                </div>
+
+                                                <div className='my-3'>
+                                                    <label className=' text-black'><span className='text-red-500'>*</span>Donation Amount</label>
+                                                    <input
+                                                        type="number"
+                                                        id="donationAmount"
+                                                        placeholder='Enter amount'
+                                                        value={amount}
+                                                        onChange={(e) => setDonationAmount(e.target.value)}
+                                                        className="block w-full text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                        required
+                                                    />
+                                                </div>
+                                                </div>
                                         <div>
-                                            <label className=' text-black'>Personal Details</label>
-                                            <input
-                                                type="text"
-                                                id="donor"
-                                                placeholder='Your Name (Optional)'
-                                                value={name}
-                                                onChange={(e) =>setName(e.target.value)}
-                                                className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white w-3/4"
-                                                // required
-                                            />
+                                            {/* shows total donation amount */}
+                                            <p>Total Donation: Ksh {amount}</p>
                                         </div>
-                                
-                                        <div className='my-3'>
-                                            <label className=' text-black'><span className='text-red-500'>*</span>Phone Number</label> 
-                                            <input
-                                                type="tel"
-                                                id="phoneNumber"
-                                                placeholder='eg 07xxxx or 011xxxx'
-                                                maxLength={10}
-                                                value={phoneNum}
-                                                onChange={(e) => {
-                                                    setPhoneNum(e.target.value);
-                                                }}
-                                                className="block w-3/4 text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
-                                                required
-                                            />
+                                        {errors && <p className='text-red-600 my-1'>{errors}</p>}
+                                        
+                                        <div className='flex justify-start'>
+                                            <div>
+                                                <button type="submit"
+                                                    className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 w-48 h-12 rounded mt-4 '>
+                                                        {loading ? "Submitting..." : "Submit"}
+                                                </button>
+                                            </div>
+                                            
                                         </div>
-                                        <div className='flex justify-start items-center'>
-                                            <button onClick={(e)=>{ e.preventDefault(); setDonationAmount(100)}} className='p-2 rounded-xl border border-blue-600 mr-3 hover:text-white hover:bg-blue-600'>100</button>
-                                            <button onClick={(e)=>{e.preventDefault(); setDonationAmount(300)}} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>300</button>
-                                            <button onClick={(e)=> {e.preventDefault(); setDonationAmount(500)}} className='p-2 rounded-xl border border-blue-600 mx-3 hover:text-white hover:bg-blue-600'>500</button>
-                                            <button onClick={(e)=> {e.preventDefault(); setDonationAmount(1000)}} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>1000</button>
-                                        </div>
+                                        {/* <div className='mt-3 flex justify-left'>
+                                            <p className='text-success'>Contributions are sent directly to the creator of the campaign</p>
+                                        </div> */}
+                                    </form>
+                                </div>
 
-                                        <div className='my-3'>
-                                            <label className=' text-black'><span className='text-red-500'>*</span>Donation Amount</label>
-                                            <input
-                                                type="number"
-                                                id="donationAmount"
-                                                placeholder='Enter amount'
-                                                value={amount}
-                                                onChange={(e) => setDonationAmount(e.target.value)}
-                                                className="block w-3/4 text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
-                                                required
-                                            />
-                                        </div>
-                                        </div>
-                                <div>
-                                    {/* shows total donation amount */}
-                                    <p>Total Donation: Ksh {amount}</p>
-                                </div>
-                                {errors && <p className='text-red-600 my-1'>{errors}</p>}
-                                
-                                <div className='flex justify-start'>
-                                    <div>
-                                        <button type="submit"
-                                            className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 w-48 h-12 rounded mt-4 '>
-                                                {loading ? "Submitting..." : "Submit"}
-                                        </button>
-                                    </div>
-                                    <div>
-                                        <img className="w-18 h-16 ml-12" src ="https://upload.wikimedia.org/wikipedia/commons/1/15/M-PESA_LOGO-01.svg" alt="logo"/>
-                                    </div>
-                                    
-                                </div>
-                                {/* <div className='mt-3 flex justify-left'>
-                                    <p className='text-success'>Contributions are sent directly to the creator of the campaign</p>
-                                </div> */}
-                            </form>
-                            <div className='flex justify-between mx-4'>
-                                {/* <div className='px-6 pt-6'>
-                                    <h1 className='font-medium'>Total Donations</h1>
-                                    <p className="font-medium mb-1 text-info">KES {getTotalAmount(campaign.donations)}</p>
-                                </div> */}
-                                <div className='px-6 pt-6'>
-                                    <h1 className='font-medium'>Total Funds Raised</h1>
-                                    <p className="font-medium mb-1 text-info">KES {getTotalAmount(campaign.donations)}</p>
-                                </div>
-                                <div className='px-6 pt-6'>
-                                    <h1 className='font-medium'>Goal</h1>
-                                    <p className="font-medium mb-1 text-info">KES {campaign.targetAmount}</p>
-                                </div>
                             </div>
-                            <div className='w-full flex justify-center'>
-                                <progress className="progress progress-info w-3/4" value={getTotalAmount(campaign.donations)} max={campaign.targetAmount}></progress>
-                            </div>
-                         </div>
-
-                    </div>
-                </div> 
-                
-                <div className='my-4'>
-                    <h1 className='text-xl font-bold'>Campaign Details</h1>
-                    <p className='text-gray-600'>{campaign.description}</p>
-                </div>
-                
-
-                {/* <div className='mt-6 bg-base-100 p-4 rounded-lg'>
-                <div role="tablist" className="tabs tabs-lifted tabs-lg">
-                    <input type="radio" name="my_tabs_2" role="tab" className="tab text-xl font-semibold w-fit" aria-label="Description" checked/>
-                    <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-                        <p className="my-4 text-lg">{campaign.description}</p>
-                        {socialShare()}
-                    </div>
-
-                    <input type="radio" name="my_tabs_2" role="tab" className="tab text-xl font-semibold" aria-label="Organiser"/>
-                    <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-                        <div>
-                            <div className='flex justify-start'>
-                                <div>
-                                    <p>Organiser</p>
-                                    <p className='text-xl mb-3'>{campaign.organisation.orgName}</p>
-                                </div>
-                                
-                                
-                                <div className='ml-8'>
-                               
-                                    {subscribe ? (
-                                        <button className='btn btn-success' onClick={handleUnsubscribe}>Subscribed</button>
-                                    ) : (
-                                        <button className='btn btn-primary btn-outline h-3' onClick={handleSubscribe}>Subscribe</button>
-                                    )}
-                                </div>
-                            </div>
-                            <p>Address</p>
-                            <p className='text-xl mb-3'>{campaign.organisation.orgAddress}</p>
-                            <p>About</p>
-                            <p className='text-xl'>{campaign.organisation.orgDescription ? campaign.organisation.orgDescription : 'Currently not available'}</p>
                         </div>
-                        
-                    </div>
-                </div>
-               
-                   
-                </div> */}
-                
 
-                    {/* </Popup> */}               
+                        <input type="radio" name="my_tabs_2" role="tab" className="tab font-semibold" aria-label="CARD" checked/>
+                        <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                            {/* Tab content 2 */}
+                            <div>
+                                <div className='h-full rounded-lg'> 
+                                    <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
+                                        <div className='text-black'>
+                                            <h1 className="text-xl font-medium mt-0">Card Donation Form</h1>
+                                        
+                                            <p className="my-2">Please fill all field with <span className='text-red-500'>*</span> in the form to donate to this campaign.</p>
+                                            </div>                                           
+                                            <div className='flex-col justify-center items-center'>
+                                                <div>
+                                                    <label className=' text-black'>Personal Details</label>
+                                                    <input
+                                                        type="text"
+                                                        placeholder='Your Name (Optional)'
+                                                        value={name}
+                                                        id='cardName'
+                                                        onChange={(e) =>setName(e.target.value)}
+                                                        className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white w-full"
+                                                        // required
+                                                    />
+                                                </div>
+
+                                                {/* <div className='my-3'>
+                                                    <label className=' text-black'>Email</label> 
+                                                    <input
+                                                        type="email"
+                                                        id='cardEmail'
+                                                        placeholder='mail@example.com(Optional)'
+                                                        value={email}
+                                                        onChange={(e) => {
+                                                            setEmail(e.target.value);
+                                                        }}
+                                                        className="block w-full text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                        // required
+                                                    />
+                                                </div> */}
+                                        
+                                                <div className='my-3'>
+                                                    <label className=' text-black'><span className='text-red-500'>*</span>Phone Number</label> 
+                                                    <input
+                                                        type="tel"
+                                                        placeholder='254xxxxxxxxx'
+                                                        id='cardPhone'
+                                                        value={phoneNum}
+                                                        onChange={(e) => {
+                                                            setPhoneNum(e.target.value);
+                                                        }}
+                                                        className="block w-full text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                        required
+                                                    />
+                                                </div>
+                                                <div className='flex justify-start items-center'>
+                                                    <button onClick={(e)=>{ e.preventDefault(); setDonationAmount(100)}} className='p-2 rounded-xl border border-blue-600 mr-3 hover:text-white hover:bg-blue-600'>100</button>
+                                                    <button onClick={(e)=>{e.preventDefault(); setDonationAmount(300)}} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>300</button>
+                                                    <button onClick={(e)=> {e.preventDefault(); setDonationAmount(500)}} className='p-2 rounded-xl border border-blue-600 mx-3 hover:text-white hover:bg-blue-600'>500</button>
+                                                    <button onClick={(e)=> {e.preventDefault(); setDonationAmount(1000)}} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>1000</button>
+                                                </div>
+
+                                                <div className='my-3'>
+                                                    <label className=' text-black'><span className='text-red-500'>*</span>Donation Amount</label>
+                                                    <input
+                                                        type="number"
+                                                        placeholder='Enter amount'
+                                                        id='card-amount'
+                                                        value={amount}
+                                                        onChange={(e) => setDonationAmount(e.target.value)}
+                                                        className="block w-full text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                        required
+                                                    />
+                                                </div>
+                                                </div>
+                                        <div>
+                                            {/* shows total donation amount */}
+                                            <p>Total Donation: Ksh {amount}</p>
+                                        </div>
+                                         
+                                        {errors && <p className='text-red-600 my-1'>{errors}</p>}                                       
+                                        <div className='flex justify-start'>
+                                            <div>
+                                                <button type="submit"
+                                                    className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 w-48 h-12 rounded mt-4 '>
+                                                        {loading ? "Submitting..." : "Submit"}
+                                                </button>
+                                            </div>
+                                            
+                                        </div>
+                                        {/* <div className='mt-3 flex justify-left'>
+                                            <p className='text-success'>Contributions are sent directly to the creator of the campaign</p>
+                                        </div> */}
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div> 
+                {/* </Popup> */}               
             </div>
             <Toaster position = "top-center" reverseOrder={false} />
            <Featured/>
@@ -589,11 +753,12 @@ function CampainDetails() {
                                         onChange={(e) => setPassword(e.target.value)}
                                         value={password}
                                         className="input input-bordered w-full"
-                                        id="pin"
+                                        id="password"
                                         type="password"
                                         placeholder='password'
-                                        name="pin"
+                                        name="password"
                                         required
+                                        autoComplete=''
                                     />
                                 </div>
                                 <div>
