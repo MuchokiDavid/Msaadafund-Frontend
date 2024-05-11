@@ -15,6 +15,7 @@ function CreateCampaign() {
     const[loading,setLoading]=useState(false)
     const [otherCategory, setOtherCategory] = useState('');
     const [youtubeLink,setYoutubeLink]=useState('')
+    const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/(?:watch\?v=)?([a-zA-Z0-9_-]+)$/;
 
 
     const handleFileUpload = (e) => {
@@ -37,54 +38,59 @@ function CreateCampaign() {
             return;
         }
 
-        const formData = new FormData();
-        formData.append('banner', banner);
-        formData.append('description', description);
-        formData.append('campaignName', campaignName);
-        formData.append('startDate', formatDate(startDate)); // Format start date
-        formData.append('endDate', formatDate(endDate)); // Format end date
-        formData.append('targetAmount', targetAmount);
-        formData.append('youtubeLink', youtubeLink);
-        if(category==='Other'){
-          formData.append('category',otherCategory)  
+        if (!youtubeLink.match(youtubeRegex)) {
+            setError('Please ensure your YouTube link is valid')
         }
         else{
-            formData.append('category', category);
+            const formData = new FormData();
+            formData.append('banner', banner);
+            formData.append('description', description);
+            formData.append('campaignName', campaignName);
+            formData.append('startDate', formatDate(startDate)); // Format start date
+            formData.append('endDate', formatDate(endDate)); // Format end date
+            formData.append('targetAmount', targetAmount);
+            formData.append('youtubeLink', youtubeLink);
+            if(category==='Other'){
+            formData.append('category',otherCategory)  
+            }
+            else{
+                formData.append('category', category);
+            }
+            
+
+            const accessToken = localStorage.getItem('token');
+            const orgName = localStorage.getItem('org');
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            };
+
+            if (!accessToken && !orgName) {
+                window.location.replace('/org/login')
+            }
+
+            axios.post('/api/v1.0/setCampaign', formData, config)
+                .then((res) => {
+                    setLoading(false)
+                    toast.success('Campaign created successfully!');
+                    setError('');
+                    setBanner('');
+                    setDescription('');
+                    setCampaignName('');
+                    setStartDate('');
+                    setEndDate('');
+                    setTargetAmount('');
+                    setCategory('');
+                    setYoutubeLink('')
+                })
+                .catch((err) => {
+                    console.log(err);
+                    const errorMsg = err.response?.data?.error || 'An error occurred';
+                    setError(errorMsg);
+
+                });
         }
-        
-
-        const accessToken = localStorage.getItem('token');
-        const orgName = localStorage.getItem('org');
-        const config = {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        };
-
-        if (!accessToken && !orgName) {
-            window.location.replace('/org/login')
-        }
-
-        axios.post('/api/v1.0/setCampaign', formData, config)
-            .then((res) => {
-                setLoading(false)
-                toast.success('Campaign created successfully!');
-                setError('');
-                setBanner('');
-                setDescription('');
-                setCampaignName('');
-                setStartDate('');
-                setEndDate('');
-                setTargetAmount('');
-                setCategory('');
-                setYoutubeLink('')
-            })
-            .catch((err) => {
-                console.log(err);
-                const errorMsg = err.response?.data?.error || 'An error occurred';
-                setError(errorMsg);
-
-            });
     };
 
     const formatDate = (dateString) => {
@@ -207,7 +213,7 @@ function CreateCampaign() {
                             id="youtube"
                             type="text"
                             value={youtubeLink}
-                            placeholder="https://youtu.be/JHGUszJv3NI"
+                            placeholder="https://www.youtube.com/ayKcAeoupDw"
                             onChange={(e) => setYoutubeLink(e.target.value)}
                             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             // required
