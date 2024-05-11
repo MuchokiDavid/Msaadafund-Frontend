@@ -545,7 +545,7 @@ function CampainDetails() {
                                 <div className='h-full rounded-lg'> 
                                     <form onSubmit={handleDonateButton} className='w-full rounded-xl'>
                                         <div className='text-black'>
-                                            <h1 className="text-xl font-medium mt-0">M-Pesa Donation Form</h1>
+                                            <h1 className="text-xl font-medium mt-0">Donate via M-Pesa</h1>
                                         
                                             <p className="my-2">Please fill all field with <span className='text-red-500'>*</span> in the form to donate to this campaign.</p>
                                             </div>
@@ -629,7 +629,7 @@ function CampainDetails() {
                                 <div className='h-full rounded-lg'> 
                                     <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
                                         <div className='text-black'>
-                                            <h1 className="text-xl font-medium mt-0">Card/M-Pesa Donation Form</h1>
+                                            <h1 className="text-xl font-medium mt-0">Donate via Card/M-Pesa</h1>
                                         
                                             <p className="my-2">Please fill all field with <span className='text-red-500'>*</span> in the form to donate to this campaign.</p>
                                             </div>                                           
