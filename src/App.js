@@ -19,6 +19,7 @@ import Unauthorized from './components/reusables/Unauthorized';
 import Policy from './pages/Policy';
 import Terms from './pages/Terms';
 import ThankYou from './components/reusables/ThankYou';
+import Organisation from './pages/Organisation';
 
 
 
@@ -45,6 +46,7 @@ function App() {
     <Route path = '/terms' element = {<Terms/>}/>
     <Route path = "/unauthorized" element = {<Unauthorized/>}/>
     <Route path = "/thank-you" element = {<ThankYou/>}/>
+    <Route path = "/organisations" element = {<Organisation/>}/>
     </Routes>
      );
 }
