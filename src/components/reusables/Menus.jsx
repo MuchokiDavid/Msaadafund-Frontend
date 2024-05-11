@@ -19,7 +19,7 @@ function Menus() {
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-700 rounded-box w-52 text-white">
                         <li><a href='/'>Home</a></li>
-                        <li><a href='/campaign'>Fundraisers</a></li>
+                        <li><a href='/campaign'>Campaigns</a></li>
                         <li><a href='/organisations'>Organisations</a></li>
                         <li><a href='/about'>About us</a></li>
                         <li><a href='/contact'>Contact</a></li>
@@ -30,7 +30,7 @@ function Menus() {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal text-white">
                         <li><a href='/'>Home</a></li>
-                        <li><a href='/campaign'>Fundraisers</a></li>
+                        <li><a href='/campaign'>Campaigns</a></li>
                         <li><a href='/organisations'>Organisations</a></li>
                         <li><a href='/about'>About us</a></li>
                         <li><a href='/contact'>Contact</a></li>
@@ -65,7 +65,7 @@ function Menus() {
                     :token && user?
                     (<div className="dropdown dropdown-end absolute right-4 sm:z-20">
                         <div tabIndex={0} role="button" className="text-xs">
-                            <div className='flex items-center h-10 bg-blue-600 text-white border border-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-xs px-1 py-2.5 text-center'>
+                            <div className='flex items-center h-10 bg-transparent text-white border border-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-xs px-1 py-2.5 text-center'>
                               <p className='text-wrap '>{user && user}</p>
                               <MdOutlineAccountCircle className="h-6 w-6 ml-2"/>
                             </div>
