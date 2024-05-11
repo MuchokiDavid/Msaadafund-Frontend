@@ -20,6 +20,7 @@ import Policy from './pages/Policy';
 import Terms from './pages/Terms';
 import ThankYou from './components/reusables/ThankYou';
 import Organisation from './pages/Organisation';
+import OrganisationDetails from './OrganisationDetails';
 
 
 
@@ -47,6 +48,8 @@ function App() {
     <Route path = "/unauthorized" element = {<Unauthorized/>}/>
     <Route path = "/thank-you" element = {<ThankYou/>}/>
     <Route path = "/organisations" element = {<Organisation/>}/>
+    <Route path={"/organisation/:orgName" } element={<OrganisationDetails/>} />
+
     </Routes>
      );
 }
