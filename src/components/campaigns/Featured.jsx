@@ -64,7 +64,7 @@ function Featured() {
               {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"> */}
                 {featuredCampaign && featuredCampaign.map((campaign) => {
                   return (
-                    <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden hover:cursor-pointer'>
+                    <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden'>
                       <a onClick={()=>handleCampaign(campaign.id)} className="block rounded-lg shadow-sm shadow-indigo-100">
                         <img
                           alt="banner"
@@ -82,7 +82,7 @@ function Featured() {
 
                             <div>
                               <dt className="sr-only">Name</dt>
-                              <dd className="font-medium overflow-hidden text-lg whitespace-nowrap">{campaign.campaignName}</dd>
+                              <dd className="font-medium overflow-hidden text-lg whitespace-nowrap hover:text-blue-600 hover:cursor-pointer"><p onClick={()=>handleCampaign(campaign.id)}>{campaign.campaignName}</p></dd>
                             </div>
                             <div>
                               <dt className="sr-only">Organiser</dt>

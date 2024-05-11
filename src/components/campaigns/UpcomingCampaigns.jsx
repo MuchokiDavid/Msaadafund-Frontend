@@ -39,8 +39,8 @@ function UpcomingCampaigns({allCampaigns}) {
         <div className="mx-4 sm:mx-2 lg:mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
           {filteredCampaigns.map((campaign) => {
               return (
-                <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden hover:cursor-pointer'>
-                  <a onClick={()=>handleCampaign(campaign.id)} className="block rounded-lg shadow-sm shadow-indigo-100">
+                <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden'>
+                  <a className="block rounded-lg shadow-sm shadow-indigo-100">
                     <img
                       alt="banner"
                       src= {campaign.banner}
@@ -57,7 +57,7 @@ function UpcomingCampaigns({allCampaigns}) {
   
                         <div>
                           <dt className="sr-only">Name</dt>
-                          <dd className="font-medium overflow-hidden text-lg whitespace-nowrap hover:text-blue-500">{campaign.campaignName}</dd>
+                          <dd className="font-medium overflow-hidden text-lg whitespace-nowrap hover:text-blue-600 hover:cursor-pointer"><p onClick={()=>handleCampaign(campaign.id)}>{campaign.campaignName}</p></dd>
                         </div>
                         <div>
                           <dt className="sr-only">Organiser</dt>
