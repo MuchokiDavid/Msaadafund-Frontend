@@ -22,7 +22,7 @@ function Menus() {
                         <li><a href='/campaign'>Campaigns</a></li>
                         <li><a href='/organisations'>Organisations</a></li>
                         <li><a href='/about'>About us</a></li>
-                        <li><a href='/contact'>Contact</a></li>
+                        {/* <li><a href='/contact'>Contact</a></li> */}
                     </ul>
                     </div>
                     <a href='/' className="btn btn-ghost text-xl p-0"><img class="w-15 h-10 mr-2 sm:w-15 sm:h-10 lg:w-18 lg:h-12" src ={logo} alt="logo"/> </a>
@@ -33,7 +33,7 @@ function Menus() {
                         <li><a href='/campaign'>Campaigns</a></li>
                         <li><a href='/organisations'>Organisations</a></li>
                         <li><a href='/about'>About us</a></li>
-                        <li><a href='/contact'>Contact</a></li>
+                        {/* <li><a href='/contact'>Contact</a></li> */}
                     </ul>
                 </div>
                 <div className="navbar-end">

@@ -38,9 +38,9 @@ function Message() {
 
   return (
     <section class="bg-white">
-        <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md bg-white">
-            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900">Contact Us</h2>
-            <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 sm:text-xl">Got a technical issue? Want to send feedback about our feature? Need details about our Business plan? Let us know.</p>
+        <div class="py-4 lg:py-10 px-4 mx-auto max-w-screen-md bg-white">
+            {/* <h2 class="mb-4 text-2xl tracking-tight font-extrabold text-center text-gray-900">Contact Us</h2> */}
+            <p class="mb-4 lg:mb-8 font-light text-center text-gray-500">Got a technical issue? Want to send feedback about our feature? Need details about our Business plan? Let us know.</p>
             {errors && <p className='text-red-500'>{errors}</p>}
             <form action="#" class="space-y-8" onSubmit={sendEmail}>
                 <div>
