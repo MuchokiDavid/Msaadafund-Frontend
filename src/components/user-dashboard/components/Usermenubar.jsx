@@ -1,9 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
-import { FaDonate, FaHome } from "react-icons/fa";
-import { CiBank } from "react-icons/ci";
-import { LiaTelegram } from "react-icons/lia";
+import { FaDonate} from "react-icons/fa";
 import { IoPersonCircle } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useAuth } from '../../../context/usersContext';
