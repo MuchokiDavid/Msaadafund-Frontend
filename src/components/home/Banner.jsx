@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Featured from '../campaigns/Featured'
 import { prettyNumber } from '@based/pretty-number'
 import intasendLogo from '../../assets/intasend-logo.webp'
@@ -7,16 +6,16 @@ import safLogo from '../../assets/SAF-MAIN-LOGO.png'
 import BannerSlider from './BannerSlider'
 
 function Banner() {
-  const navigate = useNavigate()
   const[allDonations,setAllDonations]= useState([])
   const [allOrganisations, setAllOrganisations] = useState([])
   const [allCampaign,setAllCampaign] = useState([])
-  const[loading, setLoading] = useState(true)
+  const[loading, setLoading] = useState(false)
   const[errors, setErrors] = useState()
   const [buttonClicked, setButtonClicked] = useState(false);//state listen to button event change 
 
   useEffect(() => {
     const getDonations = async () => {
+      setLoading(true)
       try {
           const response = await fetch('/api/v1.0/all_donations', {
               method: 'GET',
@@ -25,16 +24,17 @@ function Banner() {
               },
           });
           const data = await response.json();
-          if (response.ok) {
-              setLoading(true);
+          if (response.ok) {              
               // console.log("Successful request to get donors");
               setAllDonations(data.message);
               setLoading(false);
           } else {
+              setLoading(false);
               throw new Error(data);
           }
       }
       catch {
+          setLoading(false);
           setErrors("Error getting donation data");
       }
   }
@@ -44,6 +44,7 @@ function Banner() {
   useEffect(() => {
     const getOrganisation = async () => {
       try {
+        setLoading(true)
           const response = await fetch('/api/v1.0/organisations', {
               method: 'GET',
               headers: {
@@ -52,15 +53,16 @@ function Banner() {
           });
           const data = await response.json();
           if (response.ok) {
-              setLoading(true);
               // console.log("Successful request to get donors");
               setAllOrganisations(data);
               setLoading(false);
           } else {
+              setLoading(false);
               throw new Error(data);
           }
       }
       catch {
+          setLoading(false);
           setErrors("Error getting donation data");
       }
   }
@@ -103,6 +105,31 @@ function Banner() {
     }
     setButtonClicked(false)
   }, [buttonClicked]);
+
+  if(loading){
+    // return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
+    return (
+      <div aria-label="Loading..." role="status" className="flex justify-center items-center space-x-2  min-h-screen">
+        <svg className="h-20 w-20 animate-spin stroke-gray-500" viewBox="0 0 256 256">
+            <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+            <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="24"></line>
+            <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+            </line>
+            <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="24"></line>
+            <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+            </line>
+            <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="24"></line>
+            <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+            <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+            </line>
+        </svg>
+        <span className="text-4xl font-medium text-gray-500">Loading...</span>
+    </div>
+    )
+  }
   
   function getTotalAmount(donationsArray) {
     let totalAmount = 0;
