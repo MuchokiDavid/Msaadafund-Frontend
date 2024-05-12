@@ -37,7 +37,7 @@ function Organisation() {
         <div className="mx-2 sm:mx-1 lg:mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
         {paginateOrganisations.map((org)=>{
             return(
-            <Link to={`/organisation/${org.orgName}`} key={org.id}>
+            <Link to={`/organisation/${org.orgName}/${org.id}`} key={org.id}>
             <div className="group relative block mt-12 sm:mt-16 lg:mt-20 bg-black">
         <img
             alt=""
