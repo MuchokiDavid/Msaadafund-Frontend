@@ -61,7 +61,7 @@ function UpcomingCampaigns({allCampaigns}) {
                         </div>
                         <div>
                           <dt className="sr-only">Organiser</dt>
-                          <dd><a href='#' className='text-blue-700 hover:underline whitespace-nowrap hover:text-blue-400'>Organiser: {campaign.organisation.orgName}</a></dd>
+                          <dd><a href={`/organisation/${campaign.organisation.orgName}`} className='text-blue-700 hover:underline whitespace-nowrap hover:text-blue-400'>Organiser: {campaign.organisation.orgName}</a></dd>
                           
                         </div>
                       </dl>
@@ -111,7 +111,8 @@ function UpcomingCampaigns({allCampaigns}) {
                           <div className="mt-1.5 sm:mt-0">
                             <p className="text-gray-500">Category</p>
   
-                            <p className="font-medium">{campaign.category}</p>
+                            <p className="font-medium"><span className="block">{campaign.category.split(' ')[0]}</span>
+                            <span>{campaign.category.split(' ')[1]}</span></p>
                           </div>
                         </div>
                       </div>

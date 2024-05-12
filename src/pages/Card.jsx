@@ -61,10 +61,10 @@ function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, han
                         <button className='flex-1 rounded bg-blue-600 text-white font-bold hover:bg-blue-800 px-4 py-2' onClick={handleSubscribe}>Subscribe</button>
                     )}
 
-                    <button
+                    <a href={`/organisation/${orgDetails && orgDetails.orgName}`}
                         className="flex-1 rounded border-2 border-blue-600 font-semibold text-black px-4 py-2 hover:bg-blue-600 hover:text-white">
-                        More Info
-                    </button>
+                        Organiser Info.
+                    </a>
                 </div>
 
                 </div>

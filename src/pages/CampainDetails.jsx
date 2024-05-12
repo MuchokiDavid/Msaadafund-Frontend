@@ -691,7 +691,7 @@ function CampainDetails() {
                                 <div className='h-full rounded-lg'> 
                                     <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
                                         <div className='text-black'>
-                                            <h1 className="text-xl font-medium mt-0">Donate via Card/M-Pesa/Airtel</h1>
+                                            <h1 className="text-xl font-medium mt-0">Donate via Card/M-Pesa/Paybill</h1>
                                         
                                             <p className="my-2">Please fill all field with <span className='text-red-500'>*</span> in the form to donate to this campaign.</p>
                                             </div>                                           
