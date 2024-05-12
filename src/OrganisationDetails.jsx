@@ -15,7 +15,7 @@ function OrganisationDetails() {
     axios.get(`/api/v1.0/org_by_id/${orgName}/${id}`)
       .then(res => {
         setOrganisationDetails(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch(error => {
         const errorMsg = error.response?.data?.error || 'An error occurred';
