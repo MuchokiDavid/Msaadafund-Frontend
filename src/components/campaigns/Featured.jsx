@@ -115,7 +115,7 @@ function Featured() {
                             </div>
                             <div>
                               <dt className="sr-only">Organiser</dt>
-                              <dd><a href='#' className='text-blue-700 hover:underline whitespace-nowrap'>Organiser: {campaign.organisation.orgName}</a></dd>
+                              <dd><a href={`/organisation/${campaign.organisation.orgName}`} className='text-blue-700 hover:underline whitespace-nowrap'>Organiser: {campaign.organisation.orgName}</a></dd>
                               {/* <a href='#' className='text-blue-700 hover:underline text-base overflow-hidden'><dd>{campaign.organisation.orgName}</dd></a> */}
                             </div>
                           </dl>
