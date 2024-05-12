@@ -44,10 +44,8 @@ function Featured() {
     }
     // console.log(featuredCampaign)
     const handleCampaign = (campaignId) => {
-        setLoading(true)
         setTimeout(() => {
           navigate(`/campaign/${campaignId}`);
-          setLoading(false)
         }, 1000);
       };
 
