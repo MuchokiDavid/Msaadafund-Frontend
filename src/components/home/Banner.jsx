@@ -4,6 +4,7 @@ import Featured from '../campaigns/Featured'
 import { prettyNumber } from '@based/pretty-number'
 import intasendLogo from '../../assets/intasend-logo.webp'
 import safLogo from '../../assets/SAF-MAIN-LOGO.png'
+import BannerSlider from './BannerSlider'
 
 function Banner() {
   const navigate = useNavigate()
@@ -114,16 +115,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
 
   return (
     <div>
-        <div className="relative h-screen w-full">
-          <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/1900/850" alt="Background Image" className="object-cover object-center w-full h-full" loading='lazy' />
-          {/* <img src="" alt="Background Image" className="absolute inset-0 w-full h-full object-cover filter blur-sm"> */}
-          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-          <div className="absolute inset-0 flex flex-col items-center justify-center align-middle px-4">
-              <h1 className="text-2xl lg:text-5xl text-white font-bold text-center">Welcome to Our Community of Changemakers!</h1>
-              <p className="text-lg lg:text-xl text-white mt-4 text-center">Join us in our mission to create a better world for all. Together, we can make a positive impact on the lives of those in need.<br/> Explore our platform and discover how you can contribute to meaningful causes today.</p>
-              <a href='/campaign'><button className="sm:my-6 rounded-lg md:mt-8 text-white uppercase py-4 text-base font-light px-10 border border-blue-600 hover:bg-blue-600 hover:bg-opacity-9">Get started</button></a>
-          </div>
-      </div>
+      <BannerSlider/>
       <div className="bg-sky-950 py-20 px-4">
         <div className="max-w-screen-lg mx-auto flex flex-col lg:flex-row justify-between items-center">
           <div className="max-w-xl mb-8 lg:mb-0 lg:mr-8">
