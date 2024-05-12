@@ -111,7 +111,8 @@ function UpcomingCampaigns({allCampaigns}) {
                           <div className="mt-1.5 sm:mt-0">
                             <p className="text-gray-500">Category</p>
   
-                            <p className="font-medium">{campaign.category}</p>
+                            <p className="font-medium"><span className="block">{campaign.category.split(' ')[0]}</span>
+                            <span>{campaign.category.split(' ')[1]}</span></p>
                           </div>
                         </div>
                       </div>
