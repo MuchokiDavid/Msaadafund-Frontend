@@ -168,7 +168,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             <div className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full">
               <img
                 alt=""
-                src='https://loremflickr.com/g/600/400/kenya'
+                src='https://source.unsplash.com/random/1920x1080/?kenyan-farming'
                 // src="https://img.freepik.com/free-vector/computer-online-charity-donation_24877-54452.jpg?w=740&t=st=1712950950~exp=1712951550~hmac=ba081d24a1f69dd7a1f062eb668522865498adce912871ae865e4200f98620d9"
                 className="absolute inset-0 h-full w-full object-cover"
                 loading='lazy'
@@ -396,7 +396,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             <div className="relative h-64 overflow-hidden sm:h-80 lg:h-full">
               <img
                 alt=""
-                src="https://loremflickr.com/g/600/400/nairobi"
+                src="https://source.unsplash.com/random/1920x1080/?kenya-livelihood"
                 className="absolute inset-0 h-full w-full object-cover"
                 loading='lazy'
               />
