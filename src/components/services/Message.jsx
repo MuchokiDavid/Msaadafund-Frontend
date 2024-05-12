@@ -42,7 +42,7 @@ function Message() {
             {/* <h2 class="mb-4 text-2xl tracking-tight font-extrabold text-center text-gray-900">Contact Us</h2> */}
             <p class="mb-4 lg:mb-8 font-light text-center text-gray-500">Got a technical issue? Want to send feedback about our feature? Need details about our Business plan? Let us know.</p>
             {errors && <p className='text-red-500'>{errors}</p>}
-            <form action="#" class="space-y-8" onSubmit={sendEmail}>
+            <form action="#" class="space-y-6" onSubmit={sendEmail}>
                 <div>
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 "><span className='text-red-500'>*</span>Your email</label>
                     <input type="email" 
