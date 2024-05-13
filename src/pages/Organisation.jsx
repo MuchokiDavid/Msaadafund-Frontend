@@ -37,11 +37,11 @@ function Organisation() {
         <div className="mx-2 sm:mx-1 lg:mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
         {paginateOrganisations.map((org)=>{
             return(
-            <Link to={`/organisation/${org.orgName}/${org.id}`} key={org.id}>
+            <Link to={`/organisation/${org.orgName}`} key={org.id}>
             <div className="group relative block mt-12 sm:mt-16 lg:mt-20 bg-black">
         <img
             alt=""
-            src="https://images.unsplash.com/photo-1603871165848-0aa92c869fa1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80"
+            src="https://media.gettyimages.com/id/1466999732/photo/blue-backdrop-with-round-stage.jpg?s=612x612&w=0&k=20&c=9qq1bmGhDAcjhNa9TMikeqlhuW85J3v75wmjKMsDf0g="
             className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
             loading='lazy'
         />
