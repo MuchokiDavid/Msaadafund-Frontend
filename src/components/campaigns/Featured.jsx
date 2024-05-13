@@ -8,12 +8,24 @@ function Featured() {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const currentDate = new Date();
+  const [buttonClicked, setButtonClicked] = useState(false);//state listen to button event change 
 
     useEffect(() => {
         handleFeatured()
     }, []);
 
-    const handleFeatured = async (id) => {
+    // Scroll to the section with id 'howItWorksSection' when button is clicked
+  useEffect(() => {
+    if (buttonClicked) {
+      const targetSection = document.getElementById('campaign');
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    setButtonClicked(false)
+  }, [buttonClicked,featuredCampaign]);
+
+    const handleFeatured = async () => {
       setLoading(true)
         try {
             const response = await fetch('/api/v1.0/featured', {
@@ -32,10 +44,8 @@ function Featured() {
     }
     // console.log(featuredCampaign)
     const handleCampaign = (campaignId) => {
-        setLoading(true)
         setTimeout(() => {
           navigate(`/campaign/${campaignId}`);
-          setLoading(false)
         }, 1000);
       };
 
@@ -94,7 +104,7 @@ function Featured() {
                 {featuredCampaign && featuredCampaign.map((campaign) => {
                   return (
                     <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden'>
-                      <a onClick={()=>handleCampaign(campaign.id)} className="block rounded-lg shadow-sm shadow-indigo-100">
+                      <a onClick={()=>{handleCampaign(campaign.id); setButtonClicked(true)}} className="block rounded-lg shadow-sm shadow-indigo-100">
                         <img
                           alt="banner"
                           src= {campaign.banner}

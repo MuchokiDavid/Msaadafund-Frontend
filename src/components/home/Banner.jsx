@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Featured from '../campaigns/Featured'
 import { prettyNumber } from '@based/pretty-number'
 import intasendLogo from '../../assets/intasend-logo.webp'
 import safLogo from '../../assets/SAF-MAIN-LOGO.png'
+import BannerSlider from './BannerSlider'
 
 function Banner() {
-  const navigate = useNavigate()
   const[allDonations,setAllDonations]= useState([])
   const [allOrganisations, setAllOrganisations] = useState([])
   const [allCampaign,setAllCampaign] = useState([])
-  const[loading, setLoading] = useState(true)
+  const[loading, setLoading] = useState(false)
   const[errors, setErrors] = useState()
   const [buttonClicked, setButtonClicked] = useState(false);//state listen to button event change 
 
   useEffect(() => {
     const getDonations = async () => {
+      setLoading(true)
       try {
           const response = await fetch('/api/v1.0/all_donations', {
               method: 'GET',
@@ -24,16 +24,17 @@ function Banner() {
               },
           });
           const data = await response.json();
-          if (response.ok) {
-              setLoading(true);
+          if (response.ok) {              
               // console.log("Successful request to get donors");
               setAllDonations(data.message);
               setLoading(false);
           } else {
+              setLoading(false);
               throw new Error(data);
           }
       }
       catch {
+          setLoading(false);
           setErrors("Error getting donation data");
       }
   }
@@ -43,6 +44,7 @@ function Banner() {
   useEffect(() => {
     const getOrganisation = async () => {
       try {
+        setLoading(true)
           const response = await fetch('/api/v1.0/organisations', {
               method: 'GET',
               headers: {
@@ -51,15 +53,16 @@ function Banner() {
           });
           const data = await response.json();
           if (response.ok) {
-              setLoading(true);
               // console.log("Successful request to get donors");
               setAllOrganisations(data);
               setLoading(false);
           } else {
+              setLoading(false);
               throw new Error(data);
           }
       }
       catch {
+          setLoading(false);
           setErrors("Error getting donation data");
       }
   }
@@ -102,6 +105,31 @@ function Banner() {
     }
     setButtonClicked(false)
   }, [buttonClicked]);
+
+  if(loading){
+    // return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
+    return (
+      <div aria-label="Loading..." role="status" className="flex justify-center items-center space-x-2  min-h-screen">
+        <svg className="h-20 w-20 animate-spin stroke-gray-500" viewBox="0 0 256 256">
+            <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+            <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="24"></line>
+            <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+            </line>
+            <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="24"></line>
+            <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+            </line>
+            <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="24"></line>
+            <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+            <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+            </line>
+        </svg>
+        <span className="text-4xl font-medium text-gray-500">Loading...</span>
+    </div>
+    )
+  }
   
   function getTotalAmount(donationsArray) {
     let totalAmount = 0;
@@ -114,16 +142,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
 
   return (
     <div>
-        <div className="relative h-screen w-full">
-          <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/1900/850" alt="Background Image" className="object-cover object-center w-full h-full" loading='lazy' />
-          {/* <img src="" alt="Background Image" className="absolute inset-0 w-full h-full object-cover filter blur-sm"> */}
-          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-          <div className="absolute inset-0 flex flex-col items-center justify-center align-middle px-4">
-              <h1 className="text-2xl lg:text-5xl text-white font-bold text-center">Welcome to Our Community of Changemakers!</h1>
-              <p className="text-lg lg:text-xl text-white mt-4 text-center">Join us in our mission to create a better world for all. Together, we can make a positive impact on the lives of those in need.<br/> Explore our platform and discover how you can contribute to meaningful causes today.</p>
-              <a href='/campaign'><button className="sm:my-6 rounded-lg md:mt-8 text-white uppercase py-4 text-base font-light px-10 border border-blue-600 hover:bg-blue-600 hover:bg-opacity-9">Get started</button></a>
-          </div>
-      </div>
+      <BannerSlider/>
       <div className="bg-sky-950 py-20 px-4">
         <div className="max-w-screen-lg mx-auto flex flex-col lg:flex-row justify-between items-center">
           <div className="max-w-xl mb-8 lg:mb-0 lg:mr-8">
@@ -149,7 +168,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             <div className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full">
               <img
                 alt=""
-                src='https://loremflickr.com/g/600/400/kenya'
+                src='https://source.unsplash.com/random/1920x1080/?kenyan-farming'
                 // src="https://img.freepik.com/free-vector/computer-online-charity-donation_24877-54452.jpg?w=740&t=st=1712950950~exp=1712951550~hmac=ba081d24a1f69dd7a1f062eb668522865498adce912871ae865e4200f98620d9"
                 className="absolute inset-0 h-full w-full object-cover"
                 loading='lazy'
@@ -377,7 +396,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             <div className="relative h-64 overflow-hidden sm:h-80 lg:h-full">
               <img
                 alt=""
-                src="https://loremflickr.com/g/600/400/nairobi"
+                src="https://source.unsplash.com/random/1920x1080/?kenya-livelihood"
                 className="absolute inset-0 h-full w-full object-cover"
                 loading='lazy'
               />

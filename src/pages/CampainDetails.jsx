@@ -526,7 +526,7 @@ function CampainDetails() {
             <div className="container mx-auto">
                 {/* <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'> */}
                 <div className="flex flex-col lg:flex-row gap-3">
-                    <div className="h-full lg:w-2/3 ">
+                    <div className="h-full lg:w-2/3 " id='campaign'>
                         <div className="relative rounded-lg">
                             {/* banner */}
                             
