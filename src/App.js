@@ -20,8 +20,8 @@ import Policy from './pages/Policy';
 import Terms from './pages/Terms';
 import ThankYou from './components/reusables/ThankYou';
 import Organisation from './pages/Organisation';
-import OrganisationDetails from './OrganisationDetails';
 import NotFound from './components/reusables/NotFound';
+import OrganisationDetails from './pages/OrganisationDetails';
 
 
 

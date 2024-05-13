@@ -2,10 +2,10 @@ import React from 'react'
 
 function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, handleUnsubscribe}) {
   return (
-    <div>
+    <div className='bg-gray-50'>
         <div className="font-sans leading-normal tracking-normal">
             <div className="flex justify-center">
-                <div className="bg-white rounded-lg profile-card w-full p-4">
+                <div className="rounded-lg profile-card w-full p-4">
                     <div className="flex justify-center mb-4">
                         <div className="border-b-2 border-gray-200 w-full">
                             <ul className="flex justify-around">
