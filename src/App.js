@@ -49,7 +49,7 @@ function App() {
     <Route path = "/unauthorized" element = {<Unauthorized/>}/>
     <Route path = "/thank-you" element = {<ThankYou/>}/>
     <Route path = "/organisations" element = {<Organisation/>}/>
-    <Route path={"/organisation/:orgName/:id" } element={<OrganisationDetails/>} />
+    <Route path={"/organisation/:orgName/" } element={<OrganisationDetails/>} />
     {/* not found route */}
     <Route path='*' element = {<NotFound/>}/>
 
