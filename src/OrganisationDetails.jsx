@@ -8,20 +8,20 @@ import { Link } from 'react-router-dom'
 
 
 function OrganisationDetails() {
-  const { orgName, id } = useParams();
+  const { orgName } = useParams();
   const [organisationDetails, setOrganisationDetails] = useState(null);
 
   useEffect(() => {
-    axios.get(`/api/v1.0/org_by_id/${orgName}/${id}`)
+    axios.get(`/api/v1.0/org_by_id/${orgName}`)
       .then(res => {
         setOrganisationDetails(res.data);
-        // console.log(res.data);
+        console.log(res.data);
       })
       .catch(error => {
         const errorMsg = error.response?.data?.error || 'An error occurred';
         console.error(errorMsg);
       });
-  }, [orgName, id]);
+  }, [orgName]);
 
   if (!organisationDetails) {
     return (
@@ -42,7 +42,7 @@ function OrganisationDetails() {
           <div className="hero-overlay bg-white">
           <div className="text-black">
             <div>
-              <h1 className="mb-5 text-5xl text-center font-bold">{organisationDetails.orgName.toUpperCase()}</h1>
+              <h1 className="mb-5 text-5xl text-center font-bold">{organisationDetails.orgName}</h1>
               <h2 className="text-3xl font-semibold mb-3">About us</h2>
           <p className="text-lg mb-5">{organisationDetails.orgDescription}</p>
             </div>
@@ -59,7 +59,7 @@ function OrganisationDetails() {
                 className='rounded-lg h-80 w-80'
                 loading='lazy' />
                 <div className='mt-2 mb-2'>
-                <h2 className="text-xl font-semibold mb-2">{campaign.campaignName.toUpperCase()}</h2>
+                <h2 className="text-xl font-semibold mb-2">{campaign.campaignName}</h2>
                 </div>
               </Link>
             )
