@@ -515,7 +515,7 @@ function CampainDetails() {
     return (
         <div>
         <Menus/>
-        <div className='text-black bg-slate-50 min-h-screen' id='campaign_dets'>
+        <div className='text-black bg-white min-h-screen' id='campaign_dets'>
             <div className="text-md breadcrumbs ml-4">
                 <ul>
                     <li><a href='/'>Home</a></li>
@@ -599,9 +599,9 @@ function CampainDetails() {
                         </div>
                     </div>
 
-                    <div role="tablist" className="tabs tabs-lifted my-4">
+                    <div role="tablist" className="tabs tabs-lifted my-4 ">
                         <input type="radio" name="my_tabs_2" role="tab" className="tab font-semibold" aria-label="M_PESA" checked/>
-                        <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                        <div role="tabpanel" className="tab-content bg-gray-50 border-base-300 rounded-box p-6">
                         {/* Mpesa form tab */}
                             <div>
                                 <div className='h-full rounded-lg'> 
@@ -685,7 +685,7 @@ function CampainDetails() {
                         </div>
 
                         <input type="radio" name="my_tabs_2" role="tab" className="tab font-semibold" aria-label="OTHER" checked/>
-                        <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                        <div role="tabpanel" className="tab-content bg-gray-50 border-base-300 rounded-box p-6">
                             {/* Tab content 2 */}
                             <div>
                                 <div className='h-full rounded-lg'> 
