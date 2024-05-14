@@ -33,7 +33,7 @@ function OrgLayout() {
   const orgName=localStorage.getItem('org')
   const[donors,setDonors]=useState([])
   const user = localStorage.getItem('user')
-  
+  const regexPattern = /^(?:https?:\/\/)?(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\\w\-\\s])([\w\-]{11})(?=[^\\w\-]|$)(?![?=&+%\\w]*(?:['"][^<>]*>|<\/a>))[?=&+%\\w]*/i; 
 
  
 
@@ -204,6 +204,20 @@ const handleWallet = async (id) => {
     return null
   }
 
+  // Get a valid youtube link
+  function getValidYoutubeVideoId(youtubeUrl) {
+    if (!youtubeUrl || youtubeUrl.trim() === "") {
+        return "";
+    }
+    youtubeUrl = youtubeUrl.trim();
+    let validYoutubeVideoId = "";        
+    const regexMatcher = youtubeUrl.match(regexPattern);
+    if (regexMatcher) {
+        validYoutubeVideoId = regexMatcher[1];
+    }
+    return validYoutubeVideoId;
+}
+
   return (
     <div className='overflow-hidden'>
       <DashboardNav toggleSidebar={toggleSidebar} />
@@ -214,8 +228,8 @@ const handleWallet = async (id) => {
           <Routes>
             <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors} handleMenuItemClick= {handleMenuItemClick}/>} />
             {/* route to update campaign */}
-            <Route path="/campaigns/:campaignId" element={<UpdateCampaign/>} />
-            <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch}/>} />
+            <Route path="/campaigns/:campaignId" element={<UpdateCampaign getValidYoutubeVideoId= {getValidYoutubeVideoId}/>} />
+            <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch} getValidYoutubeVideoId= {getValidYoutubeVideoId}/>} />
             <Route path="/mycampaigns/active" element={<DashActiveCampaigns allCampaigns={campaigns} campaignError={errors}/>} />
             <Route path="/mycampaigns/inactive" element={<DashInactiveCampaigns allCampaigns={campaigns} campaignError={errors}/>} />
             <Route path="/donations" element={<Donations loadingState={loading} allCampaigns={campaigns} handleFetching={handleFetch} campaignError={donationErrors} allDonors={donors}/>} />
