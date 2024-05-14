@@ -206,7 +206,7 @@ function ActiveCampaigns() {
                       </div>
                       <div>
                         <dt className="sr-only">Organiser</dt>
-                        <dd><a href={`/organisation/${campaign.organisation.orgName}`} className='text-blue-700 whitespace-nowrap hover:text-blue-400'>Organiser: {campaign.organisation.orgName}</a></dd>
+                        <dd><a href={`/organisations/${campaign.organisation.orgName}`} className='text-blue-700 whitespace-nowrap hover:text-blue-400'>Organiser: {campaign.organisation.orgName}</a></dd>
                         {/* <a href='#' className='text-blue-700 hover:underline text-base overflow-hidden'><dd>{campaign.organisation.orgName}</dd></a> */}
                       </div>
                     </dl>
