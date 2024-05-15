@@ -23,10 +23,10 @@ function OrgActive({organisationDetails}) {
 
   return (
     <div>
-        <h1 className='text-xl mb-4'>Active campaigns</h1>
+        <h1 className='text-xl'>Active campaigns</h1>
         {/* -------------------------------------Cards for campaign--------------------------------------- */}
         {activeCampaigns.length === 0 ? <div className="text-xl mx-4 min-h-screen">No Active campaigns</div> : null}
-        <div className="mx-2 sm:mx-1 lg:mx-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
+        <div className="mx-2 sm:mx-1 lg:mx-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
             {/* <div className="mx-2 sm:mx-1 lg:mx-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-2 md:gap-4 sm:max-w-full"> */}
             {activeCampaigns && activeCampaigns.map((campaign)=>{
                 return(
