@@ -58,6 +58,7 @@ export const AuthProvider = ({ children }) => {
             setToken(data.tokens.access); 
             onReceiveToken(data.tokens.access);
             // localStorage.setItem('token', data.tokens.access);
+            localStorage.setItem('userData', JSON.stringify(data.user))
             localStorage.setItem('user', data.user.username);
             setLoginMessage(data.message);
             setErrorMessage(""); 
@@ -87,7 +88,7 @@ export const AuthProvider = ({ children }) => {
             setUser(data.organisation);
             setToken(data.tokens.access_token); 
             onReceiveToken(data.tokens.access_token);
-            // localStorage.setItem('token', data.tokens.access_token);
+            localStorage.setItem('orgData', JSON.stringify(data.organisation))
             localStorage.setItem('org', data.organisation.orgName);
             setLoginMessage(data.message);
             setErrorMessage(""); 
