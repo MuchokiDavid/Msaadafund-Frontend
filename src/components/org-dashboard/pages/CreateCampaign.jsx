@@ -200,7 +200,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                         <option className='text-lg' value="Water">Water</option>
                         <option className='text-lg' value="Human Rights">Human Rights</option>
                         <option className='text-lg' value="Environment">Environment</option>
-                        <option className='text-lg' value="Community Development">Community Development</option> 
+                        <option className='text-lg' value="Community Devt">Community Devt</option> 
                         <option className='text-lg' value="Animal Welfare">Animal Welfare</option> 
                         <option className='text-lg' value="Arts and Culture">Arts and Culture</option> 
                         <option className='text-lg' value="Disaster">Disaster</option> 
