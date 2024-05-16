@@ -88,7 +88,6 @@ export const AuthProvider = ({ children }) => {
             setUser(data.organisation);
             setToken(data.tokens.access_token); 
             onReceiveToken(data.tokens.access_token);
-            localStorage.setItem('orgData', JSON.stringify(data.organisation))
             localStorage.setItem('org', data.organisation.orgName);
             setLoginMessage(data.message);
             setErrorMessage(""); 
@@ -107,7 +106,6 @@ export const AuthProvider = ({ children }) => {
     setToken(null); 
     localStorage.removeItem('token'); 
     localStorage.removeItem('userData');
-    localStorage.removeItem('orgData')
     localStorage.removeItem('org'); 
     localStorage.removeItem('user'); 
     setLoginMessage("")
