@@ -3,12 +3,14 @@ import React from 'react'
 function DashboardBanner() {
     const token = localStorage.getItem("token");
     const user= localStorage.getItem("user");
+    const userDataString = localStorage.getItem('userData');
+    const userData = userDataString ? JSON.parse(userDataString) : null;
   return (
     <div>
          <div id='termBanner' className="px-2 py-2 bg-gradient-to-r sm:py-4 rounded-lg  md:py-6 md:px-6 lg:py-8 lg:px-8 xl:flex xl:items-center">
             <div className="xl:w-0 xl:flex-1">
                 <h2 className="text-2xl font-extrabold leading-8 tracking-tight text-white sm:text-3xl sm:leading-9">
-                    Welcome back {user}!
+                    Welcome back {userData.firstName}!
                 </h2>
                 <p className="max-w-3xl mt-3 text-lg leading-6 text-gray-100">
                 This dashboard is your central hub for managing all your fundraising activities. 

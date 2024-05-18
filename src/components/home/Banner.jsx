@@ -433,7 +433,6 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
 
             <p className="mt-4 text-gray-500 sm:text-xl">
             Become part of our community and make a positive impact. 
-            Sign up now to start receiving donations and support for your cause.
             </p>
           </div>
 

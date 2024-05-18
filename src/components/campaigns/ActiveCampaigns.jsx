@@ -146,8 +146,8 @@ function ActiveCampaigns() {
     // console.log(campaigns)
   return (
     <>
-    <div className='flex items-center justify-center p-3 bg-white'>
-        <div className="mb-1 flex flex-col sm:flex-row items-center bg-white">
+    <div className='flex items-center justify-center p-3 '>
+        <div className="mb-1 mt-2 flex flex-col sm:flex-row items-center">
           <div className="relative flex" data-twe-input-wrapper-init data-twe-input-group-ref>
             <label className="input input-bordered flex items-center gap-2 ">
               <input type="text" className="grow" onChange={handleSearchChange} placeholder="Search active campaign..." />
@@ -174,7 +174,7 @@ function ActiveCampaigns() {
         :
         null
       }
-    <h1 className="text-center text-xl font-bold mb-4 h-6 p-1">Active Campaigns</h1>  
+    <h1 className="text-center text-xl font-bold mb-4 h-6 p-1">Active Fundraisers</h1>  
     <div className='mx-auto overflow-x-hidden pb-4 px-6 sm:px-2 md:px-4'>
         
         {activeCampaigns.length===0 ?

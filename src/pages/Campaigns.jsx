@@ -7,12 +7,12 @@ function Campaigns() {
   return (
     <div id='campaigns'>
       <Menus/>
-      <div className="text-md breadcrumbs ml-4" >
+      {/* <div className="text-md breadcrumbs ml-4" >
           <ul>
               <li><a href='/'>Home</a></li>
-              <li>Campaigns</li>
+              <li>Fundraisers</li>
           </ul>
-      </div>
+      </div> */}
       <ActiveCampaigns/>
       <Footer/>
     </div>

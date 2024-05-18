@@ -16,3 +16,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.intaSendPayButton {
+  background: #8CC63F;
+  border-radius: 3px;
+  border: 1px solid #8CC63F;
+  color: #fff;
+  height: 40px;
+  width: 150px;
+}
+.intaSendPayButton:hover {
+  cursor: pointer;
+}
+
+.intaCardPayButton {
+  background: #F7B600;
+  border-radius: 3px;
+  border: 1px solid #F7B600;
+  color: #fff;
+  /* height: 40px; */
+  @apply p-1.5
+}
+.intaCardPayButton:hover {
+  cursor: pointer;
+}
