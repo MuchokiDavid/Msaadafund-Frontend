@@ -33,7 +33,7 @@ function UpcomingCampaigns({allCampaigns}) {
 
   return (
     <div>
-      <h1 className="text-center text-xl font-bold my-4 h-6 p-1">Upcoming Campaigns</h1>
+      <h1 className="text-center text-xl font-bold my-4 h-6 p-1">Upcoming Fundraisers</h1>
       <div className='mx-auto overflow-x-hidden pb-4 px-6 sm:px-2 md:px-4'>
       {allCampaigns.length!=0 ? 
         <div className="mx-4 sm:mx-2 lg:mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
