@@ -19,6 +19,8 @@ import { useMediaQuery } from 'react-responsive';
 import DashActiveCampaigns from './pages/DashActiveCampaigns';
 import DashInactiveCampaigns from './pages/DashInactiveCampaigns';
 import HelpCenter from './pages/HelpCenter';
+import Paybill from './pages/Paybill';
+import Till from './pages/Till';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
@@ -234,6 +236,8 @@ const handleWallet = async (id) => {
             <Route path="/mycampaigns/inactive" element={<DashInactiveCampaigns allCampaigns={campaigns} campaignError={errors}/>} />
             <Route path="/donations" element={<Donations loadingState={loading} allCampaigns={campaigns} handleFetching={handleFetch} campaignError={donationErrors} allDonors={donors}/>} />
             <Route path="/transact/withdraw" element={<Withdraw allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
+            <Route path="/transact/paybill" element={<Paybill allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
+            <Route path="/transact/till" element={<Till allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
             <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
             <Route path="/transact/accounts" element={<AccountAuth/>} />
             <Route path="/transact/accountset" element={<Accounts/>} />
