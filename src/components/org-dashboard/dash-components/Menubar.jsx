@@ -129,7 +129,7 @@ function Menubar({handleMenuItemClick}) {
 
                 <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
-                href="/org/dashboard/till">
+                href="/org/dashboard/transact/till">
                     <MdOutlinePayments className='w-4 h-4'/>
 
                     <span className="mx-2 text-sm font-medium">Till Number</span>
