@@ -4,7 +4,7 @@ import { IoMdNotifications } from "react-icons/io";
 
 function Profile({orgName,orgType, subscribe,handleSubscribe,handleUnsubscribe, profileImage}) {
   return (
-    <div className='bg-white rounded-lg pb-3 border'>
+    <div className='bg-white rounded-lg pb-3'>
   <div className="h-24 overflow-hidden" id='orgBanner'>
     {/* <img className="object-cover object-top w-full" src="https://source.unsplash.com/random/1920x1080/?organisation-profile" alt='Mountain'/> */}
   </div>

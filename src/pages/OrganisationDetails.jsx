@@ -11,7 +11,6 @@ import { prettyNumber } from '@based/pretty-number'
 import { useAuth } from '../context/usersContext';
 import Swal from 'sweetalert2';
 import OrgActive from '../components/campaigns/OrgActive';
-import OrgInactive from '../components/campaigns/OrgInactive';
 import Profile from './PublicOrgProfile';
 
 
