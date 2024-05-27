@@ -171,11 +171,11 @@ if (loading) {
         <div className="text-sm breadcrumbs ml-2">
             <ul>
                 <li><a href='/org/dashboard'>Dashboard</a></li>
-                <li><a>Pay to Paybill</a></li>
+                <li><a>Paybill</a></li>
             </ul>
         </div>
         <div>
-            <h1 className="font-extrabold text-2xl">Pay to Paybill</h1>
+            <h1 className="font-extrabold text-2xl">Paybill</h1>
             <hr className='mb-2'/>
             {error && <p className='text-red-600 text-base my-2'>{error}</p>}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
