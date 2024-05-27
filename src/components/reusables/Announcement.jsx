@@ -1,12 +1,12 @@
 import React from 'react'
 
-function Announcement() {
+function Announcement({showingModal}) {
   return (
     <div className="flex items-center justify-between gap-4 bg-indigo-600 px-4 py-3 text-white" id='defaultModal'>
-        <p className="text-sm font-medium">
-            Your contributions will not be recorded {" "}
-            <a href="/user/login" className="inline-block underline"> Please log in to track your contributions!</a>
-        </p>
+        <button className="text-sm font-medium underline" onClick={()=>showingModal(true)}>
+            {/* <a href="" className="inline-block underline"> Please log in to ensure your contributions are recorded and tracked!</a> */}
+            Please log in to ensure your contributions are recorded and tracked!
+        </button>
 
         <button
             type="button"
