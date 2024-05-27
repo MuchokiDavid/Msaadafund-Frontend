@@ -29,7 +29,7 @@ function CampainDetails() {
     const [username, setUserName]= useState("")
     const [password, setPassword]= useState("")
     const [email,setEmail]= useState("")
-    const {userLogin, loginMessage, logout} = useAuth();
+    const {userLogin,setLoginMessage, loginMessage, logout} = useAuth();
     const [showModal, setShowModal] = useState(false);
     const [showShareModal, setShowShareModal] = useState(false);
     const [copied, setCopied]= useState(false)
@@ -511,7 +511,7 @@ function CampainDetails() {
 
     return (
         <div className='w-full overflow-hidden'>
-        {!accessToken && !users && <Announcement/>}
+        {!users && <Announcement showingModal={setShowModal} />}
         <Menus/>
         <div className='text-black bg-white min-h-screen p-4' id='campaign_dets'>
             <div className="container mx-auto">
@@ -867,13 +867,13 @@ function CampainDetails() {
         </div>
         <dialog open={showModal} onClose={() => setShowModal(false)} className="modal flex-row justify-center items-center text-center">
             <div className="modal-box">
-                <h3 className="font-bold text-lg">Please Log in</h3>
+                <h3 className="font-bold text-2xl">Log in</h3>
                 {/* <div className="modal-action"> */}
                 {loginMessage&& <p className='text-red-500'>{loginMessage}</p>}
                 <form className='flex justify-center items-center' onSubmit={handleLogin}>
                     <div className='flex-col justify-center items-center pl-4 pr-8'>
                         <div className='my-4'>
-                            <label className="font-semibold my-3" htmlFor="password">Username or E-Mail</label>
+                            <label className="font-semibold my-3" htmlFor="password"><span className='text-red-500'>*</span>Username or E-Mail</label>
                             <input
                                 className="input input-bordered w-full"
                                 onChange={(e) => setUserName(e.target.value)}
@@ -896,12 +896,12 @@ function CampainDetails() {
                             />
                         </div>
                         <div>
-                            <button type='submit' className="btn my-4">Log in</button>
+                            <button type='submit' className="btn bg-blue-600 my-4 text-white">Log in</button>
                         </div>
                         <p className='my-4'>Don't have an account? <Link to='/user/signup'><span className='text-blue-600 hover:underline'>Register</span></Link></p>
                     </div>                            
                 </form>
-                <button onClick={() => { setShowModal(false); loginMessage('')}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                <button onClick={() => { setShowModal(false); setLoginMessage("")}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 
                 {/* </div> */}
             </div>
