@@ -16,7 +16,7 @@ function OrgSignUp() {
   const [address, setAddress] = useState("")
   const [userPassword, setUserPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  const passwordPattern = /^[A-Za-z0-9]{8,}$/;
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   const phonePattern = /^(07|01)\d{8}$/;
   const navigate= useNavigate()
   const [showPassword,setShowPassword]=useState(false)
@@ -37,7 +37,7 @@ function OrgSignUp() {
     e.preventDefault();
     // const formData= 
     if (!userPassword.match(passwordPattern)) {
-      setErrors('Please ensure your password has atleast one letter, one digit, and a total length of at least 8 characters')
+      setErrors('Your password should have atleast one letter, one special character, one digit, and a total length of at least 8 characters')
     }
     else if (!phoneNumber.match(phonePattern)) {
       setErrors('Invalid Phone Number')
@@ -92,14 +92,14 @@ function OrgSignUp() {
     <div>
       <Menus/>
       <section className="bg-gray-50 min-h-screen flex justify-center items-center lg:my-16">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto min-h-screen lg:py-0">
           {/* <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 ">
                 <img className="w-18 h-12 mr-2" src ={logo} alt="logo"/> 
             </a> */}
           <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0  ">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                Create an Organisation account
+                Create an Organiser account to start creating fundraisers
               </h1>
               {errors && <p className='text-red-500'>{errors}</p>}
               <form className="space-y-4 md:space-y-6" action="#" onSubmit={handleSubmit}>

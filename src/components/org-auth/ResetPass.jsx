@@ -91,7 +91,7 @@ const togglePasswordVisibility=(e)=>{
   return (
     <div>
       <Menus/>
-      <section className="bg-gray-50 h-screen flex justify-center items-center">
+      <section className="bg-gray-50 min-h-screen flex justify-center items-center">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a href="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 ">
             {/* <img className="w-18 h-12 mr-2" src={logo} alt="logo" /> */}
@@ -156,7 +156,7 @@ const togglePasswordVisibility=(e)=>{
                     id="confirm-password" value={confirmOrgPassword} 
                     onChange={(e) => setConfirmOrgPassword(e.target.value)} 
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" 
-                    placeholder="••••••••" 
+                    placeholder="password" 
                     required/>
                     <button title='show password' onClick={togglePasswordVisibility} className="absolute inset-y-0 right-2 flex items-center mt-6 ">{password ? <FaEye/> : <FaEyeSlash/>}</button>
                   </div>

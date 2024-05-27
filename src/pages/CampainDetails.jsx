@@ -16,6 +16,7 @@ TelegramShareButton,TelegramIcon
 import Swal from 'sweetalert2';
 import { useAuth } from '../context/usersContext';
 import Card from './Card';
+import Announcement from '../components/reusables/Announcement';
 
 function CampainDetails() {
     const { campaignId } = useParams();
@@ -510,6 +511,7 @@ function CampainDetails() {
 
     return (
         <div className='w-full overflow-hidden'>
+        {!accessToken && !users && <Announcement/>}
         <Menus/>
         <div className='text-black bg-white min-h-screen p-4' id='campaign_dets'>
             <div className="container mx-auto">
@@ -550,16 +552,13 @@ function CampainDetails() {
                             <div className="flex flex-col lg:flex-row gap-3 ">
                                 <div className="h-full">
                                     <div>
-                                        <p>{campaign.organisation.orgName}</p>                                        
-                                    </div>
-                                    <div>
-                                        <p className="text-blue-600">{campaign.category.toUpperCase()}</p>
-                                    </div>
-                                    <div>
                                         <h1 className="text-3xl font-normal mb-2">{campaign && campaign.campaignName.charAt(0).toUpperCase() + campaign.campaignName.slice(1)}</h1>                            
                                     </div>
                                     <div>
-                                        <p className=" text-red-500 font-semibold">{handleDays()} Days left</p>
+                                        <p className="text-blue-600">{campaign.category.toUpperCase()}</p>
+                                    </div>                                    
+                                    <div>
+                                        <p className=" text-red-500">{handleDays()} Days left</p>
                                     </div>
                                 </div>
                             </div>                            
