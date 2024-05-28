@@ -54,6 +54,8 @@ function CampainDetails() {
     const org=  localStorage.getItem('org')
     const userDataString = localStorage.getItem('userData');
     const userData = userDataString ? JSON.parse(userDataString) : null;
+    const isLargeScreen = window.innerWidth >= 1024;
+    const [more, setMore]= useState(false)
     
 // to check the subscription state
 
@@ -585,7 +587,15 @@ function CampainDetails() {
                         <div className="px-2 pt-4">                                
                             <div className='my-2'>
                                 <h1 className='text-xl my-2 font-medium'>Story</h1>
-                                <p className='text-gray-600'>{campaign.description}</p>
+                                {isLargeScreen ?
+                                    <p className='text-gray-600'>{campaign.description}</p>
+                                    :
+                                    <div>
+                                        {more ?<p>{campaign && campaign.description}</p> : <p>{campaign && campaign.description && campaign.description.slice(0,250)}...</p>}
+                                        <button className='text-blue-600 hover:underline mt-2' onClick={()=>setMore(!more)}>{more ? "Show less" : "Show more"}</button>
+                                    </div>
+                                                                      
+                                }                                
                             </div>   
                         </div>
                     </div>
