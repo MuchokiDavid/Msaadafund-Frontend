@@ -98,6 +98,8 @@ function CampainDetails() {
    //Login user in order to subscribe
     const handleLogin = async (e) =>{
         e.preventDefault();
+        localStorage.removeItem('org')
+        localStorage.removeItem('token')
         await userLogin(username, password);
     }
  
@@ -510,9 +512,9 @@ function CampainDetails() {
     //    console.log(campaign)
 
     return (
-        <div className='w-full overflow-hidden'>
-        {!users && <Announcement showingModal={setShowModal} />}
+        <div className='w-full overflow-hidden'>        
         <Menus/>
+        {!users && <Announcement showingModal={setShowModal} />}
         <div className='text-black bg-white min-h-screen p-4' id='campaign_dets'>
             <div className="container mx-auto">
                 {/* <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'> */}
