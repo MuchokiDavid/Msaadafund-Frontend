@@ -638,14 +638,14 @@ function CampainDetails() {
                         value={activeTab}
                     >
                         <option>M-Pesa</option>
-                        <option>Card</option>
+                        <option>Others</option>
                     </select>
                     </div>
 
                     <div className="hidden sm:block">
                     <div className="border-b border-gray-200">
                         <nav className="-mb-px flex gap-6" aria-label="Tabs">
-                        {['M-Pesa', 'Card'].map((tab) => (
+                        {['M-Pesa', 'Others'].map((tab) => (
                             <a
                             key={tab}
                             href="#"
@@ -757,9 +757,9 @@ function CampainDetails() {
                             </div>
                         </div>
                     )}
-                    {activeTab === 'Card' && (
+                    {activeTab === 'Others' && (
                         <div>
-                        <h2 className="text-lg font-semibold">Donate with Card</h2>
+                        <h2 className="text-lg font-semibold">Donate with Card/Bitcoin/CashApp</h2>
                             <div className='h-full rounded-lg'> 
                                 <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
                                     <div className='text-black'>

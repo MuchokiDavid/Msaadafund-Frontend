@@ -6,7 +6,7 @@ function BannerSlider() {
     <div className="carousel w-full">
         <div id="slide1" className="carousel-item relative w-full h-screen">
             <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-            <img src="https://source.unsplash.com/random/1920x1080/?donations" className="w-full h-full object-cover" />
+            <img src="https://source.unsplash.com/random/1920x1080/?donate-funds" className="w-full h-full object-cover" />
             <div>
                 <div className="absolute inset-0 flex flex-col items-center justify-center align-middle px-4">
                     <h1 className="text-2xl lg:text-4xl text-white font-bold text-center">Welcome to Our Community of Changemakers!</h1>
@@ -21,7 +21,7 @@ function BannerSlider() {
         </div> 
         <div id="slide2" className="carousel-item relative w-full h-screen">
             <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-                <img src="https://source.unsplash.com/random/1920x1080/?kenya-help-groups" className="w-full h-full object-cover" />
+                <img src="https://source.unsplash.com/random/1920x1080/?kenya-children-homes" className="w-full h-full object-cover" />
                 <div>
                     <div className="absolute inset-0 flex flex-col items-center justify-center align-middle px-4">
                         <h1 className="text-2xl lg:text-4xl text-white font-bold text-center">Make a Difference Today!</h1>
@@ -51,7 +51,7 @@ function BannerSlider() {
             </div> 
         <div id="slide4" className="carousel-item relative w-full h-screen">
             <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-                <img src="https://source.unsplash.com/random/1920x1080/?nairobi" className="w-full h-full object-cover" />
+                <img src="https://source.unsplash.com/random/1920x1080/?donate-nairobi" className="w-full h-full object-cover" />
                 <div>
                     <div className="absolute inset-0 flex flex-col items-center justify-center align-middle px-4">
                         <h1 className="text-2xl lg:text-4xl text-white font-bold text-center">Be the Change!</h1>

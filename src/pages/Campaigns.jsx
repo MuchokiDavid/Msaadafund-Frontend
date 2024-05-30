@@ -5,7 +5,7 @@ import Footer from '../components/reusables/Footer'
 
 function Campaigns() {
   return (
-    <div id='campaigns'>
+    <div id='campaigns' className='min-h-screen'>
       <Menus/>
       {/* <div className="text-md breadcrumbs ml-4" >
           <ul>
