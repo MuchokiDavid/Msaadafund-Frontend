@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Toaster, toast } from 'react-hot-toast';
+import Swal from 'sweetalert2';
+import DashFooter from '../dash-components/DashFooter';
 
 function Withdraw({ allCampaigns, campaignError, handleWallet }) {
     const [accountNumbers, setAccountNumbers] = useState([])
@@ -27,33 +29,6 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
     useEffect(() => {
         setCampaigns(allCampaigns)
     }, [allCampaigns, token])
-
-    useEffect(() => {
-        const fetchBanks = async () => {
-            try {
-                const response = await fetch('/api/v1.0/all_banks', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                });
-                const data = await response.json();
-                if (response.ok) {
-                    setLoading(false)
-                    setAllBanks(data);
-                } else {
-                    setLoading(true)
-                    throw new Error(data);
-                }
-            } catch (error) {
-                setLoading(true)
-                setErrors('Error in fetching accounts', error);
-            }
-        }
-        fetchBanks()
-    }, [providers, token])
-
 
     useEffect(() => {
         const handleFetch = async () => {
@@ -174,8 +149,16 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
             .catch((err) => { console.log(err) })
             .then((data) => {
                 if(data.message){
-                    setTransactionResponse(data.message)
-                    toast.success("Transaction initiated successifully")
+                    setTransactionResponse(data.message)                    
+                    //Swal
+                    Swal.fire({
+                        title: 'Success',
+                        text: data.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                        })
+                    setWithdrawForm(false)
+                    setWalletDetails()
                 }
                 if (data.error) {
                     setPopupErrors(data.error)
@@ -209,6 +192,7 @@ if (!token && !org) {
 // console.log(accountNumber)
 // console.log(accountNumbers)
 // console.log(bank)
+// console.log(providers)
 
 return (
     <div>
@@ -255,46 +239,16 @@ return (
                         </select>
                     </div>
 
-                    <div className='mt-4'>
-                        <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Provider</label>
-                        <select className="input input-bordered w-full placeholder-gray-400 bg-gray-100 text-sm"
-                            id="name"
-                            type="text"
-                            name="name"
-                            value={providers}
-                            onChange={(e) => { setProviders(e.target.value); setBank('') }}
-                            required>
-                            <option value="">Select provider</option>
-                            <option className='text-sm' value="M-Pesa">M-Pesa</option>
-                            <option className='text-sm' value="Bank">Bank</option>
-                        </select>
-                        <div className='mt-4'>
-                            {providers === 'Bank' ?
-                                <select
-                                    onChange={(e) => {
-                                        setBank(e.target.value)
-                                    }}
-                                    className='input input-bordered w-full'
-                                    required>
-                                    <option value="">Select Bank</option>
-                                    {allBanks.map((bank, index) => {
-                                        return (
-                                            <option
-                                                className='text-md'
-                                                value={bank.bank_code}
-                                                key={index}>{bank.bank_name}
-                                            </option>
-                                        )
-                                    })}
-                                </select>
-                                : null}</div>
-                    </div>
-
                     <div className="mt-4">
                         <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Account</label>
                         <select
                             onChange={(e) => {
                                 setAccountNumber(e.target.value)
+                                // get bank code from one account
+                                setBank(accountNumbers.find(account => account.accountNumber === e.target.value).bankCode)
+                                setProviders(accountNumbers.find(account => account.accountNumber === e.target.value).providers)
+                                // if (providers === 'Bank') {
+                                // }
                             }}
                             className='input input-bordered w-full placeholder:bg-slate-400 bg-gray-100'
                             required>
@@ -386,6 +340,7 @@ return (
             </div>
             <Toaster position="top-right" reverseOrder= {false}/>
         </div>
+        <DashFooter/>
     </div>
 )
 }
