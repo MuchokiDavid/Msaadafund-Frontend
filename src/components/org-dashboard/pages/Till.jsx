@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Toaster, toast } from 'react-hot-toast';
+import DashFooter from '../dash-components/DashFooter';
 
 function Till({allCampaigns,campaignError,handleWallet}) {
   const [campaigns, setCampaigns] = useState([])
@@ -240,6 +241,7 @@ const handleSubmit = (e) => {
                 <Toaster position='top-center'/>
             </div>
         </div>
+        <DashFooter/>
     </div>
   )
 }

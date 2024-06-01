@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {toast,Toaster} from 'react-hot-toast'
 import profilePic from'../../../assets/orgProfile.png'
+import DashFooter from '../dash-components/DashFooter';
 
 function OrgProfile() {
   // State to manage organization details
@@ -174,167 +175,9 @@ function OrgProfile() {
             </form>
           </div>
       </div>
-
-      {/* <div className="flex flex-col lg:flex-row gap-5 ">
-        <div className="h-full lg:w-1/3 ">        
-          <div className="card w-full bg-base-100 shadow p-4 flex-row lg:flex-col justify-between">
-            <div className="avatar">
-              <div className="w-24 rounded-full">
-                <figure>
-                  <img src={orgData && orgData.profileImage? orgData.profileImage: profilePic() } alt={orgData && orgData.orgName} className=" w-full rounded" />
-                </figure>
-              </div>
-            </div>
-            <div className="card-body">
-              <h4 className="card-title">{orgData.orgName}</h4>
-              <p>{orgData.orgAddress}</p>
-            </div>
-          </div>          
-        </div>
-        <div className="h-full lg:w-2/3">
-          
-          <div className="card w-full bg-base-100 shadow p-4">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <h2 className='text-base'>Organisation information</h2>
-              <div>
-                <label className="block text-black font-medium"><span className='text-red-500'>*</span>Organization Name</label>
-                <input
-                  name="orgName"
-                  value={orgData.orgName}
-                  onChange={handleInputChange}
-                  className="w-full mt-1 p-2 border border-gray-300 rounded"
-                  disabled
-                />
-              </div>
-              <div>
-                <label className="block text-black font-medium"><span className='text-red-500'>*</span>Email Address</label>
-                <input
-                  value={orgData.orgEmail}
-                  disabled
-                  className="w-full mt-1 p-2 border border-gray-300 rounded"
-                />
-              </div>
-              <div>
-                <label className="block text-black font-medium"><span className='text-red-500'>*</span>Phone Number</label>
-                <input
-                  name="orgPhoneNumber"
-                  value={orgData.orgPhoneNumber}
-                  onChange={handleInputChange}
-                  className="w-full mt-1 p-2 border border-gray-300 rounded"
-                />
-              </div>
-              <div>
-                <label className="block text-black font-medium"><span className='text-red-500'>*</span>Address</label>
-                <input
-                  name="orgAddress"
-                  value={orgData.orgAddress}
-                  onChange={handleInputChange}
-                  className="w-full mt-1 p-2 border border-gray-300 rounded"
-                />
-              </div>
-              <div>
-                <label className="block text-black font-medium">About the Organisation</label>
-                <textarea
-                  name="orgDescription"
-                  value={orgData.orgDescription}
-                  onChange={handleInputChange}
-                  className="w-full mt-1 p-2 border border-gray-300 rounded h-24"
-                />
-              </div>
-              <div>
-                <button
-                  type="submit"
-                  className="btn bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
-                  disabled={!checkFormChanges()}
-                ><div className="flex flex-col lg:flex-row gap-5 ">
-        <div className="h-full lg:w-1/3 ">        
-          <div className="card w-full bg-base-100 shadow p-4 flex-row lg:flex-col justify-between">
-            <div className="avatar">
-              <div className="w-24 rounded-full">
-                <figure>
-                  <img src={orgData && orgData.profileImage? orgData.profileImage: profilePic() } alt={orgData && orgData.orgName} className=" w-full rounded" />
-                </figure>
-              </div>
-            </div>
-            <div className="card-body">
-              <h4 className="card-title">{orgData.orgName}</h4>
-              <p>{orgData.orgAddress}</p>
-            </div>
-          </div>          
-        </div>
-        <div className="h-full lg:w-2/3">
-          
-          <div className="card w-full bg-base-100 shadow p-4">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <h2 className='text-base'>Organisation information</h2>
-              <div>
-                <label className="block text-black font-medium"><span className='text-red-500'>*</span>Organization Name</label>
-                <input
-                  name="orgName"
-                  value={orgData.orgName}
-                  onChange={handleInputChange}
-                  className="w-full mt-1 p-2 border border-gray-300 rounded"
-                  disabled
-                />
-              </div>
-              <div>
-                <label className="block text-black font-medium"><span className='text-red-500'>*</span>Email Address</label>
-                <input
-                  value={orgData.orgEmail}
-                  disabled
-                  className="w-full mt-1 p-2 border border-gray-300 rounded"
-                />
-              </div>
-              <div>
-                <label className="block text-black font-medium"><span className='text-red-500'>*</span>Phone Number</label>
-                <input
-                  name="orgPhoneNumber"
-                  value={orgData.orgPhoneNumber}
-                  onChange={handleInputChange}
-                  className="w-full mt-1 p-2 border border-gray-300 rounded"
-                />
-              </div>
-              <div>
-                <label className="block text-black font-medium"><span className='text-red-500'>*</span>Address</label>
-                <input
-                  name="orgAddress"
-                  value={orgData.orgAddress}
-                  onChange={handleInputChange}
-                  className="w-full mt-1 p-2 border border-gray-300 rounded"
-                />
-              </div>
-              <div>
-                <label className="block text-black font-medium">About the Organisation</label>
-                <textarea
-                  name="orgDescription"
-                  value={orgData.orgDescription}
-                  onChange={handleInputChange}
-                  className="w-full mt-1 p-2 border border-gray-300 rounded h-24"
-                />
-              </div>
-              <div>
-                <button
-                  type="submit"
-                  className="btn bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
-                  disabled={!checkFormChanges()}
-                >
-                  Update
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-                  Update
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div> */}
-      
     </div>
     <Toaster position="top-right" reverseOrder={false} />
+    <DashFooter/>
     </div>
 
   );
