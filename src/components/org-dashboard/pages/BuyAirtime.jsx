@@ -80,7 +80,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
         name: name,
         phone_number: formattedPhoneNumber,
         amount: amount,
-        campaign_id: campaign
+        campaign: campaign
       }),
     })
       .then((res) => {
@@ -112,6 +112,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
     }
     
   };
+  // console.log(campaign)
   // console.log(walletDetails)
   // console.log(transactionResponse)
 
@@ -125,8 +126,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
         </div>
         <div>
             <h1 className="font-extrabold text-2xl">Buy Airtime</h1>
-            <hr className='mb-2'/>
-            {error && <p className='text-red-600 text-base'>{error}</p>}
+            <hr className='mb-2'/>            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <form ref={formRef}>                    
                     {transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
@@ -139,6 +139,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                         </div>
                         : null
                     }
+                    {error && <p className='text-red-600 text-base'>{error}</p>}
                     <div>
                         <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Campaign</label>
                         <select 
@@ -194,7 +195,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                         name="amount" 
                         required/>
                     </div>
-
+                    
                     <div className="flex items-center justify-between mt-4">
                         <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-3 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-2 md:text-lg md:px-8">Buy</button>                        
                     </div>

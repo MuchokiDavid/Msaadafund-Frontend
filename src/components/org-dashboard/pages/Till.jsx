@@ -9,7 +9,7 @@ function Till({allCampaigns,campaignError,handleWallet}) {
     const [campaign, setCampaign] = useState('')
     const [walletDetails, setWalletDetails] = useState('')
     const [error, setError] = useState('')
-    const [transactionResponse, setTransactionResponse] = useState('')
+    const [transactionResponse, setTransactionResponse] = useState([])
     const [tillNumber, setTillNumber]= useState('')
     const [amount, setAmount]= useState(10)
     const [comment, setComment]= useState('')
@@ -63,19 +63,8 @@ const handlePay = async (e) => {
                 'Authorization': `Bearer ${token}`
             }
         });
-        if (response.status !== 200) {
-            // throw new Error('Error in making payment');
-            setError('Error in making payment');
-            setLoading(false);
-            setIsSubmitting(false);
-            // sweetalert error
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong while paying, please try again!'
-            });
-        }
-        else if (response.status === 200) {
+
+        if (response.status === 200) {
           setTransactionResponse(response.data);
           setTillNumber("");
           setAmount(0);
@@ -87,15 +76,28 @@ const handlePay = async (e) => {
           Swal.fire({
               icon: 'success',
               title: 'Request successful',
-              text: 'Your payment request has been received successfully'
+              text: response.data.message
           });
         }
+        // else if (response.status !== 200) {
+        //     // throw new Error('Error in making payment');
+        //     setError(response.data.error)
+        //     setLoading(false);
+        //     setIsSubmitting(false);
+        //     // sweetalert error
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'Something went wrong while paying, please try again!'
+        //     });
+        // }
         
     } catch (error) {
         console.error('Error in making payment:', error);
-        setError('Error in making payment');
+        setError(error.response.data.error)
         setLoading(false);
         setIsSubmitting(false);
+        setTransactionResponse([])
     }
 };
 
@@ -133,30 +135,6 @@ const handleSubmit = (e) => {
         });
     }
 };
-
-if (loading) {
-  return (
-      <div aria-label="Loading..." role="status" className="flex justify-center items-center space-x-2  min-h-screen">
-          <svg className="h-20 w-20 animate-spin stroke-gray-500" viewBox="0 0 256 256">
-              <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
-              <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="24"></line>
-              <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
-              </line>
-              <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="24"></line>
-              <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
-              </line>
-              <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="24"></line>
-              <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
-              <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
-              </line>
-          </svg>
-      <span className="text-4xl font-medium text-gray-500">Loading...</span>
-  </div>
-  )
-}
 // console.log(transactionResponse)
 
   return (
@@ -170,7 +148,7 @@ if (loading) {
         <div>
             <h1 className="font-extrabold text-2xl">Buy Goods and Services</h1>
             <hr className='mb-2'/>
-            {error && <p className='text-red-600 text-base my-2'>{error}</p>}
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <form ref={formRef} onSubmit={handleSubmit}>                    
                     {transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
@@ -183,6 +161,7 @@ if (loading) {
                         </div>
                         : null
                     }
+                    {error && <p className='text-red-600 text-base my-2'>{error}</p>}
                     <div>
                         <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Campaign</label>
                         <select 
