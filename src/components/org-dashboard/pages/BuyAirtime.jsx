@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Toaster, toast } from 'react-hot-toast';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
   const [phone, setPhone] = useState("");
@@ -66,49 +66,73 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
         return
     }
     else{
-      setError(null);
-      setIsSubmitting(true);
-      let phoneNo = phone.replace(/^0+/, '');
-      let formattedPhoneNumber = "254" + phoneNo;
-      fetch(`/api/v1.0/buy_airtime`, {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer  ${token}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: name,
-        phone_number: formattedPhoneNumber,
-        amount: amount,
-        campaign: campaign
-      }),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        if (data && data.error) {
-          setError(data.error);
-        } 
-        if(data && data.message) {
-          toast('Buy airtime request received successifully')
-          setTransactionResponse(data.message)
-          setPhone("");
-          setAmount("");
-          setName("")
-          setError(""); 
-          formRef.current.reset();
-        }
-        if(data && data.error){
-          setError(data.error)
-        }
-      })
-      .catch((error) => {
-        console.error("Error buying airtime:", error);
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
+      //Swal to ask person to confirm before sending to backend
+      Swal.fire({
+        title: 'Are you sure?',
+        text: `You are about to send ${amount} to ${phone} \n\n You won't be able to revert this!`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, send airtime!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setError(null);
+                setIsSubmitting(true);
+                let phoneNo = phone.replace(/^0+/, '');
+                let formattedPhoneNumber = "254" + phoneNo;
+                fetch(`/api/v1.0/buy_airtime`, {
+                method: "POST",
+                headers: {
+                  "Authorization": `Bearer  ${token}`,
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  name: name,
+                  phone_number: formattedPhoneNumber,
+                  amount: amount,
+                  campaign: campaign
+                }),
+              })
+                .then((res) => {
+                  return res.json();
+                })
+                .then((data) => {
+                  if (data && data.error) {
+                    setError(data.error);
+                  } 
+                  if(data && data.message) {
+                    // toast('Buy airtime request received successifully')
+                    //Sweetalert
+                    Swal.fire({
+                      // position: 'top-end',
+                      icon: 'success',
+                      title: 'Buy airtime request received successifully',
+                      showConfirmButton: false,
+                      timer: 1500
+                    })
+                    setTransactionResponse(data.message)
+                    setPhone("");
+                    setAmount("");
+                    setName("")
+                    setError(""); 
+                    formRef.current.reset();
+                  }
+                  if(data && data.error){
+                    setError(data.error)
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error buying airtime:", error);
+                })
+                .finally(() => {
+                  setIsSubmitting(false);
+                });
+            } else {
+                setIsSubmitting(false);
+            }
+        });
+      
     }
     
   };
