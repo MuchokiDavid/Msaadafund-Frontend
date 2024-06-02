@@ -2,6 +2,7 @@ import React from 'react'
 import { FaDonate, FaHome } from 'react-icons/fa';
 import { IoPersonCircle } from 'react-icons/io5';
 import { MdOutlineSubscriptions} from 'react-icons/md';
+import { GrTransaction } from "react-icons/gr";
 import { Link } from 'react-router-dom';
 import { IoMdHelpCircle } from 'react-icons/io';
 
@@ -22,9 +23,9 @@ function QuickLink() {
         { icon: FaHome , name: 'Home' ,to:'/user/dashboard'},
         { icon: FaDonate , name: 'Contributions' ,to:'/user/dashboard/contributions'},
         { icon: MdOutlineSubscriptions , name: 'Subscripions' ,to:'/user/dashboard/subscriptions'},
+        {icon: GrTransaction, name: 'Transactions', to: '/user/dashboard/transactions'},
         { icon: IoMdHelpCircle , name: 'Help' ,to:'/user/dashboard/help'},
         { icon: IoPersonCircle , name: 'Profile' ,to:'/user/dashboard/profile'}
-        // { icon: IconName3, name: 'Log out' },
       ];
   return (
     <div className='p-3 bg-transaparent'>
