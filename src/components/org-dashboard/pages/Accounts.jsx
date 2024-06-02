@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { toast, Toaster } from 'react-hot-toast';
 import ResetPin from './PinResetForm';
-import DashFooter from '../dash-components/DashFooter';
+// import DashFooter from '../dash-components/DashFooter';
 import { AiOutlineDelete } from "react-icons/ai";
 import { GrPowerReset } from "react-icons/gr";
 import { IoMdCloseCircleOutline } from "react-icons/io";
@@ -330,7 +330,7 @@ function Accounts({banks, fetchBank}) {
                 )}
             </div>
             <Toaster position='top-center' reverseOrder={false} />
-            <DashFooter/>
+            {/* <DashFooter/> */}
         </div>
     );
 }

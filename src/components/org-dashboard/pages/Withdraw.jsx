@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Toaster, toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
-import DashFooter from '../dash-components/DashFooter';
+// import DashFooter from '../dash-components/DashFooter';
 
 function Withdraw({ allCampaigns, campaignError, handleWallet }) {
     const [accountNumbers, setAccountNumbers] = useState([])
@@ -340,7 +340,7 @@ return (
             </div>
             <Toaster position="top-right" reverseOrder= {false}/>
         </div>
-        <DashFooter/>
+        {/* <DashFooter/> */}
     </div>
 )
 }

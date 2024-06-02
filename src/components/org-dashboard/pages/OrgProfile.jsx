@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {toast,Toaster} from 'react-hot-toast'
-import profilePic from'../../../assets/orgProfile.png'
-import DashFooter from '../dash-components/DashFooter';
+// import DashFooter from '../dash-components/DashFooter';
 
 function OrgProfile() {
   // State to manage organization details
@@ -177,7 +176,7 @@ function OrgProfile() {
       </div>
     </div>
     <Toaster position="top-right" reverseOrder={false} />
-    <DashFooter/>
+    {/* <DashFooter/> */}
     </div>
 
   );
