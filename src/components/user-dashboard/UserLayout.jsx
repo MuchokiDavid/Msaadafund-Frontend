@@ -9,6 +9,7 @@ import Subscriptions from './pages/Subscriptions';
 import Help from './pages/Help';
 import Footer from './components/UserFooter';
 import UserNav from './components/UserNav';
+import PendingTras from './components/PendingTras';
 
 
 function UserLayout() {
@@ -24,6 +25,7 @@ function UserLayout() {
 
   const token= localStorage.getItem('token')
   const userName=localStorage.getItem('user')
+  const signatory_status = localStorage.getItem('isSignatory')==='true';
 
   // Listen to window resize events
   useEffect(() => {
@@ -182,6 +184,7 @@ function UserLayout() {
             <Route path="/subscriptions" element={<Subscriptions allSubscriptions= {allSubscriptions}/>} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/help" element={<Help />} />
+            {signatory_status && <Route path="/transactions" element={<PendingTras/>} />}
           </Routes>
         </main>
       </div>
