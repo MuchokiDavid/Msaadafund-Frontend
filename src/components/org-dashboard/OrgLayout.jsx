@@ -299,11 +299,11 @@ useEffect(() => {
             <Route path="/transaction" element={<Transaction allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/helpcenter" element={<HelpCenter />} />
-          </Routes>     
-          <DashFooter/>   
-        </main>
-               
-      </div>      
+          </Routes>    
+            <DashFooter/> 
+        </main>               
+      </div> 
+           
     </div>
     // <div className='overflow-hidden'>      
     //   <div className="flex relative">
