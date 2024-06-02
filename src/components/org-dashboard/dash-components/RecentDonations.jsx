@@ -38,7 +38,7 @@ useEffect(() => {
 // console.log(allCampaigns)
 
   return (
-    <div className='px-2 my-4'>
+    <div className='px-2 py-4 bg-white rounded-lg mt-3'>
       <div className='flex justify-between'>
         <div>
           <h2 className="text-left text-xl mt-1">Recently Donated</h2>
@@ -55,7 +55,7 @@ useEffect(() => {
               <table className="min-w-full table-zebra rounded-md overflow-x-auto text-xs bg-white" >
                   {/* head */}
                   <thead>
-                      <tr className='text-gray-800'>
+                      <tr className='text-gray-800 bg-gray-100'>
                       {/* <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200'>ID</th> */}
                           <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Campaign</th>
                           <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Donor</th>
