@@ -5,12 +5,15 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import { useAuth } from '../../../context/usersContext';
 import { MdOutlineSubscriptions } from "react-icons/md";
 import { IoMdHelpCircle } from 'react-icons/io';
+import { GrTransaction } from "react-icons/gr";
+
 
 
 function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
   const { logout } = useAuth();
   const token= localStorage.getItem('token')
   const user= localStorage.getItem('user')
+  const signatory = localStorage.getItem('isSignatory')==='true';
 
   const handleLogout = () => {
     logout()
@@ -60,6 +63,19 @@ function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
                           <span className="mx-2 text-sm font-medium">Subscriptions</span>
                       </a>
                   </div>
+                  {/* signatory routes  */}
+                  {signatory && (
+                  <div className="space-y-3 ">
+                    <label className="px-3 text-xs text-gray-500 uppercase">Signatory</label>
+
+                    <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                    onClick={handleMenuItemClick}
+                    href="/user/dashboard/transactions">
+                    <GrTransaction className='w-5 h-5' />
+                    <span className="mx-2 text-sm font-medium">Pending Approvals</span>
+                    </a>
+                </div>
+                )}
 
 
                   <div className="space-y-3 ">

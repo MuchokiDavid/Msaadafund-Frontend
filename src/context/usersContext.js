@@ -60,6 +60,7 @@ export const AuthProvider = ({ children }) => {
             // localStorage.setItem('token', data.tokens.access);
             localStorage.setItem('userData', JSON.stringify(data.user))
             localStorage.setItem('user', data.user.username);
+            localStorage.setItem('isSignatory', data.is_signatory);
             setLoginMessage(data.message);
             setErrorMessage(""); 
           }
