@@ -191,14 +191,14 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
                     </div>
                     <div className="flex justify-center my-4 join grid-cols-2">
                     {/* Previous page button */}
-                    <button className="btn btn-outline join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
+                    <button className="btn btn-outline join-item btn-sm" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
                         Previous
                     </button>
 
                     {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
                     {/* Next page button */}
                     <button
-                        className="btn btn-outline join-item"
+                        className="btn btn-outline join-item btn-sm"
                         onClick={() => goToPage(currentPage + 1)}
                         disabled={currentPage === totalPages}
                     >

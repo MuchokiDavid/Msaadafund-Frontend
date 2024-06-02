@@ -290,9 +290,9 @@ function ActiveCampaigns() {
         
         <div className=" flex justify-center mt-4 join grid-cols-2">
         {/* Previous page button */}
-        <button className="join-item btn btn-outline" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
+        <button className="join-item btn btn-outline btn-sm" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
         {/* Next page button */}
-        <button className="join-item btn btn-outline" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages || totalPages === 0}>Next</button>
+        <button className="join-item btn btn-outline btn-sm" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages || totalPages === 0}>Next</button>
       </div>
     </div>
     </>
