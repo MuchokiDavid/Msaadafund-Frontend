@@ -6,13 +6,13 @@ import { Routes, Route } from 'react-router-dom';
 import OrgHome from './pages/OrgHome';
 import DashboardNav from './dash-components/DashboardNav';
 import CreateCampaign from './pages/CreateCampaign';
-import DashFooter from './dash-components/DashFooter';
+// import DashFooter from './dash-components/DashFooter';
 import Accounts from './pages/Accounts';
 import Donations from './pages/Donations';
 import UpdateCampaign from './pages/UpdateCampaign';
 import Withdraw from './pages/Withdraw';
 import BuyAirtime from './pages/BuyAirtime';
-import AccountAuth from './AccountAuth';
+// import AccountAuth from './AccountAuth';
 import TransStatus from './pages/TransStatus';
 import Withdrawals from './pages/Withdrawals';
 import { useMediaQuery } from 'react-responsive';
@@ -21,11 +21,13 @@ import DashInactiveCampaigns from './pages/DashInactiveCampaigns';
 import HelpCenter from './pages/HelpCenter';
 import Paybill from './pages/Paybill';
 import Till from './pages/Till';
+import DashFooter from './dash-components/DashFooter';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
   // const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [allBanks, setAllBanks] = useState([])
   const[loading,setLoading]=useState(false)
   const[campaigns,setCampaigns]=useState([])
   const[allDonations,setAllDonations]=useState([])
@@ -84,8 +86,60 @@ const handleWallet = async (id) => {
 };
 // console.log(wallet)
 
-//Get all donations to a logged in organisation
+//Get all banks
+useEffect(() => {
+  // const fetchBanks = async () => {
+  //     try {
+  //         const response = await fetch('/api/v1.0/all_banks', {
+  //             method: 'GET',
+  //             headers: {
+  //                 'Content-Type': 'application/json',
+  //                 'Authorization': `Bearer ${token}`
+  //             },
+  //         });
+  //         const data = await response.json();
+  //         if (response.ok) {
+  //             setLoading(false)
+  //             setAllBanks(data);
+  //         } else {
+  //             setLoading(true)
+  //             throw new Error(data);
+  //         }
+  //     } catch (error) {
+  //         setLoading(true)
+  //         setErrors('Error in fetching accounts', error);
+  //     }
+  // }
+  fetchBanks()
+}, [token])
 
+
+  const fetchBanks = async () => {
+      try {
+          const response = await fetch('/api/v1.0/all_banks', {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}`
+              },
+          });
+          const data = await response.json();
+          if (response.ok) {
+              setLoading(false)
+              setAllBanks(data);
+          } else {
+              setLoading(true)
+              throw new Error(data);
+          }
+      } catch (error) {
+          setLoading(true)
+          setErrors('Error in fetching accounts', error);
+      }
+  }
+
+//Get all campaigns
+
+//Get all donations to a logged in organisation
   useEffect(() => {
       const getDonations = async () => {
           try {
@@ -221,37 +275,67 @@ const handleWallet = async (id) => {
 }
 
   return (
-    <div className='overflow-hidden'>
-      <DashboardNav toggleSidebar={toggleSidebar} />
-      <div className="flex relative">
-        {/* <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/> */}
-        {isSidebarOpen && <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} handleMenuItemClick={handleMenuItemClick}/>}
-        <main className={`mt-3 mx-auto w-full sm:w-screen overflow-hidden overflow-y-auto md:m-3 min-h-screen lg:h-full justify-center px-2 lg:px-6`} style={{ marginTop: '10px' }} id='dashboard'>
+    <div className="flex relative h-screen overflow-hidden">
+      {isSidebarOpen && <Menubar handleMenuItemClick={handleMenuItemClick} toggleSidebar={toggleSidebar}/>}
+      <div className='w-full sm:w-screen bg-slate-50'>
+        <DashboardNav toggleSidebar={toggleSidebar} />
+        <main className="flex-1 mt-3 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6 h-full" style={{ marginTop: '10px' }} id='dashboard'>
           <Routes>
-            <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors} handleMenuItemClick= {handleMenuItemClick}/>} />
-            {/* route to update campaign */}
-            <Route path="/campaigns/:campaignId" element={<UpdateCampaign getValidYoutubeVideoId= {getValidYoutubeVideoId}/>} />
-            <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch} getValidYoutubeVideoId= {getValidYoutubeVideoId}/>} />
-            <Route path="/mycampaigns/active" element={<DashActiveCampaigns allCampaigns={campaigns} campaignError={errors}/>} />
-            <Route path="/mycampaigns/inactive" element={<DashInactiveCampaigns allCampaigns={campaigns} campaignError={errors}/>} />
-            <Route path="/donations" element={<Donations loadingState={loading} allCampaigns={campaigns} handleFetching={handleFetch} campaignError={donationErrors} allDonors={donors}/>} />
-            <Route path="/transact/withdraw" element={<Withdraw allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
-            <Route path="/transact/paybill" element={<Paybill allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
-            <Route path="/transact/till" element={<Till allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
-            <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
-            <Route path="/transact/accounts" element={<AccountAuth/>} />
-            <Route path="/transact/accountset" element={<Accounts/>} />
+            <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors} handleMenuItemClick={handleMenuItemClick} />} />
+            <Route path="/campaigns/:campaignId" element={<UpdateCampaign getValidYoutubeVideoId={getValidYoutubeVideoId} />} />
+            <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch} getValidYoutubeVideoId={getValidYoutubeVideoId} />} />
+            <Route path="/mycampaigns/active" element={<DashActiveCampaigns allCampaigns={campaigns} campaignError={errors} />} />
+            <Route path="/mycampaigns/inactive" element={<DashInactiveCampaigns allCampaigns={campaigns} campaignError={errors} />} />
+            <Route path="/donations" element={<Donations loadingState={loading} allCampaigns={campaigns} handleFetching={handleFetch} campaignError={donationErrors} allDonors={donors} />} />
+            <Route path="/transact/withdraw" element={<Withdraw allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet} />} />
+            <Route path="/transact/paybill" element={<Paybill allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet} banks= {allBanks}/>} />
+            <Route path="/transact/till" element={<Till allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet} />} />
+            <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet} />} />
+            {/* <Route path="/transact/accounts" element={<AccountAuth/>} />
+            <Route path="/transact/accountset" element={<Accounts/>} /> */}
+            <Route path="/transact/accounts" element={<Accounts banks= {allBanks} fetchBank= {fetchBanks}/>} />
             <Route path="/transact/transactionstatus" element={<TransStatus />} />
-            <Route path="/transact/withdrawals" element={<Withdrawals/>} />
-            <Route path="/transaction" element={<Transaction allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
+            <Route path="/transact/withdrawals" element={<Withdrawals />} />
+            <Route path="/transaction" element={<Transaction allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/helpcenter" element={<HelpCenter />} />
-          </Routes>
+          </Routes>     
+          <DashFooter/>   
         </main>
-        
-      </div>
-      <DashFooter/>
+               
+      </div>      
     </div>
+    // <div className='overflow-hidden'>      
+    //   <div className="flex relative">
+    //     {/* <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/> */}
+    //     {isSidebarOpen && <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} handleMenuItemClick={handleMenuItemClick}/>}
+    //     <main className={`mt-3 mx-auto w-full sm:w-screen overflow-hidden overflow-y-auto md:m-3 min-h-screen lg:h-full justify-center px-2 lg:px-6`} style={{ marginTop: '10px' }} id='dashboard'>
+    //     <DashboardNav toggleSidebar={toggleSidebar} />
+    //       <Routes>
+    //         <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors} handleMenuItemClick= {handleMenuItemClick}/>} />
+    //         {/* route to update campaign */}
+    //         <Route path="/campaigns/:campaignId" element={<UpdateCampaign getValidYoutubeVideoId= {getValidYoutubeVideoId}/>} />
+    //         <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch} getValidYoutubeVideoId= {getValidYoutubeVideoId}/>} />
+    //         <Route path="/mycampaigns/active" element={<DashActiveCampaigns allCampaigns={campaigns} campaignError={errors}/>} />
+    //         <Route path="/mycampaigns/inactive" element={<DashInactiveCampaigns allCampaigns={campaigns} campaignError={errors}/>} />
+    //         <Route path="/donations" element={<Donations loadingState={loading} allCampaigns={campaigns} handleFetching={handleFetch} campaignError={donationErrors} allDonors={donors}/>} />
+    //         <Route path="/transact/withdraw" element={<Withdraw allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
+    //         <Route path="/transact/paybill" element={<Paybill allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
+    //         <Route path="/transact/till" element={<Till allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
+    //         <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
+    //         <Route path="/transact/accounts" element={<AccountAuth/>} />
+    //         <Route path="/transact/accountset" element={<Accounts/>} />
+    //         <Route path="/transact/transactionstatus" element={<TransStatus />} />
+    //         <Route path="/transact/withdrawals" element={<Withdrawals/>} />
+    //         <Route path="/transaction" element={<Transaction allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
+    //         <Route path="/profile" element={<Profile />} />
+    //         <Route path="/helpcenter" element={<HelpCenter />} />
+    //       </Routes>
+    //       <DashFooter/>
+    //     </main>
+        
+    //   </div>      
+    // </div>
   );
 }
 
