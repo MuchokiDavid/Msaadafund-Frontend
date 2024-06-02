@@ -40,4 +40,27 @@
   box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.1); 
 }
 
+.statTable {
+  width: 100%;
+  border-collapse: collapse; /* Ensures there are no gaps between table cells */
+}
+
+/* Ensures that the table header and body align properly */
+.statTable thead th, .statTable tbody td {
+  text-align: left;
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden; /* Prevents overflow */
+  text-overflow: ellipsis; /* Adds ellipsis if the text is too long */
+}
+
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f8f8f8; /* Adjust background color as needed */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional: add a shadow */
+  z-index: 10;
+}
+
 
