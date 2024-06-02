@@ -222,7 +222,7 @@ function CampainDetails() {
                     <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
                     </line>
                 </svg>
-            <span className="text-4xl font-medium text-gray-500">Loading...</span>
+            <span className="text-4xl font-medium text-gray-500">Campaign not found...</span>
         </div>
         )
     }

@@ -27,12 +27,12 @@ function OrgHome({allCampaigns,allDonations, allDonors}) {
 
   return (
     <div className='sm:h-fit'>
-      <div className="text-sm breadcrumbs ml-2">
+      {/* <div className="text-sm breadcrumbs ml-2">
           <ul>
               <li><a href='/'>Home</a></li>
               <li><a href='/org/dashboard'>Dashboard</a></li>
           </ul>
-      </div>
+      </div> */}
       <h1 className="mb-3 my-2 mx-3 text-2xl font-bold leading-tight ">Dashboard</h1>
       <hr className='mb-0' />
       <CallToAction/>

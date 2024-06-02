@@ -159,31 +159,31 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                 (
                 <div>
                     <div className='flex flex-col mt-1'>
-                        <div className='flex justify-between py-1'>
+                        <div className='flex justify-between py-2'>
                             <div>
                                 <input
                                     type="text"
                                     placeholder="Search by name or campaign"
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="border-gray-300 rounded-md bg-gray-50 border h-11 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    className="border-gray-300 rounded-md bg-white border h-11 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 />
                             </div>
-                            <div>
+                            <div className='mr-2'>
                                 <button title='Download Pdf ' onClick={downloadDonationsPDF}>PDF<FaFilePdf size = {25} style={{ color: 'red' }}/></button>
                             </div>
                         </div>
-                        <div className="my-1 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 sm:rounded-lg">
-                            <table className="min-w-full table-zebra text-xs overflow-x-auto">
+                        <div className="my-1 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 rounded-lg">
+                            <table className="min-w-full border table rounded-lg overflow-x-auto text-xs bg-white statTable">
                                 {/* head */}
-                                <thead>
+                                <thead className='text-gray-800 bg-gray-100'>
                                     <tr>
-                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
-                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Campaign</th>
-                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Contributor</th>
-                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Amount</th>
-                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Date</th>   
-                                        <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Status</th>                           
+                                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>ID</th>
+                                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Campaign</th>
+                                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Contributor</th>
+                                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Amount</th>
+                                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Date</th>   
+                                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Status</th>                           
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -194,12 +194,12 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                                         const campaignTitle = campaign ? campaign.campaignName : "";
                                         return (
                                             <tr key={donation._id}>
-                                                <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '>{donation.id}</td>
-                                                <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '>{campaignTitle}</td>
-                                                <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>
-                                                <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200'>{donation.amount}</td>
-                                                <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
-                                                <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200'>{donation.status}</td>
+                                                <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.id}</td>
+                                                <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{campaignTitle}</td>
+                                                <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>
+                                                <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.amount}</td>
+                                                <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
+                                                <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.status}</td>
                                             </tr>
                                         );
                                     })}
@@ -209,14 +209,14 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                     </div>
                     <div className="flex justify-center mb-4 join grid-cols-2">
                         {/* Previous page button */}
-                        <button className="btn btn-outline join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
+                        <button className="btn btn-outline join-item btn-sm" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
                             Previous
                         </button>
 
                         {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
                         {/* Next page button */}
                         <button
-                            className="btn btn-outline join-item"
+                            className="btn btn-outline join-item btn-sm"
                             onClick={() => goToPage(currentPage + 1)}
                             disabled={currentPage === totalPages}
                         >

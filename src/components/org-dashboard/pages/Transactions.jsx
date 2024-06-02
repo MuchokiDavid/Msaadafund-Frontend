@@ -36,22 +36,22 @@ function Transactions({allCampaigns, campaignError}) {
     }, [token, campaignError])
 
     //search data in the filtered data
-    useEffect(() => {
-      if (!searchTerm) {
-          setFilteredTransactions(transactions); // If no search term, show all transactions
-          return;
-      }
-      
-      const filtered = transactions.filter(transaction => {
-        return (
-            (transaction.running_balance && transaction.running_balance.toLowerCase().includes(searchTerm.toLowerCase())) ||
-            (transaction.value && transaction.value.toLowerCase().includes(searchTerm.toLowerCase())) || 
-            (transaction.trans_type && transaction.trans_type.toLowerCase().includes(searchTerm.toLowerCase())) ||
-            (transaction.invoice && transaction.invoice.account && transaction.invoice.account.toLowerCase().includes(searchTerm.toLowerCase()))
-          );
-      });
-
-      setFilteredTransactions(filtered);
+  useEffect(() => {
+    if (!searchTerm) {
+      setFilteredTransactions(transactions); // If no search term, show all transactions
+      return;
+    }
+  
+    const filtered = transactions && transactions.filter(transaction => {
+      return (
+        (transaction.running_balance && String(transaction.running_balance).toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (transaction.value && String(transaction.value).toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (transaction.trans_type && String(transaction.trans_type).toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (transaction.invoice && transaction.invoice.account && String(transaction.invoice.account).toLowerCase().includes(searchTerm.toLowerCase()))
+      );
+    });
+  
+    setFilteredTransactions(filtered);
   }, [searchTerm, transactions]);
 
   //  Fetch data from server when with a given id
@@ -101,7 +101,7 @@ function Transactions({allCampaigns, campaignError}) {
 
     //function to handle change in filter
     function handleFilterChange(e){
-      setFilter(e.target.value)
+      setFilter(e.target.value)   
     }
 
     function handleSearchTermChange(e) {
@@ -175,51 +175,52 @@ function Transactions({allCampaigns, campaignError}) {
             <hr className='mb-0' />
             {errors && <p className='text-red-700'>{errors}</p>}
             {allCampaign && allCampaign.length > 0 && !errors ? 
-            (<div className='mt-2 text-lg font-normal'>Select campaign to view transactions</div>)
+            (<div className='mt-2 text-lg font-normal text-red-400'>Select campaign to view transactions</div>)
             :
             (null)
             }
+            <div class="flex items-center space-x-4">
+              <select
+                className="mb-3 h-10 px-3 py-2 border-gray-300 rounded-md bg-white border text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/6 p-2.5 "
+                placeholder="transaction type"
+                onChange={handleFilterChange}
+                value={filter}
+              >
+                <option className='lg:text-lg sm:text-sm'><span className='text-red-500'>*</span>Select campaign</option>
+                {
+                  allCampaign && allCampaign.map((camp, i)=>(<option className='lg:text-lg sm:text-sm' key={i}>{camp.campaignName}</option>))
+                }
+                
+              </select>
+              <input
+                    type="text"
+                    placeholder="Search... eg. Trans-type,amount & invoice acc.no."
+                    value={searchTerm}
+                    onChange={handleSearchTermChange}
+                    className="px-3 py-2 border-gray-400 rounded-md mb-4 bg-white border h-10 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/4 p-2.5 "
+                /> 
+            </div>
             <div className='flex flex-col col-span-3'>
-              <div className='py-2 -my-2 overflow-x-auto sm:-mx-2 sm:px-6 lg:-mx-2 lg:px-6'>
+              <div className='py-2 -my-2 overflow-x-auto sm:-mx-2 sm:px-6 lg:-mx-2 lg:px-4'>
                
                     {allCampaign && allCampaign.length > 0 && !errors ?
                     (
-                      <>
+                      <div>
                        <div className="my-5 inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
-                        <div class="flex items-center space-x-4">
-                        <select
-                          className="mb-3 h-10 px-3 py-2 border-gray-300 rounded-md bg-gray-50 border text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/6 p-2.5 "
-                          placeholder="transaction type"
-                          onChange={handleFilterChange}
-                          value={filter}
-                        >
-                          <option className='lg:text-lg sm:text-sm'><span className='text-red-500'>*</span>Select campaign</option>
-                          {
-                            allCampaign.map((camp, i)=>(<option className='lg:text-lg sm:text-sm' key={i}>{camp.campaignName}</option>))
-                          }
-                          
-                        </select>
-                        <input
-                              type="text"
-                              placeholder="Search... eg. Trans-type,amount & invoice acc.no."
-                              value={searchTerm}
-                              onChange={handleSearchTermChange}
-                              className="px-3 py-2 border-gray-300 rounded-md mb-4 bg-gray-50 border h-10 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/4 p-2.5 "
-                          /> 
-                        </div> 
+                         
                         <div className="overflow-x-auto">
-                            <table className="table table-md table-pin-rows table-pin-cols table-auto text-xs lg:text-sm">
-                              <thead>
+                            <table className="min-w-full border table rounded-lg overflow-x-auto text-xs bg-white statTable">
+                              <thead className='text-gray-800 bg-gray-100'>
                                 <tr>
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>AMOUNT</th>
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>STATUS</th>
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>RUNNING BALANCE</th>
-                                  {/* <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>NARRATIVE</th> */}
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>TRANSACTION TYPE</th>
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>INVOICE ACCOUNT</th>
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>UPDATED AT</th>
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'></th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>INVOICE ID</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>AMOUNT</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>STATUS</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>RUNNING BALANCE</th>
+                                  {/* <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>NARRATIVE</th> */}
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>TRANSACTION TYPE</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>INVOICE ACCOUNT</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>UPDATED AT</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '></th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -238,25 +239,8 @@ function Transactions({allCampaigns, campaignError}) {
                               </tbody>
                             </table>
                         </div>
-
-                        <div className="flex justify-center mb-4 join grid-cols-2">
-                            {/* Previous page button */}
-                            <button className="btn btn-outline join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
-                                Previous
-                            </button>
-
-                            {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
-                            {/* Next page button */}
-                            <button
-                                className="btn btn-outline join-item"
-                                onClick={() => goToPage(currentPage + 1)}
-                                disabled={currentPage === totalPages}
-                            >
-                                Next
-                            </button>
-                        </div>
                       </div>
-                      </>   
+                      </div>   
                     )
                     :
                     (
@@ -274,7 +258,23 @@ function Transactions({allCampaigns, campaignError}) {
                     }
                     
             </div>
-            </div>     
+            <div className="flex justify-center my-4 join grid-cols-2">
+              {/* Previous page button */}
+              <button className="btn btn-outline btn-sm join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
+                  Previous
+              </button>
+
+              {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
+              {/* Next page button */}
+              <button
+                  className="btn btn-outline join-item btn-sm"
+                  onClick={() => goToPage(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+              >
+                  Next
+              </button>
+           </div>
+          </div>     
     </div>
   )
 }

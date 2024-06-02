@@ -38,7 +38,7 @@ useEffect(() => {
 // console.log(allCampaigns)
 
   return (
-    <div className='px-2 py-4 bg-white rounded-lg mt-3'>
+    <div className='px-2 py-4 bg-white rounded-lg mt-3 border'>
       <div className='flex justify-between'>
         <div>
           <h2 className="text-left text-xl mt-1">Recent Donations</h2>
@@ -51,8 +51,8 @@ useEffect(() => {
         {slicedDonations && slicedDonations.length > 0 
           ? 
           (
-            <div className='overflow-scroll mt-2'>
-              <table className="min-w-full table rounded-md overflow-x-auto text-xs bg-white" >
+            <div className='overflow-scroll mt-2 '>
+              <table className="min-w-full table rounded-md overflow-x-auto text-xs bg-white statTable" >
                   {/* head */}
                   <thead>
                       <tr className='text-gray-800 bg-gray-100'>

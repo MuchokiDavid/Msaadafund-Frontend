@@ -19,7 +19,6 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
     const [withdrawForm, setWithdrawForm] = useState(false)
     const [walletDetails, setWalletDetails] = useState()
     const [transactionResponse, setTransactionResponse] = useState([])
-    const [allBanks, setAllBanks] = useState([])
     const [bank, setBank] = useState('')
     const [popupErrors, setPopupErrors] = useState(null)
 
@@ -84,19 +83,6 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
         }
     }, [campaignError, token])
 
-    const handleClearStates = () => {
-        setAccountNumber('')
-        setAmount('')
-        setProviders('')
-        setCampaign('')
-        setPin('')
-        setWithdrawForm(false)
-        setTransactionResponse([])
-        setErrors(null)
-        setLoading(false)
-        formRef.current.reset();
-        setAccountNumber('')
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -177,7 +163,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
             setCampaign('')
             setPin('')
         }
-      }
+    }
 
 if (!token && !org) {
     window.location.replace("/org/login")

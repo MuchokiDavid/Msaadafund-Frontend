@@ -14,7 +14,7 @@ import { BsBoxArrowDown } from "react-icons/bs";
 import { FaDonate } from "react-icons/fa";
 import { MdSendToMobile } from "react-icons/md";
 import { MdOutlinePayments } from "react-icons/md";
-
+import { MdOutlineAppRegistration } from "react-icons/md";
 
 function Menubar({handleMenuItemClick}) {
   // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
@@ -150,7 +150,7 @@ function Menubar({handleMenuItemClick}) {
             </div>
 
             <div className="space-y-3 ">
-                <label className="px-3 text-xs text-gray-500 uppercase">Reports</label>
+                <label className="px-3 text-xs text-gray-500 uppercase">Records</label>
                 
                 <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
@@ -159,6 +159,15 @@ function Menubar({handleMenuItemClick}) {
                     <HiOutlineStatusOnline className='w-4 h-4'/>
 
                     <span className="mx-2 text-sm font-medium">Status</span>
+                </a>
+
+                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/transact/signatories">
+                    
+                    <MdOutlineAppRegistration className='w-4 h-4'/>
+
+                    <span className="mx-2 text-sm font-medium">Signatories</span>
                 </a>
 
                 <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 

@@ -8,7 +8,7 @@ function Withdrawals() {
     const[search,setSearch]=useState('')
     const[filtered,setFiltered]=useState([])
     const[currentPage,setCurrentPage]=useState(1)
-    const[itemsPerPage,setItemsPerPage]=useState(10)
+    const[itemsPerPage,setItemsPerPage]=useState(15)
 
     //useefect to filter all withdrawals with the search term in the search input
     useEffect(() => {
@@ -130,7 +130,7 @@ function Withdrawals() {
                 value={search}
                 onChange={(e)=>setSearch(e.target.value)} 
                 placeholder='Search...' 
-                className='input input-bordered w-full max-w-xs'/>
+                className='input input-bordered w-full max-w-xs bg-white'/>
             </div>
             {/* pdf button */}
             <button title='Download Pdf' onClick={downloadTransactionPDF}>PDF<FaFilePdf size = {25} style={{ color: 'red' }}/></button>
@@ -140,25 +140,25 @@ function Withdrawals() {
         ?
         (
         <div>
-            <div className='overflow-scroll my-4'>
-                <table className='table w-full min-w-full table-zebra text-xs overflow-x-auto'>
-                    <thead>
-                        <tr>
-                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>S/N</th>
-                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Tracking id</th>
-                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Name</th>
-                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Campaign</th>
-                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Account Number</th>
-                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Transaction Type</th>
-                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Amount</th>
-                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Transaction Status</th>
-                            <th className='font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Transaction date</th>
+            <div className='overflow-scroll my-4 bg-white border rounded-lg'>
+                <table className='table w-full min-w-full text-xs overflow-x-auto'>
+                    <thead className='text-gray-800 bg-gray-100'>
+                        <tr className='text-gray-800 bg-gray-100'>
+                            {/* <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>S/N</th> */}
+                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Tracking id</th>
+                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Name</th>
+                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Campaign</th>
+                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Account No</th>
+                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Trans Type</th>
+                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Amount</th>
+                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Trans Status</th>
+                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Trans date</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentItems.map((withdrawal,index)=>(
                             <tr key={index}>
-                                <td>{index+1}</td>
+                                {/* <td>{index+1}</td> */}
                                 <td>{withdrawal.tracking_id}</td>
                                 <td>{withdrawal.org_name}</td>
                                 <td>{withdrawal.campaign_name}</td>
@@ -172,16 +172,16 @@ function Withdrawals() {
                     </tbody>
                 </table>
             </div>
-            <div className="flex justify-center mb-4 join grid-cols-2">
+            <div className="flex justify-center my-4 join grid-cols-2">
                 {/* Previous page button */}
-                <button className="btn btn-outline join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
+                <button className="btn btn-outline join-item  btn-sm" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
                     Previous
                 </button>
 
                 {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
                 {/* Next page button */}
                 <button
-                    className="btn btn-outline join-item"
+                    className="btn btn-outline join-item btn-sm"
                     onClick={() => goToPage(currentPage + 1)}
                     disabled={currentPage === totalPages}
                 >
