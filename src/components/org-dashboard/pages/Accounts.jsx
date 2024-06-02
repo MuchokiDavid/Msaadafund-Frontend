@@ -134,7 +134,6 @@ function Accounts({banks, fetchBank}) {
             setConfirmPin('');
             setError('');
             setShowCreateAccount(false);
-            fetchAccounts();
             formRef.current.reset()
         } catch (error) {
             console.error('Error creating account:', error);
@@ -321,7 +320,7 @@ function Accounts({banks, fetchBank}) {
                                     </div>
                                     <div>
                                         <button type='submit' className='bg-blue-600 hover:bg-blue-700 text-white w-full font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
-                                            {loading ? 'Creating...' : 'Create'}
+                                            {loading ? 'Saving...' : 'Save'}
                                         </button>
                                     </div>
                                 </form>
