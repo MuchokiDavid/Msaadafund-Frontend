@@ -134,6 +134,7 @@ function Accounts({banks, fetchBank}) {
             setConfirmPin('');
             setError('');
             setShowCreateAccount(false);
+            fetchAccounts();
             formRef.current.reset()
         } catch (error) {
             console.error('Error creating account:', error);
