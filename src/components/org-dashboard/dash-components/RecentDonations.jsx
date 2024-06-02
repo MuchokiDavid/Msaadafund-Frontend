@@ -41,7 +41,7 @@ useEffect(() => {
     <div className='px-2 py-4 bg-white rounded-lg mt-3'>
       <div className='flex justify-between'>
         <div>
-          <h2 className="text-left text-xl mt-1">Recently Donated</h2>
+          <h2 className="text-left text-xl mt-1">Recent Donations</h2>
         </div>
         <div className='mr-2'>
           {/* button to view more transactions */}
