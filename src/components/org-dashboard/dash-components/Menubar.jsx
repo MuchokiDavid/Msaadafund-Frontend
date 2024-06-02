@@ -1,5 +1,5 @@
 import React from 'react';
-import { IoPersonCircle } from "react-icons/io5";
+import {IoPersonCircle } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useAuth } from '../../../context/usersContext';
 import { BiMoneyWithdraw } from "react-icons/bi";
@@ -33,8 +33,9 @@ function Menubar({handleMenuItemClick}) {
   }
 
   return(
-  <aside className="flex flex-col min-w-64 min-h-screen px-5 py-2 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l">
-    <div className="flex flex-col justify-between flex-1 mt-6">
+  <aside className="flex flex-col min-w-64 min-h-screen pl-5 py-2 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l overflow-x-hidden">
+        
+    <div className="flex flex-col justify-between flex-1 ">
         <nav className="-mx-3 space-y-6 ">
             <div className="space-y-3 ">
                 <label className="px-3 text-xs text-gray-500 uppercase">analytics</label>
