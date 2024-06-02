@@ -142,7 +142,7 @@ function Withdrawals() {
         <div>
             <div className='overflow-scroll my-4 bg-white border rounded-lg'>
                 <table className='table w-full min-w-full text-xs overflow-x-auto'>
-                    <thead>
+                    <thead className='text-gray-800 bg-gray-100'>
                         <tr className='text-gray-800 bg-gray-100'>
                             {/* <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>S/N</th> */}
                             <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Tracking id</th>
@@ -172,7 +172,7 @@ function Withdrawals() {
                     </tbody>
                 </table>
             </div>
-            <div className="flex justify-center mb-4 join grid-cols-2">
+            <div className="flex justify-center my-4 join grid-cols-2">
                 {/* Previous page button */}
                 <button className="btn btn-outline join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
                     Previous
