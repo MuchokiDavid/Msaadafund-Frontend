@@ -279,7 +279,7 @@ useEffect(() => {
       {isSidebarOpen && <Menubar handleMenuItemClick={handleMenuItemClick} toggleSidebar={toggleSidebar}/>}
       <div className='w-full sm:w-screen bg-slate-50'>
         <DashboardNav toggleSidebar={toggleSidebar} />
-        <main className="flex-1 mt-3 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6 h-full" style={{ marginTop: '10px' }} id='dashboard'>
+        <main className="flex-1 mt-3 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6" style={{ marginTop: '10px' }} id='dashboard'>
           <Routes>
             <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors} handleMenuItemClick={handleMenuItemClick} />} />
             <Route path="/campaigns/:campaignId" element={<UpdateCampaign getValidYoutubeVideoId={getValidYoutubeVideoId} />} />

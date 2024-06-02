@@ -38,22 +38,30 @@ useEffect(() => {
 // console.log(allCampaigns)
 
   return (
-    <div className='px-2 mb-6'>
-        <h2 className="text-left text-xl mt-1">Recently Donated</h2>
+    <div className='px-2 my-4'>
+      <div className='flex justify-between'>
+        <div>
+          <h2 className="text-left text-xl mt-1">Recently Donated</h2>
+        </div>
+        <div className='mr-2'>
+          {/* button to view more transactions */}
+          <a href='/org/dashboard/donations'><button className="text-sm text-left text-white bg-blue-600 p-1.5 rounded-lg hover:bg-blue-800">See all</button></a>
+        </div>
+      </div>        
         {slicedDonations && slicedDonations.length > 0 
           ? 
           (
-            <div className='overflow-scroll'>
-              <table className="min-w-full table-zebra rounded overflow-x-auto text-xs">
+            <div className='overflow-scroll mt-2'>
+              <table className="min-w-full table-zebra rounded-md overflow-x-auto text-xs bg-white" >
                   {/* head */}
                   <thead>
-                      <tr>
-                      {/* <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th> */}
-                          <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400 '>Campaign</th>
-                          <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donor</th>
-                          <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Amount</th>
-                          <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donation Date</th>
-                          <th className='px-6 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Status</th>                            
+                      <tr className='text-gray-800'>
+                      {/* <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200'>ID</th> */}
+                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Campaign</th>
+                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Donor</th>
+                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Amount</th>
+                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Donation Date</th>
+                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Status</th>                            
                       </tr>
                   </thead>
                   <tbody>
