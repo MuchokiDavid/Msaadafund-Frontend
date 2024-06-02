@@ -52,7 +52,7 @@ useEffect(() => {
           ? 
           (
             <div className='overflow-scroll mt-2'>
-              <table className="min-w-full table-zebra rounded-md overflow-x-auto text-xs bg-white" >
+              <table className="min-w-full table rounded-md overflow-x-auto text-xs bg-white" >
                   {/* head */}
                   <thead>
                       <tr className='text-gray-800 bg-gray-100'>
