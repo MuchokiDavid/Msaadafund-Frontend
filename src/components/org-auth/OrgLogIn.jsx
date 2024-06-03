@@ -23,10 +23,15 @@ function OrgLogIn() {
     orgLogin(email, password);
   }
 
+  // if (isLoggedIn) {
+  //   setTimeout(() => {
+  //     navigate('/org/dashboard')
+  //   }, 2000);
+  // }
   if (isLoggedIn) {
     setTimeout(() => {
-      navigate('/org/dashboard')
-    }, 2000);
+      window.open('/org/dashboard', '_blank');
+    }, 1000);    
   }
 
   const togglePasswordVisibility = (e) => {
