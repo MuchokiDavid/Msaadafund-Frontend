@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import Swal from 'sweetalert2'
+import {toast, Toaster} from 'react-hot-toast';
+import { AiOutlineDelete } from "react-icons/ai";
 
 function Signatory() {
     const [showCreateAccount, setShowCreateAccount] = useState(false);
@@ -14,33 +16,40 @@ function Signatory() {
 
     // Useeffect to get all signatories from the database
     useEffect(() => {
-        function handleFetch(){
-            setLoading(true)
-            fetch('/api/v1.0/signatories', {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${accessToken}`
-                }
-            }).then ((res) => res.json())
-            .then((data) => {
-                if(data.error){
-                    setError(data.error)
-                }
-                else{
-                    setSignatories(data);
-                }
-            })
-
-            .catch((err) => { console.log(err) })
-            // .then((response) => {
-            //     setSignatories(response.data);
-            //     setLoading(false)
-            // });
-        }
+        
         handleFetch()
         
     }, [accessToken])
+
+    function handleFetch(){
+        fetch('/api/v1.0/signatories', {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            }
+        }).then ((res) => {
+            if (res.status === 404) {
+                setSignatories([])
+                return [];
+            }
+            return res.json();
+        })
+        .then((data) => {
+            if(data.error){
+                setError(data.error)
+            }
+            else{
+                setSignatories(data);                
+            }
+        })
+
+        .catch((err) => { console.log(err) })
+        // .then((response) => {
+        //     setSignatories(response.data);
+        //     setLoading(false)
+        // });
+    }
     
 
     const handleClosePopup = () => {
@@ -77,10 +86,11 @@ function Signatory() {
                     //Swal
                     Swal.fire({
                         title: 'Success',
-                        text: data.message,
+                        text: 'Signatory saved successifully',
                         icon: 'success',
-                        confirmButtonText: 'Ok'
-                    })
+                        showConfirmButton: false,
+                        timer: 1500
+                    })                   
                 }
                 if (data.error) {
                     setError(data.error)
@@ -92,6 +102,7 @@ function Signatory() {
             setError('Error in saving data', error);
         }
         finally{
+            handleFetch()
             setLoading(false)
             setEmail('')
             setRole('')
@@ -132,8 +143,10 @@ function Signatory() {
                                 title: 'Success',
                                 text: data.message,
                                 icon: 'success',
-                                confirmButtonText: 'Ok'
+                                showConfirmButton: false,
+                                timer: 1500                                
                             })
+                            handleFetch()
                         }
                         if (data.error) {
                             setError(data.error)
@@ -164,12 +177,15 @@ function Signatory() {
             </ul>
         </div>
         <h2 className="mb-3 text-2xl font-bold leading-tight ">Signatories</h2>
-        <hr/>
+        <hr className='mb-2'/>
 
-        <div className='mx-auto w-full md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md  text-white'>
-            <button onClick={() => setShowCreateAccount(true)} className='btn btn-ghost bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
-                Add Signatory
-            </button>
+        <div className='mx-auto w-full md:max-w-full sm:max-w-full p-6 bg-white rounded-lg border  text-white'>
+            <div>
+                <button onClick={() => setShowCreateAccount(true)} className='btn btn-ghost bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
+                    Add Signatory
+                </button>
+            </div>
+            {signatories && signatories.length === 0 && <p className="text-red-600 mb-4">No signatories found.</p>}
             <div className='overflow-x-auto'>
                 <table className='min-w-full border table rounded-lg overflow-x-auto text-xs bg-white statTable'>
                     <thead className='text-gray-800 bg-gray-100'>
@@ -191,7 +207,7 @@ function Signatory() {
                                 <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{signatory.user.email}</td>
                                 <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{signatory.role}</td>
                                 <td>
-                                    <button onClick={() => handleDelete(signatory.id)} className='btn btn-sm btn-error'>Delete</button>
+                                    <button onClick={() => handleDelete(signatory.id)} className='btn btn-sm btn-error text-white'><AiOutlineDelete /></button>
                                 </td>
                             </tr>
                         ))}
@@ -202,8 +218,8 @@ function Signatory() {
 
         {showCreateAccount && (
             // Create Account Popup JSX
-            <div className="create-signatory-popup fixed top-0 left-0 w-full flex items-center justify-center bg-gray-900 bg-opacity-50 z-50 py-4">
-                <div className='mx-auto lg:max-w-md md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md text-white h-screen overflow-y-auto'>
+            <div className="create-account-popup fixed top-0 left-0 w-full min-h-screen flex items-center justify-center bg-gray-900 bg-opacity-50 z-50 py-4">
+                <div className='mx-auto lg:max-w-md md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md text-white h-fit overflow-y-auto'>
                     <div className='flex justify-between'>
                         <div>
                             <h1 className='text-2xl font-semibold mb-4 text-slate-600 '>Create Signatory</h1>
@@ -216,6 +232,9 @@ function Signatory() {
                     <div className='mb-6 flex items-center justify-center'>
                         <form onSubmit={handleSubmit} className='w-full' ref={formRef}>
                         {error && <p className='text-red-500 mt-4'>{error}</p>}
+                            <div><Toaster position='top-center' reverseOrder={false} />
+                                <p className='text-gray-600 text-base'>Ensure your signatory is registered as a supporter</p>
+                            </div>
                             <div className='my-4'>
                                 <label htmlFor='email' className='block mb-2 text-sm font-semibold text-slate-600 '><span className='text-red-500'>*</span>E-Mail</label>
                                 <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} className='block text-gray-700 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600' placeholder='example@mail.com' required />
@@ -234,6 +253,7 @@ function Signatory() {
                 </div>
             </div>
         )}
+        <Toaster position='top-center' reverseOrder={false} />
     </div>
   )
 }

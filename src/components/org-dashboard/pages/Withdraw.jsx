@@ -190,8 +190,8 @@ return (
         </div>
         <div>
             <h1 className="font-extrabold text-2xl">Withdraw</h1>
-            <hr className='mb-6' />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <hr className='mb-2' />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white border rounded-lg p-6">
                 <form ref={formRef}>
                     {errors && <p className='text-red-700 text-base'>{errors}</p>}
                     {walletDetails ?

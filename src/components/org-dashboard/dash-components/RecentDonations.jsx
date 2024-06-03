@@ -38,7 +38,7 @@ useEffect(() => {
 // console.log(allCampaigns)
 
   return (
-    <div className='px-2 py-4 bg-white rounded-lg mt-3 border'>
+    <div className='px-2 py-4 bg-white rounded-lg mt-3 border my-6'>
       <div className='flex justify-between'>
         <div>
           <h2 className="text-left text-xl mt-1">Recent Donations</h2>
@@ -54,7 +54,7 @@ useEffect(() => {
             <div className='overflow-scroll mt-2 '>
               <table className="min-w-full table rounded-md overflow-x-auto text-xs bg-white statTable" >
                   {/* head */}
-                  <thead>
+                  <thead className='text-gray-800 bg-gray-100'>
                       <tr className='text-gray-800 bg-gray-100'>
                       {/* <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200'>ID</th> */}
                           <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Campaign</th>
@@ -74,10 +74,10 @@ useEffect(() => {
                               <tr key={donation.id}>
                                   {/* <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.id}</td> */}
                                   <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{campaignTitle}</td>
-                                  <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>
-                                  <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.amount}</td>
-                                  <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
-                                  <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.status}</td>
+                                  <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>
+                                  <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.amount}</td>
+                                  <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
+                                  <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.status}</td>
                               </tr>
                           );
                       })}

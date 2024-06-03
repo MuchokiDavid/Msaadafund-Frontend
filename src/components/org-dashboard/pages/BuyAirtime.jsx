@@ -151,8 +151,9 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
         <div>
             <h1 className="font-extrabold text-2xl">Buy Airtime</h1>
             <hr className='mb-2'/>            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <form ref={formRef}>                    
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 border rounded-lg bg-white">
+              <div>
+                  <form ref={formRef}>                    
                     {transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
                     {walletDetails? 
                         <div className="stats border">
@@ -223,10 +224,11 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                     <div className="flex items-center justify-between mt-4">
                         <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-3 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-2 md:text-lg md:px-8">Buy</button>                        
                     </div>
-                </form>
+                  </form>
+                </div>
 
                 <aside className="">
-                    <div className="bg-white p-10 rounded">
+                    <div className="p-10 rounded">
                         <h2 className="font-bold text-2xl">Instructions</h2>
                         <ul className="list-disc mt-4 list-inside text-lg">
                             <li>Ensure that the phone number provided is a valid phone number.</li>
@@ -236,6 +238,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                         </ul>
                     </div>
                 </aside>
+                
                 <Toaster position='top-center' reverseOrder= {false} />
             </div>
         </div>

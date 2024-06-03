@@ -174,7 +174,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                             </div>
                         </div>
                         <div className="my-1 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 rounded-lg">
-                            <table className="min-w-full border table rounded-lg overflow-x-auto text-xs bg-white statTable">
+                            <table className="min-w-full border table rounded-lg overflow-x-auto text-xs bg-white statTable text-left">
                                 {/* head */}
                                 <thead className='text-gray-800 bg-gray-100'>
                                     <tr>
@@ -196,10 +196,10 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                                             <tr key={donation._id}>
                                                 <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.id}</td>
                                                 <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{campaignTitle}</td>
-                                                <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>
-                                                <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.amount}</td>
-                                                <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
-                                                <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.status}</td>
+                                                <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>
+                                                <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.amount}</td>
+                                                <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
+                                                <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.status}</td>
                                             </tr>
                                         );
                                     })}

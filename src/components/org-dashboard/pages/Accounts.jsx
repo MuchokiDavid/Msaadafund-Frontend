@@ -196,8 +196,8 @@ function Accounts({banks, fetchBank}) {
                 </ul>
             </div>
             <h2 className="mb-3 text-2xl font-bold leading-tight ">Withdrawal Accounts</h2>
-            <hr/>
-            <div className='mx-auto w-full md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md  text-white'>
+            <hr className='mb-2'/>
+            <div className='mx-auto w-full md:max-w-full sm:max-w-full p-6 bg-white rounded-lg border  text-white'>
                 <button onClick={() => setShowCreateAccount(true)} className='btn btn-ghost bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
                     Create Account
                 </button>
@@ -225,13 +225,13 @@ function Accounts({banks, fetchBank}) {
                                         <td className='border border-gray-300 px-2 py-1 text-gray-700 '>
                                          <div className='flex flex-row gap-1'>
                                             <div>
-                                                <button onClick={() => handleShowResetPin(account.email)} className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-2 w-full sm:w-auto'>
+                                                <button onClick={() => handleShowResetPin(account.email)} className='btn btn-sm btn-success text-white'>
                                                     {/* Reset */}
                                                     <GrPowerReset/>
                                                 </button>
                                             </div>                                            
                                             <div>
-                                                <button onClick={()=> handleDelete(account.id)} className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
+                                                <button onClick={()=> handleDelete(account.id)} className='btn btn-sm btn-error text-white'>
                                                     <AiOutlineDelete />
                                                 </button>
                                             </div>

@@ -94,8 +94,8 @@ function Subscriptions({ allSubscriptions }) {
                         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div className="py-2 inline-block min-w-full sm:px-4 lg:px-8">
                                 <div className="overflow-hidden">
-                                    <table className="min-w-full table-zebra text-sm overflow-x-auto">
-                                        <thead className="border-b">
+                                    <table className="min-w-full border table rounded-lg overflow-x-auto text-sm bg-white statTable">
+                                        <thead className="border-b text-gray-800 bg-gray-100">
                                             <tr>
                                                 <th scope="col" className="text-sm font-medium text-gray-900 px-4 py-2 text-left">ID</th>
                                                 <th scope="col" className="text-sm font-medium text-gray-900 px-4 py-2 text-left">Organisation</th>

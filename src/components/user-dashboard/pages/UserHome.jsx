@@ -7,6 +7,8 @@ import QuickLink from '../components/QuickLink'
 function UserHome({allDonations, allSubscriptions}) {
   return (
     <div>
+      <h1 className="mb-3 my-2 mx-3 text-2xl font-bold leading-tight ">Dashboard</h1>
+      <hr className='mb-0' />
       <DashboardBanner/>
       <QuickLink/>
       <DashCards allDonations= {allDonations} allSubscriptions= {allSubscriptions}/>

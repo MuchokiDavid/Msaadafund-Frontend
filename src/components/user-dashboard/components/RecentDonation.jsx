@@ -26,19 +26,19 @@ function RecentDonation({allDonations}) {
             ?
             (
                 <div className="my-3 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 sm:rounded-lg">
-                    <table className="min-w-full table-zebra text-xs overflow-x-auto">
+                    <table className="min-w-full table rounded-md overflow-x-auto text-xs bg-white statTable">
                         {/* head */}
-                        <thead>
+                        <thead className='text-gray-800 bg-gray-100'>
                             <tr>
-                                <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
-                                <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Invoice Id</th>
-                                <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Amount</th>  
-                                <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Campaign</th>
-                                <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Category</th>
-                                <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Start Date</th>   
-                                <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>End Date</th>  
-                                <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Organisations</th>
-                                <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donation Date</th>                    
+                                <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>ID</th>
+                                <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Invoice Id</th>
+                                <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Amount</th>  
+                                <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Campaign</th>
+                                <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Category</th>
+                                <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Start Date</th>   
+                                <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>End Date</th>  
+                                <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Organisations</th>
+                                <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Donation Date</th>                    
                             </tr>
                         </thead>
                         <tbody>
@@ -80,8 +80,8 @@ function RecentDonation({allDonations}) {
                 </div>
             )
             :
-            (<div className='flex justify-between items-center px-2 py-2 border-b border-gray-200'>
-                <div className='text-gray-900'>No Donations Yet</div>
+            (<div className='flex justify-between items-center px-2 py-6 border-b border-gray-200'>
+                <div className='text-gray-900'>No Donations to display</div>
             </div>)
         }
     </div>

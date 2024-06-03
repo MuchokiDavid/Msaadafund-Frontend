@@ -116,13 +116,13 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                 </ul>
             </div>
             <h1 className="text-2xl font-semibold mb-3 text-slate-600 ">Create campaign</h1>
-            <hr className='mb-0'/>
+            <hr className='mb-2'/>
             <div className='flex items-center justify-center w-full'>
-                <div className="mx-auto lg:max-w-screen-lg md:max-w-full sm:max-w-full p-2 rounded-lg bg-transparent text-white sm:w-screen">
+                <div className="mx-auto lg:max-w-screen-lg md:max-w-full sm:max-w-full rounded-lg bg-transparent sm:w-screen bg-white p-6 border">
             {/* <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0"> */}
 
-                {error && <p className="text-red-500 mb-2">{error}</p>}
                 <p className='text-gray-600 mb-2'>Inputs with <span className='text-red-500'>*</span> are compulsory</p>
+                {error && <p className="text-red-500 mb-2">{error}</p>}
                 <form onSubmit={handleUpload}  ref={formRef}>
                     <div className="mb-4 mt-3">
                         <label htmlFor="campaignName" className="block mb-2 text-sm font-semibold text-slate-600 ">
@@ -264,7 +264,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                             <p className="text-xs leading-5 text-gray-700 dark:text-gray-200">PNG, JPG,JPEG up to 2MB</p>
                         </div>
                     </div>
-
+                    {error && <p className="text-red-500 mb-2">{error}</p>}
                     <div className='mt-4'>
                         <button
                             type="submit"

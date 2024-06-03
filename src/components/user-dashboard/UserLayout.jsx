@@ -172,23 +172,29 @@ function UserLayout() {
 
 
   return (
-    <div>
-      <UserNav toggleSidebar={toggleSidebar} />
-      <div className="flex">
+    <div>      
+      <div className="flex h-screen overflow-hidden">
       {isSidebarOpen && <Usermenubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} handleMenuItemClick= {handleMenuItemClick}/>}
         {/* <main className="mt-3 mx-auto md:w-3/4 overflow-y-auto md:m-3 min-h-max h-1/6"> */}
-        <main className={`mt-3 mx-auto w-full sm:w-screen overflow-hidden overflow-y-auto md:m-3 min-h-screen lg:h-full justify-center px-2 lg:px-6`} style={{ marginTop: '10px' }} id='userdashboard'>
+        <div className='w-full sm:w-screen bg-slate-50'>
+        <UserNav toggleSidebar={toggleSidebar} />
+        <main className={`flex-1 mt-3 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6`} style={{ marginTop: '10px' }} id='userdashboard'>
           <Routes>
             <Route path="/" element={<UserHome allDonations={allDonations} allSubscriptions= {allSubscriptions}/>} />
             <Route path="/contributions" element={<Donations allDonation={allDonations}/>} />
             <Route path="/subscriptions" element={<Subscriptions allSubscriptions= {allSubscriptions}/>} />
+            <Route path="/contributions" element={<Donations allDonation={allDonations}/>} />
+            <Route path="/approvals" element={<PendingTras/>} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/help" element={<Help />} />
             {signatory_status && <Route path="/transactions" element={<PendingTras/>} />}
-          </Routes>
+          </Routes>  
+          <Footer/>        
         </main>
+       
+        </div>
       </div>
-      <Footer/>
+      
     </div>
   );
 }
