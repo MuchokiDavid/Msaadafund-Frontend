@@ -1,5 +1,7 @@
 import React from 'react'
-import { IoMdNotifications } from "react-icons/io";
+import { MdNotificationsActive } from "react-icons/md";
+import { MdNotificationsOff } from "react-icons/md";
+
 
 
 function Profile({orgName,orgType, subscribe,handleSubscribe,handleUnsubscribe, profileImage}) {
@@ -22,11 +24,11 @@ function Profile({orgName,orgType, subscribe,handleSubscribe,handleUnsubscribe, 
         <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
           {subscribe ? (
             <button type="button" className="inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:text-gray-800 shadow-md hover:bg-gray-50" onClick={handleUnsubscribe}>
-             <IoMdNotifications className="text-lg mr-2" /> Unsubscribe
+             <MdNotificationsOff size={23}   className="text-lg mr-2" /> Unsubscribe
             </button>
           ) : (
             <button type="button" className="inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm  hover:text-gray-800 hover:bg-gray-50" onClick={handleSubscribe}>
-              <IoMdNotifications className="text-lg mr-2" />Subscribe
+              <MdNotificationsActive size={23}  className="text-lg mr-2" />Subscribe
             </button>
           )}
         </div>
