@@ -171,6 +171,7 @@ function Signatory() {
                     Add Signatory
                 </button>
             </div>
+            {signatories && signatories.length === 0 && <p className="text-red-600 mb-4">No signatories found.</p>}
             <div className='overflow-x-auto'>
                 <table className='min-w-full border table rounded-lg overflow-x-auto text-xs bg-white statTable'>
                     <thead className='text-gray-800 bg-gray-100'>

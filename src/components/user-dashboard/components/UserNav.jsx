@@ -43,10 +43,10 @@ function UserNav({toggleSidebar}) {
 
                             </div>
                         </div>
-                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-slate-800 rounded-box w-36">
-                        <li className='hover:bg-slate-700'><a href="/user/dashboard/help">Help</a></li>
-                        <li className='hover:bg-slate-700'><a href="/user/dashboard/profile">Profile</a></li>
-                        <li className='hover:bg-slate-700' onClick={handleLogout}><a href='/user/login'>Log out</a></li>
+                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-white border rounded-box w-36">
+                        <li className='hover:bg-slate-500'><a href="/user/dashboard/help">Help</a></li>
+                        <li className='hover:bg-slate-500'><a href="/user/dashboard/profile">Profile</a></li>
+                        <li className='hover:bg-slate-500' onClick={handleLogout}><a href='/user/login'>Log out</a></li>
                         </ul>
                     </div>
               </div>

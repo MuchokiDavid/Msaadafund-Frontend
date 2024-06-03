@@ -38,7 +38,7 @@ useEffect(() => {
 // console.log(allCampaigns)
 
   return (
-    <div className='px-2 py-4 bg-white rounded-lg mt-3 border'>
+    <div className='px-2 py-4 bg-white rounded-lg mt-3 border my-6'>
       <div className='flex justify-between'>
         <div>
           <h2 className="text-left text-xl mt-1">Recent Donations</h2>
