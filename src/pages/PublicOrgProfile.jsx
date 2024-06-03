@@ -4,9 +4,9 @@ import { MdNotificationsOff } from "react-icons/md";
 
 
 
-function Profile({orgName,orgType, subscribe,handleSubscribe,handleUnsubscribe, profileImage}) {
+function Profile({orgName,orgWebsite,orgType,loading, subscribe,handleSubscribe,handleUnsubscribe, errors, profileImage}) {
   return (
-    <div className='bg-white rounded-lg pb-3'>
+    <div className='bg-white rounded-lg pb-3 shadow-sm'>
   <div className="h-24 overflow-hidden" id='orgBanner'>
     {/* <img className="object-cover object-top w-full" src="https://source.unsplash.com/random/1920x1080/?organisation-profile" alt='Mountain'/> */}
   </div>
@@ -20,15 +20,19 @@ function Profile({orgName,orgType, subscribe,handleSubscribe,handleUnsubscribe, 
         <div className="mt-6 min-w-0 flex-1 sm:hidden md:block">
           <h1 className="truncate text-2xl font-bold text-blue-300">{orgName}</h1>
           <p className="mt-1 text-sm text-gray-500">{orgType}</p>
+          <p className="mt-1 text-sm text-gray-500">{orgWebsite}</p>
         </div>
+        {errors && <div className="text-red-500 mt-2 text-sm">
+          {errors}
+        </div>}
         <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
           {subscribe ? (
             <button type="button" className="inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:text-gray-800 shadow-md hover:bg-gray-50" onClick={handleUnsubscribe}>
-             <MdNotificationsOff size={23}   className="text-lg mr-2" /> Unsubscribe
+             <MdNotificationsOff size={23}   className="text-lg mr-2" /> {loading ?  'Unsubscribing...' :"Unsubscribe"}
             </button>
           ) : (
             <button type="button" className="inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm  hover:text-gray-800 hover:bg-gray-50" onClick={handleSubscribe}>
-              <MdNotificationsActive size={23}  className="text-lg mr-2" />Subscribe
+              <MdNotificationsActive size={23}  className="text-lg mr-2" />{loading ?  'Subscribing...' :"Subscribe"}
             </button>
           )}
         </div>

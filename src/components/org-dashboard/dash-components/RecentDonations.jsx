@@ -54,7 +54,7 @@ useEffect(() => {
             <div className='overflow-scroll mt-2 '>
               <table className="min-w-full table rounded-md overflow-x-auto text-xs bg-white statTable" >
                   {/* head */}
-                  <thead>
+                  <thead className='text-gray-800 bg-gray-100'>
                       <tr className='text-gray-800 bg-gray-100'>
                       {/* <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200'>ID</th> */}
                           <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Campaign</th>

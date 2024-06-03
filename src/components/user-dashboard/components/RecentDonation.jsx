@@ -26,9 +26,9 @@ function RecentDonation({allDonations}) {
             ?
             (
                 <div className="my-3 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 sm:rounded-lg">
-                    <table className="min-w-full table-zebra text-xs overflow-x-auto">
+                    <table className="min-w-full table rounded-md overflow-x-auto text-xs bg-white statTable">
                         {/* head */}
-                        <thead>
+                        <thead className='text-gray-800 bg-gray-100'>
                             <tr>
                                 <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>ID</th>
                                 <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Invoice Id</th>
@@ -80,8 +80,8 @@ function RecentDonation({allDonations}) {
                 </div>
             )
             :
-            (<div className='flex justify-between items-center px-2 py-2 border-b border-gray-200'>
-                <div className='text-gray-900'>No Donations Yet</div>
+            (<div className='flex justify-between items-center px-2 py-6 border-b border-gray-200'>
+                <div className='text-gray-900'>No Donations to display</div>
             </div>)
         }
     </div>

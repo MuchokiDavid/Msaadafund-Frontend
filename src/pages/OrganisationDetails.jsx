@@ -156,7 +156,7 @@ function OrganisationDetails() {
       });
     };
     
-  if(!organisationDetails || loading){
+  if(!organisationDetails){
     // return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
     return (
       <div aria-label="Loading..." role="status" className="flex justify-center items-center space-x-2  min-h-screen">
@@ -208,6 +208,7 @@ function OrganisationDetails() {
 
       <Profile
         orgName={organisationDetails && organisationDetails.orgName}
+        orgWebsite= {organisationDetails && organisationDetails.website_link}
         orgType={organisationDetails && organisationDetails.orgType}
         // orgWebsite={organisationDetails && organisationDetails.orgWebsite}
         orgEmail={organisationDetails && organisationDetails.orgEmail}
@@ -215,11 +216,13 @@ function OrganisationDetails() {
         subscribe= {subscribe}
         handleSubscribe={handleSubscribe}
         handleUnsubscribe={handleUnsubscribe}
+        loading={loading}
+        errors={errors}
         profileImage= {organisationDetails && organisationDetails.profileImage ?`${organisationDetails.profileImage}`: "https://images.unsplash.com/photo-1606327054536-e37e655d4f4a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
       />  
       <div className="mx-auto min-h-screen container"> 
         <div className="flex flex-col lg:flex-row gap-3">
-            <div className="h-full lg:w-1/4 shadow" id='campaign'>
+            <div className="h-full lg:w-1/4" id='campaign'>
               {/* -------------------------------------Profile card------------------------------------ */}
                 <div className="relative rounded">
                   <div

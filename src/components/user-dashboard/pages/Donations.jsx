@@ -87,19 +87,19 @@ function Donations({allDonation}) {
                       </div>
                   </div>
                   <div className="my-3 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 sm:rounded-lg">
-                      <table className="min-w-full table-zebra text-xs overflow-x-auto">
+                      <table className="min-w-full border table rounded-lg overflow-x-auto text-xs bg-white statTable">
                           {/* head */}
-                          <thead>
+                          <thead className='text-gray-800 bg-gray-100'>
                               <tr>
-                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>ID</th>
-                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Invoice Id</th>
-                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Amount</th>  
-                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Campaign</th>
-                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Category</th>
-                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Start Date</th>   
-                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>End Date</th>  
-                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Organisations</th>
-                                  <th className='px-4 py-1 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-emerald-400'>Donation Date</th>                    
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>ID</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Invoice Id</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Amount</th>  
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Campaign</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Category</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Start Date</th>   
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>End Date</th>  
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Organisations</th>
+                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Donation Date</th>                    
                               </tr>
                           </thead>
                           <tbody>
@@ -122,10 +122,10 @@ function Donations({allDonation}) {
                                               <div className='text-gray-900'>{donation.campaign ? donation.campaign.category : ""}</div>
                                           </td>
                                           <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
-                                              <div className='text-gray-900'>{donation.campaign ? donation.campaign.startDate : ""}</div>
+                                              <div className='text-gray-900'>{donation.campaign ? moment(donation.campaign.startDate) : ""}</div>
                                           </td>
                                           <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
-                                              <div className='text-gray-900'>{donation.campaign ? donation.campaign.endDate : ""}</div>
+                                              <div className='text-gray-900'>{donation.campaign ? moment(donation.campaign.endDate) : ""}</div>
                                           </td>
                                           <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
                                               <div className='text-gray-900'>{donation.campaign ? donation.campaign.organisation.orgName : ""}</div>
@@ -144,14 +144,14 @@ function Donations({allDonation}) {
               ?
               <div className="flex justify-center mb-4 join grid-cols-2">
                   {/* Previous page button */}
-                  <button className="btn btn-outline join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
+                  <button className="btn btn-outline btn-sm join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
                       Previous
                   </button>
 
                   {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
                   {/* Next page button */}
                   <button
-                      className="btn btn-outline join-item"
+                      className="btn btn-outline join-item btn-sm"
                       onClick={() => goToPage(currentPage + 1)}
                       disabled={currentPage === totalPages}
                   >
@@ -166,7 +166,7 @@ function Donations({allDonation}) {
       )
       :
       (
-          <div className='grid grid-cols-1 gap-4 mt-3 px-4'>
+          <div className='grid grid-cols-1 gap-4 mt-3 px-4 py-6'>
         <div>
           <p className='text-red-500 text-xl'>No contributions to display. Make contributions to view the contributions</p> 
         </div>

@@ -29,7 +29,7 @@ function OrgActive({organisationDetails}) {
 
   return ( 
     <div className='mt-3'>
-      <div className='container'>
+      <div className='container divide-x'>
         <div className="sm:hidden">
           <label htmlFor="Tab" className="sr-only">Tab</label>
           <select
