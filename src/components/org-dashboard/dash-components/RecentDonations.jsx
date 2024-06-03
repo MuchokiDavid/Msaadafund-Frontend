@@ -74,10 +74,10 @@ useEffect(() => {
                               <tr key={donation.id}>
                                   {/* <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.id}</td> */}
                                   <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{campaignTitle}</td>
-                                  <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>
-                                  <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.amount}</td>
-                                  <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
-                                  <td className='px-6 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.status}</td>
+                                  <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>
+                                  <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.amount}</td>
+                                  <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
+                                  <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.status}</td>
                               </tr>
                           );
                       })}
