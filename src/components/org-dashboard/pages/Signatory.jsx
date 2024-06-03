@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import Swal from 'sweetalert2'
 import {toast, Toaster} from 'react-hot-toast';
+import { AiOutlineDelete } from "react-icons/ai";
 
 function Signatory() {
     const [showCreateAccount, setShowCreateAccount] = useState(false);
@@ -15,32 +16,40 @@ function Signatory() {
 
     // Useeffect to get all signatories from the database
     useEffect(() => {
-        function handleFetch(){
-            fetch('/api/v1.0/signatories', {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${accessToken}`
-                }
-            }).then ((res) => res.json())
-            .then((data) => {
-                if(data.error){
-                    setError(data.error)
-                }
-                else{
-                    setSignatories(data);
-                }
-            })
-
-            .catch((err) => { console.log(err) })
-            // .then((response) => {
-            //     setSignatories(response.data);
-            //     setLoading(false)
-            // });
-        }
+        
         handleFetch()
         
     }, [accessToken])
+
+    function handleFetch(){
+        fetch('/api/v1.0/signatories', {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            }
+        }).then ((res) => {
+            if (res.status === 404) {
+                setSignatories([])
+                return [];
+            }
+            return res.json();
+        })
+        .then((data) => {
+            if(data.error){
+                setError(data.error)
+            }
+            else{
+                setSignatories(data);                
+            }
+        })
+
+        .catch((err) => { console.log(err) })
+        // .then((response) => {
+        //     setSignatories(response.data);
+        //     setLoading(false)
+        // });
+    }
     
 
     const handleClosePopup = () => {
@@ -75,7 +84,13 @@ function Signatory() {
             .then((data) => {
                 if(data.message){                  
                     //Swal
-                    toast("Signatory added successifully");
+                    Swal.fire({
+                        title: 'Success',
+                        text: 'Signatory saved successifully',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })                   
                 }
                 if (data.error) {
                     setError(data.error)
@@ -87,6 +102,7 @@ function Signatory() {
             setError('Error in saving data', error);
         }
         finally{
+            handleFetch()
             setLoading(false)
             setEmail('')
             setRole('')
@@ -128,8 +144,9 @@ function Signatory() {
                                 text: data.message,
                                 icon: 'success',
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 1500                                
                             })
+                            handleFetch()
                         }
                         if (data.error) {
                             setError(data.error)
@@ -190,7 +207,7 @@ function Signatory() {
                                 <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{signatory.user.email}</td>
                                 <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{signatory.role}</td>
                                 <td>
-                                    <button onClick={() => handleDelete(signatory.id)} className='btn btn-sm btn-error'>Delete</button>
+                                    <button onClick={() => handleDelete(signatory.id)} className='btn btn-sm btn-error text-white'><AiOutlineDelete /></button>
                                 </td>
                             </tr>
                         ))}
