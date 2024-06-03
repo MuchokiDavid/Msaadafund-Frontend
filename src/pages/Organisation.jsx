@@ -12,7 +12,7 @@ function Organisation() {
 
     useEffect(()=>{
         axios.get('/api/v1.0/organisations')
-        .then((res)=>{
+        .then((res)=>{            
             setOrganisation(res.data)
         })
         .catch((err)=>{
@@ -28,58 +28,61 @@ function Organisation() {
         setCurrentPage(pageNumber)
     }
 
-
-  
+    // console.log(organisation)
     
   return (
     <div>
         <Menus/>
-        <div className="text-md breadcrumbs ml-4" >
+        {/* <div className="text-md breadcrumbs ml-4" >
           <ul>
               <li><a href='/'>Home</a></li>
               <li>Organisations</li>
           </ul>
-        </div>
-        <div className="mx-2 sm:mx-1 lg:mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
-        {paginateOrganisations.map((org)=>{
-            return(
-            <Link to={`/organisations/${org.orgName}`} key={org.id}>
-            <div className="group relative block mt-12 sm:mt-16 lg:mt-20 bg-black">
-        <img
-            alt=""
-            src="https://images.unsplash.com/photo-1603871165848-0aa92c869fa1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80"
-            className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
-            loading='lazy'
-        />
+        </div> */}
+        <div className='container px-4'>
+        <div className="text-2xl font-medium text-left">Organisers</div>
+        <div className="mx-2 sm:mx-1 lg:mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full min-h-screen rounded-xl">
+            {paginateOrganisations.map((org)=>{
+                return(
+                <Link to={`/organisations/${org.orgName}`} key={org.id}>
+                    <div className="group relative block mt-8 sm:mt-10 lg:mt-12 bg-black">
+                        <img
+                            alt="org logo"
+                            src={org && org.profileImage ? `${org.profileImage}` : "https://images.unsplash.com/photo-1606327054536-e37e655d4f4a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
+                            className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
+                            loading='lazy'
+                        />
 
-        <div className="relative p-4 sm:p-6 lg:p-8 h-[400px] overflow-hidden ">
-            <p className="text-md font-medium uppercase tracking-widest text-blue-500">Organisation</p>
+                        <div className="relative p-4 sm:p-6 lg:p-8 h-[400px] overflow-hidden ">
+                            <p className="text-md font-medium uppercase tracking-widest text-blue-500">Organisation</p>
 
-            <p className="text-xl font-bold text-white sm:text-2xl">{org.orgName}</p>
+                            <p className="text-xl font-bold text-white sm:text-2xl">{org.orgName}</p>
 
-            <div
-                className="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100"
-            >
-                <p className="text-md text-white"> {org.orgDescription} </p>        
-            </div>
-        </div>
-        </div>
-        </Link>
+                            <div
+                                className="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100"
+                            >
+                                <p className="text-md text-white"> {org.orgDescription} </p>        
+                            </div>
+                        </div>
+                    </div>
+                </Link>
 
-         )})}
+            )
+        })}
        
         </div>
+        </div>
 
-        <div className="flex justify-center mb-4 mt-4 join grid-cols-2">
-                        {/* Previous page button */}
-                        <button className="btn btn-outline join-item" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
-                            Previous
-                        </button>
+        <div className="flex justify-center mb-4 join grid-cols-2">
+            {/* Previous page button */}
+            <button className="btn btn-outline join-item btn-sm" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
+                Previous
+            </button>
 
-                        <button className="btn btn-outline join-item" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages}>
-                        Next
-                        </button>
-                    </div>
+            <button className="btn btn-outline join-item btn-sm" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages}>
+            Next
+            </button>
+        </div>
         <Footer/>
 
         </div>

@@ -22,11 +22,18 @@ function AboutUs() {
                   </div>
               </div>      
         </div> 
-      <div className="bg-white min-h-screen pb-8 px-4 sm:px-6 lg:px-8">        
+      <div className="min-h-screen pb-8 px-4 sm:px-6 lg:px-8">        
       <div className="container mx-auto block ">
         <div className='flex flex-col lg:flex-row gap-3'>
           <div className='h-full lg:w-2/3'>
-              <div className="mt-8">
+          <div className='bg-white border mt-6 p-4'>
+            <div className="mt-4">
+              <h3 className="text-xl font-semibold text-gray-900">Our Mission</h3>
+              <p className="mt-2 text-lg text-gray-600">
+                At Msaada, our mission is to empower individuals and organizations to make a positive impact in their communities and beyond. We believe that generosity and positive change can be achieved only through dedicated and passionate efforts.
+              </p>
+            </div>
+              <div className="mt-8">                
               <h3 className="text-xl font-semibold text-gray-900">Our Vision</h3>
               <p className="mt-2 text-lg text-gray-600">
                 We envision a world where everyone has access to the resources they need to thrive. By facilitating donations and fundraising efforts, we aim to empower individuals and organizations to make a positive impact in their communities and beyond.
@@ -59,9 +66,14 @@ function AboutUs() {
                 Have questions or feedback? We'd love to hear from you! Reach out to us at <a href="mailto:info@msaada.com" className="text-blue-600">info@msaada.com</a>.
               </p>
             </div>
+            </div>
           </div> 
           <div className='h-full lg:w-1/3'>
-            <Message/>
+
+            <div className='mt-6'>
+              <Message/>
+            </div>
+            
           </div>           
         </div>        
       </div>
