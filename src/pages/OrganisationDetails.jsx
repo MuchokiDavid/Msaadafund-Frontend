@@ -81,6 +81,7 @@ function OrganisationDetails() {
         if (org) {
             logout();
             setShowModal(true);
+            return;
         }
 
         if (!users && !accessToken) {
@@ -93,85 +94,68 @@ function OrganisationDetails() {
                 Authorization: `Bearer ${accessToken}`
             }
         };
-            Swal.fire({
-                title: 'Subscribing...',
-                text: 'Please wait while we subscribe you to updates.',
-                allowOutsideClick: false,
-                showConfirmButton: false,
-                timer: 2000
-            }).then(async() => {              
-              const response = await axios.post(`/api/v1.0/subscription/${organisationDetails.id}`, {}, config);
-              if (response.status === 200) {
-                Swal.fire({
-                    title: "Subscription Successful",
-                    text: `You have successfully subscribed to receive updates from ${organisationDetails.orgName}. Thank you for your subscription!`,
-                    icon: "success"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                      setSubscribe(true);
-                      window.location.reload();
-                    }
-                });
-              }
-              else{
-                setErrors(response.data.error)
-                Swal.fire(
-                    'Error!',
-                    response.data.error,
-                    'error'
-                )
-              }
-            });
-        
-    } catch (error) {
+         setLoading(true)
+        // Await the axios.post call
+        const response = await axios.post(`/api/v1.0/subscription/${organisationDetails.id}`, {}, config);
+        setLoading(false)
+        if (response.status === 200) {
+          Swal.fire({
+            title: "Subscription Successful",
+            text: `You have successfully subscribed to receive updates from ${organisationDetails.orgName}. Thank you for your subscription!`,
+            icon: "success"
+          });
+          setSubscribe(true);
+        }
+      } catch (error) {
+        setLoading(false);
         const errorMsg = error.response?.data?.error || 'An error occurred';
         setErrors(errorMsg);
-        // setSubscribe(false);
-    }
-};
+      }
+    };
 
 
-        const handleUnsubscribe = async (e) => {
-            e.preventDefault();
-            const orgsnt = organisationDetails.orgName;
-            Swal.fire({
-                title: 'Unsubscribe?',
-                text: `Are you sure you want to unsubscribe from ${orgsnt}?`,
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    try {
-                        const config = {
-                            headers: {
-                                Authorization: `Bearer ${accessToken}`
-                            }
-                        };
-                        // Await the axios.delete call
-                        const response = await axios.delete(`/api/v1.0/subscription/${organisationDetails.id}`, config);
-                        if (response.status === 200) {
-                            // Show success message
-                            await Swal.fire({
-                                title: `Unsubscribed from ${organisationDetails.orgName} Updates`,
-                                text: `You have successfully unsubscribed from updates from ${organisationDetails.orgName}. If you change your mind, you can always subscribe later. Thank you for your support.`,
-                                icon: "success"
-                            });
-                            // Reload the page or perform any other necessary action
-                            window.location.reload();
-                        }
-                        setSubscribe(false);
-                    } catch (error) {
-                        const errorMsg = error.response?.data?.error || 'An error occurred';
-                        console.error(errorMsg);
-                        setSubscribe(false);
-                    }
-                }
-            });
-        };
 
+
+    const handleUnsubscribe = async (e) => {
+      e.preventDefault();
+      Swal.fire({
+        title: 'Unsubscribe?',
+        text: `Are you sure you want to unsubscribe from ${organisationDetails.orgName}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            const config = {
+              headers: {
+                Authorization: `Bearer ${accessToken}`
+              }
+            };
+  
+            setLoading(true);
+            const response = await axios.delete(`/api/v1.0/subscription/${organisationDetails.id}`, config);
+            setLoading(false);
+            if (response.status === 200) {
+              Swal.fire({
+                title: `Unsubscribed from ${organisationDetails.orgName} Updates`,
+                text: `You have successfully unsubscribed from updates from ${organisationDetails.orgName}. If you change your mind, you can always subscribe later. Thank you for your support.`,
+                icon: "success"
+              });
+              setSubscribe(false);
+            }
+          } catch (error) {
+            setLoading(false);
+            const errorMsg = error.response?.data?.error || 'An error occurred';
+            console.error(errorMsg);
+            setSubscribe(false);
+          }
+        }
+      });
+    };
+    
   if(!organisationDetails || loading){
     // return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
     return (
