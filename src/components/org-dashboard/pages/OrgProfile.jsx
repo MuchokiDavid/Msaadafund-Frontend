@@ -92,16 +92,16 @@ function OrgProfile() {
 
       </ul>
     </div>
-    <div className="container mx-auto min-h-screen lg:h-fit lg:px-16">
+    <div className="container mx-auto min-h-screen lg:h-fit">
   
       <h1 className="mb-3 my-2 text-2xl font-bold leading-tight">Personalize your Organisation</h1>
       <hr className='mb-2 mt-0'/>
 
       <div>
-        <div className="card w-full bg-base-100 p-4 flex-row justify-between">
+        <div className="card w-full bg-base-100 p-4 flex-row justify-between border">
             <div className="avatar">
-              <div className="w-24 rounded-full">
-                <figure>
+              <div className="w-24">
+                <figure className='border rounded-full'>
                   {orgData && orgData.profileImage? (<img src={orgData.profileImage} alt={orgData && orgData.orgName} className=" w-full rounded" />): (<div className='flex items-center justify-center h-24 w-24 bg-blue-600 text-white border border-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2 text-center'>
                               <p className='lg:text-3xl sm:text-sm'>{org && org.charAt(0)}</p>
                             </div>)}
@@ -114,7 +114,7 @@ function OrgProfile() {
             </div>
           </div> 
 
-          <div className="card w-full bg-base-100 shadow p-4 mt-4">
+          <div className="card w-full bg-base-100 border p-6 mt-4">
             <form onSubmit={handleSubmit} className="space-y-4">
               <h2 className='text-base'>Update your profile information</h2>
               <div>

@@ -155,7 +155,7 @@ const handleSubmit = (e) => {
         <div>
             <h1 className="font-extrabold text-2xl">Paybill</h1>
             <hr className='mb-2'/>            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-6 border rounded-lg">
                 <form ref={formRef} onSubmit={handleSubmit}>                    
                     {/* {transactionResponse && transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>} */}
                     {walletDetails? 
@@ -246,7 +246,7 @@ const handleSubmit = (e) => {
                 </form>
 
                 <aside className="">
-                    <div className="bg-white p-10 rounded">
+                    <div className="p-10 rounded">
                         <h2 className="font-bold text-2xl">Instructions</h2>
                         <ul className="list-disc mt-4 list-inside text-lg">
                             <li>Ensure that the paybill and account number provided are valid.</li>

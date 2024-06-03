@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import Swal from 'sweetalert2'
+import {toast, Toaster} from 'react-hot-toast';
 
 function Signatory() {
     const [showCreateAccount, setShowCreateAccount] = useState(false);
@@ -74,12 +75,7 @@ function Signatory() {
             .then((data) => {
                 if(data.message){                  
                     //Swal
-                    Swal.fire({
-                        title: 'Success',
-                        text: data.message,
-                        icon: 'success',
-                        confirmButtonText: 'Ok'
-                    })
+                    toast("Signatory added successifully");
                 }
                 if (data.error) {
                     setError(data.error)
@@ -131,7 +127,8 @@ function Signatory() {
                                 title: 'Success',
                                 text: data.message,
                                 icon: 'success',
-                                confirmButtonText: 'Ok'
+                                showConfirmButton: false,
+                                timer: 1500
                             })
                         }
                         if (data.error) {
@@ -163,9 +160,9 @@ function Signatory() {
             </ul>
         </div>
         <h2 className="mb-3 text-2xl font-bold leading-tight ">Signatories</h2>
-        <hr/>
+        <hr className='mb-2'/>
 
-        <div className='mx-auto w-full md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md  text-white'>
+        <div className='mx-auto w-full md:max-w-full sm:max-w-full p-6 bg-white rounded-lg border  text-white'>
             <div>
                 <button onClick={() => setShowCreateAccount(true)} className='btn btn-ghost bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
                     Add Signatory
@@ -218,7 +215,7 @@ function Signatory() {
                     <div className='mb-6 flex items-center justify-center'>
                         <form onSubmit={handleSubmit} className='w-full' ref={formRef}>
                         {error && <p className='text-red-500 mt-4'>{error}</p>}
-                            <div>
+                            <div><Toaster position='top-center' reverseOrder={false} />
                                 <p className='text-gray-600 text-base'>Ensure your signatory is registered as a supporter</p>
                             </div>
                             <div className='my-4'>
@@ -239,6 +236,7 @@ function Signatory() {
                 </div>
             </div>
         )}
+        <Toaster position='top-center' reverseOrder={false} />
     </div>
   )
 }

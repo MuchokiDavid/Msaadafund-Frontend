@@ -150,7 +150,7 @@ const handleSubmit = (e) => {
             <h1 className="font-extrabold text-2xl">Buy Goods and Services</h1>
             <hr className='mb-2'/>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 border rounded-lg bg-white">
                 <form ref={formRef} onSubmit={handleSubmit}>                    
                     {transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
                     {walletDetails? 

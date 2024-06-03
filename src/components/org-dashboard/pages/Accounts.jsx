@@ -196,8 +196,8 @@ function Accounts({banks, fetchBank}) {
                 </ul>
             </div>
             <h2 className="mb-3 text-2xl font-bold leading-tight ">Withdrawal Accounts</h2>
-            <hr/>
-            <div className='mx-auto w-full md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md  text-white'>
+            <hr className='mb-2'/>
+            <div className='mx-auto w-full md:max-w-full sm:max-w-full p-6 bg-white rounded-lg border  text-white'>
                 <button onClick={() => setShowCreateAccount(true)} className='btn btn-ghost bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
                     Create Account
                 </button>

@@ -45,7 +45,7 @@ function TransStatus() {
         </div>
         <h1 className="font-extrabold text-2xl">Transaction Status</h1>
         <hr className='mb-4' />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-6 border rounded-lg">
             <div>
                 <div className="form-control w-full max-w-xs">
                     <label className="label">
@@ -53,7 +53,7 @@ function TransStatus() {
                     </label>
                     <input type="text" 
                     placeholder="eg 1f2378ab-xxxx-xxxx-xxxxx" 
-                    className="input input-bordered w-full max-w-xs" 
+                    className="input input-bordered w-full max-w-xs bg-gray-50" 
                     onChange={(e)=>setTrackingId(e.target.value)}/>
                 </div>
                 <div className="flex items-center justify-between mt-2">
@@ -70,7 +70,7 @@ function TransStatus() {
             </div>
         </div>
 
-        <div>
+        <div className=' bg-white border rounded-lg p-4 mt-2'>
             <h2 className="font-bold text-xl mt-8">Transaction details</h2>
             <div className="flow-root rounded-lg border border-gray-100 py-3 shadow-sm mt-4">
                 <dl className="-my-3 divide-y divide-gray-100 text-sm">
