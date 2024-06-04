@@ -3,7 +3,7 @@ import { BiMoneyWithdraw } from 'react-icons/bi';
 // import { FaDonate, FaHome } from 'react-icons/fa';
 import { GrAtm, GrTransaction } from 'react-icons/gr';
 // import { IoPersonCircle } from 'react-icons/io5';
-import { MdOutlineCampaign, MdOutlineViewCompactAlt } from 'react-icons/md';
+import { MdOutlineAppRegistration, MdOutlineCampaign, MdOutlineViewCompactAlt } from 'react-icons/md';
 // import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { FaPhone } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
@@ -24,9 +24,9 @@ const QuickLink = ({ icon, name, to }) => {
 function QuickLinks() {
     const quickLinksData = [
         // { icon: FaHome , name: 'Home' ,to:'/'},
-        { icon: MdOutlineCampaign, name: 'Create',to:'/org/dashboard/createcampaign' }, 
+        // { icon: MdOutlineCampaign, name: 'Create',to:'/org/dashboard/createcampaign' }, 
         { icon: MdOutlineViewCompactAlt, name: 'Campaigns',to:'/org/dashboard/mycampaigns/active' },
-        // { icon: FaDonate , name: 'Contributions',to:'/org/dashboard/donations' },
+        { icon: MdOutlineAppRegistration , name: 'Signatories',to:'/org/dashboard/transact/signatories' },
         { icon: BiMoneyWithdraw , name: 'Accounts' ,to:'/org/dashboard/transact/accounts'},
         { icon: GrAtm , name: 'Withdraw' ,to:'/org/dashboard/transact/withdraw'},
         { icon: MdSendToMobile , name: 'Pay Bills' ,to:'/org/dashboard/transact/paybill'},
@@ -34,8 +34,6 @@ function QuickLinks() {
         { icon: FaPhone , name: 'Buy Airtime' ,to:'/org/dashboard/transact/buyairtime'},
         // { icon: GrTransaction , name: 'Transactions',to:'/org/dashboard/transaction' },
         // { icon: IoPersonCircle , name: 'Profile' ,to:'/org/dashboard/profile'}
-        // { icon: IconName1, name: 'Settings' },
-        // { icon: IconName3, name: 'Log out' },
       ];
   return (
     <div className='py-3 bg-transparent'>
