@@ -18,7 +18,7 @@ function Profile({orgName,orgWebsite,orgType,loading, subscribe,handleSubscribe,
 
       <div className="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
         <div className="mt-6 min-w-0 flex-1 sm:hidden md:block">
-          <h1 className="truncate text-2xl font-bold text-blue-300">{orgName}</h1>
+          <h1 className="truncate text-2xl font-bold text-blue-300">{orgName.toUpperCase()}</h1>
           <p className="mt-1 text-sm text-gray-500">{orgType}</p>
           <p className="mt-1 text-sm text-gray-500">{orgWebsite}</p>
         </div>
