@@ -89,28 +89,6 @@ const handleWallet = async (id) => {
 
 //Get all banks
 useEffect(() => {
-  // const fetchBanks = async () => {
-  //     try {
-  //         const response = await fetch('/api/v1.0/all_banks', {
-  //             method: 'GET',
-  //             headers: {
-  //                 'Content-Type': 'application/json',
-  //                 'Authorization': `Bearer ${token}`
-  //             },
-  //         });
-  //         const data = await response.json();
-  //         if (response.ok) {
-  //             setLoading(false)
-  //             setAllBanks(data);
-  //         } else {
-  //             setLoading(true)
-  //             throw new Error(data);
-  //         }
-  //     } catch (error) {
-  //         setLoading(true)
-  //         setErrors('Error in fetching accounts', error);
-  //     }
-  // }
   fetchBanks()
 }, [token])
 
@@ -302,42 +280,13 @@ useEffect(() => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/helpcenter" element={<HelpCenter />} />
           </Routes>    
-            <DashFooter/> 
+          <div className='mt-4 flex justify-start'>
+              <DashFooter/>
+            </div>
         </main>               
       </div> 
            
     </div>
-    // <div className='overflow-hidden'>      
-    //   <div className="flex relative">
-    //     {/* <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/> */}
-    //     {isSidebarOpen && <Menubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} handleMenuItemClick={handleMenuItemClick}/>}
-    //     <main className={`mt-3 mx-auto w-full sm:w-screen overflow-hidden overflow-y-auto md:m-3 min-h-screen lg:h-full justify-center px-2 lg:px-6`} style={{ marginTop: '10px' }} id='dashboard'>
-    //     <DashboardNav toggleSidebar={toggleSidebar} />
-    //       <Routes>
-    //         <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors} handleMenuItemClick= {handleMenuItemClick}/>} />
-    //         {/* route to update campaign */}
-    //         <Route path="/campaigns/:campaignId" element={<UpdateCampaign getValidYoutubeVideoId= {getValidYoutubeVideoId}/>} />
-    //         <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch} getValidYoutubeVideoId= {getValidYoutubeVideoId}/>} />
-    //         <Route path="/mycampaigns/active" element={<DashActiveCampaigns allCampaigns={campaigns} campaignError={errors}/>} />
-    //         <Route path="/mycampaigns/inactive" element={<DashInactiveCampaigns allCampaigns={campaigns} campaignError={errors}/>} />
-    //         <Route path="/donations" element={<Donations loadingState={loading} allCampaigns={campaigns} handleFetching={handleFetch} campaignError={donationErrors} allDonors={donors}/>} />
-    //         <Route path="/transact/withdraw" element={<Withdraw allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
-    //         <Route path="/transact/paybill" element={<Paybill allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
-    //         <Route path="/transact/till" element={<Till allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
-    //         <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet}/>} />
-    //         <Route path="/transact/accounts" element={<AccountAuth/>} />
-    //         <Route path="/transact/accountset" element={<Accounts/>} />
-    //         <Route path="/transact/transactionstatus" element={<TransStatus />} />
-    //         <Route path="/transact/withdrawals" element={<Withdrawals/>} />
-    //         <Route path="/transaction" element={<Transaction allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors}/>} />
-    //         <Route path="/profile" element={<Profile />} />
-    //         <Route path="/helpcenter" element={<HelpCenter />} />
-    //       </Routes>
-    //       <DashFooter/>
-    //     </main>
-        
-    //   </div>      
-    // </div>
   );
 }
 

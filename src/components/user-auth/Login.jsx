@@ -19,17 +19,16 @@ function Login() {
     userLogin(username, password);
   }
 
-  // if (isLoggedIn) {
-  //   setTimeout(() => {
-  //     navigate('/user/dashboard')
-  //   }, 2000);
-    
-  // }
   if (isLoggedIn) {
     setTimeout(() => {
-      window.open('/user/dashboard', '_blank');
-    }, 1000);    
+      navigate('/user/dashboard')
+    }, 2000);    
   }
+  // if (isLoggedIn) {
+  //   setTimeout(() => {
+  //     window.open('/user/dashboard', '_blank');
+  //   }, 1000);    
+  // }
 
   const togglePasswordVisibility = (e) => {
     e.preventDefault();
