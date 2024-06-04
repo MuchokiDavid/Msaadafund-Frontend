@@ -4,6 +4,7 @@ import { prettyNumber } from '@based/pretty-number'
 import intasendLogo from '../../assets/intasend-logo.webp'
 import safLogo from '../../assets/SAF-MAIN-LOGO.png'
 import BannerSlider from './BannerSlider'
+import BannerCards from './BannerCards'
 
 function Banner() {
   const[allDonations,setAllDonations]= useState([])
@@ -109,7 +110,7 @@ function Banner() {
   if(loading){
     // return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
     return (
-      <div aria-label="Loading..." role="status" className="flex justify-center items-center space-x-2  min-h-screen">
+      <div aria-label="Loading..." role="status" className="flex justify-center items-center space-x-2  min-h-screen bg-transparent">
         <svg className="h-20 w-20 animate-spin stroke-gray-500" viewBox="0 0 256 256">
             <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
             <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round"
@@ -143,11 +144,11 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
   return (
     <div>
       <BannerSlider/>
-      <div className="bg-sky-950 py-20 px-4">
+      <div className="bg-gray-50 text-gray-600 py-20 px-4">
         <div className="max-w-screen-lg mx-auto flex flex-col lg:flex-row justify-between items-center">
           <div className="max-w-xl mb-8 lg:mb-0 lg:mr-8">
-            <h2 className="font-black text-white text-3xl mb-4">Be Part of Something Bigger!</h2>
-            <p className="text-base text-white">
+            <h2 className="font-black text-3xl mb-4">Be Part of Something Bigger!</h2>
+            <p className="text-base">
               Join a community dedicated to driving social change and improving lives. Whether
               you're passionate about education, healthcare, environmental conservation, or
               humanitarian aid, there's a place for you here. Start your impact journey today.
@@ -155,7 +156,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
           </div>
           <button
           onClick={() => setButtonClicked(true)} 
-          className="text-white rounded-lg uppercase py-3 text-base px-10 border border-blue-600 hover:bg-blue-600 hover:bg-opacity-4">
+          className="mt-8 inline-block rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-gray-900 focus:outline-none focus:ring focus:ring-blue-400">
             How it works
           </button>
         </div>
@@ -169,7 +170,6 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
               <img
                 alt=""
                 src='https://source.unsplash.com/random/1920x1080/?kenyan-farming'
-                // src="https://img.freepik.com/free-vector/computer-online-charity-donation_24877-54452.jpg?w=740&t=st=1712950950~exp=1712951550~hmac=ba081d24a1f69dd7a1f062eb668522865498adce912871ae865e4200f98620d9"
                 className="absolute inset-0 h-full w-full object-cover"
                 loading='lazy'
               />
@@ -196,12 +196,12 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
         </div>
       </section>
 
-      <section className="bg-sky-950 text-white" id="howItWorksSection">
+      <section className="bg-gray-50 text-gray-600" id="howItWorksSection">
         <div className="px-4 py-6 sm:px-6 sm:py-8 lg:px-16 lg:py-12">
           <div className="max-w-xl">
             <h2 className="text-3xl font-bold sm:text-4xl">How it works</h2>
 
-            <p className="mt-4 text-gray-300">
+            <p className="mt-4 text-gray-500">
             Welcome to Msaada, your go-to platform for making a difference in the world! Our platform connects passionate individuals with impactful organizations to drive positive change in communities across the globe. 
             Here’s how it works:
             </p>
@@ -212,7 +212,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
               <span className="shrink-0 rounded-lg bg-blue-600 p-4">
                 <svg
                   viewBox="0 0 24 24"
-                  fill="currentColor"
+                  fill="#ffffff"
                   className="h-5 w-5"
                   height="1em"
                   width="1em"
@@ -223,10 +223,10 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
               </span>
 
               <div>
-                <h2 className="text-lg font-bold">Discover Campaigns.</h2>
+                <h2 className="text-lg font-bold">Discover Fundraisers.</h2>
 
-                <p className="mt-1 text-sm text-gray-300">
-                Browse through a wide range of campaigns created by various organizations. 
+                <p className="mt-1 text-sm text-gray-500">
+                Browse through a wide range of fundraisers created by various organizations. 
                 From humanitarian aid to environmental conservation, there’s a cause for everyone to support.
                 </p>
               </div>
@@ -236,7 +236,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
               <span className="shrink-0 rounded-lg bg-blue-600 p-4">
                 <svg
                   viewBox="0 0 24 24"
-                  fill="currentColor"
+                  fill="#ffffff"
                   height="1em"
                   width="1em"
                   className="h-5 w-5"
@@ -248,7 +248,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
               <div>
                 <h2 className="text-lg font-bold">Contribute</h2>
 
-                <p className="mt-1 text-sm text-gray-300">
+                <p className="mt-1 text-sm text-gray-500">
                 Once you find a campaign that resonates with you, contribute by making a donation. 
                 Every contribution, no matter how big or small, makes a difference and helps bring the campaign closer to its goal.
                 </p>
@@ -260,7 +260,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
                 <svg
                   viewBox="0 0 24 24"
                   className="h-5 w-5"
-                  fill="currentColor"
+                  fill="#ffffff"
                   height="1em"
                   width="1em"
                 >
@@ -271,7 +271,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
               <div>
                 <h2 className="text-lg font-bold">Stay Updated.</h2>
 
-                <p className="mt-1 text-sm text-gray-300">
+                <p className="mt-1 text-sm text-gray-500">
                 Keep track of the progress of the campaigns you’ve supported. 
                 View updates on milestones reached, funds raised, and the impact your contribution is making in the lives of others.
                 </p>
@@ -283,7 +283,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
                 <svg
                   viewBox="0 0 24 24"
                   className="h-5 w-5"
-                  fill="currentColor"
+                  fill= '#ffffff'
                   height="1em"
                   width="1em"
                 >
@@ -294,7 +294,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
               <div>
                 <h2 className="text-lg font-bold">Share and Inspire.</h2>
 
-                <p className="mt-1 text-sm text-gray-300">
+                <p className="mt-1 text-sm text-gray-500">
                 Spread the word about campaigns you care about with your friends, family, and social networks. 
                 Your enthusiasm can inspire others to join the cause and amplify the impact of the campaign.
                 </p>
@@ -307,7 +307,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
                   data-name="Layer 1"
                   viewBox="0 0 24 24"
                   className="h-5 w-5"
-                  fill="currentColor"
+                  fill="#ffffff"
                   height="1em"
                   width="1em"
                 >
@@ -318,7 +318,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
               <div>
                 <h2 className="text-lg font-bold">Create Your Own Campaign.</h2>
 
-                <p className="mt-1 text-sm text-gray-300">
+                <p className="mt-1 text-sm text-gray-500">
                 Are you passionate about a particular cause? Create your own campaign and rally support from the community. 
                 Whether it’s raising funds for a local charity or organizing a volunteer event, Msaada provides you with the tools to make your vision a reality.
                 </p>
@@ -329,7 +329,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
               <span className="shrink-0 rounded-lg bg-blue-600 p-4">
                 <svg
                   fill="none"
-                  stroke="currentColor"
+                  stroke="#ffffff"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   stroke-width={2}
@@ -344,7 +344,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
               <div>
                 <h2 className="text-lg font-bold">Connect with Organizations.</h2>
 
-                <p className="mt-1 text-sm text-gray-300">
+                <p className="mt-1 text-sm text-gray-500">
                 Organizations play a crucial role in driving change. 
                 Connect with reputable organizations, learn about their initiatives, and explore partnership opportunities to collaborate on impactful projects.
                 </p>
@@ -353,43 +353,8 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
           </div>
         </div>
       </section>
-{/* 
-      <section className="bg-sky-950 text-white">
-        <div className="mx-auto px-4 py-16 lg:flex h-fit lg:items-center">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1
-              className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-4xl"
-            >
-              Empower change
-            </h1>
 
-            <p className="mx-2 mt-4 sm:text-md/relaxed">
-            Discover the power of collective action. 
-            At Msaada, we believe in the strength of community and the impact we can create together. 
-            Join us in our mission to empower change, support worthy causes, and make a positive difference in the world. 
-            Together, we can achieve remarkable things.
-            </p>
-
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <a
-                className="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
-                href="/campaign"
-              >
-                Get Started
-              </a>
-
-              <a
-                className="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
-                href="#"
-              >
-                Learn More
-              </a>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-      <section>
+      {/* <section>
         <div className="mx-auto max-w-screen-xl px-6 py-4 sm:px-6 sm:py-2 sm:mb-4 lg:px-8">
           
           <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
@@ -424,12 +389,13 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+      <BannerCards/>
 
       <section className="bg-white">
         <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Trusted by many</h2>
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Our Numbers</h2>
 
             <p className="mt-4 text-gray-500 sm:text-xl">
             Become part of our community and make a positive impact. 
@@ -438,19 +404,19 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
 
           <div className="mt-8 sm:mt-12">
             <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-              <div className="flex flex-col rounded-lg border border-gray-200 px-4 py-8 text-center">
+              <div className="flex flex-col rounded-lg border border-gray-200 px-4 py-8 text-center bg-white">
                 <dt className="order-last text-lg font-medium text-gray-400">Total Contributions</dt>
 
                 <dd className="text-4xl font-extrabold text-sky-800 md:text-5xl">{prettyNumber(totalAmount, 'number-short')}</dd>
               </div>
 
-              <div className="flex flex-col rounded-lg border border-gray-200 px-4 py-8 text-center">
+              <div className="flex flex-col rounded-lg border border-gray-200 px-4 py-8 text-center bg-white">
                 <dt className="order-last text-lg font-medium text-gray-500">Total Organisations</dt>
 
                 <dd className="text-4xl font-extrabold text-sky-800 md:text-5xl">{prettyNumber(allOrganisations.length, 'number-short')}</dd>
               </div>
 
-              <div className="flex flex-col rounded-lg border border-gray-200 px-4 py-8 text-center">
+              <div className="flex flex-col rounded-lg border border-gray-200 px-4 py-8 text-center bg-white">
                 <dt className="order-last text-lg font-medium text-gray-500">Total Campaigns</dt>
 
                 <dd className="text-4xl font-extrabold text-sky-800 md:text-5xl">{prettyNumber(allCampaign.length,'number-short')}</dd>
@@ -460,251 +426,20 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
         </div>
       </section>
 
-      <section className="py-8 bg-gray-50 sm:py-14 lg:py-18">
+      {/* <section className="py-8 sm:py-14 lg:py-18">
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
               <div className="xl:flex xl:items-center xl:justify-between">
-                  <h2 className="text-xl font-bold text-center text-gray-400 xl:text-left font-pj">Our partner brands</h2>
+                  <h2 className="text-xl font-bold text-center text-gray-400 xl:text-left font-pj">Featured brands</h2>
 
                   <div className="grid items-center grid-cols-1 mt-6 gap-y-6 xl:mt-0 sm:grid-cols-2 sm:gap-y-8 lg:grid-cols-4 lg:gap-x-8">
                       <img className="object-contain w-auto mx-auto h-20" src="https://upload.wikimedia.org/wikipedia/commons/1/15/M-PESA_LOGO-01.svg" alt="m-pesa" />
                       <img className="object-contain w-auto mx-auto h-10" src={intasendLogo} alt="intasend" />
                       <img className="object-contain w-auto mx-auto h-14" src={safLogo} alt="safaricom" />
-                      {/* <img className="object-contain w-auto mx-auto h-9" src="https://cdn.rareblocks.xyz/collection/clarity/images/brands/1/logo-waverio.svg" alt="" /> */}
+                      {/* <img className="object-contain w-auto mx-auto h-9" src="https://cdn.rareblocks.xyz/collection/clarity/images/brands/1/logo-waverio.svg" alt="" /> 
                   </div>
               </div>
           </div>
-      </section>
-
-      <section className="bg-white">
-        <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-            What people say about us
-          </h2>
-
-          <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
-            <blockquote className="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8">
-              <div className="flex items-center gap-4">
-                <img
-                  alt=""
-                  src="https://w7.pngwing.com/pngs/524/676/png-transparent-computer-icons-user-my-account-icon-cdr-eps-rim-thumbnail.png"
-                  className="size-14 rounded-full object-cover"
-                />
-
-                <div>
-                  <div className="flex justify-center gap-0.5 text-green-500">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                  </div>
-
-                  <p className="mt-0.5 text-lg font-medium text-gray-900">Jane</p>
-                </div>
-              </div>
-
-              <p className="mt-4 text-gray-700">
-              Using Msaada Donation App has made giving back to my community so much easier. 
-              I love how simple it is to find causes I care about and make a difference with just a few taps on my phone. 
-              Thank you for creating such a user-friendly platform!
-              </p>
-            </blockquote>
-
-            <blockquote className="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8">
-              <div className="flex items-center gap-4">
-                <img
-                  alt=""
-                  src="https://w7.pngwing.com/pngs/524/676/png-transparent-computer-icons-user-my-account-icon-cdr-eps-rim-thumbnail.png"
-                  className="size-14 rounded-full object-cover"
-                />
-
-                <div>
-                  <div className="flex justify-center gap-0.5 text-green-500">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                  </div>
-
-                  <p className="mt-0.5 text-lg font-medium text-gray-900">David</p>
-                </div>
-              </div>
-
-              <p className="mt-4 text-gray-700">
-              Msaada Donation App has become an integral part of my charitable giving. 
-              The ability to track my donations, receive updates on impact, and discover new causes to support has made my philanthropic efforts more meaningful and impactful. 
-              I highly recommend it to anyone looking to make a difference.
-              </p>
-            </blockquote>
-
-            <blockquote className="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8">
-              <div className="flex items-center gap-4">
-                <img
-                  alt=""
-                  src="https://w7.pngwing.com/pngs/524/676/png-transparent-computer-icons-user-my-account-icon-cdr-eps-rim-thumbnail.png"
-                  className="size-14 rounded-full object-cover"
-                />
-
-                <div>
-                  <div className="flex justify-center gap-0.5 text-green-500">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                  </div>
-
-                  <p className="mt-0.5 text-lg font-medium text-gray-900">Kelvin</p>
-                </div>
-              </div>
-
-              <p className="mt-4 text-gray-700">
-              I've tried several donation apps in the past, but none compare to Msaada. 
-              The interface is intuitive, the selection of charities is vast, and the transparency in how my donations are utilized is commendable. 
-              It's reassuring to know that my contributions are truly making a difference.
-              </p>
-            </blockquote>
-          </div>
-        </div>
-      </section>
-
-      
+      </section>*/}
     </div>
   )
 }

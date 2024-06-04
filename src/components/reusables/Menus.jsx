@@ -29,7 +29,7 @@ function Menus() {
                     </div>
                     <a href='/' className="btn btn-ghost text-xl p-0"><img class="w-15 h-10 mr-2 sm:w-15 sm:h-10 lg:w-18 lg:h-12" src ={logo} alt="logo"/> </a>
                 </div>
-                <div className="navbar-center hidden lg:flex">
+                <div className="navbar-center nav hidden lg:flex">
                     <ul className="menu menu-horizontal text-white">
                         <li><a href='/'>Home</a></li>
                         <li><a href='/campaign'>Discover Fundraisers</a></li>
