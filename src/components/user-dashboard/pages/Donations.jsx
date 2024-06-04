@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import moment from 'moment';
 
 function Donations({allDonation}) {
-  const [allDonations, setAllDonations] = useState(allDonation);
+  const [allDonations, setAllDonations] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState();
@@ -58,6 +57,7 @@ function Donations({allDonation}) {
   }
 
 // console.log(allDonations)
+console.log(paginatedDonations)
 
   return (
     <div>
@@ -82,7 +82,7 @@ function Donations({allDonation}) {
                               placeholder="Search by organisation,campaign or category "
                               value={searchTerm}
                               onChange={(e) => setSearchTerm(e.target.value)}
-                              className="border-gray-300 rounded-md bg-gray-50 border h-10 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                              className="border-gray-300 rounded-md bg-white border h-10 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                           />
                       </div>
                   </div>
@@ -103,7 +103,7 @@ function Donations({allDonation}) {
                               </tr>
                           </thead>
                           <tbody>
-                              {paginatedDonations.map((donation, index) => {
+                              {allDonations && paginatedDonations.map((donation, index) => {
                                   return (
                                       <tr key={donation._id}>
                                           <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
@@ -122,10 +122,10 @@ function Donations({allDonation}) {
                                               <div className='text-gray-900'>{donation.campaign ? donation.campaign.category : ""}</div>
                                           </td>
                                           <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
-                                              <div className='text-gray-900'>{donation.campaign ? moment(donation.campaign.startDate) : ""}</div>
+                                              <div className='text-gray-900'>{donation.campaign ? donation.campaign.startDate : ""}</div>
                                           </td>
                                           <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
-                                              <div className='text-gray-900'>{donation.campaign ? moment(donation.campaign.endDate) : ""}</div>
+                                              <div className='text-gray-900'>{donation.campaign ? donation.campaign.endDate : ""}</div>
                                           </td>
                                           <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
                                               <div className='text-gray-900'>{donation.campaign ? donation.campaign.organisation.orgName : ""}</div>
