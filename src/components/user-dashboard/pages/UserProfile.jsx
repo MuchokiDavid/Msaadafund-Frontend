@@ -29,10 +29,12 @@ const {logout} = useAuth();
   const token = localStorage.getItem('token')
   // const userToken = localStorage.getItem('user')
   const org = localStorage.getItem('org')
+  const userData = localStorage.getItem('user')
+  const userDataString = localStorage.getItem('userData');
+  const userDetails = userDataString ? JSON.parse(userDataString) : null;
+  console.log(userDetails)
 
   // const navigate = useNavigate()
-
-
 
 
 // fetch usersdata
@@ -172,90 +174,112 @@ const handleSubmit = (e)=>{
 
         <h1 className="mb-3 my-2 text-2xl font-bold leading-tight">Personalize your Profile</h1>
         <hr className='mb-2 mt-0'/>
-        <form onSubmit={handleSubmit} className="space-y-4">
-        {error && <p className="text-red-500 mt-4">{error}</p>}
-        <div className="grid grid-cols-2 gap-4 mb-4">
-        <div>
-         <label className='block text-black font-medium'>First Name</label>
-         <input
-         type='text'
-         name='firstName'
-         value={user.firstName}
-         className="w-full mt-1 p-2 border border-gray-300 rounded"
-         onChange={handleInputChange}
-         />
-      </div>
-      <div>
-         <label className='block text-black font-medium'>Last Name</label>
-         <input
-         type='text'
-         name='lastName'
-         value={user.lastName}
-         onChange={handleInputChange}
-         className="w-full mt-1 p-2 border border-gray-300 rounded"
-         />
-      </div>
-      </div>
-      <div>
-        <label className='block text-black font-medium'>Username</label>
-          <input 
-           type="text"
-           name="username" 
-           value={user.username} 
-           className="w-full mt-1 p-2 border border-gray-300 rounded"
-           disabled
+
+        <div className="card w-full bg-base-100 p-4 flex-row justify-between border">
+            <div className="avatar">
+              <div className="w-24">
+                <figure className='border rounded-full'>
+                  <div className='flex items-center justify-center h-24 w-24 bg-blue-600 text-white border border-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2 text-center'>
+                    <p className='lg:text-3xl sm:text-sm'>{userData && userData.charAt(0)}</p>
+                  </div>
+                </figure>
+              </div>
+            </div>
+            <div className="card-body">
+              <h4 className="card-title">{user.firstName} {user.lastName}</h4>
+              <p>{user.email}</p>
+          </div>
+        </div> 
+
+        <div className="card w-full bg-base-100 border p-6 mt-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
+          {error && <p className="text-red-500 mt-4">{error}</p>}
+          <div className="grid grid-cols-2 gap-4 mb-4">
+          <div>
+          <label className='block text-black font-medium'>First Name</label>
+          <input
+          type='text'
+          name='firstName'
+          value={user.firstName}
+          className="w-full mt-1 p-2 border border-gray-300 rounded"
+          onChange={handleInputChange}
           />
-      </div>
-      <div>
-         <label className='block text-black font-medium'>Email</label>
-         <input
-         type='text'
-         name='email'
-         value={user.email} 
-         className="w-full mt-1 p-2 border border-gray-300 rounded" 
-         disabled       
-         />
-      </div>
-    
-      <div className='block text-black font-medium'>
-         <label>Address</label>
-         <input
-         type='text'
-         name='address'
-         value={user.address}
-         onChange={handleInputChange}
-         className="w-full mt-1 p-2 border border-gray-300 rounded"
-         />
-      </div>
-      <div >
-         <label className='block text-black font-medium'>National ID:</label>
+        </div>
+        <div>
+          <label className='block text-black font-medium'>Last Name</label>
+          <input
+          type='text'
+          name='lastName'
+          value={user.lastName}
+          onChange={handleInputChange}
+          className="w-full mt-1 p-2 border border-gray-300 rounded"
+          />
+        </div>
+        </div>
+        <div>
+          <label className='block text-black font-medium'>Username</label>
+            <input 
+            type="text"
+            name="username" 
+            value={user.username} 
+            className="w-full mt-1 p-2 border border-gray-300 rounded"
+            disabled
+            />
+        </div>
+        <div>
+          <label className='block text-black font-medium'>Email</label>
+          <input
+          type='text'
+          name='email'
+          value={user.email} 
+          className="w-full mt-1 p-2 border border-gray-300 rounded" 
+          disabled       
+          />
+        </div>
+      
+        <div className='block text-black font-medium'>
+          <label>Address</label>
+          <input
+          type='text'
+          name='address'
+          value={user.address}
+          onChange={handleInputChange}
+          className="w-full mt-1 p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div >
+          <label className='block text-black font-medium'>National ID:</label>
+          <input
+          type='text'
+          name='national_id'
+          value={user.nationalId}
+          onChange={handleInputChange}
+          className="w-full mt-1 p-2 border border-gray-300 rounded" 
+          />
+        </div>
+        <div>
+        <label className='block text-black font-medium'>PhoneNumber</label>
         <input
-         type='text'
-         name='national_id'
-         value={user.nationalId}
-         onChange={handleInputChange}
-         className="w-full mt-1 p-2 border border-gray-300 rounded" 
-         />
+        type='text'
+        name='phoneNumber'
+        value={user.phoneNumber}
+        onChange= {handleInputChange}
+        className="w-full mt-1 p-2 border border-gray-300 rounded"
+        />
+        </div>
+        <div className='mt-4'>
+          <div>
+            <button type='submit' 
+            disabled = {!handleData()}
+            className={`py-2 px-4   font-medium text-white rounded-md ${handleData() ? 'bg-blue-600 hover:bg-blue-500' : 'bg-gray-400'}`}
+            >Update</button>
+          </div>
+          
+        </div>
+        </form>
       </div>
-      <div>
-      <label className='block text-black font-medium'>PhoneNumber</label>
-      <input
-      type='text'
-      name='phoneNumber'
-      value={user.phoneNumber}
-      onChange= {handleInputChange}
-      className="w-full mt-1 p-2 border border-gray-300 rounded"
-      />
-      </div>
-      <div className='mt-4'>
-        <button type='submit' 
-        disabled = {!handleData()}
-        className={`py-2 px-4   font-medium text-white rounded-md ${handleData() ? 'bg-blue-600 hover:bg-blue-500' : 'bg-gray-400'}`}
-        >Update</button>
-      </div>
-      </form>
       <div className="mt-4 flex justify-end">
-          <button onClick={handleConfirmDisable} className="bg-red-500 py-2 px-4 rounded-md">Disable Account</button>
+          {/* <button onClick={handleConfirmDisable} className="bg-red-500 py-2 px-4 rounded-md">Disable Account</button> */}
       </div>
     </div>
       <Toaster position="top-right" reverseOrder={false} />

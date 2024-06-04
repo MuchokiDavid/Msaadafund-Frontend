@@ -189,7 +189,9 @@ function UserLayout() {
             <Route path="/help" element={<Help />} />
             {signatory_status && <Route path="/transactions" element={<PendingTras/>} />}
           </Routes>  
-          <Footer/>        
+          <div className='mt-4 flex justify-start'>
+          <Footer/>
+          </div>        
         </main>
        
         </div>
