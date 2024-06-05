@@ -1,7 +1,6 @@
 import React from 'react'
 import logo from '../../assets/msaadaLogo.png'
 import { useAuth } from '../../context/usersContext'
-import { MdOutlineAccountCircle } from 'react-icons/md'
 
 function Menus() {
     const token=localStorage.getItem('token')
@@ -13,13 +12,13 @@ function Menus() {
 
     return (
         <>
-            <div className="navbar bg-slate-700 top-0 z-10">
+            <div className="navbar bg-slate-50 top-0 z-10">
                 <div className="navbar-start">
                     <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" stroke-width ="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </div>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-700 rounded-box w-52 text-white">
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-50 rounded-box w-52 text-gray-800 border">
                         <li><a href='/'>Home</a></li>
                         <li><a href='/campaigns'>Discover Fundraisers</a></li>
                         <li><a href='/organisations'>Organisers</a></li>
@@ -30,7 +29,7 @@ function Menus() {
                     <a href='/' className="btn btn-ghost text-xl p-0"><img class="w-15 h-10 mr-2 sm:w-15 sm:h-10 lg:w-18 lg:h-12" src ={logo} alt="logo"/> </a>
                 </div>
                 <div className="navbar-center nav hidden lg:flex">
-                    <ul className="menu menu-horizontal text-white">
+                    <ul className="menu menu-horizontal text-gray-800">
                         <li><a href='/'>Home</a></li>
                         <li><a href='/campaigns'>Discover Fundraisers</a></li>
                         <li><a href='/organisations'>Organisers</a></li>
