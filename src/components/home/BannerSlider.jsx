@@ -1,4 +1,5 @@
 import React from 'react'
+import bannerPhoto from '../../assets/banner.jpg'
 
 function BannerSlider() {
     
@@ -6,7 +7,7 @@ function BannerSlider() {
     <div className="carousel w-full">
         <div id="slide1" className="carousel-item relative w-full h-screen">
             <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-            <img src="https://source.unsplash.com/random/1920x1080/?donate-funds" className="w-full h-full object-cover" />
+            <img src={bannerPhoto} className="w-full h-full object-cover" />
             <div>
                 <div className="absolute inset-0 flex flex-col items-center justify-center align-middle px-4">
                     <h1 className="text-2xl lg:text-4xl text-white font-bold text-center">Welcome to Our Community of Changemakers!</h1>
@@ -21,7 +22,7 @@ function BannerSlider() {
         </div> 
         <div id="slide2" className="carousel-item relative w-full h-screen">
             <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-                <img src="https://source.unsplash.com/random/1920x1080/?kenya-children-homes" className="w-full h-full object-cover" />
+                <img src="https://plus.unsplash.com/premium_photo-1683140538884-07fb31428ca6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZG9uYXRlfGVufDB8fDB8fHww" className="w-full h-full object-cover" />
                 <div>
                     <div className="absolute inset-0 flex flex-col items-center justify-center align-middle px-4">
                         <h1 className="text-2xl lg:text-4xl text-white font-bold text-center">Make a Difference Today!</h1>
@@ -51,7 +52,7 @@ function BannerSlider() {
             </div> 
         <div id="slide4" className="carousel-item relative w-full h-screen">
             <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-                <img src="https://source.unsplash.com/random/1920x1080/?donate-nairobi" className="w-full h-full object-cover" />
+                <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="w-full h-full object-cover" />
                 <div>
                     <div className="absolute inset-0 flex flex-col items-center justify-center align-middle px-4">
                         <h1 className="text-2xl lg:text-4xl text-white font-bold text-center">Be the Change!</h1>

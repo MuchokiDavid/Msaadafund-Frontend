@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Featured from '../campaigns/Featured'
 import { prettyNumber } from '@based/pretty-number'
-import intasendLogo from '../../assets/intasend-logo.webp'
-import safLogo from '../../assets/SAF-MAIN-LOGO.png'
 import BannerSlider from './BannerSlider'
 import BannerCards from './BannerCards'
 
