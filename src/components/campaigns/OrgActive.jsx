@@ -97,7 +97,7 @@ function OrgActive({organisationDetails}) {
                   {/* <div className="mx-2 sm:mx-1 lg:mx-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-2 md:gap-4 sm:max-w-full"> */}
                   {activeCampaigns && activeCampaigns.map((campaign)=>{
                       return(
-                      <Link to = {`/campaign/${campaign.id}`} key={campaign.id}>
+                      <Link to = {`/campaigns/${campaign.id}`} key={campaign.id}>
                       <div className="card w-auto bg-base-100 rounded-md shadow-lg">
                       <figure><img src={campaign.banner} alt={campaign.campaignName} className='h-56 w-full rounded-t-md object-cover' loading='lazy'/></figure>
                       <div className="card-body">
