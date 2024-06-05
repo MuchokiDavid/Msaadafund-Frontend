@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import axios from 'axios';
-import logo from '../../assets/msaadaBlacklogo.png';
 import toast, { Toaster } from 'react-hot-toast'
 import Menus from '../reusables/Menus';
 import Footer from '../reusables/Footer';

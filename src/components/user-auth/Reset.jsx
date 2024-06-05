@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import logo from '../../assets/msaadaBlacklogo.png';
 import toast, { Toaster } from 'react-hot-toast'
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";

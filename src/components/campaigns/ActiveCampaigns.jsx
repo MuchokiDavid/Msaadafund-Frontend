@@ -87,7 +87,7 @@ function ActiveCampaigns() {
       const activeCampaigns = campaigns.filter(campaign => {
         const startDate = new Date(campaign.startDate);
         const endDate = new Date(campaign.endDate);
-        return startDate <= currentDate && endDate >= currentDate || endDate.toDateString() === currentDate.toDateString();
+        return (startDate <= currentDate && endDate >= currentDate) || (endDate.toDateString() === currentDate.toDateString());
       });
     //Upcoming campaigns
       const upcomingCampaigns = campaigns.filter(campaign => {
@@ -95,10 +95,10 @@ function ActiveCampaigns() {
         return startDate > currentDate;
       });
     //Expired campaigns
-      const expiredCampaigns = campaigns.filter(campaign => {
-        const endDate = new Date(campaign.endDate);
-        return endDate < currentDate;
-      });
+      // const expiredCampaigns = campaigns.filter(campaign => {
+      //   const endDate = new Date(campaign.endDate);
+      //   return endDate < currentDate;
+      // });
 
       if(loading){
         // return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
