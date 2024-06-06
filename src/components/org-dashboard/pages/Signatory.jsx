@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import Swal from 'sweetalert2'
-import {toast, Toaster} from 'react-hot-toast';
+// import {toast, Toaster} from 'react-hot-toast';
 import { AiOutlineDelete } from "react-icons/ai";
 
 function Signatory() {
@@ -90,7 +90,12 @@ function Signatory() {
                         icon: 'success',
                         showConfirmButton: false,
                         timer: 1500
-                    })                   
+                    }) 
+                    handleFetch()
+                    setLoading(false)
+                    setEmail('')
+                    setRole('')
+                    formRef.current.reset();                  
                 }
                 if (data.error) {
                     setError(data.error)
@@ -101,13 +106,13 @@ function Signatory() {
             setLoading(false)
             setError('Error in saving data', error);
         }
-        finally{
-            handleFetch()
-            setLoading(false)
-            setEmail('')
-            setRole('')
-            formRef.current.reset();
-        }
+        // finally{
+        //     handleFetch()
+        //     setLoading(false)
+        //     setEmail('')
+        //     setRole('')
+            
+        // }
     }    
 
     //handledelete function to delete signatory from the database
@@ -188,9 +193,9 @@ function Signatory() {
             {signatories && signatories.length === 0 && <p className="text-red-600 mb-4">No signatories found.</p>}
             <div className='overflow-x-auto'>
                 <table className='min-w-full border table rounded-lg overflow-x-auto text-xs bg-white statTable'>
-                    <thead className='text-gray-800 bg-gray-100'>
+                    <thead className='text-gray-800 bg-gray-100 text-base'>
                         <tr>
-                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>S/No</th>
+                        <th className='px-6 py-3 font-medium leading-4  tracking-wider text-leftuppercase border-b border-gray-200 '>S/No</th>
                             <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>First Name</th>
                             <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Last Name</th>
                             <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Email</th>
@@ -200,14 +205,14 @@ function Signatory() {
                     </thead>
                     <tbody>
                         {signatories && signatories.map((signatory, index) => (
-                            <tr key={signatory.id} className='text-gray-800'>
+                            <tr key={signatory.id} className='text-gray-800 text-base'>
                                 <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{index+1}</td>
                                 <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{signatory.user.firstName}</td>
                                 <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{signatory.user.lastName}</td>
                                 <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{signatory.user.email}</td>
                                 <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{signatory.role}</td>
                                 <td>
-                                    <button onClick={() => handleDelete(signatory.id)} className='btn btn-sm btn-error text-white'><AiOutlineDelete /></button>
+                                    <button onClick={() => handleDelete(signatory.id)} className='text-red-500'><AiOutlineDelete title='Delete Signatory' size={35} /></button>
                                 </td>
                             </tr>
                         ))}
@@ -232,7 +237,7 @@ function Signatory() {
                     <div className='mb-6 flex items-center justify-center'>
                         <form onSubmit={handleSubmit} className='w-full' ref={formRef}>
                         {error && <p className='text-red-500 mt-4'>{error}</p>}
-                            <div><Toaster position='top-center' reverseOrder={false} />
+                            <div>
                                 <p className='text-gray-600 text-base'>Ensure your signatory is registered as a supporter</p>
                             </div>
                             <div className='my-4'>
@@ -253,7 +258,7 @@ function Signatory() {
                 </div>
             </div>
         )}
-        <Toaster position='top-center' reverseOrder={false} />
+        {/*<Toaster position='top-center' reverseOrder={false} />*/}
     </div>
   )
 }

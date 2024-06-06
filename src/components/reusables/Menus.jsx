@@ -53,7 +53,7 @@ function Menus() {
                     (<div className="dropdown dropdown-end absolute right-4 sm:z-20">
                         {/* <div tabIndex={0} role="button" className="text-white border border-blue-600 bg-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log out</div> */}
                         <div tabIndex={0} role="button" className="text-xs">
-                            <div className='flex items-center justify-center h-10 w-10 bg-blue-600 text-white border border-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2 text-center'>
+                            <div className='flex items-center justify-center h-10 w-10 bg-blue-500 text-white border border-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2 text-center'>
                               <p className='lg:text-base sm:text-sm'>{org && org.charAt(0)}</p>
                               {/* <MdOutlineAccountCircle className="h-6 w-6 ml-2"/> */}
                             </div>
@@ -66,20 +66,20 @@ function Menus() {
                     :token && user?
                     (<div className="dropdown dropdown-end absolute right-4 sm:z-20">
                         <div tabIndex={0} role="button" className="text-xs">
-                            <div className='flex items-center justify-center h-10 w-10 bg-transparent text-white border border-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2 text-center'>
+                            <div className='flex items-center justify-center h-10 w-10 bg-blue-500 text-white border border-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2 text-center'>
                               <p className='lg:text-base sm:text-sm'>{userData && userData.firstName.charAt(0)}</p>
                               {/* <MdOutlineAccountCircle className="h-6 w-6 ml-2"/> */}
                             </div>
                         </div>
                         {/* <div tabIndex={0} role="button" className="text-white border border-blue-600 bg-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log out</div> */}
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                        <li className='hover:bg-slate-300'><a href="/user/dashboard">Go to dashboard</a></li>
+                        <li className='hover:bg-blue-300'><a href="/user/dashboard">Go to dashboard</a></li>
                         <li className='hover:bg-slate-300' onClick={logout}><a href='/'>Log out</a></li>
                         </ul>
                     </div>)
                     :
                     (<div className="dropdown dropdown-end absolute right-4 sm:z-20">
-                    <div tabIndex={0} role="button" className="text-white border border-blue-600 bg-blue-600 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log in</div>
+                    <div tabIndex={0} role="button" className="text-white border border-blue-600 bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log in</div>
                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                       <li className='hover:bg-slate-300'><a href="/org/login">Organiser</a></li>
                       <li className='hover:bg-slate-300'><a href="/user/login">Supporter</a></li>

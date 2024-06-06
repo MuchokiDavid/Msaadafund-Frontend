@@ -4,7 +4,8 @@ import { toast, Toaster } from 'react-hot-toast';
 import ResetPin from './PinResetForm';
 // import DashFooter from '../dash-components/DashFooter';
 import { AiOutlineDelete } from "react-icons/ai";
-import { GrPowerReset } from "react-icons/gr";
+// import { GrPowerReset } from "react-icons/gr";
+import { MdLockReset } from "react-icons/md";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
 function Accounts({banks, fetchBank}) {
@@ -206,16 +207,16 @@ function Accounts({banks, fetchBank}) {
                     <h1 className='text-2xl font-semibold mb-4 text-slate-600 '>Your Accounts</h1>
                     <div className='overflow-scroll'>
                         <table className='w-full border-collapse border border-gray-300'>
-                            <thead>
+                            <thead className='text-xl font-bold' >
                                 <tr className='bg-gray-100'>
-                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 text-sm'>Providers</th>
-                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 text-sm'>Bank</th>                                  
-                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 text-sm'>Account Name</th>
-                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 text-sm'>Account Number</th>
-                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 text-sm'>Actions</th>
+                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 '>Providers</th>
+                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 '>Bank</th>                                  
+                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 '>Account Name</th>
+                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 '>Account Number</th>
+                                    <th className='border border-gray-300 px-2 py-1 text-gray-700 '>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className='text-base'>
                                 {accounts.map((account) => (
                                     <tr key={account.id}>
                                         <td className='border border-gray-300 px-2 py-1 text-gray-700 '>{account.providers}</td>
@@ -223,16 +224,16 @@ function Accounts({banks, fetchBank}) {
                                         <td className='border border-gray-300 px-2 py-1 text-gray-700 '>{account.accountName}</td>
                                         <td className='border border-gray-300 px-2 py-1 text-gray-700 '>{account.accountNumber}</td>
                                         <td className='border border-gray-300 px-2 py-1 text-gray-700 '>
-                                         <div className='flex flex-row gap-1'>
+                                         <div className='flex flex-row gap-3'>
                                             <div>
                                                 <button onClick={() => handleShowResetPin(account.email)} className='btn btn-sm btn-success text-white'>
                                                     {/* Reset */}
-                                                    <GrPowerReset/>
+                                                   <MdLockReset title='Reset Pin' size={30} />
                                                 </button>
                                             </div>                                            
                                             <div>
                                                 <button onClick={()=> handleDelete(account.id)} className='btn btn-sm btn-error text-white'>
-                                                    <AiOutlineDelete />
+                                                    <AiOutlineDelete title='Delete  Account' size={24} />
                                                 </button>
                                             </div>
                                             
