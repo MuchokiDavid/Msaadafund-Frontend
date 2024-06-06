@@ -92,8 +92,8 @@ function OrgSignUp() {
   return (
     <div>
       <Menus/>
-      <section className="min-h-screen flex justify-center items-center lg:my-16">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
+      <section className="min-h-screen flex justify-center items-center bg-gray-50">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto">
           {/* <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 ">
                 <img className="w-18 h-12 mr-2" src ={logo} alt="logo"/> 
             </a> */}
@@ -166,7 +166,7 @@ function OrgSignUp() {
                 </div>
                 <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Create an account</button>
                 <p className="text-sm font-light text-gray-500 ">
-                  Already have an account? <a href="/org/login" className="font-medium text-primary-600 hover:underline ">Login here</a>
+                  Already have an account? <a href="/org/login" className="font-medium text-primary-600 hover:underline ">Log in here</a>
                 </p>
               </form>
             </div>

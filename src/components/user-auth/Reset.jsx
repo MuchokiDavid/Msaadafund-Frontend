@@ -3,6 +3,7 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast'
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
+import Menus from '../reusables/Menus';
 
 function Reset() {
 const [email, setEmail] = useState('');
@@ -81,9 +82,10 @@ const togglePasswordVisibility=(e)=>{
   setPasswordConfirm(!password)
 }
 
-  return (
+  return (    
     <div>
-      <section className="bg-white">
+      <Menus/>
+      <section className="bg-gray-50">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-screen lg:py-0">
           <a href="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900">
             {/* <img className="w-18 h-12 mr-2" src={logo} alt="logo" /> */}

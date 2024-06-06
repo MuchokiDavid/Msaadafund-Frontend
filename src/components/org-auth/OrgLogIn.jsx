@@ -44,7 +44,7 @@ function OrgLogIn() {
   return (
     <div>
       <Menus/>
-      <section className="bg-white min-h-screen flex justify-center items-center">
+      <section className="bg-gray-50 min-h-screen flex justify-center items-center">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0 lg:w-1/3">
             {/* <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 ">
                 <img className="w-18 h-12 mr-2" src ={logo} alt="logo"/> 
