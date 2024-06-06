@@ -112,7 +112,7 @@ function CampainDetails() {
           // Note: If response status is not 200, then there are no subscriptions found.
         } catch (error) {
           const errorMsg = error.response?.data?.error || 'An error occurred';
-          console.error(errorMsg);
+          // console.error(errorMsg);
           setSubscribe(false);
         }
       };
@@ -279,6 +279,7 @@ function CampainDetails() {
                         if (users && accessToken){
                             axios.post('/api/v1.0/user/donations',{donorName:name,amount,campaignId:campaignId,phoneNumber},config)
                             .then((res)=>{
+                                // console.log('logged in user')
                                 if(res.status===200){
                                     Swal.fire({
                                         title: res.data.message,
@@ -300,10 +301,10 @@ function CampainDetails() {
                             })
 
                         }
-                        else{
+                        if(!users && !accessToken){
                             axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,donorName,campaignId:campaignId})
-                            .then((res)=>{{
-                                // console.log(res)
+                            .then((res)=>{
+                                // console.log('express used')
                                 if(res.status===200){    
                                     Swal.fire({
                                         title: res.data.message,
@@ -324,7 +325,7 @@ function CampainDetails() {
                                 }
                                 
                                 // window.location.reload();
-                            }})
+                            })
                             .catch((err)=>{
                                 const errorMsg = err.response?.data?.error || 'An error occurred';
                                 setErrors(errorMsg);
@@ -394,7 +395,7 @@ function CampainDetails() {
                         }
                         else{
                             axios.post ("/api/v1.0/donate_card",{phoneNumber:phoneNo,amount:cardAmount,campaignId:campaignId, currency:cardCurrency})
-                            .then((res)=>{{
+                            .then((res)=>{
                                 // console.log(res)
                                 if(res.status===200){  
                                     window.location.replace(res.data.url)                                                         
@@ -408,7 +409,7 @@ function CampainDetails() {
                                 }
                                 
                                 // window.location.reload();
-                            }})
+                            })
                             .catch((err)=>{
                                 const errorMsg = err.response?.data?.error || 'An error occurred';
                                 setErrors(errorMsg);
@@ -602,9 +603,9 @@ function CampainDetails() {
                         <hr/>
                         <div className="px-2 pt-4">                                
                             <div className='my-2'>
-                                <h1 className='text-xl my-2 font-medium'>Story</h1>
+                                <h1 className='text-xl my-2 font-semibold'>Story</h1>
                                 {isLargeScreen ?
-                                    <p className='text-gray-600'>{campaign.description}</p>
+                                    <p className='text-lg text-gray-600'>{campaign.description}</p>
                                     :
                                     <div>
                                         {more ?<p>{campaign && campaign.description}</p> : <p>{campaign && campaign.description && campaign.description.slice(0,250)}...</p>}
@@ -704,7 +705,7 @@ function CampainDetails() {
                                     </div>
                                     <div className='flex-col justify-center items-center'>
                                         <div>
-                                            <label className=' text-black'>Personal Details</label>
+                                            <label className=' text-black font-medium '>Personal Details</label>
                                             <input
                                                 type="text"
                                                 id="donor"
@@ -717,7 +718,7 @@ function CampainDetails() {
                                         </div>
                                 
                                         <div className='my-3'>
-                                            <label className=' text-black'><span className='text-red-500'>*</span>Phone Number</label> 
+                                            <label className=' text-black font-medium '><span className='text-red-500'>*</span>Phone Number</label> 
                                             <input
                                                 type="tel"
                                                 id="phoneNumber"
@@ -739,7 +740,7 @@ function CampainDetails() {
                                         </div>
 
                                         <div className='my-3'>
-                                            <label className=' text-black'><span className='text-red-500'>*</span>Donation Amount</label>
+                                            <label className=' text-black font-medium '><span className='text-red-500'>*</span>Donation Amount</label>
                                             <input
                                                 type="number"
                                                 id="donationAmount"
@@ -778,7 +779,7 @@ function CampainDetails() {
                         <h2 className="text-lg font-semibold">Donate with Card/Bitcoin/CashApp</h2>
                             <div className='h-full rounded-lg'> 
                                 <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
-                                    <div className='text-black'>
+                                    <div className='text-black font-medium '>
                                         {/* <h1 className="text-xl font-medium mt-0">Donate via Card/M-Pesa/Paybill</h1> */}
                                     
                                         <p className="my-2">Please fill all field with <span className='text-red-500'>*</span> in the form to donate to this campaign.</p>
@@ -786,7 +787,7 @@ function CampainDetails() {
                                         <div className='flex-col justify-center items-center'>
                                             <div className='grid grid-cols-2 gap-4'>
                                                 <div>
-                                                    <label className=' text-black'>First Name</label>
+                                                    <label className=' text-black font-medium '>First Name</label>
                                                     <input
                                                         type="text"
                                                         placeholder='First Name (Optional)'
@@ -798,7 +799,7 @@ function CampainDetails() {
                                                     />
                                                 </div>
                                                 <div>
-                                                    <label className=' text-black'>Last Name</label>
+                                                    <label className=' text-black font-medium '>Last Name</label>
                                                     <input
                                                         type="text"
                                                         placeholder='Last Name (Optional)'
@@ -812,7 +813,7 @@ function CampainDetails() {
                                             </div>
                                     
                                             <div className='my-3'>
-                                                <label className=' text-black'><span className='text-red-500'>*</span>Phone Number</label> 
+                                                <label className=' text-black font-medium '><span className='text-red-500'>*</span>Phone Number</label> 
                                                 <input
                                                     type="tel"
                                                     placeholder='254xxxxxxxxx'
@@ -834,7 +835,7 @@ function CampainDetails() {
 
                                             <div className='grid grid-cols-2 gap-4 my-3'>
                                                 <div>
-                                                    <label className=' text-black'><span className='text-red-500'>*</span>Currency</label>
+                                                    <label className=' text-black font-medium '><span className='text-red-500'>*</span>Currency</label>
                                                     <select 
                                                     value={cardCurrency}
                                                     onChange={(e) => setCardCurrency(e.target.value)}
@@ -848,7 +849,7 @@ function CampainDetails() {
                                                     </select>
                                                 </div>
                                                 <div >
-                                                    <label className=' text-black'><span className='text-red-500'>*</span>Donation Amount</label>
+                                                    <label className=' text-black font-medium '><span className='text-red-500'>*</span>Donation Amount</label>
                                                     <input
                                                         type="number"
                                                         placeholder='Enter amount'
