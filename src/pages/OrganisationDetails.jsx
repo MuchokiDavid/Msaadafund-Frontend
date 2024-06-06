@@ -1,3 +1,4 @@
+import { FaFacebook } from 'react-icons/fa';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Menus from '../components/reusables/Menus';
@@ -12,6 +13,10 @@ import { useAuth } from '../context/usersContext';
 import Swal from 'sweetalert2';
 import OrgActive from '../components/campaigns/OrgActive';
 import Profile from './PublicOrgProfile';
+import { FaGlobe } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa";
+
+
 
 
 function OrganisationDetails() {
@@ -208,7 +213,6 @@ function OrganisationDetails() {
 
       <Profile
         orgName={organisationDetails && organisationDetails.orgName}
-        orgWebsite= {organisationDetails && organisationDetails.website_link}
         orgType={organisationDetails && organisationDetails.orgType}
         // orgWebsite={organisationDetails && organisationDetails.orgWebsite}
         orgEmail={organisationDetails && organisationDetails.orgEmail}
@@ -245,6 +249,27 @@ function OrganisationDetails() {
                               </svg>
                               {organisationDetails && organisationDetails.orgAddress}
                           </div>
+                          {organisationDetails && organisationDetails.youtube_link && (
+                          <div className="flex text-gray-700 items-center justify-center mt-2">
+                             <a className='mx-1' href={organisationDetails && organisationDetails.website_link} >
+                             <FaYoutube size={22} className='text-red-500'/>
+                             </a>
+                          
+                         Youtube
+                        </div>
+                          )}
+                        {organisationDetails && organisationDetails.website_link && (
+                        <div  className="flex text-gray-700 items-center justify-center mt-2">
+                                <a className='mx-1' href={organisationDetails && organisationDetails.website_link}>
+                                <FaGlobe size={20} className='text-blue-600'/>
+                                </a>
+                            Our WebSite
+                        </div>
+                        )}
+
+                        
+                         
+                         
                       </div>
                       <ul className="py-4 mt-0 text-gray-700 flex items-center justify-around">
                           <li className="flex flex-col items-center justify-around">
@@ -260,6 +285,7 @@ function OrganisationDetails() {
                               <div>{organisationDetails && prettyNumber(getTotalDonations(organisationDetails.campaigns), 'number-short')}</div>
                           </li>
                       </ul>
+                     
                       <div className='px-2 pb-4'>
                           {more ?<p>{organisationDetails && organisationDetails.orgDescription}</p> : <p>{organisationDetails && organisationDetails.orgDescription && organisationDetails.orgDescription.slice(0,100)}...</p>}
                           <button className='text-blue-600 hover:underline mt-2' onClick={()=>setMore(!more)}>{more ? "Show less" : "Show more"}</button>

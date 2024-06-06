@@ -199,7 +199,7 @@ function OrgProfile() {
                 >
                   <option value="">Select Organisation Structure</option>
                   <option value="NonProfit Organisation">NonProfit Organisation(NPOs)</option>
-                  <option value="Profit">For Profit Organisation</option>
+                  <option value="Profit Organisation">For Profit Organisation</option>
                 </select>
               </div>
               <div className="grid grid-cols-2 gap-4 mb-4">

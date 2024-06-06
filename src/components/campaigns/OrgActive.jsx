@@ -30,15 +30,15 @@ function OrgActive({organisationDetails}) {
   return ( 
     <div className='mt-3'>
       <div className='container divide-x'>
-        <div className="sm:hidden">
+        <div className="sm:hidden ">
           <label htmlFor="Tab" className="sr-only">Tab</label>
           <select
             id="Tab"
-            className="rounded-md border-gray-200 p-3 w-full"
+            className="rounded-md border-gray-200 p-3 w-full "
             onChange={(e) => setActiveTab(e.target.value)}
             value={activeTab}
           >
-            <option value={'Upcoming_campaigns'}>Upcoming Campaigns</option>
+            <option  value={'Upcoming_campaigns'}>Upcoming Campaigns</option>
             <option value={'Active_campaigns'}>Active Campaigns</option>
             <option value={'Finished_campaigns'}>Finished Campaigns</option>
           </select>
@@ -46,14 +46,14 @@ function OrgActive({organisationDetails}) {
 
         <div className="hidden sm:block">
           <div className="border-b border-gray-200">
-            <nav className="-mb-px flex gap-6" aria-label="Tabs">
+            <nav className="-mb-px flex gap-6 " aria-label="Tabs">
               {['Upcoming_campaigns','Active_campaigns', 'Finished_campaigns'].map((tab) => (
                 <a
                   key={tab}
                   href="#"
-                  className={`inline-flex shrink-0 items-center gap-2 border-b-2 px-1 pb-4 text-sm font-medium ${
+                  className={`inline-flex shrink-0 items-center gap-2 border-b-2 px-1 pb-4 text-base font-medium ${
                     activeTab === tab
-                      ? 'border-sky-500 text-sky-600'
+                      ? 'border-sky-500 text-sky-600 '
                       : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
                   }`}
                   onClick={(e) => {

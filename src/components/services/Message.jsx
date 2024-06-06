@@ -40,11 +40,11 @@ function Message() {
     <section class="bg-white border rounded-lg">
         <div class="py-4 lg:py-10 px-4 mx-auto max-w-screen-md bg-white">
             {/* <h2 class="mb-4 text-2xl tracking-tight font-extrabold text-center text-gray-900">Contact Us</h2> */}
-            <p class="mb-4 lg:mb-8 font-light text-center text-gray-500">Got a technical issue? Want to send feedback about our feature? Need details about our Business plan? Let us know.</p>
+            <p class="mb-4 lg:mb-8  text-base font-normal text-center text-gray-500">Got a technical issue? Want to send feedback about our feature? Need details about our Business plan? Let us know.</p>
             {errors && <p className='text-red-500'>{errors}</p>}
             <form action="#" class="space-y-6" onSubmit={sendEmail}>
                 <div>
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 "><span className='text-red-500'>*</span>Your email</label>
+                    <label for="email" class="block mb-2 text-lg font-medium text-gray-900 "><span className='text-red-500'>*</span>Your email</label>
                     <input type="email" 
                     id="email" 
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" 
@@ -53,7 +53,7 @@ function Message() {
                     required/>
                 </div>
                 <div>
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900"><span className='text-red-500'>*</span>Your name</label>
+                    <label for="name" class="block mb-2 text-lg font-medium text-gray-900"><span className='text-red-500'>*</span>Your name</label>
                     <input type="name" 
                     id="contact_name" 
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
@@ -62,7 +62,7 @@ function Message() {
                     required/>
                 </div>
                 <div>
-                    <label for="subject" class="block mb-2 text-sm font-medium text-gray-900"><span className='text-red-500'>*</span>Subject</label>
+                    <label for="subject" class="block mb-2 text-lg font-medium text-gray-900"><span className='text-red-500'>*</span>Subject</label>
                     <input type="text" 
                     id="subject" 
                     class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500" 
@@ -71,7 +71,7 @@ function Message() {
                     required/>
                 </div>
                 <div class="sm:col-span-2">
-                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900">Your message</label>
+                    <label for="message" class="block mb-2 text-lg font-medium text-gray-900">Your message</label>
                     <textarea id="message" 
                     rows="6" 
                     onChange={(event) => setMessage(event.target.value)}

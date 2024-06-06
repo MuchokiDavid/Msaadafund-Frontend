@@ -4,7 +4,7 @@ import { MdNotificationsOff } from "react-icons/md";
 
 
 
-function Profile({orgName,orgWebsite,orgType,loading, subscribe,handleSubscribe,handleUnsubscribe, errors, profileImage}) {
+function Profile({orgName,orgType,loading, subscribe,handleSubscribe,handleUnsubscribe, errors, profileImage}) {
   return (
     <div className='bg-white rounded-lg pb-3 shadow-sm'>
   <div className="h-24 overflow-hidden" id='orgBanner'>
@@ -19,8 +19,7 @@ function Profile({orgName,orgWebsite,orgType,loading, subscribe,handleSubscribe,
       <div className="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
         <div className="mt-6 min-w-0 flex-1 sm:hidden md:block">
           <h1 className="truncate text-2xl font-bold text-blue-300">{orgName.toUpperCase()}</h1>
-          <p className="mt-1 text-sm text-gray-500">{orgType}</p>
-          <p className="mt-1 text-sm text-gray-500">{orgWebsite}</p>
+          <p className="mt-1 text-xl text-gray-500">{orgType}</p>
         </div>
         {errors && <div className="text-red-500 mt-2 text-sm">
           {errors}
