@@ -3,6 +3,7 @@ import Featured from '../campaigns/Featured'
 import { prettyNumber } from '@based/pretty-number'
 import BannerSlider from './BannerSlider'
 import BannerCards from './BannerCards'
+import Hero from './Hero'
 
 function Banner() {
   const[allDonations,setAllDonations]= useState([])
@@ -159,40 +160,9 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
           </button>
         </div>
       </div>
-      <Featured/>
+      <Featured errors= {errors}/>
 
-      <section>
-        <div className="mx-auto max-w-screen-xl px-4 py-4 sm:px-6 sm:py-4 lg:px-8 lg:py-4 sm:text-center">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
-            <div className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full">
-              <img
-                alt=""
-                src='https://source.unsplash.com/random/1920x1080/?kenyan-farming'
-                className="absolute inset-0 h-full w-full object-cover"
-                loading='lazy'
-              />
-            </div>
-
-            <div className="lg:py-24">
-              <h2 className="text-3xl font-bold sm:text-4xl">Join Us and Make a Difference</h2>
-
-              <p className="mt-4 text-gray-600">
-              Welcome to Msaada – your gateway to making a difference! Discover a seamless platform where you can effortlessly support diverse campaigns by various organizations. 
-              Whether it's lending a helping hand, spreading awareness, or contributing resources, Msaada empowers you to be a catalyst for positive change. 
-              Join us in creating a better tomorrow, one campaign at a time.
-              </p>
-              {/* <div class="flex justify-center"> */}
-                <a
-                href="/campaign"
-                className="mt-8 inline-block rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-gray-900 focus:outline-none focus:ring focus:ring-blue-400"
-              >
-                Get Started Today
-              </a>
-              
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero/>
 
       <section className="bg-gray-50 text-gray-600" id="howItWorksSection">
         <div className="px-4 py-6 sm:px-6 sm:py-8 lg:px-16 lg:py-12">
