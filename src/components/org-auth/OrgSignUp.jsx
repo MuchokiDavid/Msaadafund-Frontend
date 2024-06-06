@@ -64,6 +64,7 @@ function OrgSignUp() {
               setMessage(data.message)
               toast.success("Account created successifully")
               // window.location="/login"
+              clearState()
               setTimeout(() => {
                 navigate('/org/login')
               }, 2000);

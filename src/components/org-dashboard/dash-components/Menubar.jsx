@@ -211,14 +211,14 @@ function Menubar({handleMenuItemClick}) {
 
                     <span className="mx-2 text-sm font-medium">Help</span>
                 </a>
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                <button className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
                 onClick={() => { handleLogout(); handleMenuItemClick(); }}
                 >
                    
                     <RiLogoutBoxLine className='w-5 h-5' />
 
                     <span className="mx-2 text-sm font-medium">Log out</span>
-                </a>
+                </button>
             </div>
         </nav>
     </div>
