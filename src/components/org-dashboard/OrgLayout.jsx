@@ -23,9 +23,10 @@ import Paybill from './pages/Paybill';
 import Till from './pages/Till';
 import DashFooter from './dash-components/DashFooter';
 import Signatory from './pages/Signatory';
+import Navigation from './dash-components/Navigation';
 
 function OrgLayout() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
   // const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [allBanks, setAllBanks] = useState([])
@@ -258,7 +259,7 @@ useEffect(() => {
       {isSidebarOpen && <Menubar handleMenuItemClick={handleMenuItemClick} toggleSidebar={toggleSidebar}/>}
       <div className='w-full sm:w-screen bg-slate-50'>
         <DashboardNav toggleSidebar={toggleSidebar} />
-        <main className="flex-1 mt-3 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6" style={{ marginTop: '10px' }} id='dashboard'>
+        <main className="flex-1 my-3 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6" style={{ marginTop: '10px' }} id='dashboard'>
           <Routes>
             <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors} handleMenuItemClick={handleMenuItemClick} />} />
             <Route path="/campaigns/:campaignId" element={<UpdateCampaign getValidYoutubeVideoId={getValidYoutubeVideoId} />} />
@@ -280,9 +281,10 @@ useEffect(() => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/helpcenter" element={<HelpCenter />} />
           </Routes>    
-          <div className='mt-4 flex justify-start'>
+          <div className='my-4 flex justify-start'>
               <DashFooter/>
             </div>
+            <Navigation/>
         </main>               
       </div> 
            
