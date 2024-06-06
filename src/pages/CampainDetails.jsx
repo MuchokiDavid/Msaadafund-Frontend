@@ -28,7 +28,6 @@ function CampainDetails() {
     const phonePattern = /^(07|01)\d{8}$/;
     const [username, setUserName]= useState("")
     const [password, setPassword]= useState("")
-    const [email,setEmail]= useState("")
     const {userLogin,setLoginMessage, loginMessage, logout} = useAuth();
     const [showModal, setShowModal] = useState(false);
     const [showShareModal, setShowShareModal] = useState(false);
@@ -39,7 +38,7 @@ function CampainDetails() {
     const [fName, setFName]= useState('')
     const [lName, setLName]= useState('')
     const [phoneNo, setPhoneNo]= useState('')
-    const [emailAdd, setEmailAdd]= useState('')
+    // const [emailAdd, setEmailAdd]= useState('')
     const [cardCurrency, setCardCurrency]= useState('')
     const [cardAmount,setCardAmount]=  useState(100)
     
@@ -64,7 +63,7 @@ function CampainDetails() {
             setFName(userData.firstName)
             setLName(userData.lastName)
             setPhoneNo(userData.phoneNumber)
-            setEmailAdd(userData.email)
+            // setEmailAdd(userData.email)
             setName(`${userData.firstName} ${userData.lastName}`)
         }
       
@@ -539,7 +538,7 @@ function CampainDetails() {
                 {/* <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'> */}
                 <div className="flex flex-col lg:flex-row gap-3 ">
                     <div className="h-full lg:w-2/3 " id='campaign'>
-                        <div className="relative rounded-lg">
+                        <div className="relative">
                             {/* banner */}                            
                             <Slider {...settings}>
                                 <div>
@@ -561,7 +560,7 @@ function CampainDetails() {
                                         <img
                                             src={campaign.banner}
                                             alt={campaign.campaignName}
-                                            className="campaignBanner w-full h-auto rounded-lg"
+                                            className="campaignBanner w-full h-auto"
                                         />
                                     )}
                                 </div>
@@ -663,9 +662,9 @@ function CampainDetails() {
                     <div className="border-b border-gray-200">
                         <nav className="-mb-px flex gap-6" aria-label="Tabs">
                         {['M-Pesa', 'Others'].map((tab) => (
-                            <a
+                            <p
                             key={tab}
-                            href="#"
+                            // href="#"
                             className={`inline-flex shrink-0 items-center gap-2 border-b-2 px-1 pb-4 text-sm font-medium ${
                                 activeTab === tab
                                 ? 'border-sky-500 text-sky-600'
@@ -686,7 +685,7 @@ function CampainDetails() {
                             > 
                             </svg>
                             {tab}
-                            </a>
+                            </p>
                         ))}
                         </nav>
                     </div>
