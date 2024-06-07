@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import profilePic from '../assets/orgProfile.png'
 // import { FaGlobe } from "react-icons/fa";
-import { TbWorldWww } from "react-icons/tb";
+// import { TbWorldWww } from "react-icons/tb";
 
 
 
