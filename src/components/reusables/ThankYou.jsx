@@ -9,9 +9,9 @@ function ThankYou() {
   return (
     <div>
         <Menus/>
-        <div className="grid min-h-screen place-content-center bg-white px-4">
-            <div className="text-center">
-                <h1 className="text-5xl font-black text-red-500">Request Successful!</h1>
+        <div className="grid min-h-screen place-content-center bg-gray-50 px-4">
+            <div className="text-center bg-white p-8">
+                <h1 className="text-5xl font-black text-red-500">Donation Successful!</h1>
         
                 {/* <p className="text-2xl font-bold tracking-tight text-red-500 sm:text-4xl">Uh-oh!</p> */}
         

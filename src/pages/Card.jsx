@@ -20,7 +20,7 @@ function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, han
       }, [buttonClicked]);
   return (
     <>
-        <div className='border border-gray-300 campaignBannerCard'>
+        <div className='border bg-white campaignBannerCard'>
             <div className="font-sans leading-normal tracking-normal">
                 <div className="flex justify-center">
                     <div className="rounded-lg profile-card w-full p-4">
@@ -68,14 +68,14 @@ function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, han
                 </div>
             </div>
         </div>
-        <div className='mt-2 flex flex-col-1 lg:flex-row-1 gap-3 p-4'>            
+        <div className='mt-2 flex flex-col-1 lg:flex-row-1 gap-3 p-4 border bg-white'>            
             <div className="lg:w-1/5 ">
                 <div className="mr-2">
                     <img src={orgDetails && orgDetails.profileImage? orgDetails.profileImage: profilePic } alt={orgDetails && orgDetails.orgName} className="h-16 w-16 rounded-full" />
                 </div>
             </div>
             <div className="lg:w-4/5">
-                <div className='flex flex-col md:flex-row lg:flex-col gap-3 justify-start md:justify-between'>
+                <div className='flex sm:flex-row lg:flex-col gap-3 justify-between lg:justify-start lg:h-32'>
                     <div>
                         <div>
                             <a href={`/organisations/${orgDetails && orgDetails.orgName}`}><h2 className="text-xl font-semibold hover:underline">{orgDetails && orgDetails.orgName.toUpperCase()}</h2></a>
@@ -85,7 +85,7 @@ function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, han
                         </div> 
                         {orgDetails && orgDetails.website_link && orgDetails && (
                         <div className="flex text-blue-400">
-                            <a href={orgDetails && orgDetails.website_link}>Our Website</a>
+                            <a href={orgDetails && orgDetails.website_link}>Official site</a>
                         </div>  
                         )}
                     </div>
