@@ -625,7 +625,7 @@ function CampainDetails() {
                             </div>
                             <div>
                                 <div className="max-w-full mx-auto my-2">
-                                    <div className="bg-white shadow rounded-lg overflow-hidden">
+                                    <div className="bg-white rounded-lg overflow-hidden">
                                         <ul className="divide-y divide-gray-200">
                                             {campaign && shuffledDonations.map((donation, index) => (
                                                 <li key={index} className="p-3 flex justify-between items-center user-card even:bg-gray-100 odd:bg-white">
