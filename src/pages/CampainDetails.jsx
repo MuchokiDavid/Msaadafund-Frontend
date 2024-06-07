@@ -534,7 +534,7 @@ function CampainDetails() {
         <div className='w-full overflow-hidden'>        
         <Menus/>
         {!users && <Announcement showingModal={setShowModal} />}
-        <div className='text-black bg-white min-h-screen p-4' id='campaign_dets'>
+        <div className='text-black bg-gray-50 min-h-screen p-4' id='campaign_dets'>
             <div className="container mx-auto">
                 {/* <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'> */}
                 <div className="flex flex-col lg:flex-row gap-3 ">
@@ -569,7 +569,7 @@ function CampainDetails() {
                         </div>
                         
 
-                        <div className='my-1'>
+                        <div className='my-1 border bg-white py-4 px-2 lg:h-40'>
                             <div className="flex flex-col lg:flex-row gap-3 ">
                                 <div className="h-full">
                                     <div>
@@ -600,10 +600,10 @@ function CampainDetails() {
                 
                 <div className="flex flex-col lg:flex-row gap-5 ">
                     <div className="h-full lg:w-2/3 ">
-                        <hr/>
-                        <div className="px-2 pt-4">                                
+                        {/* <hr/> */}
+                        <div className="px-2 py-4 border bg-white mt-2 lg:h-96 w-full">                                
                             <div className='my-2'>
-                                <h1 className='text-xl my-2 font-semibold'>Story</h1>
+                                <h1 className='text-xl my-2 font-semibold w-full'>Story</h1>
                                 {isLargeScreen ?
                                     <p className='text-lg text-gray-600'>{campaign.description}</p>
                                     :
@@ -616,16 +616,16 @@ function CampainDetails() {
                             </div>   
                         </div>
                     </div>
-                    <div className="lg:w-1/3 h-full">
+                    <div className="lg:w-1/3 h-full border bg-white mt-2">
                         <hr/>
-                        <div className="px-2 pt-4">
-                            <div className='my-2 flex justify-between px-2'>
+                        <div className="px-2 pt-2">
+                            <div className='my-1 flex justify-between px-2'>
                                 <h1 className='text-xl font-medium'>Supporters</h1>
                                 <p className='text-xl font-medium'>{campaign.donations.length}</p>
                             </div>
                             <div>
-                                <div className="max-w-full mx-auto my-4">
-                                    <div className="bg-white shadow rounded-lg overflow-hidden">
+                                <div className="max-w-full mx-auto my-2">
+                                    <div className="bg-white rounded-lg overflow-hidden">
                                         <ul className="divide-y divide-gray-200">
                                             {campaign && shuffledDonations.map((donation, index) => (
                                                 <li key={index} className="p-3 flex justify-between items-center user-card even:bg-gray-100 odd:bg-white">
@@ -645,7 +645,7 @@ function CampainDetails() {
                     </div>
                 </div>
 
-                <div className='container mt-2' id='donationTabs'>
+                <div className='container mt-2 bg-white border p-4' id='donationTabs'>
                     <div className="sm:hidden">
                     <label htmlFor="Tab" className="sr-only">Tab</label>
                     <select
