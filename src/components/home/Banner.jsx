@@ -163,7 +163,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
       <Featured errors= {errors}/>
 
       <section>
-        <div className="mx-auto max-w-screen-2xl px-4 py-4 sm:px-6 sm:py-4 lg:px-2 lg:py-8 sm:text-center">
+        <div className="mx-auto max-w-screen-xl px-4 py-4 sm:px-6 sm:py-4 lg:px-8 lg:py-4 sm:text-center">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
             <div className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full">
               <img
