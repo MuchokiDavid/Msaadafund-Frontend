@@ -112,7 +112,7 @@ function CampainDetails() {
           // Note: If response status is not 200, then there are no subscriptions found.
         } catch (error) {
           const errorMsg = error.response?.data?.error || 'An error occurred';
-          // console.error(errorMsg);
+          console.error(errorMsg);
           setSubscribe(false);
         }
       };
