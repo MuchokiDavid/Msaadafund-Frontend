@@ -163,7 +163,7 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
             </div>
             <h1 className="mb-1 my-2 text-2xl font-bold leading-tight ">Update Campaign</h1>
             <hr/>
-            <div className="mx-auto">               
+            <div className="mx-auto bg-white p-4">               
                 
                 <form onSubmit={patchCampaign} className="space-y-4 mt-3">
                     <div className="mb-2">

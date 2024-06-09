@@ -13,7 +13,7 @@ import PendingTras from './components/PendingTras';
 
 
 function UserLayout() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const isMediumScreen = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
   const org = localStorage.getItem('org')

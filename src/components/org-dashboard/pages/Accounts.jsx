@@ -6,7 +6,8 @@ import ResetPin from './PinResetForm';
 import { AiOutlineDelete } from "react-icons/ai";
 // import { GrPowerReset } from "react-icons/gr";
 import { MdLockReset } from "react-icons/md";
-import { IoMdCloseCircleOutline } from "react-icons/io";
+import { IoClose } from "react-icons/io5";
+
 
 function Accounts({banks, fetchBank}) {
     const [accounts, setAccounts] = useState([]);
@@ -263,7 +264,7 @@ function Accounts({banks, fetchBank}) {
                                     <h1 className='text-2xl font-semibold mb-4 text-slate-600 '>Create Account</h1>
                                 </div>
                                 <div>
-                                    <button onClick={handleClosePopup}  className='hover:border rounded text-gray-800 text-2xl w-10 h-10 flex justify-center items-center'><IoMdCloseCircleOutline/></button>
+                                    <button onClick={handleClosePopup}  className='hover:border rounded text-gray-800 text-2xl w-10 h-10 flex justify-center items-center'><IoClose /></button>
                                 </div>
                             </div>
                             
