@@ -9,6 +9,8 @@ import { FaPhone } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { MdSendToMobile } from "react-icons/md";
 import { MdOutlinePayments } from "react-icons/md";
+import { IoPersonCircle } from 'react-icons/io5';
+import { FcApprove } from 'react-icons/fc';
 
 // Use the icon component dynamically
 const QuickLink = ({ icon, name, to }) => {
@@ -32,8 +34,9 @@ function QuickLinks() {
         { icon: MdSendToMobile , name: 'Pay Bills' ,to:'/org/dashboard/transact/paybill'},
         { icon: MdOutlinePayments , name: 'Buy Goods' ,to:'/org/dashboard/transact/till'},
         { icon: FaPhone , name: 'Buy Airtime' ,to:'/org/dashboard/transact/buyairtime'},
-        // { icon: GrTransaction , name: 'Transactions',to:'/org/dashboard/transaction' },
-        // { icon: IoPersonCircle , name: 'Profile' ,to:'/org/dashboard/profile'}
+        { icon: GrTransaction , name: 'Transactions',to:'/org/dashboard/transaction' },
+        { icon: FcApprove , name: 'Approvals' ,to:'/org/dashboard/transact/approvals'},
+        { icon: IoPersonCircle , name: 'Profile' ,to:'/org/dashboard/profile'}
       ];
   return (
     <div className='py-3 bg-transparent'>
