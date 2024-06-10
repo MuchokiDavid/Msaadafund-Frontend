@@ -10,7 +10,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
     const [campaigns, setCampaigns] = useState(allCampaigns);
     const [donors, setDonors] = useState(allDonors);
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(15);
+    const [itemsPerPage] = useState(20);
     const [filteredDonations, setFilteredDonations] = useState([]);
 
     const token = localStorage.getItem('token');
@@ -163,7 +163,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                             <div>
                                 <input
                                     type="text"
-                                    placeholder="Search by name or campaign"
+                                    placeholder="Search"
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     className="border-gray-300 rounded-md bg-white border h-11 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"

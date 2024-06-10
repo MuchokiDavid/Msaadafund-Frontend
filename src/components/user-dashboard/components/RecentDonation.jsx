@@ -18,7 +18,7 @@ function RecentDonation({allDonations}) {
         }
       }, [donations]);
 
-      console.log(allDonations)
+    //   console.log(allDonations)
     
   return (
     <div className='px-2 py-4 bg-white rounded-lg mt-3 border my-6'>
