@@ -104,7 +104,7 @@ function UserLayout() {
       }
     };
     fetchSubscriptions();
-   },[])
+   },[token])
 
   // Function to update isSmallScreen state based on window width
   const handleWindowSizeChange = () => {
@@ -162,6 +162,13 @@ function UserLayout() {
     }
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (errors) {
+    return <div>Error: {errors}</div>;
+  }
   
   // console.log(campaigns)
   // console.log(allSubscriptions)
@@ -181,7 +188,7 @@ function UserLayout() {
         <main className={`flex-1 mt-3 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6`} style={{ marginTop: '10px' }} id='userdashboard'>
           <Routes>
             <Route path="/" element={<UserHome allDonations={allDonations} allSubscriptions= {allSubscriptions}/>} />
-            <Route path="/contributions" element={<Donations allDonation={allDonations}/>} />
+            <Route path="/contributions" element={<Donations allDonation={allDonations} campaigns= {campaigns}/>} />
             <Route path="/subscriptions" element={<Subscriptions allSubscriptions= {allSubscriptions}/>} />
             <Route path="/contributions" element={<Donations allDonation={allDonations}/>} />
             <Route path="/approvals" element={<PendingTras/>} />
