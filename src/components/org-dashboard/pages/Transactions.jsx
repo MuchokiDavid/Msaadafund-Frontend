@@ -12,7 +12,7 @@ function Transactions({allCampaigns, campaignError}) {
     const [transactions, setTransactions] = useState([])
     const [filter, setFilter] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(15);
+    const [itemsPerPage] = useState(20);
     const [filteredTransactions, setFilteredTransactions] = useState([]);
 
      // Calculate total pages based on the number of items and items per page
@@ -188,7 +188,7 @@ function Transactions({allCampaigns, campaignError}) {
               >
                 <option className='lg:text-lg sm:text-sm'><span className='text-red-500'>*</span>Select campaign</option>
                 {
-                  allCampaign && allCampaign.map((camp, i)=>(<option className='lg:text-lg sm:text-sm' key={i}>{camp.campaignName}</option>))
+                  allCampaign && allCampaign.map((camp, i)=>(<option className='text-sm' key={i}>{camp.campaignName}</option>))
                 }
                 
               </select>

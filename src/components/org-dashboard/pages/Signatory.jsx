@@ -193,7 +193,7 @@ function Signatory() {
             {signatories && signatories.length === 0 && <p className="text-red-600 mb-4">No signatories found.</p>}
             <div className='overflow-x-auto'>
                 <table className='min-w-full border table rounded-lg overflow-x-auto text-xs bg-white statTable'>
-                    <thead className='text-gray-800 bg-gray-100 text-base'>
+                    <thead className='text-gray-800 bg-gray-100'>
                         <tr>
                         <th className='px-6 py-3 font-medium leading-4  tracking-wider text-leftuppercase border-b border-gray-200 '>S/No</th>
                             <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>First Name</th>
@@ -212,7 +212,7 @@ function Signatory() {
                                 <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{signatory.user.email}</td>
                                 <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{signatory.role}</td>
                                 <td>
-                                    <button onClick={() => handleDelete(signatory.id)} className='text-red-500'><AiOutlineDelete title='Delete Signatory' size={35} /></button>
+                                    <button onClick={() => handleDelete(signatory.id)} className='text-red-500 text-sm'><AiOutlineDelete title='Delete Signatory' size={25} /></button>
                                 </td>
                             </tr>
                         ))}
