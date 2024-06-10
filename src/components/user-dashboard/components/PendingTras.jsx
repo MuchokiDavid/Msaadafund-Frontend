@@ -95,7 +95,7 @@ function PendingTras() {
       <h1 className="text-2xl font-bold mb-4">Pending Approvals</h1>
       {transactions && transactions.length === 0 && <p className="text-gray-600">No pending transactions found.</p>}
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <table className="min-w-full table rounded-md overflow-x-auto text-sm bg-white statTable text-wrap">
           <thead>
             <tr className="bg-gray-200 text-gray-600 text-left">
               <th className="py-3 px-4 uppercase font-semibold text-sm">Transaction Id</th>

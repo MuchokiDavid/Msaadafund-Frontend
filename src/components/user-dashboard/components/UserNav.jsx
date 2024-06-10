@@ -21,7 +21,7 @@ function UserNav({toggleSidebar}) {
     }
   return (
     <div className='w-full' id='userDash'>
-        <nav className="flex justify-between items-center py-2 w-full bg-white">
+        <nav className="flex justify-between items-center py-2 w-full bg-white shadow">
           <div className="flex items-center ml-3">
             <button onClick={toggleSidebar} className="text-white focus:outline-none font-bold">
                 <IoMenu className="w-8 h-8 text-gray-600"/>
