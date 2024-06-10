@@ -15,6 +15,8 @@ import { FaDonate } from "react-icons/fa";
 import { MdSendToMobile } from "react-icons/md";
 import { MdOutlinePayments } from "react-icons/md";
 import { MdOutlineAppRegistration } from "react-icons/md";
+import { FcApprove } from "react-icons/fc";
+
 
 function Menubar({handleMenuItemClick}) {
   // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
@@ -188,6 +190,16 @@ function Menubar({handleMenuItemClick}) {
 
                     <span className="mx-2 text-sm font-medium">Transactions</span>
                 </a>
+
+                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/transact/approvals">
+                    
+                    <FcApprove className='w-4 h-4'/>
+
+                    <span className="mx-2 text-sm font-medium">Pending Approvals</span>
+                </a>
+
             </div>
 
 

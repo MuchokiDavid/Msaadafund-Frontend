@@ -12,7 +12,7 @@ function Transactions({allCampaigns, campaignError}) {
     const [transactions, setTransactions] = useState([])
     const [filter, setFilter] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(15);
+    const [itemsPerPage] = useState(20);
     const [filteredTransactions, setFilteredTransactions] = useState([]);
 
      // Calculate total pages based on the number of items and items per page
@@ -179,7 +179,7 @@ function Transactions({allCampaigns, campaignError}) {
             :
             (null)
             }
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-4 mt-4">
               <select
                 className="mb-3 h-10 px-3 py-2 border-gray-300 rounded-md bg-white border text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/6 p-2.5 "
                 placeholder="transaction type"
@@ -188,13 +188,13 @@ function Transactions({allCampaigns, campaignError}) {
               >
                 <option className='lg:text-lg sm:text-sm'><span className='text-red-500'>*</span>Select campaign</option>
                 {
-                  allCampaign && allCampaign.map((camp, i)=>(<option className='lg:text-lg sm:text-sm' key={i}>{camp.campaignName}</option>))
+                  allCampaign && allCampaign.map((camp, i)=>(<option className='text-sm' key={i}>{camp.campaignName}</option>))
                 }
                 
               </select>
               <input
                     type="text"
-                    placeholder="Search... eg. Trans-type,amount & invoice acc.no."
+                    placeholder="Search"
                     value={searchTerm}
                     onChange={handleSearchTermChange}
                     className="px-3 py-2 border-gray-400 rounded-md mb-4 bg-white border h-10 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/4 p-2.5 "

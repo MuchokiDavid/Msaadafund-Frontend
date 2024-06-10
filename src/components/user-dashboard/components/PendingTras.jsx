@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { FcApprove } from "react-icons/fc";
+import { FcDisapprove } from "react-icons/fc";
+
 
 function PendingTras() {
   const [transactions, setTransactions] = useState([]);
@@ -14,7 +17,6 @@ function PendingTras() {
   };
 
   useEffect(() => {
-    const accessToken = localStorage.getItem('token');
     const config = {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -85,7 +87,7 @@ function PendingTras() {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto">
       <div className="text-sm breadcrumbs mb-4">
         <ul className="flex space-x-2">
           <li><a href='/user/dashboard' className="text-blue-600 hover:underline">Dashboard</a></li>
@@ -95,54 +97,54 @@ function PendingTras() {
       <h1 className="text-2xl font-bold mb-4">Pending Approvals</h1>
       {transactions && transactions.length === 0 && <p className="text-gray-600">No pending transactions found.</p>}
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-          <thead>
-            <tr className="bg-gray-200 text-gray-600 text-left">
-              <th className="py-3 px-4 uppercase font-semibold text-sm">Transaction Id</th>
-              <th className="py-3 px-4 uppercase font-semibold text-sm">Recipient</th>
-              <th className="py-3 px-4 uppercase font-semibold text-sm">Campaign Name</th>
-              <th className="py-3 px-4 uppercase font-semibold text-sm">Transaction Type</th>
-              <th className="py-3 px-4 uppercase font-semibold text-sm">Transaction Acc No</th>
-              <th className="py-3 px-4 uppercase font-semibold text-sm">Acc Reference</th>
-              <th className="py-3 px-4 uppercase font-semibold text-sm">Amount</th>
-              <th className="py-3 px-4 uppercase font-semibold text-sm">Signatory Approvals</th>
-              <th className="py-3 px-4 uppercase font-semibold text-sm">Approve</th>
-              <th className="py-3 px-4 uppercase font-semibold text-sm">Reject</th>
+        <table className="table table-sm rounded-md text-xs bg-white">
+          <thead className='text-balance'>
+            <tr className="bg-gray-200 text-gray-600">
+              <th>Id</th>
+              <th>Recipient</th>
+              <th>Campaign Name</th>
+              <th>Transaction Type</th>
+              <th>Transaction Acc No</th>
+              <th>Acc Reference</th>
+              <th>Amount</th>
+              <th>Signatory Approvals</th>
+              <th>Approve</th>
+              <th>Reject</th>
             </tr>
           </thead>
           <tbody className="text-gray-700">
             {transactions.map((transaction) => (
               <tr key={transaction.id} className="border-t">
-                <td className="py-3 px-4">{transaction.id}</td>
-                <td className="py-3 px-4">{transaction.name}</td>
-                <td className="py-3 px-4">{transaction.campaign_name}</td>
-                <td className="py-3 px-4">{transaction.trans_type}</td>
-                <td className="py-3 px-4">{transaction.transaction_account_no}</td>
-                <td className="py-3 px-4">{transaction.acc_refence}</td>
-                <td className="py-3 px-4">{transaction.amount}</td>
-                <td className="py-3 px-4">
+                <td>{transaction.id}</td>
+                <td>{transaction.name}</td>
+                <td >{transaction.campaign_name}</td>
+                <td>{transaction.trans_type}</td>
+                <td>{transaction.transaction_account_no}</td>
+                <td>{transaction.acc_refence}</td>
+                <td>{transaction.amount}</td>
+                <td>
                   <ul>
-                    {transaction.approvals.map((approval) => (
+                    {transaction.approvals && transaction.approvals.map((approval) => (
                       <li key={approval.id}>
                         Signatory {approval.signatory_id}: {approval.approval_status ? 'Approved' : 'Pending'}
                       </li>
                     ))}
                   </ul>
                 </td>
-                <td className="py-3 px-4">
+                <td>
                   <button
                     className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
                     onClick={() => handleApproval(transaction.id, transaction.campaign_name)}
                   >
-                    Approve
+                    <FcApprove className='h-5 w-5'/>
                   </button>
                 </td>
-                <td className="py-3 px-4">
+                <td>
                   <button
                     className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
                     onClick={() => handleReject(transaction.id)}
                   >
-                    Reject
+                    <FcDisapprove className='w-5 h-5'/>
                   </button>
                 </td>
               </tr>

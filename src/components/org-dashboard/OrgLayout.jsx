@@ -24,6 +24,7 @@ import Till from './pages/Till';
 import DashFooter from './dash-components/DashFooter';
 import Signatory from './pages/Signatory';
 import Navigation from './dash-components/Navigation';
+import Approvals from './pages/Approvals';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
@@ -272,6 +273,7 @@ useEffect(() => {
             <Route path="/transact/till" element={<Till allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet} />} />
             <Route path="/transact/buyairtime" element={<BuyAirtime allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet} />} />
             <Route path="/transact/signatories" element={<Signatory allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet} />} />
+            <Route path="/transact/approvals" element={<Approvals allCampaigns={campaigns} handleFetching={handleFetch} campaignError={errors} handleWallet={handleWallet} />} />
             {/* <Route path="/transact/accounts" element={<AccountAuth/>} />
             <Route path="/transact/accountset" element={<Accounts/>} /> */}
             <Route path="/transact/accounts" element={<Accounts banks= {allBanks} fetchBank= {fetchBanks}/>} />
