@@ -58,7 +58,7 @@ function Approvals() {
                     </tr>
                 </thead>
                 <tbody>
-                    {transactions.map((transaction) => (
+                    {transactions && transactions.map((transaction) => (
                         <tr key={transaction.id} className="border-t">
                         <td>{transaction.id}</td>
                         <td>{transaction.name}</td>

@@ -113,7 +113,7 @@ function PendingTras() {
             </tr>
           </thead>
           <tbody className="text-gray-700">
-            {transactions.map((transaction) => (
+            {transactions && transactions.map((transaction) => (
               <tr key={transaction.id} className="border-t">
                 <td>{transaction.id}</td>
                 <td>{transaction.name}</td>
