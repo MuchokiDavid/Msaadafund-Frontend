@@ -14,7 +14,6 @@ function PendingTras() {
   };
 
   useEffect(() => {
-    const accessToken = localStorage.getItem('token');
     const config = {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -122,7 +121,7 @@ function PendingTras() {
                 <td className="py-3 px-4">{transaction.amount}</td>
                 <td className="py-3 px-4">
                   <ul>
-                    {transaction.approvals.map((approval) => (
+                    {transaction.approvals && transaction.approvals.map((approval) => (
                       <li key={approval.id}>
                         Signatory {approval.signatory_id}: {approval.approval_status ? 'Approved' : 'Pending'}
                       </li>
