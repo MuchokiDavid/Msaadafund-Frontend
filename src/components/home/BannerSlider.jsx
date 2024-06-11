@@ -63,7 +63,7 @@ function BannerSlider() {
 
   return (
     <div className="carousel w-full">
-      <Splide options={options} hasTrack={false} ref={splideRef} aria-label="My Favorite Images">
+      <Splide options={options} hasTrack={false} ref={splideRef} aria-label="banner Images">
         <SplideTrack>
           {images.map((image, index) => (
             <SplideSlide key={index}>

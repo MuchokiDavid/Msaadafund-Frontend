@@ -1,4 +1,4 @@
-import { FaFacebook } from 'react-icons/fa';
+// import { FaFacebook } from 'react-icons/fa';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Menus from '../components/reusables/Menus';

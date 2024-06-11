@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Copyright from '../../reusables/Copyright'
+// import Copyright from '../../reusables/Copyright'
 
 function Footer() {
   const[currentYear, setCurrentYear]= useState(0)
