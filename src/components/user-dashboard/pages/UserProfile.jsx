@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import {toast,Toaster} from 'react-hot-toast'
-import Swal from 'sweetalert2';
-import { useAuth } from '../../../context/usersContext';
+// import Swal from 'sweetalert2';
+// import { useAuth } from '../../../context/usersContext';
 
 // import { IoPencilOutline } from "react-icons/io5";
 
@@ -23,7 +23,7 @@ function UserProfile() {
 // compare previous data with new data
 const [originalData, setOriginalData] = useState({});
 const [error,setError]= useState('');
-const {logout} = useAuth();
+// const {logout} = useAuth();
 
   // to get token for organisation
   const token = localStorage.getItem('token')
@@ -104,50 +104,50 @@ const handleSubmit = (e)=>{
   }
 
 
-  const handleConfirmDisable = () => {
-    const accessToken = localStorage.getItem('token')
-    const config = {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
-      }
-    }
-    if (!accessToken) {
-      console.log("Access token not found");
-  }
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, disable it!'
-    }).then((result)=>{
-      if(result.isConfirmed){
-        axios.delete('/api/v1.0/usersdata', config)
-        .then((res)=>{
-          if (res.status === 200){
-            Swal.fire(
-              'Disabled!',
-              'Your account has been disabled.',
-              'success'
-            ).then((result)=>{
-              if (result.isConfirmed){
-                logout()
-                window.location.reload()
+  // const handleConfirmDisable = () => {
+  //   const accessToken = localStorage.getItem('token')
+  //   const config = {
+  //     headers: {
+  //       Authorization: `Bearer ${accessToken}`,
+  //       'Content-Type': 'application/json',
+  //     }
+  //   }
+  //   if (!accessToken) {
+  //     console.log("Access token not found");
+  // }
+  //   Swal.fire({
+  //     title: 'Are you sure?',
+  //     text: "You won't be able to revert this!",
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'Yes, disable it!'
+  //   }).then((result)=>{
+  //     if(result.isConfirmed){
+  //       axios.delete('/api/v1.0/usersdata', config)
+  //       .then((res)=>{
+  //         if (res.status === 200){
+  //           Swal.fire(
+  //             'Disabled!',
+  //             'Your account has been disabled.',
+  //             'success'
+  //           ).then((result)=>{
+  //             if (result.isConfirmed){
+  //               logout()
+  //               window.location.reload()
               
-              }
-            })
-          }
-        })
+  //             }
+  //           })
+  //         }
+  //       })
 
-      }
+  //     }
 
 
-    })
+  //   })
      
-  };
+  // };
 
   if (!token) {
     window.location.replace("/user/login")

@@ -4,8 +4,8 @@ import Footer from '../components/reusables/Footer'
 import Banner from '../components/home/Banner'
 
 function Home() {
-  const token = localStorage.getItem('token')
-  const user = localStorage.getItem('user')
+  // const token = localStorage.getItem('token')
+  // const user = localStorage.getItem('user')
   return (
     <>
       <Menus/>
