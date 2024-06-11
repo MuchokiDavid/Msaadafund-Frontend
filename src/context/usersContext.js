@@ -109,6 +109,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('userData');
     localStorage.removeItem('org'); 
     localStorage.removeItem('user'); 
+    localStorage.removeItem('isSignatory'); 
     setLoginMessage("")
   };
 

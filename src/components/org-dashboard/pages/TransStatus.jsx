@@ -49,10 +49,10 @@ function TransStatus() {
             <div>
                 <div className="form-control w-full max-w-xs">
                     <label className="label">
-                        <span className="label-text font-medium">Enter Tracking ID</span>
+                        <span className="label-text font-medium">Tracking ID</span>
                     </label>
                     <input type="text" 
-                    placeholder="eg 1f2378ab-xxxx-xxxx-xxxxx" 
+                    placeholder="1f2378ab-xxxx-xxxx-xxxxx" 
                     className="input input-bordered w-full max-w-xs bg-gray-50" 
                     onChange={(e)=>setTrackingId(e.target.value)}/>
                 </div>

@@ -23,7 +23,7 @@ function QuickLink() {
         { icon: FaHome , name: 'Home' ,to:'/user/dashboard'},
         { icon: FaDonate , name: 'Contributions' ,to:'/user/dashboard/contributions'},
         { icon: MdOutlineSubscriptions , name: 'Subscripions' ,to:'/user/dashboard/subscriptions'},
-        {icon: GrTransaction, name: 'Approvals', to: '/user/dashboard/approvals'},
+        // {icon: GrTransaction, name: 'Approvals', to: '/user/dashboard/approvals'},
         { icon: IoMdHelpCircle , name: 'Help' ,to:'/user/dashboard/help'},
         { icon: IoPersonCircle , name: 'Profile' ,to:'/user/dashboard/profile'}
       ];
