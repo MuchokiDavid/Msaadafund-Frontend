@@ -1,5 +1,4 @@
 import React from 'react'
-import { MdOutlineAccountCircle } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
 import logo from  '../../../assets/msaadaLogo.png';
 import { useAuth } from '../../../context/usersContext';
@@ -24,7 +23,7 @@ function DashboardNav({toggleSidebar}) {
 
   return (
     <div className='w-full' id='dashNav'>
-        <nav className="flex justify-between items-center py-2 w-full bg-white">
+        <nav className="flex justify-between items-center py-2 w-full bg-white shadow">
           <div className="flex items-center ml-3">
             <button onClick={toggleSidebar} className="text-white focus:outline-none font-bold">
                 <IoMenu className="w-8 h-8 text-gray-600"/>
@@ -40,7 +39,6 @@ function DashboardNav({toggleSidebar}) {
                         <div tabIndex={0} role="button" className="text-xs">
                             <div className='flex items-center justify-center h-10 bg-blue-600 text-white border border-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2.5 w-10 text-center'>
                               <p className='lg:text-base sm:text-sm'>{current_org && current_org.charAt(0)}</p>
-                              {/* <MdOutlineAccountCircle className="h-6 w-6 ml-2"/> */}
                               <span className="absolute top-0.5 right-0.5 h-2 w-2 rounded-full bg-green-500"></span>
                             </div>
                         </div>

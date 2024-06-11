@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { IoMdCloseCircleOutline } from 'react-icons/io';
 import Swal from 'sweetalert2'
+import { IoClose } from "react-icons/io5";
 // import {toast, Toaster} from 'react-hot-toast';
 import { AiOutlineDelete } from "react-icons/ai";
 
@@ -193,7 +193,7 @@ function Signatory() {
             {signatories && signatories.length === 0 && <p className="text-red-600 mb-4">No signatories found.</p>}
             <div className='overflow-x-auto'>
                 <table className='min-w-full border table rounded-lg overflow-x-auto text-xs bg-white statTable'>
-                    <thead className='text-gray-800 bg-gray-100 text-base'>
+                    <thead className='text-gray-800 bg-gray-100'>
                         <tr>
                         <th className='px-6 py-3 font-medium leading-4  tracking-wider text-leftuppercase border-b border-gray-200 '>S/No</th>
                             <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>First Name</th>
@@ -212,7 +212,7 @@ function Signatory() {
                                 <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{signatory.user.email}</td>
                                 <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{signatory.role}</td>
                                 <td>
-                                    <button onClick={() => handleDelete(signatory.id)} className='text-red-500'><AiOutlineDelete title='Delete Signatory' size={35} /></button>
+                                    <button onClick={() => handleDelete(signatory.id)} className='text-red-500 text-sm'><AiOutlineDelete title='Delete Signatory' size={25} /></button>
                                 </td>
                             </tr>
                         ))}
@@ -227,10 +227,10 @@ function Signatory() {
                 <div className='mx-auto lg:max-w-md md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md text-white h-fit overflow-y-auto'>
                     <div className='flex justify-between'>
                         <div>
-                            <h1 className='text-2xl font-semibold mb-4 text-slate-600 '>Create Signatory</h1>
+                            <h1 className='text-2xl font-semibold mb-4 text-slate-600 '>Add Signatory</h1>
                         </div>
                         <div>
-                            <button onClick={handleClosePopup}  className='hover:border rounded text-gray-800 text-2xl w-10 h-10 flex justify-center items-center'><IoMdCloseCircleOutline/></button>
+                            <button onClick={handleClosePopup}  className='hover:border rounded text-gray-800 text-2xl w-10 h-10 flex justify-center items-center'><IoClose/></button>
                         </div>
                     </div>
                     

@@ -531,8 +531,9 @@ function CampainDetails() {
     //    console.log(campaign)
 
     return (
-        <div className='w-full overflow-hidden'>        
+        <>
         <Menus/>
+        <div className='w-full overflow-hidden'>
         {!users && <Announcement showingModal={setShowModal} />}
         <div className='text-black bg-gray-50 min-h-screen p-4' id='campaign_dets'>
             <div className="container mx-auto">
@@ -655,14 +656,14 @@ function CampainDetails() {
                         value={activeTab}
                     >
                         <option>M-Pesa</option>
-                        <option>Others</option>
+                        <option>Card</option>
                     </select>
                     </div>
 
                     <div className="hidden sm:block">
                     <div className="border-b border-gray-200">
                         <nav className="-mb-px flex gap-6" aria-label="Tabs">
-                        {['M-Pesa', 'Others'].map((tab) => (
+                        {['M-Pesa', 'Card'].map((tab) => (
                             <p
                             key={tab}
                             // href="#"
@@ -774,7 +775,7 @@ function CampainDetails() {
                             </div>
                         </div>
                     )}
-                    {activeTab === 'Others' && (
+                    {activeTab === 'Card' && (
                         <div>
                         <h2 className="text-lg font-semibold">Donate with Card/Bitcoin/CashApp</h2>
                             <div className='h-full rounded-lg'> 
@@ -970,6 +971,7 @@ function CampainDetails() {
         </dialog>
         <Footer/>
         </div>
+        </>
 
     );
 }

@@ -13,7 +13,7 @@ import PendingTras from './components/PendingTras';
 
 
 function UserLayout() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const isMediumScreen = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
   const org = localStorage.getItem('org')
@@ -104,7 +104,7 @@ function UserLayout() {
       }
     };
     fetchSubscriptions();
-   },[])
+   },[token])
 
   // Function to update isSmallScreen state based on window width
   const handleWindowSizeChange = () => {
@@ -162,6 +162,13 @@ function UserLayout() {
     }
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (errors) {
+    return <div>Error: {errors}</div>;
+  }
   
   // console.log(campaigns)
   // console.log(allSubscriptions)
@@ -173,7 +180,7 @@ function UserLayout() {
 
   return (
     <div>      
-      <div className="flex h-screen overflow-hidden">
+      <div className="flex relative h-screen overflow-hidden">
       {isSidebarOpen && <Usermenubar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} handleMenuItemClick= {handleMenuItemClick}/>}
         {/* <main className="mt-3 mx-auto md:w-3/4 overflow-y-auto md:m-3 min-h-max h-1/6"> */}
         <div className='w-full sm:w-screen bg-slate-50'>
@@ -181,7 +188,7 @@ function UserLayout() {
         <main className={`flex-1 mt-3 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6`} style={{ marginTop: '10px' }} id='userdashboard'>
           <Routes>
             <Route path="/" element={<UserHome allDonations={allDonations} allSubscriptions= {allSubscriptions}/>} />
-            <Route path="/contributions" element={<Donations allDonation={allDonations}/>} />
+            <Route path="/contributions" element={<Donations allDonation={allDonations} campaigns= {campaigns}/>} />
             <Route path="/subscriptions" element={<Subscriptions allSubscriptions= {allSubscriptions}/>} />
             <Route path="/contributions" element={<Donations allDonation={allDonations}/>} />
             <Route path="/approvals" element={<PendingTras/>} />
@@ -189,7 +196,7 @@ function UserLayout() {
             <Route path="/help" element={<Help />} />
             {signatory_status && <Route path="/transactions" element={<PendingTras/>} />}
           </Routes>  
-          <div className='mt-4 flex justify-start'>
+          <div className='my6-4 flex justify-start'>
           <Footer/>
           </div>        
         </main>
