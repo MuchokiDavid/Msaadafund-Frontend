@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 
 function Approvals() {
 
@@ -71,7 +70,7 @@ function Approvals() {
                           <ul>
                             {transaction.approvals && transaction.approvals.map((approval) => (
                               <li key={approval.id}>
-                                Signatory {approval.signatory_id}: {approval.approval_status ? 'Approved' : 'Pending'}
+                                {approval.signatory.firstname}: {approval.approval_status ? 'Approved' : 'Pending'}
                               </li>
                             ))}
                           </ul>
