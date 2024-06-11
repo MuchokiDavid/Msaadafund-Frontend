@@ -2,7 +2,7 @@ import React from 'react'
 
 function DashboardBanner() {
     const token = localStorage.getItem("token");
-    const user= localStorage.getItem("user");
+    // const user= localStorage.getItem("user");
     const userDataString = localStorage.getItem('userData');
     const userData = userDataString ? JSON.parse(userDataString) : null;
   return (

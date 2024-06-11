@@ -8,7 +8,7 @@ import { FaEye } from "react-icons/fa";
 
 
 function OrgSignUp() {
-  const [message, setMessage] = useState("")
+  // const [message, setMessage] = useState("")
   const [errors, setErrors] = useState("")
   const [userName, setUserName] = useState("")
   const [email, setEmail] = useState("")
@@ -21,6 +21,7 @@ function OrgSignUp() {
   const navigate= useNavigate()
   const [showPassword,setShowPassword]=useState(false)
   const [password,setPasswordConfirm ] = useState(false)
+  const [policy,setPolicy] = useState(false)
 
   const clearState = () => {
     setUserName("")
@@ -29,7 +30,7 @@ function OrgSignUp() {
     setAddress("")
     setUserPassword("")
     setConfirmPassword("")
-    setMessage("")
+    // setMessage("")
     setErrors("")
   }
 
@@ -61,7 +62,7 @@ function OrgSignUp() {
           .then((data) => {
             // console.log(data.message);
             if(data.message){
-              setMessage(data.message)
+              // setMessage(data.message)
               toast.success("Account created successifully")
               // window.location="/login"
               clearState()
@@ -89,6 +90,11 @@ function OrgSignUp() {
     setPasswordConfirm(!password)
   }
 
+  // handle policy button
+  const handlePolicy=()=>{
+    setPolicy(!policy)
+  }
+
   return (
     <div>
       <Menus/>
@@ -103,6 +109,7 @@ function OrgSignUp() {
                 Create an Organiser account to start creating fundraisers
               </h1>
               {errors && <p className='text-red-500'>{errors}</p>}
+              {/* {message && <p className='text-lime-500'>{message}</p>} */}
               <form className="space-y-4 md:space-y-6" action="#" onSubmit={handleSubmit}>
                 <div>
                   {/* <label for="username" className="block mb-2 text-sm font-medium text-gray-900 ">Username</label> */}
@@ -164,7 +171,16 @@ function OrgSignUp() {
                     required/>
                     <button title='show password' onClick={togglePasswordConfirm} className="absolute inset-y-0 right-2 flex items-center">{password?<FaEye/>:<FaEyeSlash/>}</button>
                 </div>
-                <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Create an account</button>
+                <div className='flex items-center'>
+                  <input type="checkbox" id="policy" name="policy" value="policy"
+                    className="h-4 w-4 text-primary-600 focus:ring-primary-600 border-gray-300 rounded "
+                    onClick={handlePolicy}
+                    required/>
+                  <label for="policy" className="ml-2 block text-sm text-gray-900 ">
+                    I agree to the <a href="/privacy" className="font-medium text-primary-600 hover:underline ">Privacy Policy</a> and <a href='/terms' className="font-medium text-primary-600 hover:underline">Terms of Service</a>
+                  </label>
+                </div>
+                    <button type="submit" disabled={!policy} className={`w-full text-white ${policy?'bg-primary-700':'bg-gray-400'} focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}>Create an account</button>
                 <p className="text-sm font-light text-gray-500 ">
                   Already have an account? <a href="/org/login" className="font-medium text-primary-600 hover:underline ">Log in here</a>
                 </p>
