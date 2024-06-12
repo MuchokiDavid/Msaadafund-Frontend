@@ -5,7 +5,7 @@ import Menus from '../components/reusables/Menus';
 import Footer from '../components/reusables/Footer';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
-import { FcAdvertising } from "react-icons/fc";
+// import { FcAdvertising } from "react-icons/fc";
 import { FaDonate} from 'react-icons/fa';
 import { LuUserPlus } from "react-icons/lu";
 import { prettyNumber } from '@based/pretty-number'
@@ -200,6 +200,8 @@ function OrganisationDetails() {
       return totalDonations;
     }
 
+    console.log(organisationDetails)
+
   return (
     <div>
       <Menus />
@@ -211,9 +213,7 @@ function OrganisationDetails() {
           </ul>
         </div> */}
 
-      
-      <div className="mx-auto min-h-screen container"> 
-      <Profile
+       <Profile
         orgName={organisationDetails && organisationDetails.orgName}
         orgType={organisationDetails && organisationDetails.orgType}
         // orgWebsite={organisationDetails && organisationDetails.orgWebsite}
@@ -226,6 +226,8 @@ function OrganisationDetails() {
         errors={errors}
         profileImage= {organisationDetails && organisationDetails.profileImage ?`${organisationDetails.profileImage}`: "https://images.unsplash.com/photo-1606327054536-e37e655d4f4a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
       />  
+      <div className="mx-auto min-h-screen container"> 
+     
 
         <div className="flex flex-col lg:flex-row gap-3">
             <div className="h-full lg:w-1/4" id='campaign'>
@@ -253,11 +255,11 @@ function OrganisationDetails() {
                             </div>
                             <div className='flex'>
                               <MdOutlineCampaign title='Campaign' className='w-5 h-5 mr-1 text-gray-400'/>
-                              {organisationDetails && organisationDetails.campaigns.length} Campaigns
+                              {organisationDetails && organisationDetails.campaigns.length} {organisationDetails && organisationDetails.campaigns.length<2 ? "Campaign":"Campaigns"}
                             </div>
                             <div className='flex'>
                               <LuUserPlus title='Campaign' className='w-5 h-5 mr-1 text-gray-400'/>
-                              {organisationDetails && organisationDetails.subscriptions.length} Subscribers
+                              {organisationDetails && organisationDetails.subscriptions.length} {organisationDetails && organisationDetails.subscriptions.length<=1? "Subscriber":"Subscribers"}
                             </div>
                             <div className='flex'>
                               <FaDonate title='Campaign' className='w-5 h-5 mr-1 text-gray-400'/>
