@@ -6,8 +6,8 @@ import { MdNotificationsOff } from "react-icons/md";
 
 function Profile({orgName,orgType, loading, subscribe,handleSubscribe,handleUnsubscribe, errors, profileImage}) {
   return (
-    <div className='pb-3 ml-4 mt-0'>
-  <div className="h-24 overflow-hidden" id='orgBanner'>
+    <div className=' ml-4 mt-0' id='orgBanner'>
+  <div className="h-32 overflow-hidden">
     {/* <img className="object-cover object-top w-full" src="https://source.unsplash.com/random/1920x1080/?organisation-profile" alt='Mountain'/> */}
   </div>
   <div className="max-w-5xl">
