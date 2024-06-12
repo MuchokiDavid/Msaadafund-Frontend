@@ -186,21 +186,23 @@ function OrganisationDetails() {
             )
   }
 
-  // Function to calculate total donations
-    function getTotalDonations(campaigns) {
-      let totalDonations = 0;
+  // Function to calculate total donations with status "COMPLETE"
+function getTotalDonations(campaigns) {
+  let totalDonations = 0;
 
-      campaigns.forEach(campaign => {
-        campaign.donations.forEach(donation => {
-          // Add donation amount to total
-          totalDonations += donation.amount;
-        });
-      });
+  campaigns.forEach(campaign => {
+    campaign.donations.forEach(donation => {
+      // Check if the donation status is "COMPLETE"
+      if (donation.status === 'COMPLETE') {
+        totalDonations += donation.amount;
+      }
+    });
+  });
 
-      return totalDonations;
-    }
+  return totalDonations;
+}
 
-    console.log(organisationDetails)
+    // console.log(organisationDetails)
 
   return (
     <div>
