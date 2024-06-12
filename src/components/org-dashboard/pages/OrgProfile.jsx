@@ -35,6 +35,7 @@ function OrgProfile() {
       })
       .catch((err) => {
         console.log(err);
+        setError(err.message);
       });
   }, []);
 
@@ -101,6 +102,7 @@ function OrgProfile() {
       .catch((err) => {
         setIsEditing(false);
         console.log(err);
+        setError(err.response.data.message);
       });
   };
 
