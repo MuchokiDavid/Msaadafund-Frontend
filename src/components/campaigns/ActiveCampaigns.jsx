@@ -145,7 +145,7 @@ function ActiveCampaigns() {
 
     // console.log(campaigns)
   return (
-    <div className='container'>
+    <div className='mx-auto min-h-screen container'>
     <div className='flex items-center justify-center p-3'>
         <div className="mb-1 mt-2 flex flex-col sm:flex-row items-center">
           <div className="relative flex" data-twe-input-wrapper-init data-twe-input-group-ref>
