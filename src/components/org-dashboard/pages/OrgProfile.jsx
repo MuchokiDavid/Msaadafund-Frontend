@@ -16,6 +16,7 @@ function OrgProfile() {
   const [originalData, setOriginalData] = useState({});
   const [profileImage, setProfileImage] = useState(null);
   const [isInputVisible, setIsInputVisible] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [error, setError] = useState('');
   const org = localStorage.getItem('org');
 
@@ -69,7 +70,7 @@ function OrgProfile() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setIsEditing(true)
     const accessToken = localStorage.getItem('token');
     const config = {
       headers: {
@@ -95,8 +96,10 @@ function OrgProfile() {
         setOriginalData(res.data.Data);
         toast.success(res.data.message);
         setIsInputVisible(false);
+        setIsEditing(false);
       })
       .catch((err) => {
+        setIsEditing(false);
         console.log(err);
       });
   };
@@ -239,7 +242,7 @@ function OrgProfile() {
                   className="btn bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
                   disabled={!checkFormChanges()}
                 >
-                  Update
+                  {isEditing ? 'Saving...' : 'Save'}
                 </button>
               </div>
             </form>
