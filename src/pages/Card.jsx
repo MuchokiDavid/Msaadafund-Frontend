@@ -26,7 +26,7 @@ function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, han
                     <div className="rounded-lg profile-card w-full p-4">
                         <div className='flex flex-row md:flex-col justify-between'>
                             <div className='flex justify-center my-4'>
-                                <div className="radial-progress bg-blue-500 text-white text-xl font-bold border-4 border-blue-500 p-6" style={{"--value":percentage}} role="progressbar">{percentage.toFixed(2)}%</div>
+                                <div className="radial-progress bg-blue-500 text-white text-2xl font-bold border-4 border-blue-500 p-6" style={{"--value":percentage}} role="progressbar">{percentage.toFixed(2)}%</div>
                             </div>
                             <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="text-center px-4 rounded-lg border">

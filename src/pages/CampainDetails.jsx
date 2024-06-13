@@ -696,7 +696,7 @@ function CampainDetails() {
                     <div className="p-4">
                     {activeTab === 'M-Pesa' && (
                         <div>
-                        <h2 className="text-lg font-semibold">Donate with M-Pesa</h2>
+                        <h2 className="text-lg font-semibold">Donate via M-Pesa</h2>
                         <div className='h-full rounded-lg'> 
                             <form onSubmit={handleDonateButton} className='w-full rounded-xl'>
                                 <div className='text-black'>
@@ -777,7 +777,7 @@ function CampainDetails() {
                     )}
                     {activeTab === 'Card' && (
                         <div>
-                        <h2 className="text-lg font-semibold">Donate with Card/Bitcoin/CashApp</h2>
+                        <h2 className="text-lg font-semibold">Donate via Card/Bitcoin/CashApp</h2>
                             <div className='h-full rounded-lg'> 
                                 <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
                                     <div className='text-black font-medium '>
@@ -817,7 +817,7 @@ function CampainDetails() {
                                                 <label className=' text-black font-medium '><span className='text-red-500'>*</span>Phone Number</label> 
                                                 <input
                                                     type="tel"
-                                                    placeholder='254xxxxxxxxx'
+                                                    placeholder='Phone Number'
                                                     id='cardPhone'
                                                     value={phoneNo}
                                                     onChange={(e) => {
