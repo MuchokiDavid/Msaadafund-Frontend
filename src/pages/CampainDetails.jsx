@@ -19,6 +19,7 @@ import Swal from 'sweetalert2';
 import { useAuth } from '../context/usersContext';
 import Card from './Card';
 import Announcement from '../components/reusables/Announcement';
+import Featured from '../components/campaigns/Featured';
 
 function CampainDetails() {
     const { campaignId } = useParams();
@@ -704,7 +705,7 @@ const togglePasswordVisibility = (e) => {
                     <div className="p-4">
                     {activeTab === 'M-Pesa' && (
                         <div>
-                        <h2 className="text-lg font-semibold">Donate with M-Pesa</h2>
+                        <h2 className="text-lg font-semibold">Donate via M-Pesa</h2>
                         <div className='h-full rounded-lg'> 
                             <form onSubmit={handleDonateButton} className='w-full rounded-xl'>
                                 <div className='text-black'>
@@ -785,7 +786,7 @@ const togglePasswordVisibility = (e) => {
                     )}
                     {activeTab === 'Card' && (
                         <div>
-                        <h2 className="text-lg font-semibold">Donate with Card/Bitcoin/CashApp</h2>
+                        <h2 className="text-lg font-semibold">Donate via Card/Bitcoin/CashApp</h2>
                             <div className='h-full rounded-lg'> 
                                 <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
                                     <div className='text-black font-medium '>
@@ -825,7 +826,7 @@ const togglePasswordVisibility = (e) => {
                                                 <label className=' text-black font-medium '><span className='text-red-500'>*</span>Phone Number</label> 
                                                 <input
                                                     type="tel"
-                                                    placeholder='254xxxxxxxxx'
+                                                    placeholder='Phone Number'
                                                     id='cardPhone'
                                                     value={phoneNo}
                                                     onChange={(e) => {
@@ -896,7 +897,10 @@ const togglePasswordVisibility = (e) => {
                         </div>
                     )}
                     </div>
+                    
                 </div>
+                <div className='border mt-4 px-2 bg-white'><Featured/></div>
+                
 
                 {/* </Popup> */}               
             </div>
@@ -945,6 +949,7 @@ const togglePasswordVisibility = (e) => {
 
                 {/* </div> */}
             </div>
+            
         </dialog>
 
         <dialog open={showShareModal} onClose={() => setShowShareModal(false)} className="modal flex-row justify-center items-center text-center p-4">

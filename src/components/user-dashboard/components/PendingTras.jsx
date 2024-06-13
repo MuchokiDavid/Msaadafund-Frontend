@@ -113,7 +113,7 @@ function PendingTras() {
             </tr>
           </thead>
           <tbody className="text-gray-700">
-            {transactions.map((transaction) => (
+            {transactions && transactions.map((transaction) => (
               <tr key={transaction.id} className="border-t">
                 <td>{transaction.id}</td>
                 <td>{transaction.name}</td>
@@ -126,7 +126,7 @@ function PendingTras() {
                   <ul>
                     {transaction.approvals && transaction.approvals.map((approval) => (
                       <li key={approval.id}>
-                        Signatory {approval.signatory_id}: {approval.approval_status ? 'Approved' : 'Pending'}
+                        {approval.signatory.firstname}: {approval.approval_status ? 'Approved' : 'Pending'}
                       </li>
                     ))}
                   </ul>

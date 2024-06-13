@@ -5,7 +5,7 @@ import Menus from '../components/reusables/Menus';
 import Footer from '../components/reusables/Footer';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
-import { FcAdvertising } from "react-icons/fc";
+// import { FcAdvertising } from "react-icons/fc";
 import { FaDonate} from 'react-icons/fa';
 import { LuUserPlus } from "react-icons/lu";
 import { prettyNumber } from '@based/pretty-number'
@@ -17,7 +17,7 @@ import { FaGlobe } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
-
+import { MdOutlineCampaign } from "react-icons/md";
 
 
 
@@ -189,19 +189,23 @@ function OrganisationDetails() {
             )
   }
 
-  // Function to calculate total donations
-    function getTotalDonations(campaigns) {
-      let totalDonations = 0;
+  // Function to calculate total donations with status "COMPLETE"
+function getTotalDonations(campaigns) {
+  let totalDonations = 0;
 
-      campaigns.forEach(campaign => {
-        campaign.donations.forEach(donation => {
-          // Add donation amount to total
-          totalDonations += donation.amount;
-        });
-      });
+  campaigns.forEach(campaign => {
+    campaign.donations.forEach(donation => {
+      // Check if the donation status is "COMPLETE"
+      if (donation.status === 'COMPLETE') {
+        totalDonations += donation.amount;
+      }
+    });
+  });
 
-      return totalDonations;
-    }
+  return totalDonations;
+}
+
+    // console.log(organisationDetails)
 
     // to show password visibility
     const handlePasswordVisibility = (e)=>{
@@ -220,7 +224,7 @@ function OrganisationDetails() {
           </ul>
         </div> */}
 
-      <Profile
+       <Profile
         orgName={organisationDetails && organisationDetails.orgName}
         orgType={organisationDetails && organisationDetails.orgType}
         // orgWebsite={organisationDetails && organisationDetails.orgWebsite}
@@ -234,29 +238,44 @@ function OrganisationDetails() {
         profileImage= {organisationDetails && organisationDetails.profileImage ?`${organisationDetails.profileImage}`: "https://images.unsplash.com/photo-1606327054536-e37e655d4f4a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
       />  
       <div className="mx-auto min-h-screen container"> 
+     
+
         <div className="flex flex-col lg:flex-row gap-3">
             <div className="h-full lg:w-1/4" id='campaign'>
               {/* -------------------------------------Profile card------------------------------------ */}
                 <div className="relative rounded">
                   <div
-                      className="max-w-2xl mx-4  sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-0 rounded-lg text-gray-900">
+                      className="max-w-2xl rounded-lg text-gray-900">
                       {/* <div className="rounded-t-lg h-24 overflow-hidden">
                           <img className="object-cover object-top w-full" src='https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Mountain'/>
                       </div> */}
                       {/* <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
                           <img className="object-cover object-center h-32" src={organisationDetails && organisationDetails.profileImage ?`${organisationDetails.profileImage}`: "https://images.unsplash.com/photo-1606327054536-e37e655d4f4a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} alt='Woman looking front'/>
                       </div> */}
-                      <div className="text-center mt-4 py-3">
+                      <div className="text-left lg:mt-4 ml-4">
                           {/* <h2 className="font-semibold">{organisationDetails && organisationDetails.orgName}</h2> */}
                           {/* <p className="text-gray-500">{organisationDetails && organisationDetails.orgType}</p> */}
-                          <h1 className='text-lg mt-2 mb-4'>Info.</h1>
-                          <div className="flex text-gray-700 items-center justify-center">
+                          <div className="text-gray-700 items-left grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-1">
+                            <div className='flex'>
                               <svg className="h-5 w-5 text-gray-400 mr-1" fill="currentColor"
                                   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                   <path className=""
                                       d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zm11.31-1.41a7 7 0 1 0-9.9 0L12 19.9l4.95-4.95zM12 14a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
                               </svg>
                               {organisationDetails && organisationDetails.orgAddress}
+                            </div>
+                            <div className='flex'>
+                              <MdOutlineCampaign title='Campaign' className='w-5 h-5 mr-1 text-gray-400'/>
+                              {organisationDetails && organisationDetails.campaigns.length} {organisationDetails && organisationDetails.campaigns.length<2 ? "Campaign":"Campaigns"}
+                            </div>
+                            <div className='flex'>
+                              <LuUserPlus title='Campaign' className='w-5 h-5 mr-1 text-gray-400'/>
+                              {organisationDetails && organisationDetails.subscriptions.length} {organisationDetails && organisationDetails.subscriptions.length<=1? "Subscriber":"Subscribers"}
+                            </div>
+                            <div className='flex'>
+                              <FaDonate title='Campaign' className='w-5 h-5 mr-1 text-gray-400'/>
+                              Ksh. {organisationDetails && prettyNumber(getTotalDonations(organisationDetails.campaigns), 'number-short')}
+                            </div>
                           </div>
                           {organisationDetails && organisationDetails.youtube_link && (
                           <div className="flex text-gray-700 items-center justify-center mt-2">
@@ -274,28 +293,26 @@ function OrganisationDetails() {
                                 </a>
                             Our WebSite
                         </div>
-                        )}
-
-                        
+                        )}                        
                          
                          
                       </div>
-                      <ul className="py-4 mt-0 text-gray-700 flex items-center justify-around">
+                      {/* <ul className="py-4 mt-0 text-gray-700 flex items-left justify-around">
                           <li className="flex flex-col items-center justify-around">
                               <FcAdvertising title='Campaign' className='w-5 h-5'/>
-                              <div>{organisationDetails && organisationDetails.campaigns.length}</div>
+                              <div>{organisationDetails && organisationDetails.campaigns.length} campaigns</div>
                           </li>
                           <li className="flex flex-col items-center justify-between">
                           <LuUserPlus title='Subscriptions' className='w-5 h-5 text-blue-900'/>
-                              <div>{organisationDetails && organisationDetails.subscriptions.length}</div>
+                              <div>{organisationDetails && organisationDetails.subscriptions.length} subscribers</div>
                           </li>
                           <li className="flex flex-col items-center justify-around ">
                               <FaDonate title='Total donations' className='w-4 h-4 text-blue-900'/>
-                              <div>{organisationDetails && prettyNumber(getTotalDonations(organisationDetails.campaigns), 'number-short')}</div>
+                              <div>Ksh. {organisationDetails && prettyNumber(getTotalDonations(organisationDetails.campaigns), 'number-short')}</div>
                           </li>
-                      </ul>
+                      </ul> */}
                      
-                      <div className='px-2 pb-4'>
+                      <div className='px-2 pb-4 mt-3'>
                           {more ?<p>{organisationDetails && organisationDetails.orgDescription}</p> : <p>{organisationDetails && organisationDetails.orgDescription && organisationDetails.orgDescription.slice(0,100)}...</p>}
                           <button className='text-blue-600 hover:underline mt-2' onClick={()=>setMore(!more)}>{more ? "Show less" : "Show more"}</button>
                       </div>

@@ -91,6 +91,7 @@ function Featured() {
         return Math.ceil(differenceInTime / (1000 * 3600 * 24));
       }
     };
+    console.log(errors)
 
   return (
     <div className='container mx-auto h-full bg-white rounded-lg'>
@@ -98,7 +99,7 @@ function Featured() {
       ?
       (
         <div className='my-4 justify-center'>
-          <h1 className="text-lg lg:text-2xl font-bold my-4 text-center">Featured Campaigns</h1>
+          <h1 className="text-lg lg:text-2xl font-bold my-4 text-left">Featured Campaigns</h1>
               <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:max-w-full">
               {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"> */}
                 {featuredCampaign && featuredCampaign.map((campaign) => {

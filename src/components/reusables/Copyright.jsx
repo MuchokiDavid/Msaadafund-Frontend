@@ -12,15 +12,18 @@ function Copyright() {
     }, [])
     
   return (
-    <div className='flex justify-between bg-sky-950'>
-        <div className='text-white text-xs text-left bg-sky-950 h-8 p-2'>
+    <>
+    <hr className='font-normal'/>
+    <div className='flex justify-center items-center bg-sky-950 h-12'>      
+        <div className='text-white text-xs text-center bg-sky-950 h-8 p-2'>
         © {currentYear} Msaada-Mashinani. All rights reserved.
       </div>
       <div>
-      <button className='text-white text-xs text-left bg-sky-950 h-8 p-2'>Images by unsplash</button>
       {/* <a className='text-white text-xs text-left bg-sky-950 h-8 p-2' href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Images by unsplash</a> */}
       </div>
     </div>
+    </>
+    
     
   )
 }

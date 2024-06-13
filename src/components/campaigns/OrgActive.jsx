@@ -6,7 +6,6 @@ import OrgUpcoming from './OrgUpcoming';
 function OrgActive({organisationDetails}) {
     // console.log(organisationDetails)
     const currentDate = new Date();
-    const [open, setOpen] = useState("home");
     const [activeTab, setActiveTab] = useState('Active_campaigns');
 
      //Active campaigns
@@ -29,12 +28,12 @@ function OrgActive({organisationDetails}) {
 
   return ( 
     <div className='mt-3'>
-      <div className='container divide-x'>
+      <div className='container mx-auto min-h-screen lg:divide-x'>
         <div className="sm:hidden ">
           <label htmlFor="Tab" className="sr-only">Tab</label>
           <select
             id="Tab"
-            className="rounded-md border-gray-200 p-3 w-full "
+            className="rounded-md border-gray-200 p-3 w-full"
             onChange={(e) => setActiveTab(e.target.value)}
             value={activeTab}
           >
@@ -51,7 +50,7 @@ function OrgActive({organisationDetails}) {
                 <a
                   key={tab}
                   href="#"
-                  className={`inline-flex shrink-0 items-center gap-2 border-b-2 px-1 pb-4 text-base font-medium ${
+                  className={`inline-flex shrink-0 items-center gap-2 border-b-2 px-1 pb-4 text-xs font-medium ${
                     activeTab === tab
                       ? 'border-sky-500 text-sky-600 '
                       : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
@@ -92,21 +91,21 @@ function OrgActive({organisationDetails}) {
 
             {/* <h1 className='text-xl mb-3'>Active campaigns</h1> */}
               {/* -------------------------------------Cards for campaign--------------------------------------- */}
-              {activeCampaigns.length === 0 ? <div className="text-xl mx-4 my-4 min-h-screen">No Active campaigns</div> : null}
-              <div className="mx-2 sm:mx-1 lg:mx-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
+              {activeCampaigns.length === 0 ? <div className="text-base mx-4 my-4 min-h-screen">No Active campaigns</div> : null}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
                   {/* <div className="mx-2 sm:mx-1 lg:mx-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-2 md:gap-4 sm:max-w-full"> */}
                   {activeCampaigns && activeCampaigns.map((campaign)=>{
                       return(
                       <Link to = {`/campaigns/${campaign.id}`} key={campaign.id}>
-                      <div className="card w-auto bg-base-100 rounded-md shadow-lg">
+                      <div className="card w-auto bg-white rounded-md shadow-lg">
                       <figure><img src={campaign.banner} alt={campaign.campaignName} className='h-56 w-full rounded-t-md object-cover' loading='lazy'/></figure>
                       <div className="card-body">
-                        <h2 className="card-title font-medium overflow-hidden text-lg whitespace-nowrap hover:text-blue-600 hover:cursor-pointer">
+                        <h2 className="card-title overflow-hidden text-lg whitespace-nowrap hover:text-blue-600 hover:cursor-pointer">
                         {campaign.campaignName}
                           {/* <div className="badge badge-secondary">NEW</div> */}
                         </h2>
-                        <p>{campaign.description.slice(0,25)}...</p>
-                        <div className="card-actions justify-end">
+                        {/* <p>{campaign.description.slice(0,25)}...</p> */}
+                        <div className="card-actions justify-start">
                           <div className="badge badge-outline">{campaign.category}</div> 
                           <div className="badge badge-outline">{calculateDaysLeft(campaign.endDate)} Days</div>
                         </div>
