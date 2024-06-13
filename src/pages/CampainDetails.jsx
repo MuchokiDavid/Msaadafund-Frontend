@@ -891,7 +891,7 @@ function CampainDetails() {
                     </div>
                     
                 </div>
-                <div className='border mt-4 px-2'><Featured/></div>
+                <div className='border mt-4 px-2 bg-white'><Featured/></div>
                 
 
                 {/* </Popup> */}               
