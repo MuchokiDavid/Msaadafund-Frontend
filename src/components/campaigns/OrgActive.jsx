@@ -6,7 +6,6 @@ import OrgUpcoming from './OrgUpcoming';
 function OrgActive({organisationDetails}) {
     // console.log(organisationDetails)
     const currentDate = new Date();
-    const [open, setOpen] = useState("home");
     const [activeTab, setActiveTab] = useState('Active_campaigns');
 
      //Active campaigns

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
 
 function OrgUpcoming({organisationDetails}) {
     const currentDate = new Date();

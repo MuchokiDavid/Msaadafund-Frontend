@@ -91,6 +91,7 @@ function Featured() {
         return Math.ceil(differenceInTime / (1000 * 3600 * 24));
       }
     };
+    console.log(errors)
 
   return (
     <div className='container mx-auto h-full bg-white rounded-lg'>
