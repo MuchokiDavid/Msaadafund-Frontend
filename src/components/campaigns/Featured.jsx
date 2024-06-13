@@ -105,7 +105,7 @@ function Featured() {
                 {featuredCampaign && featuredCampaign.map((campaign) => {
                   return (
                     <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden'>
-                      <button onClick={()=>{handleCampaign(campaign.id); setButtonClicked(true)}} className="block rounded-lg shadow-sm shadow-indigo-100">
+                      <a onClick={()=>{handleCampaign(campaign.id); setButtonClicked(true)}} className="block rounded-lg shadow-sm shadow-indigo-100">
                         <img
                           alt="banner"
                           src= {campaign.banner}
@@ -201,7 +201,7 @@ function Featured() {
                             </div>
                           </div>
                         </div>
-                      </button>
+                      </a>
                     </div>
                 )
               }
