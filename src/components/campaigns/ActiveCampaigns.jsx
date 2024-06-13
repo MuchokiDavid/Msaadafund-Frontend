@@ -184,7 +184,7 @@ function ActiveCampaigns() {
           {filterCampaigns().map((campaign) => {
             return (
               <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden'>
-                <a className="block rounded-lg shadow-sm shadow-indigo-100">
+                <button className="block rounded-lg shadow-sm shadow-indigo-100">
                   <img
                     alt="banner"
                     src= {campaign.banner}
@@ -282,7 +282,7 @@ function ActiveCampaigns() {
                       </div>
                     </div>
                   </div>
-                </a>
+                </button>
               </div>
           )
           })}
