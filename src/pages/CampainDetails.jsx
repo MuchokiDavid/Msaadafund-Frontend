@@ -6,6 +6,8 @@ import Menus from '../components/reusables/Menus';
 import Footer from '../components/reusables/Footer';
 import Slider from "react-slick";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { FaEyeSlash } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 
 import { 
 FacebookShareButton,FacebookIcon, 
@@ -34,6 +36,7 @@ function CampainDetails() {
     const [showShareModal, setShowShareModal] = useState(false);
     const [copied, setCopied]= useState(false)
     const [activeTab, setActiveTab] = useState('M-Pesa');
+    const [showPassword, setShowPassword] = useState(false);
 
     //card states
     const [fName, setFName]= useState('')
@@ -529,7 +532,12 @@ function CampainDetails() {
     //youtube link for embend
     const youtubeLink = campaign.youtube_link && campaign.youtube_link;
     const embedUrl = `https://www.youtube.com/embed/${youtubeLink}`;
-    //    console.log(campaign)
+
+// to handle eye to show password
+const togglePasswordVisibility = (e) => {
+    e.preventDefault();
+    setShowPassword(!showPassword)
+  }
 
     return (
         <>
@@ -922,12 +930,14 @@ function CampainDetails() {
                                 value={password}
                                 className="input input-bordered w-full"
                                 id="password"
-                                type="password"
+                                type={showPassword ? "text":"password" }
                                 placeholder='password'
                                 name="password"
                                 required
                                 autoComplete=''
+                                
                             />
+                             <button title='show password' onClick={togglePasswordVisibility} className="absolute inset-y-0 right-14 mx-1  flex items-center mt-6">{showPassword?<FaEye/>:<FaEyeSlash/>}</button>
                         </div>
                         <div>
                             <button type='submit' className="btn bg-blue-600 my-4 text-white">Log in</button>
