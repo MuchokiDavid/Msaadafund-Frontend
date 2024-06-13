@@ -38,6 +38,7 @@ function OrgLayout() {
   const[donationErrors,setDonationErrors]=useState()
   const token=localStorage.getItem('token');
   const orgName=localStorage.getItem('org')
+  const [subscriptions, setSubscriptions]= useState([])
   const[donors,setDonors]=useState([])
   const user = localStorage.getItem('user')
   const regexPattern = /^(?:https?:\/\/)?(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\\w\-\\s])([\w\-]{11})(?=[^\\w\-]|$)(?![?=&+%\\w]*(?:['"][^<>]*>|<\/a>))[?=&+%\\w]*/i; 
@@ -45,7 +46,7 @@ function OrgLayout() {
  
 
     // Use react-responsive to get screen size
-    const isMediumScreen = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
+  const isMediumScreen = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
 
   // Toggle sidebar
   const toggleSidebar = () => {
@@ -56,6 +57,38 @@ function OrgLayout() {
 const handleWindowSizeChange = () => {
   setIsSmallScreen(window.innerWidth <= 768); // Adjust the width threshold as needed
 };
+
+// Useeffect to GET subscriptions
+useEffect(() => {
+  const getSubscriptions = async () => {
+      try {
+          setLoading(true)
+          const response = await fetch('/api/v1.0/org_subscription', {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}`
+              },
+          });
+          const data = await response.json();
+          if (response.ok) {
+            setSubscriptions(data.message);
+            setLoading(false)              
+          } else {
+              setLoading(false)
+              throw new Error(data);
+          }
+      }
+      catch {
+        setLoading(false)
+        console.error("Error getting subscriptions");
+      }
+  }
+
+  getSubscriptions();
+}, [token])
+
+// console.log(subscriptions)
 
 // Listen to window resize events
 useEffect(() => {
@@ -118,9 +151,8 @@ useEffect(() => {
       }
   }
 
-//Get all campaigns
 
-//Get all donations to a logged in organisation
+//Get all donations to a logged in organisation to send to dashboard components
   useEffect(() => {
       const getDonations = async () => {
           try {
@@ -262,7 +294,7 @@ useEffect(() => {
         <DashboardNav toggleSidebar={toggleSidebar} />
         <main className="flex-1 my-3 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6" style={{ marginTop: '10px' }} id='dashboard'>
           <Routes>
-            <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors} handleMenuItemClick={handleMenuItemClick} />} />
+            <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors} handleMenuItemClick={handleMenuItemClick} subscriptions={subscriptions}/>} />
             <Route path="/campaigns/:campaignId" element={<UpdateCampaign getValidYoutubeVideoId={getValidYoutubeVideoId} />} />
             <Route path="/createcampaign" element={<CreateCampaign handleFetching={handleFetch} getValidYoutubeVideoId={getValidYoutubeVideoId} />} />
             <Route path="/mycampaigns/active" element={<DashActiveCampaigns allCampaigns={campaigns} campaignError={errors} />} />

@@ -22,8 +22,8 @@ function OrgUpcoming({organisationDetails}) {
         <div className='py-4'>
         {/* <h1 className='text-xl my-4'>Past campaigns</h1> */}
         {/* -------------------------------------Cards for campaign--------------------------------------- */}
-        {upcomingCampaigns.length === 0 ? <div className="text-xl mx-4 mb-6">No Upcoming campaigns</div> : null}
-        <div className="mx-2 sm:mx-1 lg:mx-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
+        {upcomingCampaigns.length === 0 ? <div className="text-base mx-4 mb-6">No Upcoming campaigns</div> : null}
+        <div className="mx-2 sm:mx-1 lg:mx-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
             {/* <div className="mx-2 sm:mx-1 lg:mx-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-2 md:gap-4 sm:max-w-full"> */}
             {upcomingCampaigns && upcomingCampaigns.map((campaign)=>{
                     return(

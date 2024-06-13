@@ -5,7 +5,7 @@ import RecentDonations from '../dash-components/RecentDonations'
 import CallToAction from '../dash-components/CallToAction'
 // import { useNavigate } from 'react-router-dom'
 
-function OrgHome({allCampaigns,allDonations, allDonors}) {
+function OrgHome({allCampaigns,allDonations, allDonors,subscriptions}) {
   // to get token for organisation
   const token = localStorage.getItem('token')
   const user = localStorage.getItem('user')
@@ -37,7 +37,7 @@ function OrgHome({allCampaigns,allDonations, allDonors}) {
       <hr className='mb-0' />
       <CallToAction/>
       <QuickLinks/>
-      <HomeCards allCampaigns={allCampaigns} allDonations= {allDonations}/>
+      <HomeCards allCampaigns={allCampaigns} allDonations= {allDonations} subscriptions={subscriptions}/>
       <RecentDonations allDonations= {allDonations} allDonors={allDonors} allCampaigns={allCampaigns} />
     </div>
   )
