@@ -46,7 +46,7 @@ function BannerSlider() {
       buttonLink: "/org/signup"
     },
     {
-      url: "https://source.unsplash.com/random/1920x1080/?kenyan-school-children",
+      url: "https://images.unsplash.com/photo-1504439158909-5a2f08876082?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heading: "Support Meaningful Causes!",
       text: "Join hands with charitable organizations and make a positive impact in the world. Every donation counts.",
       buttonText: "Explore",
