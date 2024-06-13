@@ -17,6 +17,7 @@ import Swal from 'sweetalert2';
 import { useAuth } from '../context/usersContext';
 import Card from './Card';
 import Announcement from '../components/reusables/Announcement';
+import Featured from '../components/campaigns/Featured';
 
 function CampainDetails() {
     const { campaignId } = useParams();
@@ -888,7 +889,10 @@ function CampainDetails() {
                         </div>
                     )}
                     </div>
+                    
                 </div>
+                <div className='border mt-4 px-2'><Featured/></div>
+                
 
                 {/* </Popup> */}               
             </div>
@@ -935,6 +939,7 @@ function CampainDetails() {
 
                 {/* </div> */}
             </div>
+            
         </dialog>
 
         <dialog open={showShareModal} onClose={() => setShowShareModal(false)} className="modal flex-row justify-center items-center text-center p-4">
