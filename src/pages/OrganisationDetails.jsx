@@ -15,6 +15,8 @@ import OrgActive from '../components/campaigns/OrgActive';
 import Profile from './PublicOrgProfile';
 import { FaGlobe } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 
 
 
@@ -33,6 +35,7 @@ function OrganisationDetails() {
   const [username, setUserName]= useState("")
   const [password, setPassword]= useState("")
   const[errors,setErrors] = useState("")
+  const[showPassword, setShowPassword] = useState(false)
 
   useEffect(() => {
     setLoading(true)
@@ -200,6 +203,12 @@ function OrganisationDetails() {
       return totalDonations;
     }
 
+    // to show password visibility
+    const handlePasswordVisibility = (e)=>{
+      e.preventDefault()
+      setShowPassword(!showPassword)
+    }
+
   return (
     <div>
       <Menus />
@@ -328,12 +337,13 @@ function OrganisationDetails() {
                             value={password}
                             className="input input-bordered w-full"
                             id="password"
-                            type="password"
+                            type={showPassword ? 'text' : 'password'}
                             placeholder='password'
                             name="password"
                             required
                             autoComplete=''
                         />
+                        <button onClick={handlePasswordVisibility} className='absolute inset-y-2 right-14 mx-2 flex items-center mt-5'>{showPassword ?<FaEye/> : <FaEyeSlash/>}</button>
                     </div>
                     <div>
                         <button type='submit' className="btn my-4">Log in</button>
