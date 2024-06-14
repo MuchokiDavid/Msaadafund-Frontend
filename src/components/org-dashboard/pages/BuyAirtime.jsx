@@ -144,7 +144,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
         <div className="text-sm breadcrumbs ml-2">
             <ul>
                 <li><a href='/org/dashboard'>Dashboard</a></li>
-                <li><a>Buy Airtime</a></li>
+                <li><a href='/org/dashboard/transact/buyairtime'>Buy Airtime</a></li>
             </ul>
         </div>
         <div>

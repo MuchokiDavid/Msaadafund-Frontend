@@ -194,7 +194,7 @@ function Accounts({banks, fetchBank}) {
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li>
                     {/* <li><a href='/org/dashboard/accounts'>AccountAuth</a></li> */}
-                    <li><a href='/org/dashboard/accounts'>Accounts</a></li>
+                    <li><a href='/org/dashboard/transact/accounts'>Accounts</a></li>
                 </ul>
             </div>
             <h2 className="mb-3 text-2xl font-bold leading-tight ">Withdrawal Accounts</h2>
