@@ -158,7 +158,7 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li>
                     <li><a href='/org/dashboard/mycampaigns/active'>View Campaign</a></li>
-                    <li><a>{campaignData.campaignName}</a></li>
+                    <li>{campaignData.campaignName}</li>
                 </ul>
             </div>
             <h1 className="mb-1 my-2 text-2xl font-bold leading-tight ">Update Campaign</h1>

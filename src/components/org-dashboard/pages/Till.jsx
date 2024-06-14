@@ -139,7 +139,7 @@ const handleSubmit = (e) => {
         <div className="text-sm breadcrumbs ml-2">
             <ul>
                 <li><a href='/org/dashboard'>Dashboard</a></li>
-                <li><a>Buy goods and services</a></li>
+                <li><a href='/org/dashboard/transact/till'>Buy goods and services</a></li>
             </ul>
         </div>
         <div>

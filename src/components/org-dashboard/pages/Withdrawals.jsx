@@ -116,7 +116,7 @@ function Withdrawals() {
         <div className="text-sm breadcrumbs ml-2">
             <ul>
                 <li><a href='/org/dashboard'>Dashboard</a></li>
-                <li><a>Withdrawals</a></li>
+                <li><a href='/org/dashboard/transact/withdrawals'>Withdrawals</a></li>
             </ul>
         </div>
         <div>

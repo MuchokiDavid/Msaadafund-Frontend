@@ -77,7 +77,7 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
             }).then((result) => {
                 if (result.isConfirmed) {
                     axios.patch(`/api/v1.0/activate/campaign/${campaignId}`,{}, config)
-                    .then((res)=>{{
+                    .then((res)=>{
                         // console.log(res)
                         if(res.status===200){
                             Swal.fire({
@@ -98,7 +98,7 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
                             )
                         }
                         
-                    }})
+                    })
                     .catch((err)=>{
                         const errorMsg = err.response?.data?.error || 'An error occurred';
                         setErrors(errorMsg);
