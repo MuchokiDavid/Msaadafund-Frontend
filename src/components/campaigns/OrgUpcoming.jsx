@@ -30,7 +30,7 @@ function OrgUpcoming({organisationDetails}) {
                     <div className="card w-auto bg-base-100 rounded-md shadow-lg key={campaign.id}">
                         <figure className='h-40'><img src={campaign.banner} alt={campaign.campaignName} loading='lazy'/></figure>
                         <div className="card-body">
-                        <h2 className="card-title">
+                        <h2 className="card-title text-gray-700 ">
                         {campaign.campaignName}
                             <div className="badge badge-secondary">NEW</div>
                         </h2>

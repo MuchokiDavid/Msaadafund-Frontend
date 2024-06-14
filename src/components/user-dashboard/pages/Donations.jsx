@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react'
 function Donations({allDonation}) {
   const [allDonations, setAllDonations] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState();
+//   const [errors, setErrors] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(15);
   const [filteredDonations, setFilteredDonations] = useState([]);
@@ -69,7 +68,7 @@ console.log(paginatedDonations)
       </div>
       <h1 className="mb-1 my-2 text-xl font-bold leading-tight ">Contributions</h1>
       <hr/>
-      {errors && <p className='text-red-700'>{errors}</p>}
+      {/* {errors && <p className='text-red-700'>{errors}</p>} */}
       {allDonations && allDonations.length>0
           ?
           (

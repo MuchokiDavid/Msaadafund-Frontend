@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Toaster, toast } from 'react-hot-toast';
 import Swal from 'sweetalert2'
 import axios from 'axios';
 import { VscVmActive } from "react-icons/vsc";
@@ -221,8 +220,6 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
             </div>
             )
                }
-            
-            <Toaster position="top-right" reverseOrder= {false}/>
         </div>
     );
 

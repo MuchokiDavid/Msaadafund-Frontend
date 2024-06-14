@@ -2,7 +2,6 @@ import React, {useState } from 'react'
 
 function TransStatus() {
     const[statusResponse, setStatusResponse]=useState(null)
-    const[status, setStatus]=useState(null)
     const[trackingId,setTrackingId]=useState(null)
     const[errors,setErrors]=useState(null)
     const token=localStorage.getItem('token')

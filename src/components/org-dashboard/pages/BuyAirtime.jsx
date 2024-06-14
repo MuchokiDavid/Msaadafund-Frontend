@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Toaster, toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 
 function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
@@ -156,9 +155,9 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                   <form ref={formRef}>                    
                     {transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
                     {walletDetails? 
-                        <div className="stats border">
+                        <div className="stats border bg-white text-gray-800">
                             <div className="stat">
-                                <div className="stat-title">Campaign Balance</div>
+                                <div className="stat-title text-gray-700">Campaign Balance</div>
                                 <div className="stat-value">{walletDetails&&walletDetails.currency} {walletDetails && walletDetails.available_balance}</div>
                             </div>
                         </div>
@@ -169,7 +168,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                         <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Campaign</label>
                         <select 
                         onChange={(e) => {setWalletDetails('');setError(''); setCampaign(e.target.value)}}
-                        className='input input-bordered w-full placeholder:bg-slate-400 bg-gray-100' 
+                        className='input input-bordered w-full placeholder:bg-slate-400 bg-gray-50' 
                         required>
                             <option value="">Select campaign</option>
                             {campaigns.map((campaign, index) => {
@@ -186,7 +185,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                     <div className='mt-4'>
                         <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Name</label>
                         <input 
-                        className="input input-bordered w-full" 
+                        className="input input-bordered w-full bg-white border-gray-300" 
                         id="name" 
                         type="text" 
                         placeholder='e.g. John Doe'
@@ -199,7 +198,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                     <div className="mt-4">
                         <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Phone Number</label>
                         <input 
-                        className="input input-bordered w-full" 
+                        className="input input-bordered w-full bg-white border-gray-300" 
                         id="phoneNumber" 
                         type="tel" 
                         placeholder='e.g. 07xxxxxxxx'
@@ -214,15 +213,16 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                         <input
                         onChange={(e) => setAmount(e.target.value)}
                         value={amount} 
-                        className="input input-bordered w-full" 
+                        className="input input-bordered w-full bg-white border-gray-300"
+                        placeholder='e.g. 50' 
                         id="amount" 
                         type="number" 
                         name="amount" 
                         required/>
                     </div>
-                    
+                    {error && <p className='text-red-700 text-base'>{error}</p>}
                     <div className="flex items-center justify-between mt-4">
-                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-3 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-2 md:text-lg md:px-8">Buy</button>                        
+                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-3 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-2 md:text-lg md:px-8">{isSubmitting? "Buying":"Buy" }Buy</button>                        
                     </div>
                   </form>
                 </div>
@@ -231,15 +231,13 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                     <div className="p-10 rounded">
                         <h2 className="font-bold text-2xl">Instructions</h2>
                         <ul className="list-disc mt-4 list-inside text-lg">
-                            <li>Ensure that the phone number provided is a valid phone number.</li>
-                            <li>Double-check the amount you wish to purchase and make sure it is not less than 5 to avoid errors.</li>
-                            <li>Once you submit the purchase request, the airtime will be transferred to your phone number within the hour.</li>
+                            <li>Ensure that the phone number provided is a valid.</li>
+                            <li>Double-check the amount you wish to purchase and make sure it is more than sh.5 to avoid errors.</li>
+                            <li>Once you submit the purchase request, the airtime will be transferred to your phone number upon confirmation</li>
                             <li>If you encounter any issues during the purchase process, please contact our support team for assistance.</li>
                         </ul>
                     </div>
                 </aside>
-                
-                <Toaster position='top-center' reverseOrder= {false} />
             </div>
         </div>
     </div>

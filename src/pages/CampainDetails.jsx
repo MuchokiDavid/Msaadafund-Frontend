@@ -49,7 +49,7 @@ function CampainDetails() {
     // const  navigate = useNavigate();
     const [loading, setLoading]= useState(false)
     // const currentlWebUrl= window.location.href
-    const currentlWebUrl= `https://joker.vercel.app${window.location.pathname}`
+    const currentlWebUrl= `https://joker.vercel.app${window.location.pathname}` // Add link after deployment
     const [subscribe, setSubscribe] = useState(false)
     const [org_id, setOrg_id] = useState(null)
     const users = localStorage.getItem('user');
@@ -429,7 +429,10 @@ function CampainDetails() {
         }
     }
     //shuffle all donations and get five donations
-    const shuffledDonations = campaign && campaign.donations.sort(() => Math.random() - 0.5).slice(0, 5);
+    const completeDonations = campaign && campaign.donations.filter(donation => donation.status === 'COMPLETE');
+
+    // Shuffle the filtered donations and select the first 5
+    const shuffledDonations = completeDonations && completeDonations.sort(() => Math.random() - 0.5).slice(0, 5);
 
     
     const handleDays = () => {
@@ -488,14 +491,19 @@ function CampainDetails() {
         )
     }
 
-
+    // Function to calculate total amount for donations with status "COMPLETE"
     function getTotalAmount(donationsArray) {
-        let totalAmount = 0;
-        for (let donation of donationsArray) {
+    let totalAmount = 0;
+    for (let donation of donationsArray) {
+        // Check if the donation status is "COMPLETE"
+        if (donation.status === 'COMPLETE') {
             totalAmount += donation.amount;
         }
-        return totalAmount;
-    }  
+    }
+    return totalAmount;
+}
+
+
     //Slider settings(Carosel)
     function SampleNextArrow(props) {
         const { className, style, onClick } = props;
@@ -544,7 +552,7 @@ const togglePasswordVisibility = (e) => {
         <Menus/>
         <div className='w-full overflow-hidden'>
         {!users && <Announcement showingModal={setShowModal} />}
-        <div className='text-black bg-gray-50 min-h-screen p-4' id='campaign_dets'>
+        <div className='text-black min-h-screen p-4' id='campaign_dets'>
             <div className="container mx-auto">
                 {/* <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'> */}
                 <div className="flex flex-col lg:flex-row gap-3 ">
@@ -631,7 +639,7 @@ const togglePasswordVisibility = (e) => {
                         <div className="px-2 pt-2">
                             <div className='my-1 flex justify-between px-2'>
                                 <h1 className='text-xl font-medium'>Supporters</h1>
-                                <p className='text-xl font-medium'>{campaign.donations.length}</p>
+                                <p className='text-xl font-medium'>{completeDonations.length}</p>
                             </div>
                             <div>
                                 <div className="max-w-full mx-auto my-2">
@@ -750,7 +758,7 @@ const togglePasswordVisibility = (e) => {
                                         </div>
 
                                         <div className='my-3'>
-                                            <label className=' text-black font-medium '><span className='text-red-500'>*</span>Donation Amount</label>
+                                            <label className=' text-black font-medium '><span className='text-red-500'>*</span>Amount</label>
                                             <input
                                                 type="number"
                                                 id="donationAmount"
@@ -859,7 +867,7 @@ const togglePasswordVisibility = (e) => {
                                                     </select>
                                                 </div>
                                                 <div >
-                                                    <label className=' text-black font-medium '><span className='text-red-500'>*</span>Donation Amount</label>
+                                                    <label className=' text-black font-medium '><span className='text-red-500'>*</span>Amount</label>
                                                     <input
                                                         type="number"
                                                         placeholder='Enter amount'
@@ -899,7 +907,7 @@ const togglePasswordVisibility = (e) => {
                     </div>
                     
                 </div>
-                <div className='border mt-4 px-2 bg-white'><Featured/></div>
+                <div className='mt-4 px-2'><Featured/></div>
                 
 
                 {/* </Popup> */}               
@@ -908,16 +916,17 @@ const togglePasswordVisibility = (e) => {
             
         </div>
         <dialog open={showModal} onClose={() => setShowModal(false)} className="modal flex-row justify-center items-center text-center">
-            <div className="modal-box">
-                <h3 className="font-bold text-2xl">Log in</h3>
+            <div className="modal-box bg-gray-50">
+                <h3 className="font-bold text-2xl text-black">Log in</h3>
                 {/* <div className="modal-action"> */}
                 {loginMessage&& <p className='text-red-500'>{loginMessage}</p>}
                 <form className='flex justify-center items-center' onSubmit={handleLogin}>
                     <div className='flex-col justify-center items-center pl-4 pr-8'>
                         <div className='my-4'>
-                            <label className="font-semibold my-3" htmlFor="password"><span className='text-red-500'>*</span>Username or E-Mail</label>
+                            <label className="font-semibold my-3 text-gray-600" htmlFor="password"><span className='text-red-500'>*</span>Username or E-Mail</label>
                             <input
-                                className="input input-bordered w-full"
+                                className="input input-bordered w-full bg-white text-black"
+                                placeholder='Username or E-Mail'
                                 onChange={(e) => setUserName(e.target.value)}
                                 value={username}
                                 required
@@ -928,7 +937,7 @@ const togglePasswordVisibility = (e) => {
                             <input
                                 onChange={(e) => setPassword(e.target.value)}
                                 value={password}
-                                className="input input-bordered w-full"
+                                className="input input-bordered w-full bg-white text-gray-800"
                                 id="password"
                                 type={showPassword ? "text":"password" }
                                 placeholder='password'
@@ -953,9 +962,9 @@ const togglePasswordVisibility = (e) => {
         </dialog>
 
         <dialog open={showShareModal} onClose={() => setShowShareModal(false)} className="modal flex-row justify-center items-center text-center p-4">
-            <div className="modal-box">
+            <div className="modal-box bg-gray-50 text-gray-800">
                 <div className='my-4'>
-                    <h3 className='text-2xl'>Help {campaign.organisation && campaign.organisation.orgName} </h3>
+                    <h3 className='text-xl'>Help {campaign.organisation && campaign.organisation.orgName} </h3>
                     <p className='text-md mt-1 mb-2'>Share this campaign with your friends and family</p>
                     <div className='mb-4'>
                         {socialShare()}

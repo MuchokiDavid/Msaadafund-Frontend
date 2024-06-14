@@ -8,7 +8,7 @@ function Withdrawals() {
     const[search,setSearch]=useState('')
     const[filtered,setFiltered]=useState([])
     const[currentPage,setCurrentPage]=useState(1)
-    const[itemsPerPage,setItemsPerPage]=useState(15)
+    const itemsPerPage =15
 
     //useefect to filter all withdrawals with the search term in the search input
     useEffect(() => {

@@ -185,7 +185,7 @@ function UserLayout() {
         {/* <main className="mt-3 mx-auto md:w-3/4 overflow-y-auto md:m-3 min-h-max h-1/6"> */}
         <div className='w-full sm:w-screen bg-slate-50'>
         <UserNav toggleSidebar={toggleSidebar} />
-        <main className={`flex-1 mt-3 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6`} style={{ marginTop: '10px' }} id='userdashboard'>
+        <main className={`flex-1 text-gray-800 mt-3 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6`} style={{ marginTop: '10px' }} id='userdashboard'>
           <Routes>
             <Route path="/" element={<UserHome allDonations={allDonations} allSubscriptions= {allSubscriptions}/>} />
             <Route path="/contributions" element={<Donations allDonation={allDonations} campaigns= {campaigns}/>} />

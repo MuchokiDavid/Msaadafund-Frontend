@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Toaster, toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 // import DashFooter from '../dash-components/DashFooter';
@@ -15,7 +14,6 @@ function Paybill({allCampaigns,campaignError,handleWallet}) {
     const [amount, setAmount]= useState(10)
     const [comment, setComment]= useState('')
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [loading, setLoading] = useState(false)
     const formRef = useRef(null)
     const token= localStorage.getItem('token')
 
@@ -52,7 +50,7 @@ function Paybill({allCampaigns,campaignError,handleWallet}) {
 //handle pay using axios and add 
 const handlePay = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setIsSubmitting(true);
     try {
         const response = await axios.post('/api/v1.0/pay_to_paybill', {
             paybillNumber: paybillNumber,
@@ -68,7 +66,6 @@ const handlePay = async (e) => {
         if (response.status !== 200) {
             // throw new Error('Error in making payment');
             setError('Error in making payment');
-            setLoading(false);
             setIsSubmitting(false);
             // sweetalert error
             Swal.fire({
@@ -84,7 +81,6 @@ const handlePay = async (e) => {
             setAmount(0);
             setComment("");
             setError("");
-            setLoading(false);
             setIsSubmitting(false)
             // toast('Pay to paybill request initiated successfully');
             Swal.fire({
@@ -97,7 +93,6 @@ const handlePay = async (e) => {
     } catch (error) {
         console.error('Error in making payment:', error);
         setError(error.response.data.error);
-        setLoading(false);
         setIsSubmitting(false);
         setTransactionResponse([])
     }
@@ -156,23 +151,23 @@ const handleSubmit = (e) => {
             <h1 className="font-extrabold text-2xl">Paybill</h1>
             <hr className='mb-2'/>            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-6 border rounded-lg">
-                <form ref={formRef} onSubmit={handleSubmit}>                    
-                    {/* {transactionResponse && transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>} */}
+                <form ref={formRef} onSubmit={handleSubmit}>                   
+                   
                     {walletDetails? 
                         <div className="stats border">
-                            <div className="stat">
-                                <div className="stat-title">Campaign Balance</div>
+                            <div className="stat bg-white text-gray-800">
+                                <div className="stat-title text-gray-700">Campaign Balance</div>
                                 <div className="stat-value">{walletDetails&&walletDetails.currency} {walletDetails && walletDetails.available_balance}</div>
                             </div>
                         </div>
                         : null
                     }
-                    {error && <p className='text-red-600 text-base my-2'>{error}</p>}
+                     {transactionResponse && transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
                     <div>
                         <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Campaign</label>
                         <select 
                         onChange={(e) => {setWalletDetails('');setError(''); setCampaign(e.target.value); setTransactionResponse('')}}
-                        className='input input-bordered w-full placeholder:bg-slate-400 bg-gray-100' 
+                        className='input input-bordered w-full placeholder:bg-slate-400 bg-gray-50 border-gray-300' 
                         required>
                             <option value="">Select campaign</option>
                             {campaigns.map((campaign, index) => {
@@ -189,7 +184,7 @@ const handleSubmit = (e) => {
                     <div className='mt-4'>
                         <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Paybill Number</label>
                         <input 
-                        className="input input-bordered w-full" 
+                        className="input input-bordered w-full bg-white border-gray-300" 
                         id="paybillNumber" 
                         type="text" 
                         placeholder='Paybill Number'
@@ -202,7 +197,7 @@ const handleSubmit = (e) => {
                     <div className="mt-4">
                         <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Account Number</label>
                         <input 
-                        className="input input-bordered w-full" 
+                        className="input input-bordered w-full bg-white border-gray-300" 
                         id="Account Number" 
                         type="text" 
                         placeholder='Account Number'
@@ -217,7 +212,7 @@ const handleSubmit = (e) => {
                         <input
                         onChange={(e) => setAmount(e.target.value)}
                         value={amount} 
-                        className="input input-bordered w-full" 
+                        className="input input-bordered w-full bg-white border-gray-300" 
                         placeholder='Amount'
                         id="amount" 
                         type="number" 
@@ -230,14 +225,14 @@ const handleSubmit = (e) => {
                         <input
                         onChange={(e) => setComment(e.target.value)}
                         value={comment} 
-                        className="input input-bordered w-full" 
+                        className="input input-bordered w-full bg-white border-gray-300" 
                         id="comment" 
                         placeholder='Comment'
                         type="text" 
                         name="comment"/>
                     </div>
-
-                    <div className="flex items-center justify-between mt-4">
+                    {error && <p className='text-red-600 text-base my-2'>{error}</p>}
+                    <div className="flex items-center justify-between mt-2">
                         <button type="submit"
                             className='intaSendPayButton'>
                                 {isSubmitting ? "Submitting..." : "Pay"}
@@ -250,13 +245,12 @@ const handleSubmit = (e) => {
                         <h2 className="font-bold text-2xl">Instructions</h2>
                         <ul className="list-disc mt-4 list-inside text-lg">
                             <li>Ensure that the paybill and account number provided are valid.</li>
-                            <li>Double-check the amount you wish to pay and make sure it is not less than 10 to avoid errors.</li>
+                            <li>Double-check the amount you wish to pay and make sure it is more than 10 to avoid errors.</li>
                             <li>Once you submit the payment request, the funds will be transferred to the paybill provided.</li>
                             <li>If you encounter any issues during the purchase process, please contact our support team for assistance.</li>
                         </ul>
                     </div>
                 </aside>
-                <Toaster position='top-center'/>
             </div>
         </div>
         {/* <DashFooter/> */}

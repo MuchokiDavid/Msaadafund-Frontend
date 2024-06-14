@@ -100,7 +100,7 @@ function OrgActive({organisationDetails}) {
                       <div className="card w-auto bg-white rounded-md shadow-lg">
                       <figure><img src={campaign.banner} alt={campaign.campaignName} className='h-56 w-full rounded-t-md object-cover' loading='lazy'/></figure>
                       <div className="card-body">
-                        <h2 className="card-title overflow-hidden text-lg whitespace-nowrap hover:text-blue-600 hover:cursor-pointer">
+                        <h2 className="card-title overflow-hidden text-gray-700 text-lg whitespace-nowrap hover:text-blue-600 hover:cursor-pointer">
                         {campaign.campaignName}
                           {/* <div className="badge badge-secondary">NEW</div> */}
                         </h2>

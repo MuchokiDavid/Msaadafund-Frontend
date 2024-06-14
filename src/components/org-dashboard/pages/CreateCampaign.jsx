@@ -125,7 +125,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                 {error && <p className="text-red-500 mb-2">{error}</p>}
                 <form onSubmit={handleUpload}  ref={formRef}>
                     <div className="mb-4 mt-3">
-                        <label htmlFor="campaignName" className="block mb-2 text-sm font-semibold text-slate-600 ">
+                        <label htmlFor="campaignName" className="block mb-2 text-sm font-semibold text-slate-600 border-gray-300  ">
                            <span className='text-red-500'>*</span> Campaign Name
                         </label>
                         <input
@@ -134,11 +134,11 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                             value={campaignName}
                             placeholder="Campaign Name"
                             onChange={(e) => setCampaignName(e.target.value)}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                            className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             required
                         />
                     </div>
-                    <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
                             <label htmlFor="startDate" className="block mb-2 text-sm font-semibold text-slate-600 ">
                             <span className='text-red-500'>*</span>Start Date
@@ -148,7 +148,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                                 type="date"
                                 value={startDate}
                                 onChange={(e) => setStartDate(e.target.value)}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 required
                             />
                         </div>
@@ -161,7 +161,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                                 type="date"
                                 value={endDate}
                                 onChange={(e) => setEndDate(e.target.value)}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 required
                             />
                         </div>
@@ -192,7 +192,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                             value={otherCategory}
                             placeholder="Please specify..."
                             onChange={(e) => setOtherCategory(e.target.value)}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mt-4"
+                            className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mt-4"
                             required
                         /> : null }
                     </div>
@@ -206,7 +206,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                             value={targetAmount}
                             placeholder="Budget"
                             onChange={(e) => setTargetAmount(e.target.value)}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                            className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             required
                         />
                     </div>
@@ -221,7 +221,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                             value={youtubeLink}
                             placeholder="https://www.youtube.com/ayKcAeoupDw"
                             onChange={(e) => setYoutubeLink(e.target.value)}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                            className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             // required
                         />
                     </div>
@@ -235,19 +235,19 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                             value={description}
                             placeholder="Describe the Campaign "
                             onChange={(e) => setDescription(e.target.value)}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                            className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             rows="3"
                             required
                         />
                     </div>
 
-                    <div className="mt-2 flex justify-center border border-dashed border-gray-300 px-6 py-10 bg-gray-50 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full p-2.5">
+                    <div className="mt-2 flex justify-center border border-dashed border-gray-300 px-6 py-10 bg-white text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full p-2.5">
                         <div className="text-center">
                             <div className="mt-4 flex text-sm leading-6 ">
                             <span className="mr-2">{banner ? banner.name : ''}</span>
                                 <label
                                     htmlFor="file-upload"
-                                    className="relative cursor-pointer h-8 px-4 rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                                    className="relative cursor-pointer h-8 px-4 rounded-md bg-gray-50 border font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                                 >
                                     <span className='text-red-500'>*</span><span className='text-gray-800'>Upload Banner</span>
                                     <input
@@ -261,7 +261,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                                     />
                                 </label>
                             </div>
-                            <p className="text-xs leading-5 text-gray-700 dark:text-gray-200">PNG, JPG,JPEG up to 2MB</p>
+                            <p className="text-xs leading-5 text-gray-800">PNG, JPG,JPEG up to 2MB</p>
                         </div>
                     </div>
                     {error && <p className="text-red-500 mb-2">{error}</p>}

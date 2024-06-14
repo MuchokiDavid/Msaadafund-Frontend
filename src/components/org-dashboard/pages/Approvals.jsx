@@ -4,15 +4,8 @@ import axios from 'axios';
 function Approvals() {
 
     const [transactions, setTransactions] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
   
     const accessToken = localStorage.getItem('token');
-    const config = {
-        headers: {
-        Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
-        }
-    };
 
     useEffect(() => {
         const config = {
@@ -28,7 +21,7 @@ function Approvals() {
         .catch((err) => {
             console.log(err);
         });
-    }, []);
+    }, [accessToken]);
 
     // console.log(transactions)
 
@@ -44,29 +37,29 @@ function Approvals() {
         <hr/>
         <div className="overflow-x-auto">
             <table className="table table-compact w-full text-xs bg-white">
-                <thead className='text-balance'>
+                <thead className='text-balance text-gray-800 bg-gray-100'>
                     <tr>
-                    <th>Id</th>
-                    <th>Recipient</th>
-                    <th>Campaign Name</th>
-                    <th>Transaction Type</th>
-                    <th>Transaction Acc No</th>
-                    <th>Acc Reference</th>
-                    <th>Amount</th>
-                    <th>Signatory Approvals</th>
+                    <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Id</th>
+                    <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Recipient</th>
+                    <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Campaign Name</th>
+                    <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Transaction Type</th>
+                    <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Transaction Acc No</th>
+                    <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Acc Reference</th>
+                    <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Amount</th>
+                    <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Signatory Approvals</th>
                     </tr>
                 </thead>
                 <tbody>
                     {transactions && transactions.map((transaction) => (
                         <tr key={transaction.id} className="border-t">
-                        <td>{transaction.id}</td>
-                        <td>{transaction.name}</td>
-                        <td >{transaction.campaign_name}</td>
-                        <td>{transaction.trans_type}</td>
-                        <td>{transaction.transaction_account_no}</td>
-                        <td>{transaction.acc_refence}</td>
-                        <td>{transaction.amount}</td>
-                        <td>
+                        <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>{transaction.id}</td>
+                        <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>{transaction.name}</td>
+                        <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 ' >{transaction.campaign_name}</td>
+                        <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>{transaction.trans_type}</td>
+                        <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>{transaction.transaction_account_no}</td>
+                        <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>{transaction.acc_refence}</td>
+                        <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>{transaction.amount}</td>
+                        <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>
                           <ul>
                             {transaction.approvals && transaction.approvals.map((approval) => (
                               <li key={approval.id}>

@@ -141,7 +141,7 @@ function Banner() {
 let totalAmount=(allDonations && getTotalAmount(allDonations))
 
   return (
-    <div>
+    <div className='text-gray-900'>
       <BannerSlider/>
       <div className="bg-gray-50 text-gray-600 py-20 px-4 ">
         <div className="max-w-screen-lg mx-auto flex flex-col lg:flex-row justify-between items-center">

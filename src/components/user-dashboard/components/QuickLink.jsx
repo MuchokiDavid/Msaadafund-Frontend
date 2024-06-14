@@ -2,7 +2,6 @@ import React from 'react'
 import { FaDonate, FaHome } from 'react-icons/fa';
 import { IoPersonCircle } from 'react-icons/io5';
 import { MdOutlineSubscriptions} from 'react-icons/md';
-import { GrTransaction } from "react-icons/gr";
 import { Link } from 'react-router-dom';
 import { IoMdHelpCircle } from 'react-icons/io';
 
