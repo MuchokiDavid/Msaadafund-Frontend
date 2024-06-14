@@ -147,6 +147,7 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
                             />
                         </div>
                     </div>
+                    {errors && <p className='text-red-700'>{errors}</p>}
                     {/* <div>
                         <button title='Download Pdf ' onClick={downloadDonationsPDF}>PDF<FaFilePdf size = {25} style={{ color: 'red' }}/></button>
                     </div> */}
