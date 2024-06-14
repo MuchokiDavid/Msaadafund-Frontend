@@ -332,7 +332,7 @@ function getTotalDonations(campaigns) {
             </div>
 
       <dialog open={showModal} onClose={() => setShowModal(false)} className="modal flex-row justify-center items-center text-center">
-        <div className="modal-box">
+        <div className="modal-box bg-gray-50 text-gray-800">
             <h3 className="font-bold text-lg">Please Log in</h3>
             {/* <div className="modal-action"> */}
             {loginMessage&& <p className='text-red-500'>{loginMessage}</p>}
@@ -341,7 +341,8 @@ function getTotalDonations(campaigns) {
                     <div className='my-4'>
                         <label className="font-semibold my-3" htmlFor="password">Username or E-Mail</label>
                         <input
-                            className="input input-bordered w-full"
+                            className="input input-bordered w-full bg-white text-gray-800"
+                            placeholder='Username or E-Mail'
                             onChange={(e) => setUserName(e.target.value)}
                             value={username}
                             required
@@ -352,7 +353,7 @@ function getTotalDonations(campaigns) {
                         <input
                             onChange={(e) => setPassword(e.target.value)}
                             value={password}
-                            className="input input-bordered w-full"
+                            className="input input-bordered w-full bg-white text-gray-800"
                             id="password"
                             type={showPassword ? 'text' : 'password'}
                             placeholder='password'
@@ -363,7 +364,7 @@ function getTotalDonations(campaigns) {
                         <button onClick={handlePasswordVisibility} className='absolute inset-y-2 right-14 mx-2 flex items-center mt-5'>{showPassword ?<FaEye/> : <FaEyeSlash/>}</button>
                     </div>
                     <div>
-                        <button type='submit' className="btn my-4">Log in</button>
+                        <button type='submit' className="btn bg-blue-600 my-4 text-white">Log in</button>
                     </div>
                     <p className='my-4'>Don't have an account? <Link to='/user/signup'><span className='text-blue-600 hover:underline'>Register</span></Link></p>
                 </div>

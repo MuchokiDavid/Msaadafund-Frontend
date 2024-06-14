@@ -1,4 +1,27 @@
 @tailwind base;
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--primary);
+  /* scrollbar-color: var(--secondary) var(--primary);*/
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary);
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+  border-radius: 14px;
+  border: 3px solid var(--primary);
+}
+
 @tailwind components;
 @tailwind utilities;
 @import "slick-carousel/slick/slick.css";
@@ -11,6 +34,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
+  @apply bg-white
+}
+
+input{
+  @apply bg-white
 }
 
 code {
@@ -25,6 +53,7 @@ code {
   color: #fff;
   height: 40px;
   width: 150px;
+
 }
 .intaSendPayButton:hover {
   cursor: pointer;

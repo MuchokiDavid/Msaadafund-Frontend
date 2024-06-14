@@ -22,7 +22,8 @@ function Login() {
   if (isLoggedIn) {
     setTimeout(() => {
       navigate('/user/dashboard')
-    }, 2000);    
+    }, 2000);  
+    setLoginMessage("")  
   }
   // if (isLoggedIn) {
   //   setTimeout(() => {

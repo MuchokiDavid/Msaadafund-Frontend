@@ -49,12 +49,16 @@ function Featured() {
         }, 1000);
       };
 
-      function getTotalAmount(donationsArray) {
-        let totalAmount = 0;
-        for (let donation of donationsArray) {
-            totalAmount += donation.amount;
-        }
-        return totalAmount;
+    // Function to calculate total amount for donations with status "COMPLETE"
+    function getTotalAmount(donationsArray) {
+      let totalAmount = 0;
+      for (let donation of donationsArray) {
+          // Check if the donation status is "COMPLETE"
+          if (donation.status === 'COMPLETE') {
+              totalAmount += donation.amount;
+          }
+      }
+      return totalAmount;
     }
 
     if(loading){
@@ -94,12 +98,12 @@ function Featured() {
     console.log(errors)
 
   return (
-    <div className='container mx-auto h-full bg-white rounded-lg'>
+    <div className='container mx-auto h-full rounded-lg w-full'>
       {featuredCampaign && featuredCampaign.length > 0 
       ?
       (
         <div className='my-4 justify-center'>
-          <h1 className="text-lg lg:text-2xl font-bold my-4 text-left">Featured Campaigns</h1>
+          <h1 className="text-lg lg:text-2xl font-bold my-4 mx-4 text-left">Featured Campaigns</h1>
               <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:max-w-full">
               {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"> */}
                 {featuredCampaign && featuredCampaign.map((campaign) => {
@@ -122,7 +126,7 @@ function Featured() {
 
                             <div>
                               <dt className="sr-only">Name</dt>
-                              <dd className="font-medium overflow-hidden text-lg whitespace-nowrap hover:text-blue-600 hover:cursor-pointer"><p onClick={()=>handleCampaign(campaign.id)}>{campaign.campaignName}</p></dd>
+                              <dd className="font-medium overflow-hidden text-lg text-gray-600 whitespace-nowrap hover:text-blue-600 hover:cursor-pointer"><p onClick={()=>handleCampaign(campaign.id)}>{campaign.campaignName}</p></dd>
                             </div>
                             <div>
                               <dt className="sr-only">Organiser</dt>

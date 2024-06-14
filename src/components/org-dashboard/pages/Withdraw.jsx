@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Toaster, toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 // import DashFooter from '../dash-components/DashFooter';
 
@@ -192,12 +191,11 @@ return (
             <h1 className="font-extrabold text-2xl">Withdraw</h1>
             <hr className='mb-2' />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white border rounded-lg p-6">
-                <form ref={formRef}>
-                    {errors && <p className='text-red-700 text-base'>{errors}</p>}
+                <form ref={formRef}>                    
                     {walletDetails ?
                         <div className="stats border">
-                            <div className="stat">
-                                <div className="stat-title">Campaign Balance</div>
+                            <div className="stat bg-white text-gray-800">
+                                <div className="stat-title text-gray-700">Campaign Balance</div>
                                 <div className="stat-value">{walletDetails && walletDetails.currency} {walletDetails && walletDetails.available_balance}</div>
                             </div>
                         </div>
@@ -211,7 +209,7 @@ return (
                                 setErrors('');
                                 setCampaign(e.target.value)
                             }}
-                            className='input input-bordered w-full bg-gray-100'
+                            className='input input-bordered w-full bg-gray-100 border-gray-300 '
                             required>
                             <option value="">Select campaign</option>
                             {campaigns.map((campaign, index) => {
@@ -236,7 +234,7 @@ return (
                                 // if (providers === 'Bank') {
                                 // }
                             }}
-                            className='input input-bordered w-full placeholder:bg-slate-400 bg-gray-100'
+                            className='input input-bordered border-gray-300  w-full placeholder:bg-slate-400 bg-gray-100'
                             required>
                             <option value="">Select account</option>
                             {accountNumbers.map((accountNo, index) => {
@@ -255,16 +253,16 @@ return (
                         <input
                             onChange={(e) => setAmount(e.target.value)}
                             value={amount}
-                            className="input input-bordered w-full"
+                            className="input input-bordered border-gray-300  w-full bg-white"
                             id="amount"
                             placeholder='Above Ksh.10 for M-Pesa, Above Ksh.100 for Bank'
                             type="number"
                             name="amount"
                             required />
                     </div>
-
-                    <div className="flex items-center justify-between mt-4">
-                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-2 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-2 md:text-lg md:px-4">Withdraw</button>
+                    {errors && <p className='text-red-700 text-base mt-2'>{errors}</p>}
+                    <div className="flex items-center justify-between mt-2">
+                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-2 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-2 md:text-lg md:px-4">{loading? "Withdrawing":"Withdraw"}</button>
                     </div>
                 </form>
 
@@ -279,7 +277,7 @@ return (
                                 <div className='my-4'>
                                     <label className="font-semibold my-3" htmlFor="password">Amount</label>
                                     <input
-                                        className="input input-bordered w-full placeholder:bg-slate-400 bg-gray-100"
+                                        className="input input-bordered border-gray-300  w-full placeholder:bg-slate-400 bg-gray-100"
                                         value={amount}
                                         disabled
                                     />
@@ -313,18 +311,16 @@ return (
                     <div className="bg-white px-6 py-2 rounded">
                         <h2 className="font-bold text-2xl">Instructions</h2>
                         <ul className="list-disc mt-2 list-inside text-base">
-                            <li>Ensure that the account you wish to withdraw to is registered.</li>
-                            <li>Ensure that the phone number provided is registered to your M-Pesa account.</li>
-                            <li>Double-check the amount you wish to withdraw and make sure it is more that sh.10 for M-Pesa and sh.100 for Bank.</li>
-                            <li>Ensure that the bank account provided is valid and registered to avoid errors.</li>
-                            <li>Once you submit the withdrawal request, the funds will be transferred to your M-Pesa account within the hour.</li>
+                            <li>Register your withdrawal account <span className='text-blue-600 font-semibold'><a href='/org/dashboard/transact/accounts'>here</a></span></li>
+                            <li>Minimum withdrwal amount is <span className='text-black font-medium'>sh.10</span> for <span className='text-black font-medium'>M-Pesa</span>  and <span className='text-black font-medium'>sh.100</span> for <span className='text-black font-medium'>Bank</span>.</li>
+                            <li>Enter your withdrawal pin to complete the withdrawal process.</li>
+                            <li>Once you submit the withdrawal request, the funds will be transferred upon confirmation.</li>
                             <li>If you encounter any issues during the withdrawal process, please contact our support team for assistance.</li>
                         </ul>
                     </div>
                 </aside>
 
             </div>
-            <Toaster position="top-right" reverseOrder= {false}/>
         </div>
         {/* <DashFooter/> */}
     </div>

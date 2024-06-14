@@ -201,7 +201,7 @@ function Accounts({banks, fetchBank}) {
             <hr className='mb-2'/>
             <div className='mx-auto w-full md:max-w-full sm:max-w-full p-6 bg-white rounded-lg border  text-white'>
                 <button onClick={() => setShowCreateAccount(true)} className='btn btn-ghost bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
-                    Create Account
+                    Add Account
                 </button>
                 {error && <p className='text-red-500 mt-4'>{error}</p>}
                 <div className="accounts-list-section w-full">
@@ -229,7 +229,7 @@ function Accounts({banks, fetchBank}) {
                                             <div>
                                                 <button onClick={() => handleShowResetPin(account.email)} className='btn btn-sm btn-success text-white'>
                                                     {/* Reset */}
-                                                   <MdLockReset title='Reset Pin' size={30} />
+                                                   <MdLockReset title='Reset Pin' size={24} />
                                                 </button>
                                             </div>                                            
                                             <div>
@@ -264,7 +264,7 @@ function Accounts({banks, fetchBank}) {
                                     <h1 className='text-2xl font-semibold mb-4 text-slate-600 '>Create Account</h1>
                                 </div>
                                 <div>
-                                    <button onClick={handleClosePopup}  className='hover:border rounded text-gray-800 text-2xl w-10 h-10 flex justify-center items-center'><IoClose /></button>
+                                    <button onClick={handleClosePopup}  className='hover:border hover:bg-gray-100 rounded-full text-gray-800 text-2xl w-10 h-10 flex justify-center items-center'><IoClose /></button>
                                 </div>
                             </div>
                             
@@ -273,7 +273,7 @@ function Accounts({banks, fetchBank}) {
                                 {error && <p className='text-red-500 mt-4'>{error}</p>}
                                     <div className='mb-4'>
                                         <label htmlFor='providers' className='block mb-2 text-sm font-semibold text-slate-600 '><span className='text-red-500'>*</span>Providers</label>
-                                        <select value={providers} onChange={(e) => setProviders(e.target.value)} className='block text-gray-700 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600' required>
+                                        <select value={providers} onChange={(e) => setProviders(e.target.value)} className='block text-gray-700 w-full px-3 py-2 border bg-gray-50 border-gray-300 rounded focus:outline-none focus:border-primary-600' required>
                                             <option value=''>Select Provider</option>
                                             <option value='M-Pesa'>M-Pesa</option>
                                             <option value='Bank'>Bank</option>
@@ -283,14 +283,14 @@ function Accounts({banks, fetchBank}) {
                                     <div className='my-4'>
                                         {providers === 'Bank' ?
                                         (<>
-                                            <label htmlFor='bank' className='block mb-2 text-sm font-semibold text-slate-600 '><span className='text-red-500'>*</span>Bank</label>
+                                            <label htmlFor='bank' className='block mb-2 text-sm font-semibold text-gray-700'><span className='text-red-500'>*</span>Bank</label>
                                             <select
                                                 onChange={(e) => {
                                                     // setBank(e.target.value)
                                                     handleBankChange(e)
                                                     // setBankCode(e.target.options[e.target.selectedIndex].getAttribute('bank_code'))
                                                 }}
-                                                className='block text-gray-700 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600'
+                                                className='block text-gray-700 w-full px-3 py-2 border bg-gray-50 border-gray-300 rounded focus:outline-none focus:border-primary-600'
                                                 required>
                                                 <option value="">Select Bank</option>
                                                 {allBanks && allBanks.map((bank, index) => {
