@@ -47,9 +47,8 @@ function OrgActive({organisationDetails}) {
           <div className="border-b border-gray-200">
             <nav className="-mb-px flex gap-6 " aria-label="Tabs">
               {['Upcoming_campaigns','Active_campaigns', 'Finished_campaigns'].map((tab) => (
-                <a
+                <div
                   key={tab}
-                  href="#"
                   className={`inline-flex shrink-0 items-center gap-2 border-b-2 px-1 pb-4 text-xs font-medium ${
                     activeTab === tab
                       ? 'border-sky-500 text-sky-600 '
@@ -71,7 +70,7 @@ function OrgActive({organisationDetails}) {
                     
                   </svg>
                   {tab}
-                </a>
+                </div>
               ))}
             </nav>
           </div>
