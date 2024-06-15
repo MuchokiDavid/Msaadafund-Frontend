@@ -229,7 +229,7 @@ function Transactions({allCampaigns, campaignError}) {
                                     <td>{item.transaction_id}</td>
                                     <td>{item.value}</td>
                                     <td>{item.status}</td>
-                                    <td>{item.running_balance}</td>
+                                    <td>{item.currency} {item.running_balance}</td>
                                     {/* <td>{item.narrative}</td> */}
                                     <td>{item.trans_type}</td>
                                     <td>{item.invoice ? item.invoice.account : null}</td>

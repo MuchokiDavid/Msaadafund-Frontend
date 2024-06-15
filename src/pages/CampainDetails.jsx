@@ -652,7 +652,7 @@ const togglePasswordVisibility = (e) => {
                                                         {/* <img className="w-10 h-10 rounded-full" src="https://unsplash.com/photos/oh0DITWoHi4/download?force=true&w=640" alt="Christy"/> */}
                                                         <span className="ml-3 font-medium">{donation.donor_name ? donation.donor_name : "Anonymous"}</span>
                                                     </div>
-                                                    <span className="font-medium">{donation.amount}</span>
+                                                    <span className="font-medium">{donation.currency} {donation.amount}</span>
                                                 </li>
                                             ))}
                                         </ul>

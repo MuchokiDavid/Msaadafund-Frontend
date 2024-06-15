@@ -112,7 +112,7 @@ console.log(paginatedDonations)
                                               <div className='text-gray-900'>{donation.invoice_id}</div>
                                           </td>
                                           <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
-                                              <div className='text-gray-900'>{donation.amount}</div>
+                                              <div className='text-gray-900'>{donation.currency} {donation.amount}</div>
                                           </td>
                                           <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
                                               <div className='text-gray-900'>{donation.campaign ? donation.campaign.campaignName : ""}</div>

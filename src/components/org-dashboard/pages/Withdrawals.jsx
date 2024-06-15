@@ -110,7 +110,6 @@ function Withdrawals() {
         });
     }
 
-
   return (
     <div>
         <div className="text-sm breadcrumbs ml-2">
@@ -164,7 +163,7 @@ function Withdrawals() {
                                 <td>{withdrawal.campaign_name}</td>
                                 <td>{withdrawal.transaction_account_no}</td>
                                 <td>{withdrawal.trans_type}</td>
-                                <td>{withdrawal.amount}</td>
+                                <td>KES {withdrawal.amount}</td>
                                 <td>{withdrawal.trans_status}</td>
                                 <td>{withdrawal.transaction_date}</td>
                             </tr>
