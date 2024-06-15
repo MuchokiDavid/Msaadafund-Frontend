@@ -144,7 +144,7 @@ const handleSubmit = (e) => {
         <div className="text-sm breadcrumbs ml-2">
             <ul>
                 <li><a href='/org/dashboard'>Dashboard</a></li>
-                <li><a>Paybill</a></li>
+                <li><a href='/org/dashboard/transact/paybill'>Paybill</a></li>
             </ul>
         </div>
         <div>

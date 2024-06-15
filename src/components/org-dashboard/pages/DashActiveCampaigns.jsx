@@ -141,7 +141,7 @@ function DashActiveCampaigns({ allCampaigns, campaignError }) {
                 if (result.isConfirmed) {
                     axios.delete(`/api/v1.0/deletecampaign/${campaignId}`, config)
                         .then((res) => {
-                            {
+                            
                                 // console.log(res)
                                 if (res.status === 200) {
                                     Swal.fire({
@@ -163,7 +163,7 @@ function DashActiveCampaigns({ allCampaigns, campaignError }) {
                                 }
 
                                 // window.location.reload();
-                            }
+                            
                         })
                         .catch((err) => {
                             const errorMsg = err.response?.data?.error || 'An error occurred';

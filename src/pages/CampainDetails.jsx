@@ -305,7 +305,7 @@ function CampainDetails() {
                             })
 
                         }
-                        if(!users && !accessToken){
+                       else{
                             axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,donorName,campaignId:campaignId})
                             .then((res)=>{
                                 // console.log('express used')

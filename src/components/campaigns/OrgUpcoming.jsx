@@ -27,14 +27,14 @@ function OrgUpcoming({organisationDetails}) {
             {upcomingCampaigns && upcomingCampaigns.map((campaign)=>{
                     return(
                     <Link to = {`/campaigns/${campaign.id}`} key={campaign.id}>
-                    <div className="card w-auto bg-base-100 rounded-md shadow-lg key={campaign.id}">
+                    <div className="card w-auto bg-base-100 rounded-md shadow-lg key={campaign.id} h-80">
                         <figure className='h-40'><img src={campaign.banner} alt={campaign.campaignName} loading='lazy'/></figure>
                         <div className="card-body">
                         <h2 className="card-title text-gray-700 ">
                         {campaign.campaignName}
                             <div className="badge badge-secondary">NEW</div>
                         </h2>
-                        <p>{campaign.description.slice(0,30)}...</p>
+                        {/* <p>{campaign.description.slice(0,30)}...</p> */}
                         <div className="card-actions justify-end">
                             <div className="badge badge-outline">{campaign.category}</div> 
                         </div>

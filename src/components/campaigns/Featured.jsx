@@ -95,7 +95,7 @@ function Featured() {
         return Math.ceil(differenceInTime / (1000 * 3600 * 24));
       }
     };
-    console.log(errors)
+    // console.log(errors)
 
   return (
     <div className='container mx-auto h-full rounded-lg w-full'>
@@ -109,7 +109,7 @@ function Featured() {
                 {featuredCampaign && featuredCampaign.map((campaign) => {
                   return (
                     <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden'>
-                      <a onClick={()=>{handleCampaign(campaign.id); setButtonClicked(true)}} className="block rounded-lg shadow-sm shadow-indigo-100">
+                      <div onClick={()=>{handleCampaign(campaign.id); setButtonClicked(true)}} className="block rounded-lg shadow-sm shadow-indigo-100">
                         <img
                           alt="banner"
                           src= {campaign.banner}
@@ -205,7 +205,7 @@ function Featured() {
                             </div>
                           </div>
                         </div>
-                      </a>
+                      </div>
                     </div>
                 )
               }

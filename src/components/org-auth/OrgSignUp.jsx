@@ -16,7 +16,7 @@ function OrgSignUp() {
   const [address, setAddress] = useState("")
   const [userPassword, setUserPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.]).{8,}$/;
   const phonePattern = /^(07|01)\d{8}$/;
   const navigate= useNavigate()
   const [showPassword,setShowPassword]=useState(false)

@@ -16,7 +16,7 @@ const [step, setStep] = useState(1);
 const [showPassword,setShowPassword]=useState(false)
 const [password,setPasswordConfirm ] = useState(false)
 
-const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.]).{8,}$/;
 
 
 const handleSendOrgOTP = async () => {

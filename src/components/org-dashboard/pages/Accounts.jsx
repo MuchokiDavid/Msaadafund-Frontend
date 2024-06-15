@@ -194,7 +194,7 @@ function Accounts({banks, fetchBank}) {
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li>
                     {/* <li><a href='/org/dashboard/accounts'>AccountAuth</a></li> */}
-                    <li><a href='/org/dashboard/accounts'>Accounts</a></li>
+                    <li><a href='/org/dashboard/transact/accounts'>Accounts</a></li>
                 </ul>
             </div>
             <h2 className="mb-3 text-2xl font-bold leading-tight ">Withdrawal Accounts</h2>
@@ -257,8 +257,8 @@ function Accounts({banks, fetchBank}) {
                 )}
                 {showCreateAccount && (
                     // Create Account Popup JSX
-                    <div className="create-account-popup fixed top-0 left-0 w-full h-screen flex items-center justify-center bg-gray-900 bg-opacity-50 z-50 py-4">
-                        <div className='mx-auto lg:max-w-md md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md text-white h-screen overflow-y-auto'>
+                    <div className="create-account-popup fixed top-0 left-0 w-full min-h-screen  flex items-center justify-center bg-gray-900 bg-opacity-50 z-50 py-4">
+                        <div className='mx-auto lg:max-w-md md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md text-white h-fit overflow-y-auto'>
                             <div className='flex justify-between'>
                                 <div>
                                     <h1 className='text-2xl font-semibold mb-4 text-slate-600 '>Create Account</h1>
