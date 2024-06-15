@@ -8,7 +8,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 
 function Login() {
-  const {userLogin, loginMessage, isLoggedIn, setLoginMessage} = useAuth();
+  const {userLogin, loginMessage, isLoggedIn} = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -22,8 +22,7 @@ function Login() {
   if (isLoggedIn) {
     setTimeout(() => {
       navigate('/user/dashboard')
-    }, 2000);  
-    setLoginMessage("")  
+    }, 2000);     
   }
   // if (isLoggedIn) {
   //   setTimeout(() => {
