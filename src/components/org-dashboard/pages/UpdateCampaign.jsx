@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import logo from '../../../assets/msaadaLogo.png'
 
 function UpdateCampaign({getValidYoutubeVideoId}) {
     const { campaignId } = useParams();
@@ -17,7 +18,8 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
         description: '',
         banner: null,
     });
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [isSubmitting, setIsSubmitting]=useState(false)
     const [error, setError] = useState(null);
     const urlRegexPattern = /^(?:https?:\/\/)?(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\\w\-\\s])([\w\-]{11})(?=[^\\w\-]|$)(?![?=&+%\\w]*(?:['"][^<>]*>|<\/a>))[?=&+%\\w]*/i;
     const videoIdRegex = /^[a-zA-Z0-9_-]{11}$/;
@@ -25,16 +27,18 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
     // Fetch campaign details using the campaign ID
     useEffect(() => {
         const fetchCampaignDetails = async () => {
+            setLoading(true)
             try {
                 const response = await fetch(`/api/v1.0/campaign/${campaignId}`);
                 const data = await response.json();
                 if (response.ok) {
                     setOriginalData(data);
                     setCampaignData(data);
+                    setLoading(false)
                 } else {
                     setError(`Error: ${data.error}`);
-                }
-                setLoading(false);
+                    setLoading(false);
+                }                
             } catch (err) {
                 setLoading(false);
                 setError(`Error: ${err.message}`);
@@ -78,13 +82,13 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
     // Handle form submission
     const patchCampaign = async (e) => {
         e.preventDefault();
-        
+        setIsSubmitting(true)
         // Create a FormData object for handling file uploads and text data
         const formData = new FormData();
         formData.append('description', campaignData.description);
         formData.append('startDate', campaignData.startDate);
         formData.append('endDate', campaignData.endDate);
-        formData.append('youtube_link', getValidYoutubeVideoId(campaignData.youtube_link))
+        formData.append('youtubeLink', getValidYoutubeVideoId(campaignData.youtube_link))
 
         // Append the banner file if provided
         if (campaignData.banner) {
@@ -94,6 +98,7 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
             (!campaignData.youtube_link.match(urlRegexPattern) && !campaignData.youtube_link.match(videoIdRegex))
           )  {
             setError('Please ensure your YouTube link is valid')
+            setIsSubmitting(false)
         }
         else{
             try {
@@ -109,17 +114,19 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
                 throw new Error('User not authenticated');
             }
 
-            const response = await axios.patch(`/api/v1.0/campaign/${campaignId}`, formData, config);
+            const response = await axios.patch(`/api/v1.0/updatecampaign/${campaignId}`, formData, config);
             
             if (response.status === 200) {
                 setOriginalData(response.data);
                 setError('')
+                setIsSubmitting(false)
                 toast.success('Campaign updated successfully');
                 setTimeout(() => {
                     navigate('/org/dashboard/mycampaigns/active');
                 }, 2000);
             }
         } catch (err) {
+            setIsSubmitting(false)
             const errorMsg = err.response?.data?.error || 'An error occurred';
             setError(errorMsg);        
         }
@@ -146,7 +153,7 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
                     <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
                     </line>
                 </svg>
-            <span className="text-4xl font-medium text-gray-500">Loading...</span>
+                <span className="text-4xl font-medium text-gray-500"><img src={logo} alt='Loading...' className='w-1/2 h-1/2'/></span>
         </div>
         )
     }
@@ -267,7 +274,7 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
                             disabled={!checkFormChanges()}
                             className={`py-2 px-4   font-medium text-white rounded-md ${checkFormChanges() ? 'bg-blue-600 hover:bg-blue-500' : 'bg-gray-400'}`}
                         >
-                            Update Campaign
+                            {isSubmitting ? "Updating...": "Update"}
                         </button>
                     </div>
                 </form>
