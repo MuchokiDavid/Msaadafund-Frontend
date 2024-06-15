@@ -15,7 +15,8 @@ const [step, setStep] = useState(1);
 const [showPassword,setShowPassword]=useState(false)
 const [password,setPasswordConfirm ] = useState(false)
 
-const passwordPattern = /^[A-Za-z0-9]{8,}$/;
+const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.]).{8,}$/;
+
 
 
 const handleSendOTP = async () => {
