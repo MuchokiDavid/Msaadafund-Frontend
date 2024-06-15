@@ -26,7 +26,7 @@ import OrganisationDetails from './pages/OrganisationDetails';
 
 function App() {
   return (
- 
+ <div className='text-gray-800' >
     <Routes>
     <Route path = '/' element= {<Home/>}/>
     <Route path='/campaigns' element={<Campaigns/>}/>
@@ -52,6 +52,7 @@ function App() {
     <Route path='*' element = {<NotFound/>}/>
 
     </Routes>
+    </div>
      );
 }
 
