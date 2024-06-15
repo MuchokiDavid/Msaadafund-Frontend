@@ -110,8 +110,6 @@ function Withdrawals() {
         });
     }
 
-    console.log(allWithdrawals)
-
   return (
     <div>
         <div className="text-sm breadcrumbs ml-2">
