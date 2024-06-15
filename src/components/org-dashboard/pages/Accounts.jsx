@@ -257,8 +257,8 @@ function Accounts({banks, fetchBank}) {
                 )}
                 {showCreateAccount && (
                     // Create Account Popup JSX
-                    <div className="create-account-popup fixed top-0 left-0 w-full h-screen flex items-center justify-center bg-gray-900 bg-opacity-50 z-50 py-4">
-                        <div className='mx-auto lg:max-w-md md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md text-white h-screen overflow-y-auto'>
+                    <div className="create-account-popup fixed top-0 left-0 w-full min-h-screen  flex items-center justify-center bg-gray-900 bg-opacity-50 z-50 py-4">
+                        <div className='mx-auto lg:max-w-md md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md text-white h-fit overflow-y-auto'>
                             <div className='flex justify-between'>
                                 <div>
                                     <h1 className='text-2xl font-semibold mb-4 text-slate-600 '>Create Account</h1>
