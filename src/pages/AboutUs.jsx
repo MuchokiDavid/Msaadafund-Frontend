@@ -70,6 +70,9 @@ function AboutUs() {
                     Have questions or feedback? We'd love to hear from you! Reach out to us at <a href="mailto:msaadacontact@gmail.com" className="text-blue-600">msaadacontact@gmail.com</a>.
                   </p>
                 </div>
+                <div>
+                  <a href='/org/login' class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300">Create campaign</a>
+                </div>
               </div>
             </div>
             <div className="h-full lg:w-1/3">

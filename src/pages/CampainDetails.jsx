@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios'
 import {toast,Toaster} from 'react-hot-toast'
 import Menus from '../components/reusables/Menus';
@@ -37,6 +37,7 @@ function CampainDetails() {
     const [copied, setCopied]= useState(false)
     const [activeTab, setActiveTab] = useState('M-Pesa');
     const [showPassword, setShowPassword] = useState(false);
+    const [cardEmail, setCardEmail]= useState('')
 
     //card states
     const [fName, setFName]= useState('')
@@ -59,6 +60,7 @@ function CampainDetails() {
     const userData = userDataString ? JSON.parse(userDataString) : null;
     const isLargeScreen = window.innerWidth >= 1024;
     const [more, setMore]= useState(false)
+    const formRef = useRef(null);
     
 // to check the subscription state
 
@@ -67,8 +69,8 @@ function CampainDetails() {
             setFName(userData.firstName)
             setLName(userData.lastName)
             setPhoneNo(userData.phoneNumber)
-            // setEmailAdd(userData.email)
             setName(`${userData.firstName} ${userData.lastName}`)
+            setCardEmail(userData.email)
         }
       
     }, [accessToken, userData])
@@ -316,7 +318,8 @@ function CampainDetails() {
                                         icon: "success"
                                       }).then((result)=>{
                                         if(result.isConfirmed){
-                                            window.location.reload();
+                                            // window.location.reload();
+                                            formRef.current.reset();
                                         }
                                       });                                                           
                                 }
@@ -398,7 +401,7 @@ function CampainDetails() {
 
                         }
                         else{
-                            axios.post ("/api/v1.0/donate_card",{phoneNumber:phoneNo,amount:cardAmount,campaignId:campaignId, currency:cardCurrency})
+                            axios.post ("/api/v1.0/donate_card",{firstName:fName,lastName:lName,cardEmail,phoneNumber:phoneNo,amount:cardAmount,campaignId:campaignId, currency:cardCurrency})
                             .then((res)=>{
                                 // console.log(res)
                                 if(res.status===200){  
@@ -638,7 +641,7 @@ const togglePasswordVisibility = (e) => {
                         <hr/>
                         <div className="px-2 pt-2">
                             <div className='my-1 flex justify-between px-2'>
-                                <h1 className='text-xl font-medium'>Supporters</h1>
+                                <h1 className='text-xl font-medium'>Donations</h1>
                                 <p className='text-xl font-medium'>{completeDonations.length}</p>
                             </div>
                             <div>
@@ -710,12 +713,12 @@ const togglePasswordVisibility = (e) => {
                     </div>
                     </div>
 
-                    <div className="p-4">
+                    <div className="p-2">
                     {activeTab === 'M-Pesa' && (
                         <div>
-                        <h2 className="text-lg font-semibold">Donate via M-Pesa</h2>
+                        <h2 className="text-2xl font-semibold">Donate via M-Pesa</h2>
                         <div className='h-full rounded-lg'> 
-                            <form onSubmit={handleDonateButton} className='w-full rounded-xl'>
+                            <form ref={formRef} onSubmit={handleDonateButton} className='w-full rounded-xl'>
                                 <div className='text-black'>
                                     {/* <h1 className="text-xl font-medium mt-0">Donate via M-Pesa</h1> */}
                                 
@@ -794,7 +797,7 @@ const togglePasswordVisibility = (e) => {
                     )}
                     {activeTab === 'Card' && (
                         <div>
-                        <h2 className="text-lg font-semibold">Donate via Card/Bitcoin/CashApp</h2>
+                        <h2 className="text-2xl font-semibold">Donate via Card/Bitcoin/CashApp</h2>
                             <div className='h-full rounded-lg'> 
                                 <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
                                     <div className='text-black font-medium '>
@@ -803,47 +806,65 @@ const togglePasswordVisibility = (e) => {
                                         <p className="my-2">Please fill all field with <span className='text-red-500'>*</span> in the form to donate to this campaign.</p>
                                         </div>                                           
                                         <div className='flex-col justify-center items-center'>
-                                            <div className='grid grid-cols-2 gap-4'>
+                                            <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
                                                 <div>
-                                                    <label className=' text-black font-medium '>First Name</label>
+                                                    <label className=' text-black font-medium '><span className='text-red-500'>*</span>First name on the card</label>
                                                     <input
                                                         type="text"
-                                                        placeholder='First Name (Optional)'
+                                                        placeholder='First name'
                                                         value={fName}
                                                         id='cardName'
                                                         onChange={(e) =>setFName(e.target.value)}
                                                         className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white w-full"
-                                                        // required
+                                                        required
                                                     />
                                                 </div>
                                                 <div>
-                                                    <label className=' text-black font-medium '>Last Name</label>
+                                                    <label className=' text-black font-medium '><span className='text-red-500'>*</span>Last name on the card</label>
                                                     <input
                                                         type="text"
-                                                        placeholder='Last Name (Optional)'
+                                                        placeholder='Last name'
                                                         value={lName}
                                                         id='cardName'
                                                         onChange={(e) =>setLName(e.target.value)}
                                                         className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white w-full"
-                                                        // required
+                                                        required
                                                     />
                                                 </div>
                                             </div>
-                                    
-                                            <div className='my-3'>
-                                                <label className=' text-black font-medium '><span className='text-red-500'>*</span>Phone Number</label> 
-                                                <input
-                                                    type="tel"
-                                                    placeholder='Phone Number'
-                                                    id='cardPhone'
-                                                    value={phoneNo}
-                                                    onChange={(e) => {
-                                                        setPhoneNo(e.target.value);
-                                                    }}
-                                                    className="block w-full text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
-                                                    required
-                                                />
-                                            </div>
+
+                                            <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 my-3'>
+                                                <div>
+                                                    <label className=' text-black font-medium '><span className='text-red-500'>*</span>E-mail</label> 
+                                                    <input
+                                                        type="email"
+                                                        placeholder='example@mail.com'
+                                                        id='cardEmail'
+                                                        value={cardEmail}
+                                                        onChange={(e) => {
+                                                            setCardEmail(e.target.value);
+                                                        }}
+                                                        className="block w-full text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                        required
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label className=' text-black font-medium '>Phone Number</label> 
+                                                    
+                                                    <input
+                                                        type="tel"
+                                                        placeholder='Phone Number'
+                                                        id='cardPhone'
+                                                        value={phoneNo}
+                                                        onChange={(e) => {
+                                                            setPhoneNo(e.target.value);
+                                                        }}
+                                                        className="block w-full text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                        
+                                                    />
+                                                </div>
+                                            </div>                                    
+                                            
                                             <div className='flex justify-start items-center'>
                                                 <button onClick={(e)=>{ e.preventDefault(); setCardAmount(100)}} className='p-2 rounded-xl border border-blue-600 mr-3 hover:text-white hover:bg-blue-600'>100</button>
                                                 <button onClick={(e)=>{e.preventDefault(); setCardAmount(300)}} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>300</button>
@@ -851,7 +872,7 @@ const togglePasswordVisibility = (e) => {
                                                 <button onClick={(e)=> {e.preventDefault(); setCardAmount(1000)}} className='p-2 rounded-xl border border-blue-600 hover:text-white hover:bg-blue-600'>1000</button>
                                             </div>
 
-                                            <div className='grid grid-cols-2 gap-4 my-3'>
+                                            <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 my-3'>
                                                 <div>
                                                     <label className=' text-black font-medium '><span className='text-red-500'>*</span>Currency</label>
                                                     <select 

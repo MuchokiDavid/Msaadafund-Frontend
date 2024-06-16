@@ -78,19 +78,19 @@ function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, han
                 <div className='flex sm:flex-row lg:flex-col gap-3 justify-between lg:justify-start lg:h-32'>
                     <div>
                         <div>
-                            <a href={`/organisations/${orgDetails && orgDetails.orgName}`}><h2 className="text-xl font-semibold hover:underline">{orgDetails && orgDetails.orgName.toUpperCase()}</h2></a>
+                            <a href={`/organisations/${orgDetails && orgDetails.orgName}`}><h2 className="sm:text-base lg:text-xl font-semibold hover:underline">{orgDetails && orgDetails.orgName.toUpperCase()}</h2></a>
                         </div>
-                        <div className="flex my-0.5">
+                        <div className="flex my-0.5 text-sm">
                             {orgDetails && orgDetails.orgAddress}
                         </div> 
                         {orgDetails && orgDetails.website_link && orgDetails && (
-                        <div className="flex text-blue-400">
+                        <div className="flex text-blue-400 text-sm">
                             <a href={orgDetails && orgDetails.website_link}>Official site</a>
                         </div>  
                         )}
                     </div>
 
-                    <div className="mt-4 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
+                    <div className="mt-3 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
                 {subscribe ? (
                     <button type="button" className="inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:text-gray-800 shadow-md hover:bg-gray-50" onClick={handleUnsubscribe}>
                     Unsubscribe

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2';
 import axios from 'axios';
 // import DashFooter from '../dash-components/DashFooter';
@@ -14,7 +14,6 @@ function Paybill({allCampaigns,campaignError,handleWallet}) {
     const [amount, setAmount]= useState(10)
     const [comment, setComment]= useState('')
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const formRef = useRef(null)
     const token= localStorage.getItem('token')
 
 
@@ -151,7 +150,7 @@ const handleSubmit = (e) => {
             <h1 className="font-extrabold text-2xl">Paybill</h1>
             <hr className='mb-2'/>            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-6 border rounded-lg">
-                <form ref={formRef} onSubmit={handleSubmit}>                   
+                <form onSubmit={handleSubmit}>                   
                    
                     {walletDetails? 
                         <div className="stats border">
