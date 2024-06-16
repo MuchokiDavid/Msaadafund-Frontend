@@ -31,7 +31,7 @@ function Help() {
     <div className='mt-4'>
       <div role="tablist" className="tabs tabs-lifted">
     <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Contributions" checked />
-    <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+    <div role="tabpanel" className="tab-content bg-white bg-whiterounded-box p-6">
         <h2 className="text-xl font-semibold mb-4">Contributions</h2>
         <p className="mb-2">Here you can find information about your contributions:</p>
         <ul className="list-disc ml-6 mb-4">
@@ -44,7 +44,7 @@ function Help() {
 
 
     <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Subscriptions" checked />
-<div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+<div role="tabpanel" className="tab-content bg-white bg-whiterounded-box p-6">
     <h2 className="text-xl font-semibold mb-4">Subscriptions</h2>
     <p className="mb-2">In this section, you'll find Organizations you have Subscribed to:</p>
     <ul className="list-disc ml-6 mb-4">
@@ -60,7 +60,7 @@ function Help() {
     
     
   <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Profile" checked />   
-  <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+  <div role="tabpanel" className="tab-content bg-white bg-whiterounded-box p-6">
     <h2 className="text-xl font-semibold mb-4">Profile</h2>
     <p className="mb-2">Here you can find information and manage your profile:</p>
     <ul className="list-disc ml-6 mb-4">
