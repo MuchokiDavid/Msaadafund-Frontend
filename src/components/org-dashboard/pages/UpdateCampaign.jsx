@@ -188,7 +188,7 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
                                 value={campaignData.startDate}
                                 // onChange={handleInputChange}
                                 disabled
-                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                className="bg-slate-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             />
                         </div>
 
@@ -201,7 +201,7 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
                                 type='date'
                                 value={campaignData.endDate}
                                 onChange={handleInputChange}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                                className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                             />
                         </div>
                     </div>
@@ -212,7 +212,7 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
                         </label>
                         <input
                             value={campaignData.category}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                            className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                             disabled
                         />
                     </div>
@@ -228,7 +228,7 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
                             value={campaignData.youtube_link}
                             placeholder="https://youtu.be/JHGUszJv3NI"
                             onChange={handleInputChange}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                            className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             // required
                         />
                     </div>
@@ -242,7 +242,7 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
                             value={campaignData.description}
                             onChange={handleInputChange}
                             rows="4"
-                            className="w-full p-2 border rounded-md focus:outline-none focus:border-blue-500"
+                            className="w-full p-2 border rounded-md bg-white focus:outline-none focus:border-blue-500"
                         />
                     </div>
 

@@ -111,7 +111,7 @@ function OrgProfile() {
   };
 
   return (
-    <div className='px-5'>
+    <div className='px-5 bg-white'>
       <div className="text-sm breadcrumbs ml-2">
         <ul>
           <li><a href='/org/dashboard'>Dashboard</a></li>
@@ -122,7 +122,7 @@ function OrgProfile() {
         <h1 className="mb-3 my-2 text-2xl font-bold leading-tight">Personalize your Organisation</h1>
         <hr className='mb-2 mt-0' />
         <div>
-          <div className="card w-full bg-base-100 p-4 flex-row justify-between border">
+          <div className="card w-full p-4 flex-row justify-between border">
             <div className="avatar">
               <div className="w-24">
                 <figure className='border rounded-full'>
@@ -144,7 +144,7 @@ function OrgProfile() {
               <label onClick={toggleInputVisibility} className="cursor-pointer text-blue-600 underline">Profile Picture</label>
             </div>
           </div>
-          <div className="card w-full bg-base-100 border p-6 mt-4">
+          <div className="card w-full border p-6 mt-4">
             <form onSubmit={handleSubmit} className="space-y-4">
               {error && <p className='text-red-500'>{error}</p>}
               <h2 className='text-base'>Update your profile information</h2>
@@ -235,13 +235,13 @@ function OrgProfile() {
                   name="orgDescription"
                   value={orgData.orgDescription}
                   onChange={handleInputChange}
-                  className="w-full mt-1 p-2 border border-gray-300 rounded h-24"
+                  className="w-full mt-1 p-2 border border-gray-300 bg-white rounded h-24"
                 />
               </div>
               <div>
                 <button
                   type="submit"
-                  className="btn bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
+                  className={`text-white font-semibold py-2 px-4 rounded ${checkFormChanges() ? "bg-blue-600" : "bg-gray-600"}`}
                   disabled={!checkFormChanges()}
                 >
                   {isEditing ? 'Saving...' : 'Save'}
