@@ -79,7 +79,9 @@ function Message() {
                     placeholder="Leave a comment..."
                     required></textarea>
                 </div>
-                <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300">Send message</button>
+                <div>
+                  <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300">Send message</button>
+                </div>
             </form>
         </div>
         <Toaster position='top-center' reverseOrder= {false} />

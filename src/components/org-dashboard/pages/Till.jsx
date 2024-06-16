@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 // import DashFooter from '../dash-components/DashFooter';
@@ -14,7 +14,6 @@ function Till({allCampaigns,campaignError,handleWallet}) {
     const [amount, setAmount]= useState(10)
     const [comment, setComment]= useState('')
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const formRef = useRef(null)
     const token= localStorage.getItem('token')
 
 
@@ -147,7 +146,7 @@ const handleSubmit = (e) => {
             <hr className='mb-2'/>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 border rounded-lg bg-white">
-                <form ref={formRef} onSubmit={handleSubmit}>                    
+                <form onSubmit={handleSubmit}>                    
                     {transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
                     {walletDetails? 
                         <div className="stats border bg-white text-gray-800">
