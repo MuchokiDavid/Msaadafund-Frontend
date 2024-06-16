@@ -222,7 +222,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                     </div>
                     {error && <p className='text-red-700 text-base'>{error}</p>}
                     <div className="flex items-center justify-between mt-4">
-                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-3 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-2 md:text-lg md:px-8">{isSubmitting? "Buying":"Buy" }Buy</button>                        
+                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-3 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-2 md:text-lg md:px-8">{isSubmitting? "Buying":"Buy" }</button>                        
                     </div>
                   </form>
                 </div>
@@ -231,9 +231,11 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                     <div className="p-10 rounded">
                         <h2 className="font-bold text-2xl">Instructions</h2>
                         <ul className="list-disc mt-4 list-inside text-lg">
+                            <li>Ensure you have added your signatories <span className='text-blue-600 font-semibold'><a href='/org/dashboard/transact/signatories'>here</a></span></li>
                             <li>Ensure that the phone number provided is a valid.</li>
                             <li>Double-check the amount you wish to purchase and make sure it is more than sh.5 to avoid errors.</li>
-                            <li>Once you submit the purchase request, the airtime will be transferred to your phone number upon confirmation</li>
+                            <li>Once you submit the purchase request, This will initialize the transaction which requires 3 signatories to be completed</li>
+                            <li>The airtime will be transferred to your phone number upon approval</li>
                             <li>If you encounter any issues during the purchase process, please contact our support team for assistance.</li>
                         </ul>
                     </div>
