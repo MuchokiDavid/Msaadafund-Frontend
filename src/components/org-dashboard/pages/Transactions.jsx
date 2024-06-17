@@ -171,7 +171,7 @@ function Transactions({allCampaigns, campaignError}) {
                     <li><a href='/org/dashboard/transaction'>Transactions</a></li>
                 </ul>
             </div>
-            <h1 className="mb-3 my-2 text-2xl font-bold leading-tight ">My Transactions</h1>
+            <h1 className="mb-3 my-2 text-2xl font-bold leading-tight ">All Transactions</h1>
             <hr className='mb-0' />
             {errors && <p className='text-red-700'>{errors}</p>}
             {allCampaign && allCampaign.length > 0 && !errors ? 
