@@ -175,7 +175,7 @@ const handleSubmit = (e)=>{
         <h1 className="mb-3 my-2 text-2xl font-bold leading-tight">Personalize your Profile</h1>
         <hr className='mb-2 mt-0'/>
 
-        <div className="card w-full bg-base-100 p-4 flex-row justify-between border">
+        <div className="card w-full bg-white p-4 flex-row justify-between border">
             <div className="avatar">
               <div className="w-24">
                 <figure className='border rounded-full'>
@@ -191,7 +191,7 @@ const handleSubmit = (e)=>{
           </div>
         </div> 
 
-        <div className="card w-full bg-base-100 border p-6 mt-4">
+        <div className="card w-full bg-white border p-6 mt-4">
           <form onSubmit={handleSubmit} className="space-y-4">
           {error && <p className="text-red-500 mt-4">{error}</p>}
           <div className="grid grid-cols-2 gap-4 mb-4">
@@ -222,7 +222,7 @@ const handleSubmit = (e)=>{
             type="text"
             name="username" 
             value={user.username} 
-            className="w-full mt-1 p-2 border border-gray-300 rounded"
+            className="w-full mt-1 p-2 border border-gray-300 rounded bg-gray-300"
             disabled
             />
         </div>
@@ -232,7 +232,7 @@ const handleSubmit = (e)=>{
           type='text'
           name='email'
           value={user.email} 
-          className="w-full mt-1 p-2 border border-gray-300 rounded" 
+          className="w-full mt-1 p-2 border border-gray-300 rounded bg-gray-300" 
           disabled       
           />
         </div>
@@ -251,7 +251,7 @@ const handleSubmit = (e)=>{
           <label className='block text-black font-medium'>National ID:</label>
           <input
           type='text'
-          name='national_id'
+          name='nationalId'
           value={user.nationalId}
           onChange={handleInputChange}
           className="w-full mt-1 p-2 border border-gray-300 rounded" 

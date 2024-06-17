@@ -126,7 +126,7 @@ function PendingTras() {
                   <ul>
                     {transaction.approvals && transaction.approvals.map((approval) => (
                       <li key={approval.id}>
-                        {approval.signatory.firstname}: {approval.approval_status ? 'Approved' : 'Pending'}
+                        {approval.signatory_id}: {approval.approval_status ? 'Approved' : 'Pending'}
                       </li>
                     ))}
                   </ul>

@@ -26,7 +26,7 @@ function OrgInactive({organisationDetails}) {
             {/* <div className="mx-2 sm:mx-1 lg:mx-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-2 md:gap-4 sm:max-w-full"> */}
             {expiredCampaigns && expiredCampaigns.map((campaign)=>{
                 return(
-                <div className="card w-auto bg-base-100 rounded-md shadow-lg key={campaign.id}" onClick={handleAlert}>
+                <div className="card w-auto bg-white rounded-md shadow-lg key={campaign.id}" onClick={handleAlert}>
                 <figure className='h-40'><img src={campaign.banner} alt={campaign.campaignName} loading='lazy'/></figure>
                 <div className="card-body">
                   <h2 className="card-title text-gray-700 ">

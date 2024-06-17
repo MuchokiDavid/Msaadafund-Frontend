@@ -1,5 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState} from 'react'
 import Swal from 'sweetalert2';
+import { FaEyeSlash } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 // import DashFooter from '../dash-components/DashFooter';
 
 function Withdraw({ allCampaigns, campaignError, handleWallet }) {
@@ -20,8 +22,9 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
     const [transactionResponse, setTransactionResponse] = useState([])
     const [bank, setBank] = useState('')
     const [popupErrors, setPopupErrors] = useState(null)
+    const [passswordShow,setPasswordShow] = useState("")
 
-    const formRef = useRef(null);
+    // const formRef = useRef(null);
     const phoneRegex = /^254\d{9}$/
 
     useEffect(() => {
@@ -144,6 +147,11 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
                         })
                     setWithdrawForm(false)
                     setWalletDetails()
+                    setLoading(false)
+                    setAmount('')
+                    setAccountNumber('')
+                    setCampaign('')
+                    setWithdrawForm(false)
                 }
                 if (data.error) {
                     setPopupErrors(data.error)
@@ -154,14 +162,14 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
             setLoading(false)
             setErrors('Error in withdrawing funds', error);
         }
-        finally{
-            setLoading(false)
-            formRef.current.reset();
-            setAccountNumber('')
-            setAmount('')
-            setCampaign('')
-            setPin('')
-        }
+    //     finally{
+    //         setLoading(false)
+    //     //     formRef.current.reset();
+    //     //     setAccountNumber('')
+    //     //     setAmount('')
+    //     //     setCampaign('')
+    //     //     setPin('')
+    //     // }
     }
 
 if (!token && !org) {
@@ -179,6 +187,12 @@ if (!token && !org) {
 // console.log(bank)
 // console.log(providers)
 
+const handlePasswordEye = ((e)=>{
+    e.preventDefault()
+    setPasswordShow(!passswordShow)
+
+})
+
 return (
     <div>
         <div className="text-sm breadcrumbs ml-2">
@@ -191,7 +205,7 @@ return (
             <h1 className="font-extrabold text-2xl">Withdraw</h1>
             <hr className='mb-2' />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white border rounded-lg p-6">
-                <form ref={formRef}>                    
+                <form >                    
                     {walletDetails ?
                         <div className="stats border">
                             <div className="stat bg-white text-gray-800">
@@ -256,28 +270,28 @@ return (
                             className="input input-bordered border-gray-300  w-full bg-white"
                             id="amount"
                             placeholder='Above Ksh.10 for M-Pesa, Above Ksh.100 for Bank'
-                            type="number"
+                            type='number' 
                             name="amount"
                             required />
                     </div>
                     {errors && <p className='text-red-700 text-base mt-2'>{errors}</p>}
                     <div className="flex items-center justify-between mt-2">
-                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-2 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-2 md:text-lg md:px-4">{loading? "Withdrawing":"Withdraw"}</button>
+                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-2 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-2 md:text-lg md:px-4">{loading? "Withdrawing...":"Withdraw"}</button>
                     </div>
                 </form>
 
                 <dialog open={withdrawForm} onClose={() => setWithdrawForm(false)} className="modal flex-row justify-center items-center text-center">
-                    <div className="modal-box">
+                    <div className="modal-box bg-white">
                         <h3 className="font-bold text-lg">Please Enter Your Pin</h3>
                         {/* <div className="modal-action"> */}
                         {transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
-                        {popupErrors && <p className='text-red-700'>{popupErrors}</p>}
-                        <form className='flex justify-center items-center' onSubmit={handleWithdraw}>
+                        {popupErrors && <p className='text-red-700 '>{popupErrors}</p>}
+                        <form className='flex justify-center items-center ' onSubmit={handleWithdraw}>
                             <div className='flex-col justify-center items-center pl-4 pr-8'>
-                                <div className='my-4'>
-                                    <label className="font-semibold my-3" htmlFor="password">Amount</label>
+                                <div className='my-4 text-white'>
+                                    <label className="font-semibold my-3" htmlFor="amount">Amount</label>
                                     <input
-                                        className="input input-bordered border-gray-300  w-full placeholder:bg-slate-400 bg-gray-100"
+                                        className="input input-bordered border-gray-300 w-full bg-white custom-disabled-input"
                                         value={amount}
                                         disabled
                                     />
@@ -287,21 +301,22 @@ return (
                                     <input
                                         onChange={(e) => setPin(e.target.value)}
                                         value={pin}
-                                        className="input input-bordered w-full"
+                                        className="input input-bordered w-full bg-white"
                                         id="pin"
-                                        type="password"
+                                        type={ passswordShow ? "password" : "text"}
                                         placeholder='pin'
                                         maxLength={4}
                                         name="pin"
                                         required
                                     />
+                                    <button onClick={handlePasswordEye} className='absolute right-14 mx-1 mt-4   '>{passswordShow ? <FaEyeSlash/> : <FaEye/>}</button>
                                 </div>
                                 <div>
-                                    <button type='submit' className="btn my-4">Withdraw</button>
+                                    <button type='submit' className="rounded-md px-5 py-2 bg-blue-600 text-white my-4">Withdraw</button>
                                 </div>
                             </div>
                         </form>
-                        <button onClick={() => { setWithdrawForm(false); setTransactionResponse(''); formRef.current.reset(); setPopupErrors(''); setCampaign(''); setWalletDetails('')}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        <button onClick={() => { setWithdrawForm(false); setTransactionResponse('');  setPopupErrors(''); setCampaign(''); setWalletDetails('')}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 
                         {/* </div> */}
                     </div>
@@ -311,10 +326,12 @@ return (
                     <div className="bg-white px-6 py-2 rounded">
                         <h2 className="font-bold text-2xl">Instructions</h2>
                         <ul className="list-disc mt-2 list-inside text-base">
+                            <li>Ensure you have added your signatories <span className='text-blue-600 font-semibold'><a href='/org/dashboard/transact/signatories'>here</a></span></li>
                             <li>Register your withdrawal account <span className='text-blue-600 font-semibold'><a href='/org/dashboard/transact/accounts'>here</a></span></li>
                             <li>Minimum withdrwal amount is <span className='text-black font-medium'>sh.10</span> for <span className='text-black font-medium'>M-Pesa</span>  and <span className='text-black font-medium'>sh.100</span> for <span className='text-black font-medium'>Bank</span>.</li>
                             <li>Enter your withdrawal pin to complete the withdrawal process.</li>
-                            <li>Once you submit the withdrawal request, the funds will be transferred upon confirmation.</li>
+                            <li>Once you submit the withdrawal request, This will initialize the transaction which requires 3 signatories to be completed</li>
+                            <li>Once all the all signatories approve, the funds will be transferred.</li>
                             <li>If you encounter any issues during the withdrawal process, please contact our support team for assistance.</li>
                         </ul>
                     </div>

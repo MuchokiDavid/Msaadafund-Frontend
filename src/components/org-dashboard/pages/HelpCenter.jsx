@@ -9,7 +9,7 @@ function HelpCenter() {
 
   return (
     <div>
-        <div className="text-sm breadcrumbs ml-2">
+        <div className="text-sm breadcrumbs ml-2 ">
             <ul>
                 <li><a href='/org/dashboard'>Dashboard</a></li>
                 <li>Help Center</li>
@@ -38,10 +38,10 @@ function HelpCenter() {
             
 
             <div role="tablist" className="tabs tabs-lifted mt-2">
-                <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Campaigns" checked/>
-                <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-                    <div className="collapse collapse-open bg-base-100">
-                        <input type="radio" name="my-accordion-3" defaultChecked /> 
+                <input type="radio" name="my_tabs_2" role="tab" className="tab " aria-label="Campaigns" checked/>
+                <div role="tabpanel" className="tab-content bg-white border-white rounded-box p-6">
+                    <div className="collapse collapse-open bg-white">
+                        <input type="radio" name="my-accordion-3" defaultChecked className=''/> 
                         <div className="collapse-title text-xl font-medium">
                             Creating a Campaign
                         </div>
@@ -55,7 +55,7 @@ function HelpCenter() {
                             </ol>
                         </div>
                     </div>
-                    <div className="collapse collapse-open bg-base-100">
+                    <div className="collapse collapse-open bg-white">
                         <input type="radio" name="my-accordion-3" /> 
                         <div className="collapse-title text-xl font-medium">
                         Viewing Active Campaigns
@@ -70,7 +70,7 @@ function HelpCenter() {
                             </ol>
                         </div>
                     </div>
-                    <div className="collapse collapse-open bg-base-100">
+                    <div className="collapse collapse-open bg-white">
                         <input type="radio" name="my-accordion-3" /> 
                         <div className="collapse-title text-xl font-medium">
                         Viewing Inctive Campaigns
@@ -84,7 +84,7 @@ function HelpCenter() {
                             </ol>
                         </div>
                     </div>
-                    <div className="collapse collapse-open bg-base-100">
+                    <div className="collapse collapse-open bg-white">
                         <input type="radio" name="my-accordion-3" defaultChecked />
                         <div className="collapse-title text-xl font-medium">
                             Campign Transactions
@@ -103,8 +103,8 @@ function HelpCenter() {
                 </div>
 
                 <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Contributions" checked/>
-                <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-                <div className="collapse collapse-open bg-base-100">
+                <div role="tabpanel" className="tab-content bg-white border-white rounded-box p-6">
+                <div className="collapse collapse-open bg-white">
                         <input type="radio" name="my-accordion-3" defaultChecked /> 
                         <div className="collapse-title text-xl font-medium">
                             View Donations
@@ -121,8 +121,8 @@ function HelpCenter() {
                     </div>
                 </div>
                 <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Transact" checked/>
-                <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-                <div className="collapse collapse-open bg-base-100">
+                <div role="tabpanel" className="tab-content bg-white border-white rounded-box p-6">
+                <div className="collapse collapse-open bg-white">
                         <input type="radio" name="my-accordion-3" defaultChecked />
                         <div className="collapse-title text-xl font-medium">
                             Create withdrawal account
@@ -131,16 +131,13 @@ function HelpCenter() {
                             <p>To create accounts where you will be making withdrawals, follow these steps:</p>
                             <ol type="lower-roman" style={{ listStyleType: 'lower-roman' }}>
                                 <li>Navigate to the <a href='/org/dashboard/transact/accounts' className='text-blue-600 font-medium'>Account</a> page.</li>
-                                <li>Creating an account requires security so you will be required to get an OTP to access the create account page</li>
-                                <li>Enter your organisation E-mail to receive the OTP</li>
-                                <li>Enter your OTP to access the create account page</li>
                                 <li>To create a new account, click on the <strong>Create account</strong> button and fill out the form with the necessary information.</li>
-                                <li>Your account, will be listed on the page</li>
-                                <li>To reset your account pin, click on the <strong>Reset pin</strong> button and fill out the form to reset</li>
+                                <li>After successfull submission your account details will be listed on the page</li>
+                                <li>To reset your account pin, click on the <strong>Reset pin</strong> button and fill out the form to reset the pin</li>
                             </ol>
                         </div>
                     </div>
-                    <div className="collapse collapse-open bg-base-100">
+                    <div className="collapse collapse-open bg-white">
                         <input type="radio" name="my-accordion-3" />
                         <div className="collapse-title text-xl font-medium">
                             Buy Airtime
@@ -152,11 +149,12 @@ function HelpCenter() {
                                 <li>To buy airtime, select the campaign you wish to buy airtime from. You will be able to see the campaign available balance</li>
                                 <li> Enter the name and phone number of the recipient you want to buy airtime for.</li>
                                 <li>Enter the amount you want to buy and click on the <strong>Buy</strong> button</li>
-                                <li>To check your transaction, navigate to <a href='/org/dashboard/transact/withdrawals' className='text-blue-600 font-medium'>Withdrawals</a> table</li>
+                                <li>The buy button will initialize the transaction which requires <strong>3</strong> signatories to be completed </li>
+                                <li>If you have not set your signatories, navigate to <a href='/org/dashboard/transact/signatories' className='text-blue-600 font-medium'>Signatories</a> page and add them</li>
                             </ol>
                         </div>
                     </div>
-                    <div className="collapse collapse-open bg-base-100">
+                    <div className="collapse collapse-open bg-white">
                         <input type="radio" name="my-accordion-3" />
                         <div className="collapse-title text-xl font-medium">
                             Withdraw
@@ -170,11 +168,12 @@ function HelpCenter() {
                                 <li>Select your account you wish to withdraw to. Ensure your account is registered. Register your account <a href='/org/dashboard/transact/accounts' className='text-blue-600 font-medium'>here</a></li>
                                 <li>Enter the amount you want to withdraw and click on the <strong>Withdraw</strong> button</li>
                                 <li>A popup will appear where you will enter the account pin and click on the <strong>Withdraw</strong> button </li>
-                                <li>To check your transaction, navigate to <a href='/org/dashboard/transact/withdrawals' className='text-blue-600 font-medium'>Withdrawals</a> table</li>
+                                <li>This will initialize the transaction which requires <strong>3</strong> signatories to be completed </li>
+                                <li>If you have not set your signatories, navigate to <a href='/org/dashboard/transact/signatories' className='text-blue-600 font-medium'>Signatories</a> page and add them</li>
                             </ol>
                         </div>
                     </div>
-                    <div className="collapse collapse-open bg-base-100">
+                    <div className="collapse collapse-open bg-white">
                         <input type="radio" name="my-accordion-3" defaultChecked />
                         <div className="collapse-title text-xl font-medium">
                             Withdrawals
@@ -185,12 +184,12 @@ function HelpCenter() {
                                 <li>Navigate to the <a href='/org/dashboard/transact/withdrawals' className='text-blue-600 font-medium'>Withdrawals</a> page.</li>
                                 <li>You will find a list of all the money out.</li>
                                 <li>You can search for withdrawals, transaction type, amount and the account for the withdrawals.</li>
-                                <li>Some of the transaction type in the table are <strong>Buy airtime</strong>, <strong>Withdraw to M-Pesa</strong> which is the money withdraw to M-Pesa and <strong>Withdraw to Bank</strong> which is the money withdraw to bank</li>
+                                <li>Some of the transaction type in the table are <strong>Buy airtime</strong>, <strong>Withdraw to M-Pesa</strong> which is the money withdrawn to M-Pesa and <strong>Withdraw to Bank</strong> which is the money withdrawn to bank</li>
                                 <li>To download your withdrawals to PDF click on the <strong>PDF icon</strong></li>
                             </ol>
                         </div>
                     </div>
-                    <div className="collapse collapse-open bg-base-100">
+                    <div className="collapse collapse-open bg-white">
                         <input type="radio" name="my-accordion-3" defaultChecked />
                         <div className="collapse-title text-xl font-medium">
                             Transaction status
@@ -209,8 +208,8 @@ function HelpCenter() {
                     </div>
                 </div>
                 <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Profile"/>
-                <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-                    <div className="collapse collapse-open bg-base-100">
+                <div role="tabpanel" className="tab-content bg-white border-white rounded-box p-6">
+                    <div className="collapse collapse-open bg-white">
                         <input type="radio" name="my-accordion-4" />
                         <div className="collapse-title text-xl font-medium">
                             View Profile
@@ -223,7 +222,7 @@ function HelpCenter() {
                             </ol>
                         </div>
                     </div>
-                    <div className="collapse collapse-open bg-base-100">
+                    <div className="collapse collapse-open bg-white">
                         <input type="radio" name="my-accordion-4" />
                         <div className="collapse-title text-xl font-medium">
                             Log out
