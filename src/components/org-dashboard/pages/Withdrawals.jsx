@@ -12,7 +12,7 @@ function Withdrawals() {
 
     //useefect to filter all withdrawals with the search term in the search input
     useEffect(() => {
-        const filteredWithdrawals = allWithdrawals.filter(withdrawal => {
+        const filteredWithdrawals = allWithdrawals && allWithdrawals.filter(withdrawal => {
             return (
                 (withdrawal.running_balance && withdrawal.running_balance.toLowerCase().includes(search.toLowerCase())) ||
                 (withdrawal.org_name && withdrawal.org_name.toLowerCase().includes(search.toLowerCase())) ||
