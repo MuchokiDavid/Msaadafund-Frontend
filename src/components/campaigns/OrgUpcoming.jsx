@@ -30,12 +30,12 @@ function OrgUpcoming({organisationDetails}) {
                     <div className="card w-auto bg-white rounded-md shadow-lg key={campaign.id} h-80">
                         <figure className='h-40'><img src={campaign.banner} alt={campaign.campaignName} loading='lazy'/></figure>
                         <div className="card-body">
-                        <h2 className="card-title text-gray-700 ">
+                        <h2 className="card-title text-gray-700 whitespace-nowrap overflow-hidden ">
                         {campaign.campaignName}
-                            <div className="badge badge-secondary">NEW</div>
                         </h2>
                         {/* <p>{campaign.description.slice(0,30)}...</p> */}
-                        <div className="card-actions justify-end">
+                        <div className="card-actions grid grid-cols-1">
+                            <div className="badge badge-secondary">NEW</div>
                             <div className="badge badge-outline">{campaign.category}</div> 
                         </div>
                         </div>
