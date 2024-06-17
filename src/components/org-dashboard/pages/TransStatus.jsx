@@ -42,7 +42,7 @@ function TransStatus() {
                 <li>Transaction Status</li>
             </ul>
         </div>
-        <h1 className="font-extrabold text-2xl">Transaction Status</h1>
+        <h1 className="font-extrabold text-2xl">Withdrawal Status</h1>
         <hr className='mb-4' />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-6 border rounded-lg">
             <div>
@@ -70,7 +70,7 @@ function TransStatus() {
         </div>
 
         <div className=' bg-white border rounded-lg p-4 mt-2'>
-            <h2 className="font-bold text-xl mt-8">Transaction details</h2>
+            <h2 className="font-bold text-xl mt-8">Details</h2>
             <div className="flow-root rounded-lg border border-gray-100 py-3 shadow-sm mt-4">
                 <dl className="-my-3 divide-y divide-gray-100 text-sm">
                     <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
