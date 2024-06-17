@@ -75,7 +75,7 @@ function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, han
                 </div>
             </div>
             <div className="lg:w-4/5">
-                <div className='flex sm:flex-row lg:flex-col gap-3 justify-between lg:justify-start lg:h-32'>
+                <div className='flex sm:flex-row lg:flex-col gap-3 justify-between lg:h-32'>
                     <div>
                         <div>
                             <a href={`/organisations/${orgDetails && orgDetails.orgName}`}><h2 className="sm:text-base lg:text-xl font-semibold hover:underline">{orgDetails && orgDetails.orgName.toUpperCase()}</h2></a>

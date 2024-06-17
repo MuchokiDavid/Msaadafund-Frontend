@@ -121,7 +121,7 @@ function ActiveCampaigns() {
                 <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
                 </line>
             </svg>
-            <div className="text-4xl font-medium text-gray-500"><img src={logo} alt='Loading...' className='w-1/2 h-1/2'/></div>
+            <p className="text-4xl font-medium text-gray-500"><img src={logo} alt='Loading...' className='w-1/2 h-1/2'/></p>
         </div>
                 )
       }

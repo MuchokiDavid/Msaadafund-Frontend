@@ -20,6 +20,7 @@ import { useAuth } from '../context/usersContext';
 import Card from './Card';
 import Announcement from '../components/reusables/Announcement';
 import Featured from '../components/campaigns/Featured';
+import logo from '../assets/msaadaLogo.png'
 
 function CampainDetails() {
     const { campaignId } = useParams();
@@ -244,7 +245,7 @@ function CampainDetails() {
                     <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
                     </line>
                 </svg>
-            <span className="text-4xl font-medium text-gray-500">Loading</span>
+            <p className="text-4xl font-medium text-gray-500"><img src={logo} alt='Loading...' className='w-1/2 h-1/2'/></p>
         </div>
         )
     }
@@ -648,7 +649,7 @@ const togglePasswordVisibility = (e) => {
                                 <div className="max-w-full mx-auto my-2">
                                     <div className="bg-white rounded-lg overflow-hidden">
                                         <ul className="divide-y divide-gray-200">
-                                            {campaign && shuffledDonations.map((donation, index) => (
+                                            {campaign && completeDonations.map((donation, index) => (
                                                 <li key={index} className="p-3 flex justify-between items-center user-card even:bg-gray-100 odd:bg-white">
                                                     <div className="flex items-center">
                                                         <div className='w-10 h-10 rounded-full odd:bg-green-500 flex justify-center items-center text-white'>{donation.donor_name ? donation.donor_name.charAt(0) : "A"}</div>
