@@ -649,7 +649,7 @@ const togglePasswordVisibility = (e) => {
                                 <div className="max-w-full mx-auto my-2">
                                     <div className="bg-white rounded-lg overflow-hidden">
                                         <ul className="divide-y divide-gray-200">
-                                            {campaign && completeDonations.map((donation, index) => (
+                                            {campaign && shuffledDonations.map((donation, index) => (
                                                 <li key={index} className="p-3 flex justify-between items-center user-card even:bg-gray-100 odd:bg-white">
                                                     <div className="flex items-center">
                                                         <div className='w-10 h-10 rounded-full odd:bg-green-500 flex justify-center items-center text-white'>{donation.donor_name ? donation.donor_name.charAt(0) : "A"}</div>
