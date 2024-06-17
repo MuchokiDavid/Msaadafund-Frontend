@@ -64,7 +64,7 @@ function Approvals() {
                             {transaction.approvals && transaction.approvals.map((approval) => (
                               <li key={approval.id}>
                                 {/* signatory name */}
-                                {approval.signatory_id}: {approval.approval_status ? 'Approved' : 'Pending'} 
+                                {approval && approval.signatory && approval.signatory.firstname}: {approval && approval.approval_status ? 'Approved' : 'Pending'} 
                               </li>
                             ))}
                           </ul>
