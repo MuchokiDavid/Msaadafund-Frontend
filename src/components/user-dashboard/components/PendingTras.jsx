@@ -86,6 +86,8 @@ function PendingTras() {
       });
   };
 
+  console.log(transactions)
+ 
   return (
     <div className="container mx-auto">
       <div className="text-sm breadcrumbs mb-4">
@@ -126,7 +128,7 @@ function PendingTras() {
                   <ul>
                     {transaction.approvals && transaction.approvals.map((approval) => (
                       <li key={approval.id}>
-                        {approval.signatory_id}: {approval.approval_status ? 'Approved' : 'Pending'}
+                        {approval && approval.signatory && approval.signatory.firstname}: {approval && approval.approval_status ? 'Approved' : 'Pending'}
                       </li>
                     ))}
                   </ul>
