@@ -104,7 +104,7 @@ function OrgActive({organisationDetails}) {
                           {/* <div className="badge badge-secondary">NEW</div> */}
                         </h2>
                         {/* <p>{campaign.description.slice(0,25)}...</p> */}
-                        <div className="card-actions justify-start">
+                        <div className="card-actions grid grid-col-1 ">
                           <div className="badge badge-outline">{campaign.category}</div> 
                           <div className="badge badge-outline">{calculateDaysLeft(campaign.endDate)} Days</div>
                         </div>
