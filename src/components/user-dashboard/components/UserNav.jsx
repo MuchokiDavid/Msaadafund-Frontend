@@ -24,7 +24,7 @@ function UserNav({toggleSidebar}) {
         <nav className="flex justify-between items-center py-2 w-full bg-white shadow">
           <div className="flex items-center ml-3">
             <button onClick={toggleSidebar} className="text-white focus:outline-none font-bold">
-                <IoMenu className="w-8 h-8 text-gray-600"/>
+                <IoMenu className="w-8 h-8 text-gray-600  rounded-full hover:bg-gray-100"/>
             </button>
             <a href='/' className="btn btn-ghost">
                 <img className="w-18 h-12" src={logo} alt="logo"/>

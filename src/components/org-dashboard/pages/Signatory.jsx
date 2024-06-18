@@ -95,7 +95,7 @@ function Signatory() {
                     setLoading(false)
                     setEmail('')
                     setRole('')
-                    formRef.current.reset();                  
+                    setShowCreateAccount(false)
                 }
                 if (data.error) {
                     setError(data.error)
