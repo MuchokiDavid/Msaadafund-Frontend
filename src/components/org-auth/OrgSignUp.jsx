@@ -5,7 +5,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
-
+import login_pic from '../../assets/signup.svg'
 
 function OrgSignUp() {
   // const [message, setMessage] = useState("")
@@ -96,20 +96,28 @@ function OrgSignUp() {
   }
 
   return (
-    <div>
+    <>
       <Menus/>
-      <section className="min-h-screen flex justify-center items-center bg-gray-50">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto">
-          {/* <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 ">
-                <img className="w-18 h-12 mr-2" src ={logo} alt="logo"/> 
-            </a> */}
-          <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0  ">
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                Create an Organiser account to start creating fundraisers
+      <div className="h-fit items-center flex justify-center px-3 lg:px-0 mt-1">
+      <div className="max-w-screen-xl bg-white flex justify-center flex-1">
+        <div className="flex-1 text-center hidden md:flex">
+          <div
+            className="w-full bg-contain bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url(${login_pic})`,
+            }}
+          ></div>
+        </div>
+        <div className="lg:w-1/2 p-4">
+          <div className=" flex flex-col items-center p-4">
+            <div className="text-center">
+              <h1 className="text-2xl xl:text-4xl font-extrabold text-blue-900">
+              Organiser Sign up
               </h1>
-              {errors && <p className='text-red-500'>{errors}</p>}
-              {/* {message && <p className='text-lime-500'>{message}</p>} */}
+            </div>
+            <div className="w-full flex-1 mt-8">            
+              <div className="mx-auto max-w-md flex flex-col gap-4 "> 
+              {errors && <p className='text-red-500'>{errors}</p>}             
               <form className="space-y-4 md:space-y-6" action="#" onSubmit={handleSubmit}>
                 <div>
                   {/* <label for="username" className="block mb-2 text-sm font-medium text-gray-900 ">Username</label> */}
@@ -185,13 +193,15 @@ function OrgSignUp() {
                   Already have an account? <a href="/org/login" className="font-medium text-primary-600 hover:underline ">Log in here</a>
                 </p>
               </form>
+              </div>
             </div>
           </div>
         </div>
-        <Toaster toastOptions={{ duration: 2000, position: 'top-center' }} />
-      </section>
-      <Footer/>
+      </div>
+      <Toaster toastOptions={{ duration: 2000, position: 'top-center' }} />
     </div>
+    <Footer/>
+    </>
   )
 }
 

@@ -6,6 +6,7 @@ import Menus from '../reusables/Menus';
 import Footer from '../reusables/Footer';
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
+import login_pic from '../../assets/login.svg'
 
 
 
@@ -43,20 +44,29 @@ function OrgLogIn() {
   return (
     <div>
       <Menus/>
-      <section className="bg-gray-50 min-h-screen flex justify-center items-center">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0 lg:w-1/3">
-            {/* <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 ">
-                <img className="w-18 h-12 mr-2" src ={logo} alt="logo"/> 
-            </a> */}
-            <div className="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 border">
-                <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                    <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
-                        Organiser Log in
-                    </h1>
-                    {loginMessage && <p className='text-red-500'>{loginMessage}</p>} 
-                    <form className="space-y-4 md:space-y-6" action="#" onSubmit={login}>
+      <div className="h-[100vh] items-center flex justify-center px-3 lg:px-0">
+      <div className="max-w-screen-xl bg-white flex justify-center flex-1">
+        <div className="flex-1 text-center hidden md:flex">
+          <div
+            className="w-full bg-contain bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url(${login_pic})`,
+            }}
+          ></div>
+        </div>
+        <div className="lg:w-1/2 p-6 sm:p-12">
+          <div className=" flex flex-col items-center p-4">
+            <div className="text-center">
+              <h1 className="text-2xl xl:text-4xl font-extrabold text-blue-900">
+              Organiser Sign in
+              </h1>
+            </div>
+            <div className="w-full flex-1 mt-8">            
+              <div className="mx-auto max-w-md flex flex-col gap-4 ">     
+              {loginMessage && <p className='text-red-500'>{loginMessage}</p>}         
+                    <form className="space-y-4 md:space-y-6 w-full" action="#" onSubmit={login}>                      
                         <div>
-                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Organisation Email</label>
+                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Email</label>
                             <input type="email" 
                             name="email" 
                             id="email" 
@@ -93,12 +103,12 @@ function OrgLogIn() {
                             Don’t have an account yet? <a href="/org/signup" className="font-medium text-primary-600 hover:underline ">Sign up</a>
                         </p>
                     </form>
-                    {/* <FaEye/>
-                    <FaEyeSlash/> */}
-                </div>
+              </div>
             </div>
+          </div>
         </div>
-      </section>
+      </div>
+    </div>
       <Footer/>
     </div>
   )
