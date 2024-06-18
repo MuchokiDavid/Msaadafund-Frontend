@@ -223,8 +223,8 @@ function getTotalDonations(campaigns) {
               <li><a>{organisationDetails && organisationDetails.orgName}</a></li>
           </ul>
         </div> */}
-
-       <Profile
+      <div className='mt-1'>
+        <Profile
         orgName={organisationDetails && organisationDetails.orgName}
         orgType={organisationDetails && organisationDetails.orgType}
         // orgWebsite={organisationDetails && organisationDetails.orgWebsite}
@@ -237,6 +237,9 @@ function getTotalDonations(campaigns) {
         errors={errors}
         profileImage= {organisationDetails && organisationDetails.profileImage ?`${organisationDetails.profileImage}`: "https://images.unsplash.com/photo-1606327054536-e37e655d4f4a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
       />  
+
+      </div>
+       
       <div className="mx-auto min-h-screen container"> 
      
 
