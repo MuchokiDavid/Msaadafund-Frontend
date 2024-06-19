@@ -26,7 +26,7 @@ import OrganisationDetails from './pages/OrganisationDetails';
 
 function App() {
   return (
- <div className='text-gray-800' >
+ <div className='text-black' >
     <Routes>
     <Route path = '/' element= {<Home/>}/>
     <Route path='/campaigns' element={<Campaigns/>}/>
