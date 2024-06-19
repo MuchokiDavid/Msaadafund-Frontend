@@ -18,7 +18,7 @@ import { FaYoutube } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { MdOutlineCampaign } from "react-icons/md";
-
+import logo from '../../src/assets/msaadaLogo.png'
 
 
 function OrganisationDetails() {
@@ -169,22 +169,22 @@ function OrganisationDetails() {
     return (
       <div aria-label="Loading..." role="status" className="flex justify-center items-center space-x-2  min-h-screen">
         <svg className="h-20 w-20 animate-spin stroke-gray-500" viewBox="0 0 256 256">
-            <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
-            <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="24"></line>
-            <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
-            </line>
-            <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="24"></line>
-            <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
-            </line>
-            <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="24"></line>
-            <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
-            <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
-            </line>
-        </svg>
-        <span className="text-4xl font-medium text-gray-500">Loading...</span>
+              <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+              <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="24"></line>
+              <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              </line>
+              <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="24"></line>
+              <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              </line>
+              <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="24"></line>
+              <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+              <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              </line>
+          </svg>
+        <p className="text-xl font-medium text-gray-500"><img src={logo} alt='Loading...' className='w-1/2 h-1/2'/></p>
     </div>
             )
   }
@@ -249,15 +249,7 @@ function getTotalDonations(campaigns) {
                 <div className="relative rounded">
                   <div
                       className="max-w-2xl rounded-lg text-gray-900">
-                      {/* <div className="rounded-t-lg h-24 overflow-hidden">
-                          <img className="object-cover object-top w-full" src='https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Mountain'/>
-                      </div> */}
-                      {/* <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
-                          <img className="object-cover object-center h-32" src={organisationDetails && organisationDetails.profileImage ?`${organisationDetails.profileImage}`: "https://images.unsplash.com/photo-1606327054536-e37e655d4f4a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} alt='Woman looking front'/>
-                      </div> */}
                       <div className="text-left lg:mt-4 ml-4">
-                          {/* <h2 className="font-semibold">{organisationDetails && organisationDetails.orgName}</h2> */}
-                          {/* <p className="text-gray-500">{organisationDetails && organisationDetails.orgType}</p> */}
                           <div className="text-gray-700 items-left grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-1">
                             <div className='flex'>
                               <svg className="h-5 w-5 text-gray-400 mr-1" fill="currentColor"
@@ -300,33 +292,11 @@ function getTotalDonations(campaigns) {
                          
                          
                       </div>
-                      {/* <ul className="py-4 mt-0 text-gray-700 flex items-left justify-around">
-                          <li className="flex flex-col items-center justify-around">
-                              <FcAdvertising title='Campaign' className='w-5 h-5'/>
-                              <div>{organisationDetails && organisationDetails.campaigns.length} campaigns</div>
-                          </li>
-                          <li className="flex flex-col items-center justify-between">
-                          <LuUserPlus title='Subscriptions' className='w-5 h-5 text-blue-900'/>
-                              <div>{organisationDetails && organisationDetails.subscriptions.length} subscribers</div>
-                          </li>
-                          <li className="flex flex-col items-center justify-around ">
-                              <FaDonate title='Total donations' className='w-4 h-4 text-blue-900'/>
-                              <div>Ksh. {organisationDetails && prettyNumber(getTotalDonations(organisationDetails.campaigns), 'number-short')}</div>
-                          </li>
-                      </ul> */}
                      
                       <div className='px-2 pb-4 mt-3'>
                           {more ?<p>{organisationDetails && organisationDetails.orgDescription}</p> : <p>{organisationDetails && organisationDetails.orgDescription && organisationDetails.orgDescription.slice(0,100)}...</p>}
                           <button className='text-blue-600 hover:underline mt-2' onClick={()=>setMore(!more)}>{more ? "Show less" : "Show more"}</button>
                       </div>
-                      {/* <div className="p-4 border-t mt-0">
-                      {subscribe ? (
-                          <button className='flex-1 rounded block mx-auto bg-blue-600 text-white font-bold hover:bg-blue-800 px-4 py-2' onClick={handleUnsubscribe}>Subscribed</button>
-                        ) : (
-                            <button className='flex-1 rounded block mx-auto bg-blue-600 text-white font-bold hover:bg-blue-800 px-4 py-2' onClick={handleSubscribe}>Subscribe</button>
-                            
-                        )}
-                      </div> */}
                   </div>
                 </div>
               </div>
