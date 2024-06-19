@@ -9,10 +9,13 @@ function OrgActive({organisationDetails}) {
     const [activeTab, setActiveTab] = useState('Active_campaigns');
 
      //Active campaigns
-    const activeCampaigns = organisationDetails.filter(campaign => {
+    const activeCampaigns = organisationDetails && organisationDetails.filter(campaign => {
+      if (campaign.isActive == true){
         const startDate = new Date(campaign.startDate);
         const endDate = new Date(campaign.endDate);
         return (startDate <= currentDate && endDate >= currentDate) || (endDate.toDateString() === currentDate.toDateString());
+      }
+        
     });
 
     const calculateDaysLeft = (endDate) => {
