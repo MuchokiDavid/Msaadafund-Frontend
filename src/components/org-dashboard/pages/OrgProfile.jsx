@@ -98,6 +98,7 @@ function OrgProfile() {
         toast.success(res.data.message);
         setIsInputVisible(false);
         setIsEditing(false);
+        setProfileImage(null)
       })
       .catch((err) => {
         setIsEditing(false);
@@ -107,6 +108,9 @@ function OrgProfile() {
   };
 
   const checkFormChanges = () => {
+    if (profileImage){
+      return true
+    }    
     return JSON.stringify(orgData) !== JSON.stringify(originalData);
   };
 
