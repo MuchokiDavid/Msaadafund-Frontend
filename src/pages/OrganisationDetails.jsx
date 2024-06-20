@@ -148,7 +148,7 @@ function OrganisationDetails() {
             setLoading(false);
             if (response.status === 200) {
               Swal.fire({
-                title: `Unsubscribed from ${organisationDetails.orgName} Updates`,
+                title: `Unsubscribed successifully`,
                 text: `You have successfully unsubscribed from updates from ${organisationDetails.orgName}. If you change your mind, you can always subscribe later. Thank you for your support.`,
                 icon: "success"
               });

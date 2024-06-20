@@ -208,7 +208,7 @@ function CampainDetails() {
                     if (response.status === 200) {
                         // Show success message
                         await Swal.fire({
-                            title: `Unsubscribed from ${campaign.organisation.orgName} Updates`,
+                            title: `Unsubscribed successifully`,
                             text: `You have successfully unsubscribed from updates from ${campaign.organisation.orgName}. If you change your mind, you can always subscribe later. Thank you for your support.`,
                             icon: "success"
                         });
