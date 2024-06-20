@@ -4,6 +4,9 @@ import Footer from '../components/reusables/Footer';
 import Message from '../components/services/Message';
 
 function AboutUs() {
+  const token= localStorage.getItem('token')
+  const org = localStorage.getItem('org')
+
   return (
     <div>
       <Menus />
@@ -71,7 +74,7 @@ function AboutUs() {
                   </p>
                 </div>
                 <div>
-                  <a href='/org/login' class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300">Create campaign</a>
+                  <a href={token && org ? "/org/dashboard": "/org/login"} class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300">Create campaign</a>
                 </div>
               </div>
             </div>
