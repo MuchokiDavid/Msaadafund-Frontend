@@ -30,7 +30,7 @@ function AboutUs() {
         <div className="container mx-auto block">
           <div className="flex flex-col lg:flex-row gap-6">
             <div className="h-full lg:w-2/3">
-              <div className="bg-white border mt-6 p-6 rounded-lg shadow-md">
+              <div className="bg-white border mt-6 p-6 rounded-lg shadow-sm">
                 <div className="mb-8">
                   <h3 className="text-2xl font-semibold text-gray-900">Our Mission</h3>
                   <p className="mt-2 text-lg text-gray-600">
@@ -76,7 +76,7 @@ function AboutUs() {
               </div>
             </div>
             <div className="h-full lg:w-1/3">
-              <div className="mt-6 bg-white border p-6 rounded-lg shadow-md">
+              <div className="mt-6 bg-white border p-6 rounded-lg shadow-sm">
                 <Message />
               </div>
             </div>
