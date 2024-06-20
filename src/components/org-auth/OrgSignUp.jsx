@@ -98,8 +98,8 @@ function OrgSignUp() {
   return (
     <>
       <Menus/>
-      <div className="h-fit items-center flex justify-center px-3 lg:px-0 mt-1">
-      <div className="max-w-screen-xl bg-white flex justify-center flex-1">
+      <div className="h-fit items-center flex justify-center px-3 lg:px-0 mt-1 bg-gray-50">
+      <div className="max-w-screen-xl flex justify-center flex-1">
         <div className="flex-1 text-center hidden md:flex">
           <div
             className="w-full bg-contain bg-center bg-no-repeat"
@@ -109,9 +109,9 @@ function OrgSignUp() {
           ></div>
         </div>
         <div className="lg:w-1/2 p-4">
-          <div className=" flex flex-col items-center p-4">
+          <div className=" flex flex-col items-center p-4 shadow rounded-lg border bg-white">
             <div className="text-center">
-              <h1 className="text-2xl xl:text-4xl font-extrabold text-blue-900">
+              <h1 className="text-xl xl:text-3xl font-extrabold text-blue-900">
               Organiser Sign up
               </h1>
             </div>

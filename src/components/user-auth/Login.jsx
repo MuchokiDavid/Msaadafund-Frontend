@@ -39,9 +39,8 @@ function Login() {
   return (
     <div>
       <Menus/>
-
-      <div className="h-[100vh] items-center flex justify-center px-3 lg:px-0">
-      <div className="max-w-screen-xl bg-white flex justify-center flex-1">
+      <div className="h-[100vh] items-center flex justify-center px-3 lg:px-0 bg-gray-50 mt-1">
+      <div className="max-w-screen-xl flex justify-center flex-1">
         <div className="flex-1 text-center hidden md:flex">
           <div
             className="w-full bg-contain bg-center bg-no-repeat"
@@ -51,9 +50,9 @@ function Login() {
           ></div>
         </div>
         <div className="lg:w-1/2 p-6 sm:p-12">
-          <div className=" flex flex-col items-center p-4">
+          <div className=" flex flex-col items-center p-4 shadow border bg-white rounded-lg">
             <div className="text-center">
-              <h1 className="text-2xl xl:text-4xl font-extrabold text-blue-900">
+              <h1 className="text-xl xl:text-3xl font-extrabold text-blue-900">
               Supporter Sign in
               </h1>
             </div>
@@ -83,15 +82,14 @@ function Login() {
                         <button title='show password' onClick={togglePasswordVisibility} className="absolute inset-y-0 right-2 flex items-center mt-6">{showPassword?<FaEye/>:<FaEyeSlash/>}</button>
                     </div>
                     <div className="flex items-center justify-between">
-                        <div className="flex items-start">
+                        {/* <div className="flex items-start">
                             <div className="flex items-center h-5">
                               <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300" required=""/>
                             </div>
                             <div className="ml-3 text-sm">
-                              <label for="remember" className="text-gray-500">Remember me</label>
-                            </div>
-                            
-                        </div>
+                              <label for="remember" className="text-gray-500">Remember</label>
+                            </div>                            
+                        </div> */}
                         <a href="/user/reset" className="text-sm font-medium text-primary-600 hover:underline">Forgot password?</a>
                     </div>
                     <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
