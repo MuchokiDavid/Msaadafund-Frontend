@@ -27,7 +27,7 @@ function Register() {
     e.preventDefault();
     // const formData= 
     if (!userPassword.match(passwordPattern)) {
-      setErrors('Please ensure your password has atleast one letter, one digit, and a total length of at least 8 characters')
+      setErrors('Your password should have  atleast an uppercase letter, one special character, one digit, and a total length of at least 8 characters')
     }
     else if (!phoneNumber.match(phonePattern)) {
       setErrors('Invalid Phone Number')

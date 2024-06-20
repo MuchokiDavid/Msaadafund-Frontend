@@ -38,7 +38,7 @@ function OrgSignUp() {
     e.preventDefault();
     // const formData= 
     if (!userPassword.match(passwordPattern)) {
-      setErrors('Your password should have atleast one letter, one special character, one digit, and a total length of at least 8 characters')
+      setErrors('Your password should have  atleast an uppercase letter, one special character, one digit, and a total length of at least 8 characters')
     }
     else if (!phoneNumber.match(phonePattern)) {
       setErrors('Invalid Phone Number')

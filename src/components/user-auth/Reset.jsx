@@ -4,6 +4,9 @@ import toast, { Toaster } from 'react-hot-toast'
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import Menus from '../reusables/Menus';
+import forgot_password from '../../assets/Forgot password-pana.png';
+import Footer from '../reusables/Footer';
+
 
 function Reset() {
 const [email, setEmail] = useState('');
@@ -87,12 +90,18 @@ const togglePasswordVisibility=(e)=>{
     <div>
       <Menus/>
       <section className="bg-gray-50">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-screen lg:py-0">
-          <a href="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900">
-            {/* <img className="w-18 h-12 mr-2" src={logo} alt="logo" /> */}
-          </a>
-          <div className="w-full p-6 bg-white rounded-lg shadow border md:mt-0 sm:max-w-md sm:p-8">
-            <div className="flex justify-between mb-4">
+        <div className="flex flex-col md:flex-row items-center justify-center px-6 py-6 mx-auto">
+          <div className="md:w-1/2 flex justify-center md:justify-end">
+            <img
+              className="w-3/4 md:w-full lg:w-3/4 bg-contain bg-center bg-no-repeat"
+              src={forgot_password}
+              alt='forgot password image'
+              loading='lazy'
+            />
+          </div>
+          <div className="md:w-1/2 flex flex-col items-center justify-center px-6 py-6 mx-auto">
+          <div className="w-full p-6 bg-white rounded-lg shadow md:mt-0 sm:max-w-md sm:p-8 border">
+          <div className="flex justify-between mb-4">
               <button onClick={handlePrevStep}>
                 {step === 1 ? 'Back to Login' : 'Previous'}
               </button>
@@ -114,12 +123,12 @@ const togglePasswordVisibility=(e)=>{
               ) : (
                 <div>
                   <div>
-                  <label htmlFor="otp" className="block mb-2 text-sm font-medium text-gray-900">OTP</label>
+                  <label htmlFor="otp" className="block my-2 text-sm font-medium text-gray-900">OTP</label>
                   <input type="text" name="otp" id="otp" value={otp} onChange={(e) => setOtp(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter OTP" />
                   </div>
 
                   <div className='relative'>
-                  <label htmlFor="new-password" className="block mb-2 text-sm font-medium text-gray-900">New Password</label>
+                  <label htmlFor="new-password" className="block my-2 text-sm font-medium text-gray-900">New Password</label>
                   <input type={showPassword ? "text" : "password" }
                     name="new-password" id="new-password" 
                     value={newPassword} 
@@ -132,7 +141,7 @@ const togglePasswordVisibility=(e)=>{
                   </div>
 
                   <div className='relative'>
-                  <label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-gray-900">Confirm Password</label>
+                  <label htmlFor="confirm-password" className="block my-2 text-sm font-medium text-gray-900">Confirm Password</label>
                   <input type={password ? "text" : "password" }
                   name="confirm-password" 
                   id="confirm-password" 
@@ -151,9 +160,11 @@ const togglePasswordVisibility=(e)=>{
             </form>
             <p className="mt-2 text-sm text-center text-gray-500">{message}</p>
           </div>
+          </div>
         </div>
         <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
       </section>
+      <Footer/>
     </div>
   );
 }
