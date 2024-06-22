@@ -21,6 +21,7 @@ import ThankYou from './components/reusables/ThankYou';
 import Organisation from './pages/Organisation';
 import NotFound from './components/reusables/NotFound';
 import OrganisationDetails from './pages/OrganisationDetails';
+import Faq from './components/reusables/Faq';
 
 
 
@@ -39,6 +40,7 @@ function App() {
     <Route path = '/org/signup' element = {<OrgSignUp/>}/>
     <Route path = '/contact' element = {<ContactUs/>}/>
     <Route path = '/about' element = {<AboutUs/>}/>
+    <Route path = '/questions' element = {<Faq/>}/>
     <Route path = '/careers' element = {<Careers/>}/>
     <Route path = '/user/dashboard/*' element = {<UserLayout/>}/>
     <Route path = '/org/dashboard/*' element = {<OrgLayout/>}/>
