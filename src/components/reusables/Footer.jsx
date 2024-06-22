@@ -27,6 +27,7 @@ function Footer() {
                 <a href='/about' className="link link-hover">About us</a>
                 <a href='/contact' className="link link-hover">Contact us</a>
                 <a href='/careers' className="link link-hover">Careers</a>
+                <a href='/questions' className='link link-hover'>FAQ's</a>
 
             </nav> 
         
