@@ -27,7 +27,7 @@ import Faq from './components/reusables/Faq';
 
 function App() {
   return (
- <div className='text-black' >
+ <div className='text-black text-sm lg:text-md' >
     <Routes>
     <Route path = '/' element= {<Home/>}/>
     <Route path='/campaigns' element={<Campaigns/>}/>

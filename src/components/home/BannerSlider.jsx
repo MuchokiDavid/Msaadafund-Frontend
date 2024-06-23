@@ -79,10 +79,10 @@ function BannerSlider() {
                     </button>
                   </a>
                 </div>
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2 ">
+                {/* <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2 ">
                   <button onClick={handlePrev} className="btn btn-circle ">❮</button>
                   <button onClick={handleNext} className="btn btn-circle">❯</button>
-                </div>
+                </div> */}
               </div>
             </SplideSlide>
           ))}
