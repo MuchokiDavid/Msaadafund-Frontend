@@ -46,7 +46,7 @@ function Organisation() {
             {paginateOrganisations.map((org)=>{
                 return(
                 <Link to={`/organisations/${org.orgName}`} key={org.id}>
-                    <div className="group relative block mt-8 sm:mt-10 lg:mt-12 bg-black">
+                    <div className="group relative block mt-8 sm:mt-10 lg:mt-12 bg-black rounded-xl overflow-hidden">
                         <img
                             alt="org logo"
                             src={org && org.profileImage ? `${org.profileImage}` : "https://images.unsplash.com/photo-1606327054536-e37e655d4f4a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
@@ -54,7 +54,7 @@ function Organisation() {
                             loading='lazy'
                         />
 
-                        <div className="relative p-4 sm:p-6 lg:p-8 h-[400px] overflow-hidden ">
+                        <div className="relative p-4 sm:p-6 lg:p-8 h-[350px]">
                             <p className="text-md font-medium uppercase tracking-widest text-blue-500">Organisation</p>
 
                             <p className="text-xl font-bold text-white sm:text-2xl">{org.orgName}</p>
