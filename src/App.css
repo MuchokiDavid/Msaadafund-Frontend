@@ -28,7 +28,7 @@
 }
 @media (min-width: 769px) {
   .campaignBannerCard{
-    max-height: 500px;
+    height: 500px;
   }
 }
 @media (max-width: 768px) {

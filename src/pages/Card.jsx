@@ -46,7 +46,7 @@ function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, han
                             </div>
                         </div>
                         
-                        <div className="grid grid-cols-1 gap-3 px-2 mt-6">  
+                        <div className="grid grid-cols-1 gap-3 px-2 my-3">  
                             <div>
                                 <button
                                 onClick={()=> setButtonClicked(true)}

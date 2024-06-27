@@ -74,7 +74,7 @@ function Organisation() {
         </div>
         </div>
 
-        <div className="flex justify-center mb-4 join grid-cols-2">
+        <div className="flex justify-center my-4 join grid-cols-2">
             {/* Previous page button */}
             <button className="btn btn-outline join-item btn-sm" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
                 Previous
