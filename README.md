@@ -11,8 +11,8 @@ Msaada Mshinani aims to address challenges such as lack of access to essential r
 - **User Authentication**: Allow users to sign up, log in, and manage their accounts securely.
 - **Donation Forms**: Enable users to make one-time or recurring donations to support specific causes or charitable organizations.
 - **Charity Listings**: Provide information about registered charities, their missions, and impact stories to inspire donors.
-- **Payment Integration**: Integrate with payment gateways (e.g., PayPal, Stripe) to process donations securely.
-- **Dashboard**: Offer a user-friendly dashboard where donors can track their donation history, manage recurring donations, and view impact reports.
+- **Payment Integration**: Integrate with payment gateways (e.g., M-Pesa, Credit card, Cash App, Bitcoin) to process donations securely.
+- **Dashboard**: Offer a user-friendly dashboard where donors and organisers can track their donation history, manage recurring donations, and view impact reports.
 - **Responsive Design**: Ensure a seamless user experience across devices, including desktops, tablets, and mobile phones.
 
 ## Getting Started
