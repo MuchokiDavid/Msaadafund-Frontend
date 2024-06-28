@@ -22,8 +22,7 @@ import Organisation from './pages/Organisation';
 import NotFound from './components/reusables/NotFound';
 import OrganisationDetails from './pages/OrganisationDetails';
 import Faq from './components/reusables/Faq';
-
-
+import Pricing from './pages/Pricing';
 
 function App() {
   return (
@@ -39,8 +38,9 @@ function App() {
     <Route path = '/org/login' element = {<OrgLogIn/>}/>
     <Route path = '/org/signup' element = {<OrgSignUp/>}/>
     <Route path = '/contact' element = {<ContactUs/>}/>
+    <Route path = '/pricing' element = {<Pricing/>}/>
     <Route path = '/about' element = {<AboutUs/>}/>
-    <Route path = '/questions' element = {<Faq/>}/>
+    <Route path = '/faq' element = {<Faq/>}/>
     <Route path = '/careers' element = {<Careers/>}/>
     <Route path = '/user/dashboard/*' element = {<UserLayout/>}/>
     <Route path = '/org/dashboard/*' element = {<OrgLayout/>}/>
@@ -52,7 +52,6 @@ function App() {
     <Route path={"/organisations/:orgName" } element={<OrganisationDetails/>} />
     {/* not found route */}
     <Route path='*' element = {<NotFound/>}/>
-
     </Routes>
     </div>
      );

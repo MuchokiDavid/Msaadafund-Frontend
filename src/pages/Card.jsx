@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import profilePic from '../assets/orgProfile.png'
-// import { FaGlobe } from "react-icons/fa";
-// import { TbWorldWww } from "react-icons/tb";
-
-
 
 function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, handleUnsubscribe, shareModal}) {
     const percentage= (raisedAmount / budget)*100
@@ -68,7 +64,7 @@ function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, han
                 </div>
             </div>
         </div>
-        <div className='mt-2 flex flex-col-1 lg:flex-row-1 gap-3 p-4 border bg-white'>            
+        <div className='mt-4 flex flex-col-1 lg:flex-row-1 gap-3 p-4 border bg-white rounded-lg'>            
             <div className="lg:w-1/5 ">
                 <div className="mr-2">
                     <img src={orgDetails && orgDetails.profileImage? orgDetails.profileImage: profilePic } alt={orgDetails && orgDetails.orgName} className="h-16 w-16 rounded-full" />
@@ -84,13 +80,13 @@ function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, han
                             {orgDetails && orgDetails.orgAddress}
                         </div> 
                         {orgDetails && orgDetails.website_link && orgDetails && (
-                        <div className="flex text-blue-400 text-sm">
+                        <div className="flex text-blue-500 text-sm">
                             <a href={orgDetails && orgDetails.website_link}>Official site</a>
                         </div>  
                         )}
                     </div>
 
-                    <div className="mt-3 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
+                    <div className="flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
                 {subscribe ? (
                     <button type="button" className="inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:text-gray-800 shadow-md hover:bg-gray-50" onClick={handleUnsubscribe}>
                     Unsubscribe

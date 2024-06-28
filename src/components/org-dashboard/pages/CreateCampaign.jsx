@@ -1,7 +1,8 @@
-import React, { useState , useRef} from 'react';
+import React, { useState , useRef, useEffect} from 'react';
 import axios from 'axios';
 import {toast,Toaster} from 'react-hot-toast'
-
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 function CreateCampaign({getValidYoutubeVideoId}) {
     const [banner, setBanner] = useState(null);
@@ -18,7 +19,17 @@ function CreateCampaign({getValidYoutubeVideoId}) {
     // const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/(?:watch\?v=)?([a-zA-Z0-9_-]+)$/;
     const regexPattern = /^(?:https?:\/\/)?(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\\w\-\\s])([\w\-]{11})(?=[^\\w\-]|$)(?![?=&+%\\w]*(?:['"][^<>]*>|<\/a>))[?=&+%\\w]*/i;
     const formRef = useRef(null);
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
 
+    // Listen to window resize events
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange);
+        // Call it initially
+        handleWindowSizeChange();
+        return () => {
+        window.removeEventListener('resize', handleWindowSizeChange);
+        };
+    }, []);
 
     const handleFileUpload = (e) => {
         const file = e.target.files[0];
@@ -31,6 +42,10 @@ function CreateCampaign({getValidYoutubeVideoId}) {
             setError('Please upload a valid image file (JPEG, PNG, GIF)');
         }
     };
+
+    const handleWindowSizeChange = () => {
+        setIsSmallScreen(window.innerWidth <= 768); // Adjust the width threshold as needed
+      };
 
     const handleUpload = (e) => {
         e.preventDefault();
@@ -211,7 +226,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                         />
                     </div>
 
-                    <div className="mb-4">
+                    <div className="my-4">
                         <label htmlFor="targetAmount" className="block mb-2 text-sm font-semibold text-slate-600 ">
                             Video link
                         </label>
@@ -225,23 +240,8 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                             // required
                         />
                     </div>
-                    
-                    <div className="mb-4">
-                        <label htmlFor="description" className="block mb-2 text-sm font-semibold text-slate-600 ">
-                        <span className='text-red-500'>*</span> Description
-                        </label>
-                        <textarea
-                            id="description"
-                            value={description}
-                            placeholder="Describe the Campaign "
-                            onChange={(e) => setDescription(e.target.value)}
-                            className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                            rows="3"
-                            required
-                        />
-                    </div>
 
-                    <div className="mt-2 flex justify-center border border-dashed border-gray-300 px-6 py-10 bg-white text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full p-2.5">
+                    <div className="mt-2 flex justify-center border border-dashed border-gray-300 px-6 py-2 bg-white text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full p-2.5">
                         <div className="text-center">
                             <div className="mt-4 flex text-sm leading-6 ">
                             <span className="mr-2">{banner ? banner.name : ''}</span>
@@ -264,13 +264,45 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                             <p className="text-xs leading-5 text-gray-800">PNG, JPG,JPEG up to 2MB</p>
                         </div>
                     </div>
-                    {error && <p className="text-red-500 mb-2">{error}</p>}
+                    
+                    <div className="mb-4">
+                        <label htmlFor="description" className="block mb-2 text-sm font-semibold text-slate-600 ">
+                        <span className='text-red-500'>*</span> Description
+                        </label>
+                        <div>
+                            <ReactQuill
+                                style={{ width: '100%', height: 200 }}
+                                value={description}
+                                onChange={(newContent) => setDescription(newContent)}
+                                modules={{
+                                toolbar: [
+                                    [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+                                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                                    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                                    [{ 'color': [] }, { 'background': [] }],
+                                    [{ 'align': [] }],
+                                    ['clean']
+                                ],
+                                }}
+                            />
+                        </div><br />
+                    </div>
+                    {isSmallScreen ? (
+                        <>
+                            <br /><br />
+                        </>
+                        ) : (
+                        <br />
+                    )}
+
+                    
+                    {error && <p className="text-red-500 my-2">{error}</p>}
                     <div className='mt-4'>
                         <button
                             type="submit"
-                            className="bg-primary-600 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            className="btn bg-primary-600 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         >
-                            {loading?'Loading...': 'Create'}
+                            {loading?'Creating...': 'Create'}
                         </button>
                     </div>
                 </form>

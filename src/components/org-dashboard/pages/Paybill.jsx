@@ -240,14 +240,13 @@ const handleSubmit = (e) => {
                 </form>
 
                 <aside className="">
-                    <div className="p-10 rounded">
+                    <div className="p-4 rounded">
                         <h2 className="font-bold text-2xl">Instructions</h2>
-                        <ul className="list-disc mt-4 list-inside text-lg">
+                        <ul className="list-disc mt-3 list-inside text-lg">
                             <li>Ensure you have added your signatories <span className='text-blue-600 font-semibold'><a href='/org/dashboard/transact/signatories'>here</a></span></li>
                             <li>Ensure that the paybill and account number provided are valid.</li>
                             <li>Double-check the amount you wish to pay and make sure it is more than 10 to avoid errors.</li>
                             <li>Once you submit the payment request, This will initialize the transaction which requires 3 signatories to be completed</li>
-                            <li>Once all the all signatories approve, the funds will be transferred to the paybill provided.</li>
                             <li>If you encounter any issues during the purchase process, please contact our support team for assistance.</li>
                         </ul>
                     </div>

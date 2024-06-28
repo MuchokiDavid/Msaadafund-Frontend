@@ -47,11 +47,11 @@ function Faq() {
     {
       title: 'Is there a fee for transactions?',
       content: [
-        'IntaSend charges a 3.5% transaction fee.Additionally, there is a 4% platform fee on the total amount raised.The remaining funds go directly to the organization.',
-        'For example, if a campain raises a total of 100,000 Kenyan shillings:',
-        '- 3,500 shillings will be deducted as the transaction fee',
-        '- 4,000 shillings will be deducted as the platform fee',
-        '- 92,500 shillings will go to the organization.'
+        'IntaSend charges a 3% for M-Pesa, 3.5% for local cards, and 4.5% for intenational cards, Bitcoin and Cash App transactions. The maximum transaction fee is Sh 400. Additionally, there is a 4.5% platform fee on the total amount raised.The remaining funds go directly to the organization.',
+        'For example, if a campaign raises a total of 100,000 Kenyan shillings:',
+        '- 400 shillings will be deducted as the transaction fee',
+        '- 4,500 shillings will be deducted as the platform fee',
+        '- 93,600 shillings will go to the organization.'
       ],
     },
     {
@@ -72,7 +72,7 @@ function Faq() {
   return (
     <div>
       <Menus />
-      <section id='termBanner' className="relative mt-4 text-white mb-2 ">
+      <section id='termBanner' className="relative mt-0.5 text-white mb-2 ">
         <div className="relative mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
             <h1 className="text-3xl  font-extrabold sm:text-5xl">Frequently Asked Questions</h1>
