@@ -579,7 +579,7 @@ const togglePasswordVisibility = (e) => {
                         </div>
                         
 
-                        <div className='border bg-white py-4 px-2 lg:h-40 rounded-lg lg:-mt-4'>
+                        <div className='border bg-white py-4 px-2 lg:h-40 rounded-lg lg:mt-3'>
                             <div className="flex flex-col lg:flex-row gap-3 ">
                                 <div className="h-full">
                                     <div>
@@ -615,7 +615,7 @@ const togglePasswordVisibility = (e) => {
                             <div>
                                 <h1 className='text-xl my-2 font-semibold w-full'>Story</h1>
                                 {isLargeScreen ?
-                                    <p className='text-lg text-gray-600'>{campaign.description}</p>
+                                    <div className="text-lg text-gray-600" dangerouslySetInnerHTML={{ __html: campaign.description }}></div>
                                     :
                                     <div>
                                         {more ?<p>{campaign && campaign.description}</p> : <p>{campaign && campaign.description && campaign.description.slice(0,250)}...</p>}
@@ -655,7 +655,7 @@ const togglePasswordVisibility = (e) => {
                     </div>
                 </div>
 
-                <div className='container mt-2 bg-slate-50 border p-4 rounded-lg' id='donationTabs'>
+                <div className='container mt-2 bg-gray-50 border p-4 rounded-lg' id='donationTabs'>
                     <div className="sm:hidden">
                     <label htmlFor="Tab" className="sr-only">Tab</label>
                     <select
