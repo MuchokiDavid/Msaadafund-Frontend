@@ -21,7 +21,8 @@ function Careers() {
               </div>      
         </div>
       <div className='container'>        
-        <p className="mt-4 max-w-screen-md mx-auto text-gray-600 leading-loose text-justify text-xl" >No opening at the moment. Keep watch</p>
+        <p className="mt-4 max-w-screen-md mx-auto text-gray-600 leading-loose text-justify text-xl" >    Currently, there are no available openings. Please check back regularly for future opportunities.
+        </p>
       </div>
       <Footer/>
     </div>
