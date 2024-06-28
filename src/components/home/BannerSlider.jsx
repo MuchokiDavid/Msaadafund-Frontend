@@ -69,7 +69,7 @@ function BannerSlider() {
             <SplideSlide key={index}>
               <div className="carousel-item relative w-full h-screen">
                 <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-                <img src={image.url} className="w-full h-full object-cover" alt={`slide-${index}`} />
+                <img src={image.url} className="w-full h-full object-cover" alt={`slide-${index} loading="lazy"`} />
                 <div className="absolute inset-0 flex flex-col items-center justify-center align-middle px-4">
                   <h1 className="text-2xl lg:text-4xl text-white font-bold text-center">{image.heading}</h1>
                   <p className="text-lg lg:text-xl text-white mt-4 text-center">{image.text}</p>

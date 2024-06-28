@@ -44,6 +44,7 @@ function UpcomingCampaigns({allCampaigns}) {
                       alt="banner"
                       src= {campaign.banner}
                       className="h-56 w-full rounded-t-md object-cover"
+                      loading="lazy"
                     />
   
                     <div className="mt-2 px-2 pb-4">

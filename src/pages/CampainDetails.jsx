@@ -552,7 +552,7 @@ const togglePasswordVisibility = (e) => {
                             {/* banner */}                            
                             <Slider {...settings}>
                                 <div>
-                                    <img className="campaignBanner w-full" src={campaign.banner} alt={campaign.campaignName} /> 
+                                    <img className="campaignBanner w-full" src={campaign.banner} alt={campaign.campaignName} loading="lazy"/> 
                                 </div>
                                 <div>
                                     {campaign.youtube_link ? (
@@ -571,6 +571,7 @@ const togglePasswordVisibility = (e) => {
                                             src={campaign.banner}
                                             alt={campaign.campaignName}
                                             className="campaignBanner w-full h-auto"
+                                            loading='lazy'
                                         />
                                     )}
                                 </div>
