@@ -119,8 +119,8 @@ function Policy() {
                     about
                     third parties which we think you may find interesting if you tell us that you wish this to happen.</li>
                 <li>You may request details of personal information which we hold about you. If you would like a copy of the
-                    information held on you, please write to [Your Company Name, Address, City, State, Zip Code] or email
-                    [email protected]</li>
+                    information held on you, please write to <a className='text-blue-600 hover:underline' href="mailto:contact@msaada.com">msaadacontact@gmail.com</a>.
+                </li>
                 <li>If you believe that any information we are holding on you is incorrect or incomplete, please write to or
                     email
                     us as soon as possible at the above address. We will promptly correct any information found to be
@@ -134,7 +134,7 @@ function Policy() {
                 We may update this Privacy Policy from time to time. Any changes will be posted on this page. We encourage you to review this Privacy Policy periodically for changes.
             </p>
 
-            <h3 className="text-2xl font-bold mb-2">8. Contact Us</h3>
+            <h3 className="text-2xl font-bold mb-2">Contact Us</h3>
             <p className="mb-4">If you have any questions or concerns about these terms and conditions, please contact us at <a className='text-blue-600 hover:underline' href="mailto:contact@msaada.com">msaadacontact@gmail.com</a>.</p>
             
             <p className="mb-4 text-sm">Last Updated: May 3, 2024</p>
