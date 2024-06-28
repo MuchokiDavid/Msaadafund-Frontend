@@ -184,7 +184,7 @@ let totalAmount=(allDonations && getTotalAmount(allDonations))
               Join us in creating a better tomorrow, one campaign at a time.
               </p>
                 <a
-                href="/campaign"
+                href="/campaigns"
                 className="mt-8 inline-block rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-gray-900 focus:outline-none focus:ring focus:ring-blue-400"
               >
                 Get Started Today
