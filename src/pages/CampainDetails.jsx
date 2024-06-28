@@ -579,7 +579,7 @@ const togglePasswordVisibility = (e) => {
                         </div>
                         
 
-                        <div className='my-1 border bg-white py-4 px-2 lg:h-40'>
+                        <div className='border bg-white py-4 px-2 lg:h-40 rounded-lg lg:-mt-4'>
                             <div className="flex flex-col lg:flex-row gap-3 ">
                                 <div className="h-full">
                                     <div>
@@ -608,11 +608,11 @@ const togglePasswordVisibility = (e) => {
                     </div>
                 </div>
                 
-                <div className="flex flex-col lg:flex-row gap-5 ">
+                <div className="flex flex-col lg:flex-row gap-2">
                     <div className="h-full lg:w-2/3 ">
                         {/* <hr/> */}
-                        <div className="px-2 py-4 border bg-white mt-2 lg:h-96 w-full">                                
-                            <div className='my-2'>
+                        <div className="px-2 py-4 border bg-white mt-2 lg:h-96 w-full rounded-lg">                                
+                            <div>
                                 <h1 className='text-xl my-2 font-semibold w-full'>Story</h1>
                                 {isLargeScreen ?
                                     <p className='text-lg text-gray-600'>{campaign.description}</p>
@@ -626,7 +626,7 @@ const togglePasswordVisibility = (e) => {
                             </div>   
                         </div>
                     </div>
-                    <div className="lg:w-1/3 h-full border bg-white mt-2">
+                    <div className="lg:w-1/3 h-full border bg-white mt-2 rounded-lg">
                         <hr/>
                         <div className="px-2 pt-2">
                             <div className='my-1 flex justify-between px-2'>
@@ -655,7 +655,7 @@ const togglePasswordVisibility = (e) => {
                     </div>
                 </div>
 
-                <div className='container mt-2 bg-white border p-4' id='donationTabs'>
+                <div className='container mt-2 bg-slate-50 border p-4 rounded-lg' id='donationTabs'>
                     <div className="sm:hidden">
                     <label htmlFor="Tab" className="sr-only">Tab</label>
                     <select
