@@ -20,7 +20,6 @@ import { useAuth } from '../context/usersContext';
 import Card from './Card';
 import Announcement from '../components/reusables/Announcement';
 import Featured from '../components/campaigns/Featured';
-import logo from '../assets/msaadaLogo.png'
 
 function CampainDetails() {
     const { campaignId } = useParams();
