@@ -16,17 +16,17 @@ function BannerSlider() {
     pagination: false, // Disable pagination
   };
 
-    const handlePrev = () => {
-    if (splideRef.current) {
-      splideRef.current.splide.go('<');
-    }
-  };
+  //   const handlePrev = () => {
+  //   if (splideRef.current) {
+  //     splideRef.current.splide.go('<');
+  //   }
+  // };
 
-  const handleNext = () => {
-    if (splideRef.current) {
-      splideRef.current.splide.go('>');
-    }
-  };
+  // const handleNext = () => {
+  //   if (splideRef.current) {
+  //     splideRef.current.splide.go('>');
+  //   }
+  // };
 
 
 
@@ -36,7 +36,7 @@ function BannerSlider() {
       heading: "Welcome to Our Community of Changemakers!",
       text: "Join us in our mission to create a better world for all. Together, we can make a positive impact on the lives of those in need. Explore our platform and discover how you can contribute to meaningful causes today.",
       buttonText: "Get started",
-      buttonLink: "/campaign"
+      buttonLink: "/campaigns"
     },
     {
       url: "https://plus.unsplash.com/premium_photo-1683140538884-07fb31428ca6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZG9uYXRlfGVufDB8fDB8fHww",
@@ -50,7 +50,7 @@ function BannerSlider() {
       heading: "Support Meaningful Causes!",
       text: "Join hands with charitable organizations and make a positive impact in the world. Every donation counts.",
       buttonText: "Explore",
-      buttonLink: "/campaign"
+      buttonLink: "/campaigns"
     },
     {
       url: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
