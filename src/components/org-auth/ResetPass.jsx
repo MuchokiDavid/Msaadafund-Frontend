@@ -130,12 +130,12 @@ function ResetPass() {
                     </div>
                     <div className='relative mt-2'>
                       <label htmlFor="new-password" className="block mb-2 text-sm font-medium text-gray-900">New Password</label>
-                      <input type={showPassword ? "text" : "password"} name="new-password" id="new-password" value={newOrgPassword} onChange={(e) => setNewOrgPassword(e.target.value)} pattern={passwordPattern} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="••••••••" required />
+                      <input type={showPassword ? "text" : "password"} name="new-password" id="new-password" value={newOrgPassword} onChange={(e) => setNewOrgPassword(e.target.value)} pattern={passwordPattern} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Password" required />
                       <button title='show password' onClick={togglePassword} className="absolute inset-y-0 right-2 flex items-center mt-6 ">{showPassword ? <FaEye /> : <FaEyeSlash />}</button>
                     </div>
                     <div className='relative mt-2'>
                       <label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-gray-900">Confirm Password</label>
-                      <input type={password ? "text" : "password"} name="confirm-password" id="confirm-password" value={confirmOrgPassword} onChange={(e) => setConfirmOrgPassword(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="password" required />
+                      <input type={password ? "text" : "password"} name="confirm-password" id="confirm-password" value={confirmOrgPassword} onChange={(e) => setConfirmOrgPassword(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Confirm Password" required />
                       <button title='show password' onClick={togglePasswordVisibility} className="absolute inset-y-0 right-2 flex items-center mt-6 ">{password ? <FaEye /> : <FaEyeSlash />}</button>
                     </div>
                   </div>
