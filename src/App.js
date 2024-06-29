@@ -22,7 +22,6 @@ import Organisation from './pages/Organisation';
 import NotFound from './components/reusables/NotFound';
 import OrganisationDetails from './pages/OrganisationDetails';
 import Faq from './components/reusables/Faq';
-import Pricing from './pages/Pricing';
 
 function App() {
   return (
@@ -38,7 +37,6 @@ function App() {
     <Route path = '/org/login' element = {<OrgLogIn/>}/>
     <Route path = '/org/signup' element = {<OrgSignUp/>}/>
     <Route path = '/contact' element = {<ContactUs/>}/>
-    <Route path = '/pricing' element = {<Pricing/>}/>
     <Route path = '/about' element = {<AboutUs/>}/>
     <Route path = '/faq' element = {<Faq/>}/>
     <Route path = '/careers' element = {<Careers/>}/>
