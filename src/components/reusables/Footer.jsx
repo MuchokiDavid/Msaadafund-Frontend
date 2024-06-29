@@ -27,8 +27,7 @@ function Footer() {
                 <h6 className="footer-title">Company</h6>
                 <a href='/about' className="link link-hover">About us</a>
                 <a href='/contact' className="link link-hover">Contact us</a>
-                <a href='/careers' className="link link-hover">Careers</a>              
-                <a href='/pricing' className="link link-hover">Pricing</a>
+                <a href='/careers' className="link link-hover">Careers</a>        
             </nav> 
         
         <nav className='text-white'>
