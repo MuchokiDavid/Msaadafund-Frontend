@@ -140,8 +140,8 @@ function Withdrawals() {
         (
         <div>
             <div className='overflow-scroll my-4 bg-white border rounded-lg'>
-                <table className='table w-full min-w-full text-xs overflow-x-auto'>
-                    <thead className='text-gray-800 bg-gray-100'>
+                <table className='table w-full min-w-full text-xs overflow-x-auto text-left'>
+                    <thead className='text-gray-800 bg-gray-100 text-leftuppercase'>
                         <tr className='text-gray-800 bg-gray-100'>
                             {/* <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>S/N</th> */}
                             <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Tracking id</th>
