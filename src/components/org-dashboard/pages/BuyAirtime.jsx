@@ -230,7 +230,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                 <aside className="">
                     <div className="p-4 rounded">
                         <h2 className="font-bold text-xl">Instructions</h2>
-                        <ul className="list-disc mt-3 list-inside text-sm">
+                        <ul className="list-disc mt-3 list-inside text-xs">
                             <li>Ensure you have added your signatories <span className='text-blue-600 font-semibold underline'><a href='/org/dashboard/transact/signatories'>here</a></span></li>
                             <li>Ensure that the phone number provided is a valid.</li>
                             <li>Double-check the amount you wish to purchase and make sure it is more than sh.5 to avoid errors.</li>

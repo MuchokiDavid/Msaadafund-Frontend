@@ -223,14 +223,23 @@ const handleSubmit = (e) => {
                 </form>
 
                 <aside className="">
-                    <div className="bg-white p-4 rounded">
+                    <div className="bg-white p-2 rounded">
+                        {/* Instructions */}
+                        <h2 className="font-bold text-xl">Instructions</h2>
+                        <ul className="list-disc mt-3 list-inside text-xs">
+                            <li>Ensure you have added your signatories <span className='text-blue-600 font-semibold underline'><a href='/org/dashboard/transact/signatories'>here</a></span></li>
+                            <li>Ensure that the till number provided is valid.</li>
+                            <li>Once you submit the payment request, This will initialize the transaction which requires 3 signatories to be completed</li>
+                            <li>If you encounter any issues during the purchase process, please contact our support team for assistance.</li>
+                        </ul>
+
                         {/* Table to display transaction fee*/}
-                        <h2 className="font-bold text-xl">Transaction Fee</h2>
+                        <h2 className="font-bold text-xl mt-3">Transaction Fee</h2>
                         <table className="table-auto w-full mt-1 text-left text-xs">
-                            <thead>
+                            <thead className='bg-gray-100'>
                                 <tr>
-                                    <th className="px-4 py-2">Item</th>
-                                    <th className="px-4 py-2">Amount {'(Sh.)'}</th>
+                                    <th className="px-4 py-2 border">Item</th>
+                                    <th className="px-4 py-2 border">Amount {'(Sh.)'}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -243,16 +252,8 @@ const handleSubmit = (e) => {
                                     <td className="border px-4 py-2">40.00</td>
                                 </tr>
                             </tbody>
-                        </table><br/>
+                        </table>
 
-                        {/* Instructions */}
-                        <h2 className="font-bold text-xl">Instructions</h2>
-                        <ul className="list-disc mt-3 list-inside text-sm">
-                            <li>Ensure you have added your signatories <span className='text-blue-600 font-semibold underline'><a href='/org/dashboard/transact/signatories'>here</a></span></li>
-                            <li>Ensure that the till number provided is valid.</li>
-                            <li>Once you submit the payment request, This will initialize the transaction which requires 3 signatories to be completed</li>
-                            <li>If you encounter any issues during the purchase process, please contact our support team for assistance.</li>
-                        </ul>
                     </div>
                 </aside>
             </div>
