@@ -132,7 +132,7 @@ function Banner() {
   }
     return totalAmount;
 }
-let totalAmount=(allDonations && getTotalAmount(allDonations))
+let totalAmount=allDonations && getTotalAmount(allDonations)
 
   return (
     <div className='text-gray-900'>
