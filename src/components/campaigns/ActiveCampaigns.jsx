@@ -126,12 +126,18 @@ function ActiveCampaigns() {
   // Function to calculate total amount for donations with status "COMPLETE"
   function getTotalAmount(donationsArray) {
     let totalAmount = 0;
-    for (let donation of donationsArray) {
+    if (donationsArray.length === 0) {
+      return 0;
+    }
+    else{
+      for (let donation of donationsArray) {
         // Check if the donation status is "COMPLETE"
         if (donation.status === 'COMPLETE') {
             totalAmount += donation.amount;
         }
+      }
     }
+    
     return totalAmount;
   }
 
