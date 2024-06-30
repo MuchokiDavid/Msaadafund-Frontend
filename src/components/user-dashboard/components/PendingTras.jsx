@@ -99,32 +99,32 @@ function PendingTras() {
       <h1 className="text-2xl font-bold mb-4">Pending Approvals</h1>
       {transactions && transactions.length === 0 && <p className="text-gray-600">No pending transactions found.</p>}
       <div className="overflow-x-auto">
-        <table className="table table-sm rounded-md text-xs bg-white">
+        <table className="table table-compact w-full text-xs bg-white text-left text-wrap">
           <thead className='text-balance'>
             <tr className="bg-gray-200 text-gray-600">
-              <th>Id</th>
-              <th>Recipient</th>
-              <th>Campaign Name</th>
-              <th>Transaction Type</th>
-              <th>Transaction Acc No</th>
-              <th>Acc Reference</th>
-              <th>Amount</th>
-              <th>Signatory Approvals</th>
-              <th>Approve</th>
-              <th>Reject</th>
+              <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Id</th>
+              <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Recipient</th>
+              <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Campaign Name</th>
+              <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Transaction Type</th>
+              <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Transaction Acc No</th>
+              <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Acc Reference</th>
+              <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Amount</th>
+              <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Signatory Approvals</th>
+              <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Approve</th>
+              <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Reject</th>
             </tr>
           </thead>
-          <tbody className="text-gray-700">
+          <tbody className="text-gray-700 text-xs">
             {transactions && transactions.map((transaction) => (
               <tr key={transaction.id} className="border-t">
-                <td>{transaction.id}</td>
-                <td>{transaction.name}</td>
-                <td >{transaction.campaign_name}</td>
-                <td>{transaction.trans_type}</td>
-                <td>{transaction.transaction_account_no}</td>
-                <td>{transaction.acc_refence}</td>
-                <td>{transaction.amount}</td>
-                <td>
+                <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>{transaction.id}</td>
+                <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>{transaction.name}</td>
+                <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200'>{transaction.campaign_name}</td>
+                <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>{transaction.trans_type}</td>
+                <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>{transaction.transaction_account_no}</td>
+                <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>{transaction.acc_refence}</td>
+                <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>{transaction.amount}</td>
+                <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>
                   <ul>
                     {transaction.approvals && transaction.approvals.map((approval) => (
                       <li key={approval.id}>
@@ -133,7 +133,7 @@ function PendingTras() {
                     ))}
                   </ul>
                 </td>
-                <td>
+                <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>
                   <button
                     className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
                     onClick={() => handleApproval(transaction.id, transaction.campaign_name)}
@@ -141,7 +141,7 @@ function PendingTras() {
                     <FcApprove className='h-5 w-5'/>
                   </button>
                 </td>
-                <td>
+                <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>
                   <button
                     className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
                     onClick={() => handleReject(transaction.id)}
