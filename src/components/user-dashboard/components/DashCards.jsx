@@ -16,9 +16,16 @@ function DashCards({allSubscriptions, allDonations}) {
     
     function getTotalAmount(donationsArray) {
         let totalAmount = 0;
-        for (let donation of donationsArray) {
-            totalAmount += donation.amount;
+
+        if (donationsArray.length === 0) {
+            return 0;
         }
+        else{
+            for (let donation of donationsArray) {
+                totalAmount += donation.amount;
+            }
+        }
+        
         return totalAmount;
     }
     let totalAmount=(allDonation && getTotalAmount(allDonation))
