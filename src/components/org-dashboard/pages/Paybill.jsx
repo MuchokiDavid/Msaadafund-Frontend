@@ -245,7 +245,15 @@ const handleSubmit = (e) => {
 
                 <aside className="">
                     <div className="p-3 rounded">
-                    <h2 className="font-bold text-xl">Transaction Fee</h2>
+
+                    <h2 className="font-bold text-xl">Instructions</h2>
+                        <ul className="list-disc mt-3 list-inside text-xs">
+                            <li>Ensure you have added your signatories <span className='text-blue-600 font-semibold'><a href='/org/dashboard/transact/signatories'>here</a></span></li>
+                            <li>Once you submit the payment request, This will initialize the transaction which requires 3 signatories to be completed</li>
+                            <li>If you encounter any issues during the purchase process, please contact our support team for assistance.</li>
+                        </ul>
+
+                    <h2 className="font-bold text-xl mt-2">Transaction Fee</h2>
                         <table className="table-auto w-full mt-2 text-left text-xs">
                             <thead>
                                 <tr>
@@ -283,14 +291,7 @@ const handleSubmit = (e) => {
                                     <td className="border px-4 py-1">150.00</td>
                                 </tr>
                             </tbody>
-                        </table><br/>
-
-                        <h2 className="font-bold text-xl">Instructions</h2>
-                        <ul className="list-disc mt-3 list-inside text-sm">
-                            <li>Ensure you have added your signatories <span className='text-blue-600 font-semibold'><a href='/org/dashboard/transact/signatories'>here</a></span></li>
-                            <li>Once you submit the payment request, This will initialize the transaction which requires 3 signatories to be completed</li>
-                            <li>If you encounter any issues during the purchase process, please contact our support team for assistance.</li>
-                        </ul>
+                        </table>
                     </div>
                 </aside>
             </div>

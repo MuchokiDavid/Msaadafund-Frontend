@@ -323,8 +323,16 @@ return (
                 </dialog>
 
                 <aside className="">
-                    <div className="bg-white px-6 py-2 rounded">
-                    <h2 className="font-bold text-xl">Transaction Fee</h2>
+                    <div className="bg-white px-6 rounded">
+                    <h2 className="font-bold text-xl">Instructions</h2>
+                        <ul className="list-disc list-inside text-xs">
+                            <li>Ensure you have added your signatories <span className='text-blue-600 font-semibold underline'><a href='/org/dashboard/transact/signatories'>here</a></span></li>
+                            <li>Register your withdrawal account <span className='text-blue-600 font-semibold underline'><a href='/org/dashboard/transact/accounts'>here</a></span></li>
+                            {/* <li>Minimum withdrwal amount is <span className='text-black font-medium'>sh.10</span> for <span className='text-black font-medium'>M-Pesa</span>  and <span className='text-black font-medium'>sh.100</span> for <span className='text-black font-medium'>Bank</span>.</li> */}
+                            <li>Enter your withdrawal pin to complete the withdrawal process.</li>
+                            <li>Once you submit the payment request, This will initialize the transaction which requires 3 signatories to be completed</li>
+                        </ul>
+                    <h2 className="font-bold text-lg mt-2">Transaction Fee</h2>
                         <table className="table-auto w-full mt-2 text-left text-xs">
                             <thead>
                                 <tr>
@@ -358,15 +366,8 @@ return (
                                     <td className="border px-4 py-1">500.00</td>
                                 </tr>
                             </tbody>
-                        </table><br/>
-                        <h2 className="font-bold text-xl">Instructions</h2>
-                        <ul className="list-disc mt-2 list-inside text-sm">
-                            <li>Ensure you have added your signatories <span className='text-blue-600 font-semibold underline'><a href='/org/dashboard/transact/signatories'>here</a></span></li>
-                            <li>Register your withdrawal account <span className='text-blue-600 font-semibold underline'><a href='/org/dashboard/transact/accounts'>here</a></span></li>
-                            {/* <li>Minimum withdrwal amount is <span className='text-black font-medium'>sh.10</span> for <span className='text-black font-medium'>M-Pesa</span>  and <span className='text-black font-medium'>sh.100</span> for <span className='text-black font-medium'>Bank</span>.</li> */}
-                            <li>Enter your withdrawal pin to complete the withdrawal process.</li>
-                            <li>Once you submit the payment request, This will initialize the transaction which requires 3 signatories to be completed</li>
-                        </ul>
+                        </table>
+                       
                     </div>
                 </aside>
 
