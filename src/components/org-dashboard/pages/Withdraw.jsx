@@ -324,15 +324,48 @@ return (
 
                 <aside className="">
                     <div className="bg-white px-6 py-2 rounded">
-                        <h2 className="font-bold text-2xl">Instructions</h2>
-                        <ul className="list-disc mt-2 list-inside text-base">
-                            <li>Ensure you have added your signatories <span className='text-blue-600 font-semibold'><a href='/org/dashboard/transact/signatories'>here</a></span></li>
-                            <li>Register your withdrawal account <span className='text-blue-600 font-semibold'><a href='/org/dashboard/transact/accounts'>here</a></span></li>
-                            <li>Minimum withdrwal amount is <span className='text-black font-medium'>sh.10</span> for <span className='text-black font-medium'>M-Pesa</span>  and <span className='text-black font-medium'>sh.100</span> for <span className='text-black font-medium'>Bank</span>.</li>
+                    <h2 className="font-bold text-xl">Transaction Fee</h2>
+                        <table className="table-auto w-full mt-2 text-left text-xs">
+                            <thead>
+                                <tr>
+                                    <th className="border px-4 py-2 bg-gray-100">Item</th>
+                                    <th className="border px-4 py-2 bg-gray-100">Amount {'(Sh.)'}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td className="border px-4 py-1">M-PESA</td>
+                                    <td className="border px-4 py-1">1.5% {"("}min 10 max 50{")"} </td>
+                                </tr>
+                                <tr>
+                                    <td className="border px-4 py-1">0 to 10,000</td>
+                                    <td className="border px-4 py-1">100.00</td>
+                                </tr>
+                                <tr>
+                                    <td className="border px-4 py-1">10,001 to 50,000</td>
+                                    <td className="border px-4 py-1">150.00</td>
+                                </tr>
+                                <tr>
+                                    <td className="border px-4 py-1">50,001 to 100,000</td>
+                                    <td className="border px-4 py-1">200.00</td>
+                                </tr>
+                                <tr>
+                                    <td className="border px-4 py-1">100,001 to 500,000</td>
+                                    <td className="border px-4 py-1">400.00</td>
+                                </tr>
+                                <tr>
+                                    <td className="border px-4 py-1">500,001 to 999,999</td>
+                                    <td className="border px-4 py-1">500.00</td>
+                                </tr>
+                            </tbody>
+                        </table><br/>
+                        <h2 className="font-bold text-xl">Instructions</h2>
+                        <ul className="list-disc mt-2 list-inside text-sm">
+                            <li>Ensure you have added your signatories <span className='text-blue-600 font-semibold underline'><a href='/org/dashboard/transact/signatories'>here</a></span></li>
+                            <li>Register your withdrawal account <span className='text-blue-600 font-semibold underline'><a href='/org/dashboard/transact/accounts'>here</a></span></li>
+                            {/* <li>Minimum withdrwal amount is <span className='text-black font-medium'>sh.10</span> for <span className='text-black font-medium'>M-Pesa</span>  and <span className='text-black font-medium'>sh.100</span> for <span className='text-black font-medium'>Bank</span>.</li> */}
                             <li>Enter your withdrawal pin to complete the withdrawal process.</li>
-                            <li>Once you submit the withdrawal request, This will initialize the transaction which requires 3 signatories to be completed</li>
-                            <li>Once all the all signatories approve, the funds will be transferred.</li>
-                            <li>If you encounter any issues during the withdrawal process, please contact our support team for assistance.</li>
+                            <li>Once you submit the payment request, This will initialize the transaction which requires 3 signatories to be completed</li>
                         </ul>
                     </div>
                 </aside>
