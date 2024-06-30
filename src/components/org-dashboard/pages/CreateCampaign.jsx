@@ -188,18 +188,18 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                         <select 
                         className='bg-gray-50 border h-11 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5' 
                         onChange={(e)=>setCategory(e.target.value)}>
-                        <option className='text-lg' >Select a category</option>
-                        <option className='text-lg' value="Education">Education</option>    
-                        <option className='text-lg' value="Health">Health</option>
-                        <option className='text-lg' value="Food">Food</option>
-                        <option className='text-lg' value="Water">Water</option>
-                        <option className='text-lg' value="Human Rights">Human Rights</option>
-                        <option className='text-lg' value="Environment">Environment</option>
-                        <option className='text-lg' value="Community Devt">Community Devt</option> 
-                        <option className='text-lg' value="Animal Welfare">Animal Welfare</option> 
-                        <option className='text-lg' value="Arts and Culture">Arts and Culture</option> 
-                        <option className='text-lg' value="Disaster">Disaster</option> 
-                        <option className='text-lg' value="Other">Other...</option> 
+                        <option className='text-sm' >Select a category</option>
+                        <option className='text-sm' value="Education">Education</option>    
+                        <option className='text-sm' value="Health">Health</option>
+                        <option className='text-sm' value="Food">Food</option>
+                        <option className='text-sm' value="Water">Water</option>
+                        <option className='text-sm' value="Human Rights">Human Rights</option>
+                        <option className='text-sm' value="Environment">Environment</option>
+                        <option className='text-sm' value="Community Devt">Community Devt</option> 
+                        <option className='text-sm' value="Animal Welfare">Animal Welfare</option> 
+                        <option className='text-sm' value="Arts and Culture">Arts and Culture</option> 
+                        <option className='text-sm' value="Disaster">Disaster</option> 
+                        <option className='text-sm' value="Other">Other...</option> 
                         </select>
                         {category==='Other'? <input
                             id="category"

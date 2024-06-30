@@ -56,7 +56,7 @@ function Donations({allDonation}) {
   }
 
 // console.log(allDonations)
-console.log(paginatedDonations)
+// console.log(paginatedDonations)
 
   return (
     <div>

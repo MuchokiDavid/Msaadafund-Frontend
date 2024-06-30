@@ -217,7 +217,7 @@ function Accounts({banks, fetchBank}) {
                                     <th className='border border-gray-300 px-2 py-1 text-gray-700 '>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className='text-base'>
+                            <tbody className='text-md'>
                                 {accounts.map((account) => (
                                     <tr key={account.id}>
                                         <td className='border border-gray-300 px-2 py-1 text-gray-700 '>{account.providers}</td>
