@@ -16,7 +16,6 @@ function DashCards({allSubscriptions, allDonations}) {
     
     function getTotalAmount(donationsArray) {
         let totalAmount = 0;
-
         if (donationsArray.length === 0) {
             return 0;
         }
@@ -28,7 +27,7 @@ function DashCards({allSubscriptions, allDonations}) {
         
         return totalAmount;
     }
-    let totalAmount=(allDonation && getTotalAmount(allDonation))
+    let totalAmount=allDonation && getTotalAmount(allDonation)
 
   return (
     <div className='mb-4'>
