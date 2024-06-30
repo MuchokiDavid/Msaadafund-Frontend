@@ -18,7 +18,7 @@ const [step, setStep] = useState(1);
 const [showPassword,setShowPassword]=useState(false)
 const [password,setPasswordConfirm ] = useState(false)
 
-const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.]).{8,}$/;
+const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.])(?!.*\s).{8,}$/;
 
 
 
@@ -44,7 +44,7 @@ const handleResetPassword = async () => {
       return;
     }
     if (!passwordPattern.test(newPassword)) {
-      setMessage('Please ensure your password has atleast one letter, one digit, and a total length of at least 8 characters')
+      setMessage('Your password must contain at least one uppercase letter, one special character, one digit, and be at least 8 characters long. Please avoid using spaces.');
       return;
     }
 
@@ -125,7 +125,7 @@ const togglePasswordVisibility=(e)=>{
                 {step === 1 ? (
                   <div>
                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Your email</label>
-                    <input type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required="" />
+                    <input type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="User email" required="" />
                   </div>
                 ) : (
                   <div>
@@ -165,7 +165,7 @@ const togglePasswordVisibility=(e)=>{
                   {step === 1 ? 'Send OTP' : 'Reset Password'}
                 </button>
               </form>
-              <p className="mt-2 text-sm text-center text-gray-500">{message}</p>
+              <p className="mt-2 text-sm text-center text-red-500">{message}</p>
                 </div>
               </div>
             </div>

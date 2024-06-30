@@ -16,7 +16,7 @@ function OrgSignUp() {
   const [address, setAddress] = useState("")
   const [userPassword, setUserPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.]).{8,}$/;
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.])(?!.*\s).{8,}$/;
   const phonePattern = /^(07|01)\d{8}$/;
   const navigate= useNavigate()
   const [showPassword,setShowPassword]=useState(false)
@@ -38,7 +38,7 @@ function OrgSignUp() {
     e.preventDefault();
     // const formData= 
     if (!userPassword.match(passwordPattern)) {
-      setErrors('Your password should have  atleast an uppercase letter, one special character, one digit, and a total length of at least 8 characters')
+      setErrors('Your password must contain at least one uppercase letter, one special character, one digit, and be at least 8 characters long. Please avoid using spaces.');
     }
     else if (!phoneNumber.match(phonePattern)) {
       setErrors('Invalid Phone Number')

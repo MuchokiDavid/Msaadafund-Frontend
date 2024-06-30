@@ -275,7 +275,7 @@ function ActiveCampaigns() {
                         <div className="mt-1.5 sm:mt-0">
                           <p className="text-gray-500">Raised</p>
 
-                          <p className="font-medium">kes{prettyNumber(getTotalAmount(campaign.donations), 'number-short')}</p>
+                          <p className="font-medium">Kes {prettyNumber(getTotalAmount(campaign.donations), 'number-short')}</p>
                         </div>
                       </div>
                     </div>

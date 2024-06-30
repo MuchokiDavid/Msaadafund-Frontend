@@ -16,8 +16,7 @@ function ResetPass() {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPasswordConfirm] = useState(false);
 
-  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.]).{8,}$/;
-
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.])(?!.*\s).{8,}$/;
   const handleSendOrgOTP = async () => {
     try {
       await axios.post('/api/v1.0/org_forgot_password', { email });
@@ -39,7 +38,7 @@ function ResetPass() {
         return;
       }
       if (!passwordPattern.test(newOrgPassword)) {
-        setMessage('Please ensure your password has at least one lowercase letter, one uppercase letter, one character(!,@,#,$,%,^,&,*), one digit, and a total length of at least 8 characters');
+        setMessage('Your password must contain at least one uppercase letter, one special character, one digit, and be at least 8 characters long. Please avoid using spaces.');
         return;
       }
 
