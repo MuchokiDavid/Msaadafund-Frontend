@@ -88,11 +88,11 @@ function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, han
 
                     <div className="flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
                 {subscribe ? (
-                    <button type="button" className="inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:text-gray-800 shadow-md hover:bg-gray-50" onClick={handleUnsubscribe}>
+                    <button type="button" className="btn inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 text-sm font-semibold text-white hover:text-gray-800 shadow-md hover:bg-gray-50" onClick={handleUnsubscribe}>
                     Unsubscribe
                     </button>
                 ) : (
-                    <button type="button" className="inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm  hover:text-gray-800 hover:bg-gray-50" onClick={handleSubscribe}>
+                    <button type="button" className="btn inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 text-sm font-semibold text-white shadow-sm  hover:text-gray-800 hover:bg-gray-50" onClick={handleSubscribe}>
                     Subscribe
                     </button>
                 )}
