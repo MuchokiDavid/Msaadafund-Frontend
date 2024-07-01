@@ -668,7 +668,7 @@ const togglePasswordVisibility = (e) => {
                     </div>
                 </div>
 
-                <div className='container mt-2 bg-gray-50 border p-4 rounded-lg' id='donationTabs'>
+                <div className='container mt-4 bg-gray-50 border p-4 rounded-lg' id='donationTabs'>
                     <div className="sm:hidden">
                     <label htmlFor="Tab" className="sr-only">Tab</label>
                     <select
