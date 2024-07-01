@@ -617,7 +617,7 @@ const togglePasswordVisibility = (e) => {
                 <div className="flex flex-col lg:flex-row gap-2">
                     <div className="h-full lg:w-2/3 ">
                         {/* <hr/> */}
-                        <div className="px-2 py-4 border bg-white mt-2 sm:h-52 lg:h-96 w-full rounded-lg overflow-y-scroll">      
+                        <div className="px-2 py-4 border bg-white mt-2 sm:h-52 lg:h-96 w-full rounded-lg overflow-y-scroll shadow">      
                             <h1 className='text-xl my-2 font-semibold w-full'>Story</h1>                          
                             <div> 
                                 {isLargeScreen ?
@@ -639,7 +639,7 @@ const togglePasswordVisibility = (e) => {
                             </div>   
                         </div>
                     </div>
-                    <div className="lg:w-1/3 h-full border bg-white mt-2 rounded-lg">
+                    <div className="lg:w-1/3 h-full border bg-white mt-2 rounded-lg shadow">
                         <hr/>
                         <div className="px-2 pt-2">
                             <div className='my-1 flex justify-between px-2'>
@@ -668,7 +668,7 @@ const togglePasswordVisibility = (e) => {
                     </div>
                 </div>
 
-                <div className='container mt-4 bg-gray-50 border p-4 rounded-lg' id='donationTabs'>
+                <div className='container mt-4 bg-gray-100 border p-4 rounded-lg' id='donationTabs'>
                     <div className="sm:hidden">
                     <label htmlFor="Tab" className="sr-only">Tab</label>
                     <select
