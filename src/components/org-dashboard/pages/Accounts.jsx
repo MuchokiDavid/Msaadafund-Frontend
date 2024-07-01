@@ -33,7 +33,7 @@ function Accounts({banks, fetchBank}) {
     
     useEffect(() => {
       setAllBanks(banks)
-    }, [providers])
+    }, [providers, banks])
     
 
     // useEffect(() => {

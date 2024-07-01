@@ -30,7 +30,7 @@ function PendingTras() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [accessToken]);
 
   const handleApproval = (transactionId, campaignName) => {
     axios.post('/api/v1.0/approve_transaction', {

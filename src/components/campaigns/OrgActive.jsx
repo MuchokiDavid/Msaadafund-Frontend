@@ -10,12 +10,12 @@ function OrgActive({organisationDetails}) {
 
      //Active campaigns
     const activeCampaigns = organisationDetails && organisationDetails.filter(campaign => {
-      if (campaign.isActive == true){
+      if (campaign.isActive === true){
         const startDate = new Date(campaign.startDate);
         const endDate = new Date(campaign.endDate);
         return (startDate <= currentDate && endDate >= currentDate) || (endDate.toDateString() === currentDate.toDateString());
       }
-        
+        return false
     });
 
     const calculateDaysLeft = (endDate) => {
