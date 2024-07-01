@@ -617,14 +617,21 @@ const togglePasswordVisibility = (e) => {
                 <div className="flex flex-col lg:flex-row gap-2">
                     <div className="h-full lg:w-2/3 ">
                         {/* <hr/> */}
-                        <div className="px-2 py-4 border bg-white mt-2 lg:h-96 w-full rounded-lg overflow-scroll">                                
-                            <div>
-                                <h1 className='text-xl my-2 font-semibold w-full'>Story</h1>
+                        <div className="px-2 py-4 border bg-white mt-2 sm:h-52 lg:h-96 w-full rounded-lg overflow-y-scroll">      
+                            <h1 className='text-xl my-2 font-semibold w-full'>Story</h1>                          
+                            <div> 
                                 {isLargeScreen ?
                                     <div className="text-lg text-gray-600" dangerouslySetInnerHTML={{ __html: campaign.description }}></div>
                                     :
                                     <div>
-                                        {more ?<p>{campaign && campaign.description}</p> : <p>{campaign && campaign.description && campaign.description.slice(0,250)}...</p>}
+                                        {/* {more ?<div>{campaign && campaign.description}</div> : <div>{campaign && campaign.description && campaign.description.slice(0,250)}...</div>} */}
+                                        {more ? (
+                                            campaign && <div className="text-lg text-gray-600" dangerouslySetInnerHTML={{ __html: campaign.description }}></div>
+                                            ) : (
+                                            campaign && <div className="text-lg text-gray-600" dangerouslySetInnerHTML={{ __html: campaign.description.slice(0, 200) + '...' }}></div>
+                                            )
+                                        }
+
                                         <button className='text-blue-600 hover:underline mt-2' onClick={()=>setMore(!more)}>{more ? "Show less" : "Show more"}</button>
                                     </div>
                                                                       
