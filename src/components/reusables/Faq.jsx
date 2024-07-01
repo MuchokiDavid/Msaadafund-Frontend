@@ -55,6 +55,12 @@ function Faq() {
       ],
     },
     {
+      title: 'How can my campaign get featured on Msaada Mashinani?',
+      content: [
+        'To get your campaign featured, a fee is required. This fee helps cover the costs of promoting and highlighting your campaign to a broader audience.'
+      ],
+    },
+    {
       title: 'What are the benefits for organizations using Msaada Mashinani?',
       content: ['Organizations benefit from a user-friendly platform that simplifies fundraising, secure and efficient payment processing, and tools for managing and tracking campaign funds.'],
     },

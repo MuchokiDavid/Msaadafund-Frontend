@@ -236,6 +236,9 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                             <li>Double-check the amount you wish to purchase and make sure it is more than sh.5 to avoid errors.</li>
                             <li>Once you submit the purchase request, This will initialize the transaction which requires 3 signatories to be completed</li>
                         </ul>
+
+                        <h2 className="font-bold text-xl mt-3">Transaction Fee</h2>
+                        <p>FREE</p>
                     </div>
                 </aside>
             </div>
