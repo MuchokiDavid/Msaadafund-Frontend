@@ -209,12 +209,12 @@ const handleSubmit = (e) => {
                         value={comment} 
                         className="input input-bordered border-gray-300 w-full bg-white" 
                         id="comment" 
-                        placeholder='Comment'
+                        placeholder='Comment (optional)'
                         type="text" 
                         name="comment"/>
                     </div>
                     {error && <p className='text-red-600 text-base my-2'>{error}</p>}
-                    <div className="flex items-center justify-between mt-3">
+                    <div className="flex items-center justify-between mt-4">
                         <button type="submit"
                             className='intaSendPayButton'>
                                 {isSubmitting ? "Submitting..." : "Pay"}

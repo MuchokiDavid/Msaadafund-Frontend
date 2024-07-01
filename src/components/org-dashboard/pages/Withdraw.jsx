@@ -275,7 +275,7 @@ return (
                             required />
                     </div>
                     {errors && <p className='text-red-700 text-base mt-2'>{errors}</p>}
-                    <div className="flex items-center justify-between mt-2">
+                    <div className="flex items-center justify-between mt-4">
                         <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-2 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-2 md:text-lg md:px-4">{loading? "Withdrawing...":"Withdraw"}</button>
                     </div>
                 </form>
@@ -316,7 +316,7 @@ return (
                                 </div>
                             </div>
                         </form>
-                        <button onClick={() => { setWithdrawForm(false); setTransactionResponse('');  setPopupErrors(''); setCampaign(''); setWalletDetails('')}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        <button onClick={() => { setWithdrawForm(false); setLoading(false); setTransactionResponse('');  setPopupErrors(''); setCampaign('');}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 
                         {/* </div> */}
                     </div>
