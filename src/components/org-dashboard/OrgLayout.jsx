@@ -23,7 +23,7 @@ import Paybill from './pages/Paybill';
 import Till from './pages/Till';
 import DashFooter from './dash-components/DashFooter';
 import Signatory from './pages/Signatory';
-import Navigation from './dash-components/Navigation';
+// import Navigation from './dash-components/Navigation';
 import Approvals from './pages/Approvals';
 
 function OrgLayout() {
@@ -318,7 +318,7 @@ useEffect(() => {
           <div className='my-4 flex justify-start'>
               <DashFooter/>
             </div>
-            <Navigation/>
+            {/* <Navigation/> */}
         </main>               
       </div> 
            
