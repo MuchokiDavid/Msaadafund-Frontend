@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { prettyNumber } from '@based/pretty-number'
 import { SiWebmoney } from "react-icons/si";
 
-function HomeCards({allCampaigns, allDonations, subscriptions, props}) {
+function HomeCards({allCampaigns, allDonations, subscriptions}) {
     const[donations, setDonations] = useState(allDonations)
     const[subs, setSubs] = useState(subscriptions)
 

@@ -141,6 +141,8 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
         });
     }
 
+    // console.log(allDonations)
+
 
     return (
         <div>
@@ -179,11 +181,12 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                                     <tr>
                                         <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>ID</th>
                                         <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Campaign</th>
+                                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Category</th>
                                         <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Contributor</th>
                                         <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Amount</th>
                                         <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Method</th> 
                                         <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Date</th>   
-                                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Status</th>                           
+                                        {/* <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Status</th>                            */}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -196,11 +199,12 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                                             <tr key={donation._id}>
                                                 <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.id}</td>
                                                 <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{campaignTitle}</td>
+                                                <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.campaign.category}</td>
                                                 <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>
                                                 <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.currency} {donation.amount}</td>
                                                 <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.method}</td>
                                                 <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
-                                                <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.status}</td>
+                                                {/* <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.status}</td> */}
                                             </tr>
                                         );
                                     })}
