@@ -615,10 +615,10 @@ const togglePasswordVisibility = (e) => {
                 </div>
                 
                 <div className="flex flex-col lg:flex-row gap-2">
-                    <div className="h-full lg:w-2/3 ">
+                    <div className="h-full lg:w-2/3 border mt-2 rounded-lg px-2 py-4">
                         {/* <hr/> */}
-                        <div className="px-2 py-4 border bg-white mt-2 sm:h-52 lg:h-96 w-full rounded-lg overflow-y-scroll shadow">      
-                            <h1 className='text-xl my-2 font-semibold w-full'>Story</h1>                          
+                        <h1 className='text-xl my-2 font-semibold w-full'>Story</h1>  
+                        <div className="bg-white sm:h-52 lg:h-96 w-full overflow-y-scroll shadow">                                                          
                             <div> 
                                 {isLargeScreen ?
                                     <div className="text-lg text-gray-600" dangerouslySetInnerHTML={{ __html: campaign.description }}></div>
