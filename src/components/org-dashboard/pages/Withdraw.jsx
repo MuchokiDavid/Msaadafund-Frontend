@@ -316,7 +316,7 @@ return (
                                 </div>
                             </div>
                         </form>
-                        <button onClick={() => { setWithdrawForm(false); setTransactionResponse('');  setPopupErrors(''); setCampaign(''); setWalletDetails('')}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        <button onClick={() => { setWithdrawForm(false); setLoading(false); setTransactionResponse('');  setPopupErrors(''); setCampaign('');}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 
                         {/* </div> */}
                     </div>
