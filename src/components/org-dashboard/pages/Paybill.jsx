@@ -230,7 +230,7 @@ const handleSubmit = (e) => {
                         value={comment} 
                         className="input input-bordered w-full bg-white border-gray-300" 
                         id="comment" 
-                        placeholder='Comment'
+                        placeholder='Comment (optional)'
                         type="text" 
                         name="comment"/>
                     </div>
