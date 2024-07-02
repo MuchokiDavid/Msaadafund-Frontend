@@ -168,7 +168,7 @@ function OrgProfile() {
                   name="orgName"
                   value={orgData.orgName}
                   onChange={handleInputChange}
-                  className="w-full mt-1 p-2 border border-gray-300 rounded"
+                  className="w-full mt-1 p-2 border border-gray-300 rounded bg-gray-100"
                   disabled
                 />
               </div>
@@ -177,7 +177,7 @@ function OrgProfile() {
                 <input
                   value={orgData.orgEmail}
                   disabled
-                  className="w-full mt-1 p-2 border border-gray-300 rounded"
+                  className="w-full mt-1 p-2 border border-gray-300 rounded bg-gray-100"
                 />
               </div>
               <div>
