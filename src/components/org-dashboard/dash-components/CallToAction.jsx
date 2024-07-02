@@ -12,7 +12,7 @@ function CallToAction() {
                 </h2>
                 <p className="max-w-3xl mt-3 text-lg leading-6 text-gray-100">
                 This dashboard is your central hub for managing all your campaigns and fundraising activities. 
-                Whether you're starting a new campaign, tracking donations, or withdrawing funds, everything you need is right here.
+                Whether you're starting a new campaign, tracking donations, or spending funds, everything you need is right here.
                 </p><br/>
                 <p className='text-white'>Happy fundraising!</p>
             </div>

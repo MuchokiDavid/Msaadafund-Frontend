@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios'
-import {toast,Toaster} from 'react-hot-toast'
+// import {toast,Toaster} from 'react-hot-toast'
 import Menus from '../components/reusables/Menus';
 import Footer from '../components/reusables/Footer';
 import Slider from "react-slick";
@@ -247,11 +247,11 @@ function CampainDetails() {
             }
           };
         // if start date  is less than current date disable button 
-        const currentDate = new Date();
-        const startDate = new Date(campaign.startDate);
-        if (currentDate < startDate) {
-            toast.error("Campaign has not yet started");
-        } else {
+        // const currentDate = new Date();
+        // const startDate = new Date(campaign.startDate);
+        // if (currentDate < startDate) {
+        //     toast.error("Campaign has not yet started");
+        // } else {}
             let orgsnt= campaign.organisation.orgName
             let donorName= name ? name: "Anonymous"
             let phoneNo = phoneNum.replace(/^0+/, '');
@@ -333,8 +333,7 @@ function CampainDetails() {
                 })
 
 
-            }           
-        }
+            }     
     };
 
     //axios to post data for donations via card
@@ -347,11 +346,11 @@ function CampainDetails() {
             }
           };
         // if start date  is less than current date disable button 
-        const currentDate = new Date();
-        const startDate = new Date(campaign.startDate);
-        if (currentDate < startDate) {
-            toast.error("Campaign has not yet started");
-        } else {
+        // const currentDate = new Date();
+        // const startDate = new Date(campaign.startDate);
+        // if (currentDate < startDate) {
+        //     toast.error("Campaign has not yet started");
+        // } else {}
             let orgsnt= campaign.organisation.orgName
             // const international_phone_pattern= /^\d{1,4}?\d{3,14}$/
             if (!cardAmount) {
@@ -416,8 +415,7 @@ function CampainDetails() {
                 })
 
 
-            }           
-        }
+            }     
     }
     //shuffle all donations and get five donations
     const completeDonations = campaign && campaign.donations.filter(donation => donation.status === 'COMPLETE');
@@ -673,7 +671,7 @@ const togglePasswordVisibility = (e) => {
                     <label htmlFor="Tab" className="sr-only">Tab</label>
                     <select
                         id="Tab"
-                        className="rounded-md border-gray-200 p-3 w-full"
+                        className="rounded-md border border-gray-300 p-3 w-full bg-white text-black"
                         onChange={(e) => setActiveTab(e.target.value)}
                         value={activeTab}
                     >
@@ -935,7 +933,7 @@ const togglePasswordVisibility = (e) => {
 
                 {/* </Popup> */}               
             </div>
-            <Toaster position = "top-center" reverseOrder={false} />
+            {/* <Toaster position = "top-center" reverseOrder={false} /> */}
             
         </div>
         <dialog open={showModal} onClose={() => setShowModal(false)} className="modal flex-row justify-center items-center text-center">

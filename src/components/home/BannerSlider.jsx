@@ -43,7 +43,7 @@ function BannerSlider() {
       heading: "Make a Difference Today!",
       text: "Your contribution can change lives. Support a cause that matters to you and help those in need.",
       buttonText: "Create Campaign",
-      buttonLink: "/org/signup"
+      buttonLink: "/org/login"
     },
     {
       url: "https://images.unsplash.com/photo-1504439158909-5a2f08876082?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -74,7 +74,7 @@ function BannerSlider() {
                   <h1 className="text-2xl lg:text-4xl text-white font-bold text-center">{image.heading}</h1>
                   <p className="text-lg lg:text-xl text-white mt-4 text-center">{image.text}</p>
                   <a href={image.buttonLink}>
-                    <button className="sm:my-6 rounded-lg md:mt-8 text-white uppercase py-3 text-base font-light px-8 border border-blue-600 hover:bg-blue-600 hover:bg-opacity-9">
+                    <button className="btn btn-outline sm:my-6 rounded-lg md:mt-8 text-white uppercase py-3 text-base font-light px-8 border border-blue-600 hover:bg-blue-600 hover:bg-opacity-9">
                       {image.buttonText}
                     </button>
                   </a>

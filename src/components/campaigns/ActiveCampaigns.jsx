@@ -256,7 +256,7 @@ function ActiveCampaigns() {
 
                           <p className="font-medium">
                             <span className="block">{campaign.category.split(' ')[0]}</span>
-                            <span>{campaign.category.split(' ')[1]}</span>
+                            {/* <span>{campaign.category.split(' ')[1]}</span> */}
                           </p>
                         </div>
                       </div>
