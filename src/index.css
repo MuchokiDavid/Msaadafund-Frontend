@@ -34,11 +34,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
-  @apply bg-white text-black
+  background-color: #fff;
+  color: black;
 }
 
 input{
-  @apply bg-white
+  background-color: #fff;
 }
 
 code {
