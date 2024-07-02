@@ -201,8 +201,9 @@ const handleSubmit = (e)=>{
           type='text'
           name='firstName'
           value={user.firstName}
-          className="w-full mt-1 p-2 border border-gray-300 rounded"
+          className="w-full mt-1 p-2 border border-gray-300 rounded bg-gray-100"
           onChange={handleInputChange}
+          disabled
           />
         </div>
         <div>
@@ -212,7 +213,8 @@ const handleSubmit = (e)=>{
           name='lastName'
           value={user.lastName}
           onChange={handleInputChange}
-          className="w-full mt-1 p-2 border border-gray-300 rounded"
+          className="w-full mt-1 p-2 border border-gray-300 rounded bg-gray-100"
+          disabled
           />
         </div>
         </div>
@@ -222,7 +224,7 @@ const handleSubmit = (e)=>{
             type="text"
             name="username" 
             value={user.username} 
-            className="w-full mt-1 p-2 border border-gray-300 rounded bg-gray-300"
+            className="w-full mt-1 p-2 border border-gray-300 rounded bg-gray-100"
             disabled
             />
         </div>
@@ -232,7 +234,7 @@ const handleSubmit = (e)=>{
           type='text'
           name='email'
           value={user.email} 
-          className="w-full mt-1 p-2 border border-gray-300 rounded bg-gray-300" 
+          className="w-full mt-1 p-2 border border-gray-300 rounded bg-gray-100" 
           disabled       
           />
         </div>
