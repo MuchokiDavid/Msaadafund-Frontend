@@ -230,7 +230,7 @@ function getTotalDonations(campaigns) {
      
 
         <div className="flex flex-col lg:flex-row gap-3">
-            <div className="h-full lg:w-1/4" id='campaign'>
+            <div className="h-full lg:w-1/5" id='campaign'>
               {/* -------------------------------------Profile card------------------------------------ */}
                 <div className="relative rounded">
                   <div
@@ -286,7 +286,7 @@ function getTotalDonations(campaigns) {
                   </div>
                 </div>
               </div>
-              <div className="h-full lg:w-3/4">
+              <div className="h-full lg:w-4/5">
                 <OrgActive organisationDetails= {organisationDetails && organisationDetails.campaigns}/>                                
             </div>
 
