@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios'
-import {toast,Toaster} from 'react-hot-toast'
+// import {toast,Toaster} from 'react-hot-toast'
 import Menus from '../components/reusables/Menus';
 import Footer from '../components/reusables/Footer';
 import Slider from "react-slick";
@@ -933,7 +933,7 @@ const togglePasswordVisibility = (e) => {
 
                 {/* </Popup> */}               
             </div>
-            <Toaster position = "top-center" reverseOrder={false} />
+            {/* <Toaster position = "top-center" reverseOrder={false} /> */}
             
         </div>
         <dialog open={showModal} onClose={() => setShowModal(false)} className="modal flex-row justify-center items-center text-center">
