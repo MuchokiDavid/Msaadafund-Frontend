@@ -229,66 +229,61 @@ function getTotalDonations(campaigns) {
       <div className="mx-auto min-h-screen container"> 
      
 
-        <div className="flex flex-col lg:flex-row gap-3">
-            <div className="h-full lg:w-1/5" id='campaign'>
+        <div className="flex flex-col lg:flex-row gap-6 justify-center lg:justify-start">
+            <div className="h-full lg:w-1/4">
               {/* -------------------------------------Profile card------------------------------------ */}
-                <div className="relative rounded">
-                  <div
-                      className="max-w-2xl rounded-lg text-gray-900">
-                      <div className="text-left lg:mt-4 ml-4">
-                          <div className="text-gray-700 items-left grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-1">
-                            <div className='flex'>
-                              <svg className="h-5 w-5 text-gray-400 mr-1" fill="currentColor"
-                                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                  <path className=""
-                                      d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zm11.31-1.41a7 7 0 1 0-9.9 0L12 19.9l4.95-4.95zM12 14a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
-                              </svg>
-                              {organisationDetails && organisationDetails.orgAddress}
-                            </div>
-                            <div className='flex'>
-                              <MdOutlineCampaign title='Campaign' className='w-5 h-5 mr-1 text-gray-400'/>
-                              {organisationDetails && organisationDetails.campaigns.length} {organisationDetails && organisationDetails.campaigns.length<2 ? "Campaign":"Campaigns"}
-                            </div>
-                            <div className='flex'>
-                              <LuUserPlus title='Campaign' className='w-5 h-5 mr-1 text-gray-400'/>
-                              {organisationDetails && organisationDetails.subscriptions.length} {organisationDetails && organisationDetails.subscriptions.length<=1? "Subscriber":"Subscribers"}
-                            </div>
-                            <div className='flex'>
-                              <FaDonate title='Campaign' className='w-5 h-5 mr-1 text-gray-400'/>
-                              Ksh. {organisationDetails && prettyNumber(getTotalDonations(organisationDetails.campaigns), 'number-short')}
-                            </div>
-                          </div>
-                          {organisationDetails && organisationDetails.youtube_link && (
-                          <div className="flex text-gray-700 items-center justify-center mt-2">
-                             <a className='mx-1' href={organisationDetails && organisationDetails.website_link} >
-                             <FaYoutube size={22} className='text-red-500'/>
-                             </a>
-                          
-                         Youtube
-                        </div>
-                          )}
-                        {organisationDetails && organisationDetails.website_link && (
-                        <div  className="flex text-gray-700 items-center justify-center mt-2">
-                                <a className='mx-1' href={organisationDetails && organisationDetails.website_link}>
-                                <FaGlobe size={20} className='text-blue-600'/>
-                                </a>
-                            Our WebSite
-                        </div>
-                        )}                        
-                         
-                         
-                      </div>
-                     
-                      <div className='px-2 pb-4 mt-3'>
-                          {more ?<p>{organisationDetails && organisationDetails.orgDescription}</p> : <p>{organisationDetails && organisationDetails.orgDescription && organisationDetails.orgDescription.slice(0,100)}...</p>}
-                          <button className='text-blue-600 hover:underline mt-2' onClick={()=>setMore(!more)}>{more ? "Show less" : "Show more"}</button>
-                      </div>
-                  </div>
-                </div>
-              </div>
-              <div className="h-full lg:w-4/5">
-                <OrgActive organisationDetails= {organisationDetails && organisationDetails.campaigns}/>                                
-            </div>
+              <div className="relative rounded-lg shadow-lg p-4 bg-white mr-1 ">
+      <div className="text-left lg:mt-4">
+        <div className="text-gray-700 space-y-4">
+          <div className='flex items-center'>
+            <svg className="h-5 w-5 text-gray-400 mr-2" fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+              <path
+                d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zm11.31-1.41a7 7 0 1 0-9.9 0L12 19.9l4.95-4.95zM12 14a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+            </svg>
+            {organisationDetails?.orgAddress}
+          </div>
+          <div className='flex items-center'>
+            <MdOutlineCampaign title='Campaign' className='w-5 h-5 mr-2 text-gray-400' />
+            {organisationDetails?.campaigns.length} {organisationDetails?.campaigns.length < 2 ? "Campaign" : "Campaigns"}
+          </div>
+          <div className='flex items-center'>
+            <LuUserPlus title='Campaign' className='w-5 h-5 mr-2 text-gray-400' />
+            {organisationDetails?.subscriptions.length} {organisationDetails?.subscriptions.length <= 1 ? "Subscriber" : "Subscribers"}
+          </div>
+          <div className='flex items-center'>
+            <FaDonate title='Campaign' className='w-5 h-5 mr-2 text-gray-400' />
+            Ksh. {organisationDetails && prettyNumber(getTotalDonations(organisationDetails.campaigns), 'number-short')}
+          </div>
+        {organisationDetails?.youtube_link && (
+          <div className='flex items-center'>
+            <a href={organisationDetails?.youtube_link} target="_blank" rel="noopener noreferrer" className='flex items-center hover:underline'>
+              <FaYoutube size={22} className='w-5 h-5 mr-2 text-red-500' />
+            <span>Youtube</span>
+            </a>
+          </div>
+        )}
+        {organisationDetails?.website_link && (
+          <div className='flex items-center'>
+            <a href={organisationDetails?.website_link} target="_blank" rel="noopener noreferrer" className='flex items-center  hover:underline'>
+              <FaGlobe size={20} className='w-5 h-5 mr-2 text-blue-600' />
+            <span>Our Website</span>
+            </a>
+
+          </div>
+        )}
+       </div>
+
+      </div>
+      <div className='px-2 pb-4 mt-6'>
+        <p>{organisationDetails?.orgDescription ? (more ? organisationDetails.orgDescription : `${organisationDetails.orgDescription.slice(0, 100)}...`) : ''}</p>
+        <button className='text-blue-600 hover:underline mt-2' onClick={() => setMore(!more)}>{more ? "Show less" : "Show more"}</button>
+      </div>
+    </div>
+  </div>
+  <div className="h-full lg:w-4/5">
+    <OrgActive organisationDetails={organisationDetails?.campaigns} />
+  </div>
 
       <dialog open={showModal} onClose={() => setShowModal(false)} className="modal flex-row justify-center items-center text-center">
         <div className="modal-box bg-gray-50 text-gray-800">
