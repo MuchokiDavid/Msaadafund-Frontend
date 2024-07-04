@@ -31,9 +31,9 @@ function QuickLinks() {
         { icon: MdOutlineAppRegistration , name: 'Signatories',to:'/org/dashboard/transact/signatories' },
         { icon: BiMoneyWithdraw , name: 'Accounts' ,to:'/org/dashboard/transact/accounts'},
         { icon: GrAtm , name: 'Withdraw' ,to:'/org/dashboard/transact/withdraw'},
-        { icon: MdSendToMobile , name: 'Pay Bills' ,to:'/org/dashboard/transact/paybill'},
-        { icon: MdOutlinePayments , name: 'Buy Goods' ,to:'/org/dashboard/transact/till'},
-        { icon: FaPhone , name: 'Buy Airtime' ,to:'/org/dashboard/transact/buyairtime'},
+        { icon: MdSendToMobile , name: 'PayBill' ,to:'/org/dashboard/transact/paybill'},
+        { icon: MdOutlinePayments , name: 'Till' ,to:'/org/dashboard/transact/till'},
+        { icon: FaPhone , name: 'Airtime' ,to:'/org/dashboard/transact/buyairtime'},
         { icon: GrTransaction , name: 'Transactions',to:'/org/dashboard/transaction' },
         { icon: FcApprove , name: 'Approvals' ,to:'/org/dashboard/transact/approvals'},
         { icon: IoPersonCircle , name: 'Profile' ,to:'/org/dashboard/profile'}
