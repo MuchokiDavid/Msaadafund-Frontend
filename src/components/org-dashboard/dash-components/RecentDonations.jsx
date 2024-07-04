@@ -4,7 +4,7 @@ import moment from 'moment';
 function RecentDonations({allDonations, allCampaigns, allDonors}) {
     const[donations, setDonations] = useState([]);
     const[slicedDonations, setSlicedDonations] = useState([])
-    const [campaigns, setCampaigns] = useState();
+    const [campaigns, setCampaigns] = useState(allDonations);
     const [donors, setDonors] = useState(allDonors)
     const token=localStorage.getItem('token')
 
