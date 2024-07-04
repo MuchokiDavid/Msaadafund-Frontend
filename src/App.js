@@ -22,12 +22,15 @@ import Organisation from './pages/Organisation';
 import NotFound from './components/reusables/NotFound';
 import OrganisationDetails from './pages/OrganisationDetails';
 import Faq from './components/reusables/Faq';
+// import Maintenance from './components/reusables/Maintenance';
+import Message from './components/services/Message';
 
 function App() {
   return (
  <div className='text-black text-sm lg:text-md' >
     <Routes>
     <Route path = '/' element= {<Home/>}/>
+    {/* <Route path = '/' element= {<Maintenance/>}/> */}
     <Route path='/campaigns' element={<Campaigns/>}/>
     <Route path={`campaigns/:campaignId`} element={<CampainDetails/>} /> 
     <Route path = '/user/login' element = {<Login/>}/>
@@ -38,6 +41,7 @@ function App() {
     <Route path = '/org/signup' element = {<OrgSignUp/>}/>
     <Route path = '/contact' element = {<ContactUs/>}/>
     <Route path = '/about' element = {<AboutUs/>}/>
+    <Route path = '/message' element = {<Message/>}/>
     <Route path = '/faq' element = {<Faq/>}/>
     <Route path = '/careers' element = {<Careers/>}/>
     <Route path = '/user/dashboard/*' element = {<UserLayout/>}/>

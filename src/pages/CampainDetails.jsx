@@ -61,6 +61,7 @@ function CampainDetails() {
     const isLargeScreen = window.innerWidth >= 1024;
     const [more, setMore]= useState(false)
     const formRef = useRef(null);
+    const [donating, setDonating] = useState(false);
     
 // to check the subscription state
 
@@ -270,11 +271,13 @@ function CampainDetails() {
                     confirmButtonText: 'Yes, Send!'
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        setDonating(true)
                         if (users && accessToken){
                             axios.post('/api/v1.0/user/donations',{donorName:name,amount,campaignId:campaignId,phoneNumber},config)
                             .then((res)=>{
                                 // console.log('logged in user')
                                 if(res.status===200){
+                                    setDonating(false)
                                     Swal.fire({
                                         title: res.data.message,
                                         text: "Check your phone and enter M-pesa pin!",
@@ -286,6 +289,7 @@ function CampainDetails() {
                                       });
                                 }
                                 else{
+                                    setDonating(false)
                                     Swal.fire(
                                         'Error!',
                                         'The donation was not successiful. Try again',
@@ -296,10 +300,12 @@ function CampainDetails() {
 
                         }
                        else{
+                            setDonating(true)
                             axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,donorName,campaignId:campaignId})
                             .then((res)=>{
                                 // console.log('express used')
                                 if(res.status===200){    
+                                    setDonating(false)
                                     Swal.fire({
                                         title: res.data.message,
                                         text: "Check your phone and enter M-pesa pin!",
@@ -312,6 +318,7 @@ function CampainDetails() {
                                       });                                                           
                                 }
                                 else{
+                                    setDonating(false)
                                     Swal.fire(
                                         'Error!',
                                         'The donation was not successiful. Try again',
@@ -322,6 +329,7 @@ function CampainDetails() {
                                 // window.location.reload();
                             })
                             .catch((err)=>{
+                                setDonating(false)
                                 const errorMsg = err.response?.data?.error || 'An error occurred';
                                 setErrors(errorMsg);
                             })
@@ -371,13 +379,16 @@ function CampainDetails() {
                     confirmButtonText: 'Yes, Send!'
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        setDonating(true)
                         if (users && accessToken){
                             axios.post('/api/v1.0/logged_in_donate_card',{amount:cardAmount,campaignId:campaignId,currency:cardCurrency},config)
                             .then((res)=>{
                                 if(res.status===200){  
+                                    setDonating(false)
                                     window.location.replace(res.data.url)                                                         
                                 }
                                 else{
+                                    setDonating(false)
                                     Swal.fire(
                                         'Error!',
                                         'The request was not successiful. Try again',
@@ -388,13 +399,16 @@ function CampainDetails() {
 
                         }
                         else{
+                            setDonating(true)
                             axios.post ("/api/v1.0/donate_card",{firstName:fName,lastName:lName,cardEmail,phoneNumber:phoneNo,amount:cardAmount,campaignId:campaignId, currency:cardCurrency})
                             .then((res)=>{
                                 // console.log(res)
                                 if(res.status===200){  
+                                    setDonating(false)
                                     window.location.replace(res.data.url)                                                         
                                 }
                                 else{
+                                    setDonating(false)
                                     Swal.fire(
                                         'Error!',
                                         'The request was not successiful. Try again',
@@ -405,6 +419,8 @@ function CampainDetails() {
                                 // window.location.reload();
                             })
                             .catch((err)=>{
+                                setDonating(false)
+                                console.log(err)
                                 const errorMsg = err.response?.data?.error || 'An error occurred';
                                 setErrors(errorMsg);
                             })
@@ -782,8 +798,8 @@ const togglePasswordVisibility = (e) => {
                                 <div className='flex justify-start my-4'>
                                     <div>
                                         <button type="submit"
-                                            className='intaSendPayButton'>
-                                                {loading ? "Submitting..." : "Donate via M-Pesa"}
+                                            className='intaSendPayButton btn'>
+                                                {donating ? "Submitting..." : "Contribute"}
                                         </button>
                                     </div>
                                     
@@ -912,8 +928,8 @@ const togglePasswordVisibility = (e) => {
                                     <div className='flex justify-start my-4'>
                                         <div>
                                             <button type="submit"
-                                                className='intaCardPayButton'>
-                                                    {loading ? "Submitting..." : "Donate with Visa/MasterCard"}
+                                                className='intaCardPayButton btn'>
+                                                    {donating ? "Submitting..." : "Contribute"}
                                             </button>
                                         </div>
                                         

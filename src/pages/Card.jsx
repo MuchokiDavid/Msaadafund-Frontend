@@ -47,7 +47,7 @@ function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, han
                                 <button
                                 onClick={()=> setButtonClicked(true)}
                                     className="flex-1 w-full rounded bg-blue-600 text-white font-bold hover:bg-blue-800 px-4 py-3">
-                                    Give Now
+                                    Contribute Now
                                 </button>
                             </div>
 
