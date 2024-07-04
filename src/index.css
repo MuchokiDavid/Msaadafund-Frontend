@@ -65,8 +65,8 @@ code {
   border-radius: 3px;
   border: 1px solid #F7B600;
   color: #fff;
-  /* height: 40px; */
-  @apply p-1.5
+  height: 40px;
+  width: 150px;
 }
 .intaCardPayButton:hover {
   cursor: pointer;
