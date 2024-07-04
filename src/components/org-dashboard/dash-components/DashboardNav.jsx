@@ -1,8 +1,7 @@
 import React from 'react'
 import { IoMenu } from "react-icons/io5";
-import logo from  '../../../assets/msaadaLogo.png';
 import { useAuth } from '../../../context/usersContext';
-
+import logo from '../../../assets/applogo.png'
 
 function DashboardNav({toggleSidebar}) {
     // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
@@ -34,8 +33,8 @@ function DashboardNav({toggleSidebar}) {
               
           </div>
           <div className="block ml-36 w-32 overflow-hidden">
-              <div className="flex items-center">
-                    <div className="dropdown dropdown-end absolute right-4 sm:z-20">
+              <div className="flex items-center justify-end">
+                    <div className="dropdown dropdown-end absolute right-4">
                         <div tabIndex={0} role="button" className="text-xs">
                             <div className='flex items-center justify-center h-10 bg-blue-600 text-white border border-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2.5 w-10 text-center'>
                               <p className='lg:text-base sm:text-sm'>{current_org && current_org.charAt(0)}</p>

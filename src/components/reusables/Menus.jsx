@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../../assets/msaadaLogo.png'
+import logo from '../../assets/applogo.png'
 import { useAuth } from '../../context/usersContext'
 
 function Menus() {
