@@ -76,7 +76,7 @@ function DashboardNav({toggleSidebar}) {
         },
         {
           target: '.view-approvals',
-          content: 'View all pending transactions approvals related to your campaigns here.',
+          content: 'View all pending signatories approvals related to your campaigns here.',
           },
     ])
   }, [steps])
