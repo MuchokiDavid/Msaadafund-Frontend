@@ -95,7 +95,7 @@ function Menubar({handleMenuItemClick}) {
                 href="/org/dashboard/donations">
                     <FaDonate className='h-4 w-4'/>
 
-                    <span className="mx-2 text-sm font-medium">Contributions</span>
+                    <span className="mx-2 text-sm font-medium view-contributions">Contributions</span>
                 </a>
 
             </div>

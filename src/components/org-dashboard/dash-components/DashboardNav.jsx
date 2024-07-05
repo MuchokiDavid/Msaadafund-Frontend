@@ -39,6 +39,10 @@ function DashboardNav({toggleSidebar}) {
         content: 'View all your campaigns here.',
         },
         {
+        target: '.view-contributions',
+        content: 'View all contributions made to your campaigns here.',
+        },
+        {
         target: '.add-withdrawal-account',
         content: 'Add your M-Pesa and Bank withdrawal account here.',
         },
