@@ -22,7 +22,9 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
     const [loading, setLoading] = useState(false);
     const [isSubmitting, setIsSubmitting]=useState(false)
     const [error, setError] = useState(null);
+    // eslint-disable-next-line 
     const urlRegexPattern = /^(?:https?:\/\/)?(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\\w\-\\s])([\w\-]{11})(?=[^\\w\-]|$)(?![?=&+%\\w]*(?:['"][^<>]*>|<\/a>))[?=&+%\\w]*/i;
+    // eslint-disable-next-line 
     const videoIdRegex = /^[a-zA-Z0-9_-]{11}$/;
 
     // Fetch campaign details using the campaign ID

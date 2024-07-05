@@ -4,7 +4,7 @@ import { useAuth } from '../../../context/usersContext';
 import logo from '../../../assets/applogo.png'
 import Joyride from 'react-joyride';
 
-function DashboardNav({toggleSidebar}) {
+function DashboardNav({toggleSidebar,allCampaigns}) {
     // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
   let current_org= localStorage.getItem('org');
   let token=localStorage.getItem("token");
