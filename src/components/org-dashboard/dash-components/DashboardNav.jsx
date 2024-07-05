@@ -28,7 +28,7 @@ function DashboardNav({toggleSidebar}) {
     setSteps([
         {
             target: '.dash',
-            content: 'Analytics here.',
+            content: 'View analytics here.',
         },
         {
         target: '.create-campaign',
