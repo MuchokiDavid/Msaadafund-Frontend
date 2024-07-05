@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoMenu } from "react-icons/io5";
 import { useAuth } from '../../../context/usersContext';
 import logo from '../../../assets/applogo.png'
+import Joyride from 'react-joyride';
 
 function DashboardNav({toggleSidebar}) {
     // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
@@ -20,6 +21,62 @@ function DashboardNav({toggleSidebar}) {
     window.location.replace("/org/login")
   };
 
+
+  const [steps, setSteps] = useState([]);
+
+  useEffect(() => {
+    setSteps([
+        {
+            target: '.dash',
+            content: 'Analytics here.',
+        },
+        {
+        target: '.create-campaign',
+        content: 'Create a new campaign by clicking here.',
+        },
+        {
+        target: '.view-campaigns',
+        content: 'View all your campaigns here.',
+        },
+        {
+        target: '.add-withdrawal-account',
+        content: 'Add your M-Pesa and Bank withdrawal account here.',
+        },
+        {
+        target: '.withdraw-funds',
+        content: 'Withdraw your funds to your accounts by clicking here.',
+        },
+        {
+        target: '.paybills',
+        content: 'Pay your bills from your campaign funds here.',
+        },
+        {
+        target: '.buy-goods',
+        content: 'Buy goods and services using your campaign funds here.',
+        },
+        {
+        target: '.airtime',
+        content: 'Purchase airtime using your campaign funds here.',
+        },
+        {
+        target: '.view-signatories',
+        content: 'Add and view all your signatories here.',
+        },
+        {
+        target: '.view-withdrawals',
+        content: 'View all your withdrawals here.',
+        },
+        {
+        target: '.view-transactions',
+        content: 'View all transactions related to your campaigns here.',
+        },
+        {
+          target: '.view-approvals',
+          content: 'View all pending transactions approvals related to your campaigns here.',
+          },
+    ])
+  }, [steps])
+
   return (
     <div className='w-full' id='dashNav'>
         <nav className="flex justify-between items-center py-2 w-full bg-white shadow">
@@ -32,6 +89,7 @@ function DashboardNav({toggleSidebar}) {
             </a>
               
           </div>
+          <Joyride steps={steps} continuous={true} />
           <div className="block ml-36 w-32 overflow-hidden">
               <div className="flex items-center justify-end">
                     <div className="dropdown dropdown-end absolute right-4">
