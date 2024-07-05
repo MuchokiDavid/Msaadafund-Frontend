@@ -43,6 +43,10 @@ function DashboardNav({toggleSidebar,allCampaigns}) {
         content: 'View all contributions made to your campaigns here.',
         },
         {
+          target: '.view-signatories',
+          content: 'Add your signatories here.',
+        },
+        {
         target: '.add-withdrawal-account',
         content: 'Add your M-Pesa and Bank withdrawal account here.',
         },
@@ -61,11 +65,7 @@ function DashboardNav({toggleSidebar,allCampaigns}) {
         {
         target: '.airtime',
         content: 'Purchase airtime using your campaign funds here.',
-        },
-        {
-        target: '.view-signatories',
-        content: 'Add and view all your signatories here.',
-        },
+        },        
         {
         target: '.view-withdrawals',
         content: 'View all your withdrawals here.',
