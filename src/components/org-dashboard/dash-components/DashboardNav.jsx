@@ -4,7 +4,7 @@ import { useAuth } from '../../../context/usersContext';
 import logo from '../../../assets/applogo.png'
 import Joyride from 'react-joyride';
 
-function DashboardNav({toggleSidebar}) {
+function DashboardNav({toggleSidebar,allCampaigns}) {
     // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
   let current_org= localStorage.getItem('org');
   let token=localStorage.getItem("token");
@@ -28,7 +28,7 @@ function DashboardNav({toggleSidebar}) {
     setSteps([
         {
             target: '.dash',
-            content: 'Analytics here.',
+            content: 'View analytics here.',
         },
         {
         target: '.create-campaign',
@@ -41,6 +41,10 @@ function DashboardNav({toggleSidebar}) {
         {
         target: '.view-contributions',
         content: 'View all contributions made to your campaigns here.',
+        },
+        {
+          target: '.view-signatories',
+          content: 'Add your signatories here.',
         },
         {
         target: '.add-withdrawal-account',
@@ -61,11 +65,7 @@ function DashboardNav({toggleSidebar}) {
         {
         target: '.airtime',
         content: 'Purchase airtime using your campaign funds here.',
-        },
-        {
-        target: '.view-signatories',
-        content: 'Add and view all your signatories here.',
-        },
+        },        
         {
         target: '.view-withdrawals',
         content: 'View all your withdrawals here.',
@@ -76,7 +76,7 @@ function DashboardNav({toggleSidebar}) {
         },
         {
           target: '.view-approvals',
-          content: 'View all pending transactions approvals related to your campaigns here.',
+          content: 'View all pending signatories approvals related to your campaigns here.',
           },
     ])
   }, [steps])
