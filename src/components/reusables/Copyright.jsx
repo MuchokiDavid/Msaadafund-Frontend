@@ -16,7 +16,7 @@ function Copyright() {
     <hr className='font-normal'/>
     <div className='flex justify-center items-center bg-sky-950 h-12'>      
         <div className='text-white text-xs text-center bg-sky-950 h-8 p-2'>
-        © {currentYear} Msaadahub. All rights reserved.
+        © {currentYear} MsaadaFund. All rights reserved.
       </div>
       <div>
       {/* <a className='text-white text-xs text-left bg-sky-950 h-8 p-2' href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Images by unsplash</a> */}
