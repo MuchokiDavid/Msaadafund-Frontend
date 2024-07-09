@@ -1,6 +1,6 @@
-# Msaada Mashinani - Frontend
+# Msaada Hub - Frontend
 
-Welcome to the frontend repository for Msaada Mashinani, an automated donation platform dedicated to providing support and assistance to communities in need, with a focus on grassroots-level initiatives in Kenya.
+Welcome to the frontend repository for Msaada Hub, an automated donation platform dedicated to providing support and assistance to communities in need, with a focus on grassroots-level initiatives in Kenya.
 
 ## Overview
 
