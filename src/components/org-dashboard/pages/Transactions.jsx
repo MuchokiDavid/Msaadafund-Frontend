@@ -90,6 +90,7 @@ function Transactions({allCampaigns, campaignError}) {
           handleFetchTransaction(campaign.walletId);
         }
       });
+      // eslint-disable-next-line 
     }, [token, filter, allCampaign]);
 
     useEffect(() => {

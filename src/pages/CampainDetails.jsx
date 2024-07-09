@@ -48,7 +48,6 @@ function CampainDetails() {
     const [cardAmount,setCardAmount]=  useState(100)
     
     // const  navigate = useNavigate();
-    const [loading, setLoading]= useState(false)
     // const currentlWebUrl= window.location.href
     const currentlWebUrl= `https://joker.vercel.app${window.location.pathname}` // Add link after deployment
     const [subscribe, setSubscribe] = useState(false)
@@ -81,11 +80,9 @@ function CampainDetails() {
     useEffect(() => {
       
         const fetchCampaign= ()=>{
-            setLoading(true)
             fetch(`/api/v1.0/campaign/${campaignId}`)
             .then(response => response.json())
             .then(data => {
-                setLoading(false)
                 setCampaign(data);
                 const org_id = data.organisation.id
                 setOrg_id(org_id)
