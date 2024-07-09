@@ -172,7 +172,7 @@ let totalAmount=allDonations && getTotalAmount(allDonations)
               <h2 className="text-3xl font-bold sm:text-4xl">Join Us and Make a Difference</h2>
 
               <p className="mt-4 text-gray-600">
-              Welcome to Msaada – your gateway to making a difference! Discover a seamless platform where you can effortlessly support diverse campaigns by various organizations. 
+                 Discover a seamless platform where you can effortlessly support diverse campaigns by various organizations. 
               Whether it's lending a helping hand, spreading awareness, or contributing resources, Msaada empowers you to be a catalyst for positive change. 
               Join us in creating a better tomorrow, one campaign at a time.
               </p>
@@ -227,8 +227,7 @@ let totalAmount=allDonations && getTotalAmount(allDonations)
             <h2 className="text-3xl font-bold sm:text-4xl">How it works</h2>
 
             <p className="mt-4 text-gray-500">
-            Welcome to Msaada, your go-to platform for making a difference in the world! Our platform connects passionate individuals with impactful organizations to drive positive change in communities across the globe. 
-            Here’s how it works:
+            Msaada is your go-to platform for making a difference in the world! We connect passionate individuals with impactful organizations to drive positive change in communities across the globe. Here’s how it works:
             </p>
           </div>
 

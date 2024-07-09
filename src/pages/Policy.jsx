@@ -111,7 +111,7 @@ function Policy() {
             <ul className="list-disc list-inside mb-4">
                 <li>If you have previously agreed to us using your personal information for direct marketing purposes, you
                     may
-                    change your mind at any time by writing to or emailing us at msaadacontact@gmail.com</li>
+                    change your mind at any time by writing to or emailing us at info@msaaadafund.com</li>
                 <li>We will not sell, distribute, or lease your personal information to third parties unless we have your
                     permission
                     or are required by law to do so. We may use your personal information to send you promotional
@@ -119,7 +119,7 @@ function Policy() {
                     about
                     third parties which we think you may find interesting if you tell us that you wish this to happen.</li>
                 <li>You may request details of personal information which we hold about you. If you would like a copy of the
-                    information held on you, please write to <a className='text-blue-600 hover:underline' href="mailto:contact@msaada.com">msaadacontact@gmail.com</a>.
+                    information held on you, please write to <a className='text-blue-600 hover:underline' href="mailto:info@msaadafund.com">info@msaadafund.com</a>.
                 </li>
                 <li>If you believe that any information we are holding on you is incorrect or incomplete, please write to or
                     email
@@ -135,7 +135,7 @@ function Policy() {
             </p>
 
             <h3 className="text-2xl font-bold mb-2">Contact Us</h3>
-            <p className="mb-4">If you have any questions or concerns about these terms and conditions, please contact us at <a className='text-blue-600 hover:underline' href="mailto:contact@msaada.com">msaadacontact@gmail.com</a>.</p>
+            <p className="mb-4">If you have any questions or concerns about these terms and conditions, please contact us at <a className='text-blue-600 hover:underline' href="mailto:info@msaadafund.com">info@msaaadafund.com</a>.</p>
             
             <p className="mb-4 text-sm">Last Updated: May 3, 2024</p>
         </div>

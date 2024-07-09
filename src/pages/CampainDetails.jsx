@@ -49,7 +49,7 @@ function CampainDetails() {
     
     // const  navigate = useNavigate();
     // const currentlWebUrl= window.location.href
-    const currentlWebUrl= `https://joker.vercel.app${window.location.pathname}` // Add link after deployment
+    const currentlWebUrl= `https://msaadafund.com${window.location.pathname}` // Add link after deployment
     const [subscribe, setSubscribe] = useState(false)
     const [org_id, setOrg_id] = useState(null)
     const users = localStorage.getItem('user');
@@ -151,26 +151,19 @@ function CampainDetails() {
                 Authorization: `Bearer ${accessToken}`
             }
         };
-
+        setLoading(true)
         const response = await axios.post(`/api/v1.0/subscription/${campaign.organisation.id}`, {}, config);
+        setLoading(false)
         if (response.status === 200) {
-            Swal.fire({
-                title: 'Subscribing...',
-                text: 'Please wait while we subscribe you to updates.',
-                allowOutsideClick: false,
-                showConfirmButton: false,
-                timer: 2000
-            }).then(() => {
                 Swal.fire({
                     title: "Subscription Successful",
                     text: `You have successfully subscribed to receive updates from ${campaign.organisation.orgName}. Thank you for your subscription!`,
                     icon: "success"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.reload();
+                        setSubscribe(true)
                     }
                 });
-            });
         }
     } catch (error) {
         const errorMsg = error.response?.data?.error || 'An error occurred';
@@ -201,7 +194,9 @@ function CampainDetails() {
                         }
                     };
                     // Await the axios.delete call
+                    setLoading(true)
                     const response = await axios.delete(`/api/v1.0/subscription/${org_id}`, config);
+                    setLoading(false)
                     if (response.status === 200) {
                         // Show success message
                         await Swal.fire({
@@ -210,9 +205,9 @@ function CampainDetails() {
                             icon: "success"
                         });
                         // Reload the page or perform any other necessary action
-                        window.location.reload();
+                        // window.location.reload();
+                        setSubscribe(false);
                     }
-                    setSubscribe(false);
                 } catch (error) {
                     const errorMsg = error.response?.data?.error || 'An error occurred';
                     console.error(errorMsg);
@@ -569,7 +564,7 @@ const togglePasswordVisibility = (e) => {
                             {/* banner */}                            
                             <Slider {...settings}>
                                 <div>
-                                    <img className="campaignBanner w-full" src={campaign.banner} alt={campaign.campaignName} loading="lazy"/> 
+                                    <img className="campaignBanner " src={campaign.banner} alt={campaign.campaignName} loading="lazy"/> 
                                 </div>
                                 <div>
                                     {campaign.youtube_link ? (
@@ -621,6 +616,7 @@ const togglePasswordVisibility = (e) => {
                         handleSubscribe={handleSubscribe}
                         handleUnsubscribe={handleUnsubscribe}
                         shareModal= {setShowShareModal}
+                        loading={loading}
                         />
                     </div>
                 </div>

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import profilePic from '../assets/orgProfile.png'
+import { MdNotificationsActive } from "react-icons/md";
+import { MdNotificationsOff } from "react-icons/md";
 
-function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, handleUnsubscribe, shareModal}) {
+function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscribe, handleUnsubscribe, shareModal}) {
     const percentage= (raisedAmount / budget)*100
     const [buttonClicked, setButtonClicked] = useState(false);//state listen to button event change 
 
@@ -87,15 +89,17 @@ function Card({orgDetails, raisedAmount, budget, subscribe, handleSubscribe, han
                     </div>
 
                     <div className="flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
-                {subscribe ? (
-                    <button type="button" className="btn inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 text-sm font-semibold text-white hover:text-gray-800 shadow-md hover:bg-gray-50" onClick={handleUnsubscribe}>
-                    Unsubscribe
-                    </button>
-                ) : (
-                    <button type="button" className="btn inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 text-sm font-semibold text-white shadow-sm  hover:text-gray-800 hover:bg-gray-50" onClick={handleSubscribe}>
-                    Subscribe
-                    </button>
-                )}
+                    {/* <div className="flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0"> */}
+                    {subscribe ? (
+                        <button type="button" className="inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:text-gray-800 shadow-md hover:bg-gray-50" onClick={handleUnsubscribe}>
+                         <MdNotificationsOff size={23}   className="text-lg mr-2" /> {loading ?  'Unsubscribing...' :"Unsubscribe"}
+                        </button>
+                    ) : (
+                        <button type="button" className="inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm  hover:text-gray-800 hover:bg-gray-50" onClick={handleSubscribe}>
+                       <MdNotificationsActive size={23}  className="text-lg mr-2" />{loading ?  'Subscribing...' :"Subscribe"}
+                        </button>
+                    )}
+                 {/* </div> */}
                  </div>
                 </div>
             </div> 

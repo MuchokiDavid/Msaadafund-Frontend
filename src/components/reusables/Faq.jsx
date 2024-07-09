@@ -29,12 +29,12 @@ const AccordionItem = ({ title, content }) => {
 function Faq() {
   const faqItems = [
     {
-      title: 'How do I create an account on Msaada Mashinani?',
+      title: 'How do I create an account on Msaada Fund?',
       content: ['Visit our landing page and click on "Sign Up." Follow the prompts to enter your details and verify your email. Once completed, you can start creating or supporting campaigns.'],
     },
     {
       title: 'What payment methods are supported?',
-      content: ['Msaada Mashinani supports various payment methods, including M-Pesa, credit/debit cards, Bitcoin, and Cash App. Transactions are securely processed through the IntaSend checkout system.'],
+      content: ['Msaada Fund supports various payment methods, including M-Pesa, credit/debit cards, Bitcoin, and Cash App. Transactions are securely processed through the IntaSend checkout system.'],
     },
     {
       title: 'How can I withdraw funds from my campaign?',
@@ -55,18 +55,18 @@ function Faq() {
       ],
     },
     {
-      title: 'How can my campaign get featured on Msaada Mashinani?',
+      title: 'How can my campaign get featured on Msaada Fund?',
       content: [
         'To get your campaign featured, a fee is required. This fee helps cover the costs of promoting and highlighting your campaign to a broader audience.'
       ],
     },
     {
-      title: 'What are the benefits for organizations using Msaada Mashinani?',
+      title: 'What are the benefits for organizations using Msaada Fund?',
       content: ['Organizations benefit from a user-friendly platform that simplifies fundraising, secure and efficient payment processing, and tools for managing and tracking campaign funds.'],
     },
     {
-      title: 'How secure is Msaada Mashinani?',
-      content: ['Security is a top priority. Msaada Mashinani utilizes advanced encryption and secure payment gateways provided by IntaSend to protect all transactions and user information.'],
+      title: 'How secure is Msaada Fund?',
+      content: ['Security is a top priority. Msaada Fund utilizes advanced encryption and secure payment gateways provided by IntaSend to protect all transactions and user information.'],
     },
     {
       title: 'How do I contact support?',

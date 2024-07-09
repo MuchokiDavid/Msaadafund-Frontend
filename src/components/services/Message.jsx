@@ -44,7 +44,7 @@ function Message() {
             <div className="py-4 lg:py-10 px-4 mx-auto max-w-screen-md bg-white">
                 <p className="mb-4 lg:mb-8  text-base font-normal text-center text-gray-500">Got a technical issue? Want to send feedback about our feature? Need details about our Business plan? Let us know.</p>
                 {errors && <p className='text-red-500'>{errors}</p>}
-                <form action="#" className="space-y-6" onSubmit={sendEmail}>
+                <form className="space-y-6" onSubmit={sendEmail}>
                     <div>
                         <label htmlFor="email" className="block mb-2 text-lg font-medium text-gray-900 "><span className='text-red-500'>*</span>Email</label>
                         <input type="email"

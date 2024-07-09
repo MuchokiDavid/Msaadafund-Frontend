@@ -20,8 +20,8 @@ function Careers() {
                   </div>
               </div>      
         </div>
-      <div className='container'>        
-        <p className="mt-4 max-w-screen-md mx-auto text-gray-600 leading-loose text-justify text-xl" >    Currently, there are no available openings. Please check back regularly for future opportunities.
+      <div className='container min-h-96'>        
+        <p className="mt-4 max-w-screen-md mx-auto text-gray-600 leading-loose text-justify text-xl" >Currently, there are no available openings. Please check back regularly for future opportunities.
         </p>
       </div>
       <Footer/>
