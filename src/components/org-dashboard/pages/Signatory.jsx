@@ -17,8 +17,8 @@ function Signatory() {
     // Useeffect to get all signatories from the database
     useEffect(() => {
         
-        handleFetch()
-        
+        handleFetch()        
+    // eslint-disable-next-line 
     }, [accessToken])
 
     function handleFetch(){

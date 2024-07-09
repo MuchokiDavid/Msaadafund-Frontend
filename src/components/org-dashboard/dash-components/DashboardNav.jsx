@@ -9,8 +9,8 @@ function DashboardNav({toggleSidebar}) {
   let token=localStorage.getItem("token");
   let org= localStorage.getItem("org");
   const {logout} = useAuth();
-
   
+
   if(!token && !org){
       window.location.replace("/org/login")
   }

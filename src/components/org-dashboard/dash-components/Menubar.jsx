@@ -17,7 +17,6 @@ import { MdOutlinePayments } from "react-icons/md";
 import { MdOutlineAppRegistration } from "react-icons/md";
 import { FcApprove } from "react-icons/fc";
 
-
 function Menubar({handleMenuItemClick}) {
   // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
   const {logout} = useAuth();
@@ -33,8 +32,10 @@ function Menubar({handleMenuItemClick}) {
   if (!token && !orgName){
     handleLogout()
   }
+ 
 
   return(
+    <>
   <aside className="flex flex-col min-w-64 min-h-screen pl-5 py-2 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l overflow-x-hidden">
         
     <div className="flex flex-col justify-between flex-1 sm:mb-16 lg:mb-6">
@@ -96,6 +97,15 @@ function Menubar({handleMenuItemClick}) {
 
                     <span className="mx-2 text-sm font-medium">Contributions</span>
                 </a>
+                
+                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/transact/signatories">
+                    
+                    <MdOutlineAppRegistration className='w-4 h-4'/>
+
+                    <span className="mx-2 text-sm font-medium">Signatories</span>
+                </a>
 
             </div>
 
@@ -145,7 +155,7 @@ function Menubar({handleMenuItemClick}) {
                     
                     <FaPhone className='w-3 h-3' />
 
-                    <span className="mx-2 text-sm font-medium">Buy Airtime</span>
+                    <span className="mx-2 text-sm font-medium" >Buy Airtime</span>
                 </a>    
                 
                 
@@ -161,15 +171,6 @@ function Menubar({handleMenuItemClick}) {
                     <HiOutlineStatusOnline className='w-4 h-4'/>
 
                     <span className="mx-2 text-sm font-medium">Status</span>
-                </a>
-
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
-                onClick={handleMenuItemClick}
-                href="/org/dashboard/transact/signatories">
-                    
-                    <MdOutlineAppRegistration className='w-4 h-4'/>
-
-                    <span className="mx-2 text-sm font-medium">Signatories</span>
                 </a>
 
                 <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
@@ -235,6 +236,7 @@ function Menubar({handleMenuItemClick}) {
         </nav>
     </div>
 </aside>
+</>
   )
 }
 

@@ -1,10 +1,10 @@
-# Msaada Hub - Frontend
+# Msaadafund - Frontend
 
-Welcome to the frontend repository for Msaada Hub, an automated donation platform dedicated to providing support and assistance to communities in need, with a focus on grassroots-level initiatives in Kenya.
+Welcome to the frontend repository for Msaadafund, an automated donation platform dedicated to providing support and assistance to communities in need, with a focus on grassroots-level initiatives in Kenya.
 
 ## Overview
 
-Msaada Mshinani aims to address challenges such as lack of access to essential resources, healthcare services, and educational opportunities faced by individuals and communities in Kenya. Through this platform, users can make donations, discover charitable organizations, and contribute to meaningful causes that make a difference in people's lives.
+Msaadafund aims to address challenges such as lack of access to essential resources, healthcare services, and educational opportunities faced by individuals and communities in Kenya. Through this platform, users can make donations, discover charitable organizations, and contribute to meaningful causes that make a difference in people's lives.
 
 ## Features
 
@@ -17,12 +17,12 @@ Msaada Mshinani aims to address challenges such as lack of access to essential r
 
 ## Getting Started
 
-To get started with the Msaada Mshinani frontend, follow these steps:
+To get started with the Msaadafund frontend, follow these steps:
 
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/MuchokiDavid/MsaadaMashinani_Frontend.git
+   git clone https://github.com/MuchokiDavid/Msaadafund_Frontend.git
     ```
 
 2. Install dependencies using npm:

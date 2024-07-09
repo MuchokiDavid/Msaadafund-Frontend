@@ -41,6 +41,7 @@ function OrgLayout() {
   const [subscriptions, setSubscriptions]= useState([])
   const[donors,setDonors]=useState([])
   const user = localStorage.getItem('user')
+  // eslint-disable-next-line 
   const regexPattern = /^(?:https?:\/\/)?(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\\w\-\\s])([\w\-]{11})(?=[^\\w\-]|$)(?![?=&+%\\w]*(?:['"][^<>]*>|<\/a>))[?=&+%\\w]*/i; 
 
  
@@ -125,6 +126,7 @@ const handleWallet = async (id) => {
 //Get all banks
 useEffect(() => {
   fetchBanks()
+  // eslint-disable-next-line 
 }, [token])
 
 
@@ -222,6 +224,7 @@ useEffect(() => {
 
   useEffect(() => {
       handleFetch();
+      // eslint-disable-next-line 
   }, [token]);
   
   const handleFetch = async () => {
@@ -291,7 +294,7 @@ useEffect(() => {
     <div className="flex relative h-screen overflow-hidden">
       {isSidebarOpen && <Menubar handleMenuItemClick={handleMenuItemClick} toggleSidebar={toggleSidebar}/>}
       <div className='w-full sm:w-screen bg-slate-50'>
-        <DashboardNav toggleSidebar={toggleSidebar} />
+        <DashboardNav toggleSidebar={toggleSidebar} allCampaigns={campaigns}/>
         <main className="flex-1 my-3 text-gray-800 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6" style={{ marginTop: '10px' }} id='dashboard'>
           <Routes>
             <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors} handleMenuItemClick={handleMenuItemClick} subscriptions={subscriptions}/>} />

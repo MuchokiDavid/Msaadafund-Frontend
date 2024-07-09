@@ -17,6 +17,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
     const [otherCategory, setOtherCategory] = useState('');
     const [youtubeLink,setYoutubeLink]=useState('')
     // const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/(?:watch\?v=)?([a-zA-Z0-9_-]+)$/;
+    // eslint-disable-next-line 
     const regexPattern = /^(?:https?:\/\/)?(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\\w\-\\s])([\w\-]{11})(?=[^\\w\-]|$)(?![?=&+%\\w]*(?:['"][^<>]*>|<\/a>))[?=&+%\\w]*/i;
     const formRef = useRef(null);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
