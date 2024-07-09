@@ -28,14 +28,20 @@ function Terms() {
       <h3 className="text-2xl font-bold mb-2">5. Intellectual Property</h3>
       <p className="mb-4">All content on Msaada, including text, graphics, logos, and images, is the property of Msaada or its licensors and is protected by copyright and other intellectual property laws. You may not use, reproduce, or distribute any content from our platform without prior written permission. Unauthorized use of our content may result in legal action.</p>
       
-      <h3 className="text-2xl font-bold mb-2">6. Limitation of Liability</h3>
+      <h3 className='text-2xl font-bold mb-2'>6. Image Credits and Attributions</h3>
+      <p className="mb-4">Msaada uses images from various sources, including Unsplash and Freepik. We comply with the attribution requirements specified by these platforms. The images provided by Unsplash and Freepik are used under their respective licenses, which may require attribution to the original authors.</p>
+      
+      <h3 className='text-2xl font-bold mb-2'>7. Compliance</h3>
+      <p className="mb-4">We are committed to complying with all relevant copyright and intellectual property laws. If you have any questions or concerns about our use of content, please contact us at <a className='text-blue-600 hover:underline' href="mailto:info@msaadafund.com">info@msaadafund.com</a>.</p>      
+      
+      <h3 className="text-2xl font-bold mb-2">8. Limitation of Liability</h3>
       <p className="mb-4">Msaada and its affiliates will not be liable for any direct, indirect, incidental, special, or consequential damages arising out of or in any way connected with your use of our website and donation platform. In no event shall Msaada be liable for any damages resulting from the use or inability to use Msaada, including but not limited to loss of profits, data, or goodwill.</p>
       
-      <h3 className="text-2xl font-bold mb-2">7. Changes to Terms</h3>
+      <h3 className="text-2xl font-bold mb-2">9. Changes to Terms</h3>
       <p className="mb-4">Msaada reserves the right to update or modify these terms and conditions at any time without prior notice. It is your responsibility to review these terms periodically for changes. Your continued use of our platform after any modifications indicates your acceptance of the updated terms.</p>
       
-      <h3 className="text-2xl font-bold mb-2">8. Contact Us</h3>
-      <p className="mb-4">If you have any questions or concerns about these terms and conditions, please contact us at <a className='text-blue-600 hover:underline' href="mailto:contact@msaada.com">msaadacontact@gmail.com</a>.</p>
+      <h3 className="text-2xl font-bold mb-2">10. Contact Us</h3>
+      <p className="mb-4">If you have any questions or concerns about these terms and conditions, please contact us at <a className='text-blue-600 hover:underline' href="mailto:info@msaadafund.com">info@msaaadafund.com</a>.</p>
       
       <p className="mb-4 text-sm">Last Updated: May 3, 2024</p>
     </div>
