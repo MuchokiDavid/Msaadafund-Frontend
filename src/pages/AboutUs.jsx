@@ -70,7 +70,7 @@ function AboutUs() {
                 <div className="mb-8">
                   <h3 className="text-2xl font-semibold text-gray-900">Contact Us</h3>
                   <p className="mt-2 text-lg text-gray-600">
-                    Have questions or feedback? We'd love to hear from you! Reach out to us at <a href="mailto:msaadacontact@gmail.com" className="text-blue-600">msaadacontact@gmail.com</a>.
+                    Have questions or feedback? We'd love to hear from you! Reach out to us at <a href="mailto:msaadacontact@gmail.com" className="text-blue-600">info@msaaadafund.com</a>.
                   </p>
                 </div>
                 <div>
