@@ -38,6 +38,7 @@ function CampainDetails() {
     const [activeTab, setActiveTab] = useState('M-Pesa');
     const [showPassword, setShowPassword] = useState(false);
     const [cardEmail, setCardEmail]= useState('')
+    const [loading,setLoading] = useState(false)
 
     //card states
     const [fName, setFName]= useState('')
