@@ -50,7 +50,7 @@ function CampainDetails() {
     // const  navigate = useNavigate();
     const [loading, setLoading]= useState(false)
     // const currentlWebUrl= window.location.href
-    const currentlWebUrl= `https://joker.vercel.app${window.location.pathname}` // Add link after deployment
+    const currentlWebUrl= `https://msaadafund.com${window.location.pathname}` // Add link after deployment
     const [subscribe, setSubscribe] = useState(false)
     const [org_id, setOrg_id] = useState(null)
     const users = localStorage.getItem('user');
