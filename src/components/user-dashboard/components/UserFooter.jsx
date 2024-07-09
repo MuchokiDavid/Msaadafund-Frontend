@@ -17,7 +17,7 @@ function Footer() {
         <footer className="text-gray-800 py-2 text-sm mt-4">
         <div className='flex justify-between'>
         <div className='text-xs text-left h-8 p-2'>
-        © {currentYear} Msaadahub. All rights reserved.
+        © {currentYear} MsaadaFund. All rights reserved.
       </div>
       <div>
       </div>
