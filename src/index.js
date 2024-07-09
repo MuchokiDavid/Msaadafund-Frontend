@@ -5,13 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './context/usersContext';
 import { BrowserRouter } from 'react-router-dom';
-import { TourProvider } from '@reactour/tour'
+import { TourProvider } from '@reactour/tour';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 const steps = [
   {
     selector: '.dash',
-    content: 'Welcome to MsaadaFund! This is your dashboard, where you can easily navigate through all the features of the app.',
+    content: 'Welcome to Msaadafund! This is your dashboard, where you can easily navigate through all the features of the app.',
   },
   {
     selector: '.create-campaign',
@@ -62,8 +63,8 @@ const steps = [
     content: 'See all pending approvals from your signatories for various actions related to your campaigns here.',
   },
   {
-    selector: '.view-quick',
-    content: 'Quickly access important features of the app here.',
+    selector: '.view-profile',
+    content: 'Manage your profile and settings by clicking here.',
   },
 ];
 

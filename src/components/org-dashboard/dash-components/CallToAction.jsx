@@ -1,8 +1,9 @@
 import React from 'react'
+import { useTour } from '@reactour/tour'
 
 function CallToAction() {
-    const token= localStorage.getItem("token")
     const orgName= localStorage.getItem("org")
+    const { setIsOpen } = useTour()
   return (
     <div>
          <div id='termBanner' className="px-4 py-4 bg-gradient-to-r sm:py-4 rounded-lg  md:py-6 md:px-6 lg:py-8 lg:px-8 xl:flex xl:items-center">
@@ -18,9 +19,9 @@ function CallToAction() {
             </div>
             <div className="mt-6 sm:w-full sm:max-w-md xl:mt-0 xl:ml-8">
                 <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                    <a  href={token ? "/org/dashboard/mycampaigns/active" : "/org/login"}><button className="flex items-center justify-center w-full px-5 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-blue-600 border border-blue-600 hover:border-blue rounded-md hover:bg-blue-500 focus:outline-none focus:bg-purple-400">
-                        View Campaigns
-                    </button></a>
+                    <button onClick={()=>setIsOpen(true)} className="flex items-center justify-center w-full px-5 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-blue-600 border border-blue-600 hover:border-blue rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                        Start tour
+                    </button>
                 </div>
                 <p className="mt-3 text-sm leading-5 text-gray-100">
                     We care about the protection of your data. Your data is safe and never used for commercial purposes.
