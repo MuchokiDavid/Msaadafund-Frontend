@@ -41,7 +41,7 @@ function Menubar({handleMenuItemClick}) {
     <div className="flex flex-col justify-between flex-1 sm:mb-16 lg:mb-6">
         <nav className="-mx-3 space-y-6 mt-4">
             <div className="space-y-3 ">
-                <label className="px-3 text-xs text-gray-500 uppercase dash">analytics</label>
+                <label className="px-3 text-xs text-gray-500 uppercase">analytics</label>
 
                 <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 hover:text-gray-700" 
                 onClick={handleMenuItemClick}
@@ -70,7 +70,7 @@ function Menubar({handleMenuItemClick}) {
                 href="/org/dashboard/createcampaign">
                     <GrAddCircle className='h-5 w-5'/>
 
-                    <span className="mx-2 text-sm font-medium create-campaign">Create</span>
+                    <span className="mx-2 text-sm font-medium">Create</span>
                 </a>
 
                 <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
@@ -79,7 +79,7 @@ function Menubar({handleMenuItemClick}) {
                     
                     <VscVmActive className='w-5 h-5'/>
 
-                    <span className="mx-2 text-sm font-medium view-campaigns">Active</span>
+                    <span className="mx-2 text-sm font-medium">Active</span>
                 </a>
 
                 <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
@@ -95,7 +95,16 @@ function Menubar({handleMenuItemClick}) {
                 href="/org/dashboard/donations">
                     <FaDonate className='h-4 w-4'/>
 
-                    <span className="mx-2 text-sm font-medium view-contributions">Contributions</span>
+                    <span className="mx-2 text-sm font-medium">Contributions</span>
+                </a>
+                
+                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/transact/signatories">
+                    
+                    <MdOutlineAppRegistration className='w-4 h-4'/>
+
+                    <span className="mx-2 text-sm font-medium">Signatories</span>
                 </a>
 
             </div>
@@ -110,7 +119,7 @@ function Menubar({handleMenuItemClick}) {
                     
                     <BiMoneyWithdraw className='w-4 h-4' />
 
-                    <span className="mx-2 text-sm font-medium add-withdrawal-account">Accounts</span>
+                    <span className="mx-2 text-sm font-medium">Accounts</span>
                 </a>
 
                 <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
@@ -119,7 +128,7 @@ function Menubar({handleMenuItemClick}) {
                   
                     <GrAtm className='w-4 h-4' />
 
-                    <span className="mx-2 text-sm font-medium withdraw-funds">Withdraw</span>
+                    <span className="mx-2 text-sm font-medium">Withdraw</span>
                 </a>
 
                 <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
@@ -127,7 +136,7 @@ function Menubar({handleMenuItemClick}) {
                 href="/org/dashboard/transact/paybill">
                     <MdSendToMobile className='w-4 h-4' />
 
-                    <span className="mx-2 text-sm font-medium paybills">Paybill</span>
+                    <span className="mx-2 text-sm font-medium">Paybill</span>
                 </a>          
 
 
@@ -136,7 +145,7 @@ function Menubar({handleMenuItemClick}) {
                 href="/org/dashboard/transact/till">
                     <MdOutlinePayments className='w-4 h-4'/>
 
-                    <span className="mx-2 text-sm font-medium buy-goods">Till Number</span>
+                    <span className="mx-2 text-sm font-medium">Till Number</span>
                 </a>
 
 
@@ -146,7 +155,7 @@ function Menubar({handleMenuItemClick}) {
                     
                     <FaPhone className='w-3 h-3' />
 
-                    <span className="mx-2 text-sm font-medium airtime" >Buy Airtime</span>
+                    <span className="mx-2 text-sm font-medium" >Buy Airtime</span>
                 </a>    
                 
                 
@@ -166,20 +175,11 @@ function Menubar({handleMenuItemClick}) {
 
                 <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
-                href="/org/dashboard/transact/signatories">
-                    
-                    <MdOutlineAppRegistration className='w-4 h-4'/>
-
-                    <span className="mx-2 text-sm font-medium view-signatories">Signatories</span>
-                </a>
-
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
-                onClick={handleMenuItemClick}
                 href="/org/dashboard/transact/withdrawals">
                     
                     <BsBoxArrowDown className='w-4 h-4'/>
 
-                    <span className="mx-2 text-sm font-medium view-withdrawals">Withdrawals</span>
+                    <span className="mx-2 text-sm font-medium">Withdrawals</span>
                 </a>
 
                 <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
@@ -189,7 +189,7 @@ function Menubar({handleMenuItemClick}) {
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
                     </svg>
 
-                    <span className="mx-2 text-sm font-medium view-transactions">Transactions</span>
+                    <span className="mx-2 text-sm font-medium">Transactions</span>
                 </a>
 
                 <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
@@ -198,7 +198,7 @@ function Menubar({handleMenuItemClick}) {
                     
                     <FcApprove className='w-4 h-4'/>
 
-                    <span className="mx-2 text-sm font-medium view-approvals">Pending Approvals</span>
+                    <span className="mx-2 text-sm font-medium">Pending Approvals</span>
                 </a>
 
             </div>

@@ -29,6 +29,7 @@ function Accounts({banks, fetchBank}) {
 
     useEffect(() => {
       fetchBank();
+    // eslint-disable-next-line 
     }, [providers])
     
     useEffect(() => {

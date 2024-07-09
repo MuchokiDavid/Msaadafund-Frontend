@@ -63,6 +63,7 @@ function DashActiveCampaigns({ allCampaigns, campaignError }) {
 
     useEffect(() => {
         campaigns && campaigns.forEach(item => handleWallet(item.id));
+        // eslint-disable-next-line 
     }, [campaigns, token]);
 
     const handleWallet = async (id) => {
