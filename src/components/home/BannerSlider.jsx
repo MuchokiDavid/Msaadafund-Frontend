@@ -39,7 +39,7 @@ function BannerSlider() {
       buttonLink: "/campaigns"
     },
     {
-      url: "https://plus.unsplash.com/premium_photo-1683140538884-07fb31428ca6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZG9uYXRlfGVufDB8fDB8fHww",
+      url:"https://img.freepik.com/free-photo/front-view-box-with-donated-food_23-2148613254.jpg?w=740&t=st=1720521150~exp=1720521750~hmac=d7cfea93944e287864857538430cc6b607694cc86f9d29b13d1ff7698f6ee6d9",
       heading: "Make a Difference Today!",
       text: "Your contribution can change lives. Support a cause that matters to you and help those in need.",
       buttonText: "Create Campaign",
