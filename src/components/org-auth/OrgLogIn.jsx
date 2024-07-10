@@ -40,7 +40,7 @@ function OrgLogIn() {
     setTimeout(() => {
       navigate('/org/dashboard')
       setLoading(false)
-    }, 1000);
+    }, 2000);
     return null;
   }
   // if (isLoggedIn) {
