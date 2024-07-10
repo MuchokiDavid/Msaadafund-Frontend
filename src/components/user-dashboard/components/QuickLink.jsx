@@ -4,7 +4,7 @@ import { IoPersonCircle } from 'react-icons/io5';
 import { MdOutlineSubscriptions} from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { IoMdHelpCircle } from 'react-icons/io';
-
+import { GrTransaction } from "react-icons/gr";
 
 // Use the icon component dynamically
 const QuickLinks = ({ icon, name, to }) => {
@@ -16,16 +16,23 @@ const QuickLinks = ({ icon, name, to }) => {
       </Link>
     );
   };
+  
 
 function QuickLink() {
+  const isSignatory = localStorage.getItem('isSignatory') === 'true';
+
     const quickLinksData = [
         { icon: FaHome , name: 'Home' ,to:'/user/dashboard'},
         { icon: FaDonate , name: 'Contributions' ,to:'/user/dashboard/contributions'},
         { icon: MdOutlineSubscriptions , name: 'Subscripions' ,to:'/user/dashboard/subscriptions'},
-        // {icon: GrTransaction, name: 'Approvals', to: '/user/dashboard/approvals'},
         { icon: IoMdHelpCircle , name: 'Help' ,to:'/user/dashboard/help'},
         { icon: IoPersonCircle , name: 'Profile' ,to:'/user/dashboard/profile'}
       ];
+
+      if (isSignatory) {
+        quickLinksData.push({icon: GrTransaction, name: 'Approvals', to: '/user/dashboard/approvals'},);
+      }
+
   return (
     <div className='py-3 bg-transparent'>
         <h2 className="text-xl mb-4">Quick Links</h2>
