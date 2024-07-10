@@ -66,6 +66,10 @@ const steps = [
     selector: '.view-profile',
     content: 'Manage your profile and settings by clicking here.',
   },
+  {
+    selector: '.view-more',
+    content: 'View more features here.',
+  }
 ];
 
 root.render(
