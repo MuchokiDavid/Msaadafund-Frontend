@@ -24,7 +24,7 @@ const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.])(?!.
 
 const handleSendOTP = async () => {
   try {
-    await axios.post('/api/v1.0/forgot_password', { email });
+    await axios.post('https://appbackend.msaadafund.com/api/v1.0/forgot_password', { email });
     setMessage('OTP sent to your email');
     setStep(2);
   } catch (error) {
@@ -48,7 +48,7 @@ const handleResetPassword = async () => {
       return;
     }
 
-    await axios.patch('/api/v1.0/reset_password', { email, otp, new_password: newPassword });
+    await axios.patch('https://appbackend.msaadafund.com/api/v1.0/reset_password', { email, otp, new_password: newPassword });
     // setMessage('Password reset successfully');
     toast.success("Password reset successfully");
     setTimeout(() => {

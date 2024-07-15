@@ -12,7 +12,7 @@ function Organisation() {
     const [itemsPerPage] = useState(12)
 
     useEffect(()=>{
-        axios.get('/api/v1.0/organisations')
+        axios.get('https://appbackend.msaadafund.com/api/v1.0/organisations')
         .then((res)=>{            
             setOrganisation(res.data)
         })

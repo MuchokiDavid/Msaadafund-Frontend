@@ -17,7 +17,7 @@ function Banner() {
     const getDonations = async () => {
       setLoading(true)
       try {
-          const response = await fetch('/api/v1.0/all_donations', {
+          const response = await fetch('https://appbackend.msaadafund.com/api/v1.0/all_donations', {
               method: 'GET',
               headers: {
                   'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ function Banner() {
     const getOrganisation = async () => {
       try {
         setLoading(true)
-          const response = await fetch('/api/v1.0/organisations', {
+          const response = await fetch('https://appbackend.msaadafund.com/api/v1.0/organisations', {
               method: 'GET',
               headers: {
                   'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ function Banner() {
   useEffect(() => {
     const getCampaigns = async () => {
       try {
-          const response = await fetch('/api/v1.0/get_all_campaigns', {
+          const response = await fetch('https://appbackend.msaadafund.com/api/v1.0/get_all_campaigns', {
               method: 'GET',
               headers: {
                   'Content-Type': 'application/json',

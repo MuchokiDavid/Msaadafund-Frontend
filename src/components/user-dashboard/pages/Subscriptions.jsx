@@ -40,7 +40,7 @@ function Subscriptions({ allSubscriptions }) {
                     Authorization: `Bearer ${token}`
                 }
             };
-            const response = await axios.delete(`/api/v1.0/subscription/${id}`, config);
+            const response = await axios.delete(`https://appbackend.msaadafund.com/api/v1.0/subscription/${id}`, config);
             if (response.status === 200) {
                 Swal.fire({
                     title: `Unsubscribed from ${orgName} Updates`,

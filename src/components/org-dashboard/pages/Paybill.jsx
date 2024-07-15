@@ -51,7 +51,7 @@ const handlePay = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-        const response = await axios.post('/api/v1.0/pay_to_paybill', {
+        const response = await axios.post('https://appbackend.msaadafund.com/api/v1.0/pay_to_paybill', {
             paybillNumber: paybillNumber,
             accountNumber: accountNumber,
             amount: amount,

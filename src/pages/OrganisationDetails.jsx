@@ -37,7 +37,7 @@ function OrganisationDetails() {
 
   useEffect(() => {
     setLoading(true)
-    axios.get(`/api/v1.0/org_by_id/${orgName}`)
+    axios.get(`https://appbackend.msaadafund.com/api/v1.0/org_by_id/${orgName}`)
       .then(res => {
         setOrganisationDetails(res.data);
         setLoading(false)
@@ -60,7 +60,7 @@ function OrganisationDetails() {
               Authorization: `Bearer ${accessToken}`
             }
           };
-          const response = await axios.get(`/api/v1.0/subscription/${organisationDetails.id}`, config);
+          const response = await axios.get(`https://appbackend.msaadafund.com/api/v1.0/subscription/${organisationDetails.id}`, config);
           if (response.status === 200) { // Check response status
             setSubscribe(true);
           }
@@ -102,7 +102,7 @@ function OrganisationDetails() {
         };
          setLoading(true)
         // Await the axios.post call
-        const response = await axios.post(`/api/v1.0/subscription/${organisationDetails.id}`, {}, config);
+        const response = await axios.post(`https://appbackend.msaadafund.com/api/v1.0/subscription/${organisationDetails.id}`, {}, config);
         setLoading(false)
         if (response.status === 200) {
           Swal.fire({
@@ -142,7 +142,7 @@ function OrganisationDetails() {
             };
   
             setLoading(true);
-            const response = await axios.delete(`/api/v1.0/subscription/${organisationDetails.id}`, config);
+            const response = await axios.delete(`https://appbackend.msaadafund.com/api/v1.0/subscription/${organisationDetails.id}`, config);
             setLoading(false);
             if (response.status === 200) {
               Swal.fire({

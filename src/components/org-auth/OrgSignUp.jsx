@@ -47,7 +47,7 @@ function OrgSignUp() {
       if (userPassword === confirmPassword) {
         let phoneNo = phoneNumber.replace(/^0+/, '');
         let formattedPhoneNumber = "254" + phoneNo;
-        fetch('/api/v1.0/auth/organisation/register', {
+        fetch('https://appbackend.msaadafund.com/api/v1.0/auth/organisation/register', {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

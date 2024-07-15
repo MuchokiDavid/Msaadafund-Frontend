@@ -17,7 +17,7 @@ function ResetPin({onClose}) {
 
   const handleSendOTP = async () => {
     try {
-      await axios.post('/api/v1.0/acc_forgot_pin', { email });
+      await axios.post('https://appbackend.msaadafund.com/api/v1.0/acc_forgot_pin', { email });
       setMessage('OTP sent to your email');
       setStep(2);
     } catch (error) {
@@ -36,7 +36,7 @@ function ResetPin({onClose}) {
         return;
       }
   
-      await axios.patch('/api/v1.0/acc_reset_pin', { email, otp, new_pin: newPin });
+      await axios.patch('https://appbackend.msaadafund.com/api/v1.0/acc_reset_pin', { email, otp, new_pin: newPin });
       toast.success("PIN reset successfully");
       setTimeout(() => {
         window.location.href = '/org/dashboard/accounts'; 

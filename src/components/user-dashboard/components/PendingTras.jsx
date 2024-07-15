@@ -23,7 +23,7 @@ function PendingTras() {
         'Content-Type': 'application/json',
       }
     };
-    axios.get('/api/v1.0/pending_transactions', config)
+    axios.get('https://appbackend.msaadafund.com/api/v1.0/pending_transactions', config)
       .then((res) => {
         setTransactions(res.data);
       })
@@ -33,7 +33,7 @@ function PendingTras() {
   }, [accessToken]);
 
   const handleApproval = (transactionId, campaignName) => {
-    axios.post('/api/v1.0/approve_transaction', {
+    axios.post('https://appbackend.msaadafund.com/api/v1.0/approve_transaction', {
       transaction_id: transactionId,
       approval_status: true,
       campaign_name: campaignName
@@ -62,7 +62,7 @@ function PendingTras() {
   };
 
   const handleReject = (transactionId) => {
-    axios.patch(`/api/v1.0/reject_approval/${transactionId}`, {}, config)
+    axios.patch(`https://appbackend.msaadafund.com/api/v1.0/reject_approval/${transactionId}`, {}, config)
       .then((res) => {
         Swal.fire({
           title: "Success!",

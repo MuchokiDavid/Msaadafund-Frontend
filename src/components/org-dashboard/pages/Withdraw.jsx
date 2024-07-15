@@ -34,7 +34,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
     useEffect(() => {
         const handleFetch = async () => {
             try {
-                const response = await fetch('/api/v1.0/accounts', {
+                const response = await fetch('https://appbackend.msaadafund.com/api/v1.0/accounts', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -119,7 +119,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
         try{
             setLoading(true)
             setErrors(null)
-            fetch('/api/v1.0/withdraw', {
+            fetch('https://appbackend.msaadafund.com/api/v1.0/withdraw', {
                 method: "POST",
                 headers: {
                 'Content-Type': 'application/json',

@@ -28,7 +28,7 @@ function Withdrawals() {
 
     useEffect(()=>{
         const handleFetch= async()=>{
-            await fetch('/api/v1.0/withdraw_transactions', {
+            await fetch('https://appbackend.msaadafund.com/api/v1.0/withdraw_transactions', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ function Withdrawals() {
     // get route from backend
     const downloadTransactionPDF=(id)=> {
         const token = localStorage.getItem('token');
-        const url = `/api/v1.0/withdraw_pdf`;
+        const url = `https://appbackend.msaadafund.com/api/v1.0/withdraw_pdf`;
     
         fetch(url, {
             method: 'GET',
