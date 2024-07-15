@@ -23,6 +23,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
     const [bank, setBank] = useState('')
     const [popupErrors, setPopupErrors] = useState(null)
     const [passswordShow,setPasswordShow] = useState("")
+    const [isSubmitting, setIsSubmitting]= useState(false)
 
     // const formRef = useRef(null);
     const phoneRegex = /^254\d{9}$/
@@ -117,7 +118,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
     function handleWithdraw(e) {
         e.preventDefault();
         try{
-            setLoading(true)
+            setIsSubmitting(true)
             setErrors(null)
             fetch('https://appbackend.msaadafund.com/api/v1.0/withdraw', {
                 method: "POST",
@@ -134,7 +135,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
                     bank_code: bank
                 })
             }).then((res) => res.json())
-            .catch((err) => { console.log(err) })
+            .catch((err) => { console.log(err); setIsSubmitting(false)})
             .then((data) => {
                 if(data.message){
                     setTransactionResponse(data.message)                    
@@ -147,7 +148,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
                         })
                     setWithdrawForm(false)
                     setWalletDetails()
-                    setLoading(false)
+                    setIsSubmitting(false)
                     setAmount('')
                     setAccountNumber('')
                     setCampaign('')
@@ -176,9 +177,9 @@ if (!token && !org) {
     window.location.replace("/org/login")
 }
 
-// if (loading) {
-//     return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
-// }
+if (loading) {
+    return(<div className='flex justify-center'>...</div>)
+}
 // console.log(walletDetails)
 // console.log(campaigns)
 // console.log(transactionResponse)
@@ -276,7 +277,7 @@ return (
                     </div>
                     {errors && <p className='text-red-700 text-base mt-2'>{errors}</p>}
                     <div className="flex items-center justify-between mt-4">
-                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-2 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-2 md:text-lg md:px-4">{loading? "Withdrawing...":"Withdraw"}</button>
+                        <button type='submit' onClick={handleSubmit} className="flex items-center justify-center px-8 py-2 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900 md:py-2 md:text-lg md:px-4">{isSubmitting? "Withdrawing...":"Withdraw"}</button>
                     </div>
                 </form>
 
