@@ -19,7 +19,7 @@ function ResetPass() {
   const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.])(?!.*\s).{8,}$/;
   const handleSendOrgOTP = async () => {
     try {
-      await axios.post('/api/v1.0/org_forgot_password', { email });
+      await axios.post('https://appbackend.msaadafund.com/api/v1.0/org_forgot_password', { email });
       setMessage("An OTP has been sent to your email address.");
       setStep(2);
     } catch (error) {
@@ -42,7 +42,7 @@ function ResetPass() {
         return;
       }
 
-      await axios.patch("/api/v1.0/org_reset_password", { email, otp, new_password: newOrgPassword });
+      await axios.patch("https://appbackend.msaadafund.com/api/v1.0/org_reset_password", { email, otp, new_password: newOrgPassword });
       toast.success("Password reset successfully");
       setTimeout(() => {
         window.location.href = '/org/login';

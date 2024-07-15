@@ -40,7 +40,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
         const getDonations = async () => {
             // setLoading(true)
             try {
-                const response = await fetch('/api/v1.0/org_donations', {
+                const response = await fetch('https://appbackend.msaadafund.com/api/v1.0/org_donations', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
     // get route from backend
     const downloadDonationsPDF=()=> {
         const token = localStorage.getItem('token');
-        const url = '/api/v1.0/org_donations_pdf';
+        const url = 'https://appbackend.msaadafund.com/api/v1.0/org_donations_pdf';
     
         fetch(url, {
             method: 'GET',

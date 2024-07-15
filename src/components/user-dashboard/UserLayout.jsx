@@ -40,7 +40,7 @@ function UserLayout() {
     const getDonations = async () => {
         // setLoading(true)
         try {
-            const response = await fetch('/api/v1.0/user/donations', {
+            const response = await fetch('https://appbackend.msaadafund.com/api/v1.0/user/donations', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ function UserLayout() {
    useEffect(() => {
     const fetchSubscriptions = async () => {
       try {
-        const response = await fetch('/api/v1.0/subscription_status', {
+        const response = await fetch('https://appbackend.msaadafund.com/api/v1.0/subscription_status', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ function UserLayout() {
   //Fetch all campaigns
   const handleFetch = async () => {
     try {
-        const response = await fetch('/api/v1.0/get_all_campaigns', {
+        const response = await fetch('https://appbackend.msaadafund.com/api/v1.0/get_all_campaigns', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

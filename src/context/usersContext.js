@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
   };
  
   const userLogin = (username, password) => {
-    fetch("/api/v1.0/auth/user/login", {
+    fetch("https://appbackend.msaadafund.com/api/v1.0/auth/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }) => {
 
   const orgLogin = async(email, password) => {
     // console.log(email)
-    await fetch("/api/v1.0/auth/organisation/login", {
+    await fetch("https://appbackend.msaadafund.com/api/v1.0/auth/organisation/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

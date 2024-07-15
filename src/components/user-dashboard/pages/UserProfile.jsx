@@ -51,7 +51,7 @@ useEffect(()=>{
   if (!accessToken) {
     console.log("Access token not found");
 }
-  axios.get('/api/v1.0/usersdata',config)
+  axios.get('https://appbackend.msaadafund.com/api/v1.0/usersdata',config)
   .then ((res)=>{
     setUser(res.data)
     setOriginalData(res.data)
@@ -77,7 +77,7 @@ const handleSubmit = (e)=>{
       console.log("Access token not found");
   }
 
-    axios.patch('/api/v1.0/usersdata', user, config)
+    axios.patch('https://appbackend.msaadafund.com/api/v1.0/usersdata', user, config)
     .then((res)=>{
       // console.log(res)
       setUser(res.data)
@@ -125,7 +125,7 @@ const handleSubmit = (e)=>{
   //     confirmButtonText: 'Yes, disable it!'
   //   }).then((result)=>{
   //     if(result.isConfirmed){
-  //       axios.delete('/api/v1.0/usersdata', config)
+  //       axios.delete('https://appbackend.msaadafund.com/api/v1.0/usersdata', config)
   //       .then((res)=>{
   //         if (res.status === 200){
   //           Swal.fire(

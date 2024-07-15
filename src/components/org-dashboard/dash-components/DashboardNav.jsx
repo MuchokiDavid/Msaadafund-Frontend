@@ -27,7 +27,7 @@ function DashboardNav({toggleSidebar}) {
             <button onClick={toggleSidebar} className="text-white focus:outline-none font-bold">
                 <IoMenu className="view-more w-8 h-8 text-gray-600 rounded-full hover:bg-gray-100"/>
             </button>
-            <a href='/' className="btn btn-ghost">
+            <a href='/' className="btn btn-ghost hover:bg-slate-100">
                 <img className="w-18 h-12" src={logo} alt="logo"/>
             </a>
               

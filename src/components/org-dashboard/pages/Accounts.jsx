@@ -66,7 +66,7 @@ function Accounts({banks, fetchBank}) {
                 window.location.replace('/org/login')
             }
 
-            const response = await axios.get('/api/v1.0/accounts', {
+            const response = await axios.get('https://appbackend.msaadafund.com/api/v1.0/accounts', {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
@@ -117,7 +117,7 @@ function Accounts({banks, fetchBank}) {
                 accountNumber = accountNumbers;
             }
             
-            const response = await axios.post('/api/v1.0/accounts', {
+            const response = await axios.post('https://appbackend.msaadafund.com/api/v1.0/accounts', {
                 providers,
                 bank,
                 bankCode,
@@ -149,7 +149,7 @@ function Accounts({banks, fetchBank}) {
 
     const handleDelete = (id)=> {
         const accessToken = localStorage.getItem('token');
-        axios.delete(`/api/v1.0/orgaccounts/${id}`, {
+        axios.delete(`https://appbackend.msaadafund.com/api/v1.0/orgaccounts/${id}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'

@@ -68,7 +68,7 @@ function DashActiveCampaigns({ allCampaigns, campaignError }) {
 
     const handleWallet = async (id) => {
         try {
-            const response = await fetch(`/api/v1.0/campaign_wallet/${id}`, {
+            const response = await fetch(`https://appbackend.msaadafund.com/api/v1.0/campaign_wallet/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ function DashActiveCampaigns({ allCampaigns, campaignError }) {
                 confirmButtonText: 'Yes, deactivate!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete(`/api/v1.0/deletecampaign/${campaignId}`, config)
+                    axios.delete(`https://appbackend.msaadafund.com/api/v1.0/deletecampaign/${campaignId}`, config)
                         .then((res) => {
                             
                                 // console.log(res)

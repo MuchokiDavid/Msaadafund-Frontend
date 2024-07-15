@@ -80,7 +80,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                 setIsSubmitting(true);
                 let phoneNo = phone.replace(/^0+/, '');
                 let formattedPhoneNumber = "254" + phoneNo;
-                fetch(`/api/v1.0/buy_airtime`, {
+                fetch(`https://appbackend.msaadafund.com/api/v1.0/buy_airtime`, {
                 method: "POST",
                 headers: {
                   "Authorization": `Bearer  ${token}`,
