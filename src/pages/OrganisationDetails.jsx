@@ -20,7 +20,7 @@ import { MdOutlineCampaign } from "react-icons/md";
 
 
 function OrganisationDetails() {
-  const { orgName} = useParams();
+  const {orgid} = useParams();
   const [organisationDetails, setOrganisationDetails] = useState(null);
   const [loading,setLoading]= useState(false)
   const [more, setMore]= useState(false)
@@ -37,18 +37,17 @@ function OrganisationDetails() {
 
   useEffect(() => {
     setLoading(true)
-    axios.get(`https://appbackend.msaadafund.com/api/v1.0/org_by_id/${orgName}`)
+    axios.get(`/api/v1.0/org_by_id/${orgid}`)
       .then(res => {
         setOrganisationDetails(res.data);
         setLoading(false)
-        // console.log(res.data);
       })
       .catch(error => {
         setLoading(false)
         const errorMsg = error.response?.data?.error || 'An error occurred';
         console.error(errorMsg);
       });
-  }, [orgName]);
+  }, [orgid]);
 
 
   useEffect(() => {

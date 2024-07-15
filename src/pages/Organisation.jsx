@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Menus from '../components/reusables/Menus'
 import Footer from '../components/reusables/Footer'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 function Organisation() {
@@ -10,9 +11,10 @@ function Organisation() {
     const [organisation,setOrganisation]= useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [itemsPerPage] = useState(12)
+    const navigate = useNavigate()
 
     useEffect(()=>{
-        axios.get('https://appbackend.msaadafund.com/api/v1.0/organisations')
+        axios.get('/api/v1.0/organisations')
         .then((res)=>{            
             setOrganisation(res.data)
         })
@@ -29,7 +31,10 @@ function Organisation() {
         setCurrentPage(pageNumber)
     }
 
-    // console.log(organisation)
+    const handleNavigate = (orgid)=>{
+        navigate(`/organisations/${orgid}`)
+    }
+
     
   return (
     <div>
@@ -45,7 +50,8 @@ function Organisation() {
         <div className="mx-2 sm:mx-1 lg:mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full rounded-xl">
             {paginateOrganisations.map((org)=>{
                 return(
-                <Link to={`/organisations/${org.orgName}`} key={org.id}>
+                // <Link to={`/organisations/${org.id}`} key={org.id}>
+                <div key={org.id} onClick={()=>handleNavigate(org.id)}>
                     <div className="group relative block mt-8 sm:mt-10 lg:mt-12 bg-black rounded-xl overflow-hidden">
                         <img
                             alt="org logo"
@@ -66,7 +72,8 @@ function Organisation() {
                             </div>
                         </div>
                     </div>
-                </Link>
+                    </div>
+                // </Link>
 
             )
         })}

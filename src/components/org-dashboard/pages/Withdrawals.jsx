@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { FaFilePdf } from "react-icons/fa";
 
 function Withdrawals() {
-    const[allWithdrawals, setAllWithdrawals]=useState([])
-    const token=localStorage.getItem('token')
-    const[errors,setErrors]= useState(null)
-    const[search,setSearch]=useState('')
-    const[filtered,setFiltered]=useState([])
-    const[currentPage,setCurrentPage]=useState(1)
-    const itemsPerPage =15
+    const [allWithdrawals, setAllWithdrawals] = useState([]);
+    const token = localStorage.getItem('token');
+    const [errors, setErrors] = useState(null);
+    const [search, setSearch] = useState('');
+    const [filtered, setFiltered] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 15;
 
-    //useefect to filter all withdrawals with the search term in the search input
+    //useEffect to filter all withdrawals with the search term in the search input
     useEffect(() => {
-        const filteredWithdrawals = allWithdrawals && allWithdrawals.filter(withdrawal => {
+        const filteredWithdrawals = allWithdrawals.filter(withdrawal => {
             return (
                 (withdrawal.running_balance && withdrawal.running_balance.toLowerCase().includes(search.toLowerCase())) ||
                 (withdrawal.org_name && withdrawal.org_name.toLowerCase().includes(search.toLowerCase())) ||
@@ -23,190 +23,175 @@ function Withdrawals() {
         });
         setFiltered(filteredWithdrawals);
       
-    }, [search,allWithdrawals])
-    
+    }, [search, allWithdrawals]);
 
-    useEffect(()=>{
-        const handleFetch= async()=>{
-            await fetch('https://appbackend.msaadafund.com/api/v1.0/withdraw_transactions', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+    useEffect(() => {
+        const handleFetch = async () => {
+            try {
+                const res = await fetch('https://appbackend.msaadafund.com/api/v1.0/withdraw_transactions', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    setAllWithdrawals(Array.isArray(data.message) ? data.message : []);
+                } else {
+                    setErrors(data.error || 'An error occurred');
+                    setAllWithdrawals([]);
+                }
+            } catch (error) {
+                setErrors('An error occurred');
+                setAllWithdrawals([]);
             }
-            })
-            .then(res=>res.json())
-            .then(data=>{
-                if(data.message){
-                setAllWithdrawals(data.message)
-                }
-                if(data.error){
-                    setErrors(data.error)
-                }
-            })
-        }
-        handleFetch()        
-    },[token, ])
+        };
+        handleFetch();
+    }, [token]);
 
-    if(!token){
-        window.location.href='/'
+    if (!token) {
+        window.location.href = '/';
     }
 
     //Pagination
-    const indexOfLastItem=currentPage*itemsPerPage
-    const indexOfFirstItem=indexOfLastItem-itemsPerPage
-    const currentItems=filtered.slice(indexOfFirstItem,indexOfLastItem)
-    const totalItems=filtered.length
-    const totalPages=Math.ceil(totalItems/itemsPerPage)
-    
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filtered.slice(indexOfFirstItem, indexOfLastItem);
+    const totalItems = filtered.length;
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+
     //Pagination handlers
-    const goToPage=(pageNumber)=>{
-        setCurrentPage(pageNumber)
-    }
-// handle pdf route
-    // get route from backend
-    const downloadTransactionPDF=(id)=> {
+    const goToPage = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    // handle pdf route
+    const downloadTransactionPDF = (id) => {
         const token = localStorage.getItem('token');
         const url = `https://appbackend.msaadafund.com/api/v1.0/withdraw_pdf`;
-    
+
         fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
-                'Accept': 'application/pdf',  // Specify that we expect a PDF file in the response
+                'Accept': 'application/pdf',
             }
         })
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to download PDF');
             }
-    
-            // Convert the response to a Blob (binary data) for the PDF file
+
             return response.blob();
         })
         .then(blob => {
-            // Create a URL for the blob data
             const blobUrl = URL.createObjectURL(blob);
-    
-            // Create an anchor element for downloading the file
+
             const link = document.createElement('a');
             link.href = blobUrl;
-            link.download = 'transactions.pdf';  // Specify the filename for the downloaded file
-    
-            // Append the link to the document body
+            link.download = 'transactions.pdf';
+
             document.body.appendChild(link);
-    
-            // Programmatically trigger a click on the link to start the download
+
             link.click();
-    
-            // Remove the link from the DOM after the download
+
             document.body.removeChild(link);
-    
-            // Revoke the blob URL to release memory
+
             URL.revokeObjectURL(blobUrl);
         })
         .catch(error => {
             setErrors('Error downloading PDF, Please try again later');
         });
-    }
+    };
 
-  return (
-    <div>
-        <div className="text-sm breadcrumbs ml-2">
-            <ul>
-                <li><a href='/org/dashboard'>Dashboard</a></li>
-                <li><a href='/org/dashboard/transact/withdrawals'>Withdrawals</a></li>
-            </ul>
-        </div>
+    return (
         <div>
-            <h1 className="font-extrabold text-2xl">Withdrawals</h1>
-            <hr className='mb-2'/>
-        </div>
-        {/* div with a search input to help search data in the table and also export to pdf button on the same column*/}
-        <div className='flex justify-between'>
-            <div className='flex'>
-                <input type="text" 
-                value={search}
-                onChange={(e)=>setSearch(e.target.value)} 
-                placeholder='Search...' 
-                className='input input-bordered w-full max-w-xs bg-white'/>
+            <div className="text-sm breadcrumbs ml-2">
+                <ul>
+                    <li><a href='/org/dashboard'>Dashboard</a></li>
+                    <li><a href='/org/dashboard/transact/withdrawals'>Withdrawals</a></li>
+                </ul>
             </div>
-            {/* pdf button */}
-            <button title='Download Pdf' onClick={downloadTransactionPDF}>PDF<FaFilePdf size = {25} style={{ color: 'red' }}/></button>
-        </div>
-        <div className='text-sm text-red-500'>{errors}</div>
-        {allWithdrawals && allWithdrawals.length>0 && filtered.length>0 && currentItems.length>0 && totalPages>0
-        ?
-        (
-        <div>
-            <div className='overflow-scroll my-4 bg-white border rounded-lg'>
-                <table className='table w-full min-w-full text-xs overflow-x-auto text-left'>
-                    <thead className='text-gray-800 bg-gray-100 text-leftuppercase'>
-                        <tr className='text-gray-800 bg-gray-100'>
-                            {/* <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>S/N</th> */}
-                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Tracking id</th>
-                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Name</th>
-                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Campaign</th>
-                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Account No</th>
-                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Trans Type</th>
-                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Amount</th>
-                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Trans Status</th>
-                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Trans date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {currentItems.map((withdrawal,index)=>(
-                            <tr key={index}>
-                                {/* <td>{index+1}</td> */}
-                                <td>{withdrawal.tracking_id}</td>
-                                <td>{withdrawal.org_name}</td>
-                                <td>{withdrawal.campaign_name}</td>
-                                <td>{withdrawal.transaction_account_no}</td>
-                                <td>{withdrawal.trans_type}</td>
-                                <td>KES {withdrawal.amount}</td>
-                                <td>{withdrawal.trans_status}</td>
-                                <td>{withdrawal.transaction_date}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+            <div>
+                <h1 className="font-extrabold text-2xl">Withdrawals</h1>
+                <hr className='mb-2' />
             </div>
-            <div className="flex justify-center my-4 join grid-cols-2">
-                {/* Previous page button */}
-                <button className="btn btn-outline join-item  btn-sm" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
-                    Previous
-                </button>
-
-                {/* <div className='border border-gray-400 flex justify-center p-2 btn-outline w-fit'>{currentPage} of {totalPages}</div> */}
-                {/* Next page button */}
-                <button
-                    className="btn btn-outline join-item btn-sm"
-                    onClick={() => goToPage(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                >
-                    Next
+            <div className='flex justify-between'>
+                <div className='flex'>
+                    <input type="text" 
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)} 
+                        placeholder='Search...' 
+                        className='input input-bordered w-full max-w-xs bg-white' 
+                    />
+                </div>
+                <button title='Download Pdf' onClick={downloadTransactionPDF}>
+                    PDF<FaFilePdf size={25} style={{ color: 'red' }} />
                 </button>
             </div>
+            <div className='text-sm text-red-500'>{errors}</div>
+            {allWithdrawals && allWithdrawals.length === 0 ? (
+                <div className='grid grid-cols-1 gap-4 mt-3 px-4'>
+                    <div>
+                        <p className='text-red-500'>No withdrawals to display. Create campaign to start receiving contributions</p>
+                    </div>
+                    <div>
+                        <a href='/org/dashboard/createcampaign'>
+                            <button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
+                                Create Campaign
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            ) : (
+                <div>
+                    <div className='overflow-scroll my-4 bg-white border rounded-lg'>
+                        <table className='table w-full min-w-full text-xs overflow-x-auto text-left'>
+                            <thead className='text-gray-800 bg-gray-100 text-left uppercase'>
+                                <tr className='text-gray-800 bg-gray-100'>
+                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Tracking id</th>
+                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Name</th>
+                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Campaign</th>
+                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Account No</th>
+                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Trans Type</th>
+                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Amount</th>
+                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Trans Status</th>
+                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Trans date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {currentItems.map((withdrawal, index) => (
+                                    <tr key={index}>
+                                        <td>{withdrawal.tracking_id}</td>
+                                        <td>{withdrawal.org_name}</td>
+                                        <td>{withdrawal.campaign_name}</td>
+                                        <td>{withdrawal.transaction_account_no}</td>
+                                        <td>{withdrawal.trans_type}</td>
+                                        <td>KES {withdrawal.amount}</td>
+                                        <td>{withdrawal.trans_status}</td>
+                                        <td>{withdrawal.transaction_date}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="flex justify-center my-4 join grid-cols-2">
+                        <button className="btn btn-outline join-item  btn-sm" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
+                            Previous
+                        </button>
+                        <button
+                            className="btn btn-outline join-item btn-sm"
+                            onClick={() => goToPage(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                        >
+                            Next
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
-        )
-        :
-        (
-            <div className='grid grid-cols-1 gap-4 mt-3 px-4'>
-              <div>
-                <p className='text-red-500'>No withdrawals to display. Create campaign to start receiving contributions</p> 
-              </div>
-              <div>
-                <a href='/org/dashboard/createcampaign'><button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
-                    Create Campaign
-                </button></a>
-              </div>
-            </div>
-        )
-        }
-        
-        
-    </div>
-  )
+    )
 }
 
-export default Withdrawals
+export default Withdrawals;
