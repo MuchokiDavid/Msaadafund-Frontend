@@ -37,7 +37,7 @@ function OrganisationDetails() {
 
   useEffect(() => {
     setLoading(true)
-    axios.get(`/api/v1.0/org_by_id/${orgid}`)
+    axios.get(`https://appbackend.msaadafund.com/api/v1.0/org_by_id/${orgid}`)
       .then(res => {
         setOrganisationDetails(res.data);
         setLoading(false)
