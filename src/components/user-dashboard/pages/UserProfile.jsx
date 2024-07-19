@@ -30,9 +30,9 @@ const [error,setError]= useState('');
   // const userToken = localStorage.getItem('user')
   const org = localStorage.getItem('org')
   const userData = localStorage.getItem('user')
-  const userDataString = localStorage.getItem('userData');
-  const userDetails = userDataString ? JSON.parse(userDataString) : null;
-  console.log(userDetails)
+  // const userDataString = localStorage.getItem('userData');
+  // const userDetails = userDataString ? JSON.parse(userDataString) : null;
+  // console.log(userDetails)
 
   // const navigate = useNavigate()
 
@@ -61,7 +61,6 @@ useEffect(()=>{
     const errorMsg = err.response?.data?.error || 'An error occurred';
     setError(errorMsg);  })
 },[])
-
 
 const handleSubmit = (e)=>{
     e.preventDefault()

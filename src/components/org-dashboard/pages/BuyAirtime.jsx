@@ -163,7 +163,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                         </div>
                         : null
                     }
-                    {error && <p className='text-red-600 text-base'>{error}</p>}
+                    {/* {error && <p className='text-red-600 text-base'>{error}</p>} */}
                     <div>
                         <label className="block font-semibold" htmlFor="name"><span className='text-red-500'>*</span>Campaign</label>
                         <select 

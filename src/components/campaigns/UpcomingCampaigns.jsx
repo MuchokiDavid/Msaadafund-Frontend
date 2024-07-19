@@ -61,7 +61,7 @@ function UpcomingCampaigns({allCampaigns}) {
                         </div>
                         <div>
                           <dt className="sr-only">Organiser</dt>
-                          <dd><a href={`/organisations/${campaign.organisation.orgName}`} className='text-blue-700 hover:underline whitespace-nowrap hover:text-blue-400'>{campaign.organisation.orgName}</a></dd>
+                          <dd><a href={`/organisations/${campaign.organisation.id}`} className='text-blue-700 hover:underline whitespace-nowrap hover:text-blue-400'>{campaign.organisation.orgName}</a></dd>
                           
                         </div>
                       </dl>

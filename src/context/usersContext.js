@@ -1,6 +1,8 @@
 //Users authentication context
 
 import React, { createContext, useState, useContext,useEffect } from 'react';
+import { googleLogout } from '@react-oauth/google';
+import axios from 'axios';
 
 const UserAuthContext = createContext();
 
@@ -43,7 +45,7 @@ export const AuthProvider = ({ children }) => {
   };
  
   const userLogin = (username, password) => {
-    fetch("https://appbackend.msaadafund.com/api/v1.0/auth/user/login", {
+    fetch("https://appbackend.msaadafund.com/api//api/v1.0/auth/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -72,6 +74,45 @@ export const AuthProvider = ({ children }) => {
   };
 
   
+  // Log in with google account function
+  const handleSuccess = async (credentialResponse) => {
+
+    const token = credentialResponse.credential;
+
+    try {
+      // Validate the token by calling your backend first
+      const response = await axios.post('https://appbackend.msaadafund.com/api/v1.0/auth/user/google-login', {
+        token: token,
+      });
+      // console.log('Login Success:', response);     
+
+      if (response.status===200){
+        const jwtToken = response.data.access_token;
+         localStorage.setItem('token', jwtToken);
+        setIsLoggedIn(true);
+        setUser(response.data.user);
+        setToken(response.data.access_token);
+        onReceiveToken(response.data.access_token);
+        localStorage.setItem('userData', JSON.stringify(response.data.user))
+        localStorage.setItem('user', response.data.user.username);
+        localStorage.setItem('isSignatory', response.data.is_signatory);
+        setLoginMessage(response.data.message);
+        setErrorMessage("");
+      }
+      if(response.status!==200){
+        setLoginMessage(response.data.error)
+      }
+     
+      
+    } catch (err) {
+      console.error('Request Failed:', err);
+    }
+  };
+
+  // Handle if login to google not successiful
+  const handleError = () => {
+    setLoginMessage('Login Failed');
+  };
 
   const orgLogin = async(email, password) => {
     // console.log(email)
@@ -102,6 +143,7 @@ export const AuthProvider = ({ children }) => {
 
 
   const logout = () => {
+    googleLogout();
     setIsLoggedIn(false);
     setUser(null);
     setToken(null); 
@@ -114,7 +156,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <UserAuthContext.Provider value={{ isLoggedIn, userLogin, logout, user, token, loginMessage, errorMessage, orgLogin, setLoginMessage }}>
+    <UserAuthContext.Provider value={{ isLoggedIn, userLogin, logout, user, token, loginMessage, errorMessage, orgLogin, setLoginMessage, handleSuccess, handleError }}>
       {children}
     </UserAuthContext.Provider>
   );
