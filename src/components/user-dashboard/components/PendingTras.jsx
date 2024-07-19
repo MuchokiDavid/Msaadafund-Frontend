@@ -85,8 +85,6 @@ function PendingTras() {
         console.error(errorMsg);
       });
   };
-
-  console.log(transactions)
  
   return (
     <div className="container mx-auto">
