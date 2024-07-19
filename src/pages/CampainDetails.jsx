@@ -20,6 +20,7 @@ import { useAuth } from '../context/usersContext';
 import Card from './Card';
 import Announcement from '../components/reusables/Announcement';
 import Featured from '../components/campaigns/Featured';
+import PopupGoogle from '../components/user-auth/PopupGoogle';
 
 function CampainDetails() {
     const { campaignId } = useParams();
@@ -947,7 +948,7 @@ const togglePasswordVisibility = (e) => {
             
         </div>
         <dialog open={showModal} onClose={() => setShowModal(false)} className="modal flex-row justify-center items-center text-center">
-            <div className="modal-box bg-gray-50">
+            <div className="modal-box bg-gray-50 border">
                 <h3 className="font-bold text-2xl text-black">Log in</h3>
                 {/* <div className="modal-action"> */}
                 {loginMessage&& <p className='text-red-500'>{loginMessage}</p>}
@@ -979,8 +980,14 @@ const togglePasswordVisibility = (e) => {
                             />
                              <button title='show password' onClick={togglePasswordVisibility} className="absolute inset-y-0 right-14 mx-1  flex items-center mt-6">{showPassword?<FaEye/>:<FaEyeSlash/>}</button>
                         </div>
-                        <div>
-                            <button type='submit' className="btn bg-blue-600 my-4 text-white">Log in</button>
+                        <div className='justify-center items-center text-center'>
+                            <div>
+                                <button type='submit' className="btn w-full bg-blue-600 my-4 text-white">Log in</button>
+                            </div>
+                            <div>
+                                <PopupGoogle/>
+                            </div>
+                            
                         </div>
                         <p className='my-4'>Don't have an account? <Link to='/user/signup'><span className='text-blue-600 hover:underline'>Register</span></Link></p>
                     </div>                            

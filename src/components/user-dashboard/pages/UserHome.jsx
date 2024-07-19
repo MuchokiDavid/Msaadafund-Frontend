@@ -11,8 +11,8 @@ function UserHome({allDonations, allSubscriptions}) {
       <hr className='mb-0' />
       <DashboardBanner/>
       <QuickLink/>
-      <DashCards allDonations= {allDonations} allSubscriptions= {allSubscriptions}/>
-      <RecentDonation allDonations= {allDonations}/>
+      <DashCards allDonations= {allDonations && allDonations} allSubscriptions= {allSubscriptions && allSubscriptions}/>
+      <RecentDonation allDonations= {allDonations && allDonations}/>
     </div>
   )
 }
