@@ -948,7 +948,7 @@ const togglePasswordVisibility = (e) => {
             
         </div>
         <dialog open={showModal} onClose={() => setShowModal(false)} className="modal flex-row justify-center items-center text-center">
-            <div className="modal-box bg-gray-50 border">
+            <div className="modal-box bg-gray-50 border border-gray-300">
                 <h3 className="font-bold text-2xl text-black">Log in</h3>
                 {/* <div className="modal-action"> */}
                 {loginMessage&& <p className='text-red-500'>{loginMessage}</p>}

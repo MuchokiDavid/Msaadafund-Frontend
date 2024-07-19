@@ -44,19 +44,19 @@ function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscr
                             </div>
                         </div>
                         
-                        <div className="grid grid-cols-1 gap-3 px-2 my-3">  
+                        <div className="grid grid-cols-2 gap-3 px-2 my-3">  
                             <div>
                                 <button
                                 onClick={()=> setButtonClicked(true)}
-                                    className="flex-1 w-full rounded bg-blue-600 text-white font-bold hover:bg-blue-800 px-4 py-3">
-                                    Contribute Now
+                                    className="btn flex-1 w-full rounded bg-blue-600 text-white font-semibold hover:bg-blue-800 px-4 py-3">
+                                    Contribute
                                 </button>
                             </div>
 
                             <div>
                                 <button
                                 onClick={()=> shareModal(true)}
-                                    className="flex-1 w-full rounded border-2 border-blue-600 font-semibold text-black px-4 py-3 hover:bg-blue-600 hover:text-white">
+                                    className="btn flex-1 w-full rounded border-2 border-blue-600 font-semibold text-black px-4 py-3 hover:bg-blue-600 hover:text-white">
                                     Share
                                 </button>
                             </div>   
@@ -66,36 +66,36 @@ function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscr
                 </div>
             </div>
         </div>
-        <div className='mt-4 flex flex-col-1 lg:flex-row-1 gap-3 p-4 border bg-white rounded-lg'>            
+        <div className='mt-4 flex flex-col-1 lg:flex-col-3 gap-3 p-4 border bg-white rounded-lg'>            
             <div className="lg:w-1/5 ">
                 <div className="mr-2">
                     <img src={orgDetails && orgDetails.profileImage? orgDetails.profileImage: profilePic } alt={orgDetails && orgDetails.orgName} className="h-16 w-16 rounded-full" />
                 </div>
             </div>
             <div className="lg:w-4/5">
-                <div className='flex sm:flex-row lg:flex-col gap-3 justify-between lg:h-32'>
+                <div className='grid grid-cols-1 lg:grid-cols-1 gap-3 lg:h-32'>
                     <div>
                         <div>
                             <a href={`/organisations/${orgDetails && orgDetails.id}`}><h2 className="sm:text-base lg:text-xl font-semibold hover:underline">{orgDetails && orgDetails.orgName.toUpperCase()}</h2></a>
                         </div>
                         <div className="flex my-0.5 text-sm">
-                            {orgDetails && orgDetails.orgAddress}
+                            {orgDetails && orgDetails.website_link && orgDetails && (
+                            <div className="flex text-blue-500 text-sm">
+                                <a href={orgDetails && orgDetails.website_link}>Official site</a>
+                            </div>  
+                            )}
                         </div> 
-                        {orgDetails && orgDetails.website_link && orgDetails && (
-                        <div className="flex text-blue-500 text-sm">
-                            <a href={orgDetails && orgDetails.website_link}>Official site</a>
-                        </div>  
-                        )}
+                        
                     </div>
 
                     <div className="flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
                     {/* <div className="flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0"> */}
                     {subscribe ? (
-                        <button type="button" className="inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:text-gray-800 shadow-md hover:bg-gray-50" onClick={handleUnsubscribe}>
+                        <button type="button" className="btn inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:text-gray-800 shadow-md hover:bg-gray-50" onClick={handleUnsubscribe}>
                          <MdNotificationsOff size={23}   className="text-lg mr-2" /> {loading ?  'Unsubscribing...' :"Unsubscribe"}
                         </button>
                     ) : (
-                        <button type="button" className="inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm  hover:text-gray-800 hover:bg-gray-50" onClick={handleSubscribe}>
+                        <button type="button" className="btn inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm  hover:text-gray-800 hover:bg-gray-50" onClick={handleSubscribe}>
                        <MdNotificationsActive size={23}  className="text-lg mr-2" />{loading ?  'Subscribing...' :"Subscribe"}
                         </button>
                     )}

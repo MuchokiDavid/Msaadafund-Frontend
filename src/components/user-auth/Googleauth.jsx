@@ -16,6 +16,7 @@ function Googleauth() {
         setLoading(false);
       }, 2000);
     }
+    // eslint-disable-next-line
   }, [isLoggedIn]);
 
   if (loading){
