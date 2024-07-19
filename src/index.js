@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './context/usersContext';
 import { BrowserRouter } from 'react-router-dom';
 import { TourProvider } from '@reactour/tour';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -77,7 +78,9 @@ root.render(
     <BrowserRouter>
     <TourProvider steps={steps}>
     <AuthProvider>
-      <App />
+    <GoogleOAuthProvider clientId="551952889326-utji5ta6khe2nf9a1p2ilidkn9mn84nn.apps.googleusercontent.com">
+        <App />
+    </GoogleOAuthProvider>
     </AuthProvider>
     </TourProvider>
     </BrowserRouter>    
