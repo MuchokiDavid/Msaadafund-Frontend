@@ -17,6 +17,7 @@ import { FaYoutube } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { MdOutlineCampaign } from "react-icons/md";
+import PopupGoogle from '../components/user-auth/PopupGoogle';
 
 
 function OrganisationDetails() {
@@ -285,7 +286,7 @@ function getTotalDonations(campaigns) {
   </div>
 
       <dialog open={showModal} onClose={() => setShowModal(false)} className="modal flex-row justify-center items-center text-center">
-        <div className="modal-box bg-gray-50 text-gray-800">
+        <div className="modal-box bg-gray-50 text-gray-800 border">
             <h3 className="font-bold text-lg">Please Log in</h3>
             {/* <div className="modal-action"> */}
             {loginMessage&& <p className='text-red-500'>{loginMessage}</p>}
@@ -318,6 +319,7 @@ function getTotalDonations(campaigns) {
                     </div>
                     <div>
                         <button type='submit' className="btn bg-blue-600 my-4 text-white">Log in</button>
+                        <PopupGoogle/>
                     </div>
                     <p className='my-4'>Don't have an account? <Link to='/user/signup'><span className='text-blue-600 hover:underline'>Register</span></Link></p>
                 </div>

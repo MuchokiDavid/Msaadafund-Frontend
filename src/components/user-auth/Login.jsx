@@ -7,6 +7,7 @@ import Footer from '../reusables/Footer';
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import login_pic from '../../assets/login.svg'
+import Googleauth from './Googleauth';
 
 function Login() {
   const {userLogin, loginMessage, isLoggedIn} = useAuth();
@@ -71,7 +72,7 @@ function Login() {
               Supporter Sign in
               </h1>
             </div>
-            <div className="w-full flex-1 mt-8">            
+            <div className="w-full flex-1 mt-8">             
               <div className="mx-auto max-w-md flex flex-col gap-4 ">              
               {loginMessage && <p className='text-red-500'>{loginMessage}</p>} 
                 <form className="space-y-4 md:space-y-6" action="#" onSubmit={login}>
@@ -95,7 +96,7 @@ function Login() {
                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" 
                         required/>
                         <button title='show password' onClick={togglePasswordVisibility} className="absolute inset-y-0 right-2 flex items-center mt-6">{showPassword?<FaEye/>:<FaEyeSlash/>}</button>
-                    </div>
+                    </div>     
                     <div className="flex items-center justify-between">
                         {/* <div className="flex items-start">
                             <div className="flex items-center h-5">
@@ -108,6 +109,7 @@ function Login() {
                         <a href="/user/reset" className="text-sm font-medium text-primary-600 hover:underline">Forgot password?</a>
                     </div>
                     <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
+                    <Googleauth/>      
                     <p className="text-sm font-light text-gray-500">
                         Don’t have an account yet? <a href="/user/signup" className="font-medium text-primary-600 hover:underline">Sign up</a>
                     </p>
