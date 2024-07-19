@@ -258,8 +258,8 @@ function Accounts({banks, fetchBank}) {
                 )}
                 {showCreateAccount && (
                     // Create Account Popup JSX
-                    <div className="create-account-popup fixed top-0 left-0 w-full min-h-screen  flex items-center justify-center bg-gray-900 bg-opacity-50 z-50 py-4">
-                        <div className='mx-auto lg:max-w-md md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md text-white h-fit overflow-y-auto'>
+                    <div className="create-account-popup fixed top-0 left-0 w-full min-h-screen overflow-y-auto flex items-center justify-center bg-gray-900 bg-opacity-50 z-50 py-4">
+                        <div className='mx-auto lg:max-w-md md:max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-md text-white h-fit'>
                             <div className='flex justify-between'>
                                 <div>
                                     <h1 className='text-2xl font-semibold mb-4 text-slate-600 '>Create Account</h1>
@@ -312,7 +312,7 @@ function Accounts({banks, fetchBank}) {
                                     </div>
                                     <div className='mb-4'>
                                         <label htmlFor='accountNumber' className='block mb-2 text-sm font-semibold text-slate-600 '><span className='text-red-500'>*</span>Account Number</label>
-                                        <input type='text' value={accountNumbers} onChange={(e) => setAccountNumber(e.target.value)} className='block text-gray-700 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600' placeholder='eg 07xxx, 01xxx, 124......' required />
+                                        <input type='number' value={accountNumbers} onChange={(e) => setAccountNumber(e.target.value)} className='block text-gray-700 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600' placeholder='eg 07xxx, 01xxx, 124......' required />
                                     </div>
                                     <div className='mb-4'>
                                         <label htmlFor='pin' className='block mb-2 text-sm font-semibold text-slate-600 '><span className='text-red-500'>*</span>PIN</label>
