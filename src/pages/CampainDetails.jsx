@@ -793,7 +793,7 @@ const togglePasswordVisibility = (e) => {
                                 <div className='flex justify-start my-4'>
                                     <div>
                                         <button type="submit"
-                                            className='intaSendPayButton btn'>
+                                            className='intaSendPayButton btn hover:bg-lime-600'>
                                                 {donating ? "Submitting..." : "Contribute"}
                                         </button>
                                     </div>
