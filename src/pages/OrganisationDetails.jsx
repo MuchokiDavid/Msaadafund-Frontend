@@ -324,7 +324,7 @@ function getTotalDonations(campaigns) {
                         <button type='submit' className="btn bg-blue-600 my-4 text-white w-full">Log in</button>
                         <PopupGoogle/>
                     </div>
-                    <p className='my-4'>Don't have an account? <Link to='/user/signup'><span className='text-blue-600 hover:underline'>Register</span></Link></p>
+                    <p className='my-4'>Don't have an account? <Link to='/user/signup'><span className='btn btn-sm text-blue-600 hover:underline'>Register</span></Link></p>
                 </div>
             </form>
             <button onClick={() => { setShowModal(false)}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>

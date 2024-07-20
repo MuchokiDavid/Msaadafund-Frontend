@@ -34,12 +34,12 @@ function QuickLinks() {
         { icon: MdOutlineAppRegistration, name: 'Signatories', to: '/org/dashboard/transact/signatories', className:'view-signatories'},
         { icon: BiMoneyWithdraw, name: 'Accounts', to: '/org/dashboard/transact/accounts', className:'add-withdrawal-account'},
         { icon: GrAtm, name: 'Withdraw', to: '/org/dashboard/transact/withdraw', className:'withdraw-funds'},
+        { icon: FcApprove, name: 'Approvals', to: '/org/dashboard/transact/approvals', className:'view-approvals'},
+        { icon: BsBoxArrowDown, name: 'Withdrawals', to: '/org/dashboard/transact/withdrawals', className:'view-withdrawals'},
         { icon: MdSendToMobile, name: 'PayBill', to: '/org/dashboard/transact/paybill', className:'paybills'},
         { icon: MdOutlinePayments, name: 'Till', to: '/org/dashboard/transact/till', className:'buy-goods'},
         { icon: FaPhone, name: 'Airtime', to: '/org/dashboard/transact/buyairtime', className:'airtime'},
-        { icon: BsBoxArrowDown, name: 'Withdrawals', to: '/org/dashboard/transact/withdrawals', className:'view-withdrawals'},
         { icon: GrTransaction, name: 'Transactions', to: '/org/dashboard/transaction', className:'view-transactions'},
-        { icon: FcApprove, name: 'Approvals', to: '/org/dashboard/transact/approvals', className:'view-approvals'},
         { icon: IoPersonCircle, name: 'Profile', to: '/org/dashboard/profile', className:'view-profile'}
     ];
   
