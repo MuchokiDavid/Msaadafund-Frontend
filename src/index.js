@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const steps = [
   {
     selector: '.dash',
-    content: 'Welcome to Msaadafund! This is your dashboard, where you can easily navigate through all the features of the app.',
+    content: 'Welcome to MsaadaFund! This is your dashboard, your main hub to navigate all app features.',
   },
   {
     selector: '.create-campaign',
@@ -21,7 +21,7 @@ const steps = [
   },
   {
     selector: '.view-campaigns',
-    content: 'Here, you can view all the campaigns you have created and manage them.',
+    content: 'After creating your campaign, you can view and manage all your campaigns in this section.',
   },
   {
     selector: '.view-contributions',
@@ -40,6 +40,14 @@ const steps = [
     content: 'To transfer your campaign funds to your withdrawal accounts, click here.',
   },
   {
+    selector: '.view-approvals',
+    content: 'See all pending approvals from your signatories for various actions related to your campaigns here.',
+  },
+  {
+    selector: '.view-withdrawals',
+    content: 'View the history of all your withdrawals here.',
+  },
+  {
     selector: '.paybills',
     content: 'You can pay your bills directly from your campaign funds by visiting this section.',
   },
@@ -52,16 +60,8 @@ const steps = [
     content: 'Buy airtime for your phone using your campaign funds from this section.',
   },
   {
-    selector: '.view-withdrawals',
-    content: 'View the history of all your withdrawals here.',
-  },
-  {
     selector: '.view-transactions',
     content: 'Check all transactions related to your campaigns in this section.',
-  },
-  {
-    selector: '.view-approvals',
-    content: 'See all pending approvals from your signatories for various actions related to your campaigns here.',
   },
   {
     selector: '.view-profile',
@@ -69,7 +69,7 @@ const steps = [
   },
   {
     selector: '.view-more',
-    content: 'View more features here.',
+    content: 'Explore more features here.',
   }
 ];
 
