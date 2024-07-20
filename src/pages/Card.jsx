@@ -56,7 +56,7 @@ function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscr
                             <div>
                                 <button
                                 onClick={()=> shareModal(true)}
-                                    className="btn flex-1 w-full rounded border-2 border-blue-600 font-semibold text-black px-4 py-3 hover:bg-blue-600 hover:text-white">
+                                    className="btn bg-white flex-1 w-full rounded border-2 border-blue-600 font-semibold text-black px-4 py-3 hover:bg-blue-600 hover:text-white">
                                     Share
                                 </button>
                             </div>   
