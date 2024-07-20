@@ -189,8 +189,8 @@ function OrgSignUp() {
                   </label>
                 </div>
                     <button type="submit" disabled={!policy} className={`w-full text-white ${policy?'bg-primary-700':'bg-gray-400'} focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}>Create an account</button>
-                <p className="text-sm font-light text-gray-500 ">
-                  Already have an account? <a href="/org/login" className="btn btn-sm font-medium text-primary-600 hover:underline ">Log in here</a>
+                <p className="text-sm font-light  text-gray-500 ">
+                  Already have an account? <a href="/org/login" className="btn  btn-outline btn-sm font-medium text-primary-600 hover:underline ">Log in here</a>
                 </p>
               </form>
               </div>

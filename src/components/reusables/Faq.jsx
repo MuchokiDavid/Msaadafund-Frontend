@@ -10,7 +10,7 @@ const AccordionItem = ({ title, content }) => {
   };
 
   return (
-    <div className={`collapse join-item border border-base-300 ${isOpen ? 'collapse-open' : 'collapse-closed'}`}>
+    <div className={`collapse join-item border border-gray-100 ${isOpen ? 'collapse-open' : 'collapse-closed'}`}>
       <div className="collapse-title text-xl font-medium flex justify-between items-center" onClick={toggleAccordion}>
         <span>{title}</span>
         <button className="text-2xl font-bold">{isOpen ? '-' : '+'}</button>
@@ -88,8 +88,8 @@ function Faq() {
           </div>
         </div>
       </section>
-      <div className='container mx-auto my-2 '>
-        <div className="join join-vertical w-full">
+      <div className='container mx-auto my-2'>
+        <div className="join join-vertical w-full ">
           {faqItems.map((item, index) => (
             <AccordionItem className="text-xl" key={index} title={item.title} content={item.content} />
           ))}
