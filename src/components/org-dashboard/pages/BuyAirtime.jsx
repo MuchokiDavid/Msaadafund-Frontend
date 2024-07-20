@@ -68,7 +68,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
       //Swal to ask person to confirm before sending to backend
       Swal.fire({
         title: 'Are you sure?',
-        text: `You are about to send ${amount} to ${phone} \n\n You won't be able to revert this!`,
+        text: `You are about to send Ksh${amount} to ${phone} \n\n You won't be able to revert this!`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -106,7 +106,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                     Swal.fire({
                       // position: 'top-end',
                       icon: 'success',
-                      title: 'Buy airtime request received successifully',
+                      title: 'Buy airtime request received successfully.Transaction awaiting approval',
                       showConfirmButton: false,
                       timer: 1500
                     })
@@ -222,6 +222,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                     </div>
                     {error && <p className='text-red-700 text-base'>{error}</p>}
                     <div className="flex items-center justify-between mt-4">
+                      
                     {isSubmitting ?
                         (
                             <button type="button" class="btn btn-md py-2 px-4 flex justify-center items-center  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg max-w-md">
@@ -239,7 +240,6 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                             </button>
                         )
                     }
-                        
                     </div>
                   </form>
                 </div>
