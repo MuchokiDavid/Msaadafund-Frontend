@@ -1,9 +1,23 @@
 import React from 'react'
+import { useAuth } from '../../context/usersContext';
+
 
 function Announcement({showingModal}) {
+    const org = localStorage.getItem('org')
+    const token = localStorage.getItem('token')
+    const {logout} = useAuth();
+
+
+    const handleClick = (()=>{
+        if (token && org){
+            logout()
+            showingModal(true)
+        }
+        showingModal(true)
+    })
   return (
     <div className="flex items-center justify-between gap-4 bg-indigo-600 px-4 py-3 text-white" id='defaultModal'>
-        <button className="text-sm font-medium underline" onClick={()=>showingModal(true)}>
+        <button className="text-sm font-medium underline" onClick={handleClick}>
             {/* <a href="" className="inline-block underline"> Please log in to ensure your contributions are recorded and tracked!</a> */}
             Please log in to ensure your contributions are recorded and tracked!
         </button>
