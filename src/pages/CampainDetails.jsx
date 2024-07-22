@@ -1014,7 +1014,7 @@ const togglePasswordVisibility = (e) => {
                                 autoComplete=''
                                 
                             />
-                             <button title='show password' onClick={togglePasswordVisibility} className="absolute inset-y-0 right-14 mx-1  flex items-center mt-6">{showPassword?<FaEye/>:<FaEyeSlash/>}</button>
+                             <button title='show password' onClick={togglePasswordVisibility} className="absolute inset-y-0 right-14 mx-2  flex items-center mb-6">{showPassword?<FaEye/>:<FaEyeSlash/>}</button>
                         </div>
                         <div className='justify-center items-center text-center'>
                             <div>

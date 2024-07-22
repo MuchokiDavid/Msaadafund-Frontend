@@ -318,7 +318,7 @@ function getTotalDonations(campaigns) {
                             required
                             autoComplete=''
                         />
-                        <button onClick={handlePasswordVisibility} className='absolute inset-y-2 right-14 mx-2 flex items-center mt-5'>{showPassword ?<FaEye/> : <FaEyeSlash/>}</button>
+                        <button onClick={handlePasswordVisibility} className='absolute inset-y-1 right-14 mx-2 flex items-center mb-6'>{showPassword ?<FaEye/> : <FaEyeSlash/>}</button>
                     </div>
                     <div>
                         <button type='submit' className="btn bg-blue-600 my-4 text-white w-full">Log in</button>
