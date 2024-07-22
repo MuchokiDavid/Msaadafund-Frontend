@@ -1025,7 +1025,7 @@ const togglePasswordVisibility = (e) => {
                             </div>
                             
                         </div>
-                        <p className='my-4'>Don't have an account? <Link to='/user/signup'><span className='btn btn-sm text-blue-600 hover:underline'>Register</span></Link></p>
+                        <p className='my-4'>Don't have an account? <Link to='/user/signup'><span className='btn btn-outline btn-sm font-medium text-primary-600 hover:underline'>Register</span></Link></p>
                     </div>                            
                 </form>
                 <button onClick={() => { setShowModal(false); setLoginMessage("")}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
