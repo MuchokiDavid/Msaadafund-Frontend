@@ -22,7 +22,7 @@ function Signatory() {
     }, [accessToken])
 
     function handleFetch(){
-        fetch('https://appbackend.msaadafund.com/api/v1.0/signatories', {
+        fetch('https://backend.service.msaadafund.com/home/api/v1.0/signatories', {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ function Signatory() {
         try{
             setLoading(true)
             setError(null)
-            fetch('https://appbackend.msaadafund.com/api/v1.0/signatories', {
+            fetch('https://backend.service.msaadafund.com/home/api/v1.0/signatories', {
                 method: "POST",
                 headers: {
                 'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ function Signatory() {
                     setLoading(true)
                     setError(null)
 
-                    fetch(`https://appbackend.msaadafund.com/api/v1.0/signatories/${id}`, {                
+                    fetch(`https://backend.service.msaadafund.com/home/api/v1.0/signatories/${id}`, {                
                         method: "DELETE",
                         headers: {
                         'Content-Type': 'application/json',

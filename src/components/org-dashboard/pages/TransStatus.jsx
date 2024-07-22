@@ -8,7 +8,7 @@ function TransStatus() {
 
     const handleFetch= ()=>{
         try{
-            fetch('https://appbackend.msaadafund.com/api/v1.0/check_transaction_status', {
+            fetch('https://backend.service.msaadafund.com/home/api/v1.0/check_transaction_status', {
                 method: "POST",
                 headers: {
                 'Content-Type': 'application/json',

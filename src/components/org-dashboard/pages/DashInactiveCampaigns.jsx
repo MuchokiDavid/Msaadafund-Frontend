@@ -19,7 +19,7 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
             Authorization: `Bearer ${accessToken}`
             }
         }
-        axios.get ("https://appbackend.msaadafund.com/api/v1.0/get_inactive",config)
+        axios.get ("https://backend.service.msaadafund.com/home/api/v1.0/get_inactive",config)
         .then((res)=>{
             setInactiveCampaign(res.data)   
         })
@@ -76,7 +76,7 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
                 confirmButtonText: 'Activate!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.patch(`https://appbackend.msaadafund.com/api/v1.0/activate/campaign/${campaignId}`,{}, config)
+                    axios.patch(`https://backend.service.msaadafund.com/home/api/v1.0/activate/campaign/${campaignId}`,{}, config)
                     .then((res)=>{
                         // console.log(res)
                         if(res.status===200){

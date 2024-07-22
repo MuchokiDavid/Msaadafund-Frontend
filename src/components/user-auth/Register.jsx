@@ -37,7 +37,7 @@ function Register() {
       if (userPassword === confirmPassword) {
         let phoneNo = phoneNumber.replace(/^0+/, '');
         let formattedPhoneNumber = "254" + phoneNo;
-        fetch('https://appbackend.msaadafund.com/api/v1.0/auth/user/register', {
+        fetch('https://backend.service.msaadafund.com/home/api/v1.0/auth/user/register', {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

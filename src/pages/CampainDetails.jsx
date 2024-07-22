@@ -82,7 +82,7 @@ function CampainDetails() {
     useEffect(() => {
       
         const fetchCampaign= ()=>{
-            fetch(`https://appbackend.msaadafund.com/api/v1.0/campaign/${campaignId}`)
+            fetch(`https://backend.service.msaadafund.com/home/api/v1.0/campaign/${campaignId}`)
             .then(response => response.json())
             .then(data => {
                 setCampaign(data);
@@ -111,7 +111,7 @@ function CampainDetails() {
               Authorization: `Bearer ${accessToken}`
             }
           };
-          const response = await axios.get(`https://appbackend.msaadafund.com/api/v1.0/subscription/${campaign.organisation.id}`, config);
+          const response = await axios.get(`https://backend.service.msaadafund.com/home/api/v1.0/subscription/${campaign.organisation.id}`, config);
           if (response.status === 200) { // Check response status
             setSubscribe(true);
           }
@@ -130,9 +130,15 @@ function CampainDetails() {
 
    //Login user in order to subscribe
     const handleLogin = async (e) =>{
-        e.preventDefault();
-        await userLogin(username, password);
+        e.preventDefault();    
+        if (org) {
+            logout();
+            return;
+        }
+        
+    await userLogin(username, password);
     }
+
  
 
   const handleSubscribe = async () => {
@@ -154,7 +160,7 @@ function CampainDetails() {
             }
         };
         setLoading(true)
-        const response = await axios.post(`https://appbackend.msaadafund.com/api/v1.0/subscription/${campaign.organisation.id}`, {}, config);
+        const response = await axios.post(`https://backend.service.msaadafund.com/home/api/v1.0/subscription/${campaign.organisation.id}`, {}, config);
         setLoading(false)
         if (response.status === 200) {
                 Swal.fire({
@@ -197,7 +203,7 @@ function CampainDetails() {
                     };
                     // Await the axios.delete call
                     setLoading(true)
-                    const response = await axios.delete(`https://appbackend.msaadafund.com/api/v1.0/subscription/${org_id}`, config);
+                    const response = await axios.delete(`https://backend.service.msaadafund.com/home/api/v1.0/subscription/${org_id}`, config);
                     setLoading(false)
                     if (response.status === 200) {
                         // Show success message
@@ -267,7 +273,7 @@ function CampainDetails() {
                     if (result.isConfirmed) {
                         setDonating(true)
                         if (users && accessToken){
-                            axios.post('https://appbackend.msaadafund.com/api/v1.0/user/donations',{donorName:name,amount,campaignId:campaignId,phoneNumber},config)
+                            axios.post('https://backend.service.msaadafund.com/home/api/v1.0/user/donations',{donorName:name,amount,campaignId:campaignId,phoneNumber},config)
                             .then((res)=>{
                                 // console.log('logged in user')
                                 if(res.status===200){
@@ -295,7 +301,7 @@ function CampainDetails() {
                         }
                        else{
                             setDonating(true)
-                            axios.post ("https://appbackend.msaadafund.com/api/v1.0/express/donations",{phoneNumber,amount,donorName,campaignId:campaignId})
+                            axios.post ("https://backend.service.msaadafund.com/home/api/v1.0/express/donations",{phoneNumber,amount,donorName,campaignId:campaignId})
                             .then((res)=>{
                                 // console.log('express used')
                                 if(res.status===200){    
@@ -375,7 +381,7 @@ function CampainDetails() {
                     if (result.isConfirmed) {
                         setDonating(true)
                         if (users && accessToken){
-                            axios.post('https://appbackend.msaadafund.com/api/v1.0/logged_in_donate_card',{amount:cardAmount,campaignId:campaignId,currency:cardCurrency},config)
+                            axios.post('https://backend.service.msaadafund.com/home/api/v1.0/logged_in_donate_card',{amount:cardAmount,campaignId:campaignId,currency:cardCurrency},config)
                             .then((res)=>{
                                 if(res.status===200){  
                                     setDonating(false)
@@ -394,7 +400,7 @@ function CampainDetails() {
                         }
                         else{
                             setDonating(true)
-                            axios.post ("https://appbackend.msaadafund.com/api/v1.0/donate_card",{firstName:fName,lastName:lName,cardEmail,phoneNumber:phoneNo,amount:cardAmount,campaignId:campaignId, currency:cardCurrency})
+                            axios.post ("https://backend.service.msaadafund.com/home/api/v1.0/donate_card",{firstName:fName,lastName:lName,cardEmail,phoneNumber:phoneNo,amount:cardAmount,campaignId:campaignId, currency:cardCurrency})
                             .then((res)=>{
                                 // console.log(res)
                                 if(res.status===200){  

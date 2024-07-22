@@ -51,7 +51,7 @@ const handlePay = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-        const response = await axios.post('https://appbackend.msaadafund.com/api/v1.0/pay_to_paybill', {
+        const response = await axios.post('https://backend.service.msaadafund.com/home/api/v1.0/pay_to_paybill', {
             paybillNumber: paybillNumber,
             accountNumber: accountNumber,
             amount: amount,
@@ -263,7 +263,7 @@ const handleSubmit = (e) => {
                     <h2 className="font-bold text-xl">Instructions</h2>
                         <ul className="list-disc mt-3 list-inside text-xs">
                             <li>Ensure you have added your signatories <span className='text-blue-600 font-semibold'><a href='/org/dashboard/transact/signatories'>here</a></span></li>
-                            <li>Once you submit the payment request, This will initialize the transaction which requires 3 signatories to be completed</li>
+                            <li>Once you submit the payment request, This will initialize the transaction which requires atleast 3 signatories to be completed</li>
                             <li>If you encounter any issues during the purchase process, please contact our support team for assistance.</li>
                         </ul>
 

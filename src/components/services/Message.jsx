@@ -11,7 +11,7 @@ function Message() {
     // Function to handle form submit 
     const sendEmail = (e) => {
         e.preventDefault();
-        fetch('https://appbackend.msaadafund.com/api/v1.0/contact_form', {
+        fetch('https://backend.service.msaadafund.com/home/api/v1.0/contact_form', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
