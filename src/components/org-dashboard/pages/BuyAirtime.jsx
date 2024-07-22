@@ -80,7 +80,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                 setIsSubmitting(true);
                 let phoneNo = phone.replace(/^0+/, '');
                 let formattedPhoneNumber = "254" + phoneNo;
-                fetch(`https://appbackend.msaadafund.com/api/v1.0/buy_airtime`, {
+                fetch(`https://backend.service.msaadafund.com/home/api/v1.0/buy_airtime`, {
                 method: "POST",
                 headers: {
                   "Authorization": `Bearer  ${token}`,
@@ -251,7 +251,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                             <li>Ensure you have added your signatories <span className='text-blue-600 font-semibold underline'><a href='/org/dashboard/transact/signatories'>here</a></span></li>
                             <li>Ensure that the phone number provided is a valid.</li>
                             <li>Double-check the amount you wish to purchase and make sure it is more than sh.5 to avoid errors.</li>
-                            <li>Once you submit the purchase request, This will initialize the transaction which requires 3 signatories to be completed</li>
+                            <li>Once you submit the purchase request, This will initialize the transaction which requires atleast 3 signatories to be completed</li>
                         </ul>
 
                         <h2 className="font-bold text-xl mt-3">Transaction Fee</h2>
