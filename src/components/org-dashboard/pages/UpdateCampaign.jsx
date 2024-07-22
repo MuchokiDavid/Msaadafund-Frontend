@@ -32,7 +32,7 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
         const fetchCampaignDetails = async () => {
             setLoading(true)
             try {
-                const response = await fetch(`https://appbackend.msaadafund.com/api/v1.0/campaign/${campaignId}`);
+                const response = await fetch(`https://backend.service.msaadafund.com/home/api/v1.0/campaign/${campaignId}`);
                 const data = await response.json();
                 if (response.ok) {
                     setOriginalData(data);
@@ -117,7 +117,7 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
                 throw new Error('User not authenticated');
             }
 
-            const response = await axios.patch(`https://appbackend.msaadafund.com/api/v1.0/updatecampaign/${campaignId}`, formData, config);
+            const response = await axios.patch(`https://backend.service.msaadafund.com/home/api/v1.0/updatecampaign/${campaignId}`, formData, config);
             
             if (response.status === 200) {
                 setOriginalData(response.data);

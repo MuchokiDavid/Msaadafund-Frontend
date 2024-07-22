@@ -57,7 +57,7 @@ function Transactions({allCampaigns, campaignError}) {
   //  Fetch data from server when with a given id
   const handleFetchTransaction= async (id)=>{
     if(token){
-      let url = `https://appbackend.msaadafund.com/api/v1.0/filter_transactions/${id}`;
+      let url = `https://backend.service.msaadafund.com/home/api/v1.0/filter_transactions/${id}`;
       try {
         // console.log(url)
           const response = await fetch(url, {
@@ -120,7 +120,7 @@ function Transactions({allCampaigns, campaignError}) {
     // get route from backend
   //   const downloadDonationsPDF=(id)=> {
   //     const token = localStorage.getItem('token');
-  //     const url = `https://appbackend.msaadafund.com/api/v1.0/transactions_pdf/${id}`;
+  //     const url = `https://backend.service.msaadafund.com/home/api/v1.0/transactions_pdf/${id}`;
   
   //     fetch(url, {
   //         method: 'GET',

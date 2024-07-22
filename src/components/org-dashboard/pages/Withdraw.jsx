@@ -35,7 +35,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
     useEffect(() => {
         const handleFetch = async () => {
             try {
-                const response = await fetch('https://appbackend.msaadafund.com/api/v1.0/accounts', {
+                const response = await fetch('https://backend.service.msaadafund.com/home/api/v1.0/accounts', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
         try{
             setIsSubmitting(true)
             setErrors(null)
-            fetch('https://appbackend.msaadafund.com/api/v1.0/withdraw', {
+            fetch('https://backend.service.msaadafund.com/home/api/v1.0/withdraw', {
                 method: "POST",
                 headers: {
                 'Content-Type': 'application/json',
@@ -348,7 +348,7 @@ return (
                             <li>Register your withdrawal account <span className='text-blue-600 font-semibold underline'><a href='/org/dashboard/transact/accounts'>here</a></span></li>
                             {/* <li>Minimum withdrwal amount is <span className='text-black font-medium'>sh.10</span> for <span className='text-black font-medium'>M-Pesa</span>  and <span className='text-black font-medium'>sh.100</span> for <span className='text-black font-medium'>Bank</span>.</li> */}
                             <li>Enter your withdrawal pin to complete the withdrawal process.</li>
-                            <li>Once you submit the payment request, This will initialize the transaction which requires 3 signatories to be completed</li>
+                            <li>Once you submit the payment request, This will initialize the transaction which requires atleast 3 signatories to be completed</li>
                         </ul>
                     <h2 className="font-bold text-lg mt-2">Transaction Fee</h2>
                         <table className="table-auto w-full mt-2 text-left text-xs">

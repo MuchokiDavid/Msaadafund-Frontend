@@ -14,7 +14,7 @@ function Approvals() {
             'Content-Type': 'application/json',
         }
         };
-        axios.get('https://appbackend.msaadafund.com/api/v1.0/org_awaiting_approvals', config)
+        axios.get('https://backend.service.msaadafund.com/home/api/v1.0/org_awaiting_approvals', config)
         .then((res) => {
             setTransactions(res.data);
         })

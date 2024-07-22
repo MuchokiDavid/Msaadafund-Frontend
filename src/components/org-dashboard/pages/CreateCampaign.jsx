@@ -88,7 +88,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                 window.location.replace('/org/login')
             }
 
-            axios.post('https://appbackend.msaadafund.com/api/v1.0/setCampaign', formData, config)
+            axios.post('https://backend.service.msaadafund.com/home/api/v1.0/setCampaign', formData, config)
                 .then((res) => {
                     setLoading(false)
                     toast.success('Campaign created successfully!');

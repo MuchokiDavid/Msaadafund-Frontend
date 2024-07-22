@@ -14,7 +14,7 @@ function Organisation() {
     const navigate = useNavigate()
 
     useEffect(()=>{
-        axios.get('https://appbackend.msaadafund.com/api/v1.0/organisations')
+        axios.get('https://backend.service.msaadafund.com/home/api/v1.0/organisations')
         .then((res)=>{            
             setOrganisation(res.data)
         })

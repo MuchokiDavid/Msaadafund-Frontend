@@ -27,7 +27,7 @@ function Featured() {
     const handleFeatured = async () => {
       setLoading(true)
         try {
-            const response = await fetch('https://appbackend.msaadafund.com/api/v1.0/featured', {
+            const response = await fetch('https://backend.service.msaadafund.com/home/api/v1.0/featured', {
                 method: 'GET',
             });
             const data = await response.json();
