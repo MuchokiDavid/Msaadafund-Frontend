@@ -32,7 +32,7 @@ function AccountAuth() {
             }
         }
         // handle post 
-        axios.post('https://appbackend.msaadafund.com/api/v1.0/account_pin',{email},config)
+        axios.post('https://backend.service.msaadafund.com/home/api/v1.0/account_pin',{email},config)
         .then ((res)=>{
             setStep(2)
             toast.success('OTP sent successfully,Please check Your Email')
@@ -66,7 +66,7 @@ function AccountAuth() {
             }
         }
         // handle patch for otp
-        axios.patch('https://appbackend.msaadafund.com/api/v1.0/confirm_account_pin', {otp,email}, config)
+        axios.patch('https://backend.service.msaadafund.com/home/api/v1.0/confirm_account_pin', {otp,email}, config)
         .then ((res)=>{
             setMessage('OTP confirmed successfully')
             window.location.replace('/org/dashboard/transact/accountset')
