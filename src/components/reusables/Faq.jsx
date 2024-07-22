@@ -37,6 +37,17 @@ function Faq() {
       content: ['Msaada Fund supports various payment methods, including M-Pesa, credit/debit cards, Bitcoin, and Cash App. Transactions are securely processed through the IntaSend checkout system.'],
     },
     {
+      title: 'What are the ways to spend funds on MsaadaFund?',
+      content: [
+        'MsaadaFund offers several methods for spending funds to ensure flexibility and convenience for organisers:',
+        '1. **Pay Bills**: You can use the funds to pay utility bills such as electricity, water, or internet.',
+        '2. **Pay to Till Number**: Funds can be used to make payments to specific till numbers for various services or purchases.',
+        '3. **Withdraw to M-Pesa**: You can withdraw funds directly to an M-Pesa account for easy access and use.',
+        '4. **Withdraw to Bank Account**: Funds can also be transferred to bank account, providing a more traditional banking option.',
+        '5. **Buy Airtime**: You can purchase airtime for mobile phones to stay connected.',
+      ],
+    },
+    {
       title: 'How can I withdraw funds from my campaign?',
       content: ['Organizations can withdraw funds directly from their campaign wallets. The withdrawal process requires signatory approval to ensure secure fund management.'],
     },
@@ -47,7 +58,7 @@ function Faq() {
     {
       title: 'Is there a fee for transactions?',
       content: [
-        'IntaSend charges a 3% for M-Pesa, 3.5% for local cards, and 4.5% for intenational cards, Bitcoin and Cash App transactions. The maximum transaction fee is Sh 400. Additionally, there is a 4% platform fee on the total amount raised.The remaining funds go directly to the organization.',
+        'IntaSend charges a 3% for M-Pesa, 3.5% for local cards, and 4.5% for intenational cards, Bitcoin and Cash App transactions. The maximum transaction fee is Sh 400. Additionally, there is a 4% platform fee on the amount donated.The remaining funds go directly to the organization.',
         'For example, if a campaign raises a total of 100,000 Kenyan shillings:',
         '- 400 shillings will be deducted as the transaction fee',
         '- 4,000 shillings will be deducted as the platform fee',
