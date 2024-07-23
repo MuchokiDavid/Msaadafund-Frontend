@@ -420,7 +420,7 @@ function CampainDetails() {
                             })
                             .catch((err)=>{
                                 setDonating(false)
-                                console.log(err)
+                                // console.log(err)
                                 const errorMsg = err.response?.data?.error || 'An error occurred';
                                 setErrors(errorMsg);
                             })
