@@ -49,7 +49,8 @@ useEffect(()=>{
     }
   }
   if (!accessToken) {
-    console.log("Access token not found");
+    // console.log("Access token not found");
+    
 }
   axios.get('https://backend.service.msaadafund.com/home/api/v1.0/usersdata',config)
   .then ((res)=>{
@@ -57,7 +58,7 @@ useEffect(()=>{
     setOriginalData(res.data)
   })
   .catch((err)=>{
-    console.log(err)
+    // console.log(err)
     const errorMsg = err.response?.data?.error || 'An error occurred';
     setError(errorMsg);  })
 },[])

@@ -159,7 +159,7 @@ function HelpCenter() {
                             <div className="collapse-content px-6">
                                 <p>To view and update your profile settings, follow these steps:</p>
                                 <ol type="lower-roman" style={{ listStyleType: 'lower-roman' }}>
-                                    <li>Navigate to the <a href='/org/dashboard/settings' className='text-blue-600 font-medium'>Settings</a> page.</li>
+                                    <li>Navigate to the <a href='/org/dashboard/profile' className='text-blue-600 font-medium'>Settings</a> page.</li>
                                     <li>You can update your email, phone number, and password on this page.</li>
                                     <li>To update your organization information, click on the <strong>Update Information</strong> button, make the necessary changes, and save.</li>
                                     <li>Ensure to double-check the information before submitting.</li>

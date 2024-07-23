@@ -135,7 +135,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
                     bank_code: bank
                 })
             }).then((res) => res.json())
-            .catch((err) => { console.log(err); setIsSubmitting(false)})
+            .catch((err) => { setErrors(err); setIsSubmitting(false)})
             .then((data) => {
                 if(data.message){
                     setTransactionResponse(data.message)                    

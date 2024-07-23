@@ -50,7 +50,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                 const data = await response.json();
                 if (response.ok) {
                     if(data.message){
-                       console.log("Successful request to get donors");
+                    //    console.log("Successful request to get donors");
                         setAllDonations(data.message);
                         setLoading(false); 
                     }

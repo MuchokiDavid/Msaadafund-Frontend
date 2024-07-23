@@ -83,7 +83,7 @@ useEffect(() => {
       }
       catch {
         setLoading(false)
-        console.error("Error getting subscriptions");
+        // console.error("Error getting subscriptions");
       }
   }
 
@@ -119,7 +119,7 @@ const handleWallet = async (id) => {
       
   } catch (error) {
       // setLoading(true)
-      console.log('Error in fetching wallet details', error);
+      // console.log('Error in fetching wallet details', error);
   }
 };
 // console.log(wallet)
@@ -186,7 +186,7 @@ useEffect(() => {
               }
           }
           catch {
-            console.error("Error getting donation data");
+            // console.error("Error getting donation data");
           }
       }
       getDonations();
@@ -206,7 +206,7 @@ useEffect(() => {
             const data = await response.json();
             if (response.ok) {
                 setLoading(false);
-                console.log("Successful request to get campaigns");
+                // console.log("Successful request to get campaigns");
                 setDonors(data);
             } else {
                 setLoading(true);
@@ -214,7 +214,7 @@ useEffect(() => {
             }
         }
         catch {
-            console.error("Error getting donors data");
+            // console.error("Error getting donors data");
         }
     }
     getDonors();
@@ -257,7 +257,7 @@ useEffect(() => {
         }
     } catch (error) {
         setLoading(true)
-        console.error('Error in fetching campaigns, ensure you have created campaign', error);
+        // console.error('Error in fetching campaigns, ensure you have created campaign', error);
     }
   };
 
