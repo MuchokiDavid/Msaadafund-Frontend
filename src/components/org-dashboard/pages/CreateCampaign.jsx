@@ -104,7 +104,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                     formRef.current.reset();
                 })
                 .catch((err) => {                    
-                    console.log(err);
+                    // console.log(err);
                     const errorMsg = err.response?.data?.error || 'An error occurred';
                     toast.error(errorMsg)
                     setLoading(false)

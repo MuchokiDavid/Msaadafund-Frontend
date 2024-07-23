@@ -58,7 +58,7 @@ function OrgSignUp() {
             password: userPassword
           })
         }).then((res) => res.json())
-          .catch((err) => { console.log(err) })
+          // .catch((err) => { console.log(err) })
           .then((data) => {
             // console.log(data.message);
             if(data.message){
