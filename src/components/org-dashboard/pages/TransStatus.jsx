@@ -18,7 +18,7 @@ function TransStatus() {
                     tracking_id: trackingId
                 })
             }).then((res) => res.json())
-            .catch((err) => { console.log(err) })
+            .catch((err) => { setErrors(err) })
             .then((data) => {
                 if(data.status){
                     setStatusResponse(data.status)
@@ -29,7 +29,7 @@ function TransStatus() {
             });
         }
         catch(error){
-            console.log(error)
+            setErrors(error)
         }
     }
     // console.log(statusResponse)

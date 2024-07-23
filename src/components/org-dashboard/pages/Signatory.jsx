@@ -44,7 +44,7 @@ function Signatory() {
             }
         })
 
-        .catch((err) => { console.log(err) })
+        .catch((err) => {setError(err) })
         // .then((response) => {
         //     setSignatories(response.data);
         //     setLoading(false)
@@ -80,7 +80,7 @@ function Signatory() {
                     role: role
                 })
             }).then((res) => res.json())
-            .catch((err) => { console.log(err) })
+            .catch((err) => { setError(err) })
             .then((data) => {
                 if(data.message){                  
                     //Swal
@@ -141,7 +141,7 @@ function Signatory() {
                     }).then((res) => res.json())
                     .catch((err) => { console.log(err) })
                     .then((data) => {
-                        console.log(data)
+                        // console.log(data)
                         if(data.message){
                             //Swal
                             Swal.fire({
