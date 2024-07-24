@@ -164,8 +164,8 @@ function CampainDetails() {
         setLoading(false)
         if (response.status === 200) {
                 Swal.fire({
-                    title: "Subscription Successful",
-                    text: `You have successfully subscribed to receive updates from ${campaign.organisation.orgName}. Thank you for your subscription!`,
+                    title: "Following Successful",
+                    text: `You will now receive updates from ${campaign.organisation.orgName}. Thank you for!`,
                     icon: "success"
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -186,8 +186,8 @@ function CampainDetails() {
         e.preventDefault();
         const orgsnt = campaign.organisation.orgName;
         Swal.fire({
-            title: 'Unsubscribe?',
-            text: `Are you sure you want to unsubscribe from ${orgsnt}?`,
+            title: 'Unfollow?',
+            text: `Are you sure you want to unfollow ${orgsnt}?`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -437,7 +437,7 @@ function CampainDetails() {
     const completeDonations = campaign && campaign.donations.filter(donation => donation.status === 'COMPLETE');
 
     // Shuffle the filtered donations and select the first 5
-    const shuffledDonations = completeDonations && completeDonations.sort(() => Math.random() - 0.5).slice(0, 5);
+    const shuffledDonations = completeDonations && completeDonations.sort(() => Math.random() - 0.5).slice(0, 6);
 
     
     const handleDays = () => {
@@ -566,7 +566,7 @@ const togglePasswordVisibility = (e) => {
         <div className='text-black min-h-screen p-4' id='campaign_dets'>
             <div className="container mx-auto">
                 {/* <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'> */}
-                <div className="flex flex-col lg:flex-row gap-3 ">
+                <div className="flex flex-col lg:flex-row gap-1 ">
                     <div className="h-full lg:w-2/3 " id='campaign'>
                         <div className="relative">
                             {/* banner */}                            
@@ -599,7 +599,7 @@ const togglePasswordVisibility = (e) => {
                         </div>
                         
 
-                        <div className='border bg-white py-4 px-2 lg:h-40 rounded-lg lg:mt-3'>
+                        <div className='bg-white py-4 px-2 lg:h-32 rounded-lg lg:mt-3'>
                             <div className="flex flex-col lg:flex-row gap-3 ">
                                 <div className="h-full">
                                     <div>
@@ -611,6 +611,8 @@ const togglePasswordVisibility = (e) => {
                                     <div>
                                         <p className=" text-red-500">{handleDays()} Days left</p>
                                     </div>
+                                    {/* <h1 className='text-xl my-2 font-semibold w-full'>Story</h1>   */}
+                        
                                 </div>
                             </div>                            
                         </div>
@@ -629,21 +631,21 @@ const togglePasswordVisibility = (e) => {
                     </div>
                 </div>
                 
-                <div className="flex flex-col lg:flex-row gap-2">
-                    <div className="h-full lg:w-2/3 border mt-2 rounded-lg px-2 py-4">
+                <div className="flex flex-col lg:flex-row gap-0 mt-0">
+                    <div className="h-full lg:w-2/3 border border-transparent mt-1 rounded-lg px-2 py-2">
                         {/* <hr/> */}
                         <h1 className='text-xl my-2 font-semibold w-full'>Story</h1>  
-                        <div className="bg-white sm:h-52 lg:h-96 w-full overflow-y-scroll shadow">                                                          
+                        <div className="bg-white text-xs sm:h-52 lg:h-96 w-full overflow-hidden">                                                          
                             <div> 
                                 {isLargeScreen ?
-                                    <div className="text-lg text-gray-600" dangerouslySetInnerHTML={{ __html: campaign.description }}></div>
+                                    <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: campaign.description }}></div>
                                     :
                                     <div>
-                                        {/* {more ?<div>{campaign && campaign.description}</div> : <div>{campaign && campaign.description && campaign.description.slice(0,250)}...</div>} */}
+                                       
                                         {more ? (
-                                            campaign && <div className="text-lg text-gray-600" dangerouslySetInnerHTML={{ __html: campaign.description }}></div>
+                                            campaign && <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: campaign.description }}></div>
                                             ) : (
-                                            campaign && <div className="text-lg text-gray-600" dangerouslySetInnerHTML={{ __html: campaign.description.slice(0, 200) + '...' }}></div>
+                                            campaign && <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: campaign.description.slice(0, 200) + '...' }}></div>
                                             )
                                         }
 
@@ -654,12 +656,12 @@ const togglePasswordVisibility = (e) => {
                             </div>   
                         </div>
                     </div>
-                    <div className="lg:w-1/3 h-full border bg-white mt-2 rounded-lg shadow">
+                    <div className="lg:w-1/3 h-full border border-transparent bg-white mt-2 rounded-lg">
                         <hr/>
                         <div className="px-2 pt-2">
                             <div className='my-1 flex justify-between px-2'>
-                                <h1 className='text-xl font-medium'>Donations</h1>
-                                <p className='text-xl font-medium'>{completeDonations.length}</p>
+                                <h1 className='text-lg font-medium'>Contributions</h1>
+                                <p className='text-lg font-medium'>{completeDonations.length}</p>
                             </div>
                             <div>
                                 <div className="max-w-full mx-auto my-2">
@@ -670,9 +672,9 @@ const togglePasswordVisibility = (e) => {
                                                     <div className="flex items-center">
                                                         <div className='w-10 h-10 rounded-full odd:bg-green-500 flex justify-center items-center text-white'>{donation.donor_name ? donation.donor_name.charAt(0) : "A"}</div>
                                                         {/* <img className="w-10 h-10 rounded-full" src="https://unsplash.com/photos/oh0DITWoHi4/download?force=true&w=640" alt="Christy"/> */}
-                                                        <span className="ml-3 font-medium">{donation.donor_name ? donation.donor_name : "Anonymous"}</span>
+                                                        <span className="ml-3 font-medium text-sm">{donation.donor_name ? donation.donor_name : "Anonymous"}</span>
                                                     </div>
-                                                    <span className="font-medium">{donation.currency} {donation.amount}</span>
+                                                    <span className="font-medium text-sm">{donation.currency} {donation.amount}</span>
                                                 </li>
                                             ))}
                                         </ul>
@@ -683,7 +685,7 @@ const togglePasswordVisibility = (e) => {
                     </div>
                 </div>
 
-                <div className='container mt-4 bg-gray-100 border p-4 rounded-lg' id='donationTabs'>
+                <div className='container mt-1 bg-gray-100 border p-4 rounded-lg' id='donationTabs'>
                     <div className="sm:hidden">
                     <label htmlFor="Tab" className="sr-only">Tab</label>
                     <select
@@ -792,7 +794,7 @@ const togglePasswordVisibility = (e) => {
                                         </div>
                                 <div>
                                     {/* shows total donation amount */}
-                                    <p>Total Donation: Ksh {amount}</p>
+                                    <p>Total Contribution: Ksh {amount}</p>
                                 </div>
                                 {errors && <p className='text-red-600 my-1'>{errors}</p>}
                                 
@@ -811,7 +813,7 @@ const togglePasswordVisibility = (e) => {
                                             ) 
                                             :
                                             (
-                                                <button type="submit" class="btn btn-md py-2 px-4 flex justify-center items-center  bg-green-600 hover:bg-green-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg max-w-md">
+                                                <button type="submit" class="btn btn-md py-2 px-4 flex justify-center items-center  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full max-w-md">
                                                     Contribute
                                                 </button>
                                             )
@@ -937,7 +939,7 @@ const togglePasswordVisibility = (e) => {
                                             </div>
                                     <div className='my-4'>
                                         {/* shows total donation amount */}
-                                        <p>Total Donation: {cardCurrency} {cardAmount}</p>
+                                        <p>Total Contribution: {cardCurrency} {cardAmount}</p>
                                     </div>
                                         
                                     {errors && <p className='text-red-600 my-1'>{errors}</p>}                                       
@@ -956,7 +958,7 @@ const togglePasswordVisibility = (e) => {
                                                 ) 
                                                 :
                                                 (
-                                                    <button type="submit" class="btn btn-md py-2 px-4 flex justify-center items-center  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg max-w-md">
+                                                    <button type="submit" class="btn btn-md py-2 px-4 flex justify-center items-center  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full max-w-md">
                                                         Contribute
                                                     </button>
                                                 )
@@ -983,7 +985,7 @@ const togglePasswordVisibility = (e) => {
             {/* <Toaster position = "top-center" reverseOrder={false} /> */}
             
         </div>
-        <dialog open={showModal} onClose={() => setShowModal(false)} className="modal flex-row justify-center items-center text-center">
+        <dialog open={showModal} onClose={() => setShowModal(false)} className="modal flex-row justify-center items-center text-center border">
             <div className="modal-box bg-gray-50 border border-gray-300">
                 <h3 className="font-bold text-2xl text-black">Log in</h3>
                 {/* <div className="modal-action"> */}
@@ -1025,7 +1027,7 @@ const togglePasswordVisibility = (e) => {
                             </div>
                             
                         </div>
-                        <p className='my-4'>Don't have an account? <Link to='/user/signup'><span className='btn btn-outline btn-sm font-medium text-primary-600 hover:underline'>Register</span></Link></p>
+                        <p className='my-4'>Don't have an account? <Link to='/user/signup'><span className='font-medium text-primary-600 hover:underline'>Register</span></Link></p>
                     </div>                            
                 </form>
                 <button onClick={() => { setShowModal(false); setLoginMessage("")}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>

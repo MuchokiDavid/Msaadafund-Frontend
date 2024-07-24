@@ -200,7 +200,7 @@ function ActiveCampaigns() {
 
                       <div>
                         <dt className="sr-only">Name</dt>
-                        <dd className="font-medium overflow-hidden text-lg whitespace-nowrap hover:text-blue-600 hover:cursor-pointer"><p onClick={()=>handleCampaign(campaign.id)}>{campaign.campaignName}</p></dd>
+                        <dd className="font-medium overflow-hidden text-lg whitespace-nowrap hover:text-blue-600 hover:cursor-pointer"><div onClick={()=>handleCampaign(campaign.id)}>{campaign.campaignName}</div></dd>
                       </div>
                       <div>
                         <dt className="sr-only">Organiser</dt>

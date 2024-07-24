@@ -13,7 +13,7 @@ function BannerCards() {
                         <h2 className="card-title">Start Fundraising</h2>
                         <p>Become part of our community and make a positive impact. Sign up now to start receiving donations and support for your cause.</p>
                         <div className="card-actions justify-end">
-                        <a href='/org/signup'><button className="btn mt-8 inline-block rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent focus:outline-none focus:ring focus:ring-blue-400">Sign up</button></a>
+                        <a href='/org/signup'><button className="btn btn-md mt-8 inline-block rounded-full border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent focus:outline-none focus:ring focus:ring-blue-400">Sign up</button></a>
                         </div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@ function BannerCards() {
                         <h2 className="card-title">Become a supporter</h2>
                         <p>Take action and become an agent of change. By signing up, you gain access to a platform designed to connect you with impactful projects and organizations.</p>
                         <div className="card-actions justify-end">
-                        <a href='/user/signup'><button className="btn mt-8 inline-block rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent focus:outline-none focus:ring focus:ring-blue-400">Sign up</button></a>
+                        <a href='/user/signup'><button className="btn btn-md mt-8 inline-block rounded-full border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent focus:outline-none focus:ring focus:ring-blue-400">Sign up</button></a>
                         </div>
                     </div>
                 </div>

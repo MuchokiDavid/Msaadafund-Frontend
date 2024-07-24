@@ -9,13 +9,11 @@ function Banner() {
   const[allDonations,setAllDonations]= useState([])
   const [allOrganisations, setAllOrganisations] = useState([])
   const [allCampaign,setAllCampaign] = useState([])
-  const[loading, setLoading] = useState(false)
   const[errors, setErrors] = useState()
   const [buttonClicked, setButtonClicked] = useState(false);//state listen to button event change 
 
   useEffect(() => {
     const getDonations = async () => {
-      setLoading(true)
       try {
           const response = await fetch('https://backend.service.msaadafund.com/home/api/v1.0/all_donations', {
               method: 'GET',
@@ -27,14 +25,11 @@ function Banner() {
           if (response.ok) {              
               // console.log("Successful request to get donors");
               setAllDonations(data.message);
-              setLoading(false);
           } else {
-              setLoading(false);
               throw new Error(data);
           }
       }
       catch {
-          setLoading(false);
           setErrors("Error getting donation data");
       }
   }
@@ -44,7 +39,6 @@ function Banner() {
   useEffect(() => {
     const getOrganisation = async () => {
       try {
-        setLoading(true)
           const response = await fetch('https://backend.service.msaadafund.com/home/api/v1.0/organisations', {
               method: 'GET',
               headers: {
@@ -55,14 +49,11 @@ function Banner() {
           if (response.ok) {
               // console.log("Successful request to get donors");
               setAllOrganisations(data);
-              setLoading(false);
           } else {
-              setLoading(false);
               throw new Error(data);
           }
       }
       catch {
-          setLoading(false);
           setErrors("Error getting donation data");
       }
   }
@@ -80,10 +71,8 @@ function Banner() {
           });
           const data = await response.json();
           if (response.ok) {
-              setLoading(true);
               // console.log("Successful request to get donors");
               setAllCampaign(data);
-              setLoading(false);
           } else {
               throw new Error(data);
           }
@@ -106,18 +95,18 @@ function Banner() {
     setButtonClicked(false)
   }, [buttonClicked]);
 
-  if(loading){
-    // return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
-    return (
-      <div class="flex items-center justify-center h-screen">
-        <div class="relative">
-            <div class="h-24 w-24 rounded-full border-t-8 border-b-8 border-gray-200"></div>
-            <div class="absolute top-0 left-0 h-24 w-24 rounded-full border-t-8 border-b-8 border-blue-500 animate-spin">
-            </div>
-        </div>
-      </div>
-    )
-  }
+  // if(loading){
+  //   // return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
+  //   return (
+  //     <div class="flex items-center justify-center h-screen">
+  //       <div class="relative">
+  //           <div class="h-24 w-24 rounded-full border-t-8 border-b-8 border-gray-200"></div>
+  //           <div class="absolute top-0 left-0 h-24 w-24 rounded-full border-t-8 border-b-8 border-blue-500 animate-spin">
+  //           </div>
+  //       </div>
+  //     </div>
+  //   )
+  // }
   
   function getTotalAmount(donationsArray) {
     let totalAmount = 0;
@@ -149,7 +138,7 @@ let totalAmount=allDonations && getTotalAmount(allDonations)
           </div>
           <button
           onClick={() => setButtonClicked(true)} 
-          className="mt-8 inline-block rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-gray-900 focus:outline-none focus:ring focus:ring-blue-400">
+          className="mt-8 inline-block rounded-full border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-gray-900 focus:outline-none focus:ring focus:ring-blue-400">
             How it works
           </button>
         </div>
@@ -178,7 +167,7 @@ let totalAmount=allDonations && getTotalAmount(allDonations)
               </p>
                 <a
                 href="/campaigns"
-                className="mt-8 inline-block rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-gray-900 focus:outline-none focus:ring focus:ring-blue-400"
+                className="mt-8 rounded-full inline-block border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-gray-900 focus:outline-none focus:ring focus:ring-blue-400"
               >
                 Get Started Today
               </a>
@@ -233,7 +222,7 @@ let totalAmount=allDonations && getTotalAmount(allDonations)
 
           <div className="mt-8 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:gap-12 lg:grid-cols-3">
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-blue-600 p-4">
+              <span className="shrink-0 rounded-lg bg-green-600 p-4">
                 <svg
                   viewBox="0 0 24 24"
                   fill="#ffffff"
@@ -257,7 +246,7 @@ let totalAmount=allDonations && getTotalAmount(allDonations)
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-blue-600 p-4">
+              <span className="shrink-0 rounded-lg bg-green-600 p-4">
                 <svg
                   viewBox="0 0 24 24"
                   fill="#ffffff"
@@ -280,7 +269,7 @@ let totalAmount=allDonations && getTotalAmount(allDonations)
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-blue-600 p-4">
+              <span className="shrink-0 rounded-lg bg-green-600 p-4">
                 <svg
                   viewBox="0 0 24 24"
                   className="h-5 w-5"
@@ -303,7 +292,7 @@ let totalAmount=allDonations && getTotalAmount(allDonations)
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-blue-600 p-4">
+              <span className="shrink-0 rounded-lg bg-green-600 p-4">
                 <svg
                   viewBox="0 0 24 24"
                   className="h-5 w-5"
@@ -326,7 +315,7 @@ let totalAmount=allDonations && getTotalAmount(allDonations)
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-blue-600 p-4">
+              <span className="shrink-0 rounded-lg bg-green-600 p-4">
                 <svg
                   data-name="Layer 1"
                   viewBox="0 0 24 24"
@@ -350,7 +339,7 @@ let totalAmount=allDonations && getTotalAmount(allDonations)
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="shrink-0 rounded-lg bg-blue-600 p-4">
+              <span className="shrink-0 rounded-lg bg-green-600 p-4">
                 <svg
                   fill="none"
                   stroke="#ffffff"
@@ -431,19 +420,19 @@ let totalAmount=allDonations && getTotalAmount(allDonations)
               <div className="flex flex-col rounded-lg border border-gray-200 px-4 py-8 text-center bg-white">
                 <dt className="order-last text-lg font-medium text-gray-400">Total Contributions</dt>
 
-                <dd className="text-4xl font-extrabold text-sky-800 md:text-5xl">{prettyNumber(totalAmount, 'number-short')}</dd>
+                <dd className="text-4xl font-extrabold text-gray-700 md:text-5xl">{prettyNumber(totalAmount, 'number-short')}</dd>
               </div>
 
               <div className="flex flex-col rounded-lg border border-gray-200 px-4 py-8 text-center bg-white">
                 <dt className="order-last text-lg font-medium text-gray-500">Total Organisations</dt>
 
-                <dd className="text-4xl font-extrabold text-sky-800 md:text-5xl">{prettyNumber(allOrganisations.length, 'number-short')}</dd>
+                <dd className="text-4xl font-extrabold text-gray-700 md:text-5xl">{prettyNumber(allOrganisations.length, 'number-short')}</dd>
               </div>
 
               <div className="flex flex-col rounded-lg border border-gray-200 px-4 py-8 text-center bg-white">
                 <dt className="order-last text-lg font-medium text-gray-500">Total Campaigns</dt>
 
-                <dd className="text-4xl font-extrabold text-sky-800 md:text-5xl">{prettyNumber(allCampaign.length,'number-short')}</dd>
+                <dd className="text-4xl font-extrabold text-gray-700 md:text-5xl">{prettyNumber(allCampaign.length,'number-short')}</dd>
               </div>
             </dl>
           </div>
