@@ -200,7 +200,9 @@ function ActiveCampaigns() {
 
                       <div>
                         <dt className="sr-only">Name</dt>
-                        <dd className="font-medium overflow-hidden text-lg whitespace-nowrap hover:text-blue-600 hover:cursor-pointer"><div onClick={()=>handleCampaign(campaign.id)}>{campaign.campaignName}</div></dd>
+                        <dd className="font-medium overflow-hidden text-lg whitespace-nowrap hover:text-blue-600 hover:cursor-pointer">
+                          <a href={`/campaigns/${campaign.id}`}>{campaign.campaignName}</a>
+                        </dd>
                       </div>
                       <div>
                         <dt className="sr-only">Organiser</dt>
