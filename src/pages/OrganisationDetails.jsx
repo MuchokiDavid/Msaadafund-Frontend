@@ -125,8 +125,8 @@ function OrganisationDetails() {
     const handleUnsubscribe = async (e) => {
       e.preventDefault();
       Swal.fire({
-        title: 'Unsubscribe?',
-        text: `Are you sure you want to unsubscribe from ${organisationDetails.orgName}?`,
+        title: 'Unfollow?',
+        text: `Are you sure you want to unfollow ${organisationDetails.orgName}?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -146,8 +146,8 @@ function OrganisationDetails() {
             setLoading(false);
             if (response.status === 200) {
               Swal.fire({
-                title: `Unsubscribed successifully`,
-                text: `You have successfully unsubscribed from updates from ${organisationDetails.orgName}. If you change your mind, you can always subscribe later. Thank you for your support.`,
+                title: `Unfollowed successifully`,
+                text: `You have successfully unfollowed from updates from ${organisationDetails.orgName}. If you change your mind, you can always subscribe later. Thank you for your support.`,
                 icon: "success"
               });
               setSubscribe(false);
@@ -209,7 +209,7 @@ function getTotalDonations(campaigns) {
               <li><a>{organisationDetails && organisationDetails.orgName}</a></li>
           </ul>
         </div> */}
-      <div className='mt-1'>
+      <div className='mt-0'>
         <Profile
         orgName={organisationDetails && organisationDetails.orgName}
         orgType={organisationDetails && organisationDetails.orgType}
@@ -249,7 +249,7 @@ function getTotalDonations(campaigns) {
           </div>
           <div className='flex items-center'>
             <LuUserPlus title='Campaign' className='w-5 h-5 mr-2 text-gray-400' />
-            {organisationDetails?.subscriptions.length} {organisationDetails?.subscriptions.length <= 1 ? "Subscriber" : "Subscribers"}
+            {organisationDetails?.subscriptions.length} {organisationDetails?.subscriptions.length <= 1 ? "Follower" : "Followers"}
           </div>
           <div className='flex items-center'>
             <FaDonate title='Campaign' className='w-5 h-5 mr-2 text-gray-400' />
@@ -324,7 +324,7 @@ function getTotalDonations(campaigns) {
                         <button type='submit' className="btn bg-blue-600 my-4 text-white w-full">Log in</button>
                         <PopupGoogle/>
                     </div>
-                    <p className='my-4'>Don't have an account? <Link to='/user/signup'><span className='btn btn-sm text-blue-600 hover:underline'>Register</span></Link></p>
+                    <p className='my-4'>Don't have an account? <Link to='/user/signup'><span className=' text-blue-600 hover:underline'>Register</span></Link></p>
                 </div>
             </form>
             <button onClick={() => { setShowModal(false)}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>

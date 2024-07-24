@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Menubar from './dash-components/Menubar';
 import Profile from './pages/OrgProfile';
 import Transaction from './pages/Transactions';
@@ -25,7 +25,6 @@ import DashFooter from './dash-components/DashFooter';
 import Signatory from './pages/Signatory';
 // import Navigation from './dash-components/Navigation';
 import Approvals from './pages/Approvals';
-import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
@@ -44,7 +43,6 @@ function OrgLayout() {
   const user = localStorage.getItem('user')
   // eslint-disable-next-line 
   const regexPattern = /^(?:https?:\/\/)?(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\\w\-\\s])([\w\-]{11})(?=[^\\w\-]|$)(?![?=&+%\\w]*(?:['"][^<>]*>|<\/a>))[?=&+%\\w]*/i; 
-  const tawkMessengerRef = useRef();
  
 
     // Use react-responsive to get screen size
@@ -268,10 +266,6 @@ useEffect(() => {
     }
   };
 
-  // Minimize tawkto 
-  const handleMinimize = () => {
-    tawkMessengerRef.current.minimize();
-  };
 
 //Check if user is logged in
   if  (!token && !orgName){
@@ -329,13 +323,6 @@ useEffect(() => {
             </div>
             {/* <Navigation/> */}
         </main>  
-        <div>
-            <button onClick={handleMinimize}>Minimize</button>
-            <TawkMessengerReact
-                propertyId="1i3dvgq5f"
-                widgetId="default"        
-                ref={tawkMessengerRef}/>
-          </div>    
         
       </div> 
            

@@ -16,7 +16,7 @@ function Announcement({showingModal}) {
         showingModal(true)
     })
   return (
-    <div className="flex items-center justify-between gap-4 bg-indigo-600 px-4 py-3 text-white" id='defaultModal'>
+    <div className="flex items-center justify-between gap-4 bg-blue-400 px-4 py-3 text-white" id='defaultModal'>
         <button className="text-sm font-medium underline" onClick={handleClick}>
             {/* <a href="" className="inline-block underline"> Please log in to ensure your contributions are recorded and tracked!</a> */}
             Please log in to ensure your contributions are recorded and tracked!

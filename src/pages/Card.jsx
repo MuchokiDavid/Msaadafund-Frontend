@@ -32,7 +32,7 @@ function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscr
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9l-5 5-5-5" />
                                     </svg>
                                     <p className="text-lg font-semibold mt-2">KES {raisedAmount && raisedAmount}</p>
-                                    <p className="text-sm text-gray-600">Total Donation</p>
+                                    <p className="text-sm text-gray-600">Contributions</p>
                                 </div>
                                 <div className="text-center px-4 rounded-lg border">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mx-auto text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -44,19 +44,19 @@ function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscr
                             </div>
                         </div>
                         
-                        <div className="grid grid-cols-2 gap-3 px-2 my-3">  
+                        <div className="grid grid-cols-1 gap-3 px-2 my-3">  
                             <div>
                                 <button
                                 onClick={()=> setButtonClicked(true)}
                                     className="btn flex-1 w-full rounded bg-blue-600 text-white font-semibold hover:bg-blue-800 px-4 py-3">
-                                    Contribute
+                                    Give now
                                 </button>
                             </div>
 
                             <div>
                                 <button
                                 onClick={()=> shareModal(true)}
-                                    className="btn bg-white flex-1 w-full rounded border-2 border-blue-600 font-semibold text-black px-4 py-3 hover:bg-blue-600 hover:text-white">
+                                    className="btn bg-white flex-1 w-full rounded border-2 border-blue-600 font-semibold text-black px-4 py-3 hover:bg-transparent hover:text-black">
                                     Share
                                 </button>
                             </div>   
@@ -66,37 +66,37 @@ function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscr
                 </div>
             </div>
         </div>
-        <div className='mt-4 flex flex-col-1 lg:flex-col-3 gap-3 p-4 border bg-white rounded-lg'>            
+        <div className='mt-4 flex flex-col-1 lg:flex-col-3 gap-3 p-4 border border-transparent bg-white rounded-lg'>            
             <div className="lg:w-1/5 ">
                 <div className="mr-2">
                     <img src={orgDetails && orgDetails.profileImage? orgDetails.profileImage: profilePic } alt={orgDetails && orgDetails.orgName} className="h-16 w-16 rounded-full" />
                 </div>
             </div>
             <div className="lg:w-4/5">
-                <div className='grid grid-cols-1 lg:grid-cols-1 gap-3 lg:h-32'>
+                <div className='grid grid-cols-1 lg:grid-cols-1 gap-3 lg:h-20'>
                     <div>
                         <div>
                             <a href={`/organisations/${orgDetails && orgDetails.id}`}><h2 className="sm:text-base lg:text-xl font-semibold hover:underline">{orgDetails && orgDetails.orgName.toUpperCase()}</h2></a>
                         </div>
-                        <div className="flex my-0.5 text-sm">
+                        {/* <div className="flex my-0.5 text-sm">
                             {orgDetails && orgDetails.website_link && orgDetails && (
                             <div className="flex text-blue-500 text-sm">
                                 <a href={orgDetails && orgDetails.website_link}>Official site</a>
                             </div>  
                             )}
-                        </div> 
+                        </div>  */}
                         
                     </div>
 
                     <div className="flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
                     {/* <div className="flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0"> */}
                     {subscribe ? (
-                        <button type="button" className="btn inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:text-gray-800 shadow-md hover:bg-gray-50" onClick={handleUnsubscribe}>
-                         <MdNotificationsOff size={23}   className="text-lg mr-2" /> {loading ?  'Unsubscribing...' :"Unsubscribe"}
+                        <button type="button" className="btn btn-md inline-flex justify-center rounded-full border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:text-gray-800 shadow-md hover:bg-gray-50" onClick={handleUnsubscribe}>
+                         <MdNotificationsOff size={15}   className="text-lg mr-2" /> {loading ?  'Unfollowing...' :"Following"}
                         </button>
                     ) : (
-                        <button type="button" className="btn inline-flex justify-center rounded-md border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm  hover:text-gray-800 hover:bg-gray-50" onClick={handleSubscribe}>
-                       <MdNotificationsActive size={23}  className="text-lg mr-2" />{loading ?  'Subscribing...' :"Subscribe"}
+                        <button type="button" className="btn btn-md inline-flex justify-center rounded-full border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm  hover:text-gray-800 hover:bg-gray-50" onClick={handleSubscribe}>
+                       <MdNotificationsActive size={15}  className="text-lg mr-2" />{loading ?  'Following...' :"Follow"}
                         </button>
                     )}
                  {/* </div> */}

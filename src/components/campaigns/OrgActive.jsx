@@ -36,7 +36,7 @@ function OrgActive({organisationDetails}) {
           <label htmlFor="Tab" className="sr-only">Tab</label>
           <select
             id="Tab"
-            className="rounded-md border-gray-200 p-3 w-11/12 bg-white text-black"
+            className="rounded-md ml-3 border-gray-200 p-3 w-11/12 bg-white text-black border input-bordered"
             onChange={(e) => setActiveTab(e.target.value)}
             value={activeTab}
           >
