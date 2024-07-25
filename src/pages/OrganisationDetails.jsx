@@ -106,8 +106,8 @@ function OrganisationDetails() {
         setLoading(false)
         if (response.status === 200) {
           Swal.fire({
-            title: "Subscription Successful",
-            text: `You have successfully subscribed to receive updates from ${organisationDetails.orgName}. Thank you for your subscription!`,
+            title: "Following Successful",
+            text: `You will now receive updates from ${organisationDetails.orgName} on their activities and progress. Thank you for showing your support!`,
             icon: "success"
           });
           setSubscribe(true);
