@@ -437,7 +437,7 @@ function CampainDetails() {
     const completeDonations = campaign && campaign.donations.filter(donation => donation.status === 'COMPLETE');
 
     // Shuffle the filtered donations and select the first 5
-    const shuffledDonations = completeDonations && completeDonations.sort(() => Math.random() - 0.5).slice(0, 6);
+    const shuffledDonations = completeDonations && completeDonations.slice(0, 6);
 
     
     const handleDays = () => {
@@ -695,14 +695,14 @@ const togglePasswordVisibility = (e) => {
                         value={activeTab}
                     >
                         <option>M-Pesa</option>
-                        <option>Card</option>
+                        <option>Others</option>
                     </select>
                     </div>
 
                     <div className="hidden sm:block">
                     <div className="border-b border-gray-200">
                         <nav className="-mb-px flex gap-6" aria-label="Tabs">
-                        {['M-Pesa', 'Card'].map((tab) => (
+                        {['M-Pesa', 'Others'].map((tab) => (
                             <p
                             key={tab}
                             // href="#"
@@ -829,7 +829,7 @@ const togglePasswordVisibility = (e) => {
                             </div>
                         </div>
                     )}
-                    {activeTab === 'Card' && (
+                    {activeTab === 'Others' && (
                         <div>
                         <h2 className="text-2xl font-semibold">Donate via Card/Bitcoin/CashApp</h2>
                             <div className='h-full rounded-lg'> 
