@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect,useCallback } from 'react';
 import InActiveCampaigns from './UpcomingCampaigns';
 import { prettyNumber } from '@based/pretty-number'
@@ -11,7 +10,6 @@ function ActiveCampaigns() {
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const navigate = useNavigate();
     const currentDate = new Date();
 
     const fetchCampaigns = useCallback(async () => {
@@ -77,12 +75,7 @@ function ActiveCampaigns() {
           return categoryMatch && searchMatch;
         });
       };
-      
-      const handleCampaign = (campaignId) => {
-        setTimeout(() => {
-          navigate(`/campaigns/${campaignId}`);
-        }, 1000);
-      };
+
       //Active campaigns
       const activeCampaigns = campaigns.filter(campaign => {
         const startDate = new Date(campaign.startDate);

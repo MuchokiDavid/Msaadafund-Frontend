@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import profilePic from '../assets/orgProfile.png'
-import { MdNotificationsActive } from "react-icons/md";
-import { MdNotificationsOff } from "react-icons/md";
 
 function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscribe, handleUnsubscribe, shareModal}) {
     const percentage= (raisedAmount / budget)*100
@@ -91,12 +89,12 @@ function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscr
                     <div className="flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
                     {/* <div className="flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0"> */}
                     {subscribe ? (
-                        <button type="button" className="btn btn-md inline-flex justify-center rounded-full border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:text-gray-800 shadow-md hover:bg-gray-50" onClick={handleUnsubscribe}>
-                         <MdNotificationsOff size={15}   className="text-lg mr-2" /> {loading ?  'Unfollowing...' :"Following"}
+                        <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={handleUnsubscribe}>
+                          {loading ?  'Unfollowing...' :"Following"}
                         </button>
                     ) : (
-                        <button type="button" className="btn btn-md inline-flex justify-center rounded-full border border-blue-600 bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm  hover:text-gray-800 hover:bg-gray-50" onClick={handleSubscribe}>
-                       <MdNotificationsActive size={15}  className="text-lg mr-2" />{loading ?  'Following...' :"Follow"}
+                        <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={handleSubscribe}>
+                       {loading ?  'Following...' :"Follow"}
                         </button>
                     )}
                  {/* </div> */}

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment';
-import { useNavigate } from 'react-router-dom';
 
 function UpcomingCampaigns({allCampaigns}) {
   const [campaigns, setCampaigns] = useState([]);
   const [filteredCampaigns, setFilteredCampaigns] = useState([]);
-  const navigate=useNavigate()
   // console.log(campaigns)
 
   useEffect(() => {
@@ -22,13 +20,6 @@ function UpcomingCampaigns({allCampaigns}) {
       setFilteredCampaigns(filtered.sort(() => Math.random() - Math.random()).slice(0, 4))
     } 
   }, [campaigns])
-  
-  // console.log(filteredCampaigns)
-  const handleCampaign = (campaignId) => {
-    setTimeout(() => {
-      navigate(`/campaigns/${campaignId}`);
-    }, 2000);
-  };
 
   return (
     <div>
