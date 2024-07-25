@@ -165,7 +165,7 @@ function CampainDetails() {
         if (response.status === 200) {
                 Swal.fire({
                     title: "Following Successful",
-                    text: `You will now receive updates from ${campaign.organisation.orgName}. Thank you for!`,
+                    text: `You will now receive updates from ${campaign.organisation.orgName} on their activities and progress. Thank you for showing your support!`,
                     icon: "success"
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -208,8 +208,8 @@ function CampainDetails() {
                     if (response.status === 200) {
                         // Show success message
                         await Swal.fire({
-                            title: `Unsubscribed successifully`,
-                            text: `You have successfully unsubscribed from updates from ${campaign.organisation.orgName}. If you change your mind, you can always subscribe later. Thank you for your support.`,
+                            title: `Unfollowed successifully`,
+                            text: `You have successfully unfollowed from updates from ${campaign.organisation.orgName}. If you change your mind, you can always subscribe later. Thank you for your support.`,
                             icon: "success"
                         });
                         // Reload the page or perform any other necessary action

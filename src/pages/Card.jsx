@@ -88,7 +88,7 @@ function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscr
 
                     <div className="flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
                     {/* <div className="flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0"> */}
-                    {subscribe ? (
+                    {subscribe ? (                        
                         <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={handleUnsubscribe}>
                           {loading ?  'Unfollowing...' :"Following"}
                         </button>

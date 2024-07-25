@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
       },
       body: JSON.stringify({ username, password }),
     }).then((r) => r.json())
-      .catch((err)=>console.log(err))
+      .catch((err)=>setErrorMessage(err))
       .then((data) => {
           if (data.message){
             setIsLoggedIn(true);
@@ -123,7 +123,7 @@ export const AuthProvider = ({ children }) => {
       },
       body: JSON.stringify({ email, password }),
     }).then((r) => r.json())
-      .catch((err)=>console.log(err))
+      .catch((err)=>setErrorMessage(err))
       .then((data) => {
           if (data.message){
             setIsLoggedIn(true);
