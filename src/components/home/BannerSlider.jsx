@@ -74,7 +74,7 @@ function BannerSlider() {
                   <h1 className="text-2xl lg:text-4xl text-white font-bold text-center">{image.heading}</h1>
                   <p className="text-lg lg:text-xl text-white mt-4 text-center">{image.text}</p>
                   <a href={image.buttonLink}>
-                    <button className="btn btn-outline sm:my-6 rounded-lg md:mt-8 text-white uppercase py-3 text-base font-light px-8 border border-blue-600 hover:bg-blue-600 hover:bg-opacity-9">
+                    <button className="btn btn-outline sm:my-6 rounded-lg md:mt-8 text-white uppercase py-3 text-base font-light px-8 border border-blue-600 hover:bg-blue-600 hover:text-white hover:bg-opacity-9">
                       {image.buttonText}
                     </button>
                   </a>
