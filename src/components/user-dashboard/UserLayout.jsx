@@ -51,13 +51,13 @@ function UserLayout() {
             if (response.ok) {
                 if(data){
                   // console.log(data)
-                   console.log("Successful request to get user donations");
+                  //  console.log("Successful request to get user donations");
                     setAllDonations(data);
                     setLoading(false); 
                 }
                 if(data.error){
                     setLoading(false);
-                    console.log(data.error)
+                    // console.log(data.error)
                     setErrors(data.error);
                 }
                 
@@ -88,13 +88,13 @@ function UserLayout() {
         const data = await response.json();
         if (response.ok) {
           if(data){
-            console.log("Successful request to get user subscriptions");
+            // console.log("Successful request to get user subscriptions");
             setAllSubscriptions(data);
             setLoading(false);
           }
           if(data.error){
             setLoading(false);
-            console.log(data.error)
+            // console.log(data.error)
             setErrors(data.error);
           }
 

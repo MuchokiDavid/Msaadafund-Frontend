@@ -31,13 +31,14 @@
     "react-share": "^5.1.0",
     "react-slick": "^0.30.2",
     "reactjs-popup": "^2.0.6",
+    "serve": "^14.2.3",
     "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.10.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "react-scripts build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },

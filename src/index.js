@@ -9,6 +9,13 @@ import { TourProvider } from '@reactour/tour';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+if (process.env.NODE_ENV === "production") {
+  console.log = function() {};
+  console.debug = function() {};
+  console.info = function() {};
+  console.warn = function() {};
+  console.error = function() {};
+}
 
 const steps = [
   {
@@ -72,6 +79,8 @@ const steps = [
     content: 'Explore more features here.',
   }
 ];
+
+
 
 root.render(
   <React.StrictMode>
