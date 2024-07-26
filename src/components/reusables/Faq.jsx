@@ -59,10 +59,10 @@ function Faq() {
       title: 'Is there a fee for transactions?',
       content: [
         'IntaSend charges a 3% for M-Pesa, 3.5% for local cards, and 4.5% for intenational cards, Bitcoin and Cash App transactions. The maximum transaction fee is Sh 400. Additionally, there is a 4% platform fee on the amount donated.The remaining funds go directly to the organization.',
-        'For example, if a campaign raises a total of 100,000 Kenyan shillings:',
-        '- 400 shillings will be deducted as the transaction fee',
-        '- 4,000 shillings will be deducted as the platform fee',
-        '- 93,600 shillings will go to the organization.'
+        'For example, if a campaign raises a total of 1,000 Kenyan shillings:',
+        '- 30 shillings will be deducted as the transaction fee',
+        '- 40 shillings will be deducted as the platform fee',
+        '- 930 shillings will go to the organization.'
       ],
     },
     {
