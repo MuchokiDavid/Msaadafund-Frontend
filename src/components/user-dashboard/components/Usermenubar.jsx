@@ -60,7 +60,7 @@ function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
                       onClick={handleMenuItemClick}
                       href="/user/dashboard/subscriptions">
                           <MdOutlineSubscriptions/>
-                          <span className="mx-2 text-sm font-medium">Subscriptions</span>
+                          <span className="mx-2 text-sm font-medium">Following</span>
                       </a>
                   </div>
                   {/* signatory routes  */}

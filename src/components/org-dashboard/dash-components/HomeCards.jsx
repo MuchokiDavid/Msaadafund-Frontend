@@ -78,7 +78,7 @@ function HomeCards({allCampaigns, allDonations, subscriptions}) {
                 </div>
                 <div className="px-2 text-gray-700 justify-between items-center">
                     <div>
-                        <h3 className="tracking-wider text-sm lg:text-base">Subscribers</h3>
+                        <h3 className="tracking-wider text-sm lg:text-base">Followers</h3>
                     </div>
                     <div>                    
                     <p className="text-xl lg:text-2xl">{prettyNumber(subs && subs.length , 'number-short')}</p>
