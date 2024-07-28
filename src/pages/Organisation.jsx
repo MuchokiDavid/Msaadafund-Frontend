@@ -24,6 +24,11 @@ function Organisation() {
         })
     },[])
 
+     // Function to encode route
+    function formatSlug(text) {
+    return text.replace(/\s+/g, '-');
+    }
+
     const totalPages =  Math.ceil(organisation.length/itemsPerPage)
     const paginateOrganisations = organisation.slice((currentPage-1) * itemsPerPage,currentPage*itemsPerPage)
 
@@ -32,7 +37,7 @@ function Organisation() {
     }
 
     const handleNavigate = (orgid)=>{
-        navigate(`/organisations/${orgid}`)
+        navigate(`/organisations/${formatSlug(orgid)}`)
     }
 
     
@@ -51,7 +56,7 @@ function Organisation() {
             {paginateOrganisations.map((org)=>{
                 return(
                 // <Link to={`/organisations/${org.id}`} key={org.id}>
-                <div key={org.id} onClick={()=>handleNavigate(org.id)}>
+                <div key={org.id} onClick={()=>handleNavigate(org.orgName)}>
                     <div className="group relative block mt-8 sm:mt-10 lg:mt-12 bg-black rounded-xl overflow-hidden">
                         <img
                             alt="org logo"
