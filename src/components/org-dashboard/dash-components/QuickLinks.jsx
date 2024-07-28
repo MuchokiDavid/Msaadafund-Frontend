@@ -36,9 +36,9 @@ function QuickLinks() {
         { icon: GrAtm, name: 'Withdraw', to: '/org/dashboard/transact/withdraw', className:'withdraw-funds'},
         { icon: FcApprove, name: 'Approvals', to: '/org/dashboard/transact/approvals', className:'view-approvals'},
         { icon: BsBoxArrowDown, name: 'Withdrawals', to: '/org/dashboard/transact/withdrawals', className:'view-withdrawals'},
-        { icon: MdSendToMobile, name: 'PayBill', to: '/org/dashboard/transact/paybill', className:'paybills'},
-        { icon: MdOutlinePayments, name: 'Till', to: '/org/dashboard/transact/till', className:'buy-goods'},
-        { icon: FaPhone, name: 'Airtime', to: '/org/dashboard/transact/buyairtime', className:'airtime'},
+        { icon: MdSendToMobile, name: 'Pay bills', to: '/org/dashboard/transact/paybill', className:'paybills'},
+        { icon: MdOutlinePayments, name: 'Buy goods', to: '/org/dashboard/transact/till', className:'buy-goods'},
+        { icon: FaPhone, name: 'Buy airtime', to: '/org/dashboard/transact/buyairtime', className:'airtime'},
         { icon: GrTransaction, name: 'Transactions', to: '/org/dashboard/transaction', className:'view-transactions'},
         { icon: IoPersonCircle, name: 'Profile', to: '/org/dashboard/profile', className:'view-profile'}
     ];

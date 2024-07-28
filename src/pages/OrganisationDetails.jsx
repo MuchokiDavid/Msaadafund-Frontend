@@ -35,10 +35,11 @@ function OrganisationDetails() {
   const [password, setPassword]= useState("")
   const[errors,setErrors] = useState("")
   const[showPassword, setShowPassword] = useState(false)
+  const decodedName = orgid.replace(/-/g, ' ');
 
   useEffect(() => {
     setLoading(true)
-    axios.get(`https://backend.service.msaadafund.com/home/api/v1.0/org_by_id/${orgid}`)
+    axios.get(`https://backend.service.msaadafund.com/home/api/v1.0/org_by_id/${decodedName}`)
       .then(res => {
         setOrganisationDetails(res.data);
         setLoading(false)
@@ -48,7 +49,7 @@ function OrganisationDetails() {
         const errorMsg = error.response?.data?.error || 'An error occurred';
         console.error(errorMsg);
       });
-  }, [orgid]);
+  }, [orgid,decodedName]);
 
 
   useEffect(() => {

@@ -14,6 +14,11 @@ function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscr
         }
         setButtonClicked(false)
       }, [buttonClicked]);
+
+       // Function to encode route
+     function formatSlug(text) {
+        return text.replace(/\s+/g, '-');
+    }
   return (
     <>
         <div className='border bg-white campaignBannerCard'>
@@ -74,7 +79,7 @@ function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscr
                 <div className='grid grid-cols-1 lg:grid-cols-1 gap-3 lg:h-20'>
                     <div>
                         <div>
-                            <a href={`/organisations/${orgDetails && orgDetails.id}`}><h2 className="sm:text-base lg:text-xl font-semibold hover:underline">{orgDetails && orgDetails.orgName.toUpperCase()}</h2></a>
+                            <a href={`/organisations/${formatSlug(orgDetails && orgDetails.orgName)}`}><h2 className="sm:text-base lg:text-xl font-semibold hover:underline">{orgDetails && orgDetails.orgName.toUpperCase()}</h2></a>
                         </div>
                         {/* <div className="flex my-0.5 text-sm">
                             {orgDetails && orgDetails.website_link && orgDetails && (

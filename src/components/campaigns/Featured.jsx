@@ -43,7 +43,7 @@ function Featured() {
     // console.log(featuredCampaign)
     const handleCampaign = (campaignId) => {
         setTimeout(() => {
-          navigate(`/campaigns/${campaignId}`);
+          navigate(`/campaigns/${formatSlug(campaignId)}`);
         }, 1000);
       };
 
@@ -64,6 +64,10 @@ function Featured() {
       
       return totalAmount;
     }
+     // Function to encode route
+     function formatSlug(text) {
+      return text.replace(/\s+/g, '-');
+      }
 
     if(loading){
       return(<div className='flex justify-center'>Loading...</div>)
@@ -101,7 +105,7 @@ function Featured() {
                 {featuredCampaign && featuredCampaign.map((campaign) => {
                   return (
                     <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden'>
-                      <div onClick={()=>{handleCampaign(campaign.id); setButtonClicked(true)}} className="block rounded-lg shadow-sm shadow-indigo-100">
+                      <div onClick={()=>{handleCampaign(formatSlug(campaign.campaignName)); setButtonClicked(true)}} className="block rounded-lg shadow-sm shadow-indigo-100">
                         <img
                           alt="banner"
                           src= {campaign.banner}
@@ -120,12 +124,12 @@ function Featured() {
                             <div>
                               <dt className="sr-only">Name</dt>
                               <dd className="font-medium overflow-hidden text-lg text-gray-600 whitespace-nowrap hover:text-blue-600 hover:cursor-pointer">
-                                <a href={`/campaigns/${campaign.id}`}>{campaign.campaignName}</a>
+                                <a href={`/campaigns/${formatSlug(campaign.campaignName)}`}>{campaign.campaignName}</a>
                               </dd>
                             </div>
                             <div>
                               <dt className="sr-only">Organiser</dt>
-                              <dd><a href={`/organisations/${campaign.organisation.id}`} className='text-blue-700 hover:underline whitespace-nowrap'>{campaign.organisation.orgName}</a></dd>
+                              <dd><a href={`/organisations/${formatSlug(campaign.organisation.orgName)}`} className='text-blue-700 hover:underline whitespace-nowrap'>{campaign.organisation.orgName}</a></dd>
                               {/* <a href='#' className='text-blue-700 hover:underline text-base overflow-hidden'><dd>{campaign.organisation.orgName}</dd></a> */}
                             </div>
                           </dl>

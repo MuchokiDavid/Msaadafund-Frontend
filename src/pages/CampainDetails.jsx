@@ -63,7 +63,9 @@ function CampainDetails() {
     const [more, setMore]= useState(false)
     const formRef = useRef(null);
     const [donating, setDonating] = useState(false);
-    
+
+    //decode route
+    const decodedName = campaignId.replace(/-/g, ' ');
 // to check the subscription state
 
     useEffect(() => {
@@ -82,7 +84,7 @@ function CampainDetails() {
     useEffect(() => {
       
         const fetchCampaign= ()=>{
-            fetch(`https://backend.service.msaadafund.com/home/api/v1.0/campaign/${campaignId}`)
+            fetch(`https://backend.service.msaadafund.com/home/api/v1.0/campaign/${decodedName}`)
             .then(response => response.json())
             .then(data => {
                 setCampaign(data);
@@ -99,7 +101,8 @@ function CampainDetails() {
         // const intervalId = setInterval(fetchCampaign, 15000);//Polling done here to fetch campaign
         // return () => clearInterval(intervalId);
 
-    }, [campaignId]);
+    }, [campaignId,decodedName]);
+
 
     // get subscription status
   useEffect(() => {
@@ -438,7 +441,7 @@ function CampainDetails() {
     const completeDonations = campaign && campaign.donations.filter(donation => donation.status === 'COMPLETE');
 
     // Shuffle the filtered donations and select the first 5
-    const shuffledDonations = completeDonations && completeDonations.slice(0, 6);
+    const shuffledDonations = completeDonations && completeDonations.slice(0, 5);
 
     
     const handleDays = () => {
@@ -636,7 +639,7 @@ const togglePasswordVisibility = (e) => {
                     <div className="h-full lg:w-2/3 border border-transparent mt-1 rounded-lg px-2 py-2">
                         {/* <hr/> */}
                         <h1 className='text-xl my-2 font-semibold w-full'>Story</h1>  
-                        <div className="bg-white text-xs sm:h-52 lg:h-96 w-full overflow-hidden">                                                          
+                        <div className="bg-white text-xs sm:h-52 lg:h-72 w-full overflow-hidden">                                                          
                             <div> 
                                 {isLargeScreen ?
                                     <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: campaign.description }}></div>
@@ -666,7 +669,7 @@ const togglePasswordVisibility = (e) => {
                             </div>
                             <div>
                                 <div className="max-w-full mx-auto my-2">
-                                    <div className="bg-white rounded-lg overflow-hidden">
+                                    <div className="bg-white rounded-lg overflow-hidden text-sm">
                                         <ul className="divide-y divide-gray-200">
                                             {shuffledDonations && shuffledDonations.map((donation, index) => (
                                                 <li key={index} className="p-3 flex justify-between items-center user-card even:bg-gray-100 odd:bg-white">

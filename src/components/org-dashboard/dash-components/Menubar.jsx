@@ -145,7 +145,7 @@ function Menubar({handleMenuItemClick}) {
                 href="/org/dashboard/transact/till">
                     <MdOutlinePayments className='w-4 h-4'/>
 
-                    <span className="mx-2 text-sm font-medium">Till Number</span>
+                    <span className="mx-2 text-sm font-medium">Buy goods</span>
                 </a>
 
 
