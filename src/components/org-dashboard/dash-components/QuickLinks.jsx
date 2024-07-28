@@ -11,7 +11,7 @@ import { MdSendToMobile } from "react-icons/md";
 import { MdOutlinePayments } from "react-icons/md";
 import { IoPersonCircle } from 'react-icons/io5';
 import { FcApprove } from 'react-icons/fc';
-import { FaDonate } from 'react-icons/fa';
+import { FaDonate, FaHome } from 'react-icons/fa';
 import { BsBoxArrowDown } from 'react-icons/bs';
 
 // Use the icon component dynamically
@@ -27,7 +27,7 @@ const QuickLink = ({ icon, name, to, className }) => {
 
 function QuickLinks() {
     const quickLinksData = [
-        // { icon: FaHome , name: 'Home' ,to:'/'},
+        { icon: FaHome , name: 'Home' ,to:'/'},
         { icon: MdOutlineCampaign, name: 'Create',to:'/org/dashboard/createcampaign', className: 'create-campaign'}, 
         { icon: MdOutlineViewCompactAlt, name: 'Campaigns', to: '/org/dashboard/mycampaigns/active', className: 'view-campaigns' },
         { icon: FaDonate, name: 'Contributions', to: '/org/dashboard/donations', className:'view-contributions'},

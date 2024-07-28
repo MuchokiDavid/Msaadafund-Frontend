@@ -22,7 +22,7 @@ function QuickLink() {
   const isSignatory = localStorage.getItem('isSignatory') === 'true';
 
     const quickLinksData = [
-        { icon: FaHome , name: 'Home' ,to:'/user/dashboard'},
+        { icon: FaHome , name: 'Home' ,to:'/'},
         { icon: FaDonate , name: 'Contributions' ,to:'/user/dashboard/contributions'},
         { icon: MdOutlineSubscriptions , name: 'Following' ,to:'/user/dashboard/subscriptions'},
         { icon: IoMdHelpCircle , name: 'Help' ,to:'/user/dashboard/help'},
