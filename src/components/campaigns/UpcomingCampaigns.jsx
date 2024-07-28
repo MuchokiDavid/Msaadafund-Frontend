@@ -10,6 +10,11 @@ function UpcomingCampaigns({allCampaigns}) {
     setCampaigns(allCampaigns)    
   }, [allCampaigns])
 
+  // Decode
+  function formatSlug(text) {
+    return text.replace(/\s+/g, '-');
+  }
+
   useEffect(() => {
     let filtered =[]
     campaigns.forEach((item)=> {
@@ -49,12 +54,12 @@ function UpcomingCampaigns({allCampaigns}) {
                         <div>
                           <dt className="sr-only">Name</dt>
                           <dd className="font-medium overflow-hidden text-lg whitespace-nowrap hover:text-blue-600 hover:cursor-pointer">
-                            <a href={`/campaigns/${campaign.id}`}>{campaign.campaignName}</a>
+                            <a href={`/campaigns/${formatSlug(campaign.campaignName)}`}>{campaign.campaignName}</a>
                             </dd>
                         </div>
                         <div>
                           <dt className="sr-only">Organiser</dt>
-                          <dd><a href={`/organisations/${campaign.organisation.id}`} className='text-blue-700 hover:underline whitespace-nowrap hover:text-blue-400'>{campaign.organisation.orgName}</a></dd>
+                          <dd><a href={`/organisations/${formatSlug(campaign.organisation.orgName)}`} className='text-blue-700 hover:underline whitespace-nowrap hover:text-blue-400'>{campaign.organisation.orgName}</a></dd>
                           
                         </div>
                       </dl>

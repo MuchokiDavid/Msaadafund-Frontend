@@ -18,6 +18,10 @@ function OrgActive({organisationDetails}) {
         return false
     });
 
+    function formatSlug(text) {
+      return text.replace(/\s+/g, '-');
+    }
+
     const calculateDaysLeft = (endDate) => {
         if (!endDate) return null;
         const endDateObject = new Date(endDate);
@@ -83,7 +87,7 @@ function OrgActive({organisationDetails}) {
         {activeTab === 'Upcoming_campaigns' && (
             <div>
               {/* <h2 className="text-lg font-semibold">Upcoming Campaigns</h2> */}
-              <OrgUpcoming organisationDetails= {organisationDetails}/>
+              <OrgUpcoming organisationDetails= {organisationDetails} formatSlug= {formatSlug}/>
             </div>
           )}
           {activeTab === 'Active_campaigns' && (
@@ -98,7 +102,7 @@ function OrgActive({organisationDetails}) {
                   {/* <div className="mx-2 sm:mx-1 lg:mx-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-2 md:gap-4 sm:max-w-full"> */}
                   {activeCampaigns && activeCampaigns.map((campaign)=>{
                       return(
-                      <Link to = {`/campaigns/${campaign.id}`} key={campaign.id}>
+                      <Link to = {`/campaigns/${formatSlug(campaign.campaignName)}`} key={campaign.id}>
                       <div className="card w-auto bg-white rounded-md shadow-lg">
                       <figure><img src={campaign.banner} alt={campaign.campaignName} className='h-56 w-full rounded-t-md object-cover' loading='lazy'/></figure>
                       <div className="card-body">

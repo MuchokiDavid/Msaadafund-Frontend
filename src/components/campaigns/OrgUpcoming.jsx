@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-function OrgUpcoming({organisationDetails}) {
+function OrgUpcoming({organisationDetails, formatSlug}) {
     const currentDate = new Date();
     //Upcoming campaigns
     const upcomingCampaigns = organisationDetails.filter(campaign => {
@@ -26,7 +26,7 @@ function OrgUpcoming({organisationDetails}) {
             {/* <div className="mx-2 sm:mx-1 lg:mx-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-2 md:gap-4 sm:max-w-full"> */}
             {upcomingCampaigns && upcomingCampaigns.map((campaign)=>{
                     return(
-                    <Link to = {`/campaigns/${campaign.id}`} key={campaign.id}>
+                    <Link to = {`/campaigns/${formatSlug(campaign.campaignName)}`} key={campaign.id}>
                     <div className="card w-auto bg-white rounded-md shadow-lg key={campaign.id} h-80">
                         <figure className='h-40'><img src={campaign.banner} alt={campaign.campaignName} loading='lazy'/></figure>
                         <div className="card-body">
