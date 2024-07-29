@@ -32,7 +32,7 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
         const fetchCampaignDetails = async () => {
             setLoading(true)
             try {
-                const response = await fetch(`https://backend.service.msaadafund.com/home/api/v1.0/campaign/${campaignId}`);
+                const response = await fetch(`https://backend.service.msaadafund.com/home/api/v1.0/onecampaign/${campaignId}`);
                 const data = await response.json();
                 if (response.ok) {
                     setOriginalData(data);
