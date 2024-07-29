@@ -122,7 +122,7 @@ function CampainDetails() {
         } catch (error) {
           const errorMsg = error.response?.data?.error || 'An error occurred';
         //   console.error(errorMsg);
-            setErrors(errorMsg)
+            console.error(errorMsg)
           setSubscribe(false);
         }
       };
@@ -179,7 +179,7 @@ function CampainDetails() {
         }
     } catch (error) {
         const errorMsg = error.response?.data?.error || 'An error occurred';
-        setErrors(errorMsg);
+        console.error(errorMsg);
         // setSubscribe(false);
     }
 };
@@ -335,7 +335,7 @@ function CampainDetails() {
                             .catch((err)=>{
                                 setDonating(false)
                                 const errorMsg = err.response?.data?.error || 'An error occurred';
-                                setErrors(errorMsg);
+                                console.log(errorMsg);
                             })
                             
                         }
@@ -739,7 +739,7 @@ const togglePasswordVisibility = (e) => {
                     <div className="p-2">
                     {activeTab === 'M-Pesa' && (
                         <div>
-                        <h2 className="text-2xl font-semibold">Donate via M-Pesa</h2>
+                        <h2 className="text-2xl font-semibold">Contribute via M-Pesa</h2>
                         <div className='h-full rounded-lg'> 
                             <form ref={formRef} onSubmit={handleDonateButton} className='w-full rounded-xl'>
                                 <div className='text-black'>
@@ -835,7 +835,7 @@ const togglePasswordVisibility = (e) => {
                     )}
                     {activeTab === 'Others' && (
                         <div>
-                        <h2 className="text-2xl font-semibold">Donate via Card/Bitcoin/CashApp</h2>
+                        <h2 className="text-2xl font-semibold">Contribute via Card/Bitcoin/CashApp</h2>
                             <div className='h-full rounded-lg'> 
                                 <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
                                     <div className='text-black font-medium '>
