@@ -59,7 +59,7 @@ function DashCards({allSubscriptions, allDonations}) {
                         <p className="text-sm lg:text-base">{prettyNumber(allSubscription && allSubscription.length , 'number-short')}</p>
                     </div>
                     <div>
-                        <h3 className="text-sm lg:text-base tracking-wider">Subscriptions</h3>
+                        <h3 className="text-sm lg:text-base tracking-wider">Following</h3>
                     </div>
                 </div>
             </div>
