@@ -25,10 +25,7 @@ function Subscriptions({ allSubscriptions }) {
         setFilteredData(filtered);
     }, [subscriptions, searchTerm]);
 
-    const unsubscribe = async (id) => {
-        const subscriptionIndex = subscriptions.findIndex(sub => sub.id === id);
-        const orgName = subscriptions[subscriptionIndex]?.organisation?.orgName;
-
+    const unsubscribe = async (id,nameOrg) => {
         // Optimistic UI update
         const updatedSubscriptions = subscriptions.filter((sub) => sub.id !== id);
         setSubscriptions(updatedSubscriptions);
@@ -43,11 +40,16 @@ function Subscriptions({ allSubscriptions }) {
             const response = await axios.delete(`https://backend.service.msaadafund.com/home/api/v1.0/subscription/${id}`, config);
             if (response.status === 200) {
                 Swal.fire({
-                    title: `Unsubscribed from ${orgName} Updates`,
-                    text: `You have successfully unsubscribed from updates from ${orgName}. If you change your mind, you can always subscribe later. Thank you for your support.`,
+                    title: `Unfollow ${nameOrg}`,
+                    text: `You have successfully unfollowed ${nameOrg}. If you change your mind, you can always follow later. Thank you for your support.`,
                     icon: "success"
-                });
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload()
+                    }
+                })
             }
+            window.location.reload()
         } catch (error) {
             const errorMsg = error.response?.data?.error || 'An error occurred';
             console.error(errorMsg);
@@ -75,10 +77,10 @@ function Subscriptions({ allSubscriptions }) {
             <div className="text-sm breadcrumbs ml-2">
                 <ul>
                     <li><a href='/user/dashboard'>Dashboard</a></li>
-                    <li>Subscriptions</li>
+                    <li>Following</li>
                 </ul>
             </div>
-            <h1 className="mb-1 my-2 text-xl font-bold leading-tight ">Subscriptions</h1>
+            <h1 className="mb-1 my-2 text-xl font-bold leading-tight ">Following</h1>
             <hr />
             {subscriptions && subscriptions.length > 0
                 ? (
@@ -117,7 +119,7 @@ function Subscriptions({ allSubscriptions }) {
                                                             {subscription.organisation.orgAddress}
                                                         </td>
                                                         <td className="text-sm text-gray-900 font-light px-4 py-2 whitespace-nowrap">
-                                                            <button onClick={() => unsubscribe(subscription.id)} className='bg-red-500 px-3 py-1 rounded-md text-white'>Unsubscribe</button>
+                                                            <button onClick={() => unsubscribe(subscription.organisation.id,subscription.organisation.orgName)} className='bg-red-500 px-3 py-1 rounded-md text-white'>Unfollow</button>
                                                         </td>
                                                     </tr>
                                                 ))
