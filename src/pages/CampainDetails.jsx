@@ -277,7 +277,7 @@ function CampainDetails() {
                     if (result.isConfirmed) {
                         setDonating(true)
                         if (users && accessToken){
-                            axios.post('https://backend.service.msaadafund.com/home/api/v1.0/user/donations',{donorName:name,amount,campaignId:campaignId,phoneNumber},config)
+                            axios.post('https://backend.service.msaadafund.com/home/api/v1.0/user/donations',{donorName:name,amount,campaignId:decodedName,phoneNumber},config)
                             .then((res)=>{
                                 // console.log('logged in user')
                                 if(res.status===200){
@@ -305,7 +305,7 @@ function CampainDetails() {
                         }
                        else{
                             setDonating(true)
-                            axios.post ("https://backend.service.msaadafund.com/home/api/v1.0/express/donations",{phoneNumber,amount,donorName,campaignId:campaignId})
+                            axios.post ("https://backend.service.msaadafund.com/home/api/v1.0/express/donations",{phoneNumber,amount,donorName,campaignId:decodedName})
                             .then((res)=>{
                                 // console.log('express used')
                                 if(res.status===200){    
@@ -385,7 +385,7 @@ function CampainDetails() {
                     if (result.isConfirmed) {
                         setDonating(true)
                         if (users && accessToken){
-                            axios.post('https://backend.service.msaadafund.com/home/api/v1.0/logged_in_donate_card',{amount:cardAmount,campaignId:campaignId,currency:cardCurrency},config)
+                            axios.post('https://backend.service.msaadafund.com/home/api/v1.0/logged_in_donate_card',{amount:cardAmount,campaignId:decodedName,currency:cardCurrency},config)
                             .then((res)=>{
                                 if(res.status===200){  
                                     setDonating(false)
@@ -404,7 +404,7 @@ function CampainDetails() {
                         }
                         else{
                             setDonating(true)
-                            axios.post ("https://backend.service.msaadafund.com/home/api/v1.0/donate_card",{firstName:fName,lastName:lName,cardEmail,phoneNumber:phoneNo,amount:cardAmount,campaignId:campaignId, currency:cardCurrency})
+                            axios.post ("https://backend.service.msaadafund.com/home/api/v1.0/donate_card",{firstName:fName,lastName:lName,cardEmail,phoneNumber:phoneNo,amount:cardAmount,campaignId:decodedName, currency:cardCurrency})
                             .then((res)=>{
                                 // console.log(res)
                                 if(res.status===200){  
