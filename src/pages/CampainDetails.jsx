@@ -22,6 +22,23 @@ import Announcement from '../components/reusables/Announcement';
 import Featured from '../components/campaigns/Featured';
 import PopupGoogle from '../components/user-auth/PopupGoogle';
 
+
+
+    // Functions to shuffle array
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    const getRandomElements = (array, count) => {
+        const shuffledArray = shuffleArray([...array]);
+        return shuffledArray.slice(0, count);
+    }
+
+
 function CampainDetails() {
     const { campaignId } = useParams();
     const [campaign, setCampaign] = useState(null);
@@ -65,6 +82,7 @@ function CampainDetails() {
     const [donating, setDonating] = useState(false);
 
     const [randomDonations, setRandomDonations] = useState([]);
+    const hasShuffled = useRef(false); // Use useRef to keep track of whether shuffling has been done
 
     //decode route
     const decodedName = campaignId.replace(/-/g, ' ');
@@ -136,15 +154,14 @@ function CampainDetails() {
   }, [campaign, users, accessToken]);
 
   useEffect(() => {
-    if (completeDonations) {
-        const randomElements = getRandomElements(completeDonations, 5);
-        setRandomDonations(randomElements);
-    }
-    // eslint-disable-next-line
-}, [completeDonations]);
+        if (!hasShuffled.current && completeDonations && completeDonations.length > 0) {
+            const randomElements = getRandomElements(completeDonations, 5);
+            setRandomDonations(randomElements);
+            hasShuffled.current = true; // Set the ref to true after shuffling
+        }
+    }, [completeDonations]);
 
-
-   //Login user in order to subscribe
+    //Login user in order to subscribe
     const handleLogin = async (e) =>{
         e.preventDefault();    
         if (org) {
@@ -154,24 +171,6 @@ function CampainDetails() {
         
     await userLogin(username, password);
     }
-
-
-    // Functions to shuffle array
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
-
-    const getRandomElements = (array, count) => {
-        const shuffledArray = shuffleArray([...array]);
-        return shuffledArray.slice(0, count);
-    }
-
-    // Shuffle the filtered donations and select the first 5
-    const shuffledDonations = completeDonations && completeDonations.slice(0, 5);
 
   const handleSubscribe = async () => {
     try {
@@ -695,7 +694,7 @@ const togglePasswordVisibility = (e) => {
                                 <div className="max-w-full mx-auto my-2">
                                     <div className="bg-white rounded-lg overflow-hidden text-sm">
                                         <ul className="divide-y divide-gray-200">
-                                            {randomDonations && shuffledDonations.map((donation, index) => (
+                                            {randomDonations && randomDonations.map((donation, index) => (
                                                 <li key={index} className="p-3 flex justify-between items-center user-card even:bg-gray-100 odd:bg-white">
                                                     <div className="flex items-center">
                                                         <div className='w-10 h-10 rounded-full odd:bg-green-500 flex justify-center items-center text-white'>{donation.donor_name ? donation.donor_name.charAt(0) : "A"}</div>
