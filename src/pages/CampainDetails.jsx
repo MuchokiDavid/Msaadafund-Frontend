@@ -64,9 +64,13 @@ function CampainDetails() {
     const formRef = useRef(null);
     const [donating, setDonating] = useState(false);
 
+    const [randomDonations, setRandomDonations] = useState([]);
+
     //decode route
     const decodedName = campaignId.replace(/-/g, ' ');
 // to check the subscription state
+ //shuffle all donations and get five donations
+    const completeDonations = campaign && campaign.donations.filter(donation => donation.status === 'COMPLETE');
 
     useEffect(() => {
         if (accessToken && userData){
@@ -131,6 +135,14 @@ function CampainDetails() {
     }
   }, [campaign, users, accessToken]);
 
+  useEffect(() => {
+    if (completeDonations) {
+        const randomElements = getRandomElements(completeDonations, 5);
+        setRandomDonations(randomElements);
+    }
+    // eslint-disable-next-line
+}, [completeDonations]);
+
 
    //Login user in order to subscribe
     const handleLogin = async (e) =>{
@@ -143,7 +155,23 @@ function CampainDetails() {
     await userLogin(username, password);
     }
 
- 
+
+    // Functions to shuffle array
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    const getRandomElements = (array, count) => {
+        const shuffledArray = shuffleArray([...array]);
+        return shuffledArray.slice(0, count);
+    }
+
+    // Shuffle the filtered donations and select the first 5
+    const shuffledDonations = completeDonations && completeDonations.slice(0, 5);
 
   const handleSubscribe = async () => {
     try {
@@ -437,11 +465,6 @@ function CampainDetails() {
 
             }     
     }
-    //shuffle all donations and get five donations
-    const completeDonations = campaign && campaign.donations.filter(donation => donation.status === 'COMPLETE');
-
-    // Shuffle the filtered donations and select the first 5
-    const shuffledDonations = completeDonations && completeDonations.slice(0, 5);
 
     
     const handleDays = () => {
@@ -613,7 +636,8 @@ const togglePasswordVisibility = (e) => {
                                         <p className="text-blue-600">{campaign.category.toUpperCase()}</p>
                                     </div>                                    
                                     <div>
-                                        <p className=" text-red-500">{handleDays()} Days left</p>
+
+                                        <p className=" text-red-500">{handleDays()} Days</p>
                                     </div>
                                     {/* <h1 className='text-xl my-2 font-semibold w-full'>Story</h1>   */}
                         
@@ -671,7 +695,7 @@ const togglePasswordVisibility = (e) => {
                                 <div className="max-w-full mx-auto my-2">
                                     <div className="bg-white rounded-lg overflow-hidden text-sm">
                                         <ul className="divide-y divide-gray-200">
-                                            {shuffledDonations && shuffledDonations.map((donation, index) => (
+                                            {randomDonations && shuffledDonations.map((donation, index) => (
                                                 <li key={index} className="p-3 flex justify-between items-center user-card even:bg-gray-100 odd:bg-white">
                                                     <div className="flex items-center">
                                                         <div className='w-10 h-10 rounded-full odd:bg-green-500 flex justify-center items-center text-white'>{donation.donor_name ? donation.donor_name.charAt(0) : "A"}</div>
@@ -835,7 +859,7 @@ const togglePasswordVisibility = (e) => {
                     )}
                     {activeTab === 'Others' && (
                         <div>
-                        <h2 className="text-2xl font-semibold">Contribute via Card/Bitcoin/CashApp</h2>
+                        <h2 className="text-2xl font-semibold">Contribute via Card,Bitcoin and CashApp</h2> 
                             <div className='h-full rounded-lg'> 
                                 <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
                                     <div className='text-black font-medium '>
