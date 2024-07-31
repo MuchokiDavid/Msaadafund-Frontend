@@ -1,10 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import moment from 'moment';
+
+
+// Functions to shuffle array
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+const getRandomElements = (array, count) => {
+  const shuffledArray = shuffleArray([...array]);
+  return shuffledArray.slice(0, count);
+}
 
 function UpcomingCampaigns({allCampaigns}) {
   const [campaigns, setCampaigns] = useState([]);
   const [filteredCampaigns, setFilteredCampaigns] = useState([]);
   // console.log(campaigns)
+  const hasShuffled = useRef(false); // Use useRef to keep track of whether shuffling has been done
 
   useEffect(() => {
     setCampaigns(allCampaigns)    
@@ -15,16 +31,25 @@ function UpcomingCampaigns({allCampaigns}) {
     return text.replace(/\s+/g, '-');
   }
 
+  // useEffect(() => {
+  //   let filtered =[]
+  //   campaigns.forEach((item)=> {
+  //       filtered.push(item)
+  //   })
+  //   if(filtered.length!==0) {
+  //     // Take random  4 items for display on upcoming
+  //     setFilteredCampaigns(filtered.sort(() => Math.random() - Math.random()).slice(0, 4))
+  //   } 
+  // }, [campaigns])
+
   useEffect(() => {
-    let filtered =[]
-    campaigns.forEach((item)=> {
-        filtered.push(item)
-    })
-    if(filtered.length!==0) {
-      // Take random  4 items for display on upcoming
-      setFilteredCampaigns(filtered.sort(() => Math.random() - Math.random()).slice(0, 4))
-    } 
-  }, [campaigns])
+    if (!hasShuffled.current && campaigns && campaigns.length > 0) {
+        const randomElements = getRandomElements(campaigns, 4);
+        setFilteredCampaigns(randomElements);
+        hasShuffled.current = true; // Set the ref to true after shuffling
+    }
+  }, [campaigns]);
+
 
   return (
     <div>
