@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [loginMessage, setLoginMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const users=localStorage.getItem('user')
   const org = localStorage.getItem('org') 
@@ -78,6 +79,7 @@ export const AuthProvider = ({ children }) => {
   const handleSuccess = async (credentialResponse) => {
 
     const token = credentialResponse.credential;
+    setLoading(true)
 
     try {
       // Validate the token by calling your backend first
@@ -98,14 +100,17 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('isSignatory', response.data.is_signatory);
         setLoginMessage(response.data.message);
         setErrorMessage("");
+        setLoading(false)
       }
       if(response.status!==200){
         setLoginMessage(response.data.error)
+        setLoading(false)
       }
      
       
     } catch (err) {
       console.error('Request Failed:', err);
+      setLoading(false)
     }
   };
 
@@ -156,7 +161,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <UserAuthContext.Provider value={{ isLoggedIn, userLogin, logout, user, token, loginMessage, errorMessage, orgLogin, setLoginMessage, handleSuccess, handleError }}>
+    <UserAuthContext.Provider value={{ isLoggedIn, userLogin, logout, user, token, loginMessage, errorMessage, orgLogin, setLoginMessage, handleSuccess, handleError, loading }}>
       {children}
     </UserAuthContext.Provider>
   );
