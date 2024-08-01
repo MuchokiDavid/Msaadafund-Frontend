@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+		<!--	created with www.mysitemapgenerator.com	-->
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://msaadafund.com/</loc>
+	<lastmod>2024-08-01T13:32:27+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://msaadafund.com/campaigns</loc>
+	<lastmod>2024-08-01T13:32:27+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://msaadafund.com/organisations</loc>
+	<lastmod>2024-08-01T13:32:27+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://msaadafund.com/about</loc>
+	<lastmod>2024-08-01T13:32:27+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://msaadafund.com/org/login</loc>
+	<lastmod>2024-08-01T13:32:27+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://msaadafund.com/user/login</loc>
+	<lastmod>2024-08-01T13:32:27+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://msaadafund.com/contact</loc>
+	<lastmod>2024-08-01T13:32:27+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://msaadafund.com/privacy</loc>
+	<lastmod>2024-08-01T13:32:27+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://msaadafund.com/terms</loc>
+	<lastmod>2024-08-01T13:32:27+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://msaadafund.com/faq</loc>
+	<lastmod>2024-08-01T13:32:27+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://msaadafund.com/user/signup</loc>
+	<lastmod>2024-08-01T13:32:27+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://msaadafund.com/org/signup</loc>
+	<lastmod>2024-08-01T13:32:27+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+</urlset>
