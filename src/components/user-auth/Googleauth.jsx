@@ -9,7 +9,9 @@ function Googleauth() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate('/user/dashboard')
+      setTimeout(() => {
+        navigate('/user/dashboard')
+      }, 2000);   
     }
     // eslint-disable-next-line
   }, [isLoggedIn]);

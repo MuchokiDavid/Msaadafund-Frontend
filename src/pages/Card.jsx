@@ -94,11 +94,11 @@ function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscr
                     <div className="flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
                     {/* <div className="flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0"> */}
                     {subscribe ? (                        
-                        <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={handleUnsubscribe}>
+                        <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[100px]" onClick={handleUnsubscribe}>
                           {loading ?  'Unfollowing...' :"Following"}
                         </button>
                     ) : (
-                        <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={handleSubscribe}>
+                        <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[100px]" onClick={handleSubscribe}>
                        {loading ?  'Following...' :"Follow"}
                         </button>
                     )}
