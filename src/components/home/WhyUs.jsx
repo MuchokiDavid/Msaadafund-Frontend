@@ -3,16 +3,13 @@ import React from 'react'
 function WhyUs() {
   return (
     <div>
-        <section className="bg-white text-gray-700 py-12" id="whyUsSection">
+        <section className="bg-white text-gray-700 py-8" id="whyUsSection">
             <div className="px-4 sm:px-6 lg:px-16">
                 <div className="max-w-xl mx-auto text-center">
                 <h2 className="text-3xl font-bold sm:text-4xl">Why MsaadaFund?</h2>
-                <p className="mt-4 text-gray-500">
-                    Discover why MsaadaFund stands out as your go-to platform for impactful giving and fundraising.
-                </p>
                 </div>
 
-                <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+                <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
                 
                 <div className="flex flex-col items-center text-center p-6 bg-gray-100 rounded-lg shadow-md">
                     <div className="mb-4 p-3 bg-green-600 rounded-full">

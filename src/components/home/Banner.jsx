@@ -115,10 +115,9 @@ let totalAmount=allDonations && getTotalAmount(allDonations)
     <div className='text-gray-900'>
       <BannerSlider/>
       <WhyUs/>
-      <Featured errors= {errors}/>
 
       <section>
-        <div className="mx-auto max-w-screen-xl px-4 py-4 sm:px-6 sm:py-4 lg:px-8 lg:py-4 sm:text-center">
+        <div className="mx-auto max-w-screen-xl px-4 py-2 sm:px-6 sm:py-2 lg:px-8 lg:py-2 sm:text-center">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
             <div className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full bg-white">
               <img
@@ -148,6 +147,8 @@ let totalAmount=allDonations && getTotalAmount(allDonations)
           </div>
         </div>
       </section>
+
+      <Featured errors= {errors}/>
 
       <section className="bg-gray-50 text-gray-600" id="howItWorksSection">
         <div className="px-4 py-6 sm:px-6 sm:py-8 lg:px-16 lg:py-12">
