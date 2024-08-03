@@ -61,4 +61,7 @@
   z-index: 10;
 }
 
+.slick-slide> div {
+  margin: 0 10px;
+}
 
