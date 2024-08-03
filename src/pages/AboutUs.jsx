@@ -37,7 +37,7 @@ function AboutUs() {
                 <div className="mb-8">
                   <h3 className="text-2xl font-semibold text-gray-900">Our Mission</h3>
                   <p className="mt-2 text-lg text-gray-600">
-                    At Msaada, our mission is to empower individuals and organizations to make a positive impact in their communities and beyond. We believe that generosity and positive change can be achieved only through dedicated and passionate efforts.
+                    At MsaadaFund, our mission is to empower individuals and organizations to make a positive impact in their communities and beyond. We believe that generosity and positive change can be achieved only through dedicated and passionate efforts.
                   </p>
                 </div>
                 <div className="mb-8">
@@ -58,19 +58,19 @@ function AboutUs() {
                 <div className="mb-8">
                   <h3 className="text-2xl font-semibold text-gray-900">How It Works</h3>
                   <p className="mt-2 text-lg text-gray-600">
-                    Msaada works by connecting individuals, businesses, and organizations with causes they care about. Users can browse through various campaigns, fundraisers, and charitable organizations, and make donations securely through our platform. Whether it's supporting disaster relief efforts, funding education projects, or helping local community initiatives, Msaada provides a simple and effective way to make a difference.
+                    MsaadaFund works by connecting individuals, businesses, and organizations with causes they care about. Users can browse through various campaigns, fundraisers, and charitable organizations, and make donations securely through our platform. Whether it's supporting disaster relief efforts, funding education projects, or helping local community initiatives, MsaadaFund provides a simple and effective way to make a difference.
                   </p>
                 </div>
                 <div className="mb-8">
                   <h3 className="text-2xl font-semibold text-gray-900">Our Team</h3>
                   <p className="mt-2 text-lg text-gray-600">
-                    Behind Msaada is a dedicated team of individuals passionate about social impact and technology. Our diverse team brings together expertise in software development, design, marketing, and community outreach to ensure that Msaada continues to grow and fulfill its mission of fostering generosity and positive change.
+                    Behind MsaadaFund is a dedicated team of individuals passionate about social impact and technology. Our diverse team brings together expertise in software development, design, marketing, and community outreach to ensure that MsaadaFund continues to grow and fulfill its mission of fostering generosity and positive change.
                   </p>
                 </div>
                 <div className="mb-8">
                   <h3 className="text-2xl font-semibold text-gray-900">Contact Us</h3>
                   <p className="mt-2 text-lg text-gray-600">
-                    Have questions or feedback? We'd love to hear from you! Reach out to us at <a href="mailto:info@msaadafund.com"className="text-blue-600">info@msaaadafund.com</a>.
+                    Have questions or feedback? We'd love to hear from you! Reach out to us at <a href="mailto:info@MsaadaFundfund.com"className="text-blue-600">info@msaaadafund.com</a>.
                   </p>
                 </div>
                 <div>
