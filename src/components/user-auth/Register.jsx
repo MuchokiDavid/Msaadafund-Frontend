@@ -23,14 +23,18 @@ function Register() {
   const [showPassword,setShowPassword]=useState(false)
   const [password,setPasswordConfirm ] = useState(false)
   const [policy, setPolicy]= useState(false)
+  const [loading, setLoading]= useState(false)
 
   function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true)
     // const formData= 
     if (!userPassword.match(passwordPattern)) {
+      setLoading(false)
       setErrors('Your password must contain at least one uppercase letter, one special character, one digit, and be at least 8 characters long. Please avoid using spaces.');
     }
     else if (!phoneNumber.match(phonePattern)) {
+      setLoading(false)
       setErrors('Invalid Phone Number')
     }
     else {
@@ -52,18 +56,24 @@ function Register() {
           .then((data) => {
             // console.log(data.message);
             if(data.message){
+              setLoading(false)
               toast.success("User registered successifully")
-
               setTimeout(() => {
                 navigate('/user/login')
               }, 2000);
             }
             if (data.error) {
+              setLoading(false)
+              toast.error(data.error)
               setErrors(data.error)
             } 
           })
-          .catch((err) => { setErrors(err) });
+          .catch((err) => { 
+            setLoading(false)
+            setErrors(err) 
+          });
       } else {
+        setLoading(false)
         setErrors('Passwords does not match')
       }
     };
@@ -190,7 +200,8 @@ function Register() {
                     I agree to the <a href="/privacy" className="font-medium text-primary-600 hover:underline ">Privacy Policy</a> and <a href='/terms' className="font-medium text-primary-600 hover:underline">Terms of Service</a>
                   </label>
                   </div>
-                <button type="submit" disabled={!policy} className={`w-full text-white ${policy ? 'bg-primary-600':'bg-gray-600'} focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}>Create an account</button>
+                  {loading ? <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Loading...</button>:<button type="submit" disabled={!policy} className={`w-full text-white ${policy ? 'bg-primary-600':'bg-gray-600'} focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}>Create account</button>}
+                  {/* <button type="submit" disabled={!policy} className={`w-full text-white ${policy ? 'bg-primary-600':'bg-gray-600'} focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}>Create an account</button> */}
                 <Googleauth/>
                 <p className="text-sm font-light text-gray-500">
                   Already have an account? <a href="/user/login" className="font-medium text-primary-600 hover:underline ">Login here</a>
