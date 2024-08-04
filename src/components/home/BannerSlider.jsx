@@ -32,21 +32,21 @@ function BannerSlider() {
 
   const images = [
     {
-      url: bannerPhoto,
+      url: "https://img.freepik.com/free-photo/front-view-box-with-donated-food_23-2148613254.jpg?w=740&t=st=1720521150~exp=1720521750~hmac=d7cfea93944e287864857538430cc6b607694cc86f9d29b13d1ff7698f6ee6d9",
       heading: "Welcome to Impactful Giving!",
       text: "Join us to make a difference. Discover how you can support important causes and start creating positive change today.",
-      buttonText: "Get Started",
-      buttonLink: "/campaigns"
-    },
-    {
-      url: "https://img.freepik.com/free-photo/front-view-box-with-donated-food_23-2148613254.jpg?w=740&t=st=1720521150~exp=1720521750~hmac=d7cfea93944e287864857538430cc6b607694cc86f9d29b13d1ff7698f6ee6d9",
-      heading: "Make a Difference Now!",
-      text: "Transform lives with your support. Create a campaign or back one that speaks to you and make an impact.",
       buttonText: "Create Campaign",
       buttonLink: "/org/login"
     },
     {
-      url: "https://images.unsplash.com/photo-1504439158909-5a2f08876082?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      url: "https://images.unsplash.com/photo-1476873282730-9018f17bdf4e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      heading: "Make a Difference Now!",
+      text: "Transform lives with your support. Create a campaign or back one that speaks to you and make an impact.",      
+      buttonText: "Get Started",
+      buttonLink: "/campaigns"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1519491050282-cf00c82424b4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heading: "Support What Matters!",
       text: "Explore campaigns and support causes that resonate with you. Your donations can drive real change.",
       buttonText: "Explore Campaigns",
