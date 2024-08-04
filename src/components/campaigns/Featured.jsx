@@ -97,7 +97,7 @@ function Feature() {
       return (
         <div
           className={className}
-          style={{ ...style, display: "block", background: "gray", borderRadius: "30px"}}
+          style={{ ...style, display: "block", background: "green", borderRadius: "30px"}}
           onClick={onClick}
         />
       );
@@ -108,7 +108,7 @@ function Feature() {
       return (
         <div
           className={className}
-          style={{ ...style, display: "block", background: "gray", borderRadius: "30px" }}
+          style={{ ...style, display: "block", background: "green", borderRadius: "30px" }}
           onClick={onClick}
         />
       );
@@ -143,14 +143,18 @@ function Feature() {
             settings: {
               slidesToShow: 2,
               slidesToScroll: 1,
-              initialSlide: 2
+              initialSlide: 1,
+              autoplay: true,
+              autoplaySpeed: 3000
             }
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
-              slidesToScroll: 1
+              slidesToScroll: 1,
+              autoplay: true,
+              autoplaySpeed: 3000
             }
           }
         ]
