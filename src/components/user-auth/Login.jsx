@@ -10,7 +10,7 @@ import login_pic from '../../assets/login.svg'
 import Googleauth from './Googleauth';
 
 function Login() {
-  const {userLogin, loginMessage, isLoggedIn} = useAuth();
+  const {userLogin, loginMessage, isLoggedIn, userLoading} = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -94,7 +94,7 @@ function Login() {
                         </div> */}
                         <a href="/user/reset" className="text-sm font-medium text-primary-600 hover:underline">Forgot password?</a>
                     </div>
-                    <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
+                    {userLoading ? <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Loading...</button>:<button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>}
                     <Googleauth/>      
                     <p className="text-sm font-light text-gray-500">
                         Don’t have an account yet? <a href="/user/signup" className="font-medium text-primary-600 hover:underline">Sign up</a>

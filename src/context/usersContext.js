@@ -14,6 +14,8 @@ export const AuthProvider = ({ children }) => {
   const [loginMessage, setLoginMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [userLoading, setUserLoading] = useState(false);
+  const [orgLoading, setOrgLoading] = useState(false);
 
   const users=localStorage.getItem('user')
   const org = localStorage.getItem('org') 
@@ -46,6 +48,7 @@ export const AuthProvider = ({ children }) => {
   };
  
   const userLogin = (username, password) => {
+    setUserLoading(true)
     fetch("https://backend.service.msaadafund.com/home/api/v1.0/auth/user/login", {
       method: "POST",
       headers: {
@@ -53,7 +56,10 @@ export const AuthProvider = ({ children }) => {
       },
       body: JSON.stringify({ username, password }),
     }).then((r) => r.json())
-      .catch((err)=>setErrorMessage(err))
+      .catch((err)=>{
+        setErrorMessage(err);
+        setUserLoading(false);
+      })
       .then((data) => {
           if (data.message){
             setIsLoggedIn(true);
@@ -66,8 +72,10 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('isSignatory', data.is_signatory);
             setLoginMessage(data.message);
             setErrorMessage(""); 
+            setUserLoading(false)
           }
           if(data.error){
+            setUserLoading(false)
             setLoginMessage(data.error)
           }
           
@@ -121,6 +129,7 @@ export const AuthProvider = ({ children }) => {
 
   const orgLogin = async(email, password) => {
     // console.log(email)
+    setOrgLoading(true)
     await fetch("https://backend.service.msaadafund.com/home/api/v1.0/auth/organisation/login", {
       method: "POST",
       headers: {
@@ -128,7 +137,10 @@ export const AuthProvider = ({ children }) => {
       },
       body: JSON.stringify({ email, password }),
     }).then((r) => r.json())
-      .catch((err)=>setErrorMessage(err))
+      .catch((err)=>{
+        setErrorMessage(err);
+        setOrgLoading(false);
+      })
       .then((data) => {
           if (data.message){
             setIsLoggedIn(true);
@@ -138,9 +150,11 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('org', data.organisation.orgName);
             setLoginMessage(data.message);
             setErrorMessage(""); 
+            setOrgLoading(false);
           }
           if(data.error){
             setLoginMessage(data.error)
+            setOrgLoading(false)
           }
           
         });
@@ -158,10 +172,26 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('user'); 
     localStorage.removeItem('isSignatory'); 
     setLoginMessage("")
+    setErrorMessage("")
   };
 
   return (
-    <UserAuthContext.Provider value={{ isLoggedIn, userLogin, logout, user, token, loginMessage, errorMessage, orgLogin, setLoginMessage, handleSuccess, handleError, loading }}>
+    <UserAuthContext.Provider value={{ 
+      isLoggedIn, 
+      userLogin, 
+      logout, 
+      user, 
+      token, 
+      loginMessage, 
+      errorMessage, 
+      orgLogin, 
+      setLoginMessage, 
+      handleSuccess, 
+      handleError, 
+      loading,
+      userLoading,
+      orgLoading 
+      }}>
       {children}
     </UserAuthContext.Provider>
   );

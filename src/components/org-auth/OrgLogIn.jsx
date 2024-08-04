@@ -10,7 +10,7 @@ import login_pic from '../../assets/login.svg'
 
 
 function OrgLogIn() {
-  const {orgLogin, loginMessage, isLoggedIn} = useAuth();
+  const {orgLogin, loginMessage, isLoggedIn, orgLoading} = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -22,11 +22,10 @@ function OrgLogIn() {
     orgLogin(email, password);
   }
 
-
   if (isLoggedIn) {
     setTimeout(() => {
       navigate('/org/dashboard')
-    }, 2000);
+    }, 1000);
     return null;
   }
   // if (isLoggedIn) {
@@ -62,9 +61,9 @@ function OrgLogIn() {
               Organiser Sign in
               </h1>
             </div>
-            <div className="w-full flex-1 mt-8">            
-              <div className="mx-auto max-w-md flex flex-col gap-4 ">     
-              {loginMessage && <p className='text-red-500'>{loginMessage}</p>}         
+            <div className="w-full flex-1 mt-8">          
+            {loginMessage && <p className='text-red-500'>{loginMessage}</p>}          
+              <div className="mx-auto max-w-md flex flex-col gap-4 ">                    
                     <form className="space-y-4 md:space-y-6 w-full" action="#" onSubmit={login}>                      
                         <div>
                             <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Email</label>
@@ -99,7 +98,8 @@ function OrgLogIn() {
                             </div> */}
                             <a href="/org/reset" className="text-sm font-medium text-primary-600 hover:underline ">Forgot password?</a>
                         </div>
-                        <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Sign in</button>
+                        {orgLoading ? <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Loading...</button>:<button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>}
+                        {/* <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Sign in</button> */}
                         <p className="text-sm font-light text-gray-500">
                             Don’t have an account yet ? <a href="/org/signup" className="font-medium text-primary-600 hover:underline ">Sign up</a>
                         </p>
