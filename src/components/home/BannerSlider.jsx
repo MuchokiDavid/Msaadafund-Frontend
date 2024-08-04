@@ -1,5 +1,5 @@
 import React,{useRef} from 'react';
-import bannerPhoto from '../../assets/banner.jpg';
+// import bannerPhoto from '../../assets/banner.jpg';
 import '@splidejs/react-splide/css/core';
 import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
 
