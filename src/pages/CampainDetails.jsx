@@ -547,7 +547,7 @@ function CampainDetails() {
         return (
           <div
             className={className}
-            style={{ ...style, display: "block", background: "gray", borderRadius: "30px" }}
+            style={{ ...style, display: "block", background: "greenta", borderRadius: "30px" }}
             onClick={onClick}
           />
         );
@@ -558,7 +558,7 @@ function CampainDetails() {
         return (
           <div
             className={className}
-            style={{ ...style, display: "block", background: "gray", borderRadius: "30px" }}
+            style={{ ...style, display: "block", background: "green", borderRadius: "30px" }}
             onClick={onClick}
           />
         );

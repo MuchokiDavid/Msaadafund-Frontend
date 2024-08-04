@@ -32,6 +32,7 @@ function Footer() {
         
         <nav className='text-white'>
             <h6 className="footer-title">Info</h6>
+            <a href='/fees' className="link link-hover">Msaadafund Fees</a>
             <a href='/privacy' className="link link-hover">Privacy policy</a>
             <a href='/terms' className="link link-hover">Terms of service</a>
             <a href='/faq' className='link link-hover'>FAQs</a>
