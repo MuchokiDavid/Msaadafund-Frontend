@@ -39,7 +39,7 @@ function BannerSlider() {
       buttonLink: "/org/login"
     },
     {
-      url: "https://images.unsplash.com/photo-1476873282730-9018f17bdf4e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      url:"https://img.freepik.com/free-photo/intercultural-hand-shake-outdoor_23-2148300908.jpg?t=st=1722874743~exp=1722878343~hmac=393d875d7eb4139dedffd8060ddef55bb94c411000d45474564c6aeb591417c9&w=740",
       heading: "Make a Difference Now!",
       text: "Transform lives with your support. Create a campaign or back one that speaks to you and make an impact.",      
       buttonText: "Get Started",
