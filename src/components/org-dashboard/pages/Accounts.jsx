@@ -278,6 +278,7 @@ function Accounts({banks, fetchBank}) {
                                             <option value=''>Select Provider</option>
                                             <option value='M-Pesa'>M-Pesa</option>
                                             <option value='Bank'>Bank</option>
+                                            <option value ='Other'>Other(Airtel,Equitel,Telkom)</option>
                                         </select>
                                         {/* <input type='text' value={providers} disabled onChange={(e) => setProviders(e.target.value)} className='block text-gray-700 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600' required /> */}
                                     </div>
