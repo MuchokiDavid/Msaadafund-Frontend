@@ -24,6 +24,7 @@ import OrganisationDetails from './pages/OrganisationDetails';
 import Faq from './components/reusables/Faq';
 // import Maintenance from './components/reusables/Maintenance';
 import Message from './components/services/Message';
+import Fee from './pages/Fee';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
     <Route path = "/thank-you" element = {<ThankYou/>}/>
     <Route path = "/organisations" element = {<Organisation/>}/>
     <Route path={"/organisations/:orgid" } element={<OrganisationDetails/>} />
+    <Route path="/fees" element = {<Fee/>}/>
     {/* not found route */}
     <Route path='*' element = {<NotFound/>}/>
     </Routes>
