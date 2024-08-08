@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
  
   const userLogin = (username, password) => {
     setUserLoading(true)
-    fetch("https://backend.service.msaadafund.com/home/api/v1.0/auth/user/login", {
+    fetch("/api/v1.0/auth/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +91,7 @@ export const AuthProvider = ({ children }) => {
 
     try {
       // Validate the token by calling your backend first
-      const response = await axios.post('https://backend.service.msaadafund.com/home/api/v1.0/auth/user/google-login', {
+      const response = await axios.post('/api/v1.0/auth/user/google-login', {
         token: token,
       });
       // console.log('Login Success:', response);     
@@ -130,7 +130,7 @@ export const AuthProvider = ({ children }) => {
   const orgLogin = async(email, password) => {
     // console.log(email)
     setOrgLoading(true)
-    await fetch("https://backend.service.msaadafund.com/home/api/v1.0/auth/organisation/login", {
+    await fetch("/api/v1.0/auth/organisation/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

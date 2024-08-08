@@ -18,7 +18,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { MdOutlineCampaign } from "react-icons/md";
 import PopupGoogle from '../components/user-auth/PopupGoogle';
-
+import { apiUrl } from '../context/Utils';
 
 function OrganisationDetails() {
   const {orgid} = useParams();
@@ -39,7 +39,7 @@ function OrganisationDetails() {
 
   useEffect(() => {
     setLoading(true)
-    axios.get(`https://backend.service.msaadafund.com/home/api/v1.0/org_by_id/${decodedName}`)
+    axios.get(`/api/v1.0/org_by_id/${decodedName}`)
       .then(res => {
         setOrganisationDetails(res.data);
         setLoading(false)
@@ -61,7 +61,7 @@ function OrganisationDetails() {
               Authorization: `Bearer ${accessToken}`
             }
           };
-          const response = await axios.get(`https://backend.service.msaadafund.com/home/api/v1.0/subscription/${organisationDetails.id}`, config);
+          const response = await axios.get(`${apiUrl}/api/v1.0/subscription/${organisationDetails.id}`, config);
           if (response.status === 200) { // Check response status
             setSubscribe(true);
           }
@@ -103,7 +103,7 @@ function OrganisationDetails() {
         };
          setLoading(true)
         // Await the axios.post call
-        const response = await axios.post(`https://backend.service.msaadafund.com/home/api/v1.0/subscription/${organisationDetails.id}`, {}, config);
+        const response = await axios.post(`/api/v1.0/subscription/${organisationDetails.id}`, {}, config);
         setLoading(false)
         if (response.status === 200) {
           Swal.fire({
@@ -143,7 +143,7 @@ function OrganisationDetails() {
             };
   
             setLoading(true);
-            const response = await axios.delete(`https://backend.service.msaadafund.com/home/api/v1.0/subscription/${organisationDetails.id}`, config);
+            const response = await axios.delete(`/api/v1.0/subscription/${organisationDetails.id}`, config);
             setLoading(false);
             if (response.status === 200) {
               Swal.fire({

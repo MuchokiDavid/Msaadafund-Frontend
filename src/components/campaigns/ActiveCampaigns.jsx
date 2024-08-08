@@ -15,7 +15,7 @@ function ActiveCampaigns() {
     const fetchCampaigns = useCallback(async () => {
         try {
           setLoading(true)
-          const response = await fetch(`https://backend.service.msaadafund.com/home/api/v1.0/campaigns?page=${currentPage}&category=${selectedCategory}`);
+          const response = await fetch(`/api/v1.0/campaigns?page=${currentPage}&category=${selectedCategory}`);
           if (!response.ok) {
             throw new Error('Failed to fetch campaigns');
           }

@@ -4,7 +4,7 @@ import Menus from '../components/reusables/Menus'
 import Footer from '../components/reusables/Footer'
 // import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-
+import {appKey, apiUrl} from '../context/Utils'
 
 function Organisation() {
     // get all organisations 
@@ -13,16 +13,31 @@ function Organisation() {
     const [itemsPerPage] = useState(12)
     const navigate = useNavigate()
 
-    useEffect(()=>{
-        axios.get('https://backend.service.msaadafund.com/home/api/v1.0/organisations')
-        .then((res)=>{            
-            setOrganisation(res.data)
+    // useEffect(()=>{
+    //     axios.get('/api/v1.0/organisations')
+    //     .then((res)=>{            
+    //         setOrganisation(res.data)
+    //     })
+    //     .catch((err)=>{
+    //         const errorMsg = err.response?.data?.error || 'An error occurred';
+    //         console.error(errorMsg);    
+    //     })
+    // },[])
+
+    useEffect(() => {
+        axios.get(`${apiUrl}/api/v1.0/organisations`, {
+            headers: {
+                'X-API-KEY': appKey,
+            }
         })
-        .catch((err)=>{
-            const errorMsg = err.response?.data?.error || 'An error occurred';
+        .then((res) => {            
+            setOrganisation(res.data);
+        })
+        .catch((err) => {
+            const errorMsg = err.response?.data?.message || 'An error occurred';
             console.error(errorMsg);    
-        })
-    },[])
+        });
+    }, []);
 
      // Function to encode route
     function formatSlug(text) {
