@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { apiUrl } from '../../../context/Utils';
 
 function Approvals() {
 
@@ -14,7 +15,7 @@ function Approvals() {
             'Content-Type': 'application/json',
         }
         };
-        axios.get('https://backend.service.msaadafund.com/home/api/v1.0/org_awaiting_approvals', config)
+        axios.get(`${apiUrl}/api/v1.0/org_awaiting_approvals`, config)
         .then((res) => {
             setTransactions(res.data);
         })
