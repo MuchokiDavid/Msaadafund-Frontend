@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import {toast,Toaster} from 'react-hot-toast'
+import { apiUrl } from '../../../context/Utils';
 // import Swal from 'sweetalert2';
 // import { useAuth } from '../../../context/usersContext';
 
@@ -52,7 +53,7 @@ useEffect(()=>{
     // console.log("Access token not found");
     
 }
-  axios.get('https://backend.service.msaadafund.com/home/api/v1.0/usersdata',config)
+  axios.get(`${apiUrl}/api/v1.0/usersdata`,config)
   .then ((res)=>{
     setUser(res.data)
     setOriginalData(res.data)
@@ -77,7 +78,7 @@ const handleSubmit = (e)=>{
       console.log("Access token not found");
   }
 
-    axios.patch('https://backend.service.msaadafund.com/home/api/v1.0/usersdata', user, config)
+    axios.patch(`${apiUrl}/api/v1.0/usersdata`, user, config)
     .then((res)=>{
       // console.log(res)
       setUser(res.data)

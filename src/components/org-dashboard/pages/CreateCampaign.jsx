@@ -3,6 +3,7 @@ import axios from 'axios';
 import {toast,Toaster} from 'react-hot-toast'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { apiUrl } from '../../../context/Utils';
 
 function CreateCampaign({getValidYoutubeVideoId}) {
     const [banner, setBanner] = useState(null);
@@ -88,7 +89,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                 window.location.replace('/org/login')
             }
 
-            axios.post('https://backend.service.msaadafund.com/home/api/v1.0/setCampaign', formData, config)
+            axios.post(`${apiUrl}/api/v1.0/setCampaign`, formData, config)
                 .then((res) => {
                     setLoading(false)
                     toast.success('Campaign created successfully!');

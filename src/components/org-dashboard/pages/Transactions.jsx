@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { apiUrl } from '../../../context/Utils';
 // import { FaFilePdf } from "react-icons/fa";
 
 
@@ -57,7 +58,7 @@ function Transactions({allCampaigns, campaignError}) {
   //  Fetch data from server when with a given id
   const handleFetchTransaction= async (id)=>{
     if(token){
-      let url = `https://backend.service.msaadafund.com/home/api/v1.0/filter_transactions/${id}`;
+      let url = `${apiUrl}/api/v1.0/filter_transactions/${id}`;
       try {
         // console.log(url)
           const response = await fetch(url, {

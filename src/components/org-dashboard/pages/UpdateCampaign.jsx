@@ -4,6 +4,7 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { apiUrl } from '../../../context/Utils';
 
 function UpdateCampaign({getValidYoutubeVideoId}) {
     const { campaignId } = useParams();
@@ -32,7 +33,7 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
         const fetchCampaignDetails = async () => {
             setLoading(true)
             try {
-                const response = await fetch(`https://backend.service.msaadafund.com/home/api/v1.0/onecampaign/${campaignId}`);
+                const response = await fetch(`${apiUrl}/api/v1.0/onecampaign/${campaignId}`);
                 const data = await response.json();
                 if (response.ok) {
                     setOriginalData(data);
@@ -117,7 +118,7 @@ function UpdateCampaign({getValidYoutubeVideoId}) {
                 throw new Error('User not authenticated');
             }
 
-            const response = await axios.patch(`https://backend.service.msaadafund.com/home/api/v1.0/updatecampaign/${campaignId}`, formData, config);
+            const response = await axios.patch(`${apiUrl}/api/v1.0/updatecampaign/${campaignId}`, formData, config);
             
             if (response.status === 200) {
                 setOriginalData(response.data);

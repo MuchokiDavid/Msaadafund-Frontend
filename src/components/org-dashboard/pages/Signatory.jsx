@@ -3,6 +3,7 @@ import Swal from 'sweetalert2'
 import { IoClose } from "react-icons/io5";
 // import {toast, Toaster} from 'react-hot-toast';
 import { AiOutlineDelete } from "react-icons/ai";
+import { apiUrl } from '../../../context/Utils';
 
 function Signatory() {
     const [showCreateAccount, setShowCreateAccount] = useState(false);
@@ -22,7 +23,7 @@ function Signatory() {
     }, [accessToken])
 
     function handleFetch(){
-        fetch('https://backend.service.msaadafund.com/home/api/v1.0/signatories', {
+        fetch(`${apiUrl}/api/v1.0/signatories`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',

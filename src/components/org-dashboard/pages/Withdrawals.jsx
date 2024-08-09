@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { FaFilePdf } from "react-icons/fa";
+import { apiUrl } from '../../../context/Utils';
 
 function Withdrawals() {
     const [allWithdrawals, setAllWithdrawals] = useState([]);
@@ -28,7 +29,7 @@ function Withdrawals() {
     useEffect(() => {
         const handleFetch = async () => {
             try {
-                const res = await fetch('https://backend.service.msaadafund.com/home/api/v1.0/withdraw_transactions', {
+                const res = await fetch(`${apiUrl}/api/v1.0/withdraw_transactions`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -69,7 +70,7 @@ function Withdrawals() {
     // handle pdf route
     const downloadTransactionPDF = (id) => {
         const token = localStorage.getItem('token');
-        const url = `https://backend.service.msaadafund.com/home/api/v1.0/withdraw_pdf`;
+        const url = `${apiUrl}/api/v1.0/withdraw_pdf`;
 
         fetch(url, {
             method: 'GET',

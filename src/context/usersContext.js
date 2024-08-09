@@ -3,6 +3,7 @@
 import React, { createContext, useState, useContext,useEffect } from 'react';
 import { googleLogout } from '@react-oauth/google';
 import axios from 'axios';
+import { apiUrl } from './Utils';
 
 const UserAuthContext = createContext();
 
@@ -49,7 +50,7 @@ export const AuthProvider = ({ children }) => {
  
   const userLogin = (username, password) => {
     setUserLoading(true)
-    fetch("/api/v1.0/auth/user/login", {
+    fetch(`${apiUrl}/api/v1.0/auth/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +92,7 @@ export const AuthProvider = ({ children }) => {
 
     try {
       // Validate the token by calling your backend first
-      const response = await axios.post('/api/v1.0/auth/user/google-login', {
+      const response = await axios.post(`${apiUrl}/api/v1.0/auth/user/google-login`, {
         token: token,
       });
       // console.log('Login Success:', response);     
@@ -130,7 +131,7 @@ export const AuthProvider = ({ children }) => {
   const orgLogin = async(email, password) => {
     // console.log(email)
     setOrgLoading(true)
-    await fetch("/api/v1.0/auth/organisation/login", {
+    await fetch(`${apiUrl}/api/v1.0/auth/organisation/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

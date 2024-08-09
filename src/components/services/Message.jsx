@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
+import { apiUrl } from '../../context/Utils';
 
 function Message() {
     const [subject, setSubject] = useState("");
@@ -11,7 +12,7 @@ function Message() {
     // Function to handle form submit 
     const sendEmail = (e) => {
         e.preventDefault();
-        fetch('https://backend.service.msaadafund.com/home/api/v1.0/contact_form', {
+        fetch(`${apiUrl}/api/v1.0/contact_form`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

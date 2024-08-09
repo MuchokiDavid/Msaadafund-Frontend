@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import axios from 'axios';
 import { VscVmActive } from "react-icons/vsc";
+import { apiUrl } from '../../../context/Utils';
 
 
 function DashInactiveCampaigns({allCampaigns, campaignError}) {
@@ -19,7 +20,7 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
             Authorization: `Bearer ${accessToken}`
             }
         }
-        axios.get ("https://backend.service.msaadafund.com/home/api/v1.0/get_inactive",config)
+        axios.get (`${apiUrl}/api/v1.0/get_inactive`,config)
         .then((res)=>{
             setInactiveCampaign(res.data)   
         })
@@ -76,7 +77,7 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
                 confirmButtonText: 'Activate!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.patch(`https://backend.service.msaadafund.com/home/api/v1.0/activate/campaign/${campaignId}`,{}, config)
+                    axios.patch(`${apiUrl}/api/v1.0/activate/campaign/${campaignId}`,{}, config)
                     .then((res)=>{
                         // console.log(res)
                         if(res.status===200){

@@ -4,6 +4,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 import { FaEdit } from "react-icons/fa";
 import { TbDeviceDesktopCancel } from "react-icons/tb";
+import { apiUrl } from '../../../context/Utils';
 
 
 function DashActiveCampaigns({ allCampaigns, campaignError }) {
@@ -68,7 +69,7 @@ function DashActiveCampaigns({ allCampaigns, campaignError }) {
 
     const handleWallet = async (id) => {
         try {
-            const response = await fetch(`https://backend.service.msaadafund.com/home/api/v1.0/campaign_wallet/${id}`, {
+            const response = await fetch(`${apiUrl}/api/v1.0/campaign_wallet/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -140,7 +141,7 @@ function DashActiveCampaigns({ allCampaigns, campaignError }) {
                 confirmButtonText: 'Yes, deactivate!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete(`https://backend.service.msaadafund.com/home/api/v1.0/deletecampaign/${campaignId}`, config)
+                    axios.delete(`${apiUrl}/api/v1.0/deletecampaign/${campaignId}`, config)
                         .then((res) => {
                             
                                 // console.log(res)

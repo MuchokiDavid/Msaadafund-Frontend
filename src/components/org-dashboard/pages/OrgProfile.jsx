@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast, Toaster } from 'react-hot-toast';
+import { apiUrl } from '../../../context/Utils';
 
 function OrgProfile() {
   const [orgData, setOrgData] = useState({
@@ -28,7 +29,7 @@ function OrgProfile() {
       },
     };
 
-    axios.get('https://backend.service.msaadafund.com/home/api/v1.0/organisation', config)
+    axios.get(`${apiUrl}/api/v1.0/organisation`, config)
       .then((res) => {
         setOrgData(res.data);
         setOriginalData(res.data);
@@ -91,7 +92,7 @@ function OrgProfile() {
       formData.append('profileImage', profileImage);
     }
 
-    axios.patch('https://backend.service.msaadafund.com/home/api/v1.0/organisation', formData, config)
+    axios.patch(`${apiUrl}/api/v1.0/organisation`, formData, config)
       .then((res) => {
         setOrgData(res.data.Data);
         setOriginalData(res.data.Data);

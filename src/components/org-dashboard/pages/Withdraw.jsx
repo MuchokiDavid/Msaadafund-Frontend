@@ -2,6 +2,7 @@ import React, { useEffect, useState} from 'react'
 import Swal from 'sweetalert2';
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
+import { apiUrl } from '../../../context/Utils';
 // import DashFooter from '../dash-components/DashFooter';
 
 function Withdraw({ allCampaigns, campaignError, handleWallet }) {
@@ -35,7 +36,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
     useEffect(() => {
         const handleFetch = async () => {
             try {
-                const response = await fetch('https://backend.service.msaadafund.com/home/api/v1.0/accounts', {
+                const response = await fetch(`${apiUrl}/api/v1.0/accounts`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -120,7 +121,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
         try{
             setIsSubmitting(true)
             setErrors(null)
-            fetch('https://backend.service.msaadafund.com/home/api/v1.0/withdraw', {
+            fetch(`${apiUrl}/api/v1.0/withdraw`, {
                 method: "POST",
                 headers: {
                 'Content-Type': 'application/json',

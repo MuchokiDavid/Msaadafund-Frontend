@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Swal from 'sweetalert2';
+import { apiUrl } from '../../../context/Utils';
 
 function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
   const [phone, setPhone] = useState("");
@@ -80,7 +81,7 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                 setIsSubmitting(true);
                 let phoneNo = phone.replace(/^0+/, '');
                 let formattedPhoneNumber = "254" + phoneNo;
-                fetch(`https://backend.service.msaadafund.com/home/api/v1.0/buy_airtime`, {
+                fetch(`${apiUrl}/api/v1.0/buy_airtime`, {
                 method: "POST",
                 headers: {
                   "Authorization": `Bearer  ${token}`,

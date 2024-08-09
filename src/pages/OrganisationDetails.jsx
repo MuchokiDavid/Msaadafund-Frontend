@@ -18,7 +18,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { MdOutlineCampaign } from "react-icons/md";
 import PopupGoogle from '../components/user-auth/PopupGoogle';
-import { apiUrl } from '../context/Utils';
+import { apiUrl,appKey } from '../context/Utils';
 
 function OrganisationDetails() {
   const {orgid} = useParams();
@@ -39,7 +39,11 @@ function OrganisationDetails() {
 
   useEffect(() => {
     setLoading(true)
-    axios.get(`/api/v1.0/org_by_id/${decodedName}`)
+    axios.get(`${apiUrl}/api/v1.0/org_by_id/${decodedName}`,{
+      headers:{
+        'X-API-KEY': appKey,
+      }
+    })
       .then(res => {
         setOrganisationDetails(res.data);
         setLoading(false)

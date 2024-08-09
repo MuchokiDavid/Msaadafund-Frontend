@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { FaFilePdf } from "react-icons/fa";
+import { apiUrl } from '../../../context/Utils';
 
 function Donations({ allCampaigns, campaignError, allDonors }) {
     const [allDonations, setAllDonations] = useState([]);
@@ -40,7 +41,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
         const getDonations = async () => {
             // setLoading(true)
             try {
-                const response = await fetch('https://backend.service.msaadafund.com/home/api/v1.0/org_donations', {
+                const response = await fetch(`${apiUrl}/api/v1.0/org_donations`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -98,7 +99,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
     // get route from backend
     const downloadDonationsPDF=()=> {
         const token = localStorage.getItem('token');
-        const url = 'https://backend.service.msaadafund.com/home/api/v1.0/org_donations_pdf';
+        const url = `${apiUrl}/api/v1.0/org_donations_pdf`;
     
         fetch(url, {
             method: 'GET',

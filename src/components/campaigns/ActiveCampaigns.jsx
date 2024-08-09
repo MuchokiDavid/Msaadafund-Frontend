@@ -1,6 +1,7 @@
 import React, { useState, useEffect,useCallback } from 'react';
 import InActiveCampaigns from './UpcomingCampaigns';
 import { prettyNumber } from '@based/pretty-number'
+import { apiUrl,appKey } from '../../context/Utils';
 
 function ActiveCampaigns() {
     const [campaigns, setCampaigns] = useState([]);
@@ -15,7 +16,12 @@ function ActiveCampaigns() {
     const fetchCampaigns = useCallback(async () => {
         try {
           setLoading(true)
-          const response = await fetch(`/api/v1.0/campaigns?page=${currentPage}&category=${selectedCategory}`);
+          const response = await fetch(`${apiUrl}/api/v1.0/campaigns?page=${currentPage}&category=${selectedCategory}`,{
+                headers:{
+                  'X-API-KEY': appKey,
+
+                }
+          });
           if (!response.ok) {
             throw new Error('Failed to fetch campaigns');
           }

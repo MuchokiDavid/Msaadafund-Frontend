@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { apiUrl } from '../../../context/Utils';
 // import DashFooter from '../dash-components/DashFooter';
 
 function Paybill({allCampaigns,campaignError,handleWallet}) {
@@ -51,7 +52,7 @@ const handlePay = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-        const response = await axios.post('https://backend.service.msaadafund.com/home/api/v1.0/pay_to_paybill', {
+        const response = await axios.post(`${apiUrl}/api/v1.0/pay_to_paybill`, {
             paybillNumber: paybillNumber,
             accountNumber: accountNumber,
             amount: amount,

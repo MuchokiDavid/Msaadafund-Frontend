@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import debounce from 'lodash.debounce';
+import { apiUrl } from '../../../context/Utils';
 
 function Subscriptions({ allSubscriptions }) {
     const [subscriptions, setSubscriptions] = useState(allSubscriptions);
@@ -37,7 +38,7 @@ function Subscriptions({ allSubscriptions }) {
                     Authorization: `Bearer ${token}`
                 }
             };
-            const response = await axios.delete(`https://backend.service.msaadafund.com/home/api/v1.0/subscription/${id}`, config);
+            const response = await axios.delete(`${apiUrl}/api/v1.0/subscription/${id}`, config);
             if (response.status === 200) {
                 Swal.fire({
                     title: `Unfollow ${nameOrg}`,
