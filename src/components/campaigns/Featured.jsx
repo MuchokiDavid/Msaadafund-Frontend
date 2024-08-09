@@ -4,6 +4,7 @@ import { prettyNumber } from '@based/pretty-number'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { apiUrl,appKey } from '../../context/Utils';
 
 function Feature() {
     const [featuredCampaign, setFeaturedCampaign] = useState(null)
@@ -30,7 +31,10 @@ function Feature() {
     const handleFeatured = async () => {
       setLoading(true)
         try {
-            const response = await fetch('/api/v1.0/featured', {
+            const response = await fetch(`${apiUrl}/api/v1.0/featured`, {
+                headers: {
+                  'X-API-KEY': appKey,
+                },
                 method: 'GET',
             });
             const data = await response.json();

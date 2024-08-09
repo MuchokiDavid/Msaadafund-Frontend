@@ -5,6 +5,7 @@ import BannerSlider from './BannerSlider'
 import BannerCards from './BannerCards'
 import joinus from '../../assets/joinus.jpg'
 import WhyUs from './WhyUs'
+import { apiUrl,appKey } from '../../context/Utils'
 
 function Banner() {
   const[allDonations,setAllDonations]= useState([])
@@ -16,9 +17,10 @@ function Banner() {
   useEffect(() => {
     const getDonations = async () => {
       try {
-          const response = await fetch('/api/v1.0/all_donations', {
+          const response = await fetch(`${apiUrl}/api/v1.0/all_donations`, {
               method: 'GET',
               headers: {
+                  'X-API-KEY': appKey,
                   'Content-Type': 'application/json',
               },
           });
@@ -40,9 +42,10 @@ function Banner() {
   useEffect(() => {
     const getOrganisation = async () => {
       try {
-          const response = await fetch('/api/v1.0/organisations', {
+          const response = await fetch(`${apiUrl}/api/v1.0/organisations`, {
               method: 'GET',
               headers: {
+                  'X-API-KEY': appKey,
                   'Content-Type': 'application/json',
               },
           });
@@ -64,9 +67,10 @@ function Banner() {
   useEffect(() => {
     const getCampaigns = async () => {
       try {
-          const response = await fetch('/api/v1.0/get_all_campaigns', {
+          const response = await fetch(`${apiUrl}/api/v1.0/get_all_campaigns`, {
               method: 'GET',
               headers: {
+                  'X-API-KEY': appKey,
                   'Content-Type': 'application/json',
               },
           });
