@@ -1,4 +1,5 @@
 import React, {useState } from 'react'
+import { apiUrl } from '../../../context/Utils'
 
 function TransStatus() {
     const[statusResponse, setStatusResponse]=useState(null)
@@ -8,7 +9,7 @@ function TransStatus() {
 
     const handleFetch= ()=>{
         try{
-            fetch('https://backend.service.msaadafund.com/home/api/v1.0/check_transaction_status', {
+            fetch(`${apiUrl}/api/v1.0/check_transaction_status`, {
                 method: "POST",
                 headers: {
                 'Content-Type': 'application/json',
