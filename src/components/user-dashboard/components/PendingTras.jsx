@@ -3,6 +3,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { FcApprove } from "react-icons/fc";
 import { FcDisapprove } from "react-icons/fc";
+import { apiUrl } from '../../../context/Utils';
 
 
 function PendingTras() {
@@ -23,7 +24,7 @@ function PendingTras() {
         'Content-Type': 'application/json',
       }
     };
-    axios.get('https://backend.service.msaadafund.com/home/api/v1.0/pending_transactions', config)
+    axios.get(`${apiUrl}/api/v1.0/pending_transactions`, config)
       .then((res) => {
         setTransactions(res.data);
       })
@@ -33,7 +34,7 @@ function PendingTras() {
   }, [accessToken]);
 
   const handleApproval = (transactionId, campaignName) => {
-    axios.post('https://backend.service.msaadafund.com/home/api/v1.0/approve_transaction', {
+    axios.post(`${apiUrl}/api/v1.0/approve_transaction`, {
       transaction_id: transactionId,
       approval_status: true,
       campaign_name: campaignName
@@ -62,7 +63,7 @@ function PendingTras() {
   };
 
   const handleReject = (transactionId) => {
-    axios.patch(`https://backend.service.msaadafund.com/home/api/v1.0/reject_approval/${transactionId}`, {}, config)
+    axios.patch(`${apiUrl}/api/v1.0/reject_approval/${transactionId}`, {}, config)
       .then((res) => {
         Swal.fire({
           title: "Success!",

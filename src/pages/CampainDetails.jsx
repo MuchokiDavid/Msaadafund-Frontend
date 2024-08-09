@@ -21,6 +21,7 @@ import Card from './Card';
 import Announcement from '../components/reusables/Announcement';
 import Featured from '../components/campaigns/Featured';
 import PopupGoogle from '../components/user-auth/PopupGoogle';
+import { apiUrl,appKey } from '../context/Utils';
 
 
 
@@ -106,7 +107,11 @@ function CampainDetails() {
     useEffect(() => {
       
         const fetchCampaign= ()=>{
-            fetch(`/api/v1.0/campaign/${decodedName}`)
+            fetch(`${apiUrl}/api/v1.0/campaign/${decodedName}`,{
+                headers:{
+                    'X-API-KEY': appKey,
+                }
+            })
             .then(response => response.json())
             .then(data => {
                 setCampaign(data);
@@ -136,7 +141,7 @@ function CampainDetails() {
               Authorization: `Bearer ${accessToken}`
             }
           };
-          const response = await axios.get(`/api/v1.0/subscription/${campaign.organisation.id}`, config);
+          const response = await axios.get(`${apiUrl}/api/v1.0/subscription/${campaign.organisation.id}`, config);
           if (response.status === 200) { // Check response status
             setSubscribe(true);
           }
@@ -191,7 +196,7 @@ function CampainDetails() {
             }
         };
         setLoading(true)
-        const response = await axios.post(`/api/v1.0/subscription/${campaign.organisation.id}`, {}, config);
+        const response = await axios.post(`${apiUrl}/api/v1.0/subscription/${campaign.organisation.id}`, {}, config);
         setLoading(false)
         if (response.status === 200) {
                 Swal.fire({
@@ -234,7 +239,7 @@ function CampainDetails() {
                     };
                     // Await the axios.delete call
                     setLoading(true)
-                    const response = await axios.delete(`/api/v1.0/subscription/${org_id}`, config);
+                    const response = await axios.delete(`${apiUrl}/api/v1.0/subscription/${org_id}`, config);
                     setLoading(false)
                     if (response.status === 200) {
                         // Show success message
@@ -304,7 +309,7 @@ function CampainDetails() {
                     if (result.isConfirmed) {
                         setDonating(true)
                         if (users && accessToken){
-                            axios.post('/api/v1.0/user/donations',{donorName:name,amount,campaignId:decodedName,phoneNumber},config)
+                            axios.post(`${apiUrl}/api/v1.0/user/donations`,{donorName:name,amount,campaignId:decodedName,phoneNumber},config)
                             .then((res)=>{
                                 // console.log('logged in user')
                                 if(res.status===200){
@@ -332,7 +337,11 @@ function CampainDetails() {
                         }
                        else{
                             setDonating(true)
-                            axios.post ("/api/v1.0/express/donations",{phoneNumber,amount,donorName,campaignId:decodedName})
+                            axios.post (`${apiUrl}/api/v1.0/express/donations`,{phoneNumber,amount,donorName,campaignId:decodedName},{
+                                headers:{
+                                    'X-API-KEY': appKey,
+                                }  
+                            })
                             .then((res)=>{
                                 // console.log('express used')
                                 if(res.status===200){    
@@ -412,7 +421,7 @@ function CampainDetails() {
                     if (result.isConfirmed) {
                         setDonating(true)
                         if (users && accessToken){
-                            axios.post('/api/v1.0/logged_in_donate_card',{amount:cardAmount,campaignId:decodedName,currency:cardCurrency},config)
+                            axios.post(`${apiUrl}/api/v1.0/logged_in_donate_card`,{amount:cardAmount,campaignId:decodedName,currency:cardCurrency},config)
                             .then((res)=>{
                                 if(res.status===200){  
                                     setDonating(false)
@@ -431,7 +440,11 @@ function CampainDetails() {
                         }
                         else{
                             setDonating(true)
-                            axios.post ("/api/v1.0/donate_card",{firstName:fName,lastName:lName,cardEmail,phoneNumber:phoneNo,amount:cardAmount,campaignId:decodedName, currency:cardCurrency})
+                            axios.post (`${apiUrl}/api/v1.0/donate_card`,{firstName:fName,lastName:lName,cardEmail,phoneNumber:phoneNo,amount:cardAmount,campaignId:decodedName, currency:cardCurrency},{
+                                headers:{
+                                    'X-API-KEY': appKey,
+                                }
+                            })
                             .then((res)=>{
                                 // console.log(res)
                                 if(res.status===200){  
