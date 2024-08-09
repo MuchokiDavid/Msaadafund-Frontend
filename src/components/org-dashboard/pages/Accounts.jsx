@@ -7,6 +7,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 // import { GrPowerReset } from "react-icons/gr";
 import { MdLockReset } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
+import { apiUrl } from '../../../context/Utils';
 
 
 function Accounts({banks, fetchBank}) {
@@ -66,7 +67,7 @@ function Accounts({banks, fetchBank}) {
                 window.location.replace('/org/login')
             }
 
-            const response = await axios.get('https://backend.service.msaadafund.com/home/api/v1.0/accounts', {
+            const response = await axios.get(`${apiUrl}/api/v1.0/accounts`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
@@ -117,7 +118,7 @@ function Accounts({banks, fetchBank}) {
                 accountNumber = accountNumbers;
             }
             
-            const response = await axios.post('https://backend.service.msaadafund.com/home/api/v1.0/accounts', {
+            const response = await axios.post(`${apiUrl}/api/v1.0/accounts`, {
                 providers,
                 bank,
                 bankCode,
@@ -149,7 +150,7 @@ function Accounts({banks, fetchBank}) {
 
     const handleDelete = (id)=> {
         const accessToken = localStorage.getItem('token');
-        axios.delete(`https://backend.service.msaadafund.com/home/api/v1.0/orgaccounts/${id}`, {
+        axios.delete(`${apiUrl}/api/v1.0/orgaccounts/${id}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'

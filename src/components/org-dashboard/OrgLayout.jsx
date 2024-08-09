@@ -25,6 +25,7 @@ import DashFooter from './dash-components/DashFooter';
 import Signatory from './pages/Signatory';
 // import Navigation from './dash-components/Navigation';
 import Approvals from './pages/Approvals';
+import { apiUrl,appKey} from '../../context/Utils';
 
 function OrgLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
@@ -63,7 +64,7 @@ useEffect(() => {
   const getSubscriptions = async () => {
       try {
           setLoading(true)
-          const response = await fetch('https://backend.service.msaadafund.com/home/api/v1.0/org_subscription', {
+          const response = await fetch(`${apiUrl}/api/v1.0/org_subscription`, {
               method: 'GET',
               headers: {
                   'Content-Type': 'application/json',
@@ -102,7 +103,7 @@ useEffect(() => {
 
 const handleWallet = async (id) => {
   try {
-      const response = await fetch(`https://backend.service.msaadafund.com/home/api/v1.0/campaign_wallet/${id}`, {
+      const response = await fetch(`${apiUrl}/api/v1.0/campaign_wallet/${id}`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
@@ -131,7 +132,7 @@ useEffect(() => {
 
   const fetchBanks = async () => {
       try {
-          const response = await fetch('https://backend.service.msaadafund.com/home/api/v1.0/all_banks', {
+          const response = await fetch(`${apiUrl}/api/v1.0/all_banks`, {
               method: 'GET',
               headers: {
                   'Content-Type': 'application/json',
@@ -157,7 +158,7 @@ useEffect(() => {
   useEffect(() => {
       const getDonations = async () => {
           try {
-              const response = await fetch('https://backend.service.msaadafund.com/home/api/v1.0/org_donations', {
+              const response = await fetch(`${apiUrl}/api/v1.0/org_donations`, {
                   method: 'GET',
                   headers: {
                       'Content-Type': 'application/json',
@@ -194,12 +195,13 @@ useEffect(() => {
   useEffect(() => {
     const getDonors = async () => {
         try {
-            const response = await fetch('https://backend.service.msaadafund.com/home/api/v1.0/users', {
+            const response = await fetch(`${apiUrl}/api/v1.0/users`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
+                    'Authorization': `Bearer ${token}`,
+                    'X-API-KEY': appKey,
+                  },
             });
             const data = await response.json();
             if (response.ok) {
@@ -228,7 +230,7 @@ useEffect(() => {
   
   const handleFetch = async () => {
     try {
-        const response = await fetch('https://backend.service.msaadafund.com/home/api/v1.0/org_all_campaigns', {
+        const response = await fetch(`${apiUrl}/api/v1.0/org_all_campaigns`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
