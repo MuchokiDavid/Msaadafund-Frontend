@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { apiUrl } from '../../../context/Utils';
 // import DashFooter from '../dash-components/DashFooter';
 
 function Till({allCampaigns,campaignError,handleWallet}) {
@@ -51,7 +52,7 @@ const handlePay = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-        const response = await axios.post('https://backend.service.msaadafund.com/home/api/v1.0/pay_to_till', {
+        const response = await axios.post(`${apiUrl}/api/v1.0/pay_to_till`, {
             tillNumber: tillNumber,
             amount: amount,
             narrative: comment,
