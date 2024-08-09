@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import {toast,Toaster} from 'react-hot-toast'
+import { apiUrl } from '../../context/Utils';
 
 
 function AccountAuth() {
@@ -32,7 +33,7 @@ function AccountAuth() {
             }
         }
         // handle post 
-        axios.post('https://backend.service.msaadafund.com/home/api/v1.0/account_pin',{email},config)
+        axios.post(`${apiUrl}/api/v1.0/account_pin`,{email},config)
         .then ((res)=>{
             setStep(2)
             toast.success('OTP sent successfully,Please check Your Email')
@@ -66,7 +67,7 @@ function AccountAuth() {
             }
         }
         // handle patch for otp
-        axios.patch('https://backend.service.msaadafund.com/home/api/v1.0/confirm_account_pin', {otp,email}, config)
+        axios.patch(`${apiUrl}/api/v1.0/confirm_account_pin`, {otp,email}, config)
         .then ((res)=>{
             setMessage('OTP confirmed successfully')
             window.location.replace('/org/dashboard/transact/accountset')
