@@ -779,9 +779,14 @@ const togglePasswordVisibility = (e) => {
                         <div className='h-full rounded-lg'> 
                             <form ref={formRef} onSubmit={handleDonateButton} className='w-full rounded-xl'>
                                 <div className='text-black'>
-                                    {/* <h1 className="text-xl font-medium mt-0">Donate via M-Pesa</h1> */}
+                                {accessToken
+                                ?
+                                <p></p>
+                                :
+                                <p className="my-2">Please fill all field with <span className='text-red-500'>*</span>or <span className='text-blue-700 underline cursor-pointer' onClick={setShowModal}>click to autofill</span>.</p>
+                                }
                                 
-                                    <p className="my-2">Please fill all field with <span className='text-red-500'>*</span> in the form to donate to this campaign.</p>
+                                    {/* <p className="my-2">Please fill all field with <span className='text-red-500'>*</span>or <span className='text-blue-700 underline cursor-pointer' onClick={setShowModal}>click to autofill</span>.</p> */}
                                     </div>
                                     <div className='flex-col justify-center items-center'>
                                         <div>
@@ -874,10 +879,15 @@ const togglePasswordVisibility = (e) => {
                         <h2 className="text-2xl font-semibold">Contribute via Card,Bitcoin and CashApp</h2> 
                             <div className='h-full rounded-lg'> 
                                 <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
-                                    <div className='text-black font-medium '>
+                                    <div className='text-black'>
                                         {/* <h1 className="text-xl font-medium mt-0">Donate via Card/M-Pesa/Paybill</h1> */}
-                                    
-                                        <p className="my-2">Please fill all field with <span className='text-red-500'>*</span> in the form to donate to this campaign.</p>
+
+                                        {accessToken
+                                        ?
+                                        <p></p>
+                                        :
+                                        <p className="my-2">Please fill all field with <span className='text-red-500'>*</span>or <span className='text-blue-700 underline cursor-pointer' onClick={setShowModal}>click to autofill</span>.</p>
+                                        }
                                         </div>                                           
                                         <div className='flex-col justify-center items-center'>
                                             <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
