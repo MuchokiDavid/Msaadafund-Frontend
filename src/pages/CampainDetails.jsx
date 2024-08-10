@@ -781,12 +781,11 @@ const togglePasswordVisibility = (e) => {
                                 <div className='text-black'>
                                 {accessToken
                                 ?
-                                <p></p>
+                                <p className="my-2">Ensure all fields with <span className='text-red-500'>*</span> are filled</p>
                                 :
-                                <p className="my-2">Please fill all field with <span className='text-red-500'>*</span>or <span className='text-blue-700 underline cursor-pointer' onClick={setShowModal}>click to autofill</span>.</p>
+                                <p className="my-2">Ensure all fields with <span className='text-red-500'>*</span> are filled or <span className='text-blue-700 underline cursor-pointer' onClick={setShowModal}>click to autofill</span>.</p>
                                 }
                                 
-                                    {/* <p className="my-2">Please fill all field with <span className='text-red-500'>*</span>or <span className='text-blue-700 underline cursor-pointer' onClick={setShowModal}>click to autofill</span>.</p> */}
                                     </div>
                                     <div className='flex-col justify-center items-center'>
                                         <div>
@@ -884,9 +883,9 @@ const togglePasswordVisibility = (e) => {
 
                                         {accessToken
                                         ?
-                                        <p></p>
+                                        <p className="my-2">Ensure all fields with <span className='text-red-500'>*</span> are filled</p>
                                         :
-                                        <p className="my-2">Please fill all field with <span className='text-red-500'>*</span>or <span className='text-blue-700 underline cursor-pointer' onClick={setShowModal}>click to autofill</span>.</p>
+                                        <p className="my-2">Ensure all fields with <span className='text-red-500'>*</span> are filled or <span className='text-blue-700 underline cursor-pointer' onClick={setShowModal}>click to autofill</span>.</p>
                                         }
                                         </div>                                           
                                         <div className='flex-col justify-center items-center'>
