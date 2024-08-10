@@ -121,7 +121,7 @@ function Transactions({allCampaigns, campaignError}) {
     // get route from backend
   //   const downloadDonationsPDF=(id)=> {
   //     const token = localStorage.getItem('token');
-  //     const url = `https://backend.service.msaadafund.com/home/api/v1.0/transactions_pdf/${id}`;
+  //     const url = `${apiUrl}/api/v1.0/transactions_pdf/${id}`;
   
   //     fetch(url, {
   //         method: 'GET',

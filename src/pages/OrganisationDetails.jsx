@@ -107,7 +107,7 @@ function OrganisationDetails() {
         };
          setLoading(true)
         // Await the axios.post call
-        const response = await axios.post(`/api/v1.0/subscription/${organisationDetails.id}`, {}, config);
+        const response = await axios.post(`${apiUrl}/api/v1.0/subscription/${organisationDetails.id}`, {}, config);
         setLoading(false)
         if (response.status === 200) {
           Swal.fire({
@@ -147,7 +147,7 @@ function OrganisationDetails() {
             };
   
             setLoading(true);
-            const response = await axios.delete(`/api/v1.0/subscription/${organisationDetails.id}`, config);
+            const response = await axios.delete(`${apiUrl}/api/v1.0/subscription/${organisationDetails.id}`, config);
             setLoading(false);
             if (response.status === 200) {
               Swal.fire({
