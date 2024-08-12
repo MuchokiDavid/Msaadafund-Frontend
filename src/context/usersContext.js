@@ -17,25 +17,47 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [userLoading, setUserLoading] = useState(false);
   const [orgLoading, setOrgLoading] = useState(false);
+  const [refreshToken, setRefreshToken] = useState(localStorage.getItem('refreshtoken'));
 
-  const users=localStorage.getItem('user')
-  const org = localStorage.getItem('org') 
+  // useeffect to setRefreshToken
+  useEffect(() => {
+    setRefreshToken(localStorage.getItem('refreshtoken'));
+  }, [setRefreshToken]);
+
 
   useEffect(() => {
-    if (token && users) {
-      const deleteTokenAfterTime = setTimeout(() => {
-        logout(); 
-      }, 23 * 60 * 60 * 1000); // 24hr
-      return () => clearTimeout(deleteTokenAfterTime);
-    } else if (token && org) {
-      const deleteTokenAfterTime = setTimeout(() => {
-        logout(); // Logout after 1 hour
-      }, 1 * 60 * 60 * 1000); // 1 hour
-      return () => clearTimeout(deleteTokenAfterTime);
-    }
-  }, [token,users,org]);
-  
+    if (token && refreshToken) {
+      const expirationTime = 60 * 60 * 1000; // 1 hour
+      const timeout = setTimeout(() => {
+        refreshAccessToken();
+      }, expirationTime - 5 * 60 * 1000); // Refresh 5 minutes before expiration
 
+      return () => clearTimeout(timeout);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token, refreshToken]);
+
+  // Refresh token function
+  const refreshAccessToken = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/api/v1.0/auth/refresh`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${refreshToken}`,
+        },
+      });
+      const data = await response.json();
+
+      if (data.access_token) {
+        setToken(data.access_token);
+        onReceiveToken(data.access_token);
+      } else {
+        logout();
+      }
+    } catch (error) {
+      logout();
+    }
+  };
 
   // Store the token in localStorage
   const storeToken = (token) => {
@@ -67,7 +89,7 @@ export const AuthProvider = ({ children }) => {
             setUser(data.user);
             setToken(data.tokens.access); 
             onReceiveToken(data.tokens.access);
-            // localStorage.setItem('token', data.tokens.access);
+            localStorage.setItem('refreshtoken', data.tokens.refresh); //refresh token
             localStorage.setItem('userData', JSON.stringify(data.user))
             localStorage.setItem('user', data.user.username);
             localStorage.setItem('isSignatory', data.is_signatory);
@@ -104,6 +126,7 @@ export const AuthProvider = ({ children }) => {
         setUser(response.data.user);
         setToken(response.data.access_token);
         onReceiveToken(response.data.access_token);
+        localStorage.setItem('refreshtoken', response.data.refresh); //refresh token
         localStorage.setItem('userData', JSON.stringify(response.data.user))
         localStorage.setItem('user', response.data.user.username);
         localStorage.setItem('isSignatory', response.data.is_signatory);
@@ -148,6 +171,7 @@ export const AuthProvider = ({ children }) => {
             setUser(data.organisation);
             setToken(data.tokens.access_token); 
             onReceiveToken(data.tokens.access_token);
+            localStorage.setItem('refreshtoken', data.tokens.refresh_token); //refresh token
             localStorage.setItem('org', data.organisation.orgName);
             setLoginMessage(data.message);
             setErrorMessage(""); 
@@ -168,6 +192,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     setToken(null); 
     localStorage.removeItem('token'); 
+    localStorage.removeItem('refreshtoken');
     localStorage.removeItem('userData');
     localStorage.removeItem('org'); 
     localStorage.removeItem('user'); 
