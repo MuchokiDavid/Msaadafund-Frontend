@@ -152,7 +152,10 @@ let totalAmount=allDonations && getTotalAmount(allDonations)
         </div>
       </section>
 
-      <Featured errors= {errors}/>
+      <div className='px-2'>
+        <Featured errors= {errors}/>
+      </div>
+      
 
       <section className="bg-gray-50 text-gray-600" id="howItWorksSection">
         <div className="px-4 py-6 sm:px-6 sm:py-8 lg:px-16 lg:py-12">

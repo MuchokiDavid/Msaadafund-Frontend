@@ -601,6 +601,12 @@ const togglePasswordVisibility = (e) => {
         <>
         <Menus/>
         <div className='w-full overflow-hidden'>
+        {showModal && (
+          <div className='fixed inset-0 bg-gray-800 bg-opacity-30 backdrop-blur-sm z-40'></div>
+        )}
+        {showShareModal && (
+          <div className='fixed inset-0 bg-gray-800 bg-opacity-30 backdrop-blur-sm z-40'></div>
+        )}        
         {!users && <Announcement showingModal={setShowModal} />}
         <div className='text-black min-h-screen p-4' id='campaign_dets'>
             <div className="container mx-auto">

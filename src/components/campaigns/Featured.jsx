@@ -77,11 +77,8 @@ function Feature() {
       }
 
     if(loading){
-    // return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
     return (
-        <div class="flex items-center justify-center h-screen">
-            <span className="loading loading-dots loading-lg text-blue-500"></span>
-        </div>
+        <p>Loading....</p>
         )
     }
 
@@ -101,7 +98,7 @@ function Feature() {
       return (
         <div
           className={className}
-          style={{ ...style, display: "block", background: "green", borderRadius: "30px"}}
+          style={{ ...style, display: "block", background: "green"}}
           onClick={onClick}
         />
       );
@@ -112,7 +109,7 @@ function Feature() {
       return (
         <div
           className={className}
-          style={{ ...style, display: "block", background: "green", borderRadius: "30px" }}
+          style={{ ...style, display: "block", background: "green"}}
           onClick={onClick}
         />
       );
@@ -124,7 +121,10 @@ function Feature() {
         speed: 4000,
         slidesToShow: 4,
         slidesToScroll: 1,
+        lazyLoad: true,
+        swipeToSlide: true,
         initialSlide: 0,
+        pauseOnHover: true,
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />,
         responsive: [
@@ -149,7 +149,9 @@ function Feature() {
               slidesToScroll: 1,
               initialSlide: 1,
               autoplay: true,
-              autoplaySpeed: 3000
+              autoplaySpeed: 3000,
+              nextArrow: <SampleNextArrow />,
+              prevArrow: <SamplePrevArrow />
             }
           },
           {
@@ -158,7 +160,9 @@ function Feature() {
               slidesToShow: 1,
               slidesToScroll: 1,
               autoplay: true,
-              autoplaySpeed: 3000
+              autoplaySpeed: 3000,
+              nextArrow: <SampleNextArrow />,
+              prevArrow: <SamplePrevArrow />
             }
           }
         ]
