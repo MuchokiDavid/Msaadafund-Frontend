@@ -53,7 +53,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
                 }
             } catch (error) {
                 setLoading(false)
-                setErrors('No withdrawal account found', error);
+                setErrors('No withdrawal account found, please add an account', error);
             }
         };
 
