@@ -48,12 +48,12 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
                     setLoading(false)
                     setAccountNumbers(data);
                 } else {
-                    setLoading(true)
+                    setLoading(false)
                     throw new Error(data);
                 }
             } catch (error) {
-                setLoading(true)
-                setErrors('Accounts not found, ensure you have created account', error);
+                setLoading(false)
+                setErrors('No withdrawal account found', error);
             }
         };
 
