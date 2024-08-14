@@ -207,13 +207,9 @@ function getTotalDonations(campaigns) {
   return (
     <div>
       <Menus />
-      {/* <div className="text-md breadcrumbs ml-4" >
-          <ul>
-              <li><a href='/'>Home</a></li>
-              <li><a href= '/organisations'>Organisations</a></li>
-              <li><a>{organisationDetails && organisationDetails.orgName}</a></li>
-          </ul>
-        </div> */}
+      {showModal && (
+          <div className='fixed inset-0 bg-gray-800 bg-opacity-30 backdrop-blur-sm z-40'></div>
+      )}
       <div className='mt-0'>
         <Profile
         orgName={organisationDetails && organisationDetails.orgName}
