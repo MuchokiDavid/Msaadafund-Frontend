@@ -47,16 +47,17 @@ function TransStatus() {
         <hr className='mb-4' />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-6 border rounded-lg">
             <div>
-                <div className="form-control w-full max-w-xs">
+                <p className='text-gray-700 text-lg'>Track your transaction status</p>
+                <div className="form-control w-full max-w-xs mt-2">
                     <label className="label">
-                        <span className="label-text font-medium">Tracking ID</span>
+                        <span className="label-text font-medium">Enter your Tracking ID</span>
                     </label>
                     <input type="text" 
                     placeholder="1f2378ab-xxxx-xxxx-xxxxx" 
                     className="input input-bordered w-full max-w-xs bg-gray-50" 
                     onChange={(e)=>setTrackingId(e.target.value)}/>
                 </div>
-                <div className="flex items-center justify-between mt-2">
+                <div className="flex items-center justify-between mt-4">
                     <button className="flex items-center justify-center px-6 py-2 border border-blue-600 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-transparent hover:text-gray-900" onClick={handleFetch}>Check Status</button>
                 </div>
                 {errors && <p className='text-red-600 text-base mt-1'>{errors}</p>}
@@ -64,7 +65,7 @@ function TransStatus() {
             <div>
                 <h2 className="font-bold text-xl">Instructions</h2>
                 <ul className="list-disc list-inside text-base">
-                    <li>Ensure that the tracking id is valid, you can get the id from <a href='/org/dashboard/transact/withdrawals' className='text-blue-800 font-medium hover:underline'>here</a>.</li>
+                    <li>Ensure that the tracking id is valid, you can copy the tracking id from <a href='/org/dashboard/transact/withdrawals' className='text-blue-800 font-medium hover:underline'>here</a>.</li>
                     <li>Double-check the tracking you wish to check status and make sure it is valid</li>
                 </ul>
             </div>

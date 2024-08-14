@@ -207,7 +207,7 @@ function Accounts({banks, fetchBank}) {
                 </button>
                 {error && <p className='text-red-500 mt-4'>{error}</p>}
                 <div className="accounts-list-section w-full">
-                    <h1 className='text-xl font-normal mb-4 text-slate-600 '>Your Accounts</h1>
+                    <h1 className='text-xl font-normal mb-4 text-slate-600 '>My Accounts</h1>
                     <div className='overflow-scroll'>
                         <table className='w-full border-collapse border border-gray-300 text-left'>
                             <thead className='text-left text-base'>

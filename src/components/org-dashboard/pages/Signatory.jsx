@@ -186,10 +186,12 @@ function Signatory() {
         <hr className='mb-2'/>
 
         <div className='mx-auto w-full md:max-w-full sm:max-w-full p-6 bg-white rounded-lg border  text-white'>
-            <div>
+            <div className='mb-4'>
                 <button onClick={() => setShowCreateAccount(true)} className='btn btn-ghost bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
                     Add Signatory
                 </button>
+
+                <p className='text-gray-800'><span className='text-red-600'>*</span>Add atleast three signatories for transactions approvals</p>
             </div>
             {signatories && signatories.length === 0 && <p className="text-red-600 mb-4">No signatories found.</p>}
             <div className='overflow-x-auto'>
