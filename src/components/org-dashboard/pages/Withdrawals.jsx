@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FaFilePdf } from "react-icons/fa";
 import { apiUrl } from '../../../context/Utils';
+import axios from 'axios';
 
 function Withdrawals() {
     const [allWithdrawals, setAllWithdrawals] = useState([]);
@@ -13,7 +14,7 @@ function Withdrawals() {
 
     //useEffect to filter all withdrawals with the search term in the search input
     useEffect(() => {
-        const filteredWithdrawals = allWithdrawals.filter(withdrawal => {
+        const filteredWithdrawals = allWithdrawals && allWithdrawals.filter(withdrawal => {
             return (
                 (withdrawal.running_balance && withdrawal.running_balance.toLowerCase().includes(search.toLowerCase())) ||
                 (withdrawal.org_name && withdrawal.org_name.toLowerCase().includes(search.toLowerCase())) ||
@@ -24,31 +25,22 @@ function Withdrawals() {
         });
         setFiltered(filteredWithdrawals);
       
-    }, [search, allWithdrawals]);
+    }, [search, allWithdrawals, setAllWithdrawals]);
 
     useEffect(() => {
-        const handleFetch = async () => {
-            try {
-                const res = await fetch(`${apiUrl}/api/v1.0/withdraw_transactions`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                const data = await res.json();
-                if (res.ok) {
-                    setAllWithdrawals(Array.isArray(data.message) ? data.message : []);
-                } else {
-                    setErrors(data.error || 'An error occurred');
-                    setAllWithdrawals([]);
-                }
-            } catch (error) {
-                setErrors('An error occurred');
-                setAllWithdrawals([]);
-            }
+        const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        }
         };
-        handleFetch();
+        axios.get(`${apiUrl}/api/v1.0/withdraw_transactions`, config)
+        .then((res) => {
+            setAllWithdrawals(res.data.message);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     }, [token]);
 
     if (!token) {
@@ -135,7 +127,7 @@ function Withdrawals() {
             {allWithdrawals && allWithdrawals.length === 0 ? (
                 <div className='grid grid-cols-1 gap-4 mt-3 px-4'>
                     <div>
-                        <p className='text-red-500'>No withdrawals to display. Create campaign to start receiving contributions</p>
+                        <p className='text-red-500'>No withdrawals to display.</p>
                     </div>
                     <div>
                         <a href='/org/dashboard/createcampaign'>
