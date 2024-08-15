@@ -35,7 +35,7 @@ const InstallPWA = () => {
       title="Install app"
       onClick={onClick}
     >
-      Install
+      Install Msaadafund
     </button>
   );
 };
