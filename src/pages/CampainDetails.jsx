@@ -789,7 +789,9 @@ const togglePasswordVisibility = (e) => {
                                 ?
                                 <p className="my-2">Ensure all fields with <span className='text-red-500'>*</span> are filled</p>
                                 :
-                                <p className="my-2">Ensure all fields with <span className='text-red-500'>*</span> are filled or <span className='text-blue-700 underline cursor-pointer' onClick={setShowModal}>click to autofill</span>.</p>
+                                <p className="my-2">
+                                    Please make sure all fields marked with <span className='text-red-500'>*</span> are completed, or <span className='text-blue-700 underline cursor-pointer' onClick={setShowModal}>click here to autofill the form and easily track your contribution</span>.
+                                </p>
                                 }
                                 
                                     </div>
@@ -891,7 +893,9 @@ const togglePasswordVisibility = (e) => {
                                         ?
                                         <p className="my-2">Ensure all fields with <span className='text-red-500'>*</span> are filled</p>
                                         :
-                                        <p className="my-2">Ensure all fields with <span className='text-red-500'>*</span> are filled or <span className='text-blue-700 underline cursor-pointer' onClick={setShowModal}>click to autofill</span>.</p>
+                                        <p className="my-2">
+                                            Please make sure all fields marked with <span className='text-red-500'>*</span> are completed, or <span className='text-blue-700 underline cursor-pointer' onClick={setShowModal}>click here to autofill the form and easily track your contribution</span>.
+                                        </p>
                                         }
                                         </div>                                           
                                         <div className='flex-col justify-center items-center'>
