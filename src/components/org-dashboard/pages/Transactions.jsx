@@ -59,6 +59,7 @@ function Transactions({allCampaigns, campaignError}) {
   const handleFetchTransaction= async (id)=>{
     if(token){
       let url = `${apiUrl}/api/v1.0/filter_transactions/${id}`;
+      setLoading(true);
       try {
         // console.log(url)
           const response = await fetch(url, {
@@ -74,12 +75,13 @@ function Transactions({allCampaigns, campaignError}) {
               console.log("Successful request to get transactions");
               setTransactions(data);
           } else {
-              setLoading(true);
+              setLoading(false);
               throw new Error(data);
           }
       }
       catch {
-          setErrors("Error getting transactions data");
+        setLoading(false);
+        setErrors("Error getting transactions data");
       }
     }
   }
@@ -114,56 +116,14 @@ function Transactions({allCampaigns, campaignError}) {
       window.location.href('/org/login')
     }
 
-    if (loading) {
-      return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
-    }
-      // handle pdf route
-    // get route from backend
-  //   const downloadDonationsPDF=(id)=> {
-  //     const token = localStorage.getItem('token');
-  //     const url = `${apiUrl}/api/v1.0/transactions_pdf/${id}`;
-  
-  //     fetch(url, {
-  //         method: 'GET',
-  //         headers: {
-  //             'Authorization': `Bearer ${token}`,
-  //             'Accept': 'application/pdf',  // Specify that we expect a PDF file in the response
-  //         }
-  //     })
-  //     .then(response => {
-  //         if (!response.ok) {
-  //             throw new Error('Failed to download PDF');
-  //         }
-  
-  //         // Convert the response to a Blob (binary data) for the PDF file
-  //         return response.blob();
-  //     })
-  //     .then(blob => {
-  //         // Create a URL for the blob data
-  //         const blobUrl = URL.createObjectURL(blob);
-  
-  //         // Create an anchor element for downloading the file
-  //         const link = document.createElement('a');
-  //         link.href = blobUrl;
-  //         link.download = 'transactions.pdf';  // Specify the filename for the downloaded file
-  
-  //         // Append the link to the document body
-  //         document.body.appendChild(link);
-  
-  //         // Programmatically trigger a click on the link to start the download
-  //         link.click();
-  
-  //         // Remove the link from the DOM after the download
-  //         document.body.removeChild(link);
-  
-  //         // Revoke the blob URL to release memory
-  //         URL.revokeObjectURL(blobUrl);
-  //     })
-  //     .catch(error => {
-  //         setErrors('Error downloading PDF, Please try again later');
-  //     });
-  // }
-    
+    // if(loading){
+    //   // return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
+    //   return (
+    //     <div class="flex items-center justify-center h-screen">
+    //         <span className="loading loading-dots loading-lg text-blue-500"></span>
+    //       </div>
+    //     )
+    // }   
 
   return (
     <div>
@@ -224,8 +184,9 @@ function Transactions({allCampaigns, campaignError}) {
                                   <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>DATE</th>
                                   <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '></th>
                                 </tr>
-                              </thead>
+                              </thead>                              
                               <tbody>
+                                {loading? <div className='flex justify-center items-center'><span className="loading loading-dots loading-lg"></span></div>:null}
                                 {paginatedTransactions && paginatedTransactions.map((item) => (
                                   <tr key={item.transaction_id}>
                                     <td>{item.transaction_id}</td>
