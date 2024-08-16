@@ -644,17 +644,16 @@ const togglePasswordVisibility = (e) => {
                         </div>
                         
 
-                        <div className='bg-white py-4 px-2 lg:h-32 rounded-lg lg:mt-3'>
+                        <div className='bg-white py-4 px-2 rounded-lg lg:mt-3'>
                             <div className="flex flex-col lg:flex-row gap-3 ">
                                 <div className="h-full">
                                     <div>
-                                        <h1 className="text-3xl font-normal mb-2">{campaign && campaign.campaignName.charAt(0).toUpperCase() + campaign.campaignName.slice(1)}</h1>                            
+                                        <h1 className="text-xl font-normal mb-2">{campaign && campaign.campaignName.charAt(0).toUpperCase() + campaign.campaignName.slice(1)}</h1>                            
                                     </div>
                                     <div>
                                         <p className="text-blue-600">{campaign.category.toUpperCase()}</p>
                                     </div>                                    
                                     <div>
-
                                         <p className=" text-red-500">{handleDays()} Days</p>
                                     </div>
                                     {/* <h1 className='text-xl my-2 font-semibold w-full'>Story</h1>   */}
