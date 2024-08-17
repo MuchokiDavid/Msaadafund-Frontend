@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (token && refreshToken) {
-      const expirationTime = 20 * 60 * 1000;
+      const expirationTime = 15 * 60 * 1000;
       const timeout = setTimeout(() => {
         refreshAccessToken();
       }, expirationTime - 5 * 60 * 1000); // Refresh 5 minutes before expiration
