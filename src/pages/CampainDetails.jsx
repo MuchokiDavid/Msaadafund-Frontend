@@ -780,7 +780,7 @@ const togglePasswordVisibility = (e) => {
                     <div className="p-2">
                     {activeTab === 'M-Pesa' && (
                         <div>
-                        <h2 className="text-2xl font-semibold">Contribute via M-Pesa</h2>
+                        <h2 className="text-2xl font-semibold">Contribute with M-Pesa</h2>
                         <div className='h-full rounded-lg'> 
                             <form ref={formRef} onSubmit={handleDonateButton} className='w-full rounded-xl'>
                                 <div className='text-black'>
@@ -882,7 +882,7 @@ const togglePasswordVisibility = (e) => {
                     )}
                     {activeTab === 'Global Pay' && (
                         <div>
-                        <h2 className="text-2xl font-semibold">Contribute via Global Payment</h2> 
+                        <h2 className="text-2xl font-semibold">Contribute with Global payment methods</h2> 
                             <div className='h-full rounded-lg'> 
                                 <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
                                     <div className='text-black'>
