@@ -803,7 +803,7 @@ const togglePasswordVisibility = (e) => {
                                                 placeholder='Your Name (Optional)'
                                                 value={name}
                                                 onChange={(e) =>setName(e.target.value)}
-                                                className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white w-full"
+                                                className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 // required
                                             />
                                         </div>
@@ -819,7 +819,7 @@ const togglePasswordVisibility = (e) => {
                                                 onChange={(e) => {
                                                     setPhoneNum(e.target.value);
                                                 }}
-                                                className="block w-full text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 required
                                             />
                                         </div>
@@ -838,7 +838,7 @@ const togglePasswordVisibility = (e) => {
                                                 placeholder='Enter amount'
                                                 value={amount}
                                                 onChange={(e) => setDonationAmount(e.target.value)}
-                                                className="block w-full text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 required
                                             />
                                         </div>
@@ -907,7 +907,7 @@ const togglePasswordVisibility = (e) => {
                                                         value={fName}
                                                         id='cardName'
                                                         onChange={(e) =>setFName(e.target.value)}
-                                                        className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white w-full"
+                                                        className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                         required
                                                     />
                                                 </div>
@@ -919,7 +919,7 @@ const togglePasswordVisibility = (e) => {
                                                         value={lName}
                                                         id='cardName'
                                                         onChange={(e) =>setLName(e.target.value)}
-                                                        className="block text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white w-full"
+                                                        className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                         required
                                                     />
                                                 </div>
@@ -936,7 +936,7 @@ const togglePasswordVisibility = (e) => {
                                                         onChange={(e) => {
                                                             setCardEmail(e.target.value);
                                                         }}
-                                                        className="block w-full text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                        className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                         required
                                                     />
                                                 </div>
@@ -951,7 +951,7 @@ const togglePasswordVisibility = (e) => {
                                                         onChange={(e) => {
                                                             setPhoneNo(e.target.value);
                                                         }}
-                                                        className="block w-full text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                        className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                         
                                                     />
                                                 </div>
@@ -971,7 +971,7 @@ const togglePasswordVisibility = (e) => {
                                                     value={cardCurrency}
                                                     onChange={(e) => setCardCurrency(e.target.value)}
                                                     required
-                                                    className='block w-full text-black h-11 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white'>
+                                                    className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'>
                                                         <option>Select currency</option>
                                                         <option value="KES">Kenyan Shillings</option>
                                                         <option value="USD">US Dollars</option>
@@ -987,7 +987,7 @@ const togglePasswordVisibility = (e) => {
                                                         id='card-amount'
                                                         value={cardAmount}
                                                         onChange={(e) => setCardAmount(e.target.value)}
-                                                        className="block w-full text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 bg-white"
+                                                        className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                         required
                                                     />
                                                 </div>

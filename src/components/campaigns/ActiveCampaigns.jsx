@@ -144,29 +144,39 @@ function ActiveCampaigns() {
     // console.log(campaigns)
   return (
     <div className='mx-auto min-h-screen container'>
-    <div className='flex items-center justify-center p-3'>
-        <div className="mb-1 mt-2 flex flex-col sm:flex-row items-center">
-          <div className="relative flex" data-twe-input-wrapper-init data-twe-input-group-ref>
-            <label className="input input-bordered flex items-center gap-2 bg-white">
-              <input type="text" className="grow" onChange={handleSearchChange} placeholder="Search active campaign..." />
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" /></svg>
-            </label>
-          </div>
 
+      <div className="flex justify-center items-center my-4">
+      <div className="p-4 text-gray-600 outline-none focus:outline-none">
+        <div className="relative flex">          
           <select
             id="categoryFilter"
             onChange={handleCategoryChange}
             value={selectedCategory}
-            className="border text-black rounded-md px-4 py-2 h-12 mb-2 sm:mb-0 sm:mr-4 focus:ring focus:border-slate-100 bg-white"
+            className="bg-white h-10 px-5 rounded-l-full text-sm focus:outline-none outline-none border-2 border-gray-300 border-r-1 cursor-pointer max-h-10 overflow-y-hidden"
             style={{ minWidth: '150px' }}
           >
             {categories.map(category => (
-              <option className='text-xs lg:text-lg xs:w-full' key={category.id} value={category}>{category}</option>
+              <option className='font-normal cursor-pointer text-base' key={category.id} value={category}>{category}</option>
             ))}
           </select>
 
+          <input
+            type="search"
+            name="search"
+            placeholder="Search campaign"
+            className="bg-white h-10 flex px-5 w-full rounded-r-full text-sm focus:outline-none border-2 border-l-0 border-gray-300"
+            onChange={handleSearchChange}
+            autoComplete="off"
+            spellCheck="false"
+            required
+            step="any"
+            autoCapitalize="none"
+            autoFocus
+          />
         </div>
       </div>
+    </div>
+
       {upcomingCampaigns && upcomingCampaigns.length>0?
         <InActiveCampaigns allCampaigns= {upcomingCampaigns}/>
         :
