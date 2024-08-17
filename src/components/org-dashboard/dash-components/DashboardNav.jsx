@@ -3,7 +3,7 @@ import { IoMenu } from "react-icons/io5";
 import { useAuth } from '../../../context/usersContext';
 import logo from '../../../assets/applogo.png'
 
-function DashboardNav({toggleSidebar}) {
+function DashboardNav({toggleSidebar,handleMenuItemClick}) {
     // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
   let current_org= localStorage.getItem('org');
   let token=localStorage.getItem("token");
@@ -21,7 +21,7 @@ function DashboardNav({toggleSidebar}) {
   };
 
   return (
-    <div className='w-full' id='dashNav'>
+    <div className='w-full' id='dashNav' onClick={handleMenuItemClick}>
         <nav className="flex justify-between items-center py-2 w-full bg-white shadow">
           <div className="flex items-center ml-3">
             <button onClick={toggleSidebar} className="text-white focus:outline-none font-bold">

@@ -4,7 +4,7 @@ import { IoMenu } from "react-icons/io5";
 import logo from  '../../../assets/applogo.png';
 import { useAuth } from '../../../context/usersContext';
 
-function UserNav({toggleSidebar}) {
+function UserNav({toggleSidebar, handleMenuItemClick}) {
     let token=localStorage.getItem("token");
     let current_user= localStorage.getItem("user");
     const {logout} = useAuth();
@@ -20,7 +20,7 @@ function UserNav({toggleSidebar}) {
         window.location.replace("/user/login")
     }
   return (
-    <div className='w-full' id='userDash'>
+    <div className='w-full' id='userDash' onClick={handleMenuItemClick}>
         <nav className="flex justify-between items-center py-2 w-full bg-white shadow">
           <div className="flex items-center ml-3">
             <button onClick={toggleSidebar} className="text-white focus:outline-none font-bold">
