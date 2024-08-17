@@ -48,12 +48,15 @@ function Transactions({allCampaigns, campaignError}) {
         (transaction.running_balance && String(transaction.running_balance).toLowerCase().includes(searchTerm.toLowerCase())) ||
         (transaction.value && String(transaction.value).toLowerCase().includes(searchTerm.toLowerCase())) ||
         (transaction.trans_type && String(transaction.trans_type).toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (transaction.invoice && transaction.invoice.invoice_id && String(transaction.invoice.invoice_id).toLowerCase().includes(searchTerm.toLowerCase())) ||
         (transaction.invoice && transaction.invoice.account && String(transaction.invoice.account).toLowerCase().includes(searchTerm.toLowerCase()))
       );
     });
   
     setFilteredTransactions(filtered);
   }, [searchTerm, transactions]);
+
+  console.log(transactions)
 
   //  Fetch data from server when with a given id
   const handleFetchTransaction= async (id)=>{
@@ -141,9 +144,32 @@ function Transactions({allCampaigns, campaignError}) {
             :
             (null)
             }
-            <div class="flex items-center space-x-4 mt-4">
+            <form className="flex flex-col md:flex-row gap-3 mt-4 ml-2">
               <select
-                className="mb-3 h-10 px-3 py-2 border-gray-300 rounded-md bg-white border text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/6 p-2.5 "
+                  className="sm:w-full md:w-1/6 h-10 border-2 border-gray-400 focus:outline-none focus:border-sky-500 text-gray-900 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
+                  placeholder="transaction type"
+                  onChange={handleFilterChange}
+                  value={filter}
+                  >
+                  <option className='lg:text-lg sm:text-sm'><span className='text-red-400'>*</span>Select campaign</option>
+                  {
+                      allCampaign && allCampaign.map((camp, i)=>(<option className='text-sm' key={i}>{camp.campaignName}</option>))
+                  }
+              
+              </select>
+              <div className="flex">
+                  <input
+                      type="text"
+                      placeholder="Search"
+                      value={searchTerm}
+                      onChange={handleSearchTermChange}
+                      className="w-full md:w-80 px-3 h-10 rounded border-2 border-gray-500 focus:outline-none focus:border-sky-500"
+                  />
+              </div>              
+            </form>
+            {/* <div class="flex items-center space-x-4 mt-4">
+              <select
+                className="mb-3 h-10 px-3 py-2 border-gray-300 rounded-md bg-white border text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block sm:w-1/5 lg:w-1/4 p-2.5 "
                 placeholder="transaction type"
                 onChange={handleFilterChange}
                 value={filter}
@@ -159,9 +185,9 @@ function Transactions({allCampaigns, campaignError}) {
                     placeholder="Search"
                     value={searchTerm}
                     onChange={handleSearchTermChange}
-                    className="px-3 py-2 border-gray-400 rounded-md mb-4 bg-white border h-10 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-1/4 p-2.5 "
+                    className="px-3 py-2 border-gray-400 rounded-md mb-4 bg-white border h-10 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block sm:w-1/5 lg:w-1/4 p-2.5 "
                 /> 
-            </div>
+            </div> */}
             <div className='flex flex-col col-span-3'>
               <div className='py-2 -my-2 overflow-x-auto sm:-mx-2 sm:px-6 lg:-mx-2 lg:px-4'>
                
