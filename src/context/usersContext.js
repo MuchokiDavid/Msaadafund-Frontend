@@ -34,9 +34,6 @@ export const AuthProvider = ({ children }) => {
 
       return () => clearTimeout(timeout);
     }
-    else {
-      logout();
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, refreshToken]);
 
