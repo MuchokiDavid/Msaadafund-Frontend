@@ -294,10 +294,10 @@ useEffect(() => {
 
   return (
     <div className="flex relative h-screen overflow-hidden">
-      {isSidebarOpen && <Menubar handleMenuItemClick={handleMenuItemClick} toggleSidebar={toggleSidebar}/>}
+      {isSidebarOpen && <Menubar handleMenuItemClick={handleMenuItemClick} toggleSidebar={toggleSidebar} />}
       <div className='w-full sm:w-screen bg-slate-50'>
-        <DashboardNav toggleSidebar={toggleSidebar} allCampaigns={campaigns}/>
-        <main className="flex-1 my-3 text-gray-800 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6" style={{ marginTop: '10px' }} id='dashboard'>
+        <DashboardNav toggleSidebar={toggleSidebar} allCampaigns={campaigns} handleMenuItemClick= {handleMenuItemClick}/>
+        <main className="flex-1 my-3 text-gray-800 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6" style={{ marginTop: '10px' }} id='dashboard' onClick={handleMenuItemClick}>
           <Routes>
             <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors} handleMenuItemClick={handleMenuItemClick} subscriptions={subscriptions}/>} />
             <Route path="/campaigns/:campaignId" element={<UpdateCampaign getValidYoutubeVideoId={getValidYoutubeVideoId} />} />

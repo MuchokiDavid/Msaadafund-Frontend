@@ -740,14 +740,14 @@ const togglePasswordVisibility = (e) => {
                         value={activeTab}
                     >
                         <option>M-Pesa</option>
-                        <option>Global</option>
+                        <option>Global Pay</option>
                     </select>
                     </div>
 
                     <div className="hidden sm:block">
                     <div className="border-b border-gray-200">
                         <nav className="-mb-px flex gap-6" aria-label="Tabs">
-                        {['M-Pesa', 'Global'].map((tab) => (
+                        {['M-Pesa', 'Global Pay'].map((tab) => (
                             <p
                             key={tab}
                             // href="#"
@@ -880,9 +880,9 @@ const togglePasswordVisibility = (e) => {
                             </div>
                         </div>
                     )}
-                    {activeTab === 'Global' && (
+                    {activeTab === 'Global Pay' && (
                         <div>
-                        <h2 className="text-2xl font-semibold">Contribute via Card,Bitcoin and CashApp</h2> 
+                        <h2 className="text-2xl font-semibold">Contribute via Global Payment</h2> 
                             <div className='h-full rounded-lg'> 
                                 <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
                                     <div className='text-black'>
