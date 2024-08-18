@@ -56,8 +56,6 @@ function Transactions({allCampaigns, campaignError}) {
     setFilteredTransactions(filtered);
   }, [searchTerm, transactions]);
 
-  console.log(transactions)
-
   //  Fetch data from server when with a given id
   const handleFetchTransaction= async (id)=>{
     if(token){
@@ -137,8 +135,7 @@ function Transactions({allCampaigns, campaignError}) {
                 </ul>
             </div>
             <h1 className="mb-3 my-2 text-2xl font-bold leading-tight ">All Transactions</h1>
-            <hr className='mb-0' />
-            {errors && <p className='text-red-700'>{errors}</p>}
+            <hr className='mb-0' />            
             {allCampaign && allCampaign.length > 0 && !errors ? 
             (<div className='mt-2 text-lg font-normal text-red-400'>Select campaign to view transactions</div>)
             :
@@ -167,27 +164,7 @@ function Transactions({allCampaigns, campaignError}) {
                   />
               </div>              
             </form>
-            {/* <div class="flex items-center space-x-4 mt-4">
-              <select
-                className="mb-3 h-10 px-3 py-2 border-gray-300 rounded-md bg-white border text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block sm:w-1/5 lg:w-1/4 p-2.5 "
-                placeholder="transaction type"
-                onChange={handleFilterChange}
-                value={filter}
-              >
-                <option className='lg:text-lg sm:text-sm'><span className='text-red-500'>*</span>Select campaign</option>
-                {
-                  allCampaign && allCampaign.map((camp, i)=>(<option className='text-sm' key={i}>{camp.campaignName}</option>))
-                }
-                
-              </select>
-              <input
-                    type="text"
-                    placeholder="Search"
-                    value={searchTerm}
-                    onChange={handleSearchTermChange}
-                    className="px-3 py-2 border-gray-400 rounded-md mb-4 bg-white border h-10 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block sm:w-1/5 lg:w-1/4 p-2.5 "
-                /> 
-            </div> */}
+            {errors && console.error(errors)}
             <div className='flex flex-col col-span-3'>
               <div className='py-2 -my-2 overflow-x-auto sm:-mx-2 sm:px-6 lg:-mx-2 lg:px-4'>
                
@@ -235,7 +212,7 @@ function Transactions({allCampaigns, campaignError}) {
                     (
                       <div className='grid grid-cols-1 gap-4 mt-3 px-1'>
                         <div>
-                            <p className='text-red-500'>No campaign found. Create campaign to start receiving donations</p> 
+                            <p className='text-red-500'>No transactions found</p> 
                         </div>
                         <div>
                             <a href='/org/dashboard/createcampaign'><button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
@@ -258,7 +235,7 @@ function Transactions({allCampaigns, campaignError}) {
               <button
                   className="btn btn-outline join-item btn-sm"
                   onClick={() => goToPage(currentPage + 1)}
-                  disabled={currentPage === totalPages}
+                  disabled={currentPage === totalPages || totalPages === 0}
               >
                   Next
               </button>

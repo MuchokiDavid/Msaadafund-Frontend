@@ -93,7 +93,7 @@ useEffect(() => {
           (
             <div className='grid grid-cols-1 gap-4 mt-3 px-4'>
               <div>
-                <p>No recent contributions to display. Create campaign to start receiving donations</p> 
+                <p>No recent contributions to display.</p> 
               </div>
               <div>
                 <a href='/org/dashboard/createcampaign'><button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>

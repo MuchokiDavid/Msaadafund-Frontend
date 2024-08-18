@@ -43,7 +43,7 @@ function TransStatus() {
                 <li>Transaction Status</li>
             </ul>
         </div>
-        <h1 className="font-extrabold text-2xl">Withdrawal Status</h1>
+        <h1 className="font-extrabold text-2xl">Transaction Status</h1>
         <hr className='mb-4' />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-6 border rounded-lg">
             <div>

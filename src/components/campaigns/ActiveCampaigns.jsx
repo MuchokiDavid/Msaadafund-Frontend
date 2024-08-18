@@ -152,7 +152,7 @@ function ActiveCampaigns() {
             id="categoryFilter"
             onChange={handleCategoryChange}
             value={selectedCategory}
-            className="bg-white h-10 px-5 rounded-l-full text-sm focus:outline-none outline-none border-2 border-gray-300 border-r-1 cursor-pointer max-h-10 overflow-y-hidden"
+            className="bg-white h-10 px-5 rounded-l-full text-sm focus:outline-none outline-none border-2 border-gray-400 border-r-1 cursor-pointer max-h-10 overflow-y-hidden"
             style={{ minWidth: '150px' }}
           >
             {categories.map(category => (
@@ -164,7 +164,7 @@ function ActiveCampaigns() {
             type="search"
             name="search"
             placeholder="Search campaign"
-            className="bg-white h-10 flex px-5 w-full rounded-r-full text-sm focus:outline-none border-2 border-l-0 border-gray-300"
+            className="bg-white h-10 flex px-5 w-full rounded-r-full text-sm focus:outline-none border-2 border-l-0 border-gray-400"
             onChange={handleSearchChange}
             autoComplete="off"
             spellCheck="false"
