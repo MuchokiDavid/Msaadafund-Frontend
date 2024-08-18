@@ -4,6 +4,7 @@ import React, { createContext, useState, useContext,useEffect } from 'react';
 import { googleLogout } from '@react-oauth/google';
 import axios from 'axios';
 import { apiUrl } from './Utils';
+import { jwtDecode } from "jwt-decode";
 
 const UserAuthContext = createContext();
 
@@ -25,19 +26,19 @@ export const AuthProvider = ({ children }) => {
   }, [setRefreshToken]);
 
 
-  useEffect(() => {
-    if (token && refreshToken) {
-      const expirationTime = 15 * 60 * 1000;
-      const timeout = setTimeout(() => {
-        refreshAccessToken();
-      }, expirationTime - 5 * 60 * 1000); // Refresh 5 minutes before expiration
+  // useEffect(() => {
+  //   if (token && refreshToken) {
+  //     const expirationTime = 15 * 60 * 1000;
+  //     const timeout = setTimeout(() => {
+  //       refreshAccessToken();
+  //     }, expirationTime - 5 * 60 * 1000); // Refresh 5 minutes before expiration
 
-      return () => clearTimeout(timeout);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, refreshToken]);
+  //     return () => clearTimeout(timeout);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [token, refreshToken]);
 
-  // Refresh token function
+  // // Refresh token function
   const refreshAccessToken = async () => {
     try {
       const response = await fetch(`${apiUrl}/api/v1.0/auth/refresh`, {
@@ -56,6 +57,26 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       logout();
+    }
+  };
+  // useeffect to remove token from local storage when token expires
+  useEffect(() => {
+    if (isTokenExpired(token)) {
+      logout()
+    }
+  }, [token]);
+
+  // check if token is expired
+  const isTokenExpired = (token) => {
+    if (!token) return true;
+    try {
+      const decodedToken = jwtDecode(token);
+      const currentTime = Date.now() / 1000;
+      const bufferTime = 60; // 1-minute buffer
+      return decodedToken.exp < (currentTime + bufferTime);
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return true;
     }
   };
 
@@ -213,6 +234,7 @@ export const AuthProvider = ({ children }) => {
       orgLogin, 
       setLoginMessage, 
       handleSuccess, 
+      refreshAccessToken,
       handleError, 
       loading,
       userLoading,
