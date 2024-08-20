@@ -168,16 +168,11 @@ function OrganisationDetails() {
     };
     
   if(!organisationDetails){
-    // return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
     return (
       <div class="flex items-center justify-center h-screen">
-            <div class="relative">
-              <div class="flex items-center justify-center h-screen">
-                  <span className="loading loading-dots loading-lg text-blue-500"></span>
-              </div>
-            </div>
-        </div>
-      )
+          <span className="loading loading-spinner loading-lg text-blue-500"></span>
+      </div>
+  )
   }
 
   // Function to calculate total donations with status "COMPLETE"
