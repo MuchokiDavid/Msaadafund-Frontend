@@ -265,11 +265,7 @@ function CampainDetails() {
     if (!campaign) {
         return (
             <div class="flex items-center justify-center h-screen">
-                <div class="relative">
-                    <div class="flex items-center justify-center h-screen">
-                        <span className="loading loading-dots loading-lg text-blue-500"></span>
-                    </div>
-                </div>
+                <span className="loading loading-spinner loading-lg text-blue-500"></span>
             </div>
         )
     }
