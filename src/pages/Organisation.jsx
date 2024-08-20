@@ -10,6 +10,7 @@ function Organisation() {
     // get all organisations 
     const [organisation,setOrganisation]= useState([])
     const [currentPage, setCurrentPage] = useState(1)
+    const [loading, setLoading] = useState(false);
     const [itemsPerPage] = useState(12)
     const navigate = useNavigate()
 
@@ -25,15 +26,18 @@ function Organisation() {
     // },[])
 
     useEffect(() => {
+        setLoading(true);
         axios.get(`${apiUrl}/api/v1.0/organisations`, {
             headers: {
                 'X-API-KEY': appKey,
             }
         })
-        .then((res) => {            
+        .then((res) => {          
+            setLoading(false);  
             setOrganisation(res.data);
         })
         .catch((err) => {
+            setLoading(false);
             const errorMsg = err.response?.data?.message || 'An error occurred';
             console.error(errorMsg);    
         });
@@ -53,6 +57,14 @@ function Organisation() {
 
     const handleNavigate = (orgid)=>{
         navigate(`/organisations/${formatSlug(orgid)}`)
+    }
+
+    if (loading){
+        return (
+            <div class="flex items-center justify-center h-screen">
+                <span className="loading loading-spinner loading-lg text-blue-500"></span>
+            </div>
+        )
     }
 
     

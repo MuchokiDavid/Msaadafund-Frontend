@@ -99,14 +99,13 @@ function ActiveCampaigns() {
       //   return endDate < currentDate;
       // });
 
-      if(loading){
-        // return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
+      if (loading){
         return (
-          <div class="flex items-center justify-center h-screen">
-              <span className="loading loading-dots loading-lg text-blue-500"></span>
+            <div class="flex items-center justify-center h-screen">
+              <span className="loading loading-spinner loading-lg text-blue-500"></span>
             </div>
           )
-      }
+    }
 
       // Function to encode route
       function formatSlug(text) {

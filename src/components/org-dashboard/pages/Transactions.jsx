@@ -115,16 +115,7 @@ function Transactions({allCampaigns, campaignError}) {
 
     if(!token && !org){
       window.location.href('/org/login')
-    }
-
-    // if(loading){
-    //   // return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
-    //   return (
-    //     <div class="flex items-center justify-center h-screen">
-    //         <span className="loading loading-dots loading-lg text-blue-500"></span>
-    //       </div>
-    //     )
-    // }   
+    }  
 
   return (
     <div>
@@ -143,7 +134,7 @@ function Transactions({allCampaigns, campaignError}) {
             }
             <form className="flex flex-col md:flex-row gap-3 mt-4 ml-2">
               <select
-                  className="sm:w-full md:w-1/6 h-10 border-2 border-gray-400 focus:outline-none focus:border-sky-500 text-gray-900 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
+                  className="sm:w-full md:w-1/6 h-10 border-2 bg-gray-100 border-gray-400 focus:outline-none focus:border-sky-500 text-gray-900 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
                   placeholder="transaction type"
                   onChange={handleFilterChange}
                   value={filter}

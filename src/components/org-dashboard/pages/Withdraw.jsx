@@ -178,8 +178,12 @@ if (!token && !org) {
     window.location.replace("/org/login")
 }
 
-if (loading) {
-    return(<div className='flex justify-center'>...</div>)
+if (loading){
+    return (
+        <div class="flex items-center justify-center h-screen">
+            <span className="loading loading-spinner loading-lg text-blue-500"></span>
+        </div>
+    )
 }
 // console.log(walletDetails)
 // console.log(campaigns)

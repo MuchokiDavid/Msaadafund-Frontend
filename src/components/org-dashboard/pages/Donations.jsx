@@ -91,8 +91,12 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
     if (!token && !orgName){
         window.location.href = '/org/login';
     }
-    if (loading) {
-        return(<div className='flex justify-center'><span className="loading loading-dots loading-lg"></span></div>)
+    if (loading){
+        return (
+            <div class="flex items-center justify-center h-screen">
+                <span className="loading loading-spinner loading-lg text-blue-500"></span>
+            </div>
+        )
     }
 
     // handle pdf route
