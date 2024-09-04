@@ -6,6 +6,7 @@ import BannerCards from './BannerCards'
 import joinus from '../../assets/joinus.jpg'
 import WhyUs from './WhyUs'
 import { apiUrl,appKey } from '../../context/Utils'
+import logo from '../../assets/applogo.png'
 
 function Banner() {
   const[allDonations,setAllDonations]= useState([])
@@ -13,9 +14,11 @@ function Banner() {
   const [allCampaign,setAllCampaign] = useState([])
   const[errors, setErrors] = useState()
   const [buttonClicked, setButtonClicked] = useState(false);//state listen to button event change 
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getDonations = async () => {
+      setLoading(true)
       try {
           const response = await fetch(`${apiUrl}/api/v1.0/all_donations`, {
               method: 'GET',
@@ -27,12 +30,16 @@ function Banner() {
           const data = await response.json();
           if (response.ok) {              
               // console.log("Successful request to get donors");
+              setLoading(false)
               setAllDonations(data.message);
           } else {
+              setLoading(false)
+              setErrors("Error getting donation data");
               throw new Error(data);
           }
       }
       catch {
+          setLoading(false)
           setErrors("Error getting donation data");
       }
   }
@@ -41,6 +48,7 @@ function Banner() {
 
   useEffect(() => {
     const getOrganisation = async () => {
+      setLoading(true)
       try {
           const response = await fetch(`${apiUrl}/api/v1.0/organisations`, {
               method: 'GET',
@@ -52,20 +60,25 @@ function Banner() {
           const data = await response.json();
           if (response.ok) {
               // console.log("Successful request to get donors");
+              setLoading(false)
               setAllOrganisations(data);
           } else {
+              setLoading(false)
+              setErrors("Error getting donation data");
               throw new Error(data);
           }
       }
       catch {
+          setLoading(false)
           setErrors("Error getting donation data");
-      }
+      }      
   }
   getOrganisation();
   }, [])
 
   useEffect(() => {
     const getCampaigns = async () => {
+      setLoading(true)
       try {
           const response = await fetch(`${apiUrl}/api/v1.0/get_all_campaigns`, {
               method: 'GET',
@@ -77,12 +90,16 @@ function Banner() {
           const data = await response.json();
           if (response.ok) {
               // console.log("Successful request to get donors");
+              setLoading(false)
               setAllCampaign(data);
           } else {
+              setLoading(false)
+              setErrors("Error getting donation data");
               throw new Error(data);
           }
       }
       catch {
+          setLoading(false)
           setErrors("Error getting donation data");
       }
   }
@@ -114,6 +131,16 @@ function Banner() {
     return totalAmount;
 }
 let totalAmount=allDonations && getTotalAmount(allDonations)
+
+if (loading) {
+  return (
+    <div class="flex items-center justify-center h-screen">
+      {/* Logo image */}
+      <p><img src={logo} alt="Logo" className="w-[120px] h-[60px]" /></p><br/>
+      <span className="loading loading-spinner loading-lg text-blue-500"></span>
+    </div>
+  )
+}
 
   return (
     <div className='text-gray-900'>
