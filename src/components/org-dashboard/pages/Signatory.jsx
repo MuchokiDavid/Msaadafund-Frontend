@@ -155,7 +155,7 @@ function Signatory() {
                 const { value: otpInput } = await Swal.fire({
                     title: "Remove signatory ",
                     input: "text",
-                    inputLabel: "Enter OTP to remove signatory ",
+                    inputLabel: "Enter OTP sent to your email",
                     // inputValue,
                     showCancelButton: true,
                     inputValidator: (value) => {
