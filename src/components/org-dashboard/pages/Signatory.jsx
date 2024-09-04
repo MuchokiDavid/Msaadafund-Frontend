@@ -1,9 +1,12 @@
+// import { toast } from 'react-toastify';
 import React, { useEffect, useRef, useState } from 'react'
 import Swal from 'sweetalert2'
 import { IoClose } from "react-icons/io5";
-// import {toast, Toaster} from 'react-hot-toast';
+import {toast, Toaster} from 'react-hot-toast';
 import { AiOutlineDelete } from "react-icons/ai";
 import { apiUrl } from '../../../context/Utils';
+import axios from "axios"
+// import { response } from 'express';
 
 function Signatory() {
     const [showCreateAccount, setShowCreateAccount] = useState(false);
@@ -14,6 +17,9 @@ function Signatory() {
     const [error, setError] = useState(null);
     const formRef = useRef(null);
     const [signatories, setSignatories] = useState([]);
+    const [deleting,setDeleting] = useState(null)
+
+    // const [otp, setOtp] = useState('');
 
     // Useeffect to get all signatories from the database
     useEffect(() => {
@@ -92,12 +98,13 @@ function Signatory() {
                         showConfirmButton: false,
                         timer: 1500
                     }) 
-                    handleFetch()
                     setLoading(false)
                     setEmail('')
                     setRole('')
                     setShowCreateAccount(false)
+                    handleFetch()
                 }
+
                 if (data.error) {
                     setError(data.error)
                 } 
@@ -107,69 +114,97 @@ function Signatory() {
             setLoading(false)
             setError('Error in saving data', error);
         }
-        // finally{
-        //     handleFetch()
-        //     setLoading(false)
-        //     setEmail('')
-        //     setRole('')
-            
-        // }
-    }    
 
-    //handledelete function to delete signatory from the database
-    function handleDelete(id) {
-        //Sweetalert to ask user to confirm before deleting
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-            if (result.isConfirmed) {
-                try{
-                    setLoading(true)
-                    setError(null)
+    } 
+    
+    const handleOtp = async(id)=>{
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            }       
+            };
+        try{
+            const response = await axios.post(`${apiUrl}/api/v1.0/signatory/${id}/request-otp`,{}, config)
+            // response should send the email 
+            // console.log(response)
+            if(response.status === 200){
+                toast.success('OTP sent to email')
+                return true;
 
-                    fetch(`${apiUrl}/api/v1.0/signatories/${id}`, {                
-                        method: "DELETE",
-                        headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${accessToken}`
+            }       
+        }
+        catch(error){
+            const errorMsg = error.response?.data?.error || 'An error occurred';
+            setError(errorMsg);
+            return false;
+        };
+        }
+    
+
+    const deleteSignatory = async(id)=>{
+        setDeleting(id)
+        const otpRequest = await handleOtp(id)
+        // console.log(otpRequest)
+        if (!otpRequest) {
+            setDeleting(null)
+            return;
+        }
+        else{
+            try{
+                const { value: otpInput } = await Swal.fire({
+                    title: "Remove signatory ",
+                    input: "text",
+                    inputLabel: "Enter OTP to remove signatory ",
+                    // inputValue,
+                    showCancelButton: true,
+                    inputValidator: (value) => {
+                      if (!value) {
+                        setDeleting(false)
+                        return "You need to enter the OTP sent!";
+                      }
+                    }
+                  });
+                
+                if (otpInput) {
+                    const config = {
+                        headers:{
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${accessToken}`
                         }
-                    }).then((res) => res.json())
-                    .catch((err) => { console.log(err) })
-                    .then((data) => {
-                        // console.log(data)
-                        if(data.message){
-                            //Swal
-                            Swal.fire({
-                                title: 'Success',
-                                text: data.message,
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500                                
-                            })
-                            handleFetch()
-                        }
-                        if (data.error) {
-                            setError(data.error)
-                        }
-                    });
+                    };
+            // Send OTP in request body
+            // setDeleting(true)
+            const response = await axios.delete(`${apiUrl}/api/v1.0/signatories/${id}`, {
+                data: { otp: otpInput },
+                ...config
+            });
+                    if(response.status === 200){
+                        // setDeleting(false)
+                        Swal.fire({
+                            title: 'Success',
+                            text: 'Signatory deleted successfully',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        handleFetch()
+                    }
                 }
-                catch(error){
-                    setLoading(false)
-                    setError('Error in deleting data', error);
-                }
-                finally{
-                    setLoading(false)
-                }
+
             }
-            })
-        
+
+            catch(error){
+                const errorMsg = error.response?.data?.error || 'An error occurred';
+                setError(errorMsg);
+            }
+            setDeleting(null);
+
     }
+        
+
+    }
+
 
     // console.log(signatories)
 
@@ -215,8 +250,11 @@ function Signatory() {
                                 <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{signatory.user.email}</td>
                                 <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{signatory.role}</td>
                                 <td>
-                                    <button onClick={() => handleDelete(signatory.id)} className='text-red-500 text-sm'><AiOutlineDelete title='Delete Signatory' size={25} /></button>
-                                </td>
+                                    <button onClick={() => deleteSignatory(signatory.id)} className='text-red-500 text-sm'>
+                                        {deleting === signatory.id ? <span className="loading loading-dots loading-sm"></span> : <AiOutlineDelete title='Delete Signatory' size={25} />}
+                                    </button>
+                                </td> 
+
                             </tr>
                         ))}
                     </tbody>
@@ -278,9 +316,65 @@ function Signatory() {
                 </div>
             </div>
         )}
-        {/*<Toaster position='top-center' reverseOrder={false} />*/}
+        <Toaster position='top-center' reverseOrder={false} />
     </div>
   )
 }
 
 export default Signatory
+
+
+    // //handledelete function to delete signatory from the database
+    // function handleDelete(id) {
+    //     //Sweetalert to ask user to confirm before deleting
+    //     Swal.fire({
+    //         title: 'Are you sure?',
+    //         text: "You won't be able to revert this!",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Yes, delete it!'
+    //         }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             try{
+    //                 setLoading(true)
+    //                 setError(null)
+
+    //                 fetch(`${apiUrl}/api/v1.0/signatories/${id}`, {                
+    //                     method: "DELETE",
+    //                     headers: {
+    //                     'Content-Type': 'application/json',
+    //                     'Authorization': `Bearer ${accessToken}`
+    //                     }
+    //                 }).then((res) => res.json())
+    //                 .catch((err) => { console.log(err) })
+    //                 .then((data) => {
+    //                     // console.log(data)
+    //                     if(data.message){
+    //                         //Swal
+    //                         Swal.fire({
+    //                             title: 'Success',
+    //                             text: data.message,
+    //                             icon: 'success',
+    //                             showConfirmButton: false,
+    //                             timer: 1500                                
+    //                         })
+    //                         handleFetch()
+    //                     }
+    //                     if (data.error) {
+    //                         setError(data.error)
+    //                     }
+    //                 });
+    //             }
+    //             catch(error){
+    //                 setLoading(false)
+    //                 setError('Error in deleting data', error);
+    //             }
+    //             finally{
+    //                 setLoading(false)
+    //             }
+    //         }
+    //         })
+        
+    // }
