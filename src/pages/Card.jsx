@@ -1,7 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import profilePic from '../assets/orgProfile.png'
 
-function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscribe, handleUnsubscribe, shareModal}) {
+function Card({
+    orgDetails, 
+    raisedAmount, 
+    budget,
+    loading, 
+    subscribe, 
+    handleSubscribe, 
+    handleUnsubscribe, 
+    shareModal, 
+    translatedGoal, 
+    translatedContributions, 
+    giveTranslate,
+    shareTranslate
+}) {
     const percentage= (raisedAmount / budget)*100
     const [buttonClicked, setButtonClicked] = useState(false);//state listen to button event change 
 
@@ -35,14 +48,14 @@ function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscr
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9l-5 5-5-5" />
                                     </svg>
                                     <p className="text-lg font-semibold mt-2">KES {raisedAmount && raisedAmount}</p>
-                                    <p className="text-sm text-gray-600">Contributions</p>
+                                    <p className="text-sm text-gray-600">{translatedContributions || "Contributions"}</p>
                                 </div>
                                 <div className="text-center px-4 rounded-lg border">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mx-auto text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M12 6h.01M12 14h.01" />
                                     </svg>
                                     <p className="text-lg font-semibold mt-2">{budget && budget}</p>
-                                    <p className="text-sm text-gray-600">Goal</p>
+                                    <p className="text-sm text-gray-600">{translatedGoal || "Goal"}</p>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +65,7 @@ function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscr
                                 <button
                                 onClick={()=> setButtonClicked(true)}
                                     className="btn flex-1 w-full rounded bg-blue-600 text-white font-semibold hover:bg-blue-800 px-4 py-3">
-                                    Give now
+                                    {giveTranslate || "Give now"}
                                 </button>
                             </div>
 
@@ -60,7 +73,7 @@ function Card({orgDetails, raisedAmount, budget,loading, subscribe, handleSubscr
                                 <button
                                 onClick={()=> shareModal(true)}
                                     className="btn bg-white flex-1 w-full rounded border-2 border-blue-600 font-semibold text-black px-4 py-3 hover:bg-transparent hover:text-black">
-                                    Share
+                                    {shareTranslate || "Share"}
                                 </button>
                             </div>   
                         </div>                  

@@ -21,7 +21,7 @@ import Card from './Card';
 import Announcement from '../components/reusables/Announcement';
 import Featured from '../components/campaigns/Featured';
 import PopupGoogle from '../components/user-auth/PopupGoogle';
-import { apiUrl,appKey } from '../context/Utils';
+import { apiUrl,appKey,url } from '../context/Utils';
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
 import { MdOutlineSendToMobile } from "react-icons/md";
 
@@ -84,6 +84,20 @@ function CampainDetails() {
 
     const [randomDonations, setRandomDonations] = useState([]);
     const hasShuffled = useRef(false); // Use useRef to keep track of whether shuffling has been done
+
+    const [translatedText, setTranslatedText] = useState('');
+    const [language, setLanguage] = useState('en'); //Language change
+    const [translatedCategory, setTranslatedCategory] = useState('');
+    const [translatedCampName, setTranslatedCampName] = useState('');
+    const [translatedStory, setTranslatedStory] = useState('');
+    const [translatedGoal, setTranslatedGoal] = useState('');
+    const [translatedContributions, setContributions] = useState('');
+    const [translatedMpesa, setTranslatedMpesa] = useState('');
+    const [translatedGlobal, setTranslatedGlobal] = useState('');
+    const [submitTranslate, setSubmitTranslate] = useState('');
+    const [checkoutTranslate, setCheckoutTranslate] = useState('');
+    const [shareTranslate, setShareTranslate] = useState('');
+    const [giveTranslate, setGiveTranslate] = useState('');
 
     //decode route
     const decodedName = campaignId.replace(/-/g, ' ');
@@ -269,6 +283,47 @@ function CampainDetails() {
             </div>
         )
     }
+
+    // Make google request to translate language
+    const translateText = async (text, targetLanguage) => {
+
+        try {
+            const response = await axios.post(url, {
+            q: text,
+            target: targetLanguage,
+            });
+            return response.data.data.translations[0].translatedText;
+        } catch (error) {
+            console.error('Error translating text:', error);
+            return text;
+        }
+    };
+
+    // Handle change of language selection from story dropdown
+    const handleLanguageChange = async (e) => {
+        const selectedLanguage = e.target.value;
+        setLanguage(selectedLanguage);
+        const translated = await translateText(campaign.description, selectedLanguage);
+        const translatedCat = await translateText(campaign.category, selectedLanguage);
+        const translatedName = await translateText(campaign.campaignName, selectedLanguage);
+        const storyTranslate= await translateText("Story", selectedLanguage);
+        const mpesaTranslate= await translateText("Contribute with M-Pesa", selectedLanguage);
+        const globalTranslate= await translateText("Contribute with Global payment methods", selectedLanguage);
+        const contributionsTranslate= await translateText("Contributions", selectedLanguage);
+        const goalTranslate= await translateText("Goal", selectedLanguage);
+        setSubmitTranslate(await translateText("Contribute", selectedLanguage));
+        setCheckoutTranslate(await translateText("Checkout", selectedLanguage));
+        setShareTranslate(await translateText("Share", selectedLanguage));
+        setGiveTranslate(await translateText("Give Now", selectedLanguage));
+        setTranslatedText(translated);
+        setTranslatedCategory(translatedCat);
+        setTranslatedCampName(translatedName);
+        setTranslatedStory(storyTranslate);
+        setTranslatedGoal(goalTranslate);
+        setContributions(contributionsTranslate);
+        setTranslatedMpesa(mpesaTranslate);
+        setTranslatedGlobal(globalTranslate);
+    };
 
 
     const handleDonateButton = (e) => {
@@ -644,15 +699,41 @@ const togglePasswordVisibility = (e) => {
                             <div className="flex flex-col lg:flex-row gap-3 ">
                                 <div className="h-full">
                                     <div>
-                                        <h1 className="text-xl font-normal mb-2">{campaign && campaign.campaignName.charAt(0).toUpperCase() + campaign.campaignName.slice(1)}</h1>                            
+                                        <select value={language} onChange={handleLanguageChange} className='my-1 p-1'>
+                                            <option value="en">English</option>
+                                            <option value="sw">Swahili</option>
+                                            <option value="es">Spanish</option>
+                                            <option value="fr">French</option>
+                                            <option value="de">German</option>
+                                            <option value="it">Italian</option>
+                                            <option value="pt">Portuguese</option>
+                                            <option value="zh">Chinese</option>
+                                            <option value="ja">Japanese</option>
+                                            <option value="ko">Korean</option>
+                                            <option value="ru">Russian</option>
+                                            <option value="ar">Arabic</option>
+                                            <option value="hi">Hindi</option>
+                                            <option value="bn">Bengali</option>
+                                            <option value="ur">Urdu</option>
+                                            <option value="tr">Turkish</option>
+                                            <option value="vi">Vietnamese</option>
+                                            <option value="id">Indonesian</option>
+                                            <option value="ms">Malay</option>
+                                            <option value="th">Thai</option>
+                                            <option value="pl">Polish</option>
+                                            <option value="ro">Romanian</option>
+                                            <option value="nl">Dutch</option>
+                                            <option value="hu">Hungarian</option>
+                                        </select> 
+                                        {/* <h1 className="text-xl font-normal mb-2">{campaign && campaign.campaignName.charAt(0).toUpperCase() + campaign.campaignName.slice(1)}</h1>                             */}
+                                        <h1 className="text-xl font-normal mb-2">{translatedCampName ||(campaign && campaign.campaignName.charAt(0).toUpperCase()) + campaign.campaignName.slice(1)}</h1>                            
                                     </div>
                                     <div>
-                                        <p className="text-blue-600">{campaign.category.toUpperCase()}</p>
+                                        <p className="text-blue-600">{translatedCategory ||( campaign && campaign.category.toUpperCase())}</p>
                                     </div>                                    
                                     <div>
                                         <p className=" text-red-500">{handleDays()} Days</p>
                                     </div>
-                                    {/* <h1 className='text-xl my-2 font-semibold w-full'>Story</h1>   */}
                         
                                 </div>
                             </div>                            
@@ -668,40 +749,42 @@ const togglePasswordVisibility = (e) => {
                         handleUnsubscribe={handleUnsubscribe}
                         shareModal= {setShowShareModal}
                         loading={loading}
+                        translatedGoal= {translatedGoal}
+                        translatedContributions= {translatedContributions}
+                        shareTranslate= {shareTranslate}
+                        giveTranslate= {giveTranslate}
                         />
                     </div>
                 </div>
                 
                 <div className="flex flex-col lg:flex-row gap-0 mt-0">
-                    <div className="h-full lg:w-2/3 border border-transparent mt-1 rounded-lg px-2 py-2">
+                    <div className="h-full lg:w-2/3 border border-transparent mt-0 rounded-lg px-2 py-2">
                         {/* <hr/> */}
-                        <h1 className='text-xl my-2 font-semibold w-full'>Story</h1>  
+                        <h1 className='text-xl my-2 font-semibold w-full'>{translatedStory ||"Story"}</h1>                         
                         <div className="bg-white text-xs sm:h-52 lg:h-72 w-full overflow-hidden">                                                          
                             <div> 
-                                {isLargeScreen ?
-                                    <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: campaign.description }}></div>
-                                    :
-                                    <div>
-                                       
-                                        {more ? (
-                                            campaign && <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: campaign.description }}></div>
-                                            ) : (
-                                            campaign && <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: campaign.description.slice(0, 200) + '...' }}></div>
-                                            )
-                                        }
-
-                                        <button className='text-blue-600 hover:underline mt-2' onClick={()=>setMore(!more)}>{more ? "Show less" : "Show more"}</button>
-                                    </div>
-                                                                      
-                                }                                
+                            {isLargeScreen ?
+                                <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: translatedText || campaign.description }}></div>
+                                :
+                                <div>
+                                {more ? (
+                                    <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: translatedText || campaign.description }}></div>
+                                ) : (
+                                    <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: (translatedText || campaign.description).slice(0, 200) + '...' }}></div>
+                                )}
+                                <button className='text-blue-600 hover:underline mt-2' onClick={() => setMore(!more)}>
+                                    {more ? "Show less" : "Show more"}
+                                </button>
+                                </div>
+                            }                               
                             </div>   
                         </div>
                     </div>
-                    <div className="lg:w-1/3 h-full border border-transparent bg-white mt-2 rounded-lg">
+                    <div className="lg:w-1/3 h-full border border-transparent bg-white mt-0 rounded-lg">
                         <hr/>
                         <div className="px-2 pt-2">
                             <div className='my-1 flex justify-between px-2'>
-                                <h1 className='text-lg font-medium'>Contributions</h1>
+                                <h1 className='text-lg font-medium'>{translatedContributions ||"Contributions"}</h1>
                                 <p className='text-lg font-medium'>{completeDonations.length}</p>
                             </div>
                             <div>
@@ -776,7 +859,7 @@ const togglePasswordVisibility = (e) => {
                     <div className="p-2">
                     {activeTab === 'M-Pesa' && (
                         <div>
-                        <h2 className="text-2xl font-semibold">Contribute with M-Pesa</h2>
+                        <h2 className="text-2xl font-semibold">{translatedMpesa || "Contribute with M-Pesa"}</h2>
                         <div className='h-full rounded-lg'> 
                             <form ref={formRef} onSubmit={handleDonateButton} className='w-full rounded-xl'>
                                 <div className='text-black'>
@@ -805,7 +888,7 @@ const togglePasswordVisibility = (e) => {
                                         </div>
                                 
                                         <div className='my-3'>
-                                            <label className=' text-black font-medium '><span className='text-red-500'>*</span>Phone Number</label> 
+                                            <label className=' text-black font-medium '><span className='text-red-500'>*</span>M-Pesa Phone Number</label> 
                                             <input
                                                 type="tel"
                                                 id="phoneNumber"
@@ -861,7 +944,7 @@ const togglePasswordVisibility = (e) => {
                                             :
                                             (
                                                 <button type="submit" class="btn btn-md py-2 px-4 flex justify-center items-center  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-medium shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded max-w-md">
-                                                   <MdOutlineSendToMobile className='w-5 h-5 font-medium'/>Contribute
+                                                   <MdOutlineSendToMobile className='w-5 h-5 font-medium'/>{ submitTranslate || "Contribute"}
                                                 </button>
                                             )
                                         }
@@ -878,7 +961,7 @@ const togglePasswordVisibility = (e) => {
                     )}
                     {activeTab === 'Global Pay' && (
                         <div>
-                        <h2 className="text-2xl font-semibold">Contribute with Global payment methods</h2> 
+                        <h2 className="text-2xl font-semibold">{translatedGlobal ||"Contribute with Global payment methods"}</h2> 
                             <div className='h-full rounded-lg'> 
                                 <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
                                     <div className='text-black'>
@@ -1013,7 +1096,7 @@ const togglePasswordVisibility = (e) => {
                                                 :
                                                 (
                                                     <button type="submit" class="btn btn-md py-2 px-4 flex justify-center items-center  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-medium shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded max-w-md">
-                                                       <FaRegArrowAltCircleRight className='w-5 h-5'/> Checkout
+                                                       <FaRegArrowAltCircleRight className='w-5 h-5'/> {checkoutTranslate || "Checkout"}
                                                     </button>
                                                 )
                                             }
