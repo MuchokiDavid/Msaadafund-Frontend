@@ -22,7 +22,6 @@ import Announcement from '../components/reusables/Announcement';
 import Featured from '../components/campaigns/Featured';
 import PopupGoogle from '../components/user-auth/PopupGoogle';
 import { apiUrl,appKey,url } from '../context/Utils';
-import { FaRegArrowAltCircleRight } from "react-icons/fa";
 import { MdOutlineSendToMobile } from "react-icons/md";
 
     // Functions to shuffle array
@@ -69,7 +68,7 @@ function CampainDetails() {
     
     // const  navigate = useNavigate();
     // const currentlWebUrl= window.location.href
-    const currentlWebUrl= `https://msaadafund.com${window.location.pathname}` // Add link after deployment
+    const currentlWebUrl= `https://www.msaadafund.com${window.location.pathname}` // Add link after deployment
     const [subscribe, setSubscribe] = useState(false)
     const [org_id, setOrg_id] = useState(null)
     const users = localStorage.getItem('user');
@@ -95,7 +94,6 @@ function CampainDetails() {
     const [translatedMpesa, setTranslatedMpesa] = useState('');
     const [translatedGlobal, setTranslatedGlobal] = useState('');
     const [submitTranslate, setSubmitTranslate] = useState('');
-    const [checkoutTranslate, setCheckoutTranslate] = useState('');
     const [shareTranslate, setShareTranslate] = useState('');
     const [giveTranslate, setGiveTranslate] = useState('');
 
@@ -312,7 +310,6 @@ function CampainDetails() {
         const contributionsTranslate= await translateText("Contributions", selectedLanguage);
         const goalTranslate= await translateText("Goal", selectedLanguage);
         setSubmitTranslate(await translateText("Contribute", selectedLanguage));
-        setCheckoutTranslate(await translateText("Checkout", selectedLanguage));
         setShareTranslate(await translateText("Share", selectedLanguage));
         setGiveTranslate(await translateText("Give Now", selectedLanguage));
         setTranslatedText(translated);
@@ -611,7 +608,7 @@ function CampainDetails() {
         return (
           <div
             className={className}
-            style={{ ...style, display: "block", background: "green", borderRadius: "50px" }}
+            style={{ ...style, display: "block", background: "green"}}
             onClick={onClick}
           />
         );
@@ -622,7 +619,7 @@ function CampainDetails() {
         return (
           <div
             className={className}
-            style={{ ...style, display: "block", background: "green", borderRadius: "50px" }}
+            style={{ ...style, display: "block", background: "green"}}
             onClick={onClick}
           />
         );
@@ -1096,7 +1093,7 @@ const togglePasswordVisibility = (e) => {
                                                 :
                                                 (
                                                     <button type="submit" class="btn btn-md py-2 px-4 flex justify-center items-center  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-medium shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded max-w-md">
-                                                       <FaRegArrowAltCircleRight className='w-5 h-5'/> {checkoutTranslate || "Checkout"}
+                                                       <MdOutlineSendToMobile className='w-5 h-5 font-medium'/>{ submitTranslate || "Contribute"}
                                                     </button>
                                                 )
                                             }

@@ -78,7 +78,10 @@ function Feature() {
 
     if(loading){
     return (
+      <div className='container'>
         <p>Loading....</p>
+      </div>
+        
         )
     }
 

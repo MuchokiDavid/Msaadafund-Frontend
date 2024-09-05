@@ -31,7 +31,7 @@ function WhyUs() {
                     </div>
                     <h3 className="text-lg font-semibold">Diverse Payment Options</h3>
                     <p className="mt-2 text-gray-500">
-                    We support various payment methods including M-Pesa, card payments, bitcoin, and CashApp to make contributions easy and accessible.
+                    We support various payment methods including M-Pesa, Cards, Apple pay, CashApp, and Bitcoin to make contributions easy and accessible.
                     </p>
                 </div>
 
