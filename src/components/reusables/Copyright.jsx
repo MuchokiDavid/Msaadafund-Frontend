@@ -14,7 +14,7 @@ function Copyright() {
   return (
     <>
     <hr className='font-normal'/>
-    <div className='flex justify-center items-center bg-sky-950 h-12'>      
+    <div className='flex justify-center items-center bg-sky-950 h-20'>      
         <div className='text-white text-xs text-center bg-sky-950 h-8 p-2'>
         © {currentYear} MsaadaFund. All rights reserved.
       </div>
