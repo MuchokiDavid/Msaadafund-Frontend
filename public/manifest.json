@@ -21,5 +21,27 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "description": "A platform for managing and tracking donations and contributions.",
+  "id": "com.msaadafund.app",
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "orientation": "portrait",
+  "screenshots": [
+    {
+      "src": "/images/screenshot1.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/screenshot2.png",
+      "sizes": "720x1280",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["business", "finance"],
+  "lang": "en-US",
+  "scope": "/",
+  "prefer_related_applications": false
 }
