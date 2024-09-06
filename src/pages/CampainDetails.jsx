@@ -692,11 +692,11 @@ const togglePasswordVisibility = (e) => {
                         </div>
                         
 
-                        <div className='bg-white py-4 px-2 rounded-lg lg:mt-3'>
+                        <div className='bg-white py-2 px-2 rounded-lg lg:mt-2'>
                             <div className="flex flex-col lg:flex-row gap-3 ">
                                 <div className="h-full">
                                     <div>
-                                        <select value={language} onChange={handleLanguageChange} className='my-1 p-1'>
+                                        <select value={language} onChange={handleLanguageChange} className='my-1 p-1 bg-gray-300'>
                                             <option value="en">English</option>
                                             <option value="sw">Swahili</option>
                                             <option value="es">Spanish</option>
