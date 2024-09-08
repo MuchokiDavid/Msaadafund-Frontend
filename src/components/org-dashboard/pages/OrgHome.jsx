@@ -3,6 +3,7 @@ import HomeCards from '../dash-components/HomeCards'
 import QuickLinks from '../dash-components/QuickLinks'
 import RecentDonations from '../dash-components/RecentDonations'
 import CallToAction from '../dash-components/CallToAction'
+import Charts from '../dash-components/Charts'
 // import { useNavigate } from 'react-router-dom'
 
 function OrgHome({allCampaigns,allDonations, allDonors,subscriptions}) {
@@ -38,6 +39,7 @@ function OrgHome({allCampaigns,allDonations, allDonors,subscriptions}) {
       <CallToAction/>
       <QuickLinks/>
       <HomeCards allCampaigns={allCampaigns} allDonations= {allDonations} subscriptions={subscriptions}/>
+      <Charts allDonations= {allDonations}/>
       <RecentDonations allDonations= {allDonations} allDonors={allDonors} allCampaigns={allCampaigns} />
     </div>
   )
