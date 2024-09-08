@@ -710,17 +710,11 @@ const togglePasswordVisibility = (e) => {
                                             <option value="ru">Russian</option>
                                             <option value="ar">Arabic</option>
                                             <option value="hi">Hindi</option>
-                                            <option value="bn">Bengali</option>
-                                            <option value="ur">Urdu</option>
                                             <option value="tr">Turkish</option>
                                             <option value="vi">Vietnamese</option>
                                             <option value="id">Indonesian</option>
-                                            <option value="ms">Malay</option>
-                                            <option value="th">Thai</option>
-                                            <option value="pl">Polish</option>
                                             <option value="ro">Romanian</option>
                                             <option value="nl">Dutch</option>
-                                            <option value="hu">Hungarian</option>
                                         </select> 
                                         {/* <h1 className="text-xl font-normal mb-2">{campaign && campaign.campaignName.charAt(0).toUpperCase() + campaign.campaignName.slice(1)}</h1>                             */}
                                         <h1 className="text-xl font-normal mb-2">{translatedCampName ||(campaign && campaign.campaignName.charAt(0).toUpperCase()) + campaign.campaignName.slice(1)}</h1>                            
