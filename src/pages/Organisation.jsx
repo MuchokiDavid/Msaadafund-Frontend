@@ -5,6 +5,7 @@ import Footer from '../components/reusables/Footer'
 // import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import {appKey, apiUrl} from '../context/Utils'
+import orgImage from '../../src/assets/orgProfile.png'
 
 function Organisation() {
     // get all organisations 
@@ -87,7 +88,7 @@ function Organisation() {
                     <div className="group relative block mt-8 sm:mt-10 lg:mt-12 bg-black rounded-xl overflow-hidden">
                         <img
                             alt="org logo"
-                            src={org && org.profileImage ? `${org.profileImage}` : "https://images.unsplash.com/photo-1606327054536-e37e655d4f4a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
+                            src={org && org.profileImage ? `${org.profileImage}` : `${orgImage}`}
                             className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
                             loading='lazy'
                         />
