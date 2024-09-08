@@ -36,14 +36,14 @@ function Menubar({handleMenuItemClick}) {
 
   return(
     <>
-  <aside className="flex flex-col min-w-64 min-h-screen pl-5 py-2 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l overflow-x-hidden">
+  <aside className="flex flex-col min-w-64 min-h-screen pl-5 py-2 overflow-y-auto bg-sky-900 text-white border-r rtl:border-r-0 rtl:border-l overflow-x-hidden">
         
     <div className="flex flex-col justify-between flex-1 sm:mb-16 lg:mb-6">
         <nav className="-mx-3 space-y-6 mt-4">
             <div className="space-y-3 ">
-                <label className="px-3 text-xs text-gray-500 uppercase">analytics</label>
+                <label className="px-3 text-xs uppercase">analytics</label>
 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-5 h-5">
@@ -53,7 +53,7 @@ function Menubar({handleMenuItemClick}) {
                     <span className="mx-2 text-sm font-medium">Dashboard</span>
                 </a>
 
-                {/* <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" href="#">
+                {/* <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
                     </svg>
@@ -63,9 +63,9 @@ function Menubar({handleMenuItemClick}) {
             </div>
 
             <div className="space-y-3 ">
-                <label className="px-3 text-xs text-gray-500 uppercase">Campaign</label>
+                <label className="px-3 text-xs uppercase">Campaign</label>
 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/createcampaign">
                     <GrAddCircle className='h-5 w-5'/>
@@ -73,7 +73,7 @@ function Menubar({handleMenuItemClick}) {
                     <span className="mx-2 text-sm font-medium">Create</span>
                 </a>
 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/mycampaigns/active">
                     
@@ -82,7 +82,7 @@ function Menubar({handleMenuItemClick}) {
                     <span className="mx-2 text-sm font-medium">Active</span>
                 </a>
 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/mycampaigns/inactive">
                     <MdOutlineCancel className='h-5 w-5'/>
@@ -90,7 +90,7 @@ function Menubar({handleMenuItemClick}) {
                     <span className="mx-2 text-sm font-medium">Inactive</span>
                 </a>
 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/donations">
                     <FaDonate className='h-4 w-4'/>
@@ -98,7 +98,7 @@ function Menubar({handleMenuItemClick}) {
                     <span className="mx-2 text-sm font-medium">Contributions</span>
                 </a>
                 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/transact/signatories">
                     
@@ -111,9 +111,9 @@ function Menubar({handleMenuItemClick}) {
 
 
             <div className="space-y-3 ">
-                <label className="px-3 text-xs text-gray-500 uppercase">Transact</label>
+                <label className="px-3 text-xs uppercase">Transact</label>
 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/transact/accounts">
                     
@@ -122,7 +122,7 @@ function Menubar({handleMenuItemClick}) {
                     <span className="mx-2 text-sm font-medium">Accounts</span>
                 </a>
 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/transact/withdraw">
                   
@@ -131,7 +131,7 @@ function Menubar({handleMenuItemClick}) {
                     <span className="mx-2 text-sm font-medium">Withdraw</span>
                 </a>
 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/transact/paybill">
                     <MdSendToMobile className='w-4 h-4' />
@@ -140,7 +140,7 @@ function Menubar({handleMenuItemClick}) {
                 </a>          
 
 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/transact/till">
                     <MdOutlinePayments className='w-4 h-4'/>
@@ -149,7 +149,7 @@ function Menubar({handleMenuItemClick}) {
                 </a>
 
 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/transact/buyairtime">
                     
@@ -162,9 +162,9 @@ function Menubar({handleMenuItemClick}) {
             </div>
 
             <div className="space-y-3 ">
-                <label className="px-3 text-xs text-gray-500 uppercase">Records</label>
+                <label className="px-3 text-xs uppercase">Records</label>
                 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/transact/transactionstatus">
                     
@@ -173,7 +173,7 @@ function Menubar({handleMenuItemClick}) {
                     <span className="mx-2 text-sm font-medium">Status</span>
                 </a>
 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/transact/withdrawals">
                     
@@ -182,7 +182,7 @@ function Menubar({handleMenuItemClick}) {
                     <span className="mx-2 text-sm font-medium">Withdrawals</span>
                 </a>
 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/transaction">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-5 h-5">
@@ -192,7 +192,7 @@ function Menubar({handleMenuItemClick}) {
                     <span className="mx-2 text-sm font-medium">Transactions</span>
                 </a>
 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/transact/approvals">
                     
@@ -205,9 +205,9 @@ function Menubar({handleMenuItemClick}) {
 
 
             <div className="space-y-3 ">
-                <label className="px-3 text-xs text-gray-500 uppercase">Customization</label>
+                <label className="px-3 text-xs uppercase">Customization</label>
 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/profile">
                     
@@ -216,7 +216,7 @@ function Menubar({handleMenuItemClick}) {
                     <span className="mx-2 text-sm font-medium">Profile</span>
                 </a>
 
-                <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
                 onClick={handleMenuItemClick}
                 href="/org/dashboard/helpcenter">
                     
@@ -224,7 +224,7 @@ function Menubar({handleMenuItemClick}) {
 
                     <span className="mx-2 text-sm font-medium">Help</span>
                 </a>
-                <button className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                <button className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
                 onClick={() => { handleLogout(); handleMenuItemClick(); }}
                 >
                    

@@ -27,13 +27,13 @@ function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
 
   return (
     <>
-      <aside className="flex flex-col min-w-64 h-screen pl-5 py-2 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l overflow-x-hidden">
+      <aside className="flex flex-col min-w-64 h-screen pl-5 py-2 overflow-y-auto bg-sky-900 text-white border-r rtl:border-r-0 rtl:border-l overflow-x-hidden">
           <div className="flex flex-col justify-between flex-1 mt-4">
               <nav className="-mx-3 space-y-6 ">
                   <div className="space-y-3 ">
-                      <label className="px-3 text-xs text-gray-500 uppercase">analytics</label>
+                      <label className="px-3 text-xs uppercase">analytics</label>
 
-                      <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 hover:text-gray-700" 
+                      <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 hover:text-gray-700" 
                       onClick={handleMenuItemClick}
                       href="/user/dashboard">
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-5 h-5">
@@ -45,9 +45,9 @@ function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
                   </div>
 
                   <div className="space-y-3 ">
-                      <label className="px-3 text-xs text-gray-500 uppercase">Data</label>
+                      <label className="px-3 text-xs uppercase">Data</label>
 
-                      <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                      <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                       onClick={handleMenuItemClick}
                       href="/user/dashboard/contributions">
                           
@@ -56,7 +56,7 @@ function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
                           <span className="mx-2 text-sm font-medium">Contributions</span>
                       </a>
 
-                      <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                      <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                       onClick={handleMenuItemClick}
                       href="/user/dashboard/subscriptions">
                           <MdOutlineSubscriptions/>
@@ -66,9 +66,9 @@ function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
                   {/* signatory routes  */}
                   {signatory && (
                   <div className="space-y-3 ">
-                    <label className="px-3 text-xs text-gray-500 uppercase">Signatory</label>
+                    <label className="px-3 text-xs uppercase">Signatory</label>
 
-                    <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                    <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
                     onClick={handleMenuItemClick}
                     href="/user/dashboard/approvals">
                     <GrTransaction className='w-5 h-5' />
@@ -79,9 +79,9 @@ function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
 
 
                   <div className="space-y-3 ">
-                      <label className="px-3 text-xs text-gray-500 uppercase">Customization</label>
+                      <label className="px-3 text-xs uppercase">Customization</label>
 
-                      <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                      <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
                       onClick={handleMenuItemClick}
                       href="/user/dashboard/profile">
                           
@@ -90,7 +90,7 @@ function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
                           <span className="mx-2 text-sm font-medium">Profile</span>
                       </a>
 
-                      <a className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                      <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
                       onClick={handleMenuItemClick}
                       href="/user/dashboard/help">
                           
@@ -98,7 +98,7 @@ function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
 
                           <span className="mx-2 text-sm font-medium">Help</span>
                       </a>
-                      <button className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
+                      <button className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
                       onClick={() => { handleLogout()}}
                       >
                         
