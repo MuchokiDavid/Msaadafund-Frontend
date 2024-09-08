@@ -19,7 +19,7 @@ function CallToAction() {
             </div>
             <div className="mt-6 sm:w-full sm:max-w-md xl:mt-0 xl:ml-8">
                 <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                    <button onClick={()=>setIsOpen(true)} className="flex items-center justify-center w-full px-5 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-blue-600 border border-blue-600 hover:border-blue rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                    <button onClick={()=>setIsOpen(true)} className="flex items-center justify-center w-full px-5 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-blue-500 border border-blue-500 hover:border-blue rounded-md hover:bg-blue-400 focus:outline-none focus:bg-blue-500">
                         Take a tour
                     </button>
                 </div>

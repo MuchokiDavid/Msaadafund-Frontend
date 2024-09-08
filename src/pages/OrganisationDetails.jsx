@@ -19,6 +19,7 @@ import { FaEye } from "react-icons/fa";
 import { MdOutlineCampaign } from "react-icons/md";
 import PopupGoogle from '../components/user-auth/PopupGoogle';
 import { apiUrl,appKey } from '../context/Utils';
+import orgImage from '../../src/assets/orgProfile.png'
 
 function OrganisationDetails() {
   const {orgid} = useParams();
@@ -217,7 +218,7 @@ function getTotalDonations(campaigns) {
         handleUnsubscribe={handleUnsubscribe}
         loading={loading}
         errors={errors}
-        profileImage= {organisationDetails && organisationDetails.profileImage ?`${organisationDetails.profileImage}`: "https://images.unsplash.com/photo-1606327054536-e37e655d4f4a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
+        profileImage= {organisationDetails && organisationDetails.profileImage ?`${organisationDetails.profileImage}`: `${orgImage}`}
       />  
 
       </div>

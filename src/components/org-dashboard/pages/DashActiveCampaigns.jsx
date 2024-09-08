@@ -205,7 +205,7 @@ function DashActiveCampaigns({ allCampaigns, campaignError }) {
                 ?
                 (<>
                     <div className="my-1 inline-block w-full overflow-scroll align-middle border-b border-gray-200 sm:rounded-lg border">
-                        <table className="min-w-full table rounded-lg text-xs bg-white statTable">
+                        <table className="min-w-full table table-xs table-zebra rounded-lg text-xs bg-white statTable">
                             {/* head */}
                             <thead className='text-gray-800 bg-gray-100'>
                                 <tr>

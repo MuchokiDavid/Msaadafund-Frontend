@@ -37,7 +37,7 @@ function Approvals() {
         <h1 className="mb-1 my-2 text-2xl font-bold leading-tight ">Pending Approvals</h1>
         <hr/>
         <div className="overflow-x-auto">
-            <table className="table table-compact w-full text-xs bg-white text-left text-wrap">
+            <table className="table table-compact table-zebra table-xs w-full text-xs bg-white text-left text-wrap">
                 <thead className='text-balance text-gray-800 bg-gray-100'>
                     <tr>
                     <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Id</th>

@@ -39,7 +39,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
 
     useEffect(() => {
         const getDonations = async () => {
-            // setLoading(true)
+            setLoading(true)
             try {
                 const response = await fetch(`${apiUrl}/api/v1.0/org_donations`, {
                     method: 'GET',
@@ -67,6 +67,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
             }
             catch {
                 // setErrors("No donations found")
+                setLoading(false);
             }
         }
         getDonations();
@@ -91,13 +92,13 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
     if (!token && !orgName){
         window.location.href = '/org/login';
     }
-    if (loading){
-        return (
-            <div class="flex items-center justify-center h-screen">
-                <span className="loading loading-spinner loading-lg text-blue-500"></span>
-            </div>
-        )
-    }
+    // if (loading){
+    //     return (
+    //         <div class="flex items-center justify-center h-screen">
+    //             <span className="loading loading-spinner loading-lg text-blue-500"></span>
+    //         </div>
+    //     )
+    // }
 
     // handle pdf route
     // get route from backend
@@ -180,7 +181,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                             </div>
                         </div>
                         <div className="my-1 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 rounded-lg">
-                            <table className="min-w-full border table rounded-lg overflow-x-auto text-xs bg-white statTable text-left">
+                            <table className="min-w-full border table table-xs table-zebra rounded-lg overflow-x-auto text-xs bg-white statTable text-left">
                                 {/* head */}
                                 <thead className='text-gray-800 bg-gray-100'>
                                     <tr>
@@ -195,6 +196,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {loading ? (<span className="loading loading-dots loading-md"></span>) : null}
                                     {paginatedDonations.map((donation) => {
                                         const user = donors.find(user => user.id === donation.userId);
                                         const donorName = user ? `${user.firstName} ${user.lastName}` : `${donation.donor_name}`;

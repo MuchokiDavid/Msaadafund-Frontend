@@ -7,15 +7,20 @@ function RecentDonations({allDonations, allCampaigns, allDonors}) {
     const [campaigns, setCampaigns] = useState(allDonations);
     const [donors, setDonors] = useState(allDonors)
     const token=localStorage.getItem('token')
+    const [loading, setLoading] = useState(false)
 
 //set donors to a state
 useEffect(() => {
+  setLoading(true)
   setDonors(allDonors)
+  setLoading(false)
 }, [allDonors,token])
  
 //Store all donations
     useEffect(() => {
+      setLoading(true)
       setDonations(allDonations)
+      setLoading(false)
     }, [allDonations,token])
 
 //Store all campaigns
@@ -33,6 +38,8 @@ useEffect(() => {
         }
       }, [donations]);
 
+
+
 // console.log(allDonors)
 // console.log(slicedDonations)
 // console.log(allCampaigns)
@@ -41,18 +48,18 @@ useEffect(() => {
     <div className='px-2 py-4 bg-white rounded-lg mt-3 border my-6'>
       <div className='flex justify-between'>
         <div>
-          <h2 className="text-left text-xl mt-1">Recent Donations</h2>
+          <h2 className="text-left text-lg mt-1">Latest Donations</h2>
         </div>
         <div className='mr-2'>
           {/* button to view more transactions */}
-          <a href='/org/dashboard/donations'><button className="text-sm text-left text-white bg-blue-600 p-1.5 rounded-lg hover:bg-blue-800">See all</button></a>
+          <a href='/org/dashboard/donations'><button className="text-sm text-left bg-gray-200 p-1.5 rounded-lg hover:bg-gray-300">View donations</button></a>
         </div>
       </div>        
         {slicedDonations && slicedDonations.length > 0 
           ? 
           (
             <div className='overflow-scroll mt-2 '>
-              <table className="min-w-full table rounded-md overflow-x-auto text-xs bg-white statTable" >
+              <table className="min-w-full table table-xs table-zebra rounded-md overflow-x-auto text-xs bg-white statTable" >
                   {/* head */}
                   <thead className='text-gray-800 bg-gray-100 text-left'>
                       <tr className='text-gray-800 bg-gray-100'>
@@ -67,6 +74,7 @@ useEffect(() => {
                       </tr>
                   </thead>
                   <tbody>
+                    {loading ? (<span className="loading loading-dots loading-md"></span>) : null}
                       {slicedDonations && slicedDonations.map((donation) => {
                           const user = donors && donors.find(user => user.id === donation.userId);
                           const donorName = user ? `${user.firstName} ${user.lastName}` : `${donation.donor_name}`;

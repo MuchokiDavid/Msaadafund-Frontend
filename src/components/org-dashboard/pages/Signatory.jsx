@@ -29,6 +29,7 @@ function Signatory() {
     }, [accessToken])
 
     function handleFetch(){
+        setLoading(true)
         fetch(`${apiUrl}/api/v1.0/signatories`, {
             method: "GET",
             headers: {
@@ -37,21 +38,30 @@ function Signatory() {
             }
         }).then ((res) => {
             if (res.status === 404) {
+                setLoading(false)
                 setSignatories([])
                 return [];
             }
-            return res.json();
+            if (res.status === 200) {
+                setLoading(false)
+                return res.json();
+            }
         })
         .then((data) => {
             if(data.error){
                 setError(data.error)
+                setLoading(false)
             }
             else{
                 setSignatories(data);                
+                setLoading(false)                
             }
         })
 
-        .catch((err) => {setError(err) })
+        .catch((err) => {
+            setError(err)
+            setLoading(false)
+        })
         // .then((response) => {
         //     setSignatories(response.data);
         //     setLoading(false)
@@ -228,9 +238,10 @@ function Signatory() {
 
                 <p className='text-gray-800'><span className='text-red-600'>*</span>Add atleast three signatories for transactions approvals</p>
             </div>
+            {loading ? (<span className="loading loading-dots loading-md"></span>) : null}
             {signatories && signatories.length === 0 && <p className="text-red-600 mb-4">No signatories found.</p>}
             <div className='overflow-x-auto'>
-                <table className='min-w-full border table rounded-lg overflow-x-auto text-xs bg-white statTable'>
+                <table className='min-w-full border table table-sm table-zebra rounded-lg overflow-x-auto text-xs bg-white statTable'>
                     <thead className='text-gray-800 bg-gray-100'>
                         <tr>
                         <th className='px-6 py-3 font-medium leading-4  tracking-wider text-leftuppercase border-b border-gray-200 '>S/No</th>

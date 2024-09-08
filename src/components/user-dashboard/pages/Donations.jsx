@@ -86,7 +86,7 @@ function Donations({allDonation}) {
                       </div>
                   </div>
                   <div className="my-3 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 sm:rounded-lg">
-                      <table className="min-w-full border table rounded-lg overflow-x-auto text-xs bg-white statTable">
+                      <table className="table table-compact table-xs table-zebra w-full text-xs bg-white text-left text-wrap">
                           {/* head */}
                           <thead className='text-gray-800 bg-gray-100'>
                               <tr>
@@ -95,7 +95,6 @@ function Donations({allDonation}) {
                                   <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Amount</th>  
                                   <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Campaign</th>
                                   <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Category</th>
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Start Date</th>   
                                   <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>End Date</th>  
                                   <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Organisations</th>
                                   <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Donation Date</th>                    
@@ -105,28 +104,25 @@ function Donations({allDonation}) {
                               {allDonations && paginatedDonations.map((donation, index) => {
                                   return (
                                       <tr key={donation._id}>
-                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
+                                          <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>
                                               <div className='text-gray-900'>{index + 1}</div>
                                           </td>
-                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
+                                          <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>
                                               <div className='text-gray-900'>{donation.invoice_id}</div>
                                           </td>
-                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
+                                          <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>
                                               <div className='text-gray-900'>{donation.currency} {donation.amount}</div>
                                           </td>
-                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
+                                          <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>
                                               <div className='text-gray-900'>{donation.campaign ? donation.campaign.campaignName : ""}</div>
                                           </td>
-                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
+                                          <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>
                                               <div className='text-gray-900'>{donation.campaign ? donation.campaign.category : ""}</div>
                                           </td>
-                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
-                                              <div className='text-gray-900'>{donation.campaign ? donation.campaign.startDate : ""}</div>
-                                          </td>
-                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
+                                          <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>
                                               <div className='text-gray-900'>{donation.campaign ? donation.campaign.endDate : ""}</div>
                                           </td>
-                                          <td className='px-4 py-2 whitespace-nowrap border-b border-gray-200'>
+                                          <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>
                                               <div className='text-gray-900'>{donation.campaign ? donation.campaign.organisation.orgName : ""}</div>
                                           </td>
                                           <td>

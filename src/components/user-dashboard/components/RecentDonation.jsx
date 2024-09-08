@@ -24,11 +24,11 @@ function RecentDonation({allDonations}) {
     <div className='px-2 py-4 bg-white rounded-lg mt-3 border my-6'>
         <div className='flex justify-between'>
             <div>
-                <h2 className="text-left text-xl mt-1">Recent Donations</h2>
+                <h2 className="text-left text-lg mt-1">Latest Donations</h2>
                 </div>
                 <div className='mr-2'>
                 {/* button to view more transactions */}
-                <a href='/user/dashboard/contributions'><button className="text-sm text-left text-white bg-blue-600 p-1.5 rounded-lg hover:bg-blue-800">See all</button></a>
+                <a href='/user/dashboard/contributions'><button className="text-sm text-left bg-gray-200 p-1.5 rounded-lg hover:bg-gray-300">View donations</button></a>
             </div>
         </div>
         {
@@ -36,7 +36,7 @@ function RecentDonation({allDonations}) {
             ?
             (
                 <div className="overflow-scroll mt-2">
-                    <table className="w-fit table rounded-md overflow-x-auto text-xs bg-white statTable">
+                    <table className="w-fit table table-zebra table-xs rounded-md overflow-x-auto text-xs bg-white statTable">
                         {/* head */}
                         <thead className='text-gray-800 bg-gray-100'>
                             <tr>
