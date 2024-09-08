@@ -36,7 +36,7 @@ function Menubar({handleMenuItemClick}) {
 
   return(
     <>
-  <aside className="flex flex-col min-w-64 min-h-screen pl-5 py-2 overflow-y-auto bg-sky-950 text-white border-r rtl:border-r-0 rtl:border-l overflow-x-hidden">
+  <aside className="flex flex-col min-w-64 min-h-screen pl-5 py-2 overflow-y-auto bg-white text-sky-950 border-r rtl:border-r-0 rtl:border-l overflow-x-hidden">
         
     <div className="flex flex-col justify-between flex-1 sm:mb-16 lg:mb-6">
         <nav className="-mx-3 space-y-6 mt-4">

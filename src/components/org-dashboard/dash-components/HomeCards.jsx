@@ -38,7 +38,7 @@ function HomeCards({allCampaigns, allDonations, subscriptions}) {
   return (
     <div className='mb-4'>
         <h1 className="text-left text-xl mt-2">Statistics</h1>
-        <div className="grid grid-cols-1 gap-4 mt-2 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 mt-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
             <div className="flex items-center rounded-md overflow-auto bg-green-800 px-2 py-4 border">
                 <div className="p-2 bg-green-800 rounded-2xl">
                 <SiWebmoney className='h-16 w-16 text-white'/>
