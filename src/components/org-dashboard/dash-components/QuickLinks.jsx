@@ -48,7 +48,7 @@ function QuickLinks() {
             <h2 className="text-xl mb-4 view-quick">Quick Links</h2>
             <div className="grid lg:grid-cols-7 grid-cols-3 sm:grid-cols-4 gap-8 py-2">
                 {quickLinksData.map((link, index) => (
-                    <div className="bg-white rounded-lg hover:shadow-lg p-2 border" key={index}>
+                    <div className="bg-transparent rounded-lg hover:shadow-sm p-2" key={index}>
                         <QuickLink icon={link.icon} name={link.name} to={link.to} className={link.className} />
                     </div>
                 ))}
