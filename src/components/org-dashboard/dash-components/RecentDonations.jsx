@@ -7,15 +7,20 @@ function RecentDonations({allDonations, allCampaigns, allDonors}) {
     const [campaigns, setCampaigns] = useState(allDonations);
     const [donors, setDonors] = useState(allDonors)
     const token=localStorage.getItem('token')
+    const [loading, setLoading] = useState(false)
 
 //set donors to a state
 useEffect(() => {
+  setLoading(true)
   setDonors(allDonors)
+  setLoading(false)
 }, [allDonors,token])
  
 //Store all donations
     useEffect(() => {
+      setLoading(true)
       setDonations(allDonations)
+      setLoading(false)
     }, [allDonations,token])
 
 //Store all campaigns
@@ -32,6 +37,8 @@ useEffect(() => {
           setSlicedDonations(donations);
         }
       }, [donations]);
+
+
 
 // console.log(allDonors)
 // console.log(slicedDonations)
@@ -52,7 +59,7 @@ useEffect(() => {
           ? 
           (
             <div className='overflow-scroll mt-2 '>
-              <table className="min-w-full table rounded-md overflow-x-auto text-xs bg-white statTable" >
+              <table className="min-w-full table table-xs table-zebra rounded-md overflow-x-auto text-xs bg-white statTable" >
                   {/* head */}
                   <thead className='text-gray-800 bg-gray-100 text-left'>
                       <tr className='text-gray-800 bg-gray-100'>
@@ -67,6 +74,7 @@ useEffect(() => {
                       </tr>
                   </thead>
                   <tbody>
+                    {loading ? (<span className="loading loading-dots loading-md"></span>) : null}
                       {slicedDonations && slicedDonations.map((donation) => {
                           const user = donors && donors.find(user => user.id === donation.userId);
                           const donorName = user ? `${user.firstName} ${user.lastName}` : `${donation.donor_name}`;

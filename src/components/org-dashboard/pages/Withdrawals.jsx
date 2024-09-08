@@ -10,6 +10,7 @@ function Withdrawals() {
     const [search, setSearch] = useState('');
     const [filtered, setFiltered] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [loading, setLoading]= useState(false)
     const itemsPerPage = 15;
 
     //useEffect to filter all withdrawals with the search term in the search input
@@ -28,6 +29,7 @@ function Withdrawals() {
     }, [search, allWithdrawals, setAllWithdrawals]);
 
     useEffect(() => {
+        setLoading(true)
         const config = {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -36,9 +38,11 @@ function Withdrawals() {
         };
         axios.get(`${apiUrl}/api/v1.0/withdraw_transactions`, config)
         .then((res) => {
+            setLoading(false)
             setAllWithdrawals(res.data.message);
         })
         .catch((err) => {
+            setLoading(false)
             console.log(err);
         });
     }, [token]);
@@ -124,23 +128,9 @@ function Withdrawals() {
                 </button>
             </div>
             <div className='text-sm text-red-500'>{errors}</div>
-            {allWithdrawals && allWithdrawals.length === 0 ? (
-                <div className='grid grid-cols-1 gap-4 mt-3 px-4'>
-                    <div>
-                        <p className='text-red-500'>No withdrawals to display.</p>
-                    </div>
-                    <div>
-                        <a href='/org/dashboard/createcampaign'>
-                            <button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
-                                Create Campaign
-                            </button>
-                        </a>
-                    </div>
-                </div>
-            ) : (
                 <div>
                     <div className='overflow-scroll my-4 bg-white border rounded-lg'>
-                        <table className='table w-full min-w-full text-xs overflow-x-auto text-left'>
+                        <table className='table table-zebra table-xs w-full min-w-full text-xs overflow-x-auto text-left'>
                             <thead className='text-gray-800 bg-gray-100 text-left uppercase'>
                                 <tr className='text-gray-800 bg-gray-100'>
                                     <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Tracking id</th>
@@ -154,6 +144,21 @@ function Withdrawals() {
                                 </tr>
                             </thead>
                             <tbody>
+                                {loading && (
+                                    <tr>
+                                        <td colSpan="8" className="text-left">
+                                            <span className="loading loading-dots loading-lg"></span>
+                                        </td>
+                                    </tr>
+                                )}
+                                {!loading && currentItems.length === 0 && (
+                                    <tr>
+                                        <td colSpan="8" className="text-left">
+                                            No data available
+                                        </td>
+                                    </tr>
+                                )}
+
                                 {currentItems.map((withdrawal, index) => (
                                     <tr key={index}>
                                         <td>{withdrawal.tracking_id}</td>
@@ -182,7 +187,6 @@ function Withdrawals() {
                         </button>
                     </div>
                 </div>
-            )}
         </div>
     )
 }

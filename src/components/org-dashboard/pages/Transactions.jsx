@@ -13,7 +13,7 @@ function Transactions({allCampaigns, campaignError}) {
     const [transactions, setTransactions] = useState([])
     const [filter, setFilter] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(20);
+    const [itemsPerPage] = useState(25);
     const [filteredTransactions, setFilteredTransactions] = useState([]);
 
      // Calculate total pages based on the number of items and items per page
@@ -165,7 +165,7 @@ function Transactions({allCampaigns, campaignError}) {
                        <div className="my-5 inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
                          
                         <div className="overflow-x-auto">
-                            <table className="min-w-full border table rounded-lg overflow-x-auto text-xs bg-white statTable text-left">
+                            <table className="min-w-full border table table-xs table-zebra rounded-lg overflow-x-auto text-xs bg-white statTable text-left">
                               <thead className='text-gray-800 bg-gray-100'>
                                 <tr>
                                   <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>INVOICE</th>

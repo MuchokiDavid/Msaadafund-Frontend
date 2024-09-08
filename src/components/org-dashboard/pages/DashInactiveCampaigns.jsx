@@ -157,7 +157,7 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
                (
                 <>
                     <div className="my-1 inline-block w-full overflow-x-auto align-middle border-b border-gray-200 sm:rounded-lg">
-                        <table className="w-full table-zebra text-xs lg:text-sm overflow-scroll border bg-white">
+                        <table className="w-full table table-xs table-zebra text-xs lg:text-sm overflow-scroll border bg-white">
                             {/* head */}
                             <thead className='text-gray-800 bg-gray-100'>
                                 <tr>

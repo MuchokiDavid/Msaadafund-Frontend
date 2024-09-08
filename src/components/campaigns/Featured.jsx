@@ -79,7 +79,7 @@ function Feature() {
     if(loading){
     return (
       <div className='container'>
-        <p>Loading....</p>
+        <span className="loading loading-dots loading-md"></span>
       </div>
         
         )

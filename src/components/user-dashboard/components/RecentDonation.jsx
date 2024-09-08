@@ -36,7 +36,7 @@ function RecentDonation({allDonations}) {
             ?
             (
                 <div className="overflow-scroll mt-2">
-                    <table className="w-fit table rounded-md overflow-x-auto text-xs bg-white statTable">
+                    <table className="w-fit table table-zebra table-xs rounded-md overflow-x-auto text-xs bg-white statTable">
                         {/* head */}
                         <thead className='text-gray-800 bg-gray-100'>
                             <tr>
