@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { apiUrl } from '../../../context/Utils';
 import axios from 'axios';
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#AF19FF'];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#AF19FF', '#FF5757'];
 
 function WithdrawalsChart() {
     const [allWithdrawals, setAllWithdrawals] = useState([]);
     const token = localStorage.getItem('token');
     const [loading, setLoading] = useState(false);
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
 
     useEffect(() => {
         setLoading(true);
@@ -29,9 +31,24 @@ function WithdrawalsChart() {
             });
     }, [token]);
 
+    // Handle date range filtering
+    const filterTransactionsByDate = (transactions) => {
+        if (!startDate || !endDate) {
+            return transactions; // Return all if no date range is selected
+        }
+
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+
+        return transactions.filter(transaction => {
+            const transactionDate = new Date(transaction.transaction_date);
+            return transactionDate >= start && transactionDate <= end;
+        });
+    };
+
     // Filter successful transactions and aggregate by trans_type
-    const successfulTransactions = allWithdrawals.filter(
-        transaction => transaction.trans_status === "Successful"
+    const successfulTransactions = filterTransactionsByDate(
+        allWithdrawals.filter(transaction => transaction.trans_status === "Successful")
     );
 
     const aggregatedData = successfulTransactions.reduce((acc, transaction) => {
@@ -50,28 +67,55 @@ function WithdrawalsChart() {
 
     return (
         <div>
-            <h2 className='text-center text-lg font-medium mt-2'>Spending Chart</h2>
-            <ResponsiveContainer width={300} height={300}>
-                <PieChart>
-                    <Pie
-                        data={aggregatedData}
-                        dataKey="amount"
-                        nameKey="trans_type"
-                        cx="50%"
-                        cy="50%"
-                        outerRadius={75}
-                        fill="#8884d8"
-                        label
-                        paddingAngle={5} // Adds padding between slices
-                    >
-                        {aggregatedData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                    </Pie>
-                    <Tooltip />
-                    <Legend />
-                </PieChart>
-            </ResponsiveContainer>
+            <h2 className='text-center text-lg font-medium mt-2'>Spending</h2>
+            <div className="date-filters grid grid-cols-1 gap-2 mt-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 mx-3">
+                <div>
+                    <label>
+                        Start: 
+                        <input 
+                            type="date" 
+                            value={startDate} 
+                            className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg p-1 mr-2"
+                            onChange={(e) => setStartDate(e.target.value)} 
+                        />
+                    </label>
+                </div>
+                 
+                 <div>
+                    <label>
+                        End:
+                        <input 
+                            type="date" 
+                            value={endDate} 
+                            className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg p-1"
+                            onChange={(e) => setEndDate(e.target.value)} 
+                        />
+                    </label>
+                 </div>
+                
+            </div>
+            <div className='flex justify-center items-center'>
+                    <PieChart width={300} height={300}>
+                        <Pie
+                            data={aggregatedData}
+                            dataKey="amount"
+                            nameKey="trans_type"
+                            cx="50%"
+                            cy="50%"
+                            outerRadius={80}
+                            fill="#8884d8"
+                            label
+                            paddingAngle={1} // Adds padding between slices
+                        >
+                            {aggregatedData.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            ))}
+                        </Pie>
+                        <Tooltip />                     
+                        <Legend />
+                    </PieChart>
+            </div>
+            
         </div>
     );
 }
