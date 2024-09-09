@@ -165,18 +165,18 @@ function Transactions({allCampaigns, campaignError}) {
                        <div className="my-5 inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
                          
                         <div className="overflow-x-auto">
-                            <table className="min-w-full border table table-xs table-zebra rounded-lg overflow-x-auto text-xs bg-white statTable text-left">
+                            <table className="min-w-full border table table-xs table-auto rounded-lg overflow-x-auto text-xs bg-white statTable text-left">
                               <thead className='text-gray-800 bg-gray-100'>
                                 <tr>
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>INVOICE</th>
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>AMOUNT</th>
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>STATUS</th>
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>BALANCE</th>
-                                  {/* <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>NARRATIVE</th> */}
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>TRANS TYPE</th>
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>ACCOUNT</th>
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>DATE</th>
-                                  <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '></th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>INVOICE</th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>AMOUNT</th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>STATUS</th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>BALANCE</th>
+                                  {/* <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>NARRATIVE</th> */}
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>TRANS TYPE</th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>ACCOUNT</th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>DATE</th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '></th>
                                 </tr>
                               </thead>                              
                               <tbody>

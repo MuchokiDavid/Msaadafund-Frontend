@@ -77,6 +77,7 @@ function DonationsChart({ allDonations }) {
             </div>
 
             <div className='flex justify-center items-center'>
+              {chartData.length === 0 && <p className='text-center text-lg font-medium mt-2'>No Contributions</p>}
               <PieChart width={300} height={300}>
                   <Pie
                       data={chartData}

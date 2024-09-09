@@ -8,12 +8,10 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#AF19FF', '#FF5757'
 function WithdrawalsChart() {
     const [allWithdrawals, setAllWithdrawals] = useState([]);
     const token = localStorage.getItem('token');
-    const [loading, setLoading] = useState(false);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
     useEffect(() => {
-        setLoading(true);
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -22,11 +20,9 @@ function WithdrawalsChart() {
         };
         axios.get(`${apiUrl}/api/v1.0/withdraw_transactions`, config)
             .then((res) => {
-                setLoading(false);
                 setAllWithdrawals(res.data.message);
             })
             .catch((err) => {
-                setLoading(false);
                 console.log(err);
             });
     }, [token]);
@@ -95,6 +91,7 @@ function WithdrawalsChart() {
                 
             </div>
             <div className='flex justify-center items-center'>
+                    {allWithdrawals.length === 0 && <p className='text-center text-lg font-medium mt-2'>No Withdrawals</p>}
                     <PieChart width={300} height={300}>
                         <Pie
                             data={aggregatedData}

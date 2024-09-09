@@ -181,18 +181,18 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                             </div>
                         </div>
                         <div className="my-1 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 rounded-lg">
-                            <table className="min-w-full border table table-xs table-zebra rounded-lg overflow-x-auto text-xs bg-white statTable text-left">
+                            <table className="min-w-full border table table-auto table-xs rounded-lg overflow-x-auto text-xs bg-white statTable text-left">
                                 {/* head */}
                                 <thead className='text-gray-800 bg-gray-100'>
                                     <tr>
-                                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>ID</th>
-                                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Campaign</th>
-                                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Category</th>
-                                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Contributor</th>
-                                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Amount</th>
-                                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Method</th> 
-                                        <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Date</th>   
-                                        {/* <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Status</th>                            */}
+                                        <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>ID</th>
+                                        <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Campaign</th>
+                                        <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Category</th>
+                                        <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Contributor</th>
+                                        <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Amount</th>
+                                        <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Method</th> 
+                                        <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Date</th>   
+                                        {/* <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Status</th>                            */}
                                     </tr>
                                 </thead>
                                 <tbody>

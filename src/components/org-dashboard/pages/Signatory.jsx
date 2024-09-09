@@ -241,15 +241,15 @@ function Signatory() {
             {loading ? (<span className="loading loading-dots loading-md"></span>) : null}
             {signatories && signatories.length === 0 && <p className="text-red-600 mb-4">No signatories found.</p>}
             <div className='overflow-x-auto'>
-                <table className='min-w-full border table table-sm table-zebra rounded-lg overflow-x-auto text-xs bg-white statTable'>
+                <table className='min-w-full border table table-sm table-auto rounded-lg overflow-x-auto text-xs bg-white statTable'>
                     <thead className='text-gray-800 bg-gray-100'>
                         <tr>
-                        <th className='px-6 py-3 font-medium leading-4  tracking-wider text-leftuppercase border-b border-gray-200 '>S/No</th>
-                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>First Name</th>
-                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Last Name</th>
-                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Email</th>
-                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Role</th>
-                            <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Actions</th>
+                        <th className='px-4 py-3 font-medium leading-4  tracking-wider text-leftuppercase border-b border-gray-200 '>S/No</th>
+                            <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>First Name</th>
+                            <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Last Name</th>
+                            <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Email</th>
+                            <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Role</th>
+                            <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Actions</th>
                         </tr>
                     </thead>
                     <tbody>

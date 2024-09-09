@@ -157,19 +157,19 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
                (
                 <>
                     <div className="my-1 inline-block w-full overflow-x-auto align-middle border-b border-gray-200 sm:rounded-lg">
-                        <table className="w-full table table-xs table-zebra text-xs lg:text-sm overflow-scroll border bg-white">
+                        <table className="w-full table table-xs table-auto text-xs lg:text-sm overflow-scroll border bg-white">
                             {/* head */}
                             <thead className='text-gray-800 bg-gray-100'>
                                 <tr>
-                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>ID</th>
-                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Campaign Name</th>
-                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Category</th>
-                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Start Date</th>
-                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>End Date</th>   
-                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Budget</th> 
-                                    {/* <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Balance</th>     */}
-                                    {/* <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Edit</th>    */}
-                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Activate</th>                       
+                                    <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>ID</th>
+                                    <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Campaign Name</th>
+                                    <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Category</th>
+                                    <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Start Date</th>
+                                    <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>End Date</th>   
+                                    <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Budget</th> 
+                                    {/* <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Balance</th>     */}
+                                    {/* <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Edit</th>    */}
+                                    <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Activate</th>                       
                                 </tr>
                             </thead>
                             <tbody>
@@ -178,13 +178,13 @@ function DashInactiveCampaigns({allCampaigns, campaignError}) {
                                     <tr key={item.id}>
                                         <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.id}</td>
                                         <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.campaignName}</td>
-                                        <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.category}</td>
-                                        <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200'>{item.startDate}</td>
-                                        <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.endDate}</td>
-                                        <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.targetAmount}</td>
-                                        {/* <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200'>{walletDetails &&walletDetails[item.id]?.available_balance}</td> */}
-                                        {/* <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '><button onClick={()=>handleEditButton(item.id)} className='text-white p-1.5 bg-blue-600 rounded border hover:border-blue-600 hover:bg-transparent hover:text-black'>Edit</button></td> */}
-                                        <td className='px-6 py-1 whitespace-no-wrap border-b border-gray-200 '><button onClick={()=>activateCampaign(item.id)} className='bg-blue-600 hover:bg-blue-700 text-lg text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline ml-2 w-full sm:w-auto'><VscVmActive/></button></td>
+                                        <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.category}</td>
+                                        <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{item.startDate}</td>
+                                        <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.endDate}</td>
+                                        <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.targetAmount}</td>
+                                        {/* <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{walletDetails &&walletDetails[item.id]?.available_balance}</td> */}
+                                        {/* <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '><button onClick={()=>handleEditButton(item.id)} className='text-white p-1.5 bg-blue-600 rounded border hover:border-blue-600 hover:bg-transparent hover:text-black'>Edit</button></td> */}
+                                        <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '><button onClick={()=>activateCampaign(item.id)} className='bg-blue-600 hover:bg-blue-700 text-lg text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline ml-2 w-full sm:w-auto'><VscVmActive/></button></td>
                                     </tr>
                                 )})}
                             </tbody>

@@ -130,17 +130,17 @@ function Withdrawals() {
             <div className='text-sm text-red-500'>{errors}</div>
                 <div>
                     <div className='overflow-scroll my-4 bg-white border rounded-lg'>
-                        <table className='table table-zebra table-xs w-full min-w-full text-xs overflow-x-auto text-left'>
+                        <table className='table table-auto table-xs w-full min-w-full text-xs overflow-x-auto text-left'>
                             <thead className='text-gray-800 bg-gray-100 text-left uppercase'>
                                 <tr className='text-gray-800 bg-gray-100'>
-                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Tracking id</th>
-                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Name</th>
-                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Campaign</th>
-                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Account No</th>
-                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Trans Type</th>
-                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Amount</th>
-                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Trans Status</th>
-                                    <th className='px-6 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Trans date</th>
+                                    <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Tracking id</th>
+                                    <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Name</th>
+                                    <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Campaign</th>
+                                    <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Account No</th>
+                                    <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Trans Type</th>
+                                    <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Amount</th>
+                                    <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Trans Status</th>
+                                    <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Trans date</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -749,10 +749,10 @@ const togglePasswordVisibility = (e) => {
                 </div>
                 
                 <div className="flex flex-col lg:flex-row gap-0 mt-0">
-                    <div className="h-full lg:w-2/3 border border-transparent mt-0 rounded-lg px-2 py-2">
+                    <div className="h-full lg:w-2/3 border border-transparent mt-0 rounded-lg px-4 py-2">
                         {/* <hr/> */}
                         <h1 className='text-xl my-2 font-semibold w-full'>{translatedStory ||"Story"}</h1>                         
-                        <div className="bg-white text-xs sm:h-52 lg:h-72 w-full overflow-hidden">                                                          
+                        <div className="bg-white text-xs sm:h-52 lg:h-fit w-full">                                                          
                             <div> 
                             {isLargeScreen ?
                                 <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: translatedText || campaign.description }}></div>
@@ -800,7 +800,7 @@ const togglePasswordVisibility = (e) => {
                     </div>
                 </div>
 
-                <div className='container mt-1 bg-gray-100 border p-4 rounded-lg' id='donationTabs'>
+                <div className='container mt-6 bg-gray-100 border p-4 rounded-lg' id='donationTabs'>
                     <div className="sm:hidden">
                     <label htmlFor="Tab" className="sr-only">Tab</label>
                     <select
@@ -1086,7 +1086,7 @@ const togglePasswordVisibility = (e) => {
                                                 ) 
                                                 :
                                                 (
-                                                    <button type="submit" class="btn btn-md py-2 px-4 flex justify-center items-center  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-medium shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded max-w-md">
+                                                    <button type="submit" class="btn btn-md py-2 px-4 flex justify-center items-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-medium shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded max-w-md">
                                                        <MdOutlineSendToMobile className='w-5 h-5 font-medium'/>{ submitTranslate || "Contribute"}
                                                     </button>
                                                 )
