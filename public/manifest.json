@@ -43,5 +43,24 @@
   "categories": ["business", "finance"],
   "lang": "en-US",
   "scope": "/",
-  "prefer_related_applications": false
+  "prefer_related_applications": false,
+
+  "display_override": ["window-controls-overlay", "standalone"],
+
+  "file_handlers": {
+    "text": {
+      "types": [".txt", ".md"],
+      "action": "/open-file"
+    },
+    "images": {
+      "types": [".png", ".jpg"],
+      "action": "/open-image"
+    }
+  },
+
+  "edge_side_panel": {
+    "title": "Msaadafund Edge Side Panel",
+    "enabled": true,
+    "icon": "logo192.png"
+  }
 }
