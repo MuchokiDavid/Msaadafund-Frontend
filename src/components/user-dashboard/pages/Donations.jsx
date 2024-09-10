@@ -85,7 +85,7 @@ function Donations({allDonation}) {
                           />
                       </div>
                   </div>
-                  <div className="my-3 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 sm:rounded-lg">
+                  <div className="my-3 inline-block min-w-full overflow-x-auto align-middle border-b border-gray-200 sm:rounded-lg">
                       <table className="table table-compact table-xs table-auto w-full text-xs bg-white text-left text-wrap">
                           {/* head */}
                           <thead className='text-gray-800 bg-gray-100'>
