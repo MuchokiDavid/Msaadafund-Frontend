@@ -396,7 +396,7 @@ function CampainDetails() {
                                     setDonating(false)
                                     Swal.fire({
                                         title: res.data.message,
-                                        text: "Check your phone and enter M-pesa pin!",
+                                        text: "Please check your phone and enter your M-Pesa PIN. If you don't receive a prompt, try using Global Pay as an alternative."
                                         icon: "success"
                                       }).then((result)=>{
                                         if(result.isConfirmed){
