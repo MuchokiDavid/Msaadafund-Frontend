@@ -20,6 +20,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
     // const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/(?:watch\?v=)?([a-zA-Z0-9_-]+)$/;
     // eslint-disable-next-line 
     const regexPattern = /^(?:https?:\/\/)?(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\\w\-\\s])([\w\-]{11})(?=[^\\w\-]|$)(?![?=&+%\\w]*(?:['"][^<>]*>|<\/a>))[?=&+%\\w]*/i;
+    const campaignNameRegex= /^[a-zA-Z0-9\s]+$/;
     const formRef = useRef(null);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
 
@@ -51,14 +52,27 @@ function CreateCampaign({getValidYoutubeVideoId}) {
 
     const handleUpload = (e) => {
         e.preventDefault();
+        setError(null)
         setLoading(true)
         if (!banner) {
             setError('Please select a file.');
+            setLoading(false)
             return;
+        }
+
+        if (!campaignName) {
+            setError('Campaign name is required');
+            setLoading(false)
+            return;
+        }
+        if (campaignName && !campaignName.match(campaignNameRegex)) {
+            setError('Please ensure your campaign name does not have symbols or special characters')
+            setLoading(false)
         }
 
         if (youtubeLink && !youtubeLink.match(regexPattern)) {
             setError('Please ensure your YouTube link is valid')
+            setLoading(false)
         }
         else{
             const formData = new FormData();
@@ -79,7 +93,6 @@ function CreateCampaign({getValidYoutubeVideoId}) {
 
             const accessToken = localStorage.getItem('token');
             const orgName = localStorage.getItem('org');
-            const campaignNameRegex= /^[a-zA-Z0-9\s]+$/;
             const config = {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
@@ -88,15 +101,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
 
             if (!accessToken && !orgName) {
                 window.location.replace('/org/login')
-            }
-            if (!campaignName) {
-                setError('Campaign name is required');
-                return;
-            }
-            if (campaignName && !campaignName.match(campaignNameRegex)) {
-                setError('Please ensure your campaign name does not have symbols or special characters')
-            }
-            
+            }            
 
             axios.post(`${apiUrl}/api/v1.0/setCampaign`, formData, config)
                 .then((res) => {
