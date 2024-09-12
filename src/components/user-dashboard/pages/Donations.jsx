@@ -86,21 +86,21 @@ function Donations({allDonation}) {
                       </div>
                   </div>
                   <div className="my-3 inline-block min-w-full overflow-x-auto align-middle border-b border-gray-200 sm:rounded-lg">
-                      <table className="table table-compact table-xs table-auto w-full text-xs bg-white text-left text-wrap">
+                      <table className="table table-xs bg-white">
                           {/* head */}
                           <thead className='text-gray-800 bg-gray-100'>
                               <tr>
-                                  <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>ID</th>
-                                  <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Invoice Id</th>
-                                  <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Amount</th>  
-                                  <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Campaign</th>
-                                  <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Category</th>
-                                  <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>End Date</th>  
-                                  <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Organisations</th>
-                                  <th className='px-4 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Donation Date</th>                    
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>ID</th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Invoice Id</th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Amount</th>  
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Campaign</th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Category</th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>End Date</th>  
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Organisations</th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Donation Date</th>                    
                               </tr>
                           </thead>
-                          <tbody>
+                          <tbody className='bg-white'>
                               {allDonations && paginatedDonations.map((donation, index) => {
                                   return (
                                       <tr key={donation._id}>

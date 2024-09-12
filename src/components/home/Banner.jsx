@@ -6,7 +6,7 @@ import BannerCards from './BannerCards'
 import joinus from '../../assets/joinus.jpg'
 import WhyUs from './WhyUs'
 import { apiUrl,appKey } from '../../context/Utils'
-import logo from '../../assets/applogo.png'
+// import logo from '../../assets/applogo.png'
 
 function Banner() {
   const[allDonations,setAllDonations]= useState([])
@@ -136,7 +136,7 @@ if (loading) {
   return (
     <div class="flex items-center justify-center h-screen">
       {/* Logo image */}
-      <p><img src={logo} alt="Logo" className="w-[150px] h-[50px]" /></p><br/>
+      {/* <p><img src={logo} alt="Logo" className="w-[150px] h-[50px]" /></p><br/> */}
       <span className="loading loading-spinner loading-lg text-blue-500"></span>
     </div>
   )

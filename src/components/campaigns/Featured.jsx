@@ -119,6 +119,7 @@ function Feature() {
     }
 
     var settings = {
+        type: 'loop',
         dots: false,
         infinite: true,
         speed: 4000,
@@ -127,6 +128,10 @@ function Feature() {
         lazyLoad: true,
         swipeToSlide: true,
         initialSlide: 0,
+        rewind: true,
+        rewindSpeed: 1000, // Speed of the rewind transition in milliseconds
+        snap: true, // Sna
+        keyboard: true, 
         pauseOnHover: true,
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />,

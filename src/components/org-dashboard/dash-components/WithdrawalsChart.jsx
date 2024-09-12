@@ -63,7 +63,7 @@ function WithdrawalsChart() {
 
     return (
         <div>
-            <h2 className='text-center text-lg font-medium mt-2'>Spending</h2>
+            <h2 className='text-center text-lg font-medium mt-2'>Spending{" (Ksh.)"}</h2>
             <div className="date-filters grid grid-cols-1 gap-2 mt-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 mx-3">
                 <div>
                     <label>
