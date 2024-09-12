@@ -60,17 +60,17 @@ function CreateCampaign({getValidYoutubeVideoId}) {
             return;
         }
 
-        if (!campaignName) {
+        else if (!campaignName) {
             setError('Campaign name is required');
             setLoading(false)
             return;
         }
-        if (campaignName && !campaignName.match(campaignNameRegex)) {
+        else if (campaignName && !campaignName.match(campaignNameRegex)) {
             setError('Please ensure your campaign name does not have symbols or special characters')
             setLoading(false)
         }
 
-        if (youtubeLink && !youtubeLink.match(regexPattern)) {
+        else if (youtubeLink && !youtubeLink.match(regexPattern)) {
             setError('Please ensure your YouTube link is valid')
             setLoading(false)
         }
