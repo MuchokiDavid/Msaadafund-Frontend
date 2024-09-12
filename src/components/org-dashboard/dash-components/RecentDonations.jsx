@@ -59,18 +59,18 @@ useEffect(() => {
           ? 
           (
             <div className='overflow-scroll mt-2 '>
-              <table className="min-w-full table table-xs table-auto rounded-md overflow-x-auto text-xs bg-white statTable" >
+              <table className="table table-xs" >
                   {/* head */}
                   <thead className='text-gray-800 bg-gray-100 text-left'>
                       <tr className='text-gray-800 bg-gray-100'>
-                      {/* <th className='px-6 py-3 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200'>ID</th> */}
-                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Campaign</th>
-                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Category</th>
-                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Donor</th>
-                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Amount</th>
-                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Method</th>
-                          <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Donation Date</th>
-                          {/* <th className='px-6 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Status</th>*/}
+                      {/* <th className='px-2 py-2 text-sm font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200'>ID</th> */}
+                          <th className='px-2 py-2 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Campaign</th>
+                          <th className='px-2 py-2 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Category</th>
+                          <th className='px-2 py-2 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Donor</th>
+                          <th className='px-2 py-2 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Amount</th>
+                          <th className='px-2 py-2 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Method</th>
+                          <th className='px-2 py-2 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Donation Date</th>
+                          {/* <th className='px-2 py-2 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200'>Status</th>*/}
                       </tr>
                   </thead>
                   <tbody>
@@ -82,14 +82,14 @@ useEffect(() => {
                           const campaignTitle = campaign ? campaign.campaignName : "";
                           return (
                               <tr key={donation.id}>
-                                  {/* <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.id}</td> */}
-                                  <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{campaignTitle}</td>
-                                  <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.campaign.category}</td>
-                                  <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>                                  
-                                  <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.currency} {donation.amount}</td>
-                                  <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.method}</td>
-                                  <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
-                                  {/* <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.status}</td> */}
+                                  {/* <td className='px-2 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.id}</td> */}
+                                  <td className='px-2 py-2 whitespace-no-wrap border-b border-gray-200 '>{campaignTitle}</td>
+                                  <td className='px-2 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.campaign.category}</td>
+                                  <td className='px-2 py-2 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>                                  
+                                  <td className='px-2 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.currency} {donation.amount}</td>
+                                  <td className='px-2 py-2 whitespace-no-wrap border-b border-gray-200 '>{donation.method}</td>
+                                  <td className='px-2 py-2 whitespace-no-wrap border-b border-gray-200 '>{moment(donation.donationDate).format('dddd Do MMMM, YYYY')}</td>
+                                  {/* <td className='px-2 py-2 whitespace-no-wrap border-b border-gray-200'>{donation.status}</td> */}
                               </tr>
                           );
                       })}

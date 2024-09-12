@@ -98,8 +98,8 @@ function PendingTras() {
       <h1 className="text-2xl font-bold mb-4">Pending Approvals</h1>
       {transactions && transactions.length === 0 && <p className="text-gray-600">No pending transactions found.</p>}
       <div className="overflow-x-auto">
-        <table className="table table-compact table-xs table-auto w-full text-xs bg-white text-left text-wrap">
-          <thead className='text-balance'>
+        <table className="table table-xs">
+          <thead>
             <tr className="bg-gray-200 text-gray-600">
               <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Id</th>
               <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Recipient</th>
@@ -113,7 +113,7 @@ function PendingTras() {
               <th className='px-3 py-4 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Reject</th>
             </tr>
           </thead>
-          <tbody className="text-gray-700 text-xs">
+          <tbody className="text-gray-700 text-xs bg-white">
             {transactions && transactions.map((transaction) => (
               <tr key={transaction.id} className="border-t">
                 <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>{transaction.id}</td>

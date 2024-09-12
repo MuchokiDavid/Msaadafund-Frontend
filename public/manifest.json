@@ -44,7 +44,6 @@
   "lang": "en-US",
   "scope": "/",
   "prefer_related_applications": false,
-
   "display_override": ["window-controls-overlay", "standalone"],
 
   "file_handlers": {
@@ -62,5 +61,78 @@
     "title": "Msaadafund Edge Side Panel",
     "enabled": true,
     "icon": "logo192.png"
-  }
+  },
+
+  "dir": "ltr",
+  "iarc_rating_id": "123456",
+  
+  "background_sync": {
+    "periodic_sync": {
+      "tag": "sync-updates",
+      "min_interval": 86400
+    }
+  },
+
+  "push_notifications": {
+    "enabled": true
+  },
+
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.msaadafund.app",
+      "id": "com.msaadafund.app"
+    }
+  ],
+
+  "scope_extensions": [
+    {
+      "origin": "https://www.msaadafund.com"
+    }
+  ],
+
+  "handle_links": {
+    "target": "/open-link"
+  },
+
+  "protocol_handlers": [
+    {
+      "protocol": "web+msaadafund",
+      "url": "/open-protocol/%s"
+    }
+  ],
+
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "name",
+      "text": "description",
+      "url": "url",
+      "files": [
+        {
+          "name": "file",
+          "accept": ["image/*"]
+        }
+      ]
+    }
+  },
+
+  "shortcuts": [
+    {
+      "name": "Discover Campaigns",
+      "short_name": "Campaigns",
+      "description": "Discover created Campaigns",
+      "url": "/campaigns",
+      "icons": [{ "src": "images/icons/campaigns.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Start Fundraising",
+      "short_name": "Fundraise",
+      "description": "Start a new fundraising campaign",
+      "url": "/org/signup",
+      "icons": [{ "src": "images/icons/fundraise.png", "sizes": "96x96" }]
+    }
+  ]
 }

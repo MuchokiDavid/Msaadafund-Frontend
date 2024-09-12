@@ -7,13 +7,14 @@ function BannerSlider() {
     const splideRef = useRef(null)
   const options = {
     type: 'loop',
+    omitEnd: true,
     autoplay: true,
     interval: 5000, // 5 seconds
     pauseOnHover: true,
     pauseOnFocus: true,
     resetProgress: false,
     arrows: false, // Disable default arrows
-    pagination: false, // Disable pagination
+    pagination: true, // Disable pagination
   };
 
   //   const handlePrev = () => {

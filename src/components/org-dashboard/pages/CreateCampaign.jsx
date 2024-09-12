@@ -79,6 +79,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
 
             const accessToken = localStorage.getItem('token');
             const orgName = localStorage.getItem('org');
+            const campaignNameRegex= /^[a-zA-Z0-9\s]+$/;
             const config = {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
@@ -88,6 +89,14 @@ function CreateCampaign({getValidYoutubeVideoId}) {
             if (!accessToken && !orgName) {
                 window.location.replace('/org/login')
             }
+            if (!campaignName) {
+                setError('Campaign name is required');
+                return;
+            }
+            if (campaignName && !campaignName.match(campaignNameRegex)) {
+                setError('Please ensure your campaign name does not have symbols or special characters')
+            }
+            
 
             axios.post(`${apiUrl}/api/v1.0/setCampaign`, formData, config)
                 .then((res) => {
