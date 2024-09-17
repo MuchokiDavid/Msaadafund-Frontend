@@ -130,6 +130,7 @@ function ActiveCampaigns() {
     }
     else{
       for (let donation of donationsArray) {
+        
         // Check if the donation status is "COMPLETE"
         if (donation.status === 'COMPLETE') {
             totalAmount += donation.amount;
@@ -190,7 +191,8 @@ function ActiveCampaigns() {
         <div className="mx-2 sm:mx-1 lg:mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
           {filterCampaigns().map((campaign) => {
             return (
-              <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden'>
+              <div key={campaign.id}  className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden'>
+                <a href={`/campaigns/${formatSlug(campaign.campaignName)}`}>
                 <div className="block rounded-lg shadow-sm shadow-indigo-100">
                   <img
                     alt="banner"
@@ -202,9 +204,9 @@ function ActiveCampaigns() {
                   <div className="mt-2 px-2 pb-4">
                     <dl>
                       <div>
-                        <dt className="sr-only">Budget</dt>
+                        <dt className="sr-only">Target</dt>
 
-                        <dd className="text-sm text-gray-500">Budget: KES {campaign.targetAmount}</dd>
+                        <dd className="text-sm text-gray-500">Target: KES {campaign.targetAmount}</dd>
                       </div>
 
                       <div>
@@ -292,6 +294,7 @@ function ActiveCampaigns() {
                     </div>
                   </div>
                 </div>
+                </a>
               </div>
           )
           })}

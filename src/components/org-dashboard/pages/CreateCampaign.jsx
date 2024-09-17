@@ -229,13 +229,13 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                     </div>
                     <div className="mb-4">
                         <label htmlFor="targetAmount" className="block mb-2 text-sm font-semibold text-slate-600 ">
-                        <span className='text-red-500'>*</span> Budget
+                        <span className='text-red-500'>*</span> Target
                         </label>
                         <input
                             id="targetAmount"
                             type="number"
                             value={targetAmount}
-                            placeholder="Budget"
+                            placeholder="Target"
                             onChange={(e) => setTargetAmount(e.target.value)}
                             className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             required

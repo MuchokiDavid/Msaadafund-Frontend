@@ -55,7 +55,7 @@ function Card({
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M12 6h.01M12 14h.01" />
                                     </svg>
                                     <p className="text-lg font-semibold mt-2">{budget && budget}</p>
-                                    <p className="text-sm text-gray-600">{translatedGoal || "Goal"}</p>
+                                    <p className="text-sm text-gray-600">{translatedGoal || "Target"}</p>
                                 </div>
                             </div>
                         </div>

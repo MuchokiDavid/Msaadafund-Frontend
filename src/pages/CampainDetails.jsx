@@ -170,13 +170,35 @@ function CampainDetails() {
     }
   }, [campaign, users, accessToken]);
 
-  useEffect(() => {
-        if (!hasShuffled.current && completeDonations && completeDonations.length > 0) {
-            const randomElements = getRandomElements(completeDonations, 5);
-            setRandomDonations(randomElements);
-            hasShuffled.current = true; // Set the ref to true after shuffling
+//   useEffect(() => {
+//         if (!hasShuffled.current && completeDonations && completeDonations.length > 0) {
+//             const randomElements = getRandomElements(completeDonations, 5);
+//             setRandomDonations(randomElements);
+//             hasShuffled.current = true; // Set the ref to true after shuffling
+//         }
+//     }, [completeDonations]);
+// Handle subscription status and shuffling of donations
+useEffect(() => {
+    if (campaign) {
+        const completeDonations = campaign.donations.filter(donation => donation.status === 'COMPLETE');
+        if (completeDonations.length > 0) {
+            // Initialize the shuffled donations
+            if (!hasShuffled.current) {
+                setRandomDonations(getRandomElements(completeDonations, 5));
+                hasShuffled.current = true; // Set ref to true after initial shuffle
+            }
+
+            // Set interval for continuous shuffling
+            const intervalId = setInterval(() => {
+                setRandomDonations(getRandomElements(completeDonations, 5));
+            }, 5000);
+
+            // Cleanup interval on component unmount
+            return () => clearInterval(intervalId);
         }
-    }, [completeDonations]);
+    }
+}, [campaign]);
+    
 
     //Login user in order to subscribe
     const handleLogin = async (e) =>{
@@ -187,7 +209,7 @@ function CampainDetails() {
         }
         
     await userLogin(username, password);
-    }
+    }    
 
   const handleSubscribe = async () => {
     try {
@@ -308,7 +330,7 @@ function CampainDetails() {
         const mpesaTranslate= await translateText("Contribute with M-Pesa", selectedLanguage);
         const globalTranslate= await translateText("Contribute with Global payment methods", selectedLanguage);
         const contributionsTranslate= await translateText("Contributions", selectedLanguage);
-        const goalTranslate= await translateText("Goal", selectedLanguage);
+        const goalTranslate= await translateText("Target", selectedLanguage);
         setSubmitTranslate(await translateText("Contribute", selectedLanguage));
         setShareTranslate(await translateText("Share", selectedLanguage));
         setGiveTranslate(await translateText("Give Now", selectedLanguage));

@@ -185,7 +185,7 @@ function Feature() {
         <Slider {...settings}>
             {featuredCampaign && featuredCampaign.map((campaign) => {
                 return (
-                    <div key={campaign.id} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden'>
+                    <div key={campaign.id} onClick={()=>{handleCampaign(formatSlug(campaign.campaignName)); setButtonClicked(true)}} className='max-w-sm bg-white border border-gray-200 rounded-lg shadow overflow-hidden'>
                         <div onClick={()=>{handleCampaign(formatSlug(campaign.campaignName)); setButtonClicked(true)}} className="block rounded-lg shadow-sm shadow-indigo-100">
                         <img
                             alt="banner"
@@ -197,9 +197,9 @@ function Feature() {
                         <div className="mt-2 px-2 pb-4">
                             <dl>
                             <div>
-                                <dt className="sr-only">Budget</dt>
+                                <dt className="sr-only">Target</dt>
 
-                                <dd className="text-sm text-gray-500">Budget: KES {campaign.targetAmount}</dd>
+                                <dd className="text-sm text-gray-500">Target: KES {campaign.targetAmount}</dd>
                             </div>
 
                             <div>

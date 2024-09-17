@@ -11,7 +11,7 @@ function ThankYou() {
         <Menus/>
         <div className="grid min-h-screen place-content-center bg-gray-50 px-4">
             <div className="text-center bg-white p-8">
-                <h1 className="text-5xl font-black text-success">Donation Successful!</h1>
+                <h1 className="text-5xl font-black text-success">Contribution Successful!</h1>
         
                 {/* <p className="text-2xl font-bold tracking-tight text-red-500 sm:text-4xl">Uh-oh!</p> */}
         
