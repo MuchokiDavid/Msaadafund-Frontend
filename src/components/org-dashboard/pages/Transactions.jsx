@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { apiUrl } from '../../../context/Utils';
-// import { FaFilePdf } from "react-icons/fa";
+import * as XLSX from 'xlsx';
+import { SiMicrosoftexcel } from "react-icons/si";
 
 
 function Transactions({allCampaigns, campaignError}) {
@@ -15,6 +16,7 @@ function Transactions({allCampaigns, campaignError}) {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(25);
     const [filteredTransactions, setFilteredTransactions] = useState([]);
+    const [transCount, setTransCount]= useState(0)
 
      // Calculate total pages based on the number of items and items per page
      const totalPages = Math.ceil(filteredTransactions.length / itemsPerPage);
@@ -56,6 +58,39 @@ function Transactions({allCampaigns, campaignError}) {
     setFilteredTransactions(filtered);
   }, [searchTerm, transactions]);
 
+  const handleExcel = () => {
+  if (!transactions || transactions.length === 0) {
+    setErrors('Please select a campaign to download');
+    return;
+  }
+
+  const headers = [
+    "Invoice ID",
+    "Completion Date",
+    "Details",
+    "Transaction Type",
+    "Account",
+    "Value",
+    "Running Balance"
+  ];
+
+  const data = transactions.map(transaction => [
+    transaction.invoice?.invoice_id || '',
+    new Date(transaction.updated_at.toLocaleString()),
+    transaction.narrative,
+    transaction.trans_type,
+    transaction.invoice?.account || '',
+    transaction.value,
+    transaction.running_balance,
+  ]);
+
+  const ws = XLSX.utils.aoa_to_sheet([headers, ...data]);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Transactions");
+
+  XLSX.writeFile(wb, 'transactions.xlsx');
+};
+
   //  Fetch data from server when with a given id
   const handleFetchTransaction= async (id)=>{
     if(token){
@@ -74,7 +109,8 @@ function Transactions({allCampaigns, campaignError}) {
           if (response.ok) {
               setLoading(false);
               console.log("Successful request to get transactions");
-              setTransactions(data);
+              setTransCount(data.count)
+              setTransactions(data.results);
           } else {
               setLoading(false);
               throw new Error(data);
@@ -132,7 +168,7 @@ function Transactions({allCampaigns, campaignError}) {
             :
             (null)
             }
-            <form className="flex flex-col md:flex-row gap-3 mt-4 ml-2">
+            <div className="flex flex-col md:flex-row gap-3 mt-4 ml-2">
               <select
                   className="sm:w-full md:w-1/6 h-10 border-2 bg-gray-100 border-gray-400 focus:outline-none focus:border-sky-500 text-gray-900 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
                   placeholder="transaction type"
@@ -153,9 +189,22 @@ function Transactions({allCampaigns, campaignError}) {
                       onChange={handleSearchTermChange}
                       className="w-full md:w-80 px-3 h-10 rounded border-2 border-gray-500 focus:outline-none focus:border-sky-500"
                   />
-              </div>              
-            </form>
+              </div>  
+              <div className="flex">
+                  <button
+                      onClick={handleExcel}
+                      className="flex items-center gap-1 bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded"
+                  >
+                      <SiMicrosoftexcel /> Excel
+                  </button>
+              </div>        
+              
+            </div>
+            
             {errors && console.error(errors)}
+            <div className='mt-4'>
+              <p class="text-lg font-medium">Count: {transCount}</p>
+            </div> 
             <div className='flex flex-col col-span-3'>
               <div className='py-2 -my-2 overflow-x-auto sm:-mx-2 sm:px-6 lg:-mx-2 lg:px-4'>
                
@@ -168,15 +217,15 @@ function Transactions({allCampaigns, campaignError}) {
                             <table className="table table-xs bg-white">
                               <thead className='text-gray-800 bg-gray-100'>
                                 <tr>
-                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>INVOICE</th>
-                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>AMOUNT</th>
-                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>STATUS</th>
-                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>BALANCE</th>
-                                  {/* <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>NARRATIVE</th> */}
-                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>TRANS TYPE</th>
-                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>ACCOUNT</th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>INVOICE ID</th>
                                   <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>DATE</th>
-                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '></th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>DETAILS</th>
+                                  {/* <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>TRANS TYPE</th> */}
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>ACCOUNT</th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>VALUE</th>
+                                  {/* <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>STATUS</th> */}
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>BALANCE</th>
+                                  {/* <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '></th> */}
                                 </tr>
                               </thead>                              
                               <tbody>
@@ -184,13 +233,13 @@ function Transactions({allCampaigns, campaignError}) {
                                 {paginatedTransactions && paginatedTransactions.map((item) => (
                                   <tr key={item.transaction_id}>
                                     <td>{item.transaction_id}</td>
-                                    <td>{item.value}</td>
-                                    <td>{item.status}</td>
-                                    <td>{item.currency} {item.running_balance}</td>
-                                    {/* <td>{item.narrative}</td> */}
-                                    <td>{item.trans_type}</td>
-                                    <td>{item.invoice ? item.invoice.account : null}</td>
                                     <td>{new Date(item.updated_at).toLocaleString()}</td>
+                                    <td>{item.narrative}</td>
+                                    {/* <td>{item.trans_type}</td> */}
+                                    <td>{item.invoice ? item.invoice.account : null}</td>
+                                    <td>{item.value}</td>
+                                    {/* <td>{item.status}</td> */}
+                                    <td>{item.currency} {item.running_balance}</td>
                                   </tr>
                                 ))}
                               </tbody>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { FaFilePdf } from "react-icons/fa";
 import { apiUrl } from '../../../context/Utils';
 import axios from 'axios';
 
@@ -12,6 +11,7 @@ function Withdrawals() {
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading]= useState(false)
     const itemsPerPage = 15;
+    const [format,setFormat] = useState('');
 
     //useEffect to filter all withdrawals with the search term in the search input
     useEffect(() => {
@@ -102,6 +102,38 @@ function Withdrawals() {
         });
     };
 
+    const downloadWithdrawalsExcel = async () => {
+        try {
+            const response = await axios.get(`${apiUrl}/api/v1.0/transactions_excel`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                },
+                responseType: 'blob'  // Specify response type as 'blob' to handle file download
+            });
+
+            // Create a URL for the Blob
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `msaaadafund_withdrawals_${new Date().toLocaleDateString()}.xlsx`;  // Set file name
+            document.body.appendChild(a);
+            a.click(); 
+            a.remove();
+
+        } catch (error) {
+            console.error('Error downloading Excel:', error);
+        }
+    };
+
+    useEffect(() => {
+        if (format === 'pdf') {
+            downloadTransactionPDF();
+        } else if (format === 'excel') {
+            downloadWithdrawalsExcel();
+        }
+      }, [format]);
+
     return (
         <div>
             <div className="text-sm breadcrumbs ml-2">
@@ -123,9 +155,23 @@ function Withdrawals() {
                         className='input input-bordered w-full max-w-xs bg-white' 
                     />
                 </div>
-                <button title='Download Pdf' onClick={downloadTransactionPDF}>
+                <div className='mr-2 py-2'>
+                    <select className='py-2 rounded' onChange={(e)=>setFormat(e.target.value)}>
+                        <option>
+                            Download
+                        </option> 
+                        <option value={"pdf"} className='text-red-600'>
+                            PDF
+                        </option> 
+                        <option value={"excel"} className='text-green-600'>
+                            Excel
+                        </option> 
+                    </select>
+                </div>
+
+                {/* <button title='Download Pdf' onClick={downloadTransactionPDF}>
                     PDF<FaFilePdf size={25} style={{ color: 'red' }} />
-                </button>
+                </button> */}
             </div>
             <div className='text-sm text-red-500'>{errors}</div>
                 <div>

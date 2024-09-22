@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import { FaFilePdf } from "react-icons/fa";
 import { apiUrl } from '../../../context/Utils';
+import axios from 'axios';
 
 function Donations({ allCampaigns, campaignError, allDonors }) {
     const [allDonations, setAllDonations] = useState([]);
@@ -13,6 +13,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(20);
     const [filteredDonations, setFilteredDonations] = useState([]);
+    const [format,setFormat] = useState('');
 
     const token = localStorage.getItem('token');
     const orgName= localStorage.getItem('org');
@@ -128,7 +129,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
             // Create an anchor element for downloading the file
             const link = document.createElement('a');
             link.href = blobUrl;
-            link.download = 'donations.pdf';  // Specify the filename for the downloaded file
+            link.download = `msaaadafund_donations ${new Date().toLocaleDateString()}.pdf`;  // Specify the filename for the downloaded file
     
             // Append the link to the document body
             document.body.appendChild(link);
@@ -147,6 +148,67 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
         });
     }
 
+
+    // const downloadDonationsExcel=async () => {
+    //     try {
+    //       const response = await fetch(`${apiUrl}/api/v1.0/donations_excel`, {
+    //         method: 'GET',
+    //         headers: {
+    //           'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    //           'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    //         },
+    //       });
+    //       console.log(response)
+    
+    //       if (!response.ok) {
+    //         throw new Error('Failed to download Excel file');
+    //       }
+    
+    //       const blob = await response.blob();
+    //       const url = window.URL.createObjectURL(blob);
+    //       const a = document.createElement('a');
+    //       a.href = url;
+    //       a.download = `msaaadafund_donations ${new Date().toLocaleDateString()}.xlsx`; 
+    //       document.body.appendChild(a);
+    //       a.click();
+    //       a.remove(); // Clean up the link element after download
+    //     } catch (error) {
+    //       console.error('Error downloading Excel:', error);
+    //     }
+    //   };
+
+    const downloadDonationsExcel = async () => {
+        try {
+            const response = await axios.get(`${apiUrl}/api/v1.0/donations_excel`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                },
+                responseType: 'blob'  // Specify response type as 'blob' to handle file download
+            });
+
+            // Create a URL for the Blob
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `msaaadafund_donations_${new Date().toLocaleDateString()}.xlsx`;  // Set file name
+            document.body.appendChild(a);
+            a.click(); 
+            a.remove();
+
+        } catch (error) {
+            console.error('Error downloading Excel:', error);
+        }
+    };
+
+
+      useEffect(() => {
+        if (format === 'pdf') {
+          downloadDonationsPDF();
+        } else if (format === 'excel') {
+          downloadDonationsExcel();
+        }
+      }, [format]);
     // console.log(allDonations)
 
 
@@ -176,8 +238,19 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                                     className="border-gray-300 rounded-md bg-white border h-11 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 />
                             </div>
-                            <div className='mr-2'>
-                                <button title='Download Pdf ' onClick={downloadDonationsPDF}>PDF<FaFilePdf size = {25} style={{ color: 'red' }}/></button>
+                            <div className='mr-2 py-2'>
+                                <select className='py-2 rounded' onChange={(e)=>setFormat(e.target.value)}>
+                                    <option className='py-2 px-4'>
+                                        <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+                                        <span>Download</span>
+                                    </option> 
+                                    <option value={"pdf"} className='text-red-600'>
+                                        PDF
+                                    </option> 
+                                    <option value={"excel"} className='text-green-600'>
+                                        Excel
+                                    </option> 
+                                </select>
                             </div>
                         </div>
                         <div className="my-1 inline-block min-w-full overflow-scroll align-middle border-b border-gray-200 rounded-lg">
