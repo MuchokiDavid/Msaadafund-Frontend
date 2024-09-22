@@ -160,6 +160,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
           "Fundraiser",
           "Category",
           "Contributor",
+          "Currency",
           "Amount",
           "Method",
           "Completion Date"
@@ -175,7 +176,8 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                 campaignTitle,
                 donation.campaign.category,
                 donorName,
-                `${donation.currency} ${donation.amount}`,
+                donation.currency,
+                donation.amount,
                 donation.method,
                 moment(donation.donationDate).format('dddd Do MMMM, YYYY')
             ]});
