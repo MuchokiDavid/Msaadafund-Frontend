@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { apiUrl } from '../../../context/Utils';
-import axios from 'axios';
+import * as XLSX from 'xlsx';
 
 function Donations({ allCampaigns, campaignError, allDonors }) {
     const [allDonations, setAllDonations] = useState([]);
@@ -149,67 +149,52 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
     }
 
 
-    // const downloadDonationsExcel=async () => {
-    //     try {
-    //       const response = await fetch(`${apiUrl}/api/v1.0/donations_excel`, {
-    //         method: 'GET',
-    //         headers: {
-    //           'Authorization': `Bearer ${localStorage.getItem('token')}`,
-    //           'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    //         },
-    //       });
-    //       console.log(response)
-    
-    //       if (!response.ok) {
-    //         throw new Error('Failed to download Excel file');
-    //       }
-    
-    //       const blob = await response.blob();
-    //       const url = window.URL.createObjectURL(blob);
-    //       const a = document.createElement('a');
-    //       a.href = url;
-    //       a.download = `msaaadafund_donations ${new Date().toLocaleDateString()}.xlsx`; 
-    //       document.body.appendChild(a);
-    //       a.click();
-    //       a.remove(); // Clean up the link element after download
-    //     } catch (error) {
-    //       console.error('Error downloading Excel:', error);
-    //     }
-    //   };
-
-    const downloadDonationsExcel = async () => {
-        try {
-            const response = await axios.get(`${apiUrl}/api/v1.0/donations_excel`, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                    'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                },
-                responseType: 'blob'  // Specify response type as 'blob' to handle file download
-            });
-
-            // Create a URL for the Blob
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `msaaadafund_donations_${new Date().toLocaleDateString()}.xlsx`;  // Set file name
-            document.body.appendChild(a);
-            a.click(); 
-            a.remove();
-
-        } catch (error) {
-            console.error('Error downloading Excel:', error);
+    const handleExcel = () => {
+        if (!allDonations || allDonations.length === 0) {
+          setErrors('No donations to download');
+          return;
         }
-    };
-
+      
+        const headers = [
+          "Invoice ID",
+          "Fundraiser",
+          "Category",
+          "Contributor",
+          "Amount",
+          "Method",
+          "Completion Date"
+        ];
+      
+        const data = allDonations && allDonations.map((donation) => {
+            const user = donors.find(user => user.id === donation.userId);
+            const donorName = user ? `${user.firstName} ${user.lastName}` : `${donation.donor_name}`;
+            const campaign = campaigns.find(campaign => campaign.id === donation.campaignId);
+            const campaignTitle = campaign ? campaign.campaignName : "";
+            return [
+                donation.invoice_id,
+                campaignTitle,
+                donation.campaign.category,
+                donorName,
+                `${donation.currency} ${donation.amount}`,
+                donation.method,
+                moment(donation.donationDate).format('dddd Do MMMM, YYYY')
+            ]});
+      
+        const ws = XLSX.utils.aoa_to_sheet([headers, ...data]);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Donations");
+      
+        XLSX.writeFile(wb, `msaaadafund_donations_${new Date().toLocaleDateString()}.xlsx`);
+      };
 
       useEffect(() => {
         if (format === 'pdf') {
           downloadDonationsPDF();
         } else if (format === 'excel') {
-          downloadDonationsExcel();
+          handleExcel();
         }
+        //eslint-disable-next-line
       }, [format]);
-    // console.log(allDonations)
 
 
     return (
@@ -258,7 +243,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                                 {/* head */}
                                 <thead className='text-gray-800 bg-gray-100'>
                                     <tr>
-                                        <th className='px-2 py-2 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>ID</th>
+                                        <th className='px-2 py-2 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>INVOICE ID</th>
                                         <th className='px-2 py-2 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Campaign</th>
                                         <th className='px-2 py-2 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Category</th>
                                         <th className='px-2 py-2 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>Contributor</th>
@@ -277,7 +262,7 @@ function Donations({ allCampaigns, campaignError, allDonors }) {
                                         const campaignTitle = campaign ? campaign.campaignName : "";
                                         return (
                                             <tr key={donation._id}>
-                                                <td className='px-2 py-1 whitespace-no-wrap border-b border-gray-200 '>{donation.id}</td>
+                                                <td className='px-2 py-1 whitespace-no-wrap border-b border-gray-200 '>{donation.invoice_id}</td>
                                                 <td className='px-2 py-1 whitespace-no-wrap border-b border-gray-200 '>{campaignTitle}</td>
                                                 <td className='px-2 py-1 whitespace-no-wrap border-b border-gray-200 '>{donation.campaign.category}</td>
                                                 <td className='px-2 py-1 whitespace-no-wrap border-b border-gray-200 '>{donorName}</td>

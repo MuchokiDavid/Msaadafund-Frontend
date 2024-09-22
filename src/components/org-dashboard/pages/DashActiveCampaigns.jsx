@@ -164,10 +164,10 @@ function DashActiveCampaigns({ allCampaigns, campaignError }) {
             <div className="text-sm breadcrumbs ml-2">
                 <ul>
                     <li><a href='/org/dashboard'>Dashboard</a></li>
-                    <li><a href='/org/dashboard/mycampaigns/active'>Active Campaign</a></li>
+                    <li><a href='/org/dashboard/mycampaigns/active'>Active Fundraisers</a></li>
                 </ul>
             </div>
-            <h2 className="mb-3 text-2xl font-bold leading-tight ">Active Campaigns</h2>
+            <h2 className="mb-3 text-2xl font-bold leading-tight ">Active Fundraisers</h2>
             <hr className='mb-4' />
             {/* {errors&& <p className='text-red-700'>{errors}</p>} */}
 
@@ -177,12 +177,12 @@ function DashActiveCampaigns({ allCampaigns, campaignError }) {
                 <div className='flex justify-start gap-3'>
                     <div>
                         <a href='/org/dashboard/createcampaign'><button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
-                            Create Campaign
+                            Create Fundraisers
                         </button></a>
                     </div>
                     <div>
                         <a href='/org/dashboard/mycampaigns/inactive'><button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4'>
-                            Inactive Campaign
+                            Inactive Fundraisers
                         </button></a>
                     </div>
                 </div>

@@ -186,7 +186,7 @@ function ActiveCampaigns() {
     <div className='mx-auto overflow-x-hidden pb-4 px-6 sm:px-2 md:px-4'>
         
         {activeCampaigns.length===0 ?
-        <div className="text-xl mx-4 min-h-screen">No Active campaigns</div>
+        <div className="text-xl mx-4 min-h-screen">No Active fundraisers</div>
         :
         <div className="mx-2 sm:mx-1 lg:mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-2 md:gap-4 sm:max-w-full">
           {filterCampaigns().map((campaign) => {

@@ -29,7 +29,7 @@ function QuickLinks() {
     const quickLinksData = [
         { icon: FaHome , name: 'Home' ,to:'/'},
         { icon: MdOutlineCampaign, name: 'Create',to:'/org/dashboard/createcampaign', className: 'create-campaign'}, 
-        { icon: MdOutlineViewCompactAlt, name: 'Campaigns', to: '/org/dashboard/mycampaigns/active', className: 'view-campaigns' },
+        { icon: MdOutlineViewCompactAlt, name: 'Fundraisers', to: '/org/dashboard/mycampaigns/active', className: 'view-campaigns' },
         { icon: FaDonate, name: 'Contributions', to: '/org/dashboard/donations', className:'view-contributions'},
         { icon: MdOutlineAppRegistration, name: 'Signatories', to: '/org/dashboard/transact/signatories', className:'view-signatories'},
         { icon: BiMoneyWithdraw, name: 'Accounts', to: '/org/dashboard/transact/accounts', className:'add-withdrawal-account'},

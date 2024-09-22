@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { apiUrl } from '../../../context/Utils';
 import axios from 'axios';
+import * as XLSX from 'xlsx';
 
 function Withdrawals() {
     const [allWithdrawals, setAllWithdrawals] = useState([]);
@@ -102,37 +103,54 @@ function Withdrawals() {
         });
     };
 
-    const downloadWithdrawalsExcel = async () => {
-        try {
-            const response = await axios.get(`${apiUrl}/api/v1.0/transactions_excel`, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                    'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                },
-                responseType: 'blob'  // Specify response type as 'blob' to handle file download
-            });
-
-            // Create a URL for the Blob
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `msaaadafund_withdrawals_${new Date().toLocaleDateString()}.xlsx`;  // Set file name
-            document.body.appendChild(a);
-            a.click(); 
-            a.remove();
-
-        } catch (error) {
-            console.error('Error downloading Excel:', error);
+    const handleExcel = () => {
+        if (!allWithdrawals || allWithdrawals.length === 0) {
+          setErrors('No donations to download');
+          return;
         }
-    };
+      
+        const headers = [
+          "Tracking Id",
+          "Name",
+          "Campaign",
+          "Account",
+          "Account Reference",
+          "Trans Type",
+          "Amount",
+          "Trans Status",
+          "Completion Date"
+        ];
+      
+        const data = allWithdrawals && allWithdrawals.map((withdrawal) => {
+            return [
+                withdrawal.tracking_id,
+                withdrawal.org_name,
+                withdrawal.campaign_name,
+                withdrawal.transaction_account_no,
+                withdrawal.acc_refence,
+                withdrawal.trans_type,
+                withdrawal.amount,
+                withdrawal.trans_status,
+                withdrawal.transaction_date
+            ]});
+      
+        const ws = XLSX.utils.aoa_to_sheet([headers, ...data]);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Withdrawals");
+      
+        XLSX.writeFile(wb, `msaaadafund_withdrawals_${new Date().toLocaleDateString()}.xlsx`);
+      };
 
     useEffect(() => {
         if (format === 'pdf') {
             downloadTransactionPDF();
         } else if (format === 'excel') {
-            downloadWithdrawalsExcel();
+            handleExcel();
         }
+        //eslint-disable-next-line
       }, [format]);
+
+      console.log(allWithdrawals)
 
     return (
         <div>
@@ -176,13 +194,14 @@ function Withdrawals() {
             <div className='text-sm text-red-500'>{errors}</div>
                 <div>
                     <div className='overflow-scroll my-4 bg-white border rounded-lg'>
-                        <table className='table table-auto table-xs w-full min-w-full text-xs overflow-x-auto text-left'>
+                        <table className='table table-xs bg-white'>
                             <thead className='text-gray-800 bg-gray-100 text-left uppercase'>
                                 <tr className='text-gray-800 bg-gray-100'>
                                     <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Tracking id</th>
                                     <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Name</th>
                                     <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Campaign</th>
-                                    <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Account No</th>
+                                    <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Account</th>
+                                    <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Account Ref.</th>
                                     <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Trans Type</th>
                                     <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Amount</th>
                                     <th className='px-2 py-3 font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 '>Trans Status</th>
@@ -211,6 +230,7 @@ function Withdrawals() {
                                         <td>{withdrawal.org_name}</td>
                                         <td>{withdrawal.campaign_name}</td>
                                         <td>{withdrawal.transaction_account_no}</td>
+                                        <td>{withdrawal.acc_refence}</td>
                                         <td>{withdrawal.trans_type}</td>
                                         <td>KES {withdrawal.amount}</td>
                                         <td>{withdrawal.trans_status}</td>

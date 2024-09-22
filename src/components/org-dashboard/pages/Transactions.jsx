@@ -60,7 +60,7 @@ function Transactions({allCampaigns, campaignError}) {
 
   const handleExcel = () => {
   if (!transactions || transactions.length === 0) {
-    setErrors('Please select a campaign to download');
+    setErrors('Please select a Fundraiser to download');
     return;
   }
 
@@ -74,7 +74,7 @@ function Transactions({allCampaigns, campaignError}) {
     "Running Balance"
   ];
 
-  const data = transactions.map(transaction => [
+  const data = transactions && transactions.map(transaction => [
     transaction.invoice?.invoice_id || '',
     new Date(transaction.updated_at.toLocaleString()),
     transaction.narrative,
@@ -88,7 +88,7 @@ function Transactions({allCampaigns, campaignError}) {
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "Transactions");
 
-  XLSX.writeFile(wb, 'transactions.xlsx');
+  XLSX.writeFile(wb, `msaaadafund_transactions_${new Date().toLocaleDateString()}.xlsx`);
 };
 
   //  Fetch data from server when with a given id
