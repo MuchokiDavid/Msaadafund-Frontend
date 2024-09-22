@@ -124,7 +124,7 @@ function Withdrawals() {
         const data = allWithdrawals && allWithdrawals.map((withdrawal) => {
             return [
                 withdrawal.tracking_id,
-                withdrawal.org_name,
+                withdrawal.name,
                 withdrawal.campaign_name,
                 withdrawal.transaction_account_no,
                 withdrawal.acc_refence,
@@ -227,7 +227,7 @@ function Withdrawals() {
                                 {currentItems.map((withdrawal, index) => (
                                     <tr key={index}>
                                         <td>{withdrawal.tracking_id}</td>
-                                        <td>{withdrawal.org_name}</td>
+                                        <td>{withdrawal.name}</td>
                                         <td>{withdrawal.campaign_name}</td>
                                         <td>{withdrawal.transaction_account_no}</td>
                                         <td>{withdrawal.acc_refence}</td>
