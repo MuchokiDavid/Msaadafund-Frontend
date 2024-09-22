@@ -43,7 +43,7 @@ function DonationsChart({ allDonations }) {
         value: donationMethods[method],
     }));
 
-    console.log(allDonations)
+    // console.log(allDonations)
 
     return (
         <div>

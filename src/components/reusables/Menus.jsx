@@ -64,7 +64,7 @@ function Menus() {
                     </div>)
                     :
                     (<div className="dropdown dropdown-end absolute right-4 sm:z-20">
-                    <div tabIndex={0} role="button" className="text-white border border-blue-600 bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center">Log in</div>
+                    <div tabIndex={0} role="button" className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Log in</div>
                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-gray-50 text-gray-900 rounded-box w-52">
                       <li className='hover:bg-slate-300'><a href="/org/login">Organiser</a></li>
                       <li className='hover:bg-slate-300'><a href="/user/login">Supporter</a></li>
