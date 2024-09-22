@@ -150,8 +150,6 @@ function Withdrawals() {
         //eslint-disable-next-line
       }, [format]);
 
-      console.log(allWithdrawals)
-
     return (
         <div>
             <div className="text-sm breadcrumbs ml-2">
