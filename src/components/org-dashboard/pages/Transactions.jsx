@@ -224,7 +224,7 @@ function Transactions({allCampaigns, campaignError}) {
                                   <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>ACCOUNT</th>
                                   <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>VALUE</th>
                                   {/* <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>STATUS</th> */}
-                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>BALANCE</th>
+                                  <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '>RUNNING BALANCE</th>
                                   {/* <th className='px-2 py-3 font-medium leading-4 tracking-wider text-leftuppercase border-b border-gray-200 '></th> */}
                                 </tr>
                               </thead>                              

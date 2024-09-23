@@ -114,6 +114,11 @@ function PendingTras() {
             </tr>
           </thead>
           <tbody className="text-gray-700 text-xs bg-white">
+            {transactions.length=== 0 && (
+              <tr>
+                  <td colSpan="8" className="text-center py-4">No pending approval found</td>
+              </tr>
+            )}
             {transactions && transactions.map((transaction) => (
               <tr key={transaction.id} className="border-t">
                 <td className='px-3 py-2 whitespace-no-wrap border-b border-gray-200 '>{transaction.id}</td>
