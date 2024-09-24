@@ -140,6 +140,7 @@ function Feature() {
             breakpoint: 1200,
             settings: {
               slidesToShow: 4,
+              autoplay: true,
               slidesToScroll: 1
             }
           },
@@ -147,6 +148,7 @@ function Feature() {
             breakpoint: 1024,
             settings: {
               slidesToShow: 3,
+              autoplay: true,
               slidesToScroll: 1
             }
           },
