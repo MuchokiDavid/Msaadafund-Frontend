@@ -141,6 +141,7 @@ function Feature() {
             settings: {
               slidesToShow: 4,
               autoplay: true,
+              autoplaySpeed: 3000,
               slidesToScroll: 1
             }
           },
@@ -149,6 +150,7 @@ function Feature() {
             settings: {
               slidesToShow: 3,
               autoplay: true,
+              autoplaySpeed: 3000,
               slidesToScroll: 1
             }
           },
