@@ -125,14 +125,14 @@
       "short_name": "Campaigns",
       "description": "Discover created Campaigns",
       "url": "/campaigns",
-      "icons": [{ "src": "images/icons/campaigns.png", "sizes": "96x96" }]
+      "icons": [{ "src": "images/campaigns.png", "sizes": "96x96" }]
     },
     {
       "name": "Start Fundraising",
       "short_name": "Fundraise",
       "description": "Start a new fundraising campaign",
       "url": "/org/signup",
-      "icons": [{ "src": "images/icons/fundraise.png", "sizes": "96x96" }]
+      "icons": [{ "src": "images/fundraise.png", "sizes": "96x96" }]
     }
   ]
 }
