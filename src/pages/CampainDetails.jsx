@@ -1172,6 +1172,9 @@ const togglePasswordVisibility = (e) => {
                             <div>
                                 <button type='submit' className="btn w-full bg-blue-600 my-4 text-white">Log in</button>
                             </div>
+                            <div className='flex justify-center'>
+                                <p>Or</p>                      
+                            </div>
                             <div>
                                 <PopupGoogle/>
                             </div>
@@ -1201,7 +1204,7 @@ const togglePasswordVisibility = (e) => {
                             {currentlWebUrl}
                         </code>
                         <CopyToClipboard text={currentlWebUrl} onCopy={(currentlWebUrl, result) => {console.log(result);  setCopied(true);}}>
-                        <span className="text-blue-900 hover:text-green-600 font-bold" title='Copy to clipboard'> 
+                            <span className="text-blue-900 hover:text-green-600 font-bold" title='Copy to clipboard'> 
                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path

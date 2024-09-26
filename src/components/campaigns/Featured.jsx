@@ -129,6 +129,8 @@ function Feature() {
         swipeToSlide: true,
         initialSlide: 0,
         rewind: true,
+        autoplay: true,
+        autoplaySpeed: 3000,
         rewindSpeed: 1000, // Speed of the rewind transition in milliseconds
         snap: true, // Sna
         keyboard: true, 

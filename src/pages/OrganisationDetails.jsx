@@ -319,6 +319,9 @@ function getTotalDonations(campaigns) {
                     </div>
                     <div>
                         <button type='submit' className="btn bg-blue-600 my-4 text-white w-full">Log in</button>
+                        <div className='flex justify-center'>
+                            <p>Or</p>                      
+                        </div>
                         <PopupGoogle/>
                     </div>
                     <p className='my-4'>Don't have an account? <Link to='/user/signup'><span className=' text-blue-600 hover:underline'>Register</span></Link></p>

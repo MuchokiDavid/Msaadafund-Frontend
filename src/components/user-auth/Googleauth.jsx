@@ -29,7 +29,7 @@ function Googleauth() {
   }
 
     return (      
-        <div>
+        <div className='flex justify-center'>
             <GoogleLogin
                 onSuccess={handleSuccess}
                 onError={handleError}
