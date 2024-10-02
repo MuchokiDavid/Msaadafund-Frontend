@@ -686,14 +686,14 @@ const togglePasswordVisibility = (e) => {
                         <div className="relative">
                             {/* banner */}                            
                             <Slider {...settings}>
-                                <div>
-                                    <img className="campaignBanner " src={campaign.banner} alt={campaign.campaignName} loading="lazy"/> 
+                                <div className='h-[600px] w-full'>
+                                    <img className="w-full h-full object-full" src={campaign.banner} alt={campaign.campaignName} loading="lazy"/> 
                                 </div>
                                 <div>
                                     {campaign.youtube_link ? (
-                                        <div className="aspect-w-16 aspect-h-9">
+                                        <div className="h-[600px] w-full aspect-w-16 aspect-h-9">
                                             <iframe
-                                                className="w-full h-full campaignBanner"
+                                                className="w-full h-full"
                                                 src={embedUrl}
                                                 title="YouTube video player"
                                                 frameborder="0"
@@ -702,12 +702,14 @@ const togglePasswordVisibility = (e) => {
                                             ></iframe>
                                         </div>
                                     ) : (
-                                        <img
-                                            src={campaign.banner}
-                                            alt={campaign.campaignName}
-                                            className="campaignBanner w-full h-auto"
-                                            loading='lazy'
-                                        />
+                                        <div className='h-[600px] w-full'>
+                                            <img
+                                                src={campaign.banner}
+                                                alt={campaign.campaignName}
+                                                className="w-full h-full object-fill"
+                                                loading='lazy'
+                                            />
+                                        </div>
                                     )}
                                 </div>
                             </Slider>

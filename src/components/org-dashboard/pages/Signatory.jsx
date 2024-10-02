@@ -72,6 +72,10 @@ function Signatory() {
     const handleClosePopup = () => {
         setShowCreateAccount(false);
         setError('');
+        setLoading(false)
+        setRole("")
+        setEmail("")
+        setDeleting(false)
     };
 
     if (!accessToken) {

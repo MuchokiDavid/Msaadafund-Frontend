@@ -21,7 +21,7 @@ function Menus() {
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52 text-gray-800 border ">
                         <li><a href='/'>Home</a></li>
                         <li><a href='/org/signup'>Start Fundraising</a></li>  
-                        <li><a href='/campaigns'>Discover Fundraisers</a></li>
+                        <li><a href='/campaigns'>Discover</a></li>
                         <li><a href='/organisations'>Organisers</a></li>                      
                         <li><a href='/about'>About us</a></li>
                     </ul>
@@ -32,7 +32,7 @@ function Menus() {
                     <ul className="menu menu-horizontal text-gray-800">
                         <li><a href='/'>Home</a></li>
                         <li><a href='/org/signup'>Start Fundraising</a></li> 
-                        <li><a href='/campaigns'>Discover Fundraisers</a></li>
+                        <li><a href='/campaigns'>Discover</a></li>
                         <li><a href='/organisations'>Organisers</a></li> 
                         <li><a href='/about'>About us</a></li>
                     </ul>
