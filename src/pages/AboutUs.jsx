@@ -2,6 +2,7 @@ import React from 'react';
 import Menus from '../components/reusables/Menus';
 import Footer from '../components/reusables/Footer';
 import Message from '../components/services/Message';
+import WhyUs from '../components/home/WhyUs';
 
 function AboutUs() {
   const token= localStorage.getItem('token')
@@ -29,8 +30,9 @@ function AboutUs() {
           </div>
         </div>
       </div>
-      <div className="min-h-screen pb-8 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto block">
+      <WhyUs/>
+      <div className="min-h-screen pb-8 px-4 sm:px-6 lg:px-8">      
+        <div className="container mx-auto block">          
           <div className="flex flex-col lg:flex-row gap-6">
             <div className="h-full lg:w-2/3">
               <div className="bg-white border border-transparent mt-6 p-6 rounded-lg shadow-sm">
