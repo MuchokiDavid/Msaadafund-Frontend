@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Featured from '../campaigns/Featured'
-import { prettyNumber } from '@based/pretty-number'
+// import { prettyNumber } from '@based/pretty-number'
 import BannerSlider from './BannerSlider'
 import BannerCards from './BannerCards'
 import joinus from '../../assets/joinus.jpg'
@@ -9,12 +9,17 @@ import { apiUrl,appKey } from '../../context/Utils'
 // import logo from '../../assets/applogo.png'
 
 function Banner() {
+  // eslint-disable-next-line
   const[allDonations,setAllDonations]= useState([])
+ // eslint-disable-next-line 
   const [allOrganisations, setAllOrganisations] = useState([])
+  // eslint-disable-next-line
   const [allCampaign,setAllCampaign] = useState([])
+  // eslint-disable-next-line
   const[errors, setErrors] = useState()
   const [buttonClicked, setButtonClicked] = useState(false);//state listen to button event change 
   const [loading, setLoading] = useState(false);
+  const [featuredCampaign, setFeaturedCampaign] = useState(null)
 
   useEffect(() => {
     const getDonations = async () => {
@@ -116,7 +121,32 @@ function Banner() {
     }
     setButtonClicked(false)
   }, [buttonClicked]);
+
+  useEffect(() => {
+      handleFeatured()
+  }, []);
+
+  const handleFeatured = async () => {
+    setLoading(true)
+      try {
+          const response = await fetch(`${apiUrl}/api/v1.0/featured`, {
+              headers: {
+                'X-API-KEY': appKey,
+              },
+              method: 'GET',
+          });
+          const data = await response.json();
+          if (response.ok) {
+              setLoading(false)
+              setFeaturedCampaign(data)
+          }
+          
+      } catch (error) {
+          setLoading(false)
+      }
+  }
   
+  // eslint-disable-next-line
   function getTotalAmount(donationsArray) {
     let totalAmount = 0;
     
@@ -130,7 +160,8 @@ function Banner() {
   }
     return totalAmount;
 }
-let totalAmount=allDonations && getTotalAmount(allDonations)
+
+// let totalAmount=allDonations && getTotalAmount(allDonations)
 
 if (loading) {
   return (
@@ -142,13 +173,14 @@ if (loading) {
   )
 }
 
+
   return (
     <div className='text-gray-900'>
       <BannerSlider/>
       <WhyUs/>
 
       <section>
-        <div className="mx-auto max-w-screen-xl px-4 py-2 sm:px-6 sm:py-2 lg:px-8 lg:py-2 sm:text-center">
+        <div className="mx-auto max-w-screen-xl px-4 py-2 sm:px-6 sm:py-2 lg:px-8 lg:py-2">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
             <div className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full bg-white">
               <img
@@ -169,9 +201,9 @@ if (loading) {
               </p>
                 <a
                 href="/campaigns"
-                className="mt-8 rounded-full inline-block border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-gray-900 focus:outline-none focus:ring focus:ring-blue-400"
+                className="mt-8 rounded inline-block border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-gray-900 focus:outline-none focus:ring focus:ring-blue-400"
               >
-                Get Started Today
+                Get Started
               </a>
               
             </div>
@@ -180,11 +212,11 @@ if (loading) {
       </section>
 
       <div className='px-2'>
-        <Featured errors= {errors}/>
+        <Featured errors= {errors} featuredCampaigns={featuredCampaign}/>
       </div>
       
 
-      <section className="bg-gray-50 text-gray-600" id="howItWorksSection">
+      <section className="bg-white text-gray-800" id="howItWorksSection">
         <div className="px-4 py-6 sm:px-6 sm:py-8 lg:px-16 lg:py-12">
           <div className="max-w-xl">
             <h2 className="text-3xl font-bold sm:text-4xl">How It Works</h2>
@@ -289,7 +321,7 @@ if (loading) {
 
       <BannerCards/>
 
-      <section className="bg-white">
+      {/* <section className="bg-white">
         <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Our Numbers</h2>
@@ -321,7 +353,7 @@ if (loading) {
             </dl>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }

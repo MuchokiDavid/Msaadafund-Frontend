@@ -231,7 +231,7 @@ function Transactions({allCampaigns, campaignError}) {
                               <tbody>
                                 {loading? <div className='flex justify-center items-center'><span className="loading loading-dots loading-lg"></span></div>:null}
                                 {paginatedTransactions && paginatedTransactions.map((item) => (
-                                  <tr key={item.transaction_id}>
+                                  <tr key={item.transaction_id} className='even:bg-blue-50'>
                                     <td>{item.transaction_id}</td>
                                     <td>{new Date(item.updated_at).toLocaleString()}</td>
                                     <td>{item.narrative}</td>

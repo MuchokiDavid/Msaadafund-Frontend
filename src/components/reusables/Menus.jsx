@@ -1,13 +1,14 @@
 import React from 'react'
 import logo from '../../assets/applogo.png'
 import { useAuth } from '../../context/usersContext'
+import { VscAccount } from "react-icons/vsc";
 
 function Menus() {
     const token=localStorage.getItem('token')
     const user= localStorage.getItem('user')
     const org= localStorage.getItem('org')
-    const userDataString = localStorage.getItem('userData');
-    const userData = userDataString ? JSON.parse(userDataString) : null;
+    // const userDataString = localStorage.getItem('userData');
+    // const userData = userDataString ? JSON.parse(userDataString) : null;
     const {logout} = useAuth();
 
     return (
@@ -41,25 +42,25 @@ function Menus() {
                     {token && org? 
                     (<div className="dropdown dropdown-end absolute right-4 sm:z-20">
                         <div tabIndex={0} role="button" className="text-xs">
-                            <div className='flex items-center justify-center h-10 w-10 bg-blue-500 text-white border border-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2 text-center'>
-                              <p className='lg:text-base sm:text-sm'>{org && org.charAt(0)}</p>
+                            <div className='flex items-center justify-center h-10 w-10 text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2 text-center'>
+                              <p className='text-2xl sm:text-2xl md:text-3xl text-gray-400 hover:text-green-500'><VscAccount /></p>
                             </div>
                         </div>
-                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-gray-50 rounded-box w-52">
-                        <li className='hover:bg-slate-300'><a href="/org/dashboard">Go to dashboard</a></li>
-                        <li className='hover:bg-slate-300' onClick={logout}><a href='/'>Log out</a></li>
+                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-gray-50 rounded-box w-52 border">
+                            <li className='hover:bg-slate-300'><a href="/org/dashboard">Go to dashboard</a></li>
+                            <li className='hover:bg-slate-300' onClick={logout}><a href='/'>Log out</a></li>
                         </ul>
                     </div>)
                     :token && user?
                     (<div className="dropdown dropdown-end absolute right-4 sm:z-20">
                         <div tabIndex={0} role="button" className="text-xs">
-                            <div className='flex items-center justify-center h-10 w-10 bg-blue-500 text-white border border-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2 text-center'>
-                              <p className='lg:text-base sm:text-sm'>{userData && userData.firstName.charAt(0)}</p>
+                            <div className='flex items-center justify-center h-10 w-10 bg-blue-500 text-white border-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2 text-center'>
+                                <p className='text-2xl sm:text-2xl md:text-3xl text-gray-400 hover:text-green-500'><VscAccount /></p>
                             </div>
                         </div>
-                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-gray-50 text-gray-800 rounded-box w-52">
-                        <li className='hover:bg-blue-300'><a href="/user/dashboard">Go to dashboard</a></li>
-                        <li className='hover:bg-slate-300' onClick={logout}><a href='/'>Log out</a></li>
+                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-gray-50 text-gray-800 rounded-box w-52 border">
+                            <li className='hover:bg-blue-300'><a href="/user/dashboard">Go to dashboard</a></li>
+                            <li className='hover:bg-slate-300' onClick={logout}><a href='/'>Log out</a></li>
                         </ul>
                     </div>)
                     :

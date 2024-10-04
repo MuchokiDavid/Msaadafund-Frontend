@@ -36,6 +36,7 @@ body {
   height: 100%;
   background-color: #fff;
   color: black;
+  @apply font-[sans-serif]
 }
 
 input{

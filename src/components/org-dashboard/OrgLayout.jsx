@@ -44,7 +44,6 @@ function OrgLayout() {
   const user = localStorage.getItem('user')
   // eslint-disable-next-line 
   const regexPattern = /^(?:https?:\/\/)?(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\\w\-\\s])([\w\-]{11})(?=[^\\w\-]|$)(?![?=&+%\\w]*(?:['"][^<>]*>|<\/a>))[?=&+%\\w]*/i; 
- 
 
     // Use react-responsive to get screen size
   const isMediumScreen = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
@@ -297,7 +296,7 @@ useEffect(() => {
       {isSidebarOpen && <Menubar handleMenuItemClick={handleMenuItemClick} toggleSidebar={toggleSidebar} />}
       <div className='w-full sm:w-screen bg-slate-50'>
         <DashboardNav toggleSidebar={toggleSidebar} allCampaigns={campaigns} handleMenuItemClick= {handleMenuItemClick}/>
-        <main className="flex-1 my-3 text-gray-800 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6" style={{ marginTop: '10px' }} id='dashboard' onClick={handleMenuItemClick}>
+        <main className="flex-1 my-2 text-gray-800 mx-auto overflow-y-auto md:m-3 h-screen justify-center px-2 lg:px-6" style={{ marginTop: '10px' }} id='dashboard' onClick={handleMenuItemClick}>
           <Routes>
             <Route path="/" element={<OrgHome allCampaigns={campaigns} allDonations={allDonations} allDonors={donors} handleMenuItemClick={handleMenuItemClick} subscriptions={subscriptions}/>} />
             <Route path="/campaigns/:campaignId" element={<UpdateCampaign getValidYoutubeVideoId={getValidYoutubeVideoId} />} />

@@ -3,7 +3,7 @@ import React from 'react'
 function WhyUs() {
   return (
     <div>
-        <section className="bg-white text-gray-700 py-8" id="whyUsSection">
+        <section className="bg-white text-gray-800 py-8" id="whyUsSection">
             <div className="px-4 sm:px-6 lg:px-16">
                 <div className="max-w-xl mx-auto text-center">
                 <h2 className="text-3xl font-bold sm:text-4xl">Why MsaadaFund?</h2>

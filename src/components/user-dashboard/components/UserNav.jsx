@@ -3,13 +3,14 @@ import React from 'react'
 import { IoMenu } from "react-icons/io5";
 import logo from  '../../../assets/applogo.png';
 import { useAuth } from '../../../context/usersContext';
+import { VscAccount } from "react-icons/vsc";
 
 function UserNav({toggleSidebar, handleMenuItemClick}) {
     let token=localStorage.getItem("token");
     let current_user= localStorage.getItem("user");
     const {logout} = useAuth();
-    const userDataString = localStorage.getItem('userData');
-    const userData = userDataString ? JSON.parse(userDataString) : null;
+    // const userDataString = localStorage.getItem('userData');
+    // const userData = userDataString ? JSON.parse(userDataString) : null;
 
     if(!token && !current_user){
         window.location.replace("/user/login")
@@ -35,8 +36,8 @@ function UserNav({toggleSidebar, handleMenuItemClick}) {
               <div className="flex items-center">
                     <div className="dropdown dropdown-end absolute right-4 sm:z-20">
                         <div tabIndex={0} role="button" className="text-xs">
-                            <div className='flex items-center justify-center h-10 bg-blue-600 text-white border border-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2.5 w-10 text-center'>
-                            <p className='lg:text-base sm:text-sm'>{userData && userData.firstName.charAt(0)}</p>
+                            <div className='flex items-center justify-center h-10 text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2.5 w-10 text-center'>
+                              <p className='text-2xl sm:text-2xl md:text-3xl text-gray-400 hover:text-green-500'><VscAccount /></p>
                               {/* <p className='text-wrap flex-wrap'>{userData && userData.firstName}</p> */}
                               {/* <MdOutlineAccountCircle className="h-6 w-6 ml-2"/> */}
                               <span className="absolute top-0.5 right-0.5 h-2 w-2 rounded-full bg-green-500"></span>

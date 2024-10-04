@@ -55,7 +55,7 @@ function RecentDonation({allDonations}) {
                         <tbody>
                             {slicedDonations.map((donation, index) => {
                                 return (
-                                    <tr key={index}>
+                                    <tr key={index} className='even:bg-blue-50'>
                                         <td className='px-2 py-2 whitespace-no-wrap border-b border-gray-200 '>
                                             <div className='text-gray-900'>{index + 1}</div>
                                         </td>
