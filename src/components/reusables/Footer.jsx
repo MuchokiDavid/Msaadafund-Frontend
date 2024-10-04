@@ -21,7 +21,7 @@ function Footer() {
                 <h6 className="footer-title">Quick links</h6> 
                 <a href='/' className="link link-hover">Home</a>
                 <a href='/campaigns' className="link link-hover">Campaigns</a>
-                <a href='/organisations' className="link link-hover">Organisations</a>
+                <a href='/organisations' className="link link-hover">Organisers</a>
                 <a href={token && org?'/org/dashboard/createcampaign':'/org/login'} className="link link-hover">Create fundraiser</a>
                 <InstallPWA/>
             </nav> 

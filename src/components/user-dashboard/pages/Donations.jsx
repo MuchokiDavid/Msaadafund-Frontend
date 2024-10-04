@@ -103,7 +103,7 @@ function Donations({allDonation}) {
                           <tbody className='bg-white'>
                               {allDonations && paginatedDonations.map((donation, index) => {
                                   return (
-                                      <tr key={donation._id}>
+                                      <tr key={donation._id} className='even:bg-blue-50'>
                                           <td className='px-4 py-2 whitespace-no-wrap border-b border-gray-200'>
                                               <div className='text-gray-900'>{index + 1}</div>
                                           </td>

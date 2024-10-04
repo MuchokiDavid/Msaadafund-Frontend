@@ -4,18 +4,28 @@ import { prettyNumber } from '@based/pretty-number'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { apiUrl,appKey } from '../../context/Utils';
+// import { apiUrl,appKey } from '../../context/Utils';
 
-function Feature() {
-    const [featuredCampaign, setFeaturedCampaign] = useState(null)
-    const [loading, setLoading] = useState(false)
+function Feature({featuredCampaigns}) {
+    const [featuredCampaign, setFeaturedCampaign] = useState(featuredCampaigns)
+    // const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const currentDate = new Date();
   const [buttonClicked, setButtonClicked] = useState(false);//state listen to button event change 
 
+    // useEffect(() => {
+    //   if(featuredCampaigns && featuredCampaigns.length!=0){
+    //     setFeaturedCampaign(featuredCampaigns)
+    //   }
+    //   else{
+    //     handleFeatured()
+    //   }
+    // }, [featuredCampaigns]);
+
     useEffect(() => {
-        handleFeatured()
-    }, []);
+      setFeaturedCampaign(featuredCampaigns)
+    }, [featuredCampaigns])
+    
 
     // Scroll to the section with id 'howItWorksSection' when button is clicked
   useEffect(() => {
@@ -28,25 +38,25 @@ function Feature() {
     setButtonClicked(false)
   }, [buttonClicked,featuredCampaign]);
 
-    const handleFeatured = async () => {
-      setLoading(true)
-        try {
-            const response = await fetch(`${apiUrl}/api/v1.0/featured`, {
-                headers: {
-                  'X-API-KEY': appKey,
-                },
-                method: 'GET',
-            });
-            const data = await response.json();
-            if (response.ok) {
-                setLoading(false)
-                setFeaturedCampaign(data)
-            }
+    // const handleFeatured = async () => {
+    //   setLoading(true)
+    //     try {
+    //         const response = await fetch(`${apiUrl}/api/v1.0/featured`, {
+    //             headers: {
+    //               'X-API-KEY': appKey,
+    //             },
+    //             method: 'GET',
+    //         });
+    //         const data = await response.json();
+    //         if (response.ok) {
+    //             setLoading(false)
+    //             setFeaturedCampaign(data)
+    //         }
             
-        } catch (error) {
-            setLoading(false)
-        }
-    }
+    //     } catch (error) {
+    //         setLoading(false)
+    //     }
+    // }
     // console.log(featuredCampaign)
     const handleCampaign = (campaignId) => {
         setTimeout(() => {
@@ -76,14 +86,9 @@ function Feature() {
       return text.replace(/\s+/g, '-');
       }
 
-    if(loading){
-    return (
-      <div className='container'>
-        <span className="loading loading-dots loading-md"></span>
-      </div>
-        
-        )
-    }
+    // if(loading){
+    //   return 
+    // }
 
     const calculateDaysLeft = (endDate) => {
       if (!endDate) return null;

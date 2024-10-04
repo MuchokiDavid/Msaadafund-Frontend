@@ -1,6 +1,6 @@
 import React from 'react';
 import {IoPersonCircle } from "react-icons/io5";
-import { RiLogoutBoxLine } from "react-icons/ri";
+import { ImSwitch } from "react-icons/im";
 import { useAuth } from '../../../context/usersContext';
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { FaPhone } from "react-icons/fa6";
@@ -41,7 +41,7 @@ function Menubar({handleMenuItemClick}) {
     <div className="flex flex-col justify-between flex-1 sm:mb-16 lg:mb-6">
         <nav className="-mx-3 space-y-6 mt-4">
             <div className="space-y-3 ">
-                <label className="px-3 text-xs uppercase">analytics</label>
+                <label className="px-3 text-xs uppercase text-blue-600 font-medium">analytics</label>
 
                 <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 hover:text-gray-700" 
                 onClick={handleMenuItemClick}
@@ -63,7 +63,7 @@ function Menubar({handleMenuItemClick}) {
             </div>
 
             <div className="space-y-3 ">
-                <label className="px-3 text-xs uppercase">Campaign</label>
+                <label className="px-3 text-xs uppercase text-blue-600 font-medium">Campaign</label>
 
                 <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
@@ -111,7 +111,7 @@ function Menubar({handleMenuItemClick}) {
 
 
             <div className="space-y-3 ">
-                <label className="px-3 text-xs uppercase">Transact</label>
+                <label className="px-3 text-xs uppercase text-blue-600 font-medium">Transact</label>
 
                 <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
@@ -162,7 +162,7 @@ function Menubar({handleMenuItemClick}) {
             </div>
 
             <div className="space-y-3 ">
-                <label className="px-3 text-xs uppercase">Records</label>
+                <label className="px-3 text-xs uppercase text-blue-600 font-medium">Records</label>
                 
                 <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
@@ -205,7 +205,7 @@ function Menubar({handleMenuItemClick}) {
 
 
             <div className="space-y-3 ">
-                <label className="px-3 text-xs uppercase">Customization</label>
+                <label className="px-3 text-xs uppercase text-blue-600 font-medium">Customization</label>
 
                 <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
                 onClick={handleMenuItemClick}
@@ -228,7 +228,7 @@ function Menubar({handleMenuItemClick}) {
                 onClick={() => { handleLogout(); handleMenuItemClick(); }}
                 >
                    
-                    <RiLogoutBoxLine className='w-5 h-5' />
+                    <ImSwitch className='w-5 h-5' />
 
                     <span className="mx-2 text-sm font-medium">Log out</span>
                 </button>

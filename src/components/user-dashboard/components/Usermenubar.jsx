@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaDonate} from "react-icons/fa";
 import { IoPersonCircle } from "react-icons/io5";
-import { RiLogoutBoxLine } from "react-icons/ri";
+import { ImSwitch } from "react-icons/im";
 import { useAuth } from '../../../context/usersContext';
 import { MdOutlineSubscriptions } from "react-icons/md";
 import { IoMdHelpCircle } from 'react-icons/io';
@@ -31,7 +31,7 @@ function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
           <div className="flex flex-col justify-between flex-1 mt-4">
               <nav className="-mx-3 space-y-6 ">
                   <div className="space-y-3 ">
-                      <label className="px-3 text-xs uppercase">analytics</label>
+                      <label className="px-3 text-xs uppercase text-blue-600 font-medium">analytics</label>
 
                       <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 hover:text-gray-700" 
                       onClick={handleMenuItemClick}
@@ -45,7 +45,7 @@ function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
                   </div>
 
                   <div className="space-y-3 ">
-                      <label className="px-3 text-xs uppercase">Data</label>
+                      <label className="px-3 text-xs uppercase text-blue-600 font-medium">Data</label>
 
                       <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                       onClick={handleMenuItemClick}
@@ -66,7 +66,7 @@ function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
                   {/* signatory routes  */}
                   {signatory && (
                   <div className="space-y-3 ">
-                    <label className="px-3 text-xs uppercase">Signatory</label>
+                    <label className="px-3 text-xs uppercase text-blue-600 font-medium">Signatory</label>
 
                     <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
                     onClick={handleMenuItemClick}
@@ -79,7 +79,7 @@ function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
 
 
                   <div className="space-y-3 ">
-                      <label className="px-3 text-xs uppercase">Customization</label>
+                      <label className="px-3 text-xs uppercase text-blue-600 font-medium">Customization</label>
 
                       <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700" 
                       onClick={handleMenuItemClick}
@@ -102,7 +102,7 @@ function Usermenubar({ handleMenuItemClick, toggleSideBar }) {
                       onClick={() => { handleLogout()}}
                       >
                         
-                          <RiLogoutBoxLine className='w-5 h-5' />
+                          <ImSwitch className='w-5 h-5' />
 
                           <span className="mx-2 text-sm font-medium">Log out</span>
                       </button>

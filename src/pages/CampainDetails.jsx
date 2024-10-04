@@ -19,7 +19,7 @@ import Swal from 'sweetalert2';
 import { useAuth } from '../context/usersContext';
 import Card from './Card';
 import Announcement from '../components/reusables/Announcement';
-import Featured from '../components/campaigns/Featured';
+// import Featured from '../components/campaigns/Featured';
 import PopupGoogle from '../components/user-auth/PopupGoogle';
 import { apiUrl,appKey,url } from '../context/Utils';
 import { MdOutlineSendToMobile } from "react-icons/md";
@@ -1129,7 +1129,7 @@ const togglePasswordVisibility = (e) => {
                     </div>
                     
                 </div>
-                <div className='mt-4 px-2'><Featured/></div>
+                {/* <div className='mt-4 px-2'><Featured/></div> */}
                 
 
                 {/* </Popup> */}               

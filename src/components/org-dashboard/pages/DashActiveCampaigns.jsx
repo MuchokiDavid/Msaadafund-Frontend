@@ -223,7 +223,7 @@ function DashActiveCampaigns({ allCampaigns, campaignError }) {
                             <tbody>
                                 {paginatedCampaigns && paginatedCampaigns.map((item) => {
                                     return (
-                                        <tr key={item.id}>
+                                        <tr key={item.id} className='even:bg-blue-50'>
                                             {/* <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200 '>{item.id}</td> */}
                                             <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{item.campaignName}</td>
                                             <td className='px-4 py-1 whitespace-no-wrap border-b border-gray-200'>{item.category}</td>

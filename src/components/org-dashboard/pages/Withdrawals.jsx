@@ -223,7 +223,7 @@ function Withdrawals() {
                                 )}
 
                                 {currentItems.map((withdrawal, index) => (
-                                    <tr key={index}>
+                                    <tr key={index} className='even:bg-blue-50'>
                                         <td>{withdrawal.tracking_id}</td>
                                         <td>{withdrawal.name}</td>
                                         <td>{withdrawal.campaign_name}</td>

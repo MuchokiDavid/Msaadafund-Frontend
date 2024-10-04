@@ -2,10 +2,11 @@ import React from 'react'
 import { IoMenu } from "react-icons/io5";
 import { useAuth } from '../../../context/usersContext';
 import logo from '../../../assets/applogo.png'
+import { VscAccount } from "react-icons/vsc";
 
 function DashboardNav({toggleSidebar,handleMenuItemClick}) {
     // const [isOpen, setIsOpen] = useState(true); // Default to open on large screens
-  let current_org= localStorage.getItem('org');
+  // let current_org= localStorage.getItem('org');
   let token=localStorage.getItem("token");
   let org= localStorage.getItem("org");
   const {logout} = useAuth();
@@ -36,8 +37,8 @@ function DashboardNav({toggleSidebar,handleMenuItemClick}) {
               <div className="flex items-center justify-end">
                     <div className="dropdown dropdown-end absolute right-4">
                         <div tabIndex={0} role="button" className="text-xs">
-                            <div className='flex items-center justify-center h-10 bg-blue-600 text-white border border-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2.5 w-10 text-center'>
-                              <p className='lg:text-base sm:text-sm'>{current_org && current_org.charAt(0)}</p>
+                            <div className='flex items-center justify-center h-10 text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2.5 w-10 text-center'>
+                                <p className='text-2xl sm:text-2xl md:text-3xl text-gray-400 hover:text-green-500'><VscAccount /></p>
                               <span className="absolute top-0.5 right-0.5 h-2 w-2 rounded-full bg-green-500"></span>
                             </div>
                         </div>
