@@ -172,7 +172,7 @@ function Withdrawals() {
                     />
                 </div>
                 <div className='mr-2 py-2'>
-                    <select className='py-2 rounded' onChange={(e)=>setFormat(e.target.value)}>
+                    <select className='py-2 rounded bg-white text-gray-800' onChange={(e)=>setFormat(e.target.value)}>
                         <option>
                             Download
                         </option> 
