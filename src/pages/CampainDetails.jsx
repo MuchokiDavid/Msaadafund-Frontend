@@ -8,7 +8,6 @@ import Slider from "react-slick";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
-
 import { 
 FacebookShareButton,FacebookIcon, 
 WhatsappShareButton,WhatsappIcon,
@@ -23,6 +22,7 @@ import Announcement from '../components/reusables/Announcement';
 import PopupGoogle from '../components/user-auth/PopupGoogle';
 import { apiUrl,appKey,url } from '../context/Utils';
 import { MdOutlineSendToMobile } from "react-icons/md";
+import QRCode from 'react-qr-code';
 
     // Functions to shuffle array
     function shuffleArray(array) {
@@ -600,6 +600,7 @@ useEffect(() => {
                 >
                     <TelegramIcon className='h-12 w-12 rounded-full'/>
                 </TelegramShareButton>
+
             </div>
             </>
         )
@@ -1199,7 +1200,7 @@ const togglePasswordVisibility = (e) => {
                     <p className='text-md mt-1 mb-2'>Share this campaign with your friends and family</p>
                     <div className='mb-4'>
                         {socialShare()}
-                    </div>
+                    </div>                    
                     <p className="font-semibold my-3">Copy the link below to share</p>
                     <span className="bg-blue-100 flex gap-5 items-center justify-between py-3 px-5 rounded">
                         <code className="text-blue-900 text-left whitespace-nowrap overflow-hidden overflow-ellipsis">
@@ -1217,6 +1218,15 @@ const togglePasswordVisibility = (e) => {
                         </CopyToClipboard>                        
                     </span>
                     {copied ? <span style={{color: 'red'}}>Copied.</span> : null}
+                    <div className='flex justify-center'>
+                        <p className='my-1 font-semibold'>Or</p>
+                    </div>
+                    <div className='flex justify-center'>
+                        <p className='my-1'>Scan the QR code below</p>
+                    </div>
+                    <div className='flex justify-center'>
+                        <QRCode value={currentlWebUrl} className='w-24 h-24'/>
+                    </div>
                 </div>
                 
                 <button onClick={() => { setShowShareModal(false); setCopied(false)}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>

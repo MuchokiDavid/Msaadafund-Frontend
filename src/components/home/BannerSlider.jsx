@@ -41,7 +41,7 @@ function BannerSlider() {
               </button>
             </div>
           </div>
-          <div className="hidden lg:block max-lg:mt-12 h-full">
+          <div className="max-lg:mt-12 h-full">
             <img src={bannerPhoto} alt="banner img" className="w-full h-full object-cover" />
           </div>
         </div>
