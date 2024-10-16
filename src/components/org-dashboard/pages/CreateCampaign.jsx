@@ -117,6 +117,10 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                     setCategory('');
                     setYoutubeLink('')
                     formRef.current.reset();
+                    setTimeout(() => {
+                        window.location.replace('/org/dashboard/mycampaigns/active') 
+                    }, 1000); 
+                                      
                 })
                 .catch((err) => {                    
                     // console.log(err);
@@ -212,6 +216,7 @@ function CreateCampaign({getValidYoutubeVideoId}) {
                         <option className='text-sm' value="Human Rights">Human Rights</option>
                         <option className='text-sm' value="Environment">Environment</option>
                         <option className='text-sm' value="Community Devt">Community Devt</option> 
+                        <option className='text-sm' value="Church">Church</option>
                         <option className='text-sm' value="Animal Welfare">Animal Welfare</option> 
                         <option className='text-sm' value="Arts and Culture">Arts and Culture</option> 
                         <option className='text-sm' value="Disaster">Disaster</option> 

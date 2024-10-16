@@ -63,7 +63,7 @@ function Menubar({handleMenuItemClick}) {
             </div>
 
             <div className="space-y-3 ">
-                <label className="px-3 text-xs uppercase text-blue-600 font-medium">Campaign</label>
+                <label className="px-3 text-xs uppercase text-blue-600 font-medium">Fundraising</label>
 
                 <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
                 onClick={handleMenuItemClick}
@@ -156,6 +156,15 @@ function Menubar({handleMenuItemClick}) {
                     <FaPhone className='w-3 h-3' />
 
                     <span className="mx-2 text-sm font-medium" >Buy Airtime</span>
+                </a>
+
+                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
+                onClick={handleMenuItemClick}
+                href="/org/dashboard/transact/approvals">
+                    
+                    <FcApprove className='w-4 h-4'/>
+
+                    <span className="mx-2 text-sm font-medium">Pending Approvals</span>
                 </a>    
                 
                 
@@ -190,15 +199,6 @@ function Menubar({handleMenuItemClick}) {
                     </svg>
 
                     <span className="mx-2 text-sm font-medium">Transactions</span>
-                </a>
-
-                <a className="flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" 
-                onClick={handleMenuItemClick}
-                href="/org/dashboard/transact/approvals">
-                    
-                    <FcApprove className='w-4 h-4'/>
-
-                    <span className="mx-2 text-sm font-medium">Pending Approvals</span>
                 </a>
 
             </div>

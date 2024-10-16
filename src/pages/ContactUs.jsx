@@ -23,7 +23,32 @@ function ContactUs() {
                   </div>
               </div>      
         </div> 
-      <Message/>
+         {/* Contact Section */}
+      <div className="container mx-auto my-8">
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Message form */}
+          <div className="w-full lg:w-2/3">
+            <Message />
+          </div>
+
+          {/* Contact Info Cards */}
+          <div className="w-full lg:w-1/3 flex flex-col gap-4">
+            {/* Phone Card */}
+            <div className="bg-white shadow-lg rounded-lg p-6">
+              <h3 className="text-lg font-semibold mb-2">Phone Number</h3>
+              <p className="text-gray-600">+254 702 842883</p>
+              <p className="text-gray-600">+254 705 960166</p>
+            </div>
+
+            {/* Email Card */}
+            <div className="bg-white shadow-lg rounded-lg p-6">
+              <h3 className="text-lg font-semibold mb-2">Email Address</h3>
+              <p className="text-gray-600">info@msaadafund.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <Message/> */}
       <Footer/>
     </div>
   )
