@@ -328,7 +328,7 @@ useEffect(() => {
         const translatedName = await translateText(campaign.campaignName, selectedLanguage);
         const storyTranslate= await translateText("Story", selectedLanguage);
         const mpesaTranslate= await translateText("Contribute with M-Pesa", selectedLanguage);
-        const globalTranslate= await translateText("Contribute with Global payment methods", selectedLanguage);
+        const globalTranslate= await translateText("Contribute with International Methods", selectedLanguage);
         const contributionsTranslate= await translateText("Contributions", selectedLanguage);
         const goalTranslate= await translateText("Target", selectedLanguage);
         setSubmitTranslate(await translateText("Contribute", selectedLanguage));
@@ -418,7 +418,7 @@ useEffect(() => {
                                     setDonating(false)
                                     Swal.fire({
                                         title: res.data.message,
-                                        text: "Please check your phone and enter your M-Pesa PIN. If you don't receive a prompt, try using Global Pay as an alternative",
+                                        text: "Please check your phone and enter your M-Pesa PIN. If you don't receive a prompt, try using International methods as an alternative",
                                         icon: "success"
                                       }).then((result)=>{
                                         if(result.isConfirmed){
@@ -835,14 +835,14 @@ const togglePasswordVisibility = (e) => {
                         value={activeTab}
                     >
                         <option>M-Pesa</option>
-                        <option>Global Pay</option>
+                        <option>International</option>
                     </select>
                     </div>
 
                     <div className="hidden sm:block">
                     <div className="border-b border-gray-200">
                         <nav className="-mb-px flex gap-6" aria-label="Tabs">
-                        {['M-Pesa', 'Global Pay'].map((tab) => (
+                        {['M-Pesa', 'International'].map((tab) => (
                             <p
                             key={tab}
                             // href="#"
@@ -975,9 +975,9 @@ const togglePasswordVisibility = (e) => {
                             </div>
                         </div>
                     )}
-                    {activeTab === 'Global Pay' && (
+                    {activeTab === 'International' && (
                         <div>
-                        <h2 className="text-2xl font-semibold">{translatedGlobal ||"Contribute with Global payment methods"}</h2> 
+                        <h2 className="text-2xl font-semibold">{translatedGlobal ||"Contribute with International methods"}</h2> 
                             <div className='h-full rounded-lg'> 
                                 <form onSubmit={handleDonateCard} className='w-full rounded-xl'>
                                     <div className='text-black'>
