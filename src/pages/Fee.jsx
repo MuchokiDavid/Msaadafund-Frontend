@@ -19,7 +19,7 @@ function Fee() {
                       <div className="text-sm breadcrumbs ml-2 text-white">
                         <ul>
                             <li><a href='/'>Home</a></li> 
-                            <li><a href='/fee'>Pricing</a></li> 
+                            <li><a href='/fees'>Pricing</a></li> 
                         </ul>
                     </div>
                   </div>
