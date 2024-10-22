@@ -23,6 +23,7 @@ import PopupGoogle from '../components/user-auth/PopupGoogle';
 import { apiUrl,appKey,url } from '../context/Utils';
 import { MdOutlineSendToMobile } from "react-icons/md";
 import QRCode from 'react-qr-code';
+import Partners from '../components/home/Partners';
 
     // Functions to shuffle array
     function shuffleArray(array) {
@@ -1131,6 +1132,7 @@ const togglePasswordVisibility = (e) => {
                     
                 </div>
                 {/* <div className='mt-4 px-2'><Featured/></div> */}
+                <Partners/>
                 
 
                 {/* </Popup> */}               
