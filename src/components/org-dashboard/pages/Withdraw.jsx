@@ -23,7 +23,7 @@ function Withdraw({ allCampaigns, campaignError, handleWallet }) {
     const [transactionResponse, setTransactionResponse] = useState([])
     const [bank, setBank] = useState('')
     const [popupErrors, setPopupErrors] = useState(null)
-    const [passswordShow,setPasswordShow] = useState("")
+    const [passswordShow,setPasswordShow] = useState(null)
     const [isSubmitting, setIsSubmitting]= useState(false)
 
     // const formRef = useRef(null);
@@ -314,7 +314,7 @@ return (
                                 <div className='my-4 text-white'>
                                     <label className="font-semibold my-3" htmlFor="amount">Amount</label>
                                     <input
-                                        className="input input-bordered border-gray-300 w-full bg-white custom-disabled-input"
+                                        className="input input-bordered border-gray-300 w-full bg-gray-50"
                                         value={amount}
                                         disabled
                                     />
@@ -326,13 +326,13 @@ return (
                                         value={pin}
                                         className="input input-bordered w-full bg-white"
                                         id="pin"
-                                        type={ passswordShow ? "password" : "text"}
+                                        type={ passswordShow ? "text" : "password"}
                                         placeholder='pin'
                                         maxLength={4}
                                         name="pin"
                                         required
                                     />
-                                    <button onClick={handlePasswordEye} className='absolute right-14 mx-1 mt-4   '>{passswordShow ? <FaEyeSlash/> : <FaEye/>}</button>
+                                    <button onClick={handlePasswordEye} className='absolute right-14 mx-1 mt-4   '>{passswordShow ?<FaEye/>:<FaEyeSlash/>}</button>
                                 </div>
                                 <div>
                                     <button type='submit' className="rounded-md px-5 py-2 bg-blue-600 text-white my-4">Withdraw</button>
