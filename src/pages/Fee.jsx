@@ -16,7 +16,7 @@ function Fee() {
                       <p className="text-gray-800">
                         This pricing guide provides information about the payment collection process and the different payment options available to donors.
                       </p>
-                      <div className="text-sm breadcrumbs ml-2 text-white">
+                      <div className="text-sm breadcrumbs ml-2 text-gray-800">
                         <ul>
                             <li><a href='/'>Home</a></li> 
                             <li><a href='/fees'>Pricing</a></li> 

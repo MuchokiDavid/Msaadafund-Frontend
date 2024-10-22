@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Partners from '../components/home/Partners';
 
 function PriceCards() {
   const [activeTab, setActiveTab] = useState(0);
@@ -145,6 +146,7 @@ function PriceCards() {
           </div>
         )}
       </div>
+      <Partners/>
     </div>
   );
 }
