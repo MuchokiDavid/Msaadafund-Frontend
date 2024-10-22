@@ -73,7 +73,7 @@ const handlePay = async (e) => {
           // toast('Pay to paybill request initiated successfully');
           Swal.fire({
               icon: 'success',
-              title: 'Request successful',
+              title: 'Buy goods & Services',
               text: response.data.message
           });
         }

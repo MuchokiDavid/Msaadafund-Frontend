@@ -107,7 +107,8 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                     Swal.fire({
                       // position: 'top-end',
                       icon: 'success',
-                      title: 'Buy airtime request received successfully.Transaction awaiting approval',
+                      title: "Buy Airtime",
+                      text: 'Request received successfully.Transaction awaiting your signatory approval',
                       showConfirmButton: false,
                       timer: 1500
                     })
@@ -120,10 +121,23 @@ function BuyAirtime({allCampaigns,campaignError,handleWallet}) {
                   }
                   if(data && data.error){
                     setError(data.error)
+                    setIsSubmitting(false)
+                    // swal
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: data.error
+                    })
                   }
                 })
                 .catch((error) => {
                   console.error("Error buying airtime:", error);
+                  // swal to show error
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong while buying airtime, please try again!'
+                  });
                 })
                 .finally(() => {
                   setIsSubmitting(false);
