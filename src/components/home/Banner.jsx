@@ -6,6 +6,7 @@ import BannerCards from './BannerCards'
 import joinus from '../../assets/joinus.jpg'
 import WhyUs from './WhyUs'
 import { apiUrl,appKey } from '../../context/Utils'
+import Partners from './Partners'
 // import logo from '../../assets/applogo.png'
 
 function Banner() {
@@ -320,6 +321,7 @@ if (loading) {
       </section>
 
       <BannerCards/>
+      <Partners/>
 
       {/* <section className="bg-white">
         <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
