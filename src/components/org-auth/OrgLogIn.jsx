@@ -1,25 +1,52 @@
 import React from 'react'
 import { useAuth } from '../../context/usersContext'
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Menus from '../reusables/Menus';
 import Footer from '../reusables/Footer';
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import login_pic from '../../assets/login.svg'
-
+import ReCAPTCHA from "react-google-recaptcha";
+import { recaptchaKey} from '../../context/Utils';
+import { apiUrl } from '../../context/Utils';
 
 function OrgLogIn() {
   const {orgLogin, loginMessage, isLoggedIn, orgLoading} = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState(null);
   const navigate = useNavigate()
-  
+  const captchaRef = useRef(null)
 
-  const login = (e) =>{
+  const login = async(e) =>{
     e.preventDefault();
-    orgLogin(email, password);
+    setErrors(null)
+    const token = captchaRef.current.getValue();
+
+    if (!token) {
+      setErrors('Please verify the reCAPTCHA!')
+    }
+    else{
+      setErrors(null)
+      const res = await fetch(`${apiUrl}/api/v1.0/auth/recaptcha`, {
+        method: 'POST',
+        body: JSON.stringify({ token }),
+        headers: {
+          'content-type': 'application/json',
+        },
+      })
+      const data = await res.json()
+      if (data.message.success) {
+        // make form submission
+        orgLogin(email, password);
+      } else {
+        setErrors('reCAPTCHA validation failed!')
+      }
+    }   
+    captchaRef.current.reset();
+    // orgLogin(email, password);
   }
 
   if (isLoggedIn) {
@@ -61,9 +88,12 @@ function OrgLogIn() {
               Organiser Sign in
               </h1>
             </div>
-            <div className="w-full flex-1 mt-8">          
-            {loginMessage && <p className='text-red-500'>{loginMessage}</p>}          
-              <div className="mx-auto max-w-md flex flex-col gap-4 ">                    
+            <div className="w-full flex-1 mt-8">
+              <div className= "flex justify-center">          
+                {loginMessage && <p className='text-red-500'>{loginMessage}</p>}   
+                {errors && <p className='text-red-500 mb-2'>{errors}</p>} 
+              </div>      
+              <div className="mx-auto max-w-md flex flex-col gap-4">                    
                     <form className="space-y-4 md:space-y-6 w-full" action="#" onSubmit={login}>                      
                         <div>
                             <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Email</label>
@@ -87,17 +117,12 @@ function OrgLogIn() {
                             required/>
                             <button title='show password' onClick={togglePasswordVisibility} className="absolute inset-y-0 right-2 flex items-center mt-6">{showPassword?<FaEye/>:<FaEyeSlash/>}</button>
                         </div>
-                        <div className="flex items-center justify-between">
-                            {/* <div className="flex items-start">
-                                <div className="flex items-center h-5">
-                                  <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 " required=""/>
-                                </div>
-                                <div className="ml-3 text-sm">
-                                  <label htmlFor="remember" className="text-gray-500 ">Remember</label>
-                                </div>
-                            </div> */}
-                            <a href="/org/reset" className="text-sm font-medium text-primary-600 hover:underline ">Forgot password?</a>
-                        </div>
+
+                        <ReCAPTCHA
+                        sitekey={recaptchaKey}
+                        ref={captchaRef}
+                        />
+
                         {orgLoading ? <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                           <svg aria-hidden="true" role="status" className="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
@@ -108,9 +133,15 @@ function OrgLogIn() {
                           
                           </button>:<button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>}
                         {/* <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Sign in</button> */}
+                        
+                        <div className="flex items-center justify-between">
+                            <a href="/org/reset" className="text-sm font-medium text-primary-600 hover:underline ">Forgot password?</a>
+                        </div>
+                        
                         <p className="text-sm font-light text-gray-500">
                             Don’t have an account yet ? <a href="/org/signup" className="font-medium text-primary-600 hover:underline ">Sign up</a>
                         </p>
+
                     </form>
               </div>
             </div>
