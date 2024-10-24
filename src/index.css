@@ -22,6 +22,27 @@
   border: 3px solid var(--primary);
 }
 
+input:-webkit-autofill {
+  background-color: #f0f0f0 !important; /* Your desired background color */
+  color: #333; /* Adjust text color if needed */
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+input:-webkit-autofill:disabled,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid #434346;
+  -webkit-text-fill-color: #181717;
+  -webkit-box-shadow: 0 0 0px 1000px #f2f3f4 inset;
+  transition: background-color 5000s ease-in-out 0s;
+};
+
 @tailwind components;
 @tailwind utilities;
 @import "slick-carousel/slick/slick.css";
@@ -42,6 +63,7 @@ body {
 input{
   background-color: #fff;
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

@@ -310,11 +310,12 @@ return (
                         {transactionResponse.transactions && <p className='text-emerald-500'>Status: {transactionResponse.transactions[0].status}</p>}
                         {popupErrors && <p className='text-red-700 '>{popupErrors}</p>}
                         <form className='flex justify-center items-center ' onSubmit={handleWithdraw}>
-                            <div className='flex-col justify-center items-center pl-4 pr-8'>
+                            <div className='flex-col justify-center items-center pl-4 pr-8 text-left'>
                                 <div className='my-4 text-white'>
-                                    <label className="font-semibold my-3" htmlFor="amount">Amount</label>
+                                    <label className="font-semibold my-3 text-gray-700" htmlFor="amount">Amount</label>
                                     <input
-                                        className="input input-bordered border-gray-300 w-full bg-gray-50"
+                                        className="input input-bordered w-full max-w-xs bg-gray-100"
+                                        type='text'
                                         value={amount}
                                         disabled
                                     />
@@ -335,11 +336,11 @@ return (
                                     <button onClick={handlePasswordEye} className='absolute right-14 mx-1 mt-4   '>{passswordShow ?<FaEye/>:<FaEyeSlash/>}</button>
                                 </div>
                                 <div>
-                                    <button type='submit' className="rounded-md px-5 py-2 bg-blue-600 text-white my-4">Withdraw</button>
+                                    <button type='submit' className="rounded-md px-5 py-2 bg-blue-600 text-white my-4 min-w-full">Withdraw</button>
                                 </div>
                             </div>
                         </form>
-                        <button onClick={() => { setWithdrawForm(false); setLoading(false); setTransactionResponse('');  setPopupErrors(''); setCampaign('');}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        <button onClick={() => { setWithdrawForm(false); setLoading(false); setTransactionResponse('');  setPopupErrors('');}} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 
                         {/* </div> */}
                     </div>
