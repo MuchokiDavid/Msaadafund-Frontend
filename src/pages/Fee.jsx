@@ -13,9 +13,13 @@ function Fee() {
               <div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center align-middle px-4">
                       <h1 className="text-2xl lg:text-4xl text-gray-800 font-bold text-center my-4">Pricing plans</h1>
-                      <p className="text-gray-800">
-                        This pricing guide provides information about the payment collection process and the different payment options available to donors.
-                      </p>
+                      <div className='text-center'>
+                        <p className="text-gray-800">
+                          This pricing guide provides information about the payment charges incurred by the organisers.
+                          <br/>
+                          The contributor does not incur any charges.
+                        </p>
+                      </div>
                       <div className="text-sm breadcrumbs ml-2 text-gray-800">
                         <ul>
                             <li><a href='/'>Home</a></li> 

@@ -10,6 +10,7 @@ function PriceCards() {
       title: "Mobile Payments",
       price: "3%",
       features: [
+        "Minimum charge KES 10, capped at KES 400",
         "Access funds immediately",
         "M-Pesa STK push",
         "No maintenance fee",
@@ -27,6 +28,7 @@ function PriceCards() {
           title: "Local Cards",
           price: "3.5%",
           features: [
+            "Minimum charge KES 10, capped at KES 400",
             "Supports both Visa and MasterCard",
             "No maintenance fee",
             "Invoicing",
@@ -42,6 +44,7 @@ function PriceCards() {
           title: "International Payments",
           price: "4.5%",          
           features: [
+            "Minimum charge KES 10, capped at KES 400",
             "Multi-currency settlements",
             "Visa, MasterCard, Cash App, Apple Pay, and Pesalink",
             "No maintenance fee",
@@ -75,6 +78,8 @@ function PriceCards() {
 
   return (
     <div className="w-full max-w-4xl mx-auto my-8">
+
+      {/* Tab Navigation */}
       {/* Responsive Tab Navigation */}
       <div className="flex flex-col sm:flex-row justify-center sm:space-x-4 space-y-2 sm:space-y-0 mb-8">
         {tabs.map((tab, index) => (
