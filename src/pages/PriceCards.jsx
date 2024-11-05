@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Partners from '../components/home/Partners';
+import React, { useState } from "react";
+import Partners from "../components/home/Partners";
 
 function PriceCards() {
   const [activeTab, setActiveTab] = useState(0);
@@ -42,7 +42,7 @@ function PriceCards() {
         },
         {
           title: "International Payments",
-          price: "4.5%",          
+          price: "4.5%",
           features: [
             "Minimum charge KES 10, capped at KES 400",
             "Multi-currency settlements",
@@ -78,7 +78,6 @@ function PriceCards() {
 
   return (
     <div className="w-full max-w-4xl mx-auto my-8">
-
       {/* Tab Navigation */}
       {/* Responsive Tab Navigation */}
       <div className="flex flex-col sm:flex-row justify-center sm:space-x-4 space-y-2 sm:space-y-0 mb-8">
@@ -111,13 +110,19 @@ function PriceCards() {
             <hr className="my-4" />
             <ul className="text-center space-y-2">
               {pricingData[activeTab].features.map((feature, index) => (
-                <li key={index} className="text-gray-700 text-left flex justify-center">
+                <li
+                  key={index}
+                  className="text-gray-700 text-left flex justify-center"
+                >
                   {feature}
                 </li>
               ))}
             </ul>
             <div className="mt-6 flex justify-center">
-              <a href='/org/signup' className="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700">
+              <a
+                href="/org/signup"
+                className="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700"
+              >
                 Get Started
               </a>
             </div>
@@ -142,7 +147,10 @@ function PriceCards() {
                   ))}
                 </ul>
                 <div className="mt-6 flex justify-center">
-                  <a href='/org/signup' className="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700">
+                  <a
+                    href="/org/signup"
+                    className="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700"
+                  >
                     Get Started
                   </a>
                 </div>
@@ -151,7 +159,7 @@ function PriceCards() {
           </div>
         )}
       </div>
-      <Partners/>
+      <Partners />
     </div>
   );
 }

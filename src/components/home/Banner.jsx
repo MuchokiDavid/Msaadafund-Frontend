@@ -216,7 +216,7 @@ function Banner() {
         <Featured errors={errors} featuredCampaigns={featuredCampaign} />
       </div>
 
-      <section className="bg-white text-gray-800">
+      <section className="bg-slate-50 text-gray-800 mt-6 mb-4">
         <div className="px-4 py-6 sm:px-6 sm:py-8 lg:px-16 lg:py-12">
           <div className="max-w-full text-center">
             <h2 className="md:text-4xl text-3xl font-bold mb-6">How It Works</h2>

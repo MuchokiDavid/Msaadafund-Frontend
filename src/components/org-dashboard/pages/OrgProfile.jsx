@@ -1,35 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { toast, Toaster } from 'react-hot-toast';
-import { apiUrl } from '../../../context/Utils';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { toast, Toaster } from "react-hot-toast";
+import { apiUrl } from "../../../context/Utils";
 
 function OrgProfile() {
   const [orgData, setOrgData] = useState({
-    orgName: '',
-    orgPhoneNumber: '',
-    orgAddress: '',
-    orgDescription: '',
-    orgType: '',
-    youtube_link:'',
-    website_link:""
+    orgName: "",
+    orgPhoneNumber: "",
+    orgAddress: "",
+    orgDescription: "",
+    orgType: "",
+    youtube_link: "",
+    website_link: "",
   });
 
   const [originalData, setOriginalData] = useState({});
   const [profileImage, setProfileImage] = useState(null);
   const [isInputVisible, setIsInputVisible] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [error, setError] = useState('');
-  const org = localStorage.getItem('org');
+  const [error, setError] = useState("");
+  const org = localStorage.getItem("org");
 
   useEffect(() => {
-    const accessToken = localStorage.getItem('token');
+    const accessToken = localStorage.getItem("token");
     const config = {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     };
 
-    axios.get(`${apiUrl}/api/v1.0/organisation`, config)
+    axios
+      .get(`${apiUrl}/api/v1.0/organisation`, config)
       .then((res) => {
         setOrgData(res.data);
         setOriginalData(res.data);
@@ -44,27 +45,24 @@ function OrgProfile() {
     const { name, value } = e.target;
     setOrgData({
       ...orgData,
-      [name]: value
+      [name]: value,
     });
-  }
+  };
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    const allowedTypes = ['image/jpeg', 'image/png'];
+    const allowedTypes = ["image/jpeg", "image/png"];
     const maxSize = 1 * 1024 * 1024;
     if (file.size > maxSize) {
-      setError('File size exceeds 1MB');
+      setError("File size exceeds 1MB");
       return;
     }
 
-    if (file && !allowedTypes.includes(file.type) ) {
-    setError('Please upload a valid image file (JPEG, PNG)');
-    return;
+    if (file && !allowedTypes.includes(file.type)) {
+      setError("Please upload a valid image file (JPEG, PNG)");
+      return;
     }
-      setProfileImage(file);
-  }
-   
-
-
+    setProfileImage(file);
+  };
 
   const toggleInputVisibility = () => {
     setIsInputVisible(!isInputVisible);
@@ -72,12 +70,12 @@ function OrgProfile() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsEditing(true)
-    const accessToken = localStorage.getItem('token');
+    setIsEditing(true);
+    const accessToken = localStorage.getItem("token");
     const config = {
       headers: {
         Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
     };
 
@@ -89,17 +87,18 @@ function OrgProfile() {
     }
 
     if (profileImage) {
-      formData.append('profileImage', profileImage);
+      formData.append("profileImage", profileImage);
     }
 
-    axios.patch(`${apiUrl}/api/v1.0/organisation`, formData, config)
+    axios
+      .patch(`${apiUrl}/api/v1.0/organisation`, formData, config)
       .then((res) => {
         setOrgData(res.data.Data);
         setOriginalData(res.data.Data);
         toast.success(res.data.message);
         setIsInputVisible(false);
         setIsEditing(false);
-        setProfileImage(null)
+        setProfileImage(null);
       })
       .catch((err) => {
         setIsEditing(false);
@@ -109,33 +108,45 @@ function OrgProfile() {
   };
 
   const checkFormChanges = () => {
-    if (profileImage){
-      return true
-    }    
+    if (profileImage) {
+      return true;
+    }
     return JSON.stringify(orgData) !== JSON.stringify(originalData);
   };
 
   return (
-    <div className='px-5 bg-white'>
+    <div className="px-5 bg-white">
       <div className="text-sm breadcrumbs ml-2">
         <ul>
-          <li><a href='/org/dashboard'>Dashboard</a></li>
-          <li><a href='/org/dashboard/profile'>Profile</a></li>
+          <li>
+            <a href="/org/dashboard">Dashboard</a>
+          </li>
+          <li>
+            <a href="/org/dashboard/profile">Profile</a>
+          </li>
         </ul>
       </div>
       <div className="container mx-auto min-h-screen lg:h-fit">
-        <h1 className="mb-3 my-2 text-2xl font-bold leading-tight">Personalize your Organisation</h1>
-        <hr className='mb-2 mt-0' />
+        <h1 className="mb-3 my-2 text-2xl font-bold leading-tight">
+          Personalize your Organisation
+        </h1>
+        <hr className="mb-2 mt-0" />
         <div>
           <div className="card w-full p-4 flex-row justify-between border">
             <div className="avatar">
               <div className="w-24">
-                <figure className='border rounded-full'>
+                <figure className="border rounded-full">
                   {orgData && orgData.profileImage ? (
-                    <img src={orgData.profileImage} alt={orgData && orgData.orgName} className="w-full rounded" />
+                    <img
+                      src={orgData.profileImage}
+                      alt={orgData && orgData.orgName}
+                      className="w-full rounded"
+                    />
                   ) : (
-                    <div className='flex items-center justify-center h-24 w-24 bg-blue-600 text-white border border-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2 text-center'>
-                      <p className='lg:text-3xl sm:text-sm'>{org && org.charAt(0)}</p>
+                    <div className="flex items-center justify-center h-24 w-24 bg-blue-600 text-white border border-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-xs px-1 py-2 text-center">
+                      <p className="lg:text-3xl sm:text-sm">
+                        {org && org.charAt(0)}
+                      </p>
                     </div>
                   )}
                 </figure>
@@ -146,16 +157,23 @@ function OrgProfile() {
               <p>{orgData.orgAddress}</p>
             </div>
             <div>
-              <label onClick={toggleInputVisibility} className="cursor-pointer text-blue-600 underline">Profile Picture</label>
+              <label
+                onClick={toggleInputVisibility}
+                className="cursor-pointer text-blue-600 underline"
+              >
+                Profile Picture
+              </label>
             </div>
           </div>
           <div className="card w-full border p-6 mt-4">
             <form onSubmit={handleSubmit} className="space-y-4">
-              {error && <p className='text-red-500'>{error}</p>}
-              <h2 className='text-base'>Update your profile information</h2>
-                {isInputVisible && (
-                <div id='change-input'>
-                  <label className="block text-black font-medium mt-4">Profile Image</label>
+              {error && <p className="text-red-500">{error}</p>}
+              <h2 className="text-base">Update your profile information</h2>
+              {isInputVisible && (
+                <div id="change-input">
+                  <label className="block text-black font-medium mt-4">
+                    Profile Image
+                  </label>
                   <input
                     type="file"
                     onChange={handleImageChange}
@@ -164,7 +182,9 @@ function OrgProfile() {
                 </div>
               )}
               <div>
-                <label className="block text-black font-medium"><span className='text-red-500'>*</span>Organization Name</label>
+                <label className="block text-black font-medium">
+                  <span className="text-red-500">*</span>Organization Name
+                </label>
                 <input
                   name="orgName"
                   value={orgData.orgName}
@@ -174,7 +194,9 @@ function OrgProfile() {
                 />
               </div>
               <div>
-                <label className="block text-black font-medium"><span className='text-red-500'>*</span>Email Address</label>
+                <label className="block text-black font-medium">
+                  <span className="text-red-500">*</span>Email Address
+                </label>
                 <input
                   value={orgData.orgEmail}
                   disabled
@@ -182,7 +204,9 @@ function OrgProfile() {
                 />
               </div>
               <div>
-                <label className="block text-black font-medium"><span className='text-red-500'>*</span>Phone Number</label>
+                <label className="block text-black font-medium">
+                  <span className="text-red-500">*</span>Phone Number
+                </label>
                 <input
                   name="orgPhoneNumber"
                   value={orgData.orgPhoneNumber}
@@ -191,7 +215,9 @@ function OrgProfile() {
                 />
               </div>
               <div>
-                <label className="block text-black font-medium"><span className='text-red-500'>*</span>Address</label>
+                <label className="block text-black font-medium">
+                  <span className="text-red-500">*</span>Address
+                </label>
                 <input
                   name="orgAddress"
                   value={orgData.orgAddress}
@@ -200,42 +226,54 @@ function OrgProfile() {
                 />
               </div>
               <div>
-                <label className="block text-black font-medium"><span className='text-red-500'>*</span>Organisation Type</label>
+                <label className="block text-black font-medium">
+                  <span className="text-red-500">*</span>Organisation Type
+                </label>
                 <select
                   name="orgType"
                   value={orgData.orgType}
                   onChange={handleInputChange}
-                  className='bg-gray-50 border h-11 border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5'
+                  className="bg-gray-50 border h-11 border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                 >
                   <option value="">Select Organisation Structure</option>
-                  <option value="NonProfit Organisation">NonProfit Organisation(NPOs)</option>
-                  <option value="Profit Organisation">For Profit Organisation</option>
+                  <option value="NonProfit Organisation">
+                    NonProfit Organisation(NPOs)
+                  </option>
+                  <option value="Profit Organisation">
+                    For Profit Organisation
+                  </option>
                 </select>
               </div>
               <div className="grid grid-cols-2 gap-4 mb-4">
-              <div>
-                  <label className='block text-black font-medium'>Website Link</label>
+                <div>
+                  <label className="block text-black font-medium">
+                    Website Link
+                  </label>
                   <input
                     name="website_link"
                     value={orgData.website_link}
                     onChange={handleInputChange}
-                    className='w-full mt-1 p-2 border border-gray-300 rounded'
-                    placeholder='https://..........'
+                    className="w-full mt-1 p-2 border border-gray-300 rounded"
+                    placeholder="https://.........."
                   />
                 </div>
                 <div>
-                  <label className='block text-black font-medium'>Youtube Link</label>
+                  <label className="block text-black font-medium">
+                    Youtube Link
+                  </label>
                   <input
                     name="youtube_link"
                     value={orgData.youtube_link}
                     onChange={handleInputChange}
-                    className='w-full mt-1 p-2 border border-gray-300 rounded'
-                    placeholder='https://www.youtube.com/.........'
+                    className="w-full mt-1 p-2 border border-gray-300 rounded"
+                    placeholder="https://www.youtube.com/........."
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-black font-medium">About the Organisation</label>
+                <label className="block text-black font-medium">
+                  About the Organisation
+                </label>
                 <textarea
                   name="orgDescription"
                   value={orgData.orgDescription}
@@ -246,10 +284,12 @@ function OrgProfile() {
               <div>
                 <button
                   type="submit"
-                  className={`text-white font-semibold py-2 px-4 rounded ${checkFormChanges() ? "bg-blue-600" : "bg-gray-600"}`}
+                  className={`text-white font-semibold py-2 px-4 rounded ${
+                    checkFormChanges() ? "bg-blue-600" : "bg-gray-600"
+                  }`}
                   disabled={!checkFormChanges()}
                 >
-                  {isEditing ? 'Saving...' : 'Save'}
+                  {isEditing ? "Saving..." : "Save"}
                 </button>
               </div>
             </form>
@@ -261,4 +301,4 @@ function OrgProfile() {
   );
 }
 
-export default OrgProfile
+export default OrgProfile;

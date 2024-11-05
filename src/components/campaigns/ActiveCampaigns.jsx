@@ -182,7 +182,7 @@ function ActiveCampaigns() {
         :
         null
       }
-    <h1 className="text-left text-xl font-bold mb-6 mx-6 h-6 p-1">Active Fundraisers</h1>  
+    <h1 className="md:text-3xl text-2xl font-bold mb-6 text-center">Active Fundraisers</h1>  
     <div className='mx-auto overflow-x-hidden pb-4 px-6 sm:px-2 md:px-4'>
         
         {activeCampaigns.length===0 ?
