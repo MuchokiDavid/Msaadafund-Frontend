@@ -87,9 +87,9 @@ function Features() {
           <div className="sm:p-6 p-4 flex bg-white rounded-md border shadow-[0_14px_10px_-11px_rgba(93,96,127,0.2)]">
             <BiDonateHeart className="w-12 h-12 mr-6 bg-blue-50 p-3 rounded-md shrink-0" />
             <div>
-              <h3 className="text-xl font-semibold mb-2">Flexible Donation</h3>
+              <h3 className="text-xl font-semibold mb-2">Flexible Payment</h3>
               <p>
-                Support for M-Pesa, card, Pesalink, ApplePay, Bitcoin, and
+                Support for M-Pesa, Card, Pesalink, ApplePay, Bitcoin, and
                 CashApp to enable smooth contributions from diverse donor
                 networks worldwide.
               </p>
