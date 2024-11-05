@@ -7,7 +7,7 @@ function BannerCards() {
             {/* <div className="flex flex-col px-20 md:px-10 md:flex-row items-center justify-center gap-6"> */}
             <div className='grid grid-cols-1 md:grid-cols-2 gap-3'>
                 <div>
-                <div className="card w-full h-80 bg-base-100 shadow image-full">
+                <div className="card w-full h-80 bg-base-800 shadow image-full">
                     <figure><img className="w-full" src="https://images.unsplash.com/photo-1579208575657-c595a05383b7?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Shoes" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">Start Fundraising</h2>
