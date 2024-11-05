@@ -190,8 +190,8 @@ function Feature({featuredCampaigns}) {
 
   return (
     <div className="mt-2 container mx-auto h-full rounded-lg w-full">
-        <div className='mb-2'>
-            <h2 className='font-bold text-2xl mx-4'>Featured fundraisers</h2>
+        <div className='text-center mb-4'>
+            <h2 className='md:text-4xl text-3xl font-bold mb-6'>Featured fundraisers</h2>
         </div>
         <Slider {...settings}>
             {featuredCampaign && featuredCampaign.map((campaign) => {
