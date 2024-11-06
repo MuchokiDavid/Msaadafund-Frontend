@@ -734,12 +734,14 @@ function CampainDetails() {
                   {/* banner */}
                   <Slider {...settings}>
                     <div className="h-[600px] w-full">
-                      <img
-                        className="w-full h-full object-full"
-                        src={campaign.banner}
-                        alt={campaign.campaignName}
-                        loading="lazy"
-                      />
+                      <picture className="flex justify-center items-center w-full h-full overflow-hidden">
+                        <img
+                          className="w-[100%] h-[100%] object-cover"
+                          src={campaign.banner}
+                          alt={campaign.campaignName}
+                          loading="lazy"
+                        />
+                      </picture>
                     </div>
                     <div>
                       {campaign.youtube_link ? (
@@ -755,12 +757,14 @@ function CampainDetails() {
                         </div>
                       ) : (
                         <div className="h-[600px] w-full">
-                          <img
-                            src={campaign.banner}
-                            alt={campaign.campaignName}
-                            className="w-full h-full object-fill"
-                            loading="lazy"
-                          />
+                          <picture className="flex justify-center items-center w-full h-full overflow-hidden">
+                            <img
+                              src={campaign.banner}
+                              alt={campaign.campaignName}
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                            />
+                          </picture>
                         </div>
                       )}
                     </div>
