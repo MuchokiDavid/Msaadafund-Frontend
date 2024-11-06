@@ -100,88 +100,40 @@ function Feature({featuredCampaigns}) {
       }
     };
 
-    //Slider settings(Carosel)
-    function SampleNextArrow(props) {
-      const { className, style, onClick } = props;
-      return (
-        <div
-          className={className}
-          style={{ ...style, display: "block", background: "green"}}
-          onClick={onClick}
-        />
-      );
-    }
-    
-    function SamplePrevArrow(props) {
-      const { className, style, onClick } = props;
-      return (
-        <div
-          className={className}
-          style={{ ...style, display: "block", background: "green"}}
-          onClick={onClick}
-        />
-      );
-    }
 
-    var settings = {
-        type: 'loop',
-        dots: false,
-        infinite: true,
-        speed: 4000,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        lazyLoad: true,
-        swipeToSlide: true,
-        initialSlide: 0,
-        rewind: true,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        rewindSpeed: 1000, // Speed of the rewind transition in milliseconds
-        snap: true, // Sna
-        keyboard: true, 
-        pauseOnHover: true,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
+
+    const settings = {
+      // dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow:4,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 3000,
         responsive: [
           {
             breakpoint: 1200,
             settings: {
               slidesToShow: 4,
-              autoplay: true,
-              autoplaySpeed: 3000,
-              slidesToScroll: 1
+
             }
           },
           {
             breakpoint: 1024,
             settings: {
-              slidesToShow: 3,
-              autoplay: true,
-              autoplaySpeed: 3000,
-              slidesToScroll: 1
+              slidesToShow: 4,
             }
           },
           {
             breakpoint: 768,
             settings: {
               slidesToShow: 2,
-              slidesToScroll: 1,
-              initialSlide: 1,
-              autoplay: true,
-              autoplaySpeed: 3000,
-              nextArrow: <SampleNextArrow />,
-              prevArrow: <SamplePrevArrow />
             }
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
-              slidesToScroll: 1,
-              autoplay: true,
-              autoplaySpeed: 3000,
-              nextArrow: <SampleNextArrow />,
-              prevArrow: <SamplePrevArrow />
             }
           }
         ]
@@ -191,7 +143,7 @@ function Feature({featuredCampaigns}) {
   return (
     <div className="mt-2 container mx-auto h-full rounded-lg w-full">
         <div className='text-center mb-4'>
-            <h2 className='md:text-4xl text-3xl font-bold mb-6'>Featured fundraisers</h2>
+            <h2 className='md:text-4xl text-3xl font-bold mb-6'>Featured Fundraisers</h2>
         </div>
         <Slider {...settings}>
             {featuredCampaign && featuredCampaign.map((campaign) => {
