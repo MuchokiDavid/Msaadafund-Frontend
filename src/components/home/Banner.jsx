@@ -219,7 +219,9 @@ function Banner() {
       <section className="bg-slate-50 text-gray-800 mt-6 mb-4">
         <div className="px-4 py-6 sm:px-6 sm:py-8 lg:px-16 lg:py-12">
           <div className="max-w-full text-center">
-            <h2 className="md:text-4xl text-3xl font-bold mb-6">How It Works</h2>
+            <h2 className="md:text-4xl text-3xl font-bold mb-6">
+              How It Works
+            </h2>
             <p className="mt-4 text-gray-500">
               MsaadaFund is designed to make your impact easy and rewarding.
               Connect with causes you care about and contribute to their
@@ -378,6 +380,10 @@ function Banner() {
 
       <OurClient />
 
+      <div className="mt-12">
+        <HomeFaq />
+      </div>
+
       <section>
         <div class="mt-12 px-4 sm:px-10 bg-blue-100">
           <div class="min-h-[400px] relative h-full max-w-4xl mx-auto flex flex-col justify-center items-center text-center px-6 py-16">
@@ -410,10 +416,6 @@ function Banner() {
           </div>
         </div>
       </section>
-
-      <div className="mt-12">
-        <HomeFaq />
-      </div>
 
       {/* <section className="bg-white">
         <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
